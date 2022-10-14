@@ -72,8 +72,13 @@
 
 #include <Standard_Macro.hxx>
 
+#include <adolc/adtl.h>
+using adtl::adouble;
+
 typedef int           Standard_Integer;
-typedef double        Standard_Real;
+
+typedef adouble        Standard_Real;
+
 typedef bool          Standard_Boolean;
 typedef float         Standard_ShortReal;
 typedef char          Standard_Character;

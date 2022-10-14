@@ -36,33 +36,57 @@
 //! @param theUpperBound the upper bound of the range a computing hash code must be within
 //! @return a computed hash code, in the range [1, theUpperBound]
 Standard_EXPORT Standard_Integer HashCode    (Standard_Real theReal, Standard_Integer theUpperBound);
+Standard_EXPORT Standard_Integer HashCode    (double theReal, Standard_Integer theUpperBound);
 
 Standard_EXPORT Standard_Real    ACos        (const Standard_Real );
+Standard_EXPORT double    ACos        (const double );
+
 Standard_EXPORT Standard_Real    ACosApprox  (const Standard_Real );
+Standard_EXPORT double    ACosApprox  (const double );
+
 Standard_EXPORT Standard_Real    ASin        (const Standard_Real );
+Standard_EXPORT double    ASin        (const double );
+
 Standard_EXPORT Standard_Real    ATan2       (const Standard_Real , const Standard_Real );
+Standard_EXPORT double    ATan2       (const double , const double );
+
 Standard_EXPORT Standard_Real    NextAfter   (const Standard_Real , const Standard_Real );
+Standard_EXPORT double    NextAfter   (const double , const double );
 
 //! Returns |a| if b >= 0; -|a| if b < 0.
 Standard_EXPORT Standard_Real    Sign(const Standard_Real a, const Standard_Real b);
+Standard_EXPORT double    Sign(const double a, const double b);
 
 Standard_EXPORT Standard_Real    ATanh       (const Standard_Real );
+Standard_EXPORT double    ATanh       (const double );
+
 Standard_EXPORT Standard_Real    ACosh       (const Standard_Real );
+Standard_EXPORT double    ACosh       (const double );
+
 Standard_EXPORT Standard_Real    Sinh       (const Standard_Real );
+Standard_EXPORT double    Sinh       (const double );
+
 Standard_EXPORT Standard_Real    Cosh       (const Standard_Real );
+Standard_EXPORT double    Cosh       (const double );
+
 Standard_EXPORT Standard_Real    Log         (const Standard_Real );
+Standard_EXPORT double    Log         (const double );
+
 Standard_EXPORT Standard_Real    Sqrt        (const Standard_Real );
+Standard_EXPORT double    Sqrt        (const double );
 
 //-------------------------------------------------------------------
 // RealSmall : Returns the smallest positive real
 //-------------------------------------------------------------------
-inline Standard_Real     RealSmall() 
+inline double     RealSmall()
 { return DBL_MIN; }
 
 //-------------------------------------------------------------------
 // Abs : Returns the absolute value of a real
 //-------------------------------------------------------------------
 inline Standard_Real     Abs(const Standard_Real Value) 
+{ return fabs(Value); }
+inline double     Abs(const double Value)
 { return fabs(Value); }
 
 
@@ -71,6 +95,9 @@ inline Standard_Real     Abs(const Standard_Real Value)
 //-------------------------------------------------------------------
 inline Standard_Boolean  IsEqual (const Standard_Real Value1, 
 				  const Standard_Real Value2) 
+{ return Abs((Value1 - Value2)) < RealSmall(); }
+inline Standard_Boolean  IsEqual (const double Value1,
+                                  const double Value2)
 { return Abs((Value1 - Value2)) < RealSmall(); }
 
          //  *********************************** //
@@ -91,13 +118,13 @@ inline Standard_Integer  RealDigits()
 // RealEpsilon : Returns the minimum positive real such that 
 //               1.0 + x is not equal to 1.0
 //-------------------------------------------------------------------
-inline Standard_Real     RealEpsilon() 
+inline double     RealEpsilon()
 { return DBL_EPSILON; }
 
 //-------------------------------------------------------------------
 // RealFirst : Returns the minimum negative value of a real
 //-------------------------------------------------------------------
-inline Standard_Real     RealFirst() 
+inline double     RealFirst()
 { return -DBL_MAX; }
   
 //-------------------------------------------------------------------
@@ -110,7 +137,7 @@ inline Standard_Integer  RealFirst10Exp()
 //-------------------------------------------------------------------
 // RealLast : Returns the maximum value of a real
 //-------------------------------------------------------------------
-inline Standard_Real     RealLast() 
+inline double     RealLast()
 { return  DBL_MAX; }
 
 //-------------------------------------------------------------------
@@ -149,13 +176,15 @@ inline Standard_Integer  RealSize()
 //-------------------------------------------------------------------
 // IntToReal : Converts an integer in a real
 //-------------------------------------------------------------------
-inline Standard_Real     IntToReal(const Standard_Integer Value) 
+inline double     IntToReal(const Standard_Integer Value)
 { return Value; }
 
 //-------------------------------------------------------------------
 // ATan : Returns the value of the arc tangent of a real
 //-------------------------------------------------------------------
 inline Standard_Real     ATan(const Standard_Real Value) 
+{ return atan(Value); }
+inline double     ATan(const double Value)
 { return atan(Value); }
 
 
@@ -164,11 +193,15 @@ inline Standard_Real     ATan(const Standard_Real Value)
 //-------------------------------------------------------------------
 inline Standard_Real     Ceiling (const Standard_Real Value) 
 { return ceil(Value); }
+inline double     Ceiling (const double Value)
+{ return ceil(Value); }
 
 //-------------------------------------------------------------------
 // Cos : Returns the cosine of a real
 //-------------------------------------------------------------------
 inline Standard_Real     Cos (const Standard_Real Value) 
+{ return cos(Value); }
+inline double     Cos (const double Value)
 { return cos(Value); }
 
 
@@ -192,11 +225,24 @@ inline Standard_Real     Epsilon (const Standard_Real Value)
   }
   return aEpsilon;
 }
+inline double     Epsilon (const double Value)
+{
+    double aEpsilon;
+
+    if (Value>=0.0){
+        aEpsilon = NextAfter(Value, RealLast()) - Value;
+    } else {
+        aEpsilon = Value - NextAfter(Value, RealFirst());
+    }
+    return aEpsilon;
+}
 
 //-------------------------------------------------------------------
 // Exp : Returns the exponential function of a real
 //-------------------------------------------------------------------
 inline Standard_Real     Exp (const Standard_Real Value) 
+{ return exp(Value); }
+inline double     Exp (const double Value)
 { return exp(Value); }
 
 //-------------------------------------------------------------------
@@ -204,11 +250,15 @@ inline Standard_Real     Exp (const Standard_Real Value)
 //-------------------------------------------------------------------
 inline Standard_Real     Floor (const Standard_Real Value) 
 { return floor(Value); }
+inline double     Floor (const double Value)
+{ return floor(Value); }
 
 //-------------------------------------------------------------------
 // IntegerPart : Returns the integer part of a real
 //-------------------------------------------------------------------
 inline Standard_Real     IntegerPart (const Standard_Real Value) 
+{ return ( (Value>0) ? floor(Value) : ceil(Value) ); }
+inline double     IntegerPart (const double Value)
 { return ( (Value>0) ? floor(Value) : ceil(Value) ); }
 
 
@@ -216,6 +266,8 @@ inline Standard_Real     IntegerPart (const Standard_Real Value)
 // Log10 : Returns the base-10 logarithm of a real 
 //-------------------------------------------------------------------
 inline Standard_Real     Log10 (const Standard_Real Value) 
+{ return log10(Value); }
+inline double     Log10 (const double Value)
 { return log10(Value); }
 
 //-------------------------------------------------------------------
@@ -226,6 +278,11 @@ inline Standard_Real     Max (const Standard_Real Val1,
 {
   return Val1 >= Val2 ? Val1 : Val2;
 }
+inline double     Max (const double Val1,
+                       const double Val2)
+{
+    return Val1 >= Val2 ? Val1 : Val2;
+}
 
 //-------------------------------------------------------------------
 // Min : Returns the minimum value of two reals
@@ -235,17 +292,30 @@ inline Standard_Real     Min (const Standard_Real Val1,
 {
   return Val1 <= Val2 ? Val1 : Val2;
 }
+inline double     Min (const double Val1,
+                       const double Val2)
+{
+    return Val1 <= Val2 ? Val1 : Val2;
+}
 
 //-------------------------------------------------------------------
 // Pow : Returns a real to a given power
 //-------------------------------------------------------------------
-inline Standard_Real     Pow (const Standard_Real Value, const Standard_Real P)
+inline double     Pow (const double Value, const double P)
 { return pow(Value,P); }
+inline Standard_Real     Pow (const Standard_Real Value, const double P)
+{ return adtl::pow(Value,P); }
+inline Standard_Real     Pow (const double Value, const Standard_Real P)
+{ return adtl::pow(Value,P); }
+inline Standard_Real     Pow (const Standard_Real Value, const Standard_Real P)
+{ return adtl::pow(Value,P); }
 
 //-------------------------------------------------------------------
 // RealPart : Returns the fractional part of a real.
 //-------------------------------------------------------------------
 inline  Standard_Real    RealPart (const Standard_Real Value) 
+{ return fabs(IntegerPart(Value) - Value); }
+inline  double    RealPart (const double Value)
 { return fabs(IntegerPart(Value) - Value); }
 
 //-------------------------------------------------------------------
@@ -262,6 +332,15 @@ inline  Standard_Integer RealToInt (const Standard_Real Value)
     : Value > INT_MAX ? INT_MAX
     : (Standard_Integer)Value;
 }
+inline  Standard_Integer RealToInt (const double Value)
+{
+    // Note that on WNT under MS VC++ 8.0 conversion of double value less
+    // than INT_MIN or greater than INT_MAX to integer will cause signal
+    // "Floating point multiple trap" (OCC17861)
+    return Value < INT_MIN ? INT_MIN
+      : Value > INT_MAX ? INT_MAX
+      : (Standard_Integer)Value;
+}
 
 // =======================================================================
 // function : RealToShortReal
@@ -276,17 +355,27 @@ inline Standard_ShortReal RealToShortReal (const Standard_Real theVal)
     : theVal > FLT_MAX ? FLT_MAX
     : (Standard_ShortReal)theVal;
 }
+inline Standard_ShortReal RealToShortReal (const double theVal)
+{
+  return theVal < -FLT_MAX ? -FLT_MAX
+                           : theVal > FLT_MAX ? FLT_MAX
+                                              : (Standard_ShortReal)theVal;
+}
 
 //-------------------------------------------------------------------
 // Round : Returns the nearest integer of a real
 //-------------------------------------------------------------------
 inline Standard_Real     Round (const Standard_Real Value) 
 { return IntegerPart(Value + (Value > 0 ? 0.5 : -0.5)); }
+inline double     Round (const double Value)
+{ return IntegerPart(Value + (Value > 0 ? 0.5 : -0.5)); }
 
 //-------------------------------------------------------------------
 // Sin : Returns the sine of a real
 //-------------------------------------------------------------------
 inline Standard_Real     Sin (const Standard_Real Value) 
+{ return sin(Value); }
+inline double     Sin (const double Value)
 { return sin(Value); }
 
 
@@ -299,11 +388,19 @@ inline Standard_Real     ASinh(const Standard_Real Value)
 #else
 { return asinh(Value); }
 #endif
+inline double     ASinh(const double Value)
+#if defined(__QNX__)
+{ return std::asinh(Value); }
+#else
+{ return asinh(Value); }
+#endif
 
 //-------------------------------------------------------------------
 // Square : Returns a real to the power 2
 //-------------------------------------------------------------------
 inline Standard_Real     Square(const Standard_Real Value) 
+{ return Value * Value; }
+inline double     Square(const double Value)
 { return Value * Value; }
 
 //-------------------------------------------------------------------
@@ -311,11 +408,15 @@ inline Standard_Real     Square(const Standard_Real Value)
 //-------------------------------------------------------------------
 inline Standard_Real     Tan (const Standard_Real Value) 
 { return tan(Value); }
+inline double     Tan (const double Value)
+{ return tan(Value); }
 
 //-------------------------------------------------------------------
 // Tanh : Returns the hyperbolic tangent of a real
 //-------------------------------------------------------------------
 inline Standard_Real     Tanh (const Standard_Real Value) 
+{ return tanh(Value); }
+inline double     Tanh (const double Value)
 { return tanh(Value); }
 
 #endif

@@ -33,8 +33,25 @@ Standard_Integer HashCode (const Standard_Real theReal, const Standard_Integer t
   }
   union
   {
-    Standard_Real    R;
+    double    R;
     Standard_Integer I[2];
+  } U;
+
+  //  U.R = Abs(me); // Treat me = -0.0 ADN 27/11/97
+  U.R = theReal.getValue();
+
+  return HashCode (U.I[0] ^ U.I[1], theUpperBound);
+}
+Standard_Integer HashCode (const double theReal, const Standard_Integer theUpperBound)
+{
+  if (theUpperBound < 1)
+  {
+    throw Standard_RangeError ("Try to apply HashCode method with negative or null argument.");
+  }
+  union
+  {
+      double    R;
+      Standard_Integer I[2];
   } U;
 
   //  U.R = Abs(me); // Treat me = -0.0 ADN 27/11/97
@@ -48,6 +65,21 @@ Standard_Integer HashCode (const Standard_Real theReal, const Standard_Integer t
 //-------------------------------------------------------------------
 Standard_Real ACos (const Standard_Real Value) 
 { 
+  if ((Value < -ACosLimit) || (Value > ACosLimit)){
+    throw Standard_RangeError();
+  }
+  else if (Value > 1.)
+  {
+    return 0.; //acos(1.)
+  }
+  else if (Value < -1.)
+  {
+    return M_PI; //acos(-1.)
+  }
+  return acos(Value);
+}
+double ACos (const double Value)
+{
   if ((Value < -ACosLimit) || (Value > ACosLimit)){
     throw Standard_RangeError();
   }
@@ -76,8 +108,40 @@ inline Standard_Real apx_for_ACosApprox (const Standard_Real x)
     x * (0.005516443930088506 +
     0.015098965761299077 * x))))) / sqrt(2*x);
 }
+inline double apx_for_ACosApprox (const double x)
+{
+  return  (-0.000007239283986332 +
+           x * (2.000291665285952400 +
+                x * (0.163910606547823220 +
+                     x * (0.047654245891495528 -
+                          x * (0.005516443930088506 +
+                               0.015098965761299077 * x))))) / sqrt(2*x);
+}
 
 Standard_Real ACosApprox (const Standard_Real Value)
+{
+  Standard_Real XX;
+  if (Value < 0.) {
+    XX = 1.+Value;
+    if (XX < RealSmall())
+      return 0.;
+    return M_PI - apx_for_ACosApprox(XX);
+  }
+  XX = 1.-Value;
+  if (XX < RealSmall())
+    return 0.;
+  return apx_for_ACosApprox(XX);
+
+// The code above is the same but includes 2 comparisons instead of 3
+//   Standard_Real xn = 1.+Value;
+//   Standard_Real xp = 1.-Value;
+//   if (xp < RealSmall() || xn < RealSmall())
+//     return 0.;
+//   if (Value < 0.)
+//     return M_PI - apx_for_ACosApprox (xn);
+//   return apx_for_ACosApprox (xp);
+}
+double ACosApprox (const double Value)
 {
   double XX;
   if (Value < 0.) {
@@ -119,6 +183,21 @@ Standard_Real ASin (const Standard_Real Value)
   }
   return asin(Value);
 }
+double ASin (const double Value)
+{
+  if ((Value < -ACosLimit) || (Value > ACosLimit)){
+    throw Standard_RangeError();
+  }
+  else if (Value > 1.)
+  {
+    return M_PI_2; //asin(1.)
+  }
+  else if (Value < -1.)
+  {
+    return -M_PI_2; //asin(-1.)
+  }
+  return asin(Value);
+}
 
 //-------------------------------------------------------------------
 // ATan2 : Returns the arc tangent of a real divide by an another real
@@ -130,11 +209,26 @@ Standard_Real ATan2 (const Standard_Real Value, const Standard_Real Other)
   }
   return atan2(Value,Other); 
 }
+double ATan2 (const double Value, const double Other)
+{
+  if ( Value == 0. && Other == 0. ){
+    throw Standard_NullValue();
+  }
+  return atan2(Value,Other);
+}
 
 //-------------------------------------------------------------------
 // Sign : Returns |a| if B >= 0; -|a| if b < 0.
 //-------------------------------------------------------------------
 Standard_Real Sign(const Standard_Real a, const Standard_Real b)
+{
+  if (b >= 0.0) {
+    return Abs(a);
+  } else {
+    return (-1.0 * Abs(a));
+  }
+}
+double Sign(const double a, const double b)
 {
   if (b >= 0.0) {
     return Abs(a);
@@ -198,11 +292,11 @@ static int HardwareLowBitsOfDouble()
 static int HighBitsOfDouble = HardwareHighBitsOfDouble();
 static int LowBitsOfDouble = HardwareLowBitsOfDouble();
 
-double NextAfter(const double x, const double y)
+Standard_Real NextAfter(const Standard_Real x, const Standard_Real y)
 {
   RealMap res;
 
-  res.real=x;
+  res.real=x.getValue();
   
   if (x == 0.0) {
 	return DBL_MIN;
@@ -246,12 +340,74 @@ double NextAfter(const double x, const double y)
   }
   return res.real;
 }
+double NextAfter(const double x, const double y)
+{
+  RealMap res;
+
+  res.real=x;
+
+  if (x == 0.0) {
+    return DBL_MIN;
+  }
+  if(x==y) {
+    //=========================================
+    //   -oo__________0___________+oo
+    //               x=y
+    //  The direction is "Null", so there is nothing after
+    //=========================================
+
+  } else if (((x<y) && (x>=0.0)) || ((x>y) && (x<0.0))) {
+    //=========================================
+    //   -oo__________0___________+oo
+    //        y <- x     x -> y
+    //
+    //=========================================
+    if (res.map[LowBitsOfDouble]==0xffffffff) {
+      res.map[LowBitsOfDouble]=0;
+      res.map[HighBitsOfDouble]++;
+    } else {
+      res.map[LowBitsOfDouble]++;
+    }
+  } else {
+    //=========================================
+    //   -oo__________0___________+oo
+    //        x -> y     y <- x
+    //
+    //=========================================
+    if (res.map[LowBitsOfDouble]==0) {
+      if (res.map[HighBitsOfDouble]==0) {
+        res.map[HighBitsOfDouble]=0x80000000;
+        res.map[LowBitsOfDouble]=0x00000001;
+      } else {
+        res.map[LowBitsOfDouble]=0xffffffff;
+        res.map[HighBitsOfDouble]--;
+      }
+    } else {
+      res.map[LowBitsOfDouble]--;
+    }
+  }
+  return res.real;
+}
 
 //-------------------------------------------------------------------
 // ATanh : Returns the value of the hyperbolic arc tangent of a real
 //-------------------------------------------------------------------
 Standard_Real     ATanh(const Standard_Real Value) 
 { 
+  if ( (Value <= -1.) || (Value >= 1.) ){
+#ifdef OCCT_DEBUG
+    std::cout << "Illegal argument in ATanh" << std::endl ;
+#endif
+    throw Standard_NumericError("Illegal argument in ATanh");
+  }
+#if defined(__QNX__)
+  return std::atanh(Value);
+#else
+  return atanh(Value);
+#endif
+}
+double     ATanh(const double Value)
+{
   if ( (Value <= -1.) || (Value >= 1.) ){
 #ifdef OCCT_DEBUG
     std::cout << "Illegal argument in ATanh" << std::endl ;
@@ -282,6 +438,20 @@ Standard_Real     ACosh (const Standard_Real Value)
   return acosh(Value);
 #endif
 }
+double     ACosh (const double Value)
+{
+  if ( Value < 1. ){
+#ifdef OCCT_DEBUG
+    std::cout << "Illegal argument in ACosh" << std::endl ;
+#endif
+    throw Standard_NumericError("Illegal argument in ACosh");
+  }
+#if defined(__QNX__)
+  return std::acosh(Value);
+#else
+  return acosh(Value);
+#endif
+}
 
 //-------------------------------------------------------------------
 // Cosh : Returns the hyperbolic cosine of a real
@@ -295,6 +465,16 @@ Standard_Real     Cosh (const Standard_Real Value)
     throw Standard_NumericError("Result of Cosh exceeds the maximum value Standard_Real");
   } 
   return cosh(Value); 
+}
+double     Cosh (const double Value)
+{
+  if ( Abs(Value) > 0.71047586007394394e+03 ){
+#ifdef OCCT_DEBUG
+    std::cout << "Result of Cosh exceeds the maximum value Standard_Real" << std::endl ;
+#endif
+    throw Standard_NumericError("Result of Cosh exceeds the maximum value Standard_Real");
+  }
+  return cosh(Value);
 }
 
 //-------------------------------------------------------------------
@@ -310,6 +490,16 @@ Standard_Real     Sinh (const Standard_Real Value)
   } 
   return sinh(Value); 
 }
+double     Sinh (const double Value)
+{
+  if ( Abs(Value) > 0.71047586007394394e+03 ){
+#ifdef OCCT_DEBUG
+    std::cout << "Result of Sinh exceeds the maximum value Standard_Real" << std::endl ;
+#endif
+    throw Standard_NumericError("Result of Sinh exceeds the maximum value Standard_Real");
+  }
+  return sinh(Value);
+}
 
 //-------------------------------------------------------------------
 // Log : Returns the naturaOPl logarithm of a real
@@ -323,6 +513,15 @@ Standard_Real     Log (const Standard_Real Value)
   } 
  return log(Value); 
 }
+double     Log (const double Value)
+{   if ( Value <= 0. ){
+#ifdef OCCT_DEBUG
+    std::cout << "Illegal argument in Log" << std::endl ;
+#endif
+    throw Standard_NumericError("Illegal argument in Log");
+  }
+  return log(Value);
+}
 //-------------------------------------------------------------------
 // Sqrt : Returns the square root of a real
 //-------------------------------------------------------------------
@@ -335,5 +534,15 @@ Standard_Real     Sqrt (const Standard_Real Value)
     throw Standard_NumericError("Illegal argument in Sqrt");
   } 
  return sqrt(Value); 
+}
+double     Sqrt (const double Value)
+{
+  if (  Value < 0. ){
+#ifdef OCCT_DEBUG
+    std::cout << "Illegal argument in Sqrt" << std::endl ;
+#endif
+    throw Standard_NumericError("Illegal argument in Sqrt");
+  }
+  return sqrt(Value);
 }
 
