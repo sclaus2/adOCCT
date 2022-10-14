@@ -29,10 +29,10 @@ namespace
   //! @param theHours   [out] clamped elapsed hours
   //! @param theMinutes [out] clamped elapsed minutes within range [0, 59]
   //! @param theSeconds [out] clamped elapsed seconds within range [0, 60)
-  static void timeToHoursMinutesSeconds (Standard_Real     theTimeSec,
+  static void timeToHoursMinutesSeconds (double     theTimeSec,
                                          Standard_Integer& theHours,
                                          Standard_Integer& theMinutes,
-                                         Standard_Real&    theSeconds)
+                                         double&    theSeconds)
   {
     Standard_Integer aSec = (Standard_Integer)theTimeSec;
     theHours   = aSec / 3600;
@@ -59,7 +59,7 @@ namespace
 //function : GetWallClockTime
 //purpose  :
 //=======================================================================
-Standard_Real OSD_Timer::GetWallClockTime()
+double OSD_Timer::GetWallClockTime()
 {
 #ifdef _WIN32
   // compute clock frequence on first call
@@ -67,7 +67,7 @@ Standard_Real OSD_Timer::GetWallClockTime()
 
   LARGE_INTEGER aTime;
   return aFreq.IsOk && QueryPerformanceCounter (&aTime)
-       ? (Standard_Real )aTime.QuadPart / (Standard_Real )aFreq.Freq.QuadPart
+       ? (double )aTime.QuadPart / (double )aFreq.Freq.QuadPart
        #if defined(_WIN32_WINNT) && (_WIN32_WINNT >= 0x0600)
        : 0.001 * GetTickCount64();
        #else
@@ -102,7 +102,7 @@ OSD_Timer::OSD_Timer (Standard_Boolean theThisThreadOnly)
 //purpose  :
 //=======================================================================
 
-void OSD_Timer::Reset (const Standard_Real theTimeElapsedSec)
+void OSD_Timer::Reset (const double theTimeElapsedSec)
 {
   myTimeStart = 0.0;
   myTimeCumul = theTimeElapsedSec;
@@ -147,7 +147,7 @@ void OSD_Timer::Show() const
 //purpose  :
 //=======================================================================
 
-Standard_Real OSD_Timer::ElapsedTime() const
+double OSD_Timer::ElapsedTime() const
 {
   if (myIsStopped)
   {
@@ -162,12 +162,12 @@ Standard_Real OSD_Timer::ElapsedTime() const
 //purpose  : 
 //=======================================================================
 
-void OSD_Timer::Show (Standard_Real&    theSeconds,
+void OSD_Timer::Show (double&    theSeconds,
                       Standard_Integer& theMinutes,
                       Standard_Integer& theHours,
-                      Standard_Real&    theCPUtime) const
+                      double&    theCPUtime) const
 {
-  const Standard_Real aTimeCumul = myIsStopped
+  const double aTimeCumul = myIsStopped
                                  ? myTimeCumul
                                  : myTimeCumul + GetWallClockTime() - myTimeStart;
   timeToHoursMinutesSeconds (aTimeCumul, theHours, theMinutes, theSeconds);
@@ -181,10 +181,10 @@ void OSD_Timer::Show (Standard_Real&    theSeconds,
 
 void OSD_Timer::Show (Standard_OStream& theOStream) const
 {
-  const Standard_Real aTimeCumul = ElapsedTime();
+  const double aTimeCumul = ElapsedTime();
 
   Standard_Integer anHours, aMinutes;
-  Standard_Real    aSeconds;
+  double    aSeconds;
   timeToHoursMinutesSeconds (aTimeCumul, anHours, aMinutes, aSeconds);
 
   std::streamsize prec = theOStream.precision (12);

@@ -48,8 +48,8 @@
 //function : GetProcessCPU
 //purpose  :
 //=======================================================================
-void OSD_Chronometer::GetProcessCPU (Standard_Real& theUserSeconds,
-                                     Standard_Real& theSystemSeconds)
+void OSD_Chronometer::GetProcessCPU (double& theUserSeconds,
+                                     double& theSystemSeconds)
 {
 #if defined(__linux__) || defined(__FreeBSD__) || defined(__ANDROID__) || defined(__QNX__) || defined(__EMSCRIPTEN__)
   static const long aCLK_TCK = sysconf(_SC_CLK_TCK);
@@ -60,16 +60,16 @@ void OSD_Chronometer::GetProcessCPU (Standard_Real& theUserSeconds,
   tms aCurrentTMS;
   times (&aCurrentTMS);
 
-  theUserSeconds   = (Standard_Real)aCurrentTMS.tms_utime / aCLK_TCK;
-  theSystemSeconds = (Standard_Real)aCurrentTMS.tms_stime / aCLK_TCK;
+  theUserSeconds   = (double)aCurrentTMS.tms_utime / aCLK_TCK;
+  theSystemSeconds = (double)aCurrentTMS.tms_stime / aCLK_TCK;
 }
 
 //=======================================================================
 //function : GetThreadCPU
 //purpose  :
 //=======================================================================
-void OSD_Chronometer::GetThreadCPU (Standard_Real& theUserSeconds,
-                                    Standard_Real& theSystemSeconds)
+void OSD_Chronometer::GetThreadCPU (double& theUserSeconds,
+                                    double& theSystemSeconds)
 {
   theUserSeconds = theSystemSeconds = 0.0;
 #if (defined(__APPLE__))
@@ -78,8 +78,8 @@ void OSD_Chronometer::GetThreadCPU (Standard_Real& theUserSeconds,
   if (KERN_SUCCESS == task_info(mach_task_self(), TASK_THREAD_TIMES_INFO,
       (task_info_t )&aTaskInfo, &aTaskInfoCount))
   {
-    theUserSeconds   = Standard_Real(aTaskInfo.user_time.seconds)   + 0.000001 * aTaskInfo.user_time.microseconds;
-    theSystemSeconds = Standard_Real(aTaskInfo.system_time.seconds) + 0.000001 * aTaskInfo.system_time.microseconds;
+    theUserSeconds   = double(aTaskInfo.user_time.seconds)   + 0.000001 * aTaskInfo.user_time.microseconds;
+    theSystemSeconds = double(aTaskInfo.system_time.seconds) + 0.000001 * aTaskInfo.system_time.microseconds;
   }
 #elif (defined(_POSIX_TIMERS) && defined(_POSIX_THREAD_CPUTIME)) || defined(__ANDROID__) || defined(__QNX__)
   // on Linux, only user times are available for threads via clock_gettime()
@@ -125,8 +125,8 @@ static inline __int64 EncodeFILETIME (PFILETIME pFt)
 //function : GetProcessCPU
 //purpose  :
 //=======================================================================
-void OSD_Chronometer::GetProcessCPU (Standard_Real& theUserSeconds,
-                                     Standard_Real& theSystemSeconds)
+void OSD_Chronometer::GetProcessCPU (double& theUserSeconds,
+                                     double& theSystemSeconds)
 {
 #ifndef OCCT_UWP
   FILETIME ftStart, ftExit, ftKernel, ftUser;
@@ -143,8 +143,8 @@ void OSD_Chronometer::GetProcessCPU (Standard_Real& theUserSeconds,
 //function : GetThreadCPU
 //purpose  :
 //=======================================================================
-void OSD_Chronometer::GetThreadCPU (Standard_Real& theUserSeconds,
-                                    Standard_Real& theSystemSeconds)
+void OSD_Chronometer::GetThreadCPU (double& theUserSeconds,
+                                    double& theSystemSeconds)
 {
 #ifndef OCCT_UWP
   FILETIME ftStart, ftExit, ftKernel, ftUser;
@@ -212,7 +212,7 @@ void OSD_Chronometer::Stop()
 {
   if (!myIsStopped)
   {
-    Standard_Real Curr_user, Curr_sys;
+    double Curr_user, Curr_sys;
     if (myIsThreadOnly)
       GetThreadCPU (Curr_user, Curr_sys);
     else
@@ -257,7 +257,7 @@ void OSD_Chronometer::Show() const
 //=======================================================================
 void OSD_Chronometer::Show (Standard_OStream& theOStream) const
 {
-  Standard_Real aCumulUserSec = 0.0, aCumulSysSec = 0.0;
+  double aCumulUserSec = 0.0, aCumulSysSec = 0.0;
   Show (aCumulUserSec, aCumulSysSec);
   std::streamsize prec = theOStream.precision (12);
   theOStream << "CPU user time: "   << aCumulUserSec << " seconds\n";
@@ -269,7 +269,7 @@ void OSD_Chronometer::Show (Standard_OStream& theOStream) const
 //function : Show
 //purpose  :
 //=======================================================================
-void OSD_Chronometer::Show (Standard_Real& theUserSec, Standard_Real& theSystemSec) const
+void OSD_Chronometer::Show (double& theUserSec, double& theSystemSec) const
 {
   theUserSec   = myCumulCpuUser;
   theSystemSec = myCumulCpuSys;
@@ -278,7 +278,7 @@ void OSD_Chronometer::Show (Standard_Real& theUserSec, Standard_Real& theSystemS
     return;
   }
 
-  Standard_Real aCurrUser, aCurrSys;
+  double aCurrUser, aCurrSys;
   if (myIsThreadOnly)
     GetThreadCPU  (aCurrUser, aCurrSys);
   else

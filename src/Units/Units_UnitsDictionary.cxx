@@ -103,7 +103,7 @@ void Units_UnitsDictionary::Creates()
 {
   Standard_Boolean ismove;
   Standard_Integer i, j, k, charnumber, unitscomputed;
-  Standard_Real matrix[50][50], coeff=0, move=0;
+  double matrix[50][50], coeff=0, move=0;
   Handle(Units_Token) token;
   Handle(Units_UnitsSequence) theunitssequence;
   Handle(Units_Unit) unit;
@@ -189,7 +189,7 @@ void Units_UnitsDictionary::Creates()
 		    name, MM, LL, TT, II, tt, NN, JJ, PP, SS);
       strrightadjust (name);
 
-      Standard_Real M=0., L=0., T=0., I=0., t=0., N=0., J=0., P=0., S=0.;
+      double M=0., L=0., T=0., I=0., t=0., N=0., J=0., P=0., S=0.;
       OSD::CStringToReal(MM, M);
       OSD::CStringToReal(LL, L);
       OSD::CStringToReal(TT, T);

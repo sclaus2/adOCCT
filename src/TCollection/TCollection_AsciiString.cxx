@@ -141,7 +141,7 @@ TCollection_AsciiString::TCollection_AsciiString(const Standard_Integer aValue)
 // ----------------------------------------------------------------------------
 // Create an asciistring from a real
 // ----------------------------------------------------------------------------
-TCollection_AsciiString::TCollection_AsciiString(const Standard_Real aValue)
+TCollection_AsciiString::TCollection_AsciiString(const double aValue)
      : mystring(0)
 {
   char t [50];
@@ -282,7 +282,7 @@ void TCollection_AsciiString::AssignCat(const Standard_Integer other)
 // ----------------------------------------------------------------------------
 // AssignCat
 // ----------------------------------------------------------------------------
-void TCollection_AsciiString::AssignCat(const Standard_Real other)
+void TCollection_AsciiString::AssignCat(const double other)
 {
 
   AssignCat(TCollection_AsciiString(other));
@@ -889,10 +889,10 @@ void TCollection_AsciiString::Prepend(const TCollection_AsciiString& what)
 // ----------------------------------------------------------------------------
 // RealValue
 // ----------------------------------------------------------------------------
-Standard_Real TCollection_AsciiString::RealValue()const
+double TCollection_AsciiString::RealValue()const
 {
   char *ptr;
-  Standard_Real value = Strtod(mystring,&ptr);
+  double value = Strtod(mystring,&ptr);
   if (ptr != mystring) return value;
 
   throw Standard_NumericError("TCollection_AsciiString::RealValue");

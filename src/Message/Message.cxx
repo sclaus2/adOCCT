@@ -50,7 +50,7 @@ const Handle(Message_Messenger)& Message::DefaultMessenger ()
 
 TCollection_AsciiString Message::FillTime (const Standard_Integer hour,
 					       const Standard_Integer minute,
-					       const Standard_Real second)
+					       const double second)
 {
   char t [30];
   if (hour > 0)

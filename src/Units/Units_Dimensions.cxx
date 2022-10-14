@@ -27,15 +27,15 @@ IMPLEMENT_STANDARD_RTTIEXT(Units_Dimensions,Standard_Transient)
 //function : Units_Dimensions
 //purpose  : 
 //=======================================================================
-Units_Dimensions::Units_Dimensions(const Standard_Real amass                     ,
-				   const Standard_Real alength                   ,
-				   const Standard_Real atime                     ,
-				   const Standard_Real anelectriccurrent         ,
-				   const Standard_Real athermodynamictemperature ,
-				   const Standard_Real anamountofsubstance       ,
-				   const Standard_Real aluminousintensity        ,
-				   const Standard_Real aplaneangle               ,
-				   const Standard_Real asolidangle               )
+Units_Dimensions::Units_Dimensions(const double amass                     ,
+				   const double alength                   ,
+				   const double atime                     ,
+				   const double anelectriccurrent         ,
+				   const double athermodynamictemperature ,
+				   const double anamountofsubstance       ,
+				   const double aluminousintensity        ,
+				   const double aplaneangle               ,
+				   const double asolidangle               )
 {
   themass                     = amass                     ;
   thelength                   = alength                   ;
@@ -129,7 +129,7 @@ Handle(Units_Dimensions) Units_Dimensions::Divide
 //purpose  : 
 //=======================================================================
 
-Handle(Units_Dimensions) Units_Dimensions::Power(const Standard_Real anexponent) const
+Handle(Units_Dimensions) Units_Dimensions::Power(const double anexponent) const
 {
   return new Units_Dimensions(themass                     * anexponent,
 			      thelength                   * anexponent,
@@ -232,7 +232,7 @@ Handle(Units_Dimensions) operator /(const Handle(Units_Dimensions)& adimension1,
 //=======================================================================
 
 Handle(Units_Dimensions) pow(const Handle(Units_Dimensions)&adimension,
-			     const Standard_Real areal)
+			     const double areal)
 {
   return adimension->Power(areal);
 }

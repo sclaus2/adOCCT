@@ -285,9 +285,9 @@ TCollection_AsciiString Units_UnitsSystem::ActiveUnit(const Standard_CString aqu
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_UnitsSystem::ConvertValueToUserSystem
+double Units_UnitsSystem::ConvertValueToUserSystem
   (const Standard_CString aquantity,
-   const Standard_Real avalue,
+   const double avalue,
    const Standard_CString aunit) const
 {
   Units_UnitSentence unitsentence(aunit);
@@ -304,8 +304,8 @@ Standard_Real Units_UnitsSystem::ConvertValueToUserSystem
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_UnitsSystem::ConvertSIValueToUserSystem
-  (const Standard_CString aquantity,const Standard_Real avalue) const
+double Units_UnitsSystem::ConvertSIValueToUserSystem
+  (const Standard_CString aquantity,const double avalue) const
 {
   Standard_Integer index,activeunit;
   Handle(Units_UnitsSequence) unitssequence;
@@ -313,7 +313,7 @@ Standard_Real Units_UnitsSystem::ConvertSIValueToUserSystem
   Handle(Units_QuantitiesSequence) quantitiessequence;
   Handle(Units_Unit) unit;
   Handle(Units_ShiftedUnit) sunit;
-  Standard_Real uvalue,umove;
+  double uvalue,umove;
 
   for(index=1;index<=thequantitiessequence->Length();index++) {
     quantity = thequantitiessequence->Value(index);
@@ -353,8 +353,8 @@ Standard_Real Units_UnitsSystem::ConvertSIValueToUserSystem
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_UnitsSystem::ConvertUserSystemValueToSI
-  (const Standard_CString aquantity,const Standard_Real avalue) const
+double Units_UnitsSystem::ConvertUserSystemValueToSI
+  (const Standard_CString aquantity,const double avalue) const
 {
   Standard_Integer index,activeunit;
   Handle(Units_UnitsSequence) unitssequence;
@@ -362,7 +362,7 @@ Standard_Real Units_UnitsSystem::ConvertUserSystemValueToSI
   Handle(Units_QuantitiesSequence) quantitiessequence;
   Handle(Units_Unit) unit;
   Handle(Units_ShiftedUnit) sunit;
-  Standard_Real uvalue,umove;
+  double uvalue,umove;
 
   for(index=1;index<=thequantitiessequence->Length();index++) {
     quantity = thequantitiessequence->Value(index);

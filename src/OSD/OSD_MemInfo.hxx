@@ -103,7 +103,7 @@ public:
   //! Return floating value of specified counter in MiB.
   //! Notice that NOT all counters are available on various systems.
   //! Standard_Real(-1) means invalid (unavailable) value.
-  Standard_EXPORT Standard_Real ValuePreciseMiB (const OSD_MemInfo::Counter theCounter) const;
+  Standard_EXPORT double ValuePreciseMiB (const OSD_MemInfo::Counter theCounter) const;
 
 public:
 

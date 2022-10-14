@@ -73,7 +73,7 @@ inline TCollection_AsciiString TCollection_AsciiString::Cat(const Standard_Integ
  return TCollection_AsciiString( *this , TCollection_AsciiString(other) ) ;
 }
 
-inline TCollection_AsciiString TCollection_AsciiString::Cat(const Standard_Real other) const 
+inline TCollection_AsciiString TCollection_AsciiString::Cat(const double other) const
 {
 
  return TCollection_AsciiString( *this , TCollection_AsciiString(other) ) ;

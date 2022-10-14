@@ -48,7 +48,7 @@ static TCollection_AsciiString unitsfile;
 static TCollection_AsciiString lexiconfile;
 static TCollection_AsciiString lastunit;
 static Handle(Units_Dimensions) lastdimension;
-static Standard_Real lastvalue,lastmove;
+static double lastvalue,lastmove;
 
 
 //=======================================================================
@@ -213,7 +213,7 @@ Handle(Units_Dimensions) Units::NullDimensions()
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units::Convert(const Standard_Real avalue,
+double Units::Convert(const double avalue,
 			     const Standard_CString afirstunit,
 			     const Standard_CString asecondunit)
 {
@@ -228,7 +228,7 @@ Standard_Real Units::Convert(const Standard_Real avalue,
 //purpose  :
 //=======================================================================
 
-Standard_Real Units::ToSI(const Standard_Real aData,
+double Units::ToSI(const double aData,
                           const Standard_CString aUnit){
 
   Handle(Units_Dimensions) aDimBid;
@@ -241,7 +241,7 @@ Standard_Real Units::ToSI(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real Units::ToSI(const Standard_Real aData,
+double Units::ToSI(const double aData,
                           const Standard_CString aUnit,
                           Handle(Units_Dimensions) &dim)
 {
@@ -275,7 +275,7 @@ Standard_Real Units::ToSI(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real Units::FromSI(const Standard_Real aData,
+double Units::FromSI(const double aData,
                             const Standard_CString aUnit){
   Handle(Units_Dimensions) aDimBid;
   return Units::FromSI(aData,aUnit,aDimBid);
@@ -287,7 +287,7 @@ Standard_Real Units::FromSI(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real Units::FromSI(const Standard_Real aData,
+double Units::FromSI(const double aData,
                             const Standard_CString aUnit,
                             Handle(Units_Dimensions) &dim)
 {

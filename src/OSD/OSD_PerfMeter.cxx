@@ -41,10 +41,10 @@
         DEFINITIONS
 ======================================================================*/
 
-typedef Standard_Real PERF_TIME;
+typedef double PERF_TIME;
 
 #define PICK_TIME(_utime) {     \
-  Standard_Real ktime;          \
+  double ktime;          \
   OSD_Chronometer::GetThreadCPU(_utime, ktime);\
 }
 

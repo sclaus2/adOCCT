@@ -246,7 +246,7 @@ public:
   
   Standard_EXPORT Storage_BaseDriver& PutBoolean (const Standard_Boolean aValue) Standard_OVERRIDE;
   
-  Standard_EXPORT Storage_BaseDriver& PutReal (const Standard_Real aValue) Standard_OVERRIDE;
+  Standard_EXPORT Storage_BaseDriver& PutReal (const double aValue) Standard_OVERRIDE;
   
   Standard_EXPORT Storage_BaseDriver& PutShortReal (const Standard_ShortReal aValue) Standard_OVERRIDE;
   
@@ -264,7 +264,7 @@ public:
   
   Standard_EXPORT Storage_BaseDriver& GetBoolean (Standard_Boolean& aValue) Standard_OVERRIDE;
   
-  Standard_EXPORT Storage_BaseDriver& GetReal (Standard_Real& aValue) Standard_OVERRIDE;
+  Standard_EXPORT Storage_BaseDriver& GetReal (double& aValue) Standard_OVERRIDE;
   
   Standard_EXPORT Storage_BaseDriver& GetShortReal (Standard_ShortReal& aValue) Standard_OVERRIDE;
   
@@ -297,7 +297,7 @@ public:
   }
 
   ///Inverse bytes in real value
-  Standard_EXPORT static Standard_Real InverseReal(const Standard_Real theValue);
+  Standard_EXPORT static double InverseReal(const double theValue);
 
   ///Inverse bytes in short real value
   Standard_EXPORT static Standard_ShortReal InverseShortReal(const Standard_ShortReal theValue);

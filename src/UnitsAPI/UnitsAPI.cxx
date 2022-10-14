@@ -139,10 +139,10 @@ void UnitsAPI::CheckLoading (const UnitsAPI_SystemUnits aSystemUnits)
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::CurrentToLS(const Standard_Real aData,
+double UnitsAPI::CurrentToLS(const double aData,
                                     const Standard_CString aQuantity)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (localSystem); 
   if( CurrentUnits->Find(aQuantity) ) {
     TCollection_AsciiString current(CurrentUnits->Value(aQuantity));
@@ -164,10 +164,10 @@ Standard_Real UnitsAPI::CurrentToLS(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::CurrentToSI(const Standard_Real aData,
+double UnitsAPI::CurrentToSI(const double aData,
                                     const Standard_CString aQuantity)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (UnitsAPI_DEFAULT); 
   if( CurrentUnits->Find(aQuantity) ) {
     TCollection_AsciiString current(CurrentUnits->Value(aQuantity));
@@ -188,10 +188,10 @@ Standard_Real UnitsAPI::CurrentToSI(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::CurrentFromLS(const Standard_Real aData,
+double UnitsAPI::CurrentFromLS(const double aData,
                                       const Standard_CString aQuantity)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (localSystem); 
   if( CurrentUnits->Find(aQuantity) ) {
     TCollection_AsciiString current(CurrentUnits->Value(aQuantity));
@@ -213,10 +213,10 @@ Standard_Real UnitsAPI::CurrentFromLS(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::CurrentFromSI(const Standard_Real aData,
+double UnitsAPI::CurrentFromSI(const double aData,
                                       const Standard_CString aQuantity)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (UnitsAPI_DEFAULT); 
   if( CurrentUnits->Find(aQuantity) ) {
     TCollection_AsciiString current(CurrentUnits->Value(aQuantity));
@@ -237,10 +237,10 @@ Standard_Real UnitsAPI::CurrentFromSI(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::CurrentToAny(const Standard_Real aData,
+double UnitsAPI::CurrentToAny(const double aData,
                                      const Standard_CString aQuantity,
                                      const Standard_CString aUnit) {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (UnitsAPI_DEFAULT); 
   if( CurrentUnits->Find(aQuantity) ) {
     TCollection_AsciiString current(CurrentUnits->Value(aQuantity));
@@ -261,11 +261,11 @@ Standard_Real UnitsAPI::CurrentToAny(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::CurrentFromAny(const Standard_Real aData,
+double UnitsAPI::CurrentFromAny(const double aData,
                                        const Standard_CString aQuantity,
                                        const Standard_CString aUnit)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (UnitsAPI_DEFAULT); 
   if( CurrentUnits->Find(aQuantity) ) {
     TCollection_AsciiString current(CurrentUnits->Value(aQuantity));
@@ -286,10 +286,10 @@ Standard_Real UnitsAPI::CurrentFromAny(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::AnyToLS(const Standard_Real aData,
+double UnitsAPI::AnyToLS(const double aData,
                                 const Standard_CString aUnit)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (localSystem); 
   Handle(Units_Dimensions) aDim;
   aValue = Units::ToSI(aValue,aUnit,aDim);
@@ -312,11 +312,11 @@ Standard_Real UnitsAPI::AnyToLS(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::AnyToLS(const Standard_Real aData,
+double UnitsAPI::AnyToLS(const double aData,
                                 const Standard_CString aUnit,
                                 Handle(Units_Dimensions) &aDim)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (localSystem); 
   aValue = Units::ToSI(aValue,aUnit,aDim);
   Standard_CString quantity = aDim->Quantity();
@@ -338,10 +338,10 @@ Standard_Real UnitsAPI::AnyToLS(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::AnyToSI(const Standard_Real aData,
+double UnitsAPI::AnyToSI(const double aData,
                                 const Standard_CString aUnit)
 {
-  Standard_Real aValue;
+  double aValue;
   CheckLoading (UnitsAPI_DEFAULT); 
   aValue = Units::ToSI(aData,aUnit);
   return aValue;
@@ -353,11 +353,11 @@ Standard_Real UnitsAPI::AnyToSI(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::AnyToSI(const Standard_Real aData,
+double UnitsAPI::AnyToSI(const double aData,
                                 const Standard_CString aUnit,
                                 Handle(Units_Dimensions) &aDim)
 {
-  Standard_Real aValue;
+  double aValue;
   CheckLoading (UnitsAPI_DEFAULT);
   aValue = Units::ToSI(aData,aUnit,aDim);
   return aValue;
@@ -369,10 +369,10 @@ Standard_Real UnitsAPI::AnyToSI(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::AnyFromLS(const Standard_Real aData,
+double UnitsAPI::AnyFromLS(const double aData,
                                   const Standard_CString aUnit)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (localSystem); 
   Handle(Units_Dimensions) aDim;
   aValue = Units::FromSI(aValue,aUnit,aDim);
@@ -394,10 +394,10 @@ Standard_Real UnitsAPI::AnyFromLS(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::AnyFromSI(const Standard_Real aData,
+double UnitsAPI::AnyFromSI(const double aData,
                                   const Standard_CString aUnit)
 {
-  Standard_Real aValue;
+  double aValue;
   CheckLoading (UnitsAPI_DEFAULT); 
   aValue = Units::FromSI(aData,aUnit);
   return aValue;
@@ -409,11 +409,11 @@ Standard_Real UnitsAPI::AnyFromSI(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::AnyToAny(const Standard_Real aData,
+double UnitsAPI::AnyToAny(const double aData,
                                  const Standard_CString aUnit1,
                                  const Standard_CString aUnit2)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (UnitsAPI_DEFAULT); 
   aValue = Units::Convert(aValue,aUnit1,aUnit2);
   return aValue;
@@ -425,10 +425,10 @@ Standard_Real UnitsAPI::AnyToAny(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::LSToSI(const Standard_Real aData,
+double UnitsAPI::LSToSI(const double aData,
                                const Standard_CString aQuantity)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (localSystem); 
   if( CurrentUnits->Find(aQuantity) ) {
     aValue = LocalSystemUnits.ConvertUserSystemValueToSI(aQuantity,aData);
@@ -448,10 +448,10 @@ Standard_Real UnitsAPI::LSToSI(const Standard_Real aData,
 //purpose  :
 //=======================================================================
 
-Standard_Real UnitsAPI::SIToLS(const Standard_Real aData,
+double UnitsAPI::SIToLS(const double aData,
                                const Standard_CString aQuantity)
 {
-  Standard_Real aValue = aData;
+  double aValue = aData;
   CheckLoading (localSystem); 
   if( CurrentUnits->Find(aQuantity) ) {
     aValue = LocalSystemUnits.ConvertSIValueToUserSystem(aQuantity,aValue);

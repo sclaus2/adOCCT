@@ -57,23 +57,23 @@ public:
   //! numeric value  of the  dimension, <amove> is  the gap,
   //! and <adimensions> is  the dimension of the given  word
   //! <aword>.
-  Standard_EXPORT Units_ShiftedToken(const Standard_CString aword, const Standard_CString amean, const Standard_Real avalue, const Standard_Real amove, const Handle(Units_Dimensions)& adimensions);
+  Standard_EXPORT Units_ShiftedToken(const Standard_CString aword, const Standard_CString amean, const double avalue, const double amove, const Handle(Units_Dimensions)& adimensions);
   
   //! Creates and returns a  token, which is a ShiftedToken.
   Standard_EXPORT virtual Handle(Units_Token) Creates() const Standard_OVERRIDE;
   
   //! Returns the gap <themove>
-  Standard_EXPORT Standard_Real Move() const;
+  Standard_EXPORT double Move() const;
   
   //! This  virtual   method  is  called  by the Measurement
   //! methods,  to   compute  the   measurement    during  a
   //! conversion.
-  Standard_EXPORT virtual Standard_Real Multiplied (const Standard_Real avalue) const Standard_OVERRIDE;
+  Standard_EXPORT virtual double Multiplied (const double avalue) const Standard_OVERRIDE;
   
   //! This   virtual  method is  called  by  the Measurement
   //! methods,   to   compute   the   measurement   during a
   //! conversion.
-  Standard_EXPORT virtual Standard_Real Divided (const Standard_Real avalue) const Standard_OVERRIDE;
+  Standard_EXPORT virtual double Divided (const double avalue) const Standard_OVERRIDE;
   
   Standard_EXPORT virtual void Dump (const Standard_Integer ashift, const Standard_Integer alevel) const Standard_OVERRIDE;
 
@@ -89,7 +89,7 @@ protected:
 private:
 
 
-  Standard_Real themove;
+  double themove;
 
 
 };

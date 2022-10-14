@@ -56,7 +56,7 @@ Standard_Boolean Message_AttributeMeter::IsMetricValid (const Message_MetricType
 //function : StartValue
 //purpose  :
 //=======================================================================
-Standard_Real Message_AttributeMeter::StartValue (const Message_MetricType& theMetric) const
+double Message_AttributeMeter::StartValue (const Message_MetricType& theMetric) const
 {
   if (!HasMetric (theMetric))
   {
@@ -70,7 +70,7 @@ Standard_Real Message_AttributeMeter::StartValue (const Message_MetricType& theM
 //function : SetStartValue
 //purpose  :
 //=======================================================================
-void Message_AttributeMeter::SetStartValue (const Message_MetricType& theMetric, const Standard_Real theValue)
+void Message_AttributeMeter::SetStartValue (const Message_MetricType& theMetric, const double theValue)
 {
   if (StartToStopValue* aValPtr = myMetrics.ChangeSeek (theMetric))
   {
@@ -86,7 +86,7 @@ void Message_AttributeMeter::SetStartValue (const Message_MetricType& theMetric,
 //function : StopValue
 //purpose  :
 //=======================================================================
-Standard_Real Message_AttributeMeter::StopValue (const Message_MetricType& theMetric) const
+double Message_AttributeMeter::StopValue (const Message_MetricType& theMetric) const
 {
   if (!HasMetric (theMetric))
   {
@@ -99,7 +99,7 @@ Standard_Real Message_AttributeMeter::StopValue (const Message_MetricType& theMe
 //function : SetStopValue
 //purpose  :
 //=======================================================================
-void Message_AttributeMeter::SetStopValue (const Message_MetricType& theMetric, const Standard_Real theValue)
+void Message_AttributeMeter::SetStopValue (const Message_MetricType& theMetric, const double theValue)
 {
   if (StartToStopValue* aValPtr = myMetrics.ChangeSeek (theMetric))
   {
@@ -133,7 +133,7 @@ void Message_AttributeMeter::SetAlertMetrics (const Handle(Message_AlertExtended
   {
     OSD_Timer aTimer;
     aTimer.Start();
-    Standard_Real aTime = OSD_Timer::GetWallClockTime();
+    double aTime = OSD_Timer::GetWallClockTime();
     if (theStartValue)
       aMeterAttribute->SetStartValue (Message_MetricType_WallClock, aTime);
     else
@@ -147,7 +147,7 @@ void Message_AttributeMeter::SetAlertMetrics (const Handle(Message_AlertExtended
     if (anActiveMetrics.Contains (Message_MetricType_ProcessCPUUserTime) ||
         anActiveMetrics.Contains (Message_MetricType_ProcessCPUSystemTime))
     {
-      Standard_Real aProcessUserTime, aProcessSystemTime;
+      double aProcessUserTime, aProcessSystemTime;
       OSD_Chronometer::GetProcessCPU (aProcessUserTime, aProcessSystemTime);
       if (anActiveMetrics.Contains (Message_MetricType_ProcessCPUUserTime))
       {
@@ -175,7 +175,7 @@ void Message_AttributeMeter::SetAlertMetrics (const Handle(Message_AlertExtended
     if (anActiveMetrics.Contains (Message_MetricType_ThreadCPUUserTime) ||
         anActiveMetrics.Contains (Message_MetricType_ThreadCPUSystemTime))
     {
-      Standard_Real aThreadUserTime, aThreadSystemTime;
+      double aThreadUserTime, aThreadSystemTime;
       OSD_Chronometer::GetThreadCPU (aThreadUserTime, aThreadSystemTime);
       if (anActiveMetrics.Contains (Message_MetricType_ThreadCPUUserTime))
       {
@@ -233,11 +233,11 @@ void Message_AttributeMeter::SetAlertMetrics (const Handle(Message_AlertExtended
 
     if (theStartValue)
     {
-      aMeterAttribute->SetStartValue (aMetricType, (Standard_Real)aMemInfo.ValuePreciseMiB (anIterator.Value()));
+      aMeterAttribute->SetStartValue (aMetricType, (double)aMemInfo.ValuePreciseMiB (anIterator.Value()));
     }
     else
     {
-      aMeterAttribute->SetStopValue (aMetricType, (Standard_Real)aMemInfo.ValuePreciseMiB (anIterator.Value()));
+      aMeterAttribute->SetStopValue (aMetricType, (double)aMemInfo.ValuePreciseMiB (anIterator.Value()));
     }
   }
 }

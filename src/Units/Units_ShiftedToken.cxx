@@ -29,8 +29,8 @@ IMPLEMENT_STANDARD_RTTIEXT(Units_ShiftedToken,Units_Token)
 //=======================================================================
 Units_ShiftedToken::Units_ShiftedToken(const Standard_CString aword,
 				       const Standard_CString amean,
-				       const Standard_Real avalue,
-				       const Standard_Real amove,
+				       const double avalue,
+				       const double amove,
 				       const Handle(Units_Dimensions)& adimensions)
      : Units_Token(aword,amean,avalue,adimensions)
 {
@@ -54,7 +54,7 @@ Handle(Units_Token) Units_ShiftedToken::Creates() const
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_ShiftedToken::Move() const
+double Units_ShiftedToken::Move() const
 {
   return themove;
 }
@@ -64,7 +64,7 @@ Standard_Real Units_ShiftedToken::Move() const
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_ShiftedToken::Multiplied (const Standard_Real avalue) const
+double Units_ShiftedToken::Multiplied (const double avalue) const
 {
   return (avalue + themove) * Value();
 }
@@ -74,7 +74,7 @@ Standard_Real Units_ShiftedToken::Multiplied (const Standard_Real avalue) const
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_ShiftedToken::Divided (const Standard_Real avalue) const
+double Units_ShiftedToken::Divided (const double avalue) const
 {
   return (avalue / Value()) - themove;
 }

@@ -47,40 +47,40 @@ public:
   //! the powers for  the 7  fundamental  units of  physical
   //! quantity and  the 2  secondary  fundamental  units  of
   //! physical quantity.
-  Standard_EXPORT Units_Dimensions(const Standard_Real amass, const Standard_Real alength, const Standard_Real atime, const Standard_Real anelectriccurrent, const Standard_Real athermodynamictemperature, const Standard_Real anamountofsubstance, const Standard_Real aluminousintensity, const Standard_Real aplaneangle, const Standard_Real asolidangle);
+  Standard_EXPORT Units_Dimensions(const double amass, const double alength, const double atime, const double anelectriccurrent, const double athermodynamictemperature, const double anamountofsubstance, const double aluminousintensity, const double aplaneangle, const double asolidangle);
   
   //! Returns the power of mass stored in the dimensions.
-    Standard_Real Mass() const;
+    double Mass() const;
   
   //! Returns the power of length stored in the dimensions.
-    Standard_Real Length() const;
+    double Length() const;
   
   //! Returns the power of time stored in the dimensions.
-    Standard_Real Time() const;
+    double Time() const;
   
   //! Returns the  power of  electrical  intensity (current)
   //! stored in the dimensions.
-    Standard_Real ElectricCurrent() const;
+    double ElectricCurrent() const;
   
   //! Returns  the  power  of   temperature stored  in   the
   //! dimensions.
-    Standard_Real ThermodynamicTemperature() const;
+    double ThermodynamicTemperature() const;
   
   //! Returns  the power   of quantity   of  material (mole)
   //! stored in the dimensions.
-    Standard_Real AmountOfSubstance() const;
+    double AmountOfSubstance() const;
   
   //! Returns the  power of light   intensity stored  in the
   //! dimensions.
-    Standard_Real LuminousIntensity() const;
+    double LuminousIntensity() const;
   
   //! Returns  the power   of plane   angle  stored  in  the
   //! dimensions.
-    Standard_Real PlaneAngle() const;
+    double PlaneAngle() const;
   
   //! Returns the   power   of  solid angle stored   in  the
   //! dimensions.
-    Standard_Real SolidAngle() const;
+    double SolidAngle() const;
   
   //! Returns the quantity string of the dimension
   Standard_EXPORT Standard_CString Quantity() const;
@@ -96,7 +96,7 @@ public:
   
   //! Creates  and returns a new  Dimensions object which is
   //! the result of the power of <me> and <anexponent>.
-  Standard_EXPORT Handle(Units_Dimensions) Power (const Standard_Real anexponent) const;
+  Standard_EXPORT Handle(Units_Dimensions) Power (const double anexponent) const;
   
   //! Returns true if  <me>  and <adimensions> have the same
   //! dimensions, false otherwise.
@@ -143,15 +143,15 @@ protected:
 private:
 
 
-  Standard_Real themass;
-  Standard_Real thelength;
-  Standard_Real thetime;
-  Standard_Real theelectriccurrent;
-  Standard_Real thethermodynamictemperature;
-  Standard_Real theamountofsubstance;
-  Standard_Real theluminousintensity;
-  Standard_Real theplaneangle;
-  Standard_Real thesolidangle;
+  double themass;
+  double thelength;
+  double thetime;
+  double theelectriccurrent;
+  double thethermodynamictemperature;
+  double theamountofsubstance;
+  double theluminousintensity;
+  double theplaneangle;
+  double thesolidangle;
 
 
 };

@@ -31,8 +31,8 @@ IMPLEMENT_STANDARD_RTTIEXT(Units_ShiftedUnit,Units_Unit)
 //=======================================================================
 Units_ShiftedUnit::Units_ShiftedUnit(const Standard_CString aname,
 				     const Standard_CString asymbol,
-				     const Standard_Real avalue,
-				     const Standard_Real amove,
+				     const double avalue,
+				     const double amove,
 				     const Handle(Units_Quantity)& aquantity)
      : Units_Unit(aname,asymbol,avalue,aquantity)
 {
@@ -65,7 +65,7 @@ Units_ShiftedUnit::Units_ShiftedUnit(const Standard_CString aname)
 //purpose  : 
 //=======================================================================
 
-void Units_ShiftedUnit::Move(const Standard_Real amove)
+void Units_ShiftedUnit::Move(const double amove)
 {
   themove = amove;
 }
@@ -75,7 +75,7 @@ void Units_ShiftedUnit::Move(const Standard_Real amove)
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_ShiftedUnit::Move() const
+double Units_ShiftedUnit::Move() const
 {
   return themove;
 }

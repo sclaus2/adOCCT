@@ -25,7 +25,7 @@
 
 #define RGBHLS_H_UNDEFINED -1.0
 
-static Standard_Real TheEpsilon = 0.0001;
+static double TheEpsilon = 0.0001;
 
 // Throw exception if RGB values are out of range.
 #define Quantity_ColorValidateRgbRange(theR, theG, theB) \
@@ -85,7 +85,7 @@ static const Quantity_StandardColor THE_COLORS[] =
 // function : Epsilon
 // purpose  :
 // =======================================================================
-Standard_Real Quantity_Color::Epsilon()
+double Quantity_Color::Epsilon()
 {
   return TheEpsilon;
 }
@@ -94,7 +94,7 @@ Standard_Real Quantity_Color::Epsilon()
 // function : SetEpsilon
 // purpose  :
 // =======================================================================
-void Quantity_Color::SetEpsilon (const Standard_Real theEpsilon)
+void Quantity_Color::SetEpsilon (const double theEpsilon)
 {
   TheEpsilon = theEpsilon;
 }
@@ -201,7 +201,7 @@ bool Quantity_Color::ColorFromHex (const Standard_CString theHexColorString,
 // function : Quantity_Color
 // purpose  :
 // =======================================================================
-Quantity_Color::Quantity_Color (const Standard_Real theC1, const Standard_Real theC2, const Standard_Real theC3,
+Quantity_Color::Quantity_Color (const double theC1, const double theC2, const double theC3,
                                 const Quantity_TypeOfColor theType)
 {
   SetValues (theC1, theC2, theC3, theType);
@@ -221,7 +221,7 @@ Quantity_Color::Quantity_Color (const NCollection_Vec3<float>& theRgb)
 // function : ChangeContrast
 // purpose  :
 // =======================================================================
-void Quantity_Color::ChangeContrast (const Standard_Real theDelta)
+void Quantity_Color::ChangeContrast (const double theDelta)
 {
   NCollection_Vec3<float> aHls = Convert_LinearRGB_To_HLS (myRgb);
   aHls[2] += aHls[2] * Standard_ShortReal (theDelta) / 100.0f; // saturation
@@ -235,7 +235,7 @@ void Quantity_Color::ChangeContrast (const Standard_Real theDelta)
 // function : ChangeIntensity
 // purpose  :
 // =======================================================================
-void Quantity_Color::ChangeIntensity (const Standard_Real theDelta)
+void Quantity_Color::ChangeIntensity (const double theDelta)
 {
   NCollection_Vec3<float> aHls = Convert_LinearRGB_To_HLS (myRgb);
   aHls[1] += aHls[1] * Standard_ShortReal (theDelta) / 100.0f; // light
@@ -249,7 +249,7 @@ void Quantity_Color::ChangeIntensity (const Standard_Real theDelta)
 // function : SetValues
 // purpose  :
 // =======================================================================
-void Quantity_Color::SetValues (const Standard_Real theC1, const Standard_Real theC2, const Standard_Real theC3,
+void Quantity_Color::SetValues (const double theC1, const double theC2, const double theC3,
                                 const Quantity_TypeOfColor theType)
 {
   switch (theType)
@@ -294,13 +294,13 @@ void Quantity_Color::SetValues (const Standard_Real theC1, const Standard_Real t
 // purpose  :
 // =======================================================================
 void Quantity_Color::Delta (const Quantity_Color& theColor,
-                            Standard_Real& theDC,
-                            Standard_Real& theDI) const
+                            double& theDC,
+                            double& theDI) const
 {
   const NCollection_Vec3<float> aHls1 = Convert_LinearRGB_To_HLS (myRgb);
   const NCollection_Vec3<float> aHls2 = Convert_LinearRGB_To_HLS (theColor.myRgb);
-  theDC = Standard_Real (aHls1[2] - aHls2[2]); // saturation
-  theDI = Standard_Real (aHls1[1] - aHls2[1]); // light
+  theDC = double (aHls1[2] - aHls2[2]); // saturation
+  theDI = double (aHls1[1] - aHls2[1]); // light
 }
 
 // =======================================================================
@@ -308,36 +308,36 @@ void Quantity_Color::Delta (const Quantity_Color& theColor,
 // purpose  : color difference according to CIE Delta E 2000 formula
 // see http://brucelindbloom.com/index.html?Eqn_DeltaE_CIE2000.html
 // =======================================================================
-Standard_Real Quantity_Color::DeltaE2000 (const Quantity_Color& theOther) const
+double Quantity_Color::DeltaE2000 (const Quantity_Color& theOther) const
 {
   // get color components in CIE Lch space
-  Standard_Real aL1, aL2, aa1, aa2, ab1, ab2;
+  double aL1, aL2, aa1, aa2, ab1, ab2;
   this   ->Values (aL1, aa1, ab1, Quantity_TOC_CIELab);
   theOther.Values (aL2, aa2, ab2, Quantity_TOC_CIELab);
 
   // mean L
-  Standard_Real aLx_mean = 0.5 * (aL1 + aL2);
+  double aLx_mean = 0.5 * (aL1 + aL2);
 
   // mean C
-  Standard_Real aC1 = Sqrt (aa1 * aa1 + ab1 * ab1);
-  Standard_Real aC2 = Sqrt (aa2 * aa2 + ab2 * ab2);
-  Standard_Real aC_mean = 0.5 * (aC1 + aC2);
-  Standard_Real aC_mean_pow7 = Pow (aC_mean, 7);
+  double aC1 = Sqrt (aa1 * aa1 + ab1 * ab1);
+  double aC2 = Sqrt (aa2 * aa2 + ab2 * ab2);
+  double aC_mean = 0.5 * (aC1 + aC2);
+  double aC_mean_pow7 = Pow (aC_mean, 7);
   static const double a25_pow7 = Pow (25., 7);
-  Standard_Real aG = 0.5 * (1. - Sqrt (aC_mean_pow7 / (aC_mean_pow7 + a25_pow7)));
-  Standard_Real aa1x = aa1 * (1. + aG);
-  Standard_Real aa2x = aa2 * (1. + aG);
-  Standard_Real aC1x = Sqrt (aa1x * aa1x + ab1 * ab1);
-  Standard_Real aC2x = Sqrt (aa2x * aa2x + ab2 * ab2);
-  Standard_Real aCx_mean = 0.5 * (aC1x + aC2x);
+  double aG = 0.5 * (1. - Sqrt (aC_mean_pow7 / (aC_mean_pow7 + a25_pow7)));
+  double aa1x = aa1 * (1. + aG);
+  double aa2x = aa2 * (1. + aG);
+  double aC1x = Sqrt (aa1x * aa1x + ab1 * ab1);
+  double aC2x = Sqrt (aa2x * aa2x + ab2 * ab2);
+  double aCx_mean = 0.5 * (aC1x + aC2x);
 
   // mean H
-  Standard_Real ah1x = (aC1x > TheEpsilon ? ATan2 (ab1, aa1x) * 180. / M_PI : 270.);
-  Standard_Real ah2x = (aC2x > TheEpsilon ? ATan2 (ab2, aa2x) * 180. / M_PI : 270.);
+  double ah1x = (aC1x > TheEpsilon ? ATan2 (ab1, aa1x) * 180. / M_PI : 270.);
+  double ah2x = (aC2x > TheEpsilon ? ATan2 (ab2, aa2x) * 180. / M_PI : 270.);
   if (ah1x < 0.) ah1x += 360.;
   if (ah2x < 0.) ah2x += 360.;
-  Standard_Real aHx_mean = 0.5 * (ah1x + ah2x);
-  Standard_Real aDeltahx = ah2x - ah1x;
+  double aHx_mean = 0.5 * (ah1x + ah2x);
+  double aDeltahx = ah2x - ah1x;
   if (Abs (aDeltahx) > 180.) 
   {
     aHx_mean += (aHx_mean < 180. ? 180. : -180.);
@@ -345,31 +345,31 @@ Standard_Real Quantity_Color::DeltaE2000 (const Quantity_Color& theOther) const
   }
 
   // deltas
-  Standard_Real aDeltaLx = aL2 - aL1;
-  Standard_Real aDeltaCx = aC2x - aC1x;
-  Standard_Real aDeltaHx = 2. * Sqrt (aC1x * aC2x) * Sin (0.5 * aDeltahx * M_PI / 180.);
+  double aDeltaLx = aL2 - aL1;
+  double aDeltaCx = aC2x - aC1x;
+  double aDeltaHx = 2. * Sqrt (aC1x * aC2x) * Sin (0.5 * aDeltahx * M_PI / 180.);
 
   // factors
-  Standard_Real aT = 1. - 0.17 * Cos ((     aHx_mean - 30.) * M_PI / 180.) +
+  double aT = 1. - 0.17 * Cos ((     aHx_mean - 30.) * M_PI / 180.) +
                           0.24 * Cos ((2. * aHx_mean      ) * M_PI / 180.) +
                           0.32 * Cos ((3. * aHx_mean +  6.) * M_PI / 180.) -
                           0.20 * Cos ((4. * aHx_mean - 63.) * M_PI / 180.);
 
-  Standard_Real aLx_mean50_2 = (aLx_mean - 50.) * (aLx_mean - 50.);
-  Standard_Real aS_L = 1. + 0.015 * aLx_mean50_2 / Sqrt (20. + aLx_mean50_2);
-  Standard_Real aS_C = 1. + 0.045 * aCx_mean;
-  Standard_Real aS_H = 1. + 0.015 * aCx_mean * aT;
+  double aLx_mean50_2 = (aLx_mean - 50.) * (aLx_mean - 50.);
+  double aS_L = 1. + 0.015 * aLx_mean50_2 / Sqrt (20. + aLx_mean50_2);
+  double aS_C = 1. + 0.045 * aCx_mean;
+  double aS_H = 1. + 0.015 * aCx_mean * aT;
 
-  Standard_Real aDelta_theta = 30. * Exp (-(aHx_mean - 275.) * (aHx_mean - 275.) / 625.);
-  Standard_Real aCx_mean_pow7 = Pow(aCx_mean, 7);
-  Standard_Real aR_C = 2. * Sqrt (aCx_mean_pow7 / (aCx_mean_pow7 + a25_pow7));
-  Standard_Real aR_T = -aR_C * Sin (2. * aDelta_theta * M_PI / 180.);
+  double aDelta_theta = 30. * Exp (-(aHx_mean - 275.) * (aHx_mean - 275.) / 625.);
+  double aCx_mean_pow7 = Pow(aCx_mean, 7);
+  double aR_C = 2. * Sqrt (aCx_mean_pow7 / (aCx_mean_pow7 + a25_pow7));
+  double aR_T = -aR_C * Sin (2. * aDelta_theta * M_PI / 180.);
 
   // finally, the difference
-  Standard_Real aDL = aDeltaLx / aS_L;
-  Standard_Real aDC = aDeltaCx / aS_C;
-  Standard_Real aDH = aDeltaHx / aS_H;
-  Standard_Real aDeltaE2000 = Sqrt (aDL * aDL + aDC * aDC + aDH * aDH + aR_T * aDC * aDH);
+  double aDL = aDeltaLx / aS_L;
+  double aDC = aDeltaCx / aS_C;
+  double aDH = aDeltaHx / aS_H;
+  double aDeltaE2000 = Sqrt (aDL * aDL + aDC * aDC + aDH * aDH + aR_T * aDC * aDH);
   return aDeltaE2000;
 }
 
@@ -381,7 +381,7 @@ Quantity_NameOfColor Quantity_Color::Name() const
 {
   // it is better finding closest sRGB color (closest to human eye) instead of linear RGB color,
   // as enumeration defines color names for human
-  const NCollection_Vec3<float> ansRgbVec (Convert_LinearRGB_To_sRGB (NCollection_Vec3<Standard_Real> (myRgb)));
+  const NCollection_Vec3<float> ansRgbVec (Convert_LinearRGB_To_sRGB (NCollection_Vec3<double> (myRgb)));
   Standard_ShortReal aDist2 = ShortRealLast();
   Quantity_NameOfColor aResName = Quantity_NOC_BLACK;
   for (Standard_Integer aColIter = Quantity_NOC_BLACK; aColIter <= Quantity_NOC_WHITE; ++aColIter)
@@ -404,7 +404,7 @@ Quantity_NameOfColor Quantity_Color::Name() const
 // function : Values
 // purpose  :
 // =======================================================================
-void Quantity_Color::Values (Standard_Real& theR1, Standard_Real& theR2, Standard_Real& theR3,
+void Quantity_Color::Values (double& theR1, double& theR2, double& theR3,
                              const Quantity_TypeOfColor theType) const
 {
   switch (theType)
@@ -418,9 +418,9 @@ void Quantity_Color::Values (Standard_Real& theR1, Standard_Real& theR2, Standar
     }
     case Quantity_TOC_sRGB:
     {
-      theR1 = Convert_LinearRGB_To_sRGB ((Standard_Real )myRgb.r());
-      theR2 = Convert_LinearRGB_To_sRGB ((Standard_Real )myRgb.g());
-      theR3 = Convert_LinearRGB_To_sRGB ((Standard_Real )myRgb.b());
+      theR1 = Convert_LinearRGB_To_sRGB ((double )myRgb.r());
+      theR2 = Convert_LinearRGB_To_sRGB ((double )myRgb.g());
+      theR3 = Convert_LinearRGB_To_sRGB ((double )myRgb.b());
       break;
     }
     case Quantity_TOC_HLS:
@@ -684,7 +684,7 @@ void Quantity_Color::DumpJson (Standard_OStream& theOStream, Standard_Integer) c
 Standard_Boolean Quantity_Color::InitFromJson (const Standard_SStream& theSStream, Standard_Integer& theStreamPos)
 {
   Standard_Integer aPos = theStreamPos;
-  Standard_Real  aRed, aGreen, aBlue;
+  double  aRed, aGreen, aBlue;
   OCCT_INIT_VECTOR_CLASS (Standard_Dump::Text (theSStream), "RGB", aPos, 3, &aRed, &aGreen, &aBlue)
 
   SetValues ((Standard_ShortReal)aRed, (Standard_ShortReal)aGreen, (Standard_ShortReal)aBlue, Quantity_TOC_RGB);

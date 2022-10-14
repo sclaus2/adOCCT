@@ -472,9 +472,9 @@ Storage_BaseDriver& FSD_File::PutBoolean(const Standard_Boolean aValue)
 //purpose  : 
 //=======================================================================
 
-Storage_BaseDriver& FSD_File::PutReal(const Standard_Real aValue)
+Storage_BaseDriver& FSD_File::PutReal(const double aValue)
 {
-  myStream << ((Standard_Real)aValue) << " ";
+  myStream << ((double)aValue) << " ";
   if (myStream.bad()) throw Storage_StreamWriteError();
   return *this;
 }
@@ -565,7 +565,7 @@ Storage_BaseDriver& FSD_File::GetBoolean(Standard_Boolean& aValue)
 //purpose  : 
 //=======================================================================
 
-Storage_BaseDriver& FSD_File::GetReal(Standard_Real& aValue)
+Storage_BaseDriver& FSD_File::GetReal(double& aValue)
 {
 #ifdef USEOSDREAL
   char realbuffer[100];
@@ -591,7 +591,7 @@ Storage_BaseDriver& FSD_File::GetShortReal(Standard_ShortReal& aValue)
 {
 #ifdef USEOSDREAL
   char realbuffer[100];
-  Standard_Real r = 0.0;
+  double r = 0.0;
 
   realbuffer[0] = '\0';
   if (!(myStream >> realbuffer)) throw Storage_StreamTypeMismatchError();

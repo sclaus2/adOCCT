@@ -76,7 +76,7 @@ public:
   Standard_EXPORT TCollection_AsciiString(const Standard_Integer value);
   
   //! Initializes an AsciiString with a real value
-  Standard_EXPORT TCollection_AsciiString(const Standard_Real value);
+  Standard_EXPORT TCollection_AsciiString(const double value);
   
   //! Initializes a AsciiString with another AsciiString.
   Standard_EXPORT TCollection_AsciiString(const TCollection_AsciiString& astring);
@@ -134,8 +134,8 @@ void operator += (const Standard_Integer other)
 }
   
   //! Appends <other>  to me. This is an unary operator.
-  Standard_EXPORT void AssignCat (const Standard_Real other);
-void operator += (const Standard_Real other)
+  Standard_EXPORT void AssignCat (const double other);
+void operator += (const double other)
 {
   AssignCat(other);
 }
@@ -208,8 +208,8 @@ void operator += (const TCollection_AsciiString& other)
   //! So the following example is WRONG !
   //! aString = "Hello " + "Dolly"  THIS IS NOT ALLOWED
   //! This rule is applicable to AssignCat (operator +=) too.
-    TCollection_AsciiString Cat (const Standard_Real other) const;
-  TCollection_AsciiString operator + (const Standard_Real other) const
+    TCollection_AsciiString Cat (const double other) const;
+  TCollection_AsciiString operator + (const double other) const
 {
   return Cat(other);
 }
@@ -540,7 +540,7 @@ friend Standard_EXPORT Standard_IStream& operator >> (Standard_IStream& astream,
   //! to a Real.
   //! Example: ex: "215" returns 215.0.
   //! ex: "3.14159267" returns 3.14159267.
-  Standard_EXPORT Standard_Real RealValue() const;
+  Standard_EXPORT double RealValue() const;
   
   //! Remove all the occurrences of the character C in the string.
   //! Example:

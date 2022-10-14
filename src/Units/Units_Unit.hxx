@@ -47,7 +47,7 @@ public:
   //! the  unit, <asymbol> is the  usual abbreviation of the
   //! unit,  and  <avalue> is the  value in relation to  the
   //! International System of Units.
-  Standard_EXPORT Units_Unit(const Standard_CString aname, const Standard_CString asymbol, const Standard_Real avalue, const Handle(Units_Quantity)& aquantity);
+  Standard_EXPORT Units_Unit(const Standard_CString aname, const Standard_CString asymbol, const double avalue, const Handle(Units_Quantity)& aquantity);
   
   //! Creates  and returns a  unit.  <aname> is  the name of
   //! the  unit, <asymbol> is the  usual abbreviation of the
@@ -66,7 +66,7 @@ public:
   
   //! Returns the  value in relation  with the International
   //! System of Units.
-    Standard_Real Value() const;
+    double Value() const;
   
   //! Returns <thequantity> contained in <me>.
     Handle(Units_Quantity) Quantity() const;
@@ -75,7 +75,7 @@ public:
     Handle(TColStd_HSequenceOfHAsciiString) SymbolsSequence() const;
   
   //! Sets the value <avalue> to <me>.
-    void Value (const Standard_Real avalue);
+    void Value (const double avalue);
   
   //! Sets the physical Quantity <aquantity> to <me>.
     void Quantity (const Handle(Units_Quantity)& aquantity);
@@ -100,7 +100,7 @@ protected:
 
 
   Handle(TColStd_HSequenceOfHAsciiString) thesymbolssequence;
-  Standard_Real thevalue;
+  double thevalue;
 
 
 private:

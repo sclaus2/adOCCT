@@ -35,7 +35,7 @@ inline TCollection_AsciiString Units_Unit::Name() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Unit::Value() const
+inline double Units_Unit::Value() const
 {
   return thevalue;
 }
@@ -65,7 +65,7 @@ inline Handle(TColStd_HSequenceOfHAsciiString) Units_Unit::SymbolsSequence() con
 //purpose  : 
 //=======================================================================
 
-inline void Units_Unit::Value(const Standard_Real avalue)
+inline void Units_Unit::Value(const double avalue)
 {
   thevalue = avalue;
 }

@@ -18,7 +18,7 @@
 //function : RealToCString
 //purpose  :
 //=======================================================================
-Standard_Boolean OSD::RealToCString(const Standard_Real aReal,
+Standard_Boolean OSD::RealToCString(const double aReal,
 				    Standard_PCharacter& aString)
 {
   char *p, *q ;
@@ -46,7 +46,7 @@ Standard_Boolean OSD::RealToCString(const Standard_Real aReal,
 // Make the RealToCString reciprocal conversion.
 
 Standard_Boolean OSD::CStringToReal(const Standard_CString aString,
-				    Standard_Real& aReal)
+				    double& aReal)
 {
   char *endptr ;
   aReal = Strtod(aString, &endptr);

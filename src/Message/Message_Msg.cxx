@@ -225,7 +225,7 @@ Message_Msg& Message_Msg::Arg (const Standard_Integer theValue)
 //purpose  : 
 //=======================================================================
 
-Message_Msg& Message_Msg::Arg (const Standard_Real theValue)
+Message_Msg& Message_Msg::Arg (const double theValue)
 {
   // get location and format
   TCollection_AsciiString aFormat;

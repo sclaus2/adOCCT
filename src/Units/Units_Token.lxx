@@ -45,7 +45,7 @@ inline TCollection_AsciiString Units_Token::Mean() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Token::Value() const
+inline double Units_Token::Value() const
 {
   return thevalue;
 }
@@ -85,7 +85,7 @@ inline void Units_Token::Mean(const Standard_CString amean)
 //purpose  : 
 //=======================================================================
 
-inline void Units_Token::Value(const Standard_Real avalue)
+inline void Units_Token::Value(const double avalue)
 {
   thevalue = avalue;
 }

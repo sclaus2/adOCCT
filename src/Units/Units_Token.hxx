@@ -60,14 +60,14 @@ public:
   //! containing   the available  word,  <amean> gives   the
   //! signification of the token and <avalue> is the numeric
   //! value of the dimension.
-  Standard_EXPORT Units_Token(const Standard_CString aword, const Standard_CString amean, const Standard_Real avalue);
+  Standard_EXPORT Units_Token(const Standard_CString aword, const Standard_CString amean, const double avalue);
   
   //! Creates and returns  a  token.  <aword> is   a  string
   //! containing the   available   word, <amean>   gives the
   //! signification of  the  token, <avalue> is  the numeric
   //! value  of the dimension,  and <adimensions>   is   the
   //! dimension of the given word <aword>.
-  Standard_EXPORT Units_Token(const Standard_CString aword, const Standard_CString amean, const Standard_Real avalue, const Handle(Units_Dimensions)& adimension);
+  Standard_EXPORT Units_Token(const Standard_CString aword, const Standard_CString amean, const double avalue, const Handle(Units_Dimensions)& adimension);
   
   //! Creates and returns a  token, which is a ShiftedToken.
   Standard_EXPORT virtual Handle(Units_Token) Creates() const;
@@ -89,10 +89,10 @@ public:
     void Mean (const Standard_CString amean);
   
   //! Returns the value stored in the field <thevalue>.
-    Standard_Real Value() const;
+    double Value() const;
   
   //! Sets the field <thevalue> to <avalue>.
-    void Value (const Standard_Real avalue);
+    void Value (const double avalue);
   
   //! Returns the dimensions of the token <thedimensions>.
     Handle(Units_Dimensions) Dimensions() const;
@@ -126,7 +126,7 @@ public:
   //! This   virtual method is   called  by  the Measurement
   //! methods,  to  compute    the   measurement   during  a
   //! conversion.
-  Standard_NODISCARD Standard_EXPORT virtual Standard_Real Multiplied (const Standard_Real avalue) const;
+  Standard_NODISCARD Standard_EXPORT virtual double Multiplied (const double avalue) const;
   
   //! Returns a token which is the division of <me> by another
   //! token <atoken>.
@@ -135,7 +135,7 @@ public:
   //! This  virtual  method  is  called by  the  Measurement
   //! methods,   to   compute   the measurement  during    a
   //! conversion.
-  Standard_NODISCARD Standard_EXPORT virtual Standard_Real Divided (const Standard_Real avalue) const;
+  Standard_NODISCARD Standard_EXPORT virtual double Divided (const double avalue) const;
   
   //! Returns a token which is <me> to the power  of another
   //! token <atoken>.  The computation  is possible  only if
@@ -143,7 +143,7 @@ public:
   Standard_EXPORT Handle(Units_Token) Power (const Handle(Units_Token)& atoken) const;
   
   //! Returns a token which is <me> to the power  of <anexponent>.
-  Standard_EXPORT Handle(Units_Token) Power (const Standard_Real anexponent) const;
+  Standard_EXPORT Handle(Units_Token) Power (const double anexponent) const;
   
   //! Returns true if  the  field <theword> and  the  string
   //! <astring> are the same, false otherwise.
@@ -200,7 +200,7 @@ private:
 
   TCollection_AsciiString theword;
   TCollection_AsciiString themean;
-  Standard_Real thevalue;
+  double thevalue;
   Handle(Units_Dimensions) thedimensions;
 
 

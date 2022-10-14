@@ -190,7 +190,7 @@ public:
   
   Standard_EXPORT virtual Storage_BaseDriver& PutBoolean (const Standard_Boolean aValue) Standard_OVERRIDE;
   
-  Standard_EXPORT virtual Storage_BaseDriver& PutReal (const Standard_Real aValue) Standard_OVERRIDE;
+  Standard_EXPORT virtual Storage_BaseDriver& PutReal (const double aValue) Standard_OVERRIDE;
   
   Standard_EXPORT virtual Storage_BaseDriver& PutShortReal (const Standard_ShortReal aValue) Standard_OVERRIDE;
   
@@ -204,7 +204,7 @@ public:
   
   Standard_EXPORT virtual Storage_BaseDriver& GetBoolean (Standard_Boolean& aValue) Standard_OVERRIDE;
   
-  Standard_EXPORT virtual Storage_BaseDriver& GetReal (Standard_Real& aValue) Standard_OVERRIDE;
+  Standard_EXPORT virtual Storage_BaseDriver& GetReal (double& aValue) Standard_OVERRIDE;
   
   Standard_EXPORT virtual Storage_BaseDriver& GetShortReal (Standard_ShortReal& aValue) Standard_OVERRIDE;  
 

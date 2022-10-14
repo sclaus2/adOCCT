@@ -46,7 +46,7 @@ public:
   //! The could be a system uptime or a time from some date.
   //! Returned value is intended for precise elapsed time measurements as a delta between timestamps.
   //! On Windows implemented via QueryPerformanceCounter(), on other systems via gettimeofday().
-  Standard_EXPORT static Standard_Real GetWallClockTime();
+  Standard_EXPORT static double GetWallClockTime();
 
 public:
 
@@ -59,7 +59,7 @@ public:
   Standard_EXPORT OSD_Timer (Standard_Boolean theThisThreadOnly = Standard_False);
 
   //! Stops and reinitializes the timer with specified elapsed time.
-  Standard_EXPORT void Reset (const Standard_Real theTimeElapsedSec);
+  Standard_EXPORT void Reset (const double theTimeElapsedSec);
 
   //! Stops and reinitializes the timer with zero elapsed time.
   Standard_EXPORT virtual void Reset() Standard_OVERRIDE;
@@ -78,7 +78,7 @@ public:
   
   //! returns both the elapsed time(seconds,minutes,hours)
   //! and CPU  time.
-  Standard_EXPORT void Show (Standard_Real& theSeconds, Standard_Integer& theMinutes, Standard_Integer& theHours, Standard_Real& theCPUtime) const;
+  Standard_EXPORT void Show (double& theSeconds, Standard_Integer& theMinutes, Standard_Integer& theHours, double& theCPUtime) const;
   
   //! Stops the Timer.
   Standard_EXPORT virtual void Stop() Standard_OVERRIDE;
@@ -88,12 +88,12 @@ public:
   Standard_EXPORT virtual void Start() Standard_OVERRIDE;
   
   //! Returns elapsed time in seconds.
-  Standard_EXPORT Standard_Real ElapsedTime() const;
+  Standard_EXPORT double ElapsedTime() const;
 
 private:
 
-  Standard_Real myTimeStart;
-  Standard_Real myTimeCumul;
+  double myTimeStart;
+  double myTimeCumul;
 
 };
 

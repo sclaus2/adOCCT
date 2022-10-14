@@ -57,7 +57,7 @@ public:
   //! <avalue>  as  arguments.  If there is  already a token
   //! with   the  field  <theword>  equal    to <aword>, the
   //! existing token is updated.
-  Standard_EXPORT void AddToken (const Standard_CString aword, const Standard_CString amean, const Standard_Real avalue);
+  Standard_EXPORT void AddToken (const Standard_CString aword, const Standard_CString amean, const double avalue);
   
   //! Useful for debugging.
     virtual void Dump() const;

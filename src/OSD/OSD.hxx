@@ -121,13 +121,13 @@ public:
   //! Converts aReal into aCstring in exponential format with a period as decimal point,
   //! no thousand separator and no grouping of digits.
   //! The conversion is independent from the current locale
-  Standard_EXPORT static Standard_Boolean RealToCString (const Standard_Real aReal, Standard_PCharacter& aString);
+  Standard_EXPORT static Standard_Boolean RealToCString (const double aReal, Standard_PCharacter& aString);
 
   //! Converts aCstring representing a real with a period as decimal point,
   //! no thousand separator and no grouping of digits into aReal.
   //!
   //! The conversion is independent from the current locale.
-  Standard_EXPORT static Standard_Boolean CStringToReal (const Standard_CString aString, Standard_Real& aReal);
+  Standard_EXPORT static Standard_Boolean CStringToReal (const Standard_CString aString, double & aReal);
 
   //! since Windows NT does not support 'SIGINT' signal like UNIX,
   //! then this method checks whether Ctrl-Break keystroke was or

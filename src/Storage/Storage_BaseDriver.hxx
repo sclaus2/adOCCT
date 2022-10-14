@@ -202,8 +202,8 @@ public:
     return PutBoolean(aValue);
   }
 
-  Standard_EXPORT virtual Storage_BaseDriver& PutReal(const Standard_Real aValue) = 0;
-  Storage_BaseDriver& operator << (const Standard_Real aValue)
+  Standard_EXPORT virtual Storage_BaseDriver& PutReal(const double aValue) = 0;
+  Storage_BaseDriver& operator << (const double aValue)
   {
     return PutReal(aValue);
   }
@@ -243,8 +243,8 @@ public:
     return GetBoolean(aValue);
   }
 
-  Standard_EXPORT virtual Storage_BaseDriver& GetReal(Standard_Real& aValue) = 0;
-  Storage_BaseDriver& operator >> (Standard_Real& aValue)
+  Standard_EXPORT virtual Storage_BaseDriver& GetReal(double& aValue) = 0;
+  Storage_BaseDriver& operator >> (double& aValue)
   {
     return GetReal(aValue);
   }

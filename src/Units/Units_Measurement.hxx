@@ -42,12 +42,12 @@ public:
   //! Returns an instance  of this class.   <avalue> defines
   //! the measurement, and <atoken>  the token which defines
   //! the unit used.
-  Standard_EXPORT Units_Measurement(const Standard_Real avalue, const Handle(Units_Token)& atoken);
+  Standard_EXPORT Units_Measurement(const double avalue, const Handle(Units_Token)& atoken);
   
   //! Returns an  instance of this  class.  <avalue> defines
   //! the  measurement, and <aunit> the   unit used,
   //! described in natural language.
-  Standard_EXPORT Units_Measurement(const Standard_Real avalue, const Standard_CString aunit);
+  Standard_EXPORT Units_Measurement(const double avalue, const Standard_CString aunit);
   
   //! Converts (if   possible)  the  measurement   object into
   //! another   unit.      <aunit>   must  have    the  same
@@ -64,7 +64,7 @@ public:
   Standard_EXPORT Units_Measurement Fractional() const;
   
   //! Returns the value of the measurement.
-  Standard_EXPORT Standard_Real Measurement() const;
+  Standard_EXPORT double Measurement() const;
   
   //! Returns the token contained in <me>.
   Standard_EXPORT Handle(Units_Token) Token() const;
@@ -97,8 +97,8 @@ Units_Measurement operator * (const Units_Measurement& ameasurement) const
   
   //! Returns  a measurement which  is the multiplication of
   //! <me> with the value  <avalue>.
-  Standard_EXPORT Units_Measurement Multiply (const Standard_Real avalue) const;
-Units_Measurement operator * (const Standard_Real avalue) const
+  Standard_EXPORT Units_Measurement Multiply (const double avalue) const;
+Units_Measurement operator * (const double avalue) const
 {
   return Multiply(avalue);
 }
@@ -113,15 +113,15 @@ Units_Measurement operator / (const Units_Measurement& ameasurement) const
   
   //! Returns  a measurement which  is the division of <me> by
   //! the constant <avalue>.
-  Standard_EXPORT Units_Measurement Divide (const Standard_Real avalue) const;
-Units_Measurement operator / (const Standard_Real avalue) const
+  Standard_EXPORT Units_Measurement Divide (const double avalue) const;
+Units_Measurement operator / (const double avalue) const
 {
   return Divide(avalue);
 }
   
   //! Returns   a    measurement  which   is <me>    powered
   //! <anexponent>.
-  Standard_EXPORT Units_Measurement Power (const Standard_Real anexponent) const;
+  Standard_EXPORT Units_Measurement Power (const double anexponent) const;
   
   Standard_EXPORT Standard_Boolean HasToken() const;
   
@@ -141,7 +141,7 @@ private:
 
 
 
-  Standard_Real themeasurement;
+  double themeasurement;
   Handle(Units_Token) thetoken;
   Standard_Boolean myHasToken;
 

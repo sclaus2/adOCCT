@@ -19,7 +19,7 @@
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Dimensions::Mass() const
+inline double Units_Dimensions::Mass() const
 {
   return themass;
 }
@@ -29,7 +29,7 @@ inline Standard_Real Units_Dimensions::Mass() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Dimensions::Length() const
+inline double Units_Dimensions::Length() const
 {
  return thelength;
 }
@@ -39,7 +39,7 @@ inline Standard_Real Units_Dimensions::Length() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Dimensions::Time() const
+inline double Units_Dimensions::Time() const
 {
  return thetime;
 }
@@ -49,7 +49,7 @@ inline Standard_Real Units_Dimensions::Time() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Dimensions::ElectricCurrent() const
+inline double Units_Dimensions::ElectricCurrent() const
 {
  return theelectriccurrent;
 }
@@ -59,7 +59,7 @@ inline Standard_Real Units_Dimensions::ElectricCurrent() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Dimensions::ThermodynamicTemperature() const
+inline double Units_Dimensions::ThermodynamicTemperature() const
 {
  return thethermodynamictemperature;
 }
@@ -69,7 +69,7 @@ inline Standard_Real Units_Dimensions::ThermodynamicTemperature() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Dimensions::AmountOfSubstance() const
+inline double Units_Dimensions::AmountOfSubstance() const
 {
  return theamountofsubstance;
 }
@@ -79,7 +79,7 @@ inline Standard_Real Units_Dimensions::AmountOfSubstance() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Dimensions::LuminousIntensity() const
+inline double Units_Dimensions::LuminousIntensity() const
 {
  return theluminousintensity;
 }
@@ -89,7 +89,7 @@ inline Standard_Real Units_Dimensions::LuminousIntensity() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Dimensions::PlaneAngle() const
+inline double Units_Dimensions::PlaneAngle() const
 {
  return theplaneangle;
 }
@@ -99,7 +99,7 @@ inline Standard_Real Units_Dimensions::PlaneAngle() const
 //purpose  : 
 //=======================================================================
 
-inline Standard_Real Units_Dimensions::SolidAngle() const
+inline double Units_Dimensions::SolidAngle() const
 {
  return thesolidangle;
 }

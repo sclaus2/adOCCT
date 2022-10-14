@@ -78,7 +78,7 @@ Units_Token::Units_Token(const Standard_CString aword,
 
 Units_Token::Units_Token(const Standard_CString aword,
 			 const Standard_CString amean,
-			 const Standard_Real avalue)
+			 const double avalue)
 {
   theword=aword;
   themean=amean;
@@ -93,7 +93,7 @@ Units_Token::Units_Token(const Standard_CString aword,
 
 Units_Token::Units_Token(const Standard_CString aword,
 			 const Standard_CString amean,
-			 const Standard_Real avalue,
+			 const double avalue,
 			 const Handle(Units_Dimensions)& adimensions)
 {
   theword=aword;
@@ -245,7 +245,7 @@ Handle(Units_Token) Units_Token::Multiply (const Handle(Units_Token)& atoken) co
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_Token::Multiplied (const Standard_Real avalue) const
+double Units_Token::Multiplied (const double avalue) const
 {
   return avalue * thevalue;
 }
@@ -278,7 +278,7 @@ Handle(Units_Token) Units_Token::Divide (const Handle(Units_Token)& atoken)
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_Token::Divided (const Standard_Real avalue) const
+double Units_Token::Divided (const double avalue) const
 {
   return avalue / thevalue;
 }
@@ -304,7 +304,7 @@ Handle(Units_Token) Units_Token::Power(const Handle(Units_Token)& atoken) const
 //purpose  : 
 //=======================================================================
 
-Handle(Units_Token) Units_Token::Power(const Standard_Real anexponent) const
+Handle(Units_Token) Units_Token::Power(const double anexponent) const
 {
   TCollection_AsciiString exponent(anexponent);
   TCollection_AsciiString string = Word();
@@ -440,7 +440,7 @@ Handle(Units_Token) pow(const Handle(Units_Token)& atoken1, const Handle(Units_T
 //purpose  : 
 //=======================================================================
 
-Handle(Units_Token) pow(const Handle(Units_Token)& atoken,const Standard_Real areal)
+Handle(Units_Token) pow(const Handle(Units_Token)& atoken,const double areal)
 {
   return atoken->Power(areal);
 }

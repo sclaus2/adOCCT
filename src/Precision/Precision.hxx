@@ -120,7 +120,7 @@ public:
   //! you can use :
   //! If ( Abs( D1.D2 ) < Precision::Angular() ) ...
   //! (although the function IsNormal does exist).
-  static Standard_Real Angular() { return 1.e-12; }
+  static double Angular() { return 1.e-12; }
 
   //! Returns the recommended precision value when
   //! checking coincidence of two points in real space.
@@ -162,11 +162,11 @@ public:
   //! distance (1 / 10 millimeter). This distance
   //! becomes easily measurable, but only within a restricted
   //! space which contains some small objects of the complete scene.
-  static Standard_Real Confusion() { return 1.e-7; }
+  static double Confusion() { return 1.e-7; }
 
   //! Returns square of Confusion.
   //! Created for speed and convenience.
-  static Standard_Real SquareConfusion() { return Confusion() * Confusion(); }
+  static double SquareConfusion() { return Confusion() * Confusion(); }
 
   //! Returns the precision value in real space, frequently
   //! used by intersection algorithms to decide that a solution is reached.
@@ -190,7 +190,7 @@ public:
   //! The tolerance of intersection is equal to :
   //! Precision::Confusion() / 100.
   //! (that is, 1.e-9).
-  static Standard_Real Intersection() { return Confusion() * 0.01; }
+  static double Intersection() { return Confusion() * 0.01; }
 
   //! Returns the precision value in real space, frequently used
   //! by approximation algorithms.
@@ -205,7 +205,7 @@ public:
   //! (that is, 1.e-6).
   //! You may use a smaller tolerance in an approximation
   //! algorithm, but this option might be costly.
-  static Standard_Real Approximation() { return Confusion() * 10.0; }
+  static double Approximation() { return Confusion() * 10.0; }
 
   //! Convert a real  space precision  to  a  parametric
   //! space precision.   <T>  is the mean  value  of the
@@ -332,7 +332,7 @@ public:
 
   //! Returns a  big number that  can  be  considered as
   //! infinite. Use -Infinite() for a negative big number.
-  static Standard_Real Infinite() { return 2.e+100; }
+  static double Infinite() { return 2.e+100; }
 
 };
 

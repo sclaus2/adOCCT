@@ -75,29 +75,29 @@ public:
 
   //! Returns the current CPU user time in seconds.
   //! The chronometer can be running (laps Time) or stopped.
-  Standard_Real UserTimeCPU() const
+  double UserTimeCPU() const
   {
-    Standard_Real aUserTime = 0.0, aSysTime = 0.0;
+    double aUserTime = 0.0, aSysTime = 0.0;
     Show (aUserTime, aSysTime);
     return aUserTime;
   }
 
   //! Returns the current CPU system time in seconds.
   //! The chronometer can be running (laps Time) or stopped.
-  Standard_Real SystemTimeCPU() const
+  double SystemTimeCPU() const
   {
-    Standard_Real aUserTime = 0.0, aSysTime = 0.0;
+    double aUserTime = 0.0, aSysTime = 0.0;
     Show (aUserTime, aSysTime);
     return aSysTime;
   }
 
   //! Returns the current CPU user time in a variable.
   //! The chronometer can be running (laps Time) or stopped.
-  void Show (Standard_Real& theUserSeconds) const { theUserSeconds = UserTimeCPU(); }
+  void Show (double& theUserSeconds) const { theUserSeconds = UserTimeCPU(); }
   
   //! Returns the current CPU user and system time in variables.
   //! The chronometer can be running (laps Time) or stopped.
-  Standard_EXPORT void Show (Standard_Real& theUserSec, Standard_Real& theSystemSec) const;
+  Standard_EXPORT void Show (double& theUserSec, double& theSystemSec) const;
 
 public:
 
@@ -105,20 +105,20 @@ public:
   //! process since its start, in seconds. The actual precision of
   //! the measurement depends on granularity provided by the system,
   //! and is platform-specific.
-  Standard_EXPORT static void GetProcessCPU (Standard_Real& UserSeconds, Standard_Real& SystemSeconds);
+  Standard_EXPORT static void GetProcessCPU (double& UserSeconds, double& SystemSeconds);
   
   //! Returns CPU time (user and system) consumed by the current
   //! thread since its start. Note that this measurement is
   //! platform-specific, as threads are implemented and managed
   //! differently on different platforms and CPUs.
-  Standard_EXPORT static void GetThreadCPU (Standard_Real& UserSeconds, Standard_Real& SystemSeconds);
+  Standard_EXPORT static void GetThreadCPU (double& UserSeconds, double& SystemSeconds);
 
 protected:
 
-  Standard_Real    myStartCpuUser;
-  Standard_Real    myStartCpuSys;
-  Standard_Real    myCumulCpuUser;
-  Standard_Real    myCumulCpuSys;
+  double    myStartCpuUser;
+  double    myStartCpuSys;
+  double    myCumulCpuUser;
+  double    myCumulCpuSys;
   Standard_Boolean myIsStopped;
   Standard_Boolean myIsThreadOnly;
 

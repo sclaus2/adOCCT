@@ -300,14 +300,14 @@ Storage_BaseDriver& FSD_BinaryFile::PutBoolean(const Standard_Boolean aValue)
 //purpose  : 
 //=======================================================================
 
-Storage_BaseDriver& FSD_BinaryFile::PutReal(const Standard_Real aValue)
+Storage_BaseDriver& FSD_BinaryFile::PutReal(const double aValue)
 {
 #if OCCT_BINARY_FILE_DO_INVERSE
-  Standard_Real t = InverseReal (aValue);
+  double t = InverseReal (aValue);
   
-  if (!fwrite(&t,sizeof(Standard_Real),1,myStream)) throw Storage_StreamWriteError();
+  if (!fwrite(&t,sizeof(double),1,myStream)) throw Storage_StreamWriteError();
 #else
-  if (!fwrite(&aValue,sizeof(Standard_Real),1,myStream)) throw Storage_StreamWriteError();
+  if (!fwrite(&aValue,sizeof(double),1,myStream)) throw Storage_StreamWriteError();
 #endif
   return *this;
 }
@@ -445,9 +445,9 @@ Storage_BaseDriver& FSD_BinaryFile::GetBoolean(Standard_Boolean& aValue)
 //purpose  : 
 //=======================================================================
 
-Storage_BaseDriver& FSD_BinaryFile::GetReal(Standard_Real& aValue)
+Storage_BaseDriver& FSD_BinaryFile::GetReal(double& aValue)
 {
-  if (!fread(&aValue,sizeof(Standard_Real),1,myStream))
+  if (!fread(&aValue,sizeof(double),1,myStream))
     throw Storage_StreamTypeMismatchError();
 #if OCCT_BINARY_FILE_DO_INVERSE
   aValue = InverseReal (aValue);
@@ -1820,12 +1820,12 @@ Storage_Position FSD_BinaryFile::Tell()
 //purpose  : Inverses bytes in the real value
 //=======================================================================
 
-Standard_Real FSD_BinaryFile::InverseReal (const Standard_Real theValue)
+double FSD_BinaryFile::InverseReal (const double theValue)
 {
-  Standard_STATIC_ASSERT(sizeof(Standard_Real) == 2 * sizeof(Standard_Integer));
+  Standard_STATIC_ASSERT(sizeof(double ) == 2 * sizeof(Standard_Integer));
   union {
     Standard_Integer i[2];
-    Standard_Real    aValue;
+    double    aValue;
   } aWrapUnion;
 
   aWrapUnion.aValue = theValue;

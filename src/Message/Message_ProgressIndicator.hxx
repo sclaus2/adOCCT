@@ -122,7 +122,7 @@ public:
   //! Returns total progress position ranged from 0 to 1.
   //! Should not be called concurrently while the progress is advancing,
   //! except from implementation of method Show().
-  Standard_Real GetPosition() const
+  double GetPosition() const
   {
     return myPosition;
   }
@@ -141,11 +141,11 @@ private:
   //! then calls Show() to update presentation.
   //! The parameter theScope is reference to the caller object;
   //! it is passed to Show() where can be used to track context of the process.
-  void Increment (const Standard_Real theStep, const Message_ProgressScope& theScope);
+  void Increment (const double theStep, const Message_ProgressScope& theScope);
 
 private:
 
-  Standard_Real myPosition;            //!< Total progress position ranged from 0 to 1
+  double myPosition;            //!< Total progress position ranged from 0 to 1
   Standard_Mutex myMutex;              //!< Protection of myPosition from concurrent increment
   Message_ProgressScope* myRootScope;  //!< The root progress scope
 
@@ -160,7 +160,7 @@ private:
 //function : Increment
 //purpose  :
 //=======================================================================
-inline void Message_ProgressIndicator::Increment(const Standard_Real theStep,
+inline void Message_ProgressIndicator::Increment(const double theStep,
                                                  const Message_ProgressScope& theScope)
 {
   // protect incrementation by mutex to avoid problems in multithreaded scenarios

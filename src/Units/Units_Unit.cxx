@@ -33,7 +33,7 @@ IMPLEMENT_STANDARD_RTTIEXT(Units_Unit,Standard_Transient)
 //=======================================================================
 Units_Unit::Units_Unit(const Standard_CString aname,
 		       const Standard_CString asymbol,
-		       const Standard_Real avalue,
+		       const double avalue,
 		       const Handle(Units_Quantity)& aquantity)
 {
   thename       = new TCollection_HAsciiString(aname);

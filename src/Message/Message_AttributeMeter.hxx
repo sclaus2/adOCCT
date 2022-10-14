@@ -30,7 +30,7 @@ public:
 
   //! Returns default value of the metric when it is not defined
   //! @return undefined value
-  static Standard_Real UndefinedMetricValue() { return -1.0; }
+  static double UndefinedMetricValue() { return -1.0; }
 
 public:
 
@@ -50,20 +50,20 @@ public:
   //! Returns start value for the metric
   //! @param theMetric [in] metric type
   //! @return real value
-  Standard_EXPORT Standard_Real StartValue (const Message_MetricType& theMetric) const;
+  Standard_EXPORT double StartValue (const Message_MetricType& theMetric) const;
 
   //! Sets start values for the metric
   //! @param theMetric [in] metric type
-  Standard_EXPORT void SetStartValue (const Message_MetricType& theMetric, const Standard_Real theValue);
+  Standard_EXPORT void SetStartValue (const Message_MetricType& theMetric, const double theValue);
 
   //! Returns stop value for the metric
   //! @param theMetric [in] metric type
   //! @return real value
-  Standard_EXPORT Standard_Real StopValue (const Message_MetricType& theMetric) const;
+  Standard_EXPORT double StopValue (const Message_MetricType& theMetric) const;
 
   //! Sets stop values for the metric
   //! @param theMetric [in] metric type
-  Standard_EXPORT void SetStopValue (const Message_MetricType& theMetric, const Standard_Real theValue);
+  Standard_EXPORT void SetStopValue (const Message_MetricType& theMetric, const double theValue);
 
 public:
 
@@ -90,7 +90,7 @@ public:
 
 private:
 
-  typedef std::pair<Standard_Real, Standard_Real> StartToStopValue;
+  typedef std::pair<double, double> StartToStopValue;
   NCollection_IndexedDataMap<Message_MetricType, StartToStopValue> myMetrics; //!< computed metrics
 };
 

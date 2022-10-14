@@ -39,7 +39,7 @@ Units_Measurement::Units_Measurement()
 //purpose  : 
 //=======================================================================
 
-Units_Measurement::Units_Measurement(const Standard_Real avalue,
+Units_Measurement::Units_Measurement(const double avalue,
 				     const Handle(Units_Token)& atoken)
 {
   themeasurement = avalue;
@@ -53,7 +53,7 @@ Units_Measurement::Units_Measurement(const Standard_Real avalue,
 //purpose  : 
 //=======================================================================
 
-Units_Measurement::Units_Measurement(const Standard_Real avalue,
+Units_Measurement::Units_Measurement(const double avalue,
 				     const Standard_CString aunit)
 {
   themeasurement=avalue;
@@ -132,7 +132,7 @@ Units_Measurement Units_Measurement::Fractional() const
 //purpose  : 
 //=======================================================================
 
-Standard_Real Units_Measurement::Measurement() const
+double Units_Measurement::Measurement() const
 {
   return themeasurement;
 }
@@ -157,7 +157,7 @@ Handle(Units_Token) Units_Measurement::Token() const
 Units_Measurement Units_Measurement::Add
        (const Units_Measurement& ameasurement) const
 {
-  Standard_Real value;
+  double value;
   Units_Measurement measurement;
   if(thetoken->Dimensions()->IsNotEqual((ameasurement.Token())->Dimensions()))
     return measurement;
@@ -177,7 +177,7 @@ Units_Measurement Units_Measurement::Add
 Units_Measurement Units_Measurement::Subtract
   (const Units_Measurement& ameasurement) const
 {
-  Standard_Real value;
+  double value;
   Units_Measurement measurement;
   if(thetoken->Dimensions()->IsNotEqual((ameasurement.Token())->Dimensions()))
     return measurement;
@@ -197,7 +197,7 @@ Units_Measurement Units_Measurement::Subtract
 Units_Measurement Units_Measurement::Multiply
        (const Units_Measurement& ameasurement) const
 {
-  Standard_Real value = themeasurement * ameasurement.Measurement();
+  double value = themeasurement * ameasurement.Measurement();
   Handle(Units_Token) token = thetoken * ameasurement.Token();
   return Units_Measurement(value,token);
 }
@@ -209,9 +209,9 @@ Units_Measurement Units_Measurement::Multiply
 //=======================================================================
 
 Units_Measurement Units_Measurement::Multiply
-       (const Standard_Real avalue) const
+       (const double avalue) const
 {
-  Standard_Real value = themeasurement * avalue;
+  double value = themeasurement * avalue;
   Handle(Units_Token) token = thetoken->Creates();
   return Units_Measurement(value,token);
 }
@@ -225,7 +225,7 @@ Units_Measurement Units_Measurement::Multiply
 Units_Measurement Units_Measurement::Divide
   (const Units_Measurement& ameasurement) const
 {
-  Standard_Real value = themeasurement / ameasurement.Measurement();
+  double value = themeasurement / ameasurement.Measurement();
   Handle(Units_Token) token = thetoken / ameasurement.Token();
   return Units_Measurement(value,token);
 }
@@ -237,9 +237,9 @@ Units_Measurement Units_Measurement::Divide
 //=======================================================================
 
 Units_Measurement Units_Measurement::Divide
-       (const Standard_Real avalue) const
+       (const double avalue) const
 {
-  Standard_Real value = themeasurement / avalue;
+  double value = themeasurement / avalue;
   Handle(Units_Token) token = thetoken->Creates();
   return Units_Measurement(value,token);
 }
@@ -251,9 +251,9 @@ Units_Measurement Units_Measurement::Divide
 //=======================================================================
 
 Units_Measurement Units_Measurement::Power
-  (const Standard_Real anexponent) const
+  (const double anexponent) const
 {
-  Standard_Real value = pow(themeasurement,anexponent);
+  double value = pow(themeasurement,anexponent);
   Handle(Units_Token) token = pow(thetoken,anexponent);
   return Units_Measurement(value,token);
 }
@@ -286,7 +286,7 @@ void Units_Measurement::Dump() const
 //purpose  : 
 //=======================================================================
 
-Units_Measurement operator*(const Standard_Real avalue,
+Units_Measurement operator*(const double avalue,
                             const Units_Measurement& ameasurement)
 {
   return ameasurement * avalue;
@@ -297,7 +297,7 @@ Units_Measurement operator*(const Standard_Real avalue,
 //purpose  : 
 //=======================================================================
 
-Units_Measurement operator/(const Standard_Real avalue,const Units_Measurement& ameasurement)
+Units_Measurement operator/(const double avalue,const Units_Measurement& ameasurement)
 {
   return ameasurement / avalue;
 }

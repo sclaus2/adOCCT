@@ -350,14 +350,14 @@ Standard_Size OSD_MemInfo::ValueMiB (const OSD_MemInfo::Counter theCounter) cons
 // function : ValuePreciseMiB
 // purpose  :
 // =======================================================================
-Standard_Real OSD_MemInfo::ValuePreciseMiB (const OSD_MemInfo::Counter theCounter) const
+double OSD_MemInfo::ValuePreciseMiB (const OSD_MemInfo::Counter theCounter) const
 {
   if (theCounter < 0 || theCounter >= MemCounter_NB || !IsActive (theCounter))
   {
     return -1.0;
   }
   return (myCounters[theCounter] == Standard_Size(-1))
-       ? -1.0 : ((Standard_Real )myCounters[theCounter] / (1024.0 * 1024.0));
+       ? -1.0 : ((double )myCounters[theCounter] / (1024.0 * 1024.0));
 }
 
 // =======================================================================
