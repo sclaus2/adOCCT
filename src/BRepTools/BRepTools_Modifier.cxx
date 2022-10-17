@@ -604,7 +604,7 @@ Standard_Boolean BRepTools_Modifier::Rebuild
 
 void BRepTools_Modifier::CreateNewVertices( const TopTools_IndexedDataMapOfShapeListOfShape& theMVE, const Handle(BRepTools_Modification)& M)
 {
-  double aToler;
+  Standard_Real aToler;
   BRep_Builder aBB;
   gp_Pnt aPnt;  
   for (int i = 1; i <= theMVE.Extent(); i++ )
@@ -630,7 +630,7 @@ void BRepTools_Modifier::FillNewCurveInfo(const TopTools_IndexedDataMapOfShapeLi
   Handle(Geom_Curve) aCurve;
   TopLoc_Location aLocation;
   BRepTools_Modifier::NewCurveInfo aNCinfo;
-  double aToler;
+  Standard_Real aToler;
   for (int i = 1; i <= theMEF.Extent(); i++ )
   {
     const TopoDS_Edge& anE = TopoDS::Edge(theMEF.FindKey(i));
@@ -658,7 +658,7 @@ void BRepTools_Modifier::FillNewSurfaceInfo(const Handle(BRepTools_Modification)
     Standard_Boolean RevWires;
     Handle(Geom_Surface) aSurface;
     TopLoc_Location aLocation;
-    double aToler1;
+    Standard_Real aToler1;
     Standard_Boolean IsNewSur = M->NewSurface(aF, aSurface, aLocation, aToler1, RevWires,RevFace);
     if (IsNewSur)
     {
@@ -710,7 +710,7 @@ void BRepTools_Modifier::CreateOtherVertices(const TopTools_IndexedDataMapOfShap
                                              const TopTools_IndexedDataMapOfShapeListOfShape& theMEF, 
                                              const Handle(BRepTools_Modification)& M)
 {
-  double aToler;
+  Standard_Real aToler;
   //The following logic in some ways repeats the logic from the Rebuild() method.
   //If the face with its subshapes is not going to be modified 
   //(i.e. NewSurface() for this face and NewCurve(), NewPoint() for its edges/vertices returns false)
