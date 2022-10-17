@@ -3506,7 +3506,7 @@ int AdvApp2Var_ApproxF2var::mma2cdi_( integer *ndimen,
     if (ier > 0) {
 	goto L9013;
     }
-    wrkar_off = reinterpret_cast<double*>(iofwr * sizeof(double));
+    wrkar_off = reinterpret_cast<doublereal*>(iofwr * sizeof(doublereal)); //TODO: will most likely cause run-time exception
     ipt1 = isz1;
     ipt2 = ipt1 + isz2;
     ipt3 = ipt2 + isz3;
@@ -3798,7 +3798,7 @@ int AdvApp2Var_ApproxF2var::mma2ce1_(integer *numdec,
     iszwr = isz1 + isz2 + isz3 + isz4 + isz5 + isz6 + isz7;
     AdvApp2Var_SysBase anAdvApp2Var_SysBase;
     anAdvApp2Var_SysBase.mcrrqst_(&c__8, &iszwr, wrkar, &iofwr, &ier);
-    wrkar_off = reinterpret_cast<double*> (iofwr * sizeof(double));
+    wrkar_off = reinterpret_cast<doublereal*> (iofwr * sizeof(doublereal)); //TODO: will most likely cause run-time exception
     if (ier > 0) {
 	goto L9013;
     }
@@ -6430,7 +6430,7 @@ int AdvApp2Var_ApproxF2var::mma2fnc_(integer *ndimen,
 
     ndwrk = isz1 + isz2 + isz3 + isz4 + isz5;
     anAdvApp2Var_SysBase.mcrrqst_(&c__8, &ndwrk, wrkar, &iofwr, &ier);
-    wrkar_off = reinterpret_cast<double*>(iofwr * sizeof(double));
+    wrkar_off = reinterpret_cast<doublereal*>(iofwr * sizeof(doublereal)); //TODO: will most likely cause run-time exception
     if (ier > 0) {
 	goto L9013;    }
 /* --> For the parameters of discretisation (NBROOT+2 extremities). */

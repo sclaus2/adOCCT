@@ -812,7 +812,7 @@ int macrgfl_(intptr_t *iadfld,
   
  
   /* CALCULATE THE OFFSET */
-  double* t = reinterpret_cast<double*>(*iadfld);
+  doublereal* t = reinterpret_cast<doublereal*>(*iadfld); //TODO: will most likely cause run-time exception
   
   /*  SET TO OVERFLOW OF THE USER ZONE IN CASE OF PRODUCTION VERSION */
   if (*iphase == 1 && novfl == 0) {
@@ -827,7 +827,7 @@ int macrgfl_(intptr_t *iadfld,
   macrbrk_();
   
   /*  UPDATE THE START FLAG */
-  t = reinterpret_cast<double*>(*iadflf);
+  t = reinterpret_cast<doublereal*>(*iadflf); //TODO: will most likely cause run-time exception
   *t = -134744073.;
     
   /*  FAKE CALL TO STOP THE DEBUGGER : */

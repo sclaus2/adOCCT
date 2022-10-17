@@ -24,8 +24,8 @@ class AdvApp2Var_MathBase {
   Standard_EXPORT static int mmapcmp_(integer*, 
 				      integer*, 
 				      integer*, 
-				      double*, 
-				      double*);
+				      doublereal*,
+				      doublereal*);
 
   Standard_EXPORT static int mmdrc11_(integer* , 
 				      integer* , 

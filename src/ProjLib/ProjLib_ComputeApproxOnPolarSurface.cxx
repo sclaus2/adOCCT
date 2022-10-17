@@ -882,7 +882,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::Perform
           anUJump = (anUPeriod) * aMultCoeff;
         }
 
-        if (anVPeriod &&
+        if (anVPeriod.getValue() &&
             Abs (aC1End.Y() - aC2Beg.Y()) > (anVPeriod) / 2.01)
         {
           Standard_Real aMultCoeff =  aC2Beg.Y() < aC1End.Y() ? 1.0 : -1.0;
@@ -1370,7 +1370,7 @@ Handle(Adaptor2d_Curve2d)
               }
             }
           }
-	  if(!myProjIsDone && uperiod) {
+	  if(!myProjIsDone && uperiod.getValue()) {
 	    Standard_Real aUinf, aUsup, Uaux;
 	    aUinf = Surf->FirstUParameter();
 	    aUsup = Surf->LastUParameter();
@@ -1401,7 +1401,7 @@ Handle(Adaptor2d_Curve2d)
 		myProjIsDone = Standard_True;
 	      }
 	  }
-	  if(!myProjIsDone && vperiod) {
+	  if(!myProjIsDone && vperiod.getValue()) {
 	    Standard_Real aVinf, aVsup, Vaux;
 	    aVinf = Surf->FirstVParameter();
 	    aVsup = Surf->LastVParameter();
@@ -1432,7 +1432,7 @@ Handle(Adaptor2d_Curve2d)
 		myProjIsDone = Standard_True;
 	      }
 	  }	
-	  if(!myProjIsDone && uperiod && vperiod) {
+	  if(!myProjIsDone && uperiod.getValue() && vperiod.getValue()) {
 	    Standard_Real Uaux, Vaux;
 	    if((Usup - U0) > (U0 - Uinf)) 
 	      Uaux = 2*Uinf - U0 + uperiod;
@@ -1486,7 +1486,7 @@ Handle(Adaptor2d_Curve2d)
                   myDist = Dist2Min;
                 }
                 (ext.Point(aGoodValue)).Parameter(u, v);
-		if(uperiod) {
+		if(uperiod.getValue()) {
 		  if((U0 - u) > (2*uperiod/3)) {
 		    usens++;
 		  }
@@ -1495,7 +1495,7 @@ Handle(Adaptor2d_Curve2d)
 		      usens--;
 		    }
     }
-		if(vperiod) {
+		if(vperiod.getValue()) {
 		  if((V0 - v) > (vperiod/2)) {
 		    vsens++;
 		  }
@@ -1523,7 +1523,7 @@ Handle(Adaptor2d_Curve2d)
     gp_Pnt2d MidPoint = myBSpline->Value(0.5*(myBSpline->FirstParameter() + myBSpline->LastParameter()));
     Standard_Real TestU = MidPoint.X(), TestV = MidPoint.Y();
     Standard_Real sense = 0.;
-    if (uperiod)
+    if (uperiod.getValue())
     {
       if (TestU < Uinf - TolU)
         sense = 1.;
@@ -1532,7 +1532,7 @@ Handle(Adaptor2d_Curve2d)
       while (TestU < Uinf - TolU || TestU > Usup + TolU)
         TestU += sense * uperiod;
     }
-    if (vperiod)
+    if (vperiod.getValue())
     {
       sense = 0.;
       if (TestV < Vinf - TolV)

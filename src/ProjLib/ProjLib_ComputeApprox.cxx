@@ -1302,12 +1302,12 @@ void ProjLib_ComputeApprox::Perform
     }
     if (F.UCouture || (F.VCouture && SType == GeomAbs_Sphere))
     {
-      Standard_Real aNbPer;
+      double aNbPer;
       gp_Pnt2d P2d = F.Value (Umid);
       du = u - P2d.X();
       du = (du < 0) ? (du - Precision::PConfusion()) : 
         (du + Precision::PConfusion());
-      modf(du/M_PI, &aNbPer);
+      modf((du/M_PI).getValue(), &aNbPer);
       number = (Standard_Integer)aNbPer;
       du = number*M_PI;
     }

@@ -511,7 +511,7 @@ void AppDef_LinearCriteria::Hessian(const Standard_Integer Element,
                    Order = order(myCurve->Base()); 
 
   
-  math_Matrix AuxH(0, H.RowNumber()-1, 0, H.ColNumber()-1, 0.);
+  math_Matrix AuxH(0, H.RowNumber()-1, 0, H.ColNumber()-1, (Standard_Real)0.);
 
   TColStd_Array1OfReal& Knots = myCurve->Knots();
   Standard_Real UFirst, ULast;

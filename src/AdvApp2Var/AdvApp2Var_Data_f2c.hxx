@@ -15,16 +15,18 @@
 #ifndef AdvApp2Var_Data_f2c_HeaderFile
 #define AdvApp2Var_Data_f2c_HeaderFile
 
+#include <Standard_TypeDef.hxx>
+
 #ifndef F2CTYPE_DEFINED
 typedef int integer;
-typedef double doublereal;
+typedef adouble doublereal;
 #define  F2CTYPE_DEFINED
 #endif
 
 typedef unsigned long uinteger;
 typedef char *address;
 typedef short int shortint;
-typedef float real;
+typedef adouble real;
 typedef struct { real r, i; } complex;
 typedef struct { doublereal r, i; } doublecomplex;
 typedef long int logical;
