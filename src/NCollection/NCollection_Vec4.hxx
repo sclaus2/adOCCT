@@ -37,7 +37,7 @@ public:
   //! Empty constructor. Construct the zero vector.
   NCollection_Vec4()
   {
-    std::memset (this, 0, sizeof(NCollection_Vec4));
+    for(int i = 0; i < 4; ++i) v[i] = 0.; //std::memset (this, 0, sizeof(NCollection_Vec4));
   }
 
   //! Initialize ALL components of vector within specified value.
@@ -69,7 +69,7 @@ public:
   //! Constructor from 3-components vector + optional 4th value.
   explicit NCollection_Vec4(const NCollection_Vec3<Element_t>& theVec3, const Element_t theW = Element_t(0))
   {
-    std::memcpy (this, &theVec3, sizeof(NCollection_Vec3<Element_t>));
+    for(int i = 0; i < 3; ++i) v[i] = theVec3[i]; //std::memcpy (this, &theVec3, sizeof(NCollection_Vec3<Element_t>));
     v[3] = theW;
   }
 
@@ -305,10 +305,10 @@ public:
   //! Compute component-wise modulus of the vector.
   NCollection_Vec4 cwiseAbs() const
   {
-    return NCollection_Vec4 (std::abs (v[0]),
-                             std::abs (v[1]),
-                             std::abs (v[2]),
-                             std::abs (v[3]));
+    return NCollection_Vec4 (Abs (v[0]),
+                             Abs (v[1]),
+                             Abs (v[2]),
+                             Abs (v[3]));
   }
 
   //! Compute maximum component of the vector.

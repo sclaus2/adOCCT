@@ -72,7 +72,12 @@ math_Vector::math_Vector (const math_Vector& theOther)
 : myLocArray (theOther.Length()),
   Array (myLocArray[0], theOther.Lower(), theOther.Upper())
 {
-  memcpy (&myLocArray[0], &theOther.Array.First(), sizeof(Standard_Real) * theOther.Length());
+  //memcpy (&myLocArray[0], &theOther.Array.First(), sizeof(Standard_Real) * theOther.Length());
+  int j = theOther.Lower();
+  for (int i = 0; i < theOther.Length(); ++i) {
+    myLocArray[i] = theOther.Array.Value(j);
+    ++j;
+  }
 }
 
 void math_Vector::SetLower(const Standard_Integer theLower)
@@ -487,7 +492,12 @@ math_Vector& math_Vector::Initialized(const math_Vector& theOther)
 {
   Standard_DimensionError_Raise_if (Length() != theOther.Length(),
                                     "math_Vector::Initialized() - input vector has wrong dimensions");
-  memmove (&Array.ChangeFirst(), &theOther.Array.First(), sizeof(Standard_Real) * Array.Length());
+  //memmove (&Array.ChangeFirst(), &theOther.Array.First(), sizeof(Standard_Real) * Array.Length());
+  int j = theOther.Array.Lower();
+  for (int i = Array.Lower(); i <= Array.Upper(); ++i) {
+    Array.SetValue(i, theOther.Array.Value(j));
+    ++j;
+  }
   return *this;
 }
 

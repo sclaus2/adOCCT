@@ -275,9 +275,9 @@ protected:
           //INT_MAX it is decreased correspondingly for the value of INT_MAX. If the value
           //of index is less than INT_MIN it is increased correspondingly for the absolute
           //value of INT_MIN.
-          index[i] = long((val > INT_MAX - 1) ? fmod(val, (Standard_Real) INT_MAX) 
-                                               : (val < INT_MIN + 1) ? fmod(val, (Standard_Real) INT_MIN)
-                                                                     : val);
+          index[i] = long((val > INT_MAX - 1) ? fmod(val.getValue(), (double) INT_MAX)
+                                               : (val < INT_MIN + 1) ? fmod(val.getValue(), (double) INT_MIN)
+                                                                     : val.getValue());
       }
     }
 

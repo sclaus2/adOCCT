@@ -349,7 +349,7 @@ void gp_Quaternion::GetEulerAngles (const gp_EulerSequence theOrder,
   gp_EulerSequence_Parameters o = translateEulerSequence (theOrder);
   if ( o.isTwoAxes ) 
   {
-    double sy = sqrt (M(o.i, o.j) * M(o.i, o.j) + M(o.i, o.k) * M(o.i, o.k));
+    Standard_Real sy = sqrt (M(o.i, o.j) * M(o.i, o.j) + M(o.i, o.k) * M(o.i, o.k));
     if (sy > 16 * DBL_EPSILON) 
     {
       theAlpha = ATan2 (M(o.i, o.j),  M(o.i, o.k));
@@ -364,7 +364,7 @@ void gp_Quaternion::GetEulerAngles (const gp_EulerSequence theOrder,
   } 
   else 
   {
-    double cy = sqrt (M(o.i, o.i) * M(o.i, o.i) + M(o.j, o.i) * M(o.j, o.i));
+    Standard_Real cy = sqrt (M(o.i, o.i) * M(o.i, o.i) + M(o.j, o.i) * M(o.j, o.i));
     if (cy > 16 * DBL_EPSILON) 
     {
       theAlpha = ATan2 (M(o.k, o.j), M(o.k, o.k));

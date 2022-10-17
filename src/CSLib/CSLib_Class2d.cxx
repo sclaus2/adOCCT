@@ -149,7 +149,7 @@ Standard_Integer CSLib_Class2d::SiDans(const gp_Pnt2d& P) const
   if(res==-1) {    
     return 0;
   }
-  if(Tolu || Tolv) {
+  if(Tolu.getValue() || Tolv.getValue()) {
     if(res != InternalSiDans(x-Tolu,y-Tolv)) return 0;
     if(res != InternalSiDans(x+Tolu,y-Tolv)) return 0;
     if(res != InternalSiDans(x-Tolu,y+Tolv)) return 0;
@@ -186,7 +186,7 @@ Standard_Integer CSLib_Class2d::SiDans_OnMode(const gp_Pnt2d& P,
   }
   //
   Standard_Integer res = InternalSiDansOuOn(x,y);
-  if(aTolu || aTolv) {
+  if(aTolu.getValue() || aTolv.getValue()) {
     if(res != InternalSiDans(x-aTolu,y-aTolv)) return 0;
     if(res != InternalSiDans(x+aTolu,y-aTolv)) return 0;
     if(res != InternalSiDans(x-aTolu,y+aTolv)) return 0;

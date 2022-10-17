@@ -143,31 +143,55 @@ public:
   //! Initialize the zero matrix.
   void InitZero()
   {
-    std::memcpy (this, MyZeroArray, sizeof (NCollection_Mat3));
+    //std::memcpy (this, MyZeroArray, sizeof (NCollection_Mat3));
+    for (int i = 0; i < 9; ++i) {
+      myMat[i] = MyZeroArray[i];
+    }
   }
 
   //! Checks the matrix for zero (without tolerance).
   bool IsZero() const
   {
-    return std::memcmp (this, MyZeroArray, sizeof (NCollection_Mat3)) == 0;
+    //return std::memcmp (this, MyZeroArray, sizeof (NCollection_Mat3)) == 0;
+    for (int i = 0; i < 9; ++i)
+    {
+      if(myMat[i] != MyZeroArray[i])
+        return false;
+    }
+    return true;
   }
 
   //! Initialize the identity matrix.
   void InitIdentity()
   {
-    std::memcpy (this, MyIdentityArray, sizeof (NCollection_Mat3));
+    //std::memcpy (this, MyIdentityArray, sizeof (NCollection_Mat3));
+    for (int i = 0; i < 9; ++i) {
+      myMat[i] = MyIdentityArray[i];
+    }
   }
 
   //! Checks the matrix for identity (without tolerance).
   bool IsIdentity() const
   {
-    return std::memcmp (this, MyIdentityArray, sizeof (NCollection_Mat3)) == 0;
+    //return std::memcmp (this, MyIdentityArray, sizeof (NCollection_Mat3)) == 0;
+    for (int i = 0; i < 9; ++i)
+    {
+      if(myMat[i] != MyIdentityArray[i])
+        return false;
+    }
+    return true;
   }
 
   //! Check this matrix for equality with another matrix (without tolerance!).
   bool IsEqual (const NCollection_Mat3& theOther) const
   {
-    return std::memcmp (this, &theOther, sizeof(NCollection_Mat3)) == 0;
+    //return std::memcmp (this, &theOther, sizeof(NCollection_Mat3)) == 0;
+    for (int i = 0; i < 9; ++i)
+    {
+      if(myMat[i] != theOther.myMat[i])
+        return false;
+    }
+    return true;
   }
 
   //! Comparison operator.

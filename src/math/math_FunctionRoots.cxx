@@ -267,7 +267,7 @@ math_FunctionRoots::math_FunctionRoots(math_FunctionWithDerivative& F,
     Standard_Integer i;
     Standard_Real X=X0;
     Standard_Boolean Ok;
-    double dx = (XN-X0)/N;
+    Standard_Real dx = (XN-X0)/N;
     TColStd_Array1OfReal ptrval(0, N);
     Standard_Integer Nvalid = -1;
     Standard_Real aux = 0;

@@ -37,7 +37,7 @@ static inline Standard_Real PYTHAG (const Standard_Real a, const Standard_Real b
   if (at > bt) {
     ct = bt / at;
     ct = at * sqrt (1.0 + ct * ct);
-  } else if (bt) {
+  } else if (bt.getValue()) {
     ct = at / bt;
     ct = bt * sqrt (1.0 + ct * ct);
   }
@@ -263,7 +263,7 @@ void LU_Solve(const math_Matrix& a,
        if(ii) 
          for(j = ii; j < i; j++)
 	   sum -= a(i,j) * b(j+nblow);
-       else if(sum) ii = i;
+       else if(sum.getValue()) ii = i;
        b(i+nblow) = sum;
      }
      for(i = n; i >= 1; i--) {
@@ -333,7 +333,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a,
 	   if (aki > 0) scale += aki;
 	   else         scale -= aki;
 	 }
-         if(scale) {
+         if(scale.getValue()) {
            for(k = i; k <= m; k++) {
              a(k,i) /= scale;
              s += a(k,i) * a(k,i);
@@ -363,7 +363,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a,
 	   if (aik > 0) scale += aik;
 	   else         scale -= aik;
 	 }
-         if(scale) {
+         if(scale.getValue()) {
            for(k = l; k <= n; k++) {
              a(i,k) /= scale;
              s += a(i,k) * a(i,k);
@@ -395,7 +395,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a,
      }
      for(i = n; i >= 1; i--) {
        if(i < n) {
-         if(g) {
+         if(g.getValue()) {
            for(j = l; j <= n; j++)
 	     v(j,i) = (a(i,j) / a(i,l)) / g;
            for(j = l; j <= n; j++) {
@@ -417,7 +417,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a,
        g = w(i);
        if(i < n) for(j = l; j <= n; j++)
 	 a(i,j) = 0.0;
-       if(g) {
+       if(g.getValue()) {
          g = 1.0 / g;
          if(i != n) {
            for(j = l; j <= n; j++) {
@@ -513,7 +513,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a,
            }
            z = PYTHAG(f, h);
            w(j) = z;
-           if(z) {
+           if(z.getValue()) {
              z = 1.0 / z;
              c = f * z;
              s = h * z;
@@ -550,7 +550,7 @@ void SVD_Solve(const math_Matrix& u,
 
      for(j = 1; j <= n; j++) {
        s = 0.0;
-       if(w(j)) {
+       if(w(j).getValue()) {
          for(i = 1; i <= m; i++)
 	   s += u(i,j) * b(i);
          s /= w(j);

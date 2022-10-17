@@ -171,7 +171,7 @@ void PLib_HermitJacobi::D0123(const Standard_Integer NDeriv,
   WValues.Init(0.);
 
 // Evaluation des polynomes d'hermite
-  math_Matrix HermitValues(0,DegreeH, 0, NDeriv, 0.);
+  math_Matrix HermitValues(0,DegreeH, 0, NDeriv, (Standard_Real)0.);
   if(NDeriv == 0)
     for (i=0; i<=DegreeH; i++) {
       PLib::NoDerivativeEvalPolynomial(U,DegreeH,1, DegreeH,

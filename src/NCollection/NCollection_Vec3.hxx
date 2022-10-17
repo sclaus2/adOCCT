@@ -46,7 +46,7 @@ public:
   //! Empty constructor. Construct the zero vector.
   NCollection_Vec3()
   {
-    std::memset (this, 0, sizeof(NCollection_Vec3));
+    for(int i = 0; i < 3; ++i) v[i] = 0.; //std::memset (this, 0, sizeof(NCollection_Vec3));
   }
 
   //! Initialize ALL components of vector within specified value.
@@ -273,9 +273,9 @@ public:
   //! Compute component-wise modulus of the vector.
   NCollection_Vec3 cwiseAbs() const
   {
-    return NCollection_Vec3 (std::abs (v[0]),
-                             std::abs (v[1]),
-                             std::abs (v[2]));
+    return NCollection_Vec3 (Abs (v[0]),
+                             Abs (v[1]),
+                             Abs (v[2]));
   }
 
   //! Compute maximum component of the vector.
@@ -334,7 +334,7 @@ public:
   //! Computes the vector modulus (magnitude, length).
   Element_t Modulus() const
   {
-    return std::sqrt (x() * x() + y() * y() + z() * z());
+    return Sqrt (x() * x() + y() * y() + z() * z());
   }
 
   //! Computes the square of vector modulus (magnitude, length).
