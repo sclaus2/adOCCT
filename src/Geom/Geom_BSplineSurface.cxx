@@ -1152,9 +1152,9 @@ void Geom_BSplineSurface::PeriodicNormalization
     isLess = aMinVal - Uparameter > 0;
     isGreater = Uparameter - aMaxVal > 0;
     if (isLess || isGreater) {
-      Standard_Real aDPar, aNbPer;
+      Standard_Real aDPar; double aNbPer; //Standard_Real aDPar, aNbPer;
       aDPar = (isLess) ? (aMaxVal - Uparameter) : (aMinVal - Uparameter);
-      modf(aDPar / Period, &aNbPer);
+      modf((aDPar / Period).getValue(), &aNbPer);
       Uparameter += aNbPer * Period;
     }
   }
@@ -1171,9 +1171,9 @@ void Geom_BSplineSurface::PeriodicNormalization
     isLess = aMinVal - Vparameter > 0;
     isGreater = Vparameter - aMaxVal > 0;
     if (isLess || isGreater) {
-      Standard_Real aDPar, aNbPer;
+      Standard_Real aDPar; double aNbPer; //Standard_Real aDPar, aNbPer;
       aDPar = (isLess) ? (aMaxVal - Vparameter) : (aMinVal - Vparameter);
-      modf(aDPar / Period, &aNbPer);
+      modf((aDPar / Period).getValue(), &aNbPer);
       Vparameter += aNbPer * Period;
     }
   }
