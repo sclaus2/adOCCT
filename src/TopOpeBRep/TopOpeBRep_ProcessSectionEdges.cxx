@@ -311,7 +311,7 @@ void TopOpeBRep_FacesFiller::ProcessSectionEdges()
       }
     }
     Standard_Real toappend = Standard_True;
-    if (toappend) {
+    if (toappend.getValue()) {
       if      (is1) LOI.Append(1);
       else if (is2) LOI.Append(2);
     }

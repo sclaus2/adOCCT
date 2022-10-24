@@ -450,12 +450,12 @@ TopOpeBRepBuild_CorrectFace2d::TopOpeBRepBuild_CorrectFace2d()
     Standard_Boolean nonPV = (fabs(V) < 1e-7) ? Standard_True : Standard_False;
 
     if(!nonPU && UP) {
-      Standard_Real dU = fmod(fabs(U), 2*M_PI);
+      Standard_Real dU = fmod(fabs(U).getValue(), 2*M_PI);
       nonPU = (dU > 1e-7 && (2*M_PI - dU > 1e-7)) ? Standard_True : Standard_False;
     }
     
     if(!nonPV && VP) {
-      Standard_Real dV = fmod(fabs(V), 2*M_PI);
+      Standard_Real dV = fmod(fabs(V).getValue(), 2*M_PI);
       nonPV = (dV > 1e-7 && (2*M_PI - dV > 1e-7)) ? Standard_True : Standard_False;
     }
 

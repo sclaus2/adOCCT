@@ -1388,7 +1388,7 @@ void BRepFill_CompatibleWires::SameNumberByACR(const  Standard_Boolean  report)
             break;
           }
         }
-        if (AllLengthsNull)
+        if (AllLengthsNull.getValue())
           CutsToRemove.Add(k);
       }
       Standard_Integer NewNbDec = nbdec - CutsToRemove.Extent();
