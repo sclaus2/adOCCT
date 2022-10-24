@@ -151,7 +151,7 @@ void ChFi2d_FilletAlgo::Init(const TopoDS_Edge& theEdge1,
 //! This function returns true if linear segment from start point of the 
 //! fillet arc to the end point is intersected by the first or second 
 //! curve: in this case fillet is invalid.
-static Standard_Boolean IsRadiusIntersected(const Handle(Geom2d_Curve)& theCurve, const Standard_Real theCurveMin, const double theCurveMax,
+static Standard_Boolean IsRadiusIntersected(const Handle(Geom2d_Curve)& theCurve, const Standard_Real theCurveMin, const Standard_Real theCurveMax,
                                             const gp_Pnt2d theStart, const gp_Pnt2d theEnd, const Standard_Boolean theStartConnected) 
 {
   //Check the given start and end if they are identical. If yes
