@@ -248,7 +248,7 @@ BRepTopAdaptor_FClass2d::BRepTopAdaptor_FClass2d(const TopoDS_Face& aFace,const 
 		  //-- printf("\n nbpnts:%4d  u=%7.5g   FlecheU=%7.5g  FlecheV=%7.5g  ii=%3d  Avant=%3d ",nbpnts,u,FlecheU,FlecheV,ii,Avant);
 // 		  if(ii>(Avant+4))
 //  Modified by Sergey KHROMOV - Fri Apr 19 09:46:12 2002 Begin
-		  if(ii>(Avant+4) && SeqPnt2d(ii-2).SquareDistance(SeqPnt2d(ii)))
+		  if(ii>(Avant+4) && SeqPnt2d(ii-2).SquareDistance(SeqPnt2d(ii)).getValue())
 //  Modified by Sergey KHROMOV - Fri Apr 19 09:46:13 2002 End
 		    {
 		      gp_Lin2d Lin(SeqPnt2d(ii-2),gp_Dir2d(gp_Vec2d(SeqPnt2d(ii-2),SeqPnt2d(ii))));
