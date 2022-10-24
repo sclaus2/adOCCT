@@ -657,5 +657,5 @@ void IntPolyh_Triangle::Dump (const Standard_Integer i) const
          "intersection possible %8d  intersection: %5d\n",
          i, myPoints[0], myPoints[1], myPoints[2],
          myEdges[0], myEdges[1], myEdges[2],
-         myDeflection, (myIsIntersectionPossible ? 1 : 0), (myHasIntersection ? 1 : 0));
+         myDeflection.getValue(), (myIsIntersectionPossible ? 1 : 0), (myHasIntersection ? 1 : 0));
 }

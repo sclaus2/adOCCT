@@ -191,20 +191,20 @@ Standard_Boolean IntersectionWithAnArc(gp_Pnt& PSurf,
       if(Abs(PaPr.X())>Abs(PaPr.Y())) { 
 	Standard_Real xx=PaPr.X();
 	xx*=0.5;
-	if(D1a.X()) { 
+	if(D1a.X().getValue()) {
 	  da = -xx/D1a.X();
 	}
-	if(d2d.X()) { 
+	if(d2d.X().getValue()) {
 	  dr = -xx/d2d.X();
 	}
       }
       else { 
 	Standard_Real yy=PaPr.Y();
 	yy*=0.5;
-	if(D1a.Y()) { 
+	if(D1a.Y().getValue()) {
 	  da = -yy/D1a.Y();
 	}
-	if(d2d.Y()) { 
+	if(d2d.Y().getValue()) {
 	  dr = -yy/d2d.Y();
 	}	
       }

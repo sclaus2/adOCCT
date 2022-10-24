@@ -251,7 +251,7 @@ gp_Vec2d IntCurve_IConicTool::GradDistance(const gp_Pnt2d& ThePoint) const {
     Standard_Real x=P.X();
     Standard_Real y=P.Y();
     Standard_Real temp1=sqrt(y*y+x*x);
-    if(temp1) {
+    if(temp1.getValue()) {
       Gradx=x/temp1;
       Grady=y/temp1;
     }
@@ -290,7 +290,7 @@ gp_Vec2d IntCurve_IConicTool::GradDistance(const gp_Pnt2d& ThePoint) const {
     Standard_Real x=P.X();
     Standard_Real y=P.Y()*(Elips_a/Elips_b);
     Standard_Real temp1=sqrt(y*y+x*x);
-    if(temp1) {
+    if(temp1.getValue()) {
       Gradx=x/temp1;
       Grady=(y*(Elips_a/Elips_b))/temp1;
     }

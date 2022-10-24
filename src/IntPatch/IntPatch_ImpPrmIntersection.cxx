@@ -252,7 +252,7 @@ void ComputeTangency (const IntPatch_TheSOnBounds& solrst,
   gp_Pnt2d p2d;
   gp_Vec2d d2d;
   //
-  double aX[2], aF[1], aD[1][2];
+  Standard_Real aX[2], aF[1], aD[1][2];
   math_Vector X(aX, 1, 2);
   math_Vector F(aF, 1, 1);
   math_Matrix D(aD, 1, 1, 1, 2); 
@@ -2541,7 +2541,7 @@ static Standard_Boolean IsPointOnBoundary(const Standard_Real theToler2D,
   Standard_Real aDelta = Abs(theParam - theBoundary);
   if (thePeriod != 0.0)
   {
-    aDelta = fmod(aDelta, thePeriod);
+    aDelta = fmod(aDelta.getValue(), thePeriod.getValue());
     
     // 0 <= aDelta < thePeriod
     return ((aDelta < theToler2D) || ((thePeriod - aDelta) < theToler2D));

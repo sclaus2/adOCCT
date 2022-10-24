@@ -298,7 +298,7 @@ void Plate_Plate::SolveTI1(const Standard_Integer IterationNumber,
 
 
   n_dim = n_el + order*(order+1)/2;
-  math_Matrix mat(0, n_dim-1, 0, n_dim-1, 0.);
+  math_Matrix mat(0, n_dim-1, 0, n_dim-1, (Standard_Real)0.);
   
   delete [] (gp_XY*)points;
   points = new gp_XY[n_el];
@@ -374,7 +374,7 @@ void Plate_Plate::SolveTI1(const Standard_Integer IterationNumber,
 
   if (OK) {
 //   computation of the linear system solution for the X, Y and Z coordinates
-    math_Vector sec_member( 0, n_dim-1, 0.);
+    math_Vector sec_member( 0, n_dim-1, (Standard_Real)0.);
     math_Vector sol(0,n_dim-1);
 
     delete [] (gp_XYZ*) solution;
@@ -450,7 +450,7 @@ void Plate_Plate::SolveTI2(const Standard_Integer IterationNumber,
 	k++;
       }
 
-  math_Matrix mat(0, n_dimat-1, 0, n_dimat-1, 0.);
+  math_Matrix mat(0, n_dimat-1, 0, n_dimat-1, (Standard_Real)0.);
 
   fillXYZmatrix(mat,0,0,nCC1,nCC2);
 
@@ -487,7 +487,7 @@ void Plate_Plate::SolveTI2(const Standard_Integer IterationNumber,
 
   if (OK) {
 //   computation of the linear system solution for the X, Y and Z coordinates
-    math_Vector sec_member( 0, n_dimat-1, 0.);
+    math_Vector sec_member( 0, n_dimat-1, (Standard_Real)0.);
     math_Vector sol(0,n_dimat-1);
 
     delete [] (gp_XYZ*) solution;
@@ -606,7 +606,7 @@ void Plate_Plate::SolveTI3(const Standard_Integer IterationNumber,
 	k++;
       }
 
-  math_Matrix mat(0, n_dimat-1, 0, n_dimat-1, 0.);
+  math_Matrix mat(0, n_dimat-1, 0, n_dimat-1, (Standard_Real)0.);
 
   fillXYZmatrix(mat,0,0,nCC1,nCC2);
   fillXYZmatrix(mat,n_dimsousmat,n_dimsousmat,nCC1,nCC2);
@@ -763,7 +763,7 @@ void Plate_Plate::SolveTI3(const Standard_Integer IterationNumber,
 
   if (OK) {
 //   computation of the linear system solution for the X, Y and Z coordinates
-    math_Vector sec_member( 0, n_dimat-1, 0.);
+    math_Vector sec_member( 0, n_dimat-1, (Standard_Real)0.);
     math_Vector sol(0,n_dimat-1);
 
     delete [] (gp_XYZ*) solution;

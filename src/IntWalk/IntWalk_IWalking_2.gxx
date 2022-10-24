@@ -74,7 +74,7 @@ Standard_Boolean IntWalk_IWalking::Cadrage
 
   if ((infu || supu) && (infv || supv)) {
     if (infu) { // jag 940616
-      if(Duvx) { 
+      if(Duvx.getValue()) {
 	theStepU = Abs((BornInf(1) - UVap(1)) / Duvx);  // iso U =BornInf(1)
       }
       else { 
@@ -82,7 +82,7 @@ Standard_Boolean IntWalk_IWalking::Cadrage
       }
     }
     else {
-      if(Duvx) { 
+      if(Duvx.getValue()) {
 	theStepU = Abs((BornSup(1) - UVap(1)) / Duvx);  // iso U =BornSup(1)
       }
       else { 
@@ -90,7 +90,7 @@ Standard_Boolean IntWalk_IWalking::Cadrage
       }
     }
     if (infv) { // jag 940616
-      if(Duvy) { 
+      if(Duvy.getValue()) {
 	theStepV = Abs((BornInf(2) - UVap(2)) / Duvy);  // iso V =BornInf(2)
       }
       else { 
@@ -98,7 +98,7 @@ Standard_Boolean IntWalk_IWalking::Cadrage
       }
     }
     else {
-      if(Duvy) { 
+      if(Duvy.getValue()) {
 	theStepV = Abs((BornSup(2) - UVap(2)) / Duvy);  // iso V =BornSup(2)
       }
       else { 
@@ -135,7 +135,7 @@ Standard_Boolean IntWalk_IWalking::Cadrage
   }
 
   else if (infu) { // jag 940616
-    if(Duvx) { 
+    if(Duvx.getValue()) {
       Standard_Real aStep = Abs((BornInf(1) - UVap(1)) / Duvx);  // iso U =BornInf(1)
       if(aStep<Step) Step=aStep;
     }
@@ -145,7 +145,7 @@ Standard_Boolean IntWalk_IWalking::Cadrage
     return Standard_True;
   }
   else if (supu) { // jag 940616
-    if(Duvx) { 
+    if(Duvx.getValue()) {
       Standard_Real aStep = Abs((BornSup(1) - UVap(1)) / Duvx);  // iso U =BornSup(1)
       if(aStep<Step) Step=aStep;
     }
@@ -155,7 +155,7 @@ Standard_Boolean IntWalk_IWalking::Cadrage
     return Standard_True;
   }
   else if (infv) { // jag 940616
-    if(Duvy) { 
+    if(Duvy.getValue()) {
       Standard_Real aStep = Abs((BornInf(2) - UVap(2)) / Duvy);  // iso V =BornInf(2) 
       if(aStep<Step) Step=aStep;
     }
@@ -165,7 +165,7 @@ Standard_Boolean IntWalk_IWalking::Cadrage
     return Standard_True;
   }
   else if (supv) { // jag 940616
-    if(Duvy) { 
+    if(Duvy.getValue()) {
       Standard_Real aStep = Abs((BornSup(2) - UVap(2)) / Duvy);  // iso V =BornSup(2)
       if(aStep<Step) Step=aStep;
     }

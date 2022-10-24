@@ -219,7 +219,7 @@ void IntCurve_Polygon2dGen::ComputeWithBox(const TheCurve&        C,
 	    }
 	  }
 	}
-	if(NewDeflection) 
+	if(NewDeflection.getValue())
 	  RatioDeflection = TheDeflection / NewDeflection; 
 	else RatioDeflection = 10.0;
 	TheDeflection = NewDeflection;

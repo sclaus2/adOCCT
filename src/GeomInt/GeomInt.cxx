@@ -37,10 +37,10 @@ Standard_Boolean GeomInt::AdjustPeriodic(const Standard_Real thePar,
   bMax = thePar - theParMax > theEps;
   //
   if (bMin || bMax) {
-    Standard_Real dp, aNbPer;
+    Standard_Real dp; double aNbPer;
     //
     dp = (bMin) ? (theParMax - thePar) : (theParMin - thePar);
-    modf(dp / thePeriod, &aNbPer);
+    modf((dp / thePeriod).getValue(), &aNbPer);
     //
     theOffset = aNbPer * thePeriod;
     theNewPar += theOffset;

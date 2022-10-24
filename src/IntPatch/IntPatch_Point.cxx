@@ -154,10 +154,10 @@ void IntPatch_Point::Dump() const {
   pt.Parameters(u1,v1,u2,v2);
 
   printf("P(%+10.20f,%+10.20f,%+10.20f) UV1(%+10.20f,%+10.20f)  UV2(%+10.20f,%+10.20f) (Para:%+10.20f)\n",
-	 (double)(pt.Value().X()),
-	 (double)(pt.Value().Y()),
-	 (double)(pt.Value().Z()),
-	 (double)u1,(double)v1,(double)u2,(double)v2,(double)para);
+	 (double)(pt.Value().X().getValue()),
+	 (double)(pt.Value().Y().getValue()),
+	 (double)(pt.Value().Z().getValue()),
+	 (double)u1.getValue(),(double)v1.getValue(),(double)u2.getValue(),(double)v2.getValue(),(double)para.getValue());
   if(onS1)
     printf("*OnS1*  par=%+10.20f arc1=%10p", (double)prm1, (void*)arcS1.operator->());
   if(vtxonS1)

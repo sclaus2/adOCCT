@@ -801,14 +801,14 @@ void ComputeBoundsfromInfinite(TheFunction& Func,
   Func.Value(U0   , Dist0);
   Func.Value(U0+dU, Dist1);
   Standard_Real dDist = Dist1 - Dist0;
-  if(dDist) { 
+  if(dDist.getValue()) {
     U0  -=  dU*Dist0 / dDist;
     PDeb = PFin = U0;
     Standard_Real Umin = U0 - 1e5;
     Func.Value(Umin   , Dist0);
     Func.Value(Umin+dU, Dist1);
     dDist = Dist1-Dist0;
-    if(dDist) { 
+    if(dDist.getValue()) {
       Umin  -=  dU*Dist0 / dDist;
     }
     else { 
@@ -818,7 +818,7 @@ void ComputeBoundsfromInfinite(TheFunction& Func,
     Func.Value(Umax   , Dist0);
     Func.Value(Umax+dU, Dist1);
     dDist = Dist1-Dist0;
-    if(dDist) { 
+    if(dDist.getValue()) {
       Umax  -=  dU*Dist0 / dDist;
     }
     else { 

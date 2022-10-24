@@ -83,7 +83,7 @@ IntPolyh_Point IntPolyh_Point::Divide(const Standard_Real RR)const
     res.SetV(myV/RR);
   }
   else { 
-   printf("Division par zero RR=%f\n",RR);
+   printf("Division par zero RR=%f\n",RR.getValue());
   }
   return res;
 }
@@ -145,7 +145,7 @@ void IntPolyh_Point::Cross(const IntPolyh_Point &a,const IntPolyh_Point &b){
 //=======================================================================
 void IntPolyh_Point::Dump() const
 { 
-  printf("\nPoint : x=%+8.3eg y=%+8.3eg z=%+8.3eg u=%+8.3eg v=%+8.3eg\n",myX,myY,myZ,myU,myV);
+  printf("\nPoint : x=%+8.3eg y=%+8.3eg z=%+8.3eg u=%+8.3eg v=%+8.3eg\n",myX.getValue(),myY.getValue(),myZ.getValue(),myU.getValue(),myV.getValue());
 }
 //=======================================================================
 //function : Dump
@@ -154,5 +154,5 @@ void IntPolyh_Point::Dump() const
 void IntPolyh_Point::Dump(const Standard_Integer i) const
 { 
   printf("\nPoint(%3d) : x=%+8.3eg y=%+8.3eg z=%+8.3eg u=%+8.3eg v=%+8.3eg poc=%3d\n",
-	 i,myX,myY,myZ,myU,myV,myPOC);
+	 i,myX.getValue(),myY.getValue(),myZ.getValue(),myU.getValue(),myV.getValue(),myPOC);
 }

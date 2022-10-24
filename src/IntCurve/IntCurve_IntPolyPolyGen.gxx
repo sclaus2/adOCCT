@@ -188,19 +188,19 @@ void IntCurve_IntPolyPolyGen::Perform( const TheCurve& C1
   Standard_Real V1 = D2.LastParameter();
   IntRes2d_IntersectionPoint IntPt;
   
-  if(D1.FirstTolerance() || D2.FirstTolerance()) { 
+  if(D1.FirstTolerance().getValue() || D2.FirstTolerance().getValue()) {
     if(HeadOrEndPoint(D1,C1,U0,D2,C2,V0,TheTolConf,IntPt,HeadOn1,HeadOn2,EndOn1,EndOn2,PosSegment)) 
       this->Insert(IntPt);
   }
-  if(D1.FirstTolerance() || D2.LastTolerance()) { 
+  if(D1.FirstTolerance().getValue() || D2.LastTolerance().getValue()) {
     if(HeadOrEndPoint(D1,C1,U0,D2,C2,V1,TheTolConf,IntPt,HeadOn1,HeadOn2,EndOn1,EndOn2,PosSegment)) 
       this->Insert(IntPt);
   }
-  if(D1.LastTolerance() || D2.FirstTolerance()) {
+  if(D1.LastTolerance().getValue() || D2.FirstTolerance().getValue()) {
     if(HeadOrEndPoint(D1,C1,U1,D2,C2,V0,TheTolConf,IntPt,HeadOn1,HeadOn2,EndOn1,EndOn2,PosSegment)) 
       this->Insert(IntPt);
   }
-  if(D1.LastTolerance() ||  D2.LastTolerance()) { 
+  if(D1.LastTolerance().getValue() ||  D2.LastTolerance().getValue()) {
     if(HeadOrEndPoint(D1,C1,U1,D2,C2,V1,TheTolConf,IntPt,HeadOn1,HeadOn2,EndOn1,EndOn2,PosSegment)) 
       this->Insert(IntPt);
   }

@@ -193,7 +193,7 @@ GccAna_Circ2d2TanOn::
 */
 	    else if (Qualified1.IsUnqualified() ) {
 	      Standard_Real popradius = Center.Distance(Point2);
-	      if (Abs(popradius-dist1)) {
+	      if (Abs(popradius-dist1).getValue()) {
 		ok = Standard_True;
 		Radius(1) = popradius;
 	      } 
