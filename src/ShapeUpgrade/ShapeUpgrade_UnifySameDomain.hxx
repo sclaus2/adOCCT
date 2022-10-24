@@ -202,7 +202,7 @@ private:
   //! Edges from each subsequences can be merged into the one edge.
   static void generateSubSeq (const TopTools_SequenceOfShape& anInpEdgeSeq,
                               NCollection_Sequence<SubSequenceOfEdges>& SeqOfSubSeqOfEdges,
-                              Standard_Boolean IsClosed, double theAngTol, double theLinTol,
+                              Standard_Boolean IsClosed, Standard_Real theAngTol, Standard_Real theLinTol,
                               const TopTools_MapOfShape& AvoidEdgeVrt,
                               const TopTools_IndexedDataMapOfShapeListOfShape& theVFmap);
 

@@ -54,7 +54,7 @@ void ShapeUpgrade_SplitSurfaceAngle::SetMaxAngle (const Standard_Real MaxAngle)
 //purpose  : 
 //=======================================================================
 
-double ShapeUpgrade_SplitSurfaceAngle::MaxAngle () const
+Standard_Real ShapeUpgrade_SplitSurfaceAngle::MaxAngle () const
 {
   return myMaxAngle;
 }

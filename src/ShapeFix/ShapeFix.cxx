@@ -428,7 +428,7 @@ static Standard_Boolean getNearestEdges(TopTools_ListOfShape& theLEdges,
     if( !aCurve.IsNull()) {
       gp_Pnt p1;
       gp_Pnt p2;
-      if(isFirst)
+      if(isFirst.getValue())
         p1 = aCurve->Value(aFirst);
       else
         p1 = aCurve->Value(aLast);

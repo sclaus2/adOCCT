@@ -364,7 +364,7 @@ void BOPTools_AlgoTools2D::AdjustPCurveOnSurf
       dv = ( mincond ) ? aVPeriod : -aVPeriod;
     }
     //
-    if ((VMax-VMin<aVPeriod) && dv) {
+    if ((VMax-VMin<aVPeriod) && dv.getValue()) {
       aVm=v2;
       aVr=v2+dv;
       aVmid=0.5*(VMin+VMax);

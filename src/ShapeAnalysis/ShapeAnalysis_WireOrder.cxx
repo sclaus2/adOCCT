@@ -220,7 +220,7 @@ void ShapeAnalysis_WireOrder::Perform(const Standard_Boolean /*closed*/)
     Standard_Boolean found = Standard_False;
     Standard_Real closeDist = wireFirst.SquareDistance(wireLast);
     
-    for(Standard_Integer iedge = 1; (iedge <= nb) && (distmin||resultType||(resultType!=2)); iedge++)
+    for(Standard_Integer iedge = 1; (iedge <= nb) && (distmin.getValue()||resultType||(resultType!=2)); iedge++)
       if(!idone(iedge)) {
 	Standard_Real tailhead = wireLast.SquareDistance(debs(iedge));
 	Standard_Real tailtail = wireLast.SquareDistance(fins(iedge));
@@ -317,7 +317,7 @@ void ShapeAnalysis_WireOrder::Perform(const Standard_Boolean /*closed*/)
           Standard_Real distmin = RealLast();
           Standard_Integer lloop=0;
           Standard_Boolean direct = Standard_False;
-          for(Standard_Integer j = 1; (j <= mainSeq->Length())&& distmin; j++) {
+          for(Standard_Integer j = 1; (j <= mainSeq->Length())&& distmin.getValue(); j++) {
             Standard_Integer k = (j == mainSeq->Length()? 1 : j+1);
             gp_Pnt first = (mainSeq->Value(j) > 0 ? fins(mainSeq->Value(j)) : debs(-mainSeq->Value(j)));
             gp_Pnt last  = (mainSeq->Value(k) > 0 ? debs(mainSeq->Value(k)) : fins(-mainSeq->Value(k)));

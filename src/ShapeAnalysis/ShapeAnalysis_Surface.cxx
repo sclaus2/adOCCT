@@ -61,7 +61,7 @@ IMPLEMENT_STANDARD_RTTIEXT(ShapeAnalysis_Surface,Standard_Transient)
 
 namespace
 {
-  inline void RestrictBounds (double& theFirst, double& theLast)
+  inline void RestrictBounds (Standard_Real& theFirst, Standard_Real& theLast)
   {
     Standard_Boolean isFInf = Precision::IsNegativeInfinite(theFirst);
     Standard_Boolean isLInf = Precision::IsPositiveInfinite(theLast);
@@ -83,7 +83,7 @@ namespace
     }
   }
 
-  inline void RestrictBounds (double& theUf, double& theUl, double& theVf, double& theVl)
+  inline void RestrictBounds (Standard_Real& theUf, Standard_Real& theUl, Standard_Real& theVf, Standard_Real& theVl)
   {
     RestrictBounds (theUf, theUl);
     RestrictBounds (theVf, theVl);

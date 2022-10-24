@@ -70,7 +70,7 @@ void ShapeUpgrade_ShapeDivideAngle::SetMaxAngle (const Standard_Real MaxAngle)
 //purpose  : 
 //=======================================================================
 
-double ShapeUpgrade_ShapeDivideAngle::MaxAngle () const
+Standard_Real ShapeUpgrade_ShapeDivideAngle::MaxAngle () const
 {
   Handle(ShapeUpgrade_FaceDivide) faceTool = GetSplitFaceTool();
   if ( faceTool.IsNull() ) return 0.;
