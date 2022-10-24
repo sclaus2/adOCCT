@@ -225,7 +225,7 @@ Message_Msg& Message_Msg::Arg (const Standard_Integer theValue)
 //purpose  : 
 //=======================================================================
 
-Message_Msg& Message_Msg::Arg (const double theValue)
+Message_Msg& Message_Msg::Arg (const Standard_Real theValue)
 {
   // get location and format
   TCollection_AsciiString aFormat;
@@ -235,7 +235,7 @@ Message_Msg& Message_Msg::Arg (const double theValue)
 
   // print string according to format
   char sStringBuffer [64];
-  Sprintf (sStringBuffer, aFormat.ToCString(), theValue);
+  Sprintf (sStringBuffer, aFormat.ToCString(), theValue.getValue());
   TCollection_ExtendedString aStr ( sStringBuffer );
 
   // replace the format placeholder by the actual string

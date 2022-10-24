@@ -25,11 +25,11 @@ public:
   //! Deprecated constructor, Message_ProgressScope should be created instead.
   Message_ProgressSentry (const Message_ProgressRange& theRange,
                           const Standard_CString theName,
-                          const double theMin,
-                          const double theMax,
-                          const double theStep,
+                          const Standard_Real theMin,
+                          const Standard_Real theMax,
+                          const Standard_Real theStep,
                           const Standard_Boolean theIsInf = Standard_False,
-                          const double theNewScopeSpan = 0.0)
+                          const Standard_Real theNewScopeSpan = 0.0)
   : Message_ProgressScope (theRange, theName, theMax, theIsInf)
   {
     if (theMin != 0.0 || theStep != 1.0 || theNewScopeSpan != 0.0)
@@ -45,11 +45,11 @@ private:
   //! Message_ProgressRange should be passed to constructor instead of Message_ProgressIndicator.
   Message_ProgressSentry (const Handle(Message_ProgressIndicator)& theProgress,
                           const Standard_CString theName,
-                          const double theMin,
-                          const double theMax,
-                          const double theStep,
+                          const Standard_Real theMin,
+                          const Standard_Real theMax,
+                          const Standard_Real theStep,
                           const Standard_Boolean theIsInf = Standard_False,
-                          const double theNewScopeSpan = 0.0);
+                          const Standard_Real theNewScopeSpan = 0.0);
 };
 
 #endif // Message_ProgressSentry_HeaderFile

@@ -223,7 +223,7 @@ public: //! @name Preparation methods
   //! @param isInfinite [in]    infinite flag
   Message_ProgressScope (const Message_ProgressRange& theRange,
                          const TCollection_AsciiString& theName,
-                         double theMax,
+                         Standard_Real theMax,
                          Standard_Boolean isInfinite = false);
 
   //! Creates a new scope taking responsibility of the part of the progress 
@@ -240,7 +240,7 @@ public: //! @name Preparation methods
   template<size_t N>
   Message_ProgressScope (const Message_ProgressRange& theRange,
                          const char (&theName)[N],
-                         double theMax,
+                         Standard_Real theMax,
                          Standard_Boolean isInfinite = false);
 
   //! Creates a new scope taking responsibility of the part of the progress 
@@ -256,7 +256,7 @@ public: //! @name Preparation methods
   //! @param isInfinite [in]    infinite flag
   Message_ProgressScope (const Message_ProgressRange& theRange,
                          const NullString* theName,
-                         double theMax,
+                         Standard_Real theMax,
                          Standard_Boolean isInfinite = false);
 
   //! Sets the name of the scope.
@@ -306,7 +306,7 @@ public: //! @name Advance by iterations
 
   //! Advances position by specified step and returns the range
   //! covering this step
-  Message_ProgressRange Next (double theStep = 1.);
+  Message_ProgressRange Next (Standard_Real theStep = 1.);
 
 public: //! @name Auxiliary methods to use in ProgressIndicator
 
@@ -335,7 +335,7 @@ public: //! @name Auxiliary methods to use in ProgressIndicator
   }
 
   //! Returns the maximal value of progress in this scope
-  double MaxValue() const
+  Standard_Real MaxValue() const
   {
     return myMax;
   }
@@ -350,7 +350,7 @@ public: //! @name Auxiliary methods to use in ProgressIndicator
   //! This method should not be called concurrently while the progress
   //! is advancing, except from implementation of method Show() in
   //! descendant of Message_ProgressIndicator.
-  double Value() const;
+  Standard_Real Value() const;
 
   //! Returns the infinite flag
   Standard_Boolean IsInfinite() const
@@ -359,7 +359,7 @@ public: //! @name Auxiliary methods to use in ProgressIndicator
   }
 
   //! Get the portion of the indicator covered by this scope (from 0 to 1)
-  double GetPortion() const
+  Standard_Real GetPortion() const
   {
     return myPortion;
   }
@@ -392,7 +392,7 @@ private: //! @name Internal methods
 
   //! Convert value from this scope to global scale, but disregarding
   //! start position of the scope, in the range [0, myPortion]
-  double localToGlobal(const double theVal) const;
+  Standard_Real localToGlobal(const Standard_Real theVal) const;
 
 private:
   //! Copy constructor is prohibited
@@ -407,11 +407,11 @@ private:
   const Message_ProgressScope* myParent; //!< Pointer to parent scope
   Standard_CString   myName;        //!< Name of the operation being done in this scope, or null
 
-  double      myStart;       //!< Start position on the global scale [0, 1]
-  double      myPortion;     //!< The portion of the global scale covered by this scope [0, 1]
+  Standard_Real      myStart;       //!< Start position on the global scale [0, 1]
+  Standard_Real      myPortion;     //!< The portion of the global scale covered by this scope [0, 1]
 
-  double      myMax;         //!< Maximal value of progress in this scope
-  double      myValue;       //!< Current position advanced within this scope [0, Max]
+  Standard_Real      myMax;         //!< Maximal value of progress in this scope
+  Standard_Real      myValue;       //!< Current position advanced within this scope [0, Max]
 
   Standard_Boolean   myIsActive;    //!< flag indicating armed/disarmed state
   Standard_Boolean   myIsOwnName;   //!< flag indicating if name was allocated or not
@@ -448,7 +448,7 @@ inline Message_ProgressScope::Message_ProgressScope (Message_ProgressIndicator* 
 //=======================================================================
 inline Message_ProgressScope::Message_ProgressScope (const Message_ProgressRange& theRange,
                                                      const TCollection_AsciiString& theName,
-                                                     double theMax,
+                                                     Standard_Real theMax,
                                                      Standard_Boolean isInfinite)
 : myProgress (theRange.myParentScope != NULL ? theRange.myParentScope->myProgress : NULL),
   myParent (theRange.myParentScope),
@@ -473,7 +473,7 @@ inline Message_ProgressScope::Message_ProgressScope (const Message_ProgressRange
 template<size_t N>
 Message_ProgressScope::Message_ProgressScope (const Message_ProgressRange& theRange,
                                               const char (&theName)[N],
-                                              double theMax,
+                                              Standard_Real theMax,
                                               Standard_Boolean isInfinite)
 : myProgress (theRange.myParentScope != NULL ? theRange.myParentScope->myProgress : NULL),
   myParent (theRange.myParentScope),
@@ -496,7 +496,7 @@ Message_ProgressScope::Message_ProgressScope (const Message_ProgressRange& theRa
 //=======================================================================
 inline Message_ProgressScope::Message_ProgressScope (const Message_ProgressRange& theRange,
                                                      const NullString* ,
-                                                     double theMax,
+                                                     Standard_Real theMax,
                                                      Standard_Boolean isInfinite)
 : myProgress (theRange.myParentScope != NULL ? theRange.myParentScope->myProgress : NULL),
   myParent (theRange.myParentScope),
@@ -525,9 +525,9 @@ inline void Message_ProgressScope::Close()
   }
 
   // Advance indicator to the end of the scope
-  double aCurr = localToGlobal (myValue);
+  Standard_Real aCurr = localToGlobal (myValue);
   myValue = (myIsInfinite ? Precision::Infinite() : myMax);
-  double aDelta = myPortion - aCurr;
+  Standard_Real aDelta = myPortion - aCurr;
   if (aDelta > 0.)
   {
     myProgress->Increment (aDelta, *this);
@@ -551,13 +551,13 @@ inline Standard_Boolean Message_ProgressScope::UserBreak() const
 //function : Next
 //purpose  :
 //=======================================================================
-inline Message_ProgressRange Message_ProgressScope::Next (double theStep)
+inline Message_ProgressRange Message_ProgressScope::Next (Standard_Real theStep)
 {
   if (myIsActive && theStep > 0.)
   {
-    double aCurr = localToGlobal(myValue);
-    double aNext = localToGlobal(myValue += theStep);
-    double aDelta = aNext - aCurr;
+    Standard_Real aCurr = localToGlobal(myValue);
+    Standard_Real aNext = localToGlobal(myValue += theStep);
+    Standard_Real aDelta = aNext - aCurr;
     if (aDelta > 0.)
     {
       return Message_ProgressRange(*this, myStart + aCurr, aDelta);
@@ -583,7 +583,7 @@ inline void Message_ProgressScope::Show ()
 //function : localToGlobal
 //purpose  :
 //=======================================================================
-inline double Message_ProgressScope::localToGlobal (const double theVal) const
+inline Standard_Real Message_ProgressScope::localToGlobal (const Standard_Real theVal) const
 {
   if (theVal <= 0.)
     return 0.;
@@ -595,7 +595,7 @@ inline double Message_ProgressScope::localToGlobal (const double theVal) const
     return myPortion * theVal / myMax;
   }
 
-  double x = theVal / myMax;
+  Standard_Real x = theVal / myMax;
   // return myPortion * ( 1. - std::exp ( -x ) ); // exponent
   return myPortion * x / (1. + x);  // hyperbola
 }
@@ -605,7 +605,7 @@ inline double Message_ProgressScope::localToGlobal (const double theVal) const
 //purpose  :
 //=======================================================================
 
-inline double Message_ProgressScope::Value () const
+inline Standard_Real Message_ProgressScope::Value () const
 {
   if (!myIsActive)
   {
@@ -614,21 +614,21 @@ inline double Message_ProgressScope::Value () const
 
   // get current progress on the global scale counted 
   // from the start of this scope
-  double aVal = myProgress->GetPosition() - myStart;
+  Standard_Real aVal = myProgress->GetPosition() - myStart;
 
   // if progress has not reached yet the start of this scope, return 0
   if (aVal <= 0.)
     return 0.;
 
   // if at end of the scope (or behind), report the maximum
-  double aDist = myPortion - aVal;
+  Standard_Real aDist = myPortion - aVal;
   if (aDist <= Precision::Confusion())
     return myIsInfinite ? Precision::Infinite() : myMax;
 
   // map the value to the range of this scope [0, Max],
   // rounding up to integer, with small correction applied
   // to avoid rounding errors
-  return std::ceil (myMax * aVal / (myIsInfinite ? aDist : myPortion) - Precision::Confusion());
+  return Ceiling(myMax * aVal / (myIsInfinite ? aDist : myPortion) - Precision::Confusion());
 }
 
 #endif // _Message_ProgressScope_HeaderFile

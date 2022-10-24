@@ -82,7 +82,7 @@ public:
   //! 1. (5, 12, 26.3345) returns "05h:12m:26.33s",
   //! 2. (0,  6, 34.496 ) returns "06m:34.50s",
   //! 3. (0,  0,  4.5   ) returns "4.50s"
-  Standard_EXPORT static TCollection_AsciiString FillTime (const Standard_Integer Hour, const Standard_Integer Minute, const double Second);
+  Standard_EXPORT static TCollection_AsciiString FillTime (const Standard_Integer Hour, const Standard_Integer Minute, const Standard_Real Second);
 
 public:
   //! returns the only one instance of Report

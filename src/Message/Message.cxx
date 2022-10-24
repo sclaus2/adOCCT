@@ -50,15 +50,15 @@ const Handle(Message_Messenger)& Message::DefaultMessenger ()
 
 TCollection_AsciiString Message::FillTime (const Standard_Integer hour,
 					       const Standard_Integer minute,
-					       const double second)
+					       const Standard_Real second)
 {
   char t [30];
   if (hour > 0)
-    Sprintf (t, "%02dh:%02dm:%.2fs", hour, minute, second);
+    Sprintf (t, "%02dh:%02dm:%.2fs", hour, minute, second.getValue());
   else if (minute > 0)
-    Sprintf (t, "%02dm:%.2fs", minute, second);
+    Sprintf (t, "%02dm:%.2fs", minute, second.getValue());
   else
-    Sprintf (t, "%.2fs", second);
+    Sprintf (t, "%.2fs", second.getValue());
   return TCollection_AsciiString (t);
 }
 

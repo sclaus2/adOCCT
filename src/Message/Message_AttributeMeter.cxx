@@ -56,7 +56,7 @@ Standard_Boolean Message_AttributeMeter::IsMetricValid (const Message_MetricType
 //function : StartValue
 //purpose  :
 //=======================================================================
-double Message_AttributeMeter::StartValue (const Message_MetricType& theMetric) const
+Standard_Real Message_AttributeMeter::StartValue (const Message_MetricType& theMetric) const
 {
   if (!HasMetric (theMetric))
   {
@@ -70,7 +70,7 @@ double Message_AttributeMeter::StartValue (const Message_MetricType& theMetric) 
 //function : SetStartValue
 //purpose  :
 //=======================================================================
-void Message_AttributeMeter::SetStartValue (const Message_MetricType& theMetric, const double theValue)
+void Message_AttributeMeter::SetStartValue (const Message_MetricType& theMetric, const Standard_Real theValue)
 {
   if (StartToStopValue* aValPtr = myMetrics.ChangeSeek (theMetric))
   {
@@ -86,7 +86,7 @@ void Message_AttributeMeter::SetStartValue (const Message_MetricType& theMetric,
 //function : StopValue
 //purpose  :
 //=======================================================================
-double Message_AttributeMeter::StopValue (const Message_MetricType& theMetric) const
+Standard_Real Message_AttributeMeter::StopValue (const Message_MetricType& theMetric) const
 {
   if (!HasMetric (theMetric))
   {
@@ -99,7 +99,7 @@ double Message_AttributeMeter::StopValue (const Message_MetricType& theMetric) c
 //function : SetStopValue
 //purpose  :
 //=======================================================================
-void Message_AttributeMeter::SetStopValue (const Message_MetricType& theMetric, const double theValue)
+void Message_AttributeMeter::SetStopValue (const Message_MetricType& theMetric, const Standard_Real theValue)
 {
   if (StartToStopValue* aValPtr = myMetrics.ChangeSeek (theMetric))
   {
@@ -233,11 +233,11 @@ void Message_AttributeMeter::SetAlertMetrics (const Handle(Message_AlertExtended
 
     if (theStartValue)
     {
-      aMeterAttribute->SetStartValue (aMetricType, (double)aMemInfo.ValuePreciseMiB (anIterator.Value()));
+      aMeterAttribute->SetStartValue (aMetricType, (Standard_Real)aMemInfo.ValuePreciseMiB (anIterator.Value()));
     }
     else
     {
-      aMeterAttribute->SetStopValue (aMetricType, (double)aMemInfo.ValuePreciseMiB (anIterator.Value()));
+      aMeterAttribute->SetStopValue (aMetricType, (Standard_Real)aMemInfo.ValuePreciseMiB (anIterator.Value()));
     }
   }
 }

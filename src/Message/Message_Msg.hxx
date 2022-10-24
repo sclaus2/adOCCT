@@ -120,8 +120,8 @@ Message_Msg& operator << (const Standard_Integer theInt)
 }
   
   //! Set a value for %..f, %..e, %..E, %..g or %..G conversion
-  Standard_EXPORT Message_Msg& Arg (const double theReal);
-Message_Msg& operator << (const double theReal)
+  Standard_EXPORT Message_Msg& Arg (const Standard_Real theReal);
+Message_Msg& operator << (const Standard_Real theReal)
 {
   return Arg(theReal);
 }
