@@ -1901,7 +1901,7 @@ HLRBRep_Data::Classify (const Standard_Integer E,
   static int aff=0;
   if(aff) {
     static Standard_Integer nump1=0;
-    printf("\npoint PNR%d  %g %g %g",++nump1,PLim.X(),PLim.Y(),PLim.Z());
+    printf("\npoint PNR%d  %g %g %g",++nump1,PLim.X().getValue(),PLim.Y().getValue(),PLim.Z().getValue());
   }
   
   gp_Lin L = myProj.Shoot(Psta.X(),Psta.Y());
