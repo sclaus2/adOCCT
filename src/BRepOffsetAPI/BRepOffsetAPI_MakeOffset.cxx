@@ -260,7 +260,7 @@ static void BuildDomains(TopoDS_Face&               myFace,
           PV.SetCoord(X,Y);
         }
       }
-      if ( Found && (CL.Perform(PV) == TopAbs_IN)) {
+      if ( Found.getValue() && (CL.Perform(PV) == TopAbs_IN)) {
         // The face that contains a wire is found and it is removed from the list
         B.Add(F,W);
         LOW.Remove(itW);
