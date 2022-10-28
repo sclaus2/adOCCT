@@ -1215,7 +1215,7 @@ void PutPCurves(const TopoDS_Edge& Efrom,
     gp_Pnt2d p2r = c2dfr->Value(f);
 
     if (isoU) {
-      if (SameOri) {
+      if (SameOri.getValue()) {
 	if (Abs(ptf.X()-p2f.X()) > Epsilon(ptf.X())) {
 	  c2dff = Handle(Geom2d_Curve)::DownCast
 	    (c2dff->Translated(gp_Vec2d(ptf.X()-p2f.X(),0.)));
@@ -1244,7 +1244,7 @@ void PutPCurves(const TopoDS_Edge& Efrom,
     }
     
     else { // !isoU soit isoV
-      if (SameOri) {
+      if (SameOri.getValue()) {
 	if (Abs(ptf.Y()-p2f.Y()) > Epsilon(ptf.Y())) {
 	  c2dff = Handle(Geom2d_Curve)::DownCast
 	    (c2dff->Translated(gp_Vec2d(0.,ptf.Y()-p2f.Y())));

@@ -719,7 +719,7 @@ void CreateCyl(const LocOpe_PntFace& PntInfoFirst, const LocOpe_PntFace& PntInfo
                const gp_Ax1& Axis, TopoDS_Shell& Cyl, TopoDS_Face& CylTopF, TopoDS_Face& CylBottF )
 {
   Standard_Real First=0, Last=0;
-  double offF = 0., offL = 0.;
+  Standard_Real offF = 0., offL = 0.;
   Last = PntInfoLast.Parameter();
   First = PntInfoFirst.Parameter();
   Standard_Real Heigth = Last - First;
