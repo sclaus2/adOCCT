@@ -92,7 +92,7 @@ void BRepMesh_CylinderRangeSplitter::computeDelta(
   const Standard_Real /*theLengthU*/,
   const Standard_Real theLengthV)
 {
-  const std::pair<double, double>& aRangeV = GetRangeV();
+  const std::pair<Standard_Real, Standard_Real>& aRangeV = GetRangeV();
   myDelta.first  = myDu / Max(theLengthV, aRangeV.second - aRangeV.first);
   myDelta.second = 1.;
 }

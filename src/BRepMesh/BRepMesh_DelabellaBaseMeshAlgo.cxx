@@ -77,14 +77,14 @@ void BRepMesh_DelabellaBaseMeshAlgo::buildBaseTriangulation()
 
   Bnd_B2d aBox;
   const Standard_Integer aNodesNb = aStructure->NbNodes ();
-  std::vector<Standard_Real> aPoints (2 * (aNodesNb + 4));
+  std::vector<double> aPoints (2 * (aNodesNb + 4));
   for (Standard_Integer aNodeIt = 0; aNodeIt < aNodesNb; ++aNodeIt)
   {
     const BRepMesh_Vertex& aVertex = aStructure->GetNode (aNodeIt + 1);
 
     const size_t aBaseIdx = 2 * static_cast<size_t> (aNodeIt);
-    aPoints[aBaseIdx + 0] = aVertex.Coord ().X ();
-    aPoints[aBaseIdx + 1] = aVertex.Coord ().Y ();
+    aPoints[aBaseIdx + 0] = aVertex.Coord ().X ().getValue();
+    aPoints[aBaseIdx + 1] = aVertex.Coord ().Y ().getValue();
 
     aBox.Add (gp_Pnt2d(aVertex.Coord ()));
   }
@@ -93,36 +93,36 @@ void BRepMesh_DelabellaBaseMeshAlgo::buildBaseTriangulation()
   const gp_XY aMin = aBox.CornerMin ();
   const gp_XY aMax = aBox.CornerMax ();
 
-  aPoints[2 * aNodesNb + 0] = aMin.X ();
-  aPoints[2 * aNodesNb + 1] = aMin.Y ();
+  aPoints[2 * aNodesNb + 0] = aMin.X ().getValue();
+  aPoints[2 * aNodesNb + 1] = aMin.Y ().getValue();
   aStructure->AddNode (BRepMesh_Vertex (
     aPoints[2 * aNodesNb + 0],
     aPoints[2 * aNodesNb + 1], BRepMesh_Free));
 
-  aPoints[2 * aNodesNb + 2] = aMax.X ();
-  aPoints[2 * aNodesNb + 3] = aMin.Y ();
+  aPoints[2 * aNodesNb + 2] = aMax.X ().getValue();
+  aPoints[2 * aNodesNb + 3] = aMin.Y ().getValue();
   aStructure->AddNode (BRepMesh_Vertex (
     aPoints[2 * aNodesNb + 2],
     aPoints[2 * aNodesNb + 3], BRepMesh_Free));
 
-  aPoints[2 * aNodesNb + 4] = aMax.X ();
-  aPoints[2 * aNodesNb + 5] = aMax.Y ();
+  aPoints[2 * aNodesNb + 4] = aMax.X ().getValue();
+  aPoints[2 * aNodesNb + 5] = aMax.Y ().getValue();
   aStructure->AddNode (BRepMesh_Vertex (
     aPoints[2 * aNodesNb + 4],
     aPoints[2 * aNodesNb + 5], BRepMesh_Free));
 
-  aPoints[2 * aNodesNb + 6] = aMin.X ();
-  aPoints[2 * aNodesNb + 7] = aMax.Y ();
+  aPoints[2 * aNodesNb + 6] = aMin.X ().getValue();
+  aPoints[2 * aNodesNb + 7] = aMax.Y ().getValue();
   aStructure->AddNode (BRepMesh_Vertex (
     aPoints[2 * aNodesNb + 6],
     aPoints[2 * aNodesNb + 7], BRepMesh_Free));
 
-  const Standard_Real aDiffX = (aMax.X () - aMin.X ());
-  const Standard_Real aDiffY = (aMax.Y () - aMin.Y ());
+  const double aDiffX = (aMax.X () - aMin.X ()).getValue();
+  const double aDiffY = (aMax.Y () - aMin.Y ()).getValue();
   for (size_t i = 0; i < aPoints.size(); i += 2)
   {
-    aPoints[i + 0] = (aPoints[i + 0] - aMin.X ()) / aDiffX - 0.5;
-    aPoints[i + 1] = (aPoints[i + 1] - aMin.Y ()) / aDiffY - 0.5;
+    aPoints[i + 0] = (aPoints[i + 0] - aMin.X ()).getValue() / aDiffX - 0.5;
+    aPoints[i + 1] = (aPoints[i + 1] - aMin.Y ()).getValue() / aDiffY - 0.5;
   }
 
   IDelaBella* aTriangulator = IDelaBella::Create();
