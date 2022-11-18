@@ -249,22 +249,22 @@ public: //! @name keyboard input
   //! @param theKey key pressed
   //! @param theTime event timestamp
   Standard_EXPORT virtual void KeyDown (Aspect_VKey theKey,
-                                        double theTime,
-                                        double thePressure = 1.0) Standard_OVERRIDE;
+                                        Standard_Real theTime,
+                                        Standard_Real thePressure = 1.0) Standard_OVERRIDE;
 
   //! Release key.
   //! Default implementation updates internal cache.
   //! @param theKey key pressed
   //! @param theTime event timestamp
   Standard_EXPORT virtual void KeyUp (Aspect_VKey theKey,
-                                      double theTime) Standard_OVERRIDE;
+                                      Standard_Real theTime) Standard_OVERRIDE;
 
   //! Simulate key up/down events from axis value.
   //! Default implementation updates internal cache.
   Standard_EXPORT virtual void KeyFromAxis (Aspect_VKey theNegative,
                                             Aspect_VKey thePositive,
-                                            double theTime,
-                                            double thePressure) Standard_OVERRIDE;
+                                            Standard_Real theTime,
+                                            Standard_Real thePressure) Standard_OVERRIDE;
 
   //! Fetch active navigation actions.
   Standard_EXPORT AIS_WalkDelta FetchNavigationKeys (Standard_Real theCrouchRatio,
@@ -285,10 +285,10 @@ public: //! @name mouse input
   AIS_MouseSelectionSchemeMap& ChangeMouseSelectionSchemes() { return myMouseSelectionSchemes; }
 
   //! Return double click interval in seconds; 0.4 by default.
-  double MouseDoubleClickInterval() const { return myMouseDoubleClickInt; }
+  Standard_Real MouseDoubleClickInterval() const { return myMouseDoubleClickInt; }
 
   //! Set double click interval in seconds.
-  void SetMouseDoubleClickInterval (double theSeconds) { myMouseDoubleClickInt = theSeconds; }
+  void SetMouseDoubleClickInterval (Standard_Real theSeconds) { myMouseDoubleClickInt = theSeconds; }
 
   //! Perform selection in 3D viewer.
   //! This method is expected to be called from UI thread.
@@ -327,7 +327,7 @@ public: //! @name mouse input
   //! Update Z rotation event.
   //! @param theAngle rotation angle, in radians.
   //! @return TRUE if new zoom event has been created or FALSE if existing one has been updated
-  Standard_EXPORT virtual bool UpdateZRotation (double theAngle);
+  Standard_EXPORT virtual bool UpdateZRotation (Standard_Real theAngle);
 
   //! Update mouse scroll event; redirects to UpdateZoom by default.
   //! This method is expected to be called from UI thread.
@@ -576,10 +576,10 @@ public:
   Standard_EXPORT virtual void handleZRotate (const Handle(V3d_View)& theView);
 
   //! Return minimal camera distance for zoom operation.
-  double MinZoomDistance() const { return myMinCamDistance; }
+  Standard_Real MinZoomDistance() const { return myMinCamDistance; }
 
   //! Set minimal camera distance for zoom operation.
-  void SetMinZoomDistance (double theDist) { myMinCamDistance = theDist; }
+  void SetMinZoomDistance (Standard_Real theDist) { myMinCamDistance = theDist; }
 
   //! Handle zoom event myGL.ZoomActions.
   //! This method is expected to be called from rendering thread.
@@ -608,9 +608,9 @@ public:
   //! @param theRoll       roll value
   //! @param theToRestartOnIncrement flag indicating flight mode
   Standard_EXPORT virtual void handleViewRotation (const Handle(V3d_View)& theView,
-                                                   double theYawExtra,
-                                                   double thePitchExtra,
-                                                   double theRoll,
+                                                   Standard_Real theYawExtra,
+                                                   Standard_Real thePitchExtra,
+                                                   Standard_Real theRoll,
                                                    bool theToRestartOnIncrement);
 
   //! Handle view redraw.
@@ -666,8 +666,8 @@ protected:
   //! This callback is intended to compute delta between sequentially processed events.
   //! @param thePrevTime [out] events time fetched previous time by this method
   //! @param theCurrTime [out] actual events time
-  void updateEventsTime (double& thePrevTime,
-                         double& theCurrTime)
+  void updateEventsTime (Standard_Real& thePrevTime,
+                         Standard_Real& theCurrTime)
   {
     thePrevTime = myLastEventsTime;
     myLastEventsTime = EventTime();

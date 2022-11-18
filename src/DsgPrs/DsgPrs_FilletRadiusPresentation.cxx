@@ -63,7 +63,7 @@ void DsgPrs_FilletRadiusPresentation::Add (const Handle(Prs3d_Presentation)& aPr
 					         Standard_Boolean & HasCircle )
 {
   char valcar[80];
-  sprintf(valcar,"%5.2f",theval);
+  sprintf(valcar,"%5.2f",theval.getValue());
 
   Standard_Real FirstParCirc, LastParCirc;
   Standard_Boolean SpecCase;

@@ -132,16 +132,23 @@ public:
   void ColorRange (Quantity_Color& theMinColor,
                    Quantity_Color& theMaxColor) const
   {
-    theMinColor.SetValues (hueToValidRange (myColorHlsMin[0]), myColorHlsMin[1], myColorHlsMin[2], Quantity_TOC_HLS);
-    theMaxColor.SetValues (hueToValidRange (myColorHlsMax[0]), myColorHlsMax[1], myColorHlsMax[2], Quantity_TOC_HLS);
+    theMinColor.SetValues (hueToValidRange (myColorHlsMin[0]).getValue(), myColorHlsMin[1].getValue(), myColorHlsMin[2].getValue(), Quantity_TOC_HLS);
+    theMaxColor.SetValues (hueToValidRange (myColorHlsMax[0]).getValue(), myColorHlsMax[1].getValue(), myColorHlsMax[2].getValue(), Quantity_TOC_HLS);
   }
 
   //! Sets color range corresponding to minimum and maximum values.
   void SetColorRange (const Quantity_Color& theMinColor,
                       const Quantity_Color& theMaxColor)
   {
-    theMinColor.Values (myColorHlsMin[0], myColorHlsMin[1], myColorHlsMin[2], Quantity_TOC_HLS);
-    theMaxColor.Values (myColorHlsMax[0], myColorHlsMax[1], myColorHlsMax[2], Quantity_TOC_HLS);
+    double helper[3];
+    theMinColor.Values (helper[0], helper[1], helper[2], Quantity_TOC_HLS);
+    myColorHlsMin[0] = helper[0];
+    myColorHlsMin[1] = helper[1];
+    myColorHlsMin[2] = helper[2];
+    theMaxColor.Values (helper[0], helper[1], helper[2], Quantity_TOC_HLS);
+    myColorHlsMax[0] = helper[0];
+    myColorHlsMax[1] = helper[1];
+    myColorHlsMax[2] = helper[2];
   }
 
   //! Returns the type of labels, Aspect_TOCSD_AUTO by default.

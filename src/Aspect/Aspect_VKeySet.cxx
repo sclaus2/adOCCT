@@ -45,8 +45,8 @@ void Aspect_VKeySet::Reset()
 // Purpose  :
 // ================================================================
 void Aspect_VKeySet::KeyDown (Aspect_VKey theKey,
-                              double theTime,
-                              double thePressure)
+                              Standard_Real theTime,
+                              Standard_Real thePressure)
 {
   Standard_Mutex::Sentry aLock (myLock);
   if (myKeys[theKey].KStatus != KeyStatus_Pressed)
@@ -65,7 +65,7 @@ void Aspect_VKeySet::KeyDown (Aspect_VKey theKey,
 // Purpose  :
 // ================================================================
 void Aspect_VKeySet::KeyUp (Aspect_VKey theKey,
-                            double theTime)
+                            Standard_Real theTime)
 {
   Standard_Mutex::Sentry aLock (myLock);
   if (myKeys[theKey].KStatus == KeyStatus_Pressed)
@@ -87,8 +87,8 @@ void Aspect_VKeySet::KeyUp (Aspect_VKey theKey,
 // ================================================================
 void Aspect_VKeySet::KeyFromAxis (Aspect_VKey theNegative,
                                   Aspect_VKey thePositive,
-                                  double theTime,
-                                  double thePressure)
+                                  Standard_Real theTime,
+                                  Standard_Real thePressure)
 {
   Standard_Mutex::Sentry aLock (myLock);
   if (thePressure != 0)
@@ -120,9 +120,9 @@ void Aspect_VKeySet::KeyFromAxis (Aspect_VKey theNegative,
 // Purpose  :
 // ================================================================
 bool Aspect_VKeySet::HoldDuration (Aspect_VKey theKey,
-                                   double theTime,
-                                   double& theDuration,
-                                   double& thePressure)
+                                   Standard_Real theTime,
+                                   Standard_Real& theDuration,
+                                   Standard_Real& thePressure)
 {
   Standard_Mutex::Sentry aLock (myLock);
   switch (myKeys[theKey].KStatus)

@@ -171,13 +171,13 @@ void AIS_Animation::StartTimer (const Standard_Real    theStartPts,
     myTimer = new Media_Timer();
   }
   myTimer->Stop();
-  myTimer->Seek (theStartPts);
-  myTimer->SetPlaybackSpeed (thePlaySpeed);
+  myTimer->Seek (theStartPts.getValue());
+  myTimer->SetPlaybackSpeed (thePlaySpeed.getValue());
   Start (theToUpdate);
   if (theToStopTimer)
   {
     myTimer->Stop();
-    myTimer->Seek (theStartPts);
+    myTimer->Seek (theStartPts.getValue());
   }
 }
 

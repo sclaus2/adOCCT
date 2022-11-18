@@ -406,7 +406,7 @@ Standard_Boolean AIS_TextLabel::calculateLabelParams (const gp_Pnt& thePosition,
   Handle(Prs3d_TextAspect) anAsp = myDrawer->TextAspect();
   const Graphic3d_RenderingParams& aRendParams = GetContext()->CurrentViewer()->DefaultRenderingParams();
   Font_FTFontParams aFontParams;
-  aFontParams.PointSize = (unsigned int) anAsp->Height();
+  aFontParams.PointSize = (unsigned int) anAsp->Height().getValue();
   aFontParams.Resolution = aRendParams.Resolution;
   aFontParams.FontHinting = aRendParams.FontHinting;
 

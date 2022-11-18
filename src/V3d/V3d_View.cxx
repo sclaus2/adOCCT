@@ -422,7 +422,7 @@ void V3d_View::SetBackgroundColor (const Quantity_TypeOfColor theType,
   Standard_Real aV2 = Max (Min (theV2, 1.0), 0.0);
   Standard_Real aV3 = Max (Min (theV3, 1.0), 0.0);
 
-  SetBackgroundColor (Quantity_Color (aV1, aV2, aV3, theType));
+  SetBackgroundColor (Quantity_Color (aV1.getValue(), aV2.getValue(), aV3.getValue(), theType));
 }
 
 //=============================================================================
@@ -1826,7 +1826,11 @@ void V3d_View::BackgroundColor(const Quantity_TypeOfColor Type,
                                Standard_Real& V3) const
 {
   Quantity_Color C = BackgroundColor() ;
-  C.Values(V1,V2,V3,Type) ;
+  double V1Helper, V2Helper, V3Helper;
+  C.Values(V1Helper,V2Helper,V3Helper,Type) ;
+  V1 = V1Helper;
+  V2 = V2Helper;
+  V3 = V3Helper;
 }
 
 //=======================================================================

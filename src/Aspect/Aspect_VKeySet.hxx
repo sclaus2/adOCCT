@@ -38,14 +38,14 @@ public:
   }
 
   //! Return timestamp of press event.
-  double DownTime (Aspect_VKey theKey) const
+  Standard_Real DownTime (Aspect_VKey theKey) const
   {
     Standard_Mutex::Sentry aLock (myLock);
     return myKeys[theKey].TimeDown;
   }
 
   //! Return timestamp of release event.
-  double TimeUp (Aspect_VKey theKey) const
+  Standard_Real TimeUp (Aspect_VKey theKey) const
   {
     Standard_Mutex::Sentry aLock (myLock);
     return myKeys[theKey].TimeUp;
@@ -79,20 +79,20 @@ public:
   //! @param theKey key pressed
   //! @param theTime event timestamp
   Standard_EXPORT void KeyDown (Aspect_VKey theKey,
-                                double theTime,
-                                double thePressure = 1.0);
+                                Standard_Real theTime,
+                                Standard_Real thePressure = 1.0);
 
   //! Release key.
   //! @param theKey key pressed
   //! @param theTime event timestamp
   Standard_EXPORT void KeyUp (Aspect_VKey theKey,
-                              double theTime);
+                              Standard_Real theTime);
 
   //! Simulate key up/down events from axis value.
   Standard_EXPORT void KeyFromAxis (Aspect_VKey theNegative,
                                     Aspect_VKey thePositive,
-                                    double theTime,
-                                    double thePressure);
+                                    Standard_Real theTime,
+                                    Standard_Real thePressure);
 
   //! Return duration of the button in pressed state.
   //! @param theKey      key to check
@@ -100,10 +100,10 @@ public:
   //! @param theDuration key press duration
   //! @return TRUE if key was in pressed state
   bool HoldDuration (Aspect_VKey theKey,
-                     double theTime,
-                     double& theDuration)
+                     Standard_Real theTime,
+                     Standard_Real& theDuration)
   {
-    double aPressure = -1.0;
+    Standard_Real aPressure = -1.0;
     return HoldDuration (theKey, theTime, theDuration, aPressure);
   }
 
@@ -114,9 +114,9 @@ public:
   //! @param thePressure key pressure
   //! @return TRUE if key was in pressed state
   Standard_EXPORT bool HoldDuration (Aspect_VKey theKey,
-                                     double theTime,
-                                     double& theDuration,
-                                     double& thePressure);
+                                     Standard_Real theTime,
+                                     Standard_Real& theDuration,
+                                     Standard_Real& thePressure);
 
 private:
 
@@ -140,9 +140,9 @@ private:
       Pressure = 1.0;
     }
 
-    double    TimeDown; //!< time of key press   event
-    double    TimeUp;   //!< time of key release event
-    double    Pressure; //!< key pressure
+    Standard_Real    TimeDown; //!< time of key press   event
+    Standard_Real    TimeUp;   //!< time of key release event
+    Standard_Real    Pressure; //!< key pressure
     KeyStatus KStatus;  //!< key status
   };
 

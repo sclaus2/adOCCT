@@ -253,8 +253,8 @@ Graphic3d_Vec4ub AIS_Triangulation::attenuateColor (const Standard_Integer theCo
   Standard_Byte anAlpha = IsTransparent() ? static_cast<Standard_Byte> (255.0 - myDrawer->ShadingAspect()->Aspect()->FrontMaterial().Transparency() * 255.0)
                                           : 255;
 
-  return Graphic3d_Vec4ub ((Standard_Byte)(theComposition * anRgbx[0]),
-                           (Standard_Byte)(theComposition * anRgbx[1]),
-                           (Standard_Byte)(theComposition * anRgbx[2]),
+  return Graphic3d_Vec4ub ((Standard_Byte)(theComposition.getValue() * anRgbx[0]),
+                           (Standard_Byte)(theComposition.getValue() * anRgbx[1]),
+                           (Standard_Byte)(theComposition.getValue() * anRgbx[2]),
                            anAlpha);
 }

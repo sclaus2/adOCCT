@@ -76,7 +76,7 @@ namespace
     Standard_Real aHue        = NCollection_Lerp<Standard_Real>::Interpolate (theHlsMin[0], theHlsMax[0], aValue);
     Standard_Real aLightness  = NCollection_Lerp<Standard_Real>::Interpolate (theHlsMin[1], theHlsMax[1], aValue);
     Standard_Real aSaturation = NCollection_Lerp<Standard_Real>::Interpolate (theHlsMin[2], theHlsMax[2], aValue);
-    return Quantity_Color (AIS_ColorScale::hueToValidRange (aHue), aLightness, aSaturation, Quantity_TOC_HLS);
+    return Quantity_Color (AIS_ColorScale::hueToValidRange (aHue).getValue(), aLightness.getValue(), aSaturation.getValue(), Quantity_TOC_HLS);
   }
 
   //! Return the index of discrete interval for specified value.
@@ -300,7 +300,7 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors (Standard_Integer theNb
   Aspect_SequenceOfColor aResult;
 
   // adjust range to be within (0, 360], with sign according to theHueFrom and theHueTo 
-  Standard_Real aHueRange = std::fmod (theHueTo - theHueFrom, 360.);
+  Standard_Real aHueRange = std::fmod ((theHueTo - theHueFrom).getValue(), 360.);
   const Standard_Real aHueEps = Precision::Angular() * 180. / M_PI;
   if (Abs (aHueRange) <= aHueEps)
   {
@@ -314,12 +314,12 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors (Standard_Integer theNb
   }
   if (theNbColors == 1)
   {
-    Standard_Real aHue = std::fmod (theHueFrom, 360.);
+    Standard_Real aHue = std::fmod (theHueFrom.getValue(), 360.);
     if (aHue < 0.)
     {
       aHue += 360.;
     }
-    Quantity_Color aColor (theLightness, 130., aHue, Quantity_TOC_CIELch);
+    Quantity_Color aColor (theLightness.getValue(), 130., aHue.getValue(), Quantity_TOC_CIELch);
     aResult.Append (aColor);
     return aResult;
   }
@@ -330,12 +330,12 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors (Standard_Integer theNb
   NCollection_Array1<Quantity_Color> aGrid (0, NBCOLORS - 1);
   for (Standard_Integer i = 0; i < NBCOLORS; i++)
   {
-    Standard_Real aHue = std::fmod (theHueFrom + i * aHueStep, 360.);
+    Standard_Real aHue = std::fmod ((theHueFrom + i * aHueStep).getValue(), 360.);
     if (aHue < 0.)
     {
       aHue += 360.;
     }
-    aGrid(i).SetValues (theLightness, 130., aHue, Quantity_TOC_CIELch);
+    aGrid(i).SetValues (theLightness.getValue(), 130., aHue.getValue(), Quantity_TOC_CIELch);
   }
 
   // and compute distances between each two colors in a grid
@@ -428,8 +428,8 @@ Standard_Real AIS_ColorScale::GetIntervalValue (const Standard_Integer theIndex)
   if (IsLogarithmic())
   {
     Standard_Real aMin     = myMin > 0 ? myMin : 1.0;
-    Standard_Real aDivisor = std::pow (myMax / aMin, 1.0 / myNbIntervals);
-    return aMin * std::pow (aDivisor,theIndex);
+    Standard_Real aDivisor = Pow (myMax / aMin, 1.0 / myNbIntervals);
+    return aMin * Pow (aDivisor,theIndex);
   }
 
   Standard_Real aNum = 0;
@@ -787,8 +787,8 @@ void AIS_ColorScale::drawLabels (const Handle(Graphic3d_Group)& theGroup,
     }
 
     const Standard_Real aVal = Standard_Real(aNbLabels) * myTextHeight / aSpc;
-    Standard_Real anIPart = 0.0;
-    Standard_Real anFPart = std::modf (aVal, &anIPart);
+    double anIPart = 0.0;
+    Standard_Real anFPart = std::modf (aVal.getValue(), &anIPart);
     aFilter = (Standard_Integer )anIPart + (anFPart != 0 ? 1 : 0);
   }
   if (aFilter <= 0)

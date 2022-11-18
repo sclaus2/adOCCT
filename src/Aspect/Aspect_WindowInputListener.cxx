@@ -47,8 +47,8 @@ Aspect_WindowInputListener::~Aspect_WindowInputListener()
 // purpose  :
 // =======================================================================
 void Aspect_WindowInputListener::KeyDown (Aspect_VKey theKey,
-                                          double theTime,
-                                          double thePressure)
+                                          Standard_Real theTime,
+                                          Standard_Real thePressure)
 {
   myKeys.KeyDown (theKey, theTime, thePressure);
 }
@@ -58,7 +58,7 @@ void Aspect_WindowInputListener::KeyDown (Aspect_VKey theKey,
 // purpose  :
 // =======================================================================
 void Aspect_WindowInputListener::KeyUp (Aspect_VKey theKey,
-                                        double theTime)
+                                        Standard_Real theTime)
 {
   myKeys.KeyUp (theKey, theTime);
 }
@@ -69,8 +69,8 @@ void Aspect_WindowInputListener::KeyUp (Aspect_VKey theKey,
 // =======================================================================
 void Aspect_WindowInputListener::KeyFromAxis (Aspect_VKey theNegative,
                                               Aspect_VKey thePositive,
-                                              double theTime,
-                                              double thePressure)
+                                              Standard_Real theTime,
+                                              Standard_Real thePressure)
 {
   myKeys.KeyFromAxis (theNegative, thePositive, theTime, thePressure);
 }
@@ -151,7 +151,7 @@ bool Aspect_WindowInputListener::update3dMouseTranslation (const WNT_HIDSpaceMou
   }
 
   bool isIdle = true;
-  const double aTimeStamp = EventTime();
+  const Standard_Real aTimeStamp = EventTime();
   const Graphic3d_Vec3d aTrans = theEvent.Translation (isIdle, my3dMouseIsQuadric) * my3dMouseAccelTrans;
   myKeys.KeyFromAxis (Aspect_VKey_NavSlideLeft, Aspect_VKey_NavSlideRight, aTimeStamp, aTrans.x().getValue());
   myKeys.KeyFromAxis (Aspect_VKey_NavForward,   Aspect_VKey_NavBackward,   aTimeStamp, aTrans.y().getValue());
@@ -171,7 +171,7 @@ bool Aspect_WindowInputListener::update3dMouseRotation (const WNT_HIDSpaceMouse&
   }
 
   bool isIdle = true, toUpdate = false;
-  const double aTimeStamp = EventTime();
+  const Standard_Real aTimeStamp = EventTime();
   const Graphic3d_Vec3d aRot3 = theEvent.Rotation (isIdle, my3dMouseIsQuadric) * my3dMouseAccelRotate;
   if (!my3dMouseNoRotate.x())
   {
@@ -198,7 +198,7 @@ bool Aspect_WindowInputListener::update3dMouseRotation (const WNT_HIDSpaceMouse&
 bool Aspect_WindowInputListener::update3dMouseKeys (const WNT_HIDSpaceMouse& theEvent)
 {
   bool toUpdate = false;
-  const double aTimeStamp = EventTime();
+  const Standard_Real aTimeStamp = EventTime();
   if (theEvent.IsKeyState())
   {
     const uint32_t aKeyState = theEvent.KeyState();

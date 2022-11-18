@@ -18,7 +18,7 @@
 IMPLEMENT_STANDARD_RTTIEXT(SelectMgr_FrustumBuilder,Standard_Transient)
 
 #define DOT(A, B) (A.x() * B.x() + A.y() * B.y() + A.z() * B.z())
-#define LENGTH(A) (std::sqrt (A.x() * A.x() + A.y() * A.y() + A.z() * A.z()))
+#define LENGTH(A) (Sqrt (A.x() * A.x() + A.y() * A.y() + A.z() * A.z()))
 
 
 //=======================================================================

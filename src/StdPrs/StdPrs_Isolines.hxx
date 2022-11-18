@@ -192,7 +192,7 @@ public:
   struct PntOnIso
   {
     gp_Pnt Pnt;   //!< 3D point
-    double Param; //!< parameter along the line (for sorting)
+    Standard_Real Param; //!< parameter along the line (for sorting)
   };
 
   //! Auxiliary structure defining segment of isoline.

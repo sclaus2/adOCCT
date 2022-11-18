@@ -573,7 +573,7 @@ bool AIS_ViewController::UpdateZoom (const Aspect_ScrollDelta& theDelta)
 // function : UpdateZRotation
 // purpose  :
 // =======================================================================
-bool AIS_ViewController::UpdateZRotation (double theAngle)
+bool AIS_ViewController::UpdateZRotation (Standard_Real theAngle)
 {
   if (!ToAllowTouchZRotation())
   {
@@ -639,12 +639,12 @@ bool AIS_ViewController::UpdateMouseButtons (const Graphic3d_Vec2i& thePoint,
                                              bool theIsEmulated)
 {
   bool toUpdateView = false;
-  const double aTolClick = (theIsEmulated ? myTouchToleranceScale : 1.0) * myMouseClickThreshold;
+  const Standard_Real aTolClick = (theIsEmulated ? myTouchToleranceScale : 1.0) * myMouseClickThreshold;
   if (theButtons == Aspect_VKeyMouse_NONE
    && myMouseSingleButton > 0)
   {
     const Graphic3d_Vec2i aDelta = thePoint - myMousePressPoint;
-    if (double(aDelta.cwiseAbs().maxComp()) < aTolClick)
+    if (Standard_Real(aDelta.cwiseAbs().maxComp()) < aTolClick)
     {
       ++myMouseClickCounter;
       const bool isDoubleClick = myMouseClickCounter == 2
@@ -703,7 +703,7 @@ bool AIS_ViewController::UpdateMouseButtons (const Graphic3d_Vec2i& thePoint,
       if (myMouseClickCounter == 1)
       {
         const Graphic3d_Vec2i aDelta = thePoint - myMousePressPoint;
-        if (double(aDelta.cwiseAbs().maxComp()) >= aTolClick)
+        if (Standard_Real(aDelta.cwiseAbs().maxComp()) >= aTolClick)
         {
           myMouseClickTimer.Stop();
           myMouseClickCounter = 0;
@@ -829,9 +829,9 @@ bool AIS_ViewController::UpdateMousePosition (const Graphic3d_Vec2i& thePoint,
   myMousePositionLast = thePoint;
   if (myMouseSingleButton > 0)
   {
-    const double aTolClick = (theIsEmulated ? myTouchToleranceScale : 1.0) * myMouseClickThreshold;
+    const Standard_Real aTolClick = (theIsEmulated ? myTouchToleranceScale : 1.0) * myMouseClickThreshold;
     const Graphic3d_Vec2i aPressDelta = thePoint - myMousePressPoint;
-    if (double(aPressDelta.cwiseAbs().maxComp()) >= aTolClick)
+    if (Standard_Real(aPressDelta.cwiseAbs().maxComp()) >= aTolClick)
     {
       myMouseClickTimer.Stop();
       myMouseClickCounter = 0;
@@ -916,12 +916,12 @@ bool AIS_ViewController::UpdateMousePosition (const Graphic3d_Vec2i& thePoint,
         myUpdateStartPointRot = false;
       }
 
-      const double aRotTol = theIsEmulated
-                           ? double(myTouchToleranceScale) * myTouchRotationThresholdPx
+      const Standard_Real aRotTol = theIsEmulated
+                           ? Standard_Real(myTouchToleranceScale) * myTouchRotationThresholdPx
                            : 0.0;
-      if (double (Abs (aDelta.x()) + Abs (aDelta.y())) > aRotTol)
+      if (Standard_Real (Abs (aDelta.x()) + Abs (aDelta.y())) > aRotTol)
       {
-        const double aRotAccel = myNavigationMode == AIS_NavigationMode_FirstPersonWalk ? myMouseAccel : myOrbitAccel;
+        const Standard_Real aRotAccel = myNavigationMode == AIS_NavigationMode_FirstPersonWalk ? myMouseAccel : myOrbitAccel;
         const Graphic3d_Vec2i aRotDelta = thePoint - myMousePressPoint;
         if (myMouseActiveGesture == AIS_MouseGesture_RotateOrbit)
         {
@@ -948,10 +948,10 @@ bool AIS_ViewController::UpdateMousePosition (const Graphic3d_Vec2i& thePoint,
       {
         break;
       }
-      const double aZoomTol = theIsEmulated
-                            ? double(myTouchToleranceScale) * myTouchZoomThresholdPx
+      const Standard_Real aZoomTol = theIsEmulated
+                            ? Standard_Real(myTouchToleranceScale) * myTouchZoomThresholdPx
                             : 0.0;
-      if (double (Abs (aDelta.x())) > aZoomTol)
+      if (Standard_Real (Abs (aDelta.x())) > aZoomTol)
       {
         if (UpdateZoom (Aspect_ScrollDelta (aDelta.x())))
         {
@@ -967,10 +967,10 @@ bool AIS_ViewController::UpdateMousePosition (const Graphic3d_Vec2i& thePoint,
       {
         break;
       }
-      const double aPanTol = theIsEmulated
-                           ? double(myTouchToleranceScale) * myTouchPanThresholdPx
+      const Standard_Real aPanTol = theIsEmulated
+                           ? Standard_Real(myTouchToleranceScale) * myTouchPanThresholdPx
                            : 0.0;
-      if (double (Abs (aDelta.x()) + Abs (aDelta.y())) > aPanTol)
+      if (Standard_Real (Abs (aDelta.x()) + Abs (aDelta.y())) > aPanTol)
       {
         if (myUpdateStartPointPan)
         {
@@ -1118,7 +1118,7 @@ void AIS_ViewController::UpdateTouchPoint (Standard_Size theId,
 {
   Aspect_WindowInputListener::UpdateTouchPoint (theId, thePnt);
 
-  const double aTouchTol = double(myTouchToleranceScale) * double(myTouchClickThresholdPx);
+  const Standard_Real aTouchTol = Standard_Real(myTouchToleranceScale) * Standard_Real(myTouchClickThresholdPx);
   if (myTouchPoints.Extent() == 1
    && (myTouchClick.From - thePnt).cwiseAbs().maxComp() > aTouchTol)
   {
@@ -1159,8 +1159,8 @@ void AIS_ViewController::SetNavigationMode (AIS_NavigationMode theMode)
 // purpose  :
 // =======================================================================
 void AIS_ViewController::KeyDown (Aspect_VKey theKey,
-                                  double theTime,
-                                  double thePressure)
+                                  Standard_Real theTime,
+                                  Standard_Real thePressure)
 {
   Aspect_WindowInputListener::KeyDown (theKey, theTime, thePressure);
 }
@@ -1170,7 +1170,7 @@ void AIS_ViewController::KeyDown (Aspect_VKey theKey,
 // purpose  :
 // =======================================================================
 void AIS_ViewController::KeyUp (Aspect_VKey theKey,
-                                double theTime)
+                                Standard_Real theTime)
 {
   Aspect_WindowInputListener::KeyUp (theKey, theTime);
 }
@@ -1181,8 +1181,8 @@ void AIS_ViewController::KeyUp (Aspect_VKey theKey,
 // =======================================================================
 void AIS_ViewController::KeyFromAxis (Aspect_VKey theNegative,
                                       Aspect_VKey thePositive,
-                                      double theTime,
-                                      double thePressure)
+                                      Standard_Real theTime,
+                                      Standard_Real thePressure)
 {
   Aspect_WindowInputListener::KeyFromAxis (theNegative, thePositive, theTime, thePressure);
 }
@@ -1197,10 +1197,10 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   AIS_WalkDelta aWalk;
 
   // navigation keys
-  double aPrevEventTime = 0.0, aNewEventTime = 0.0;
+  Standard_Real aPrevEventTime = 0.0, aNewEventTime = 0.0;
   updateEventsTime (aPrevEventTime, aNewEventTime);
 
-  double aDuration = 0.0, aPressure = 1.0;
+  Standard_Real aDuration = 0.0, aPressure = 1.0;
   if (Abs (myThrustSpeed) > gp::Resolution())
   {
     if (myHasThrust)
@@ -1232,15 +1232,15 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
     aWalk.SetCrouching (true);
   }
 
-  const double aMaxDuration = aNewEventTime - aPrevEventTime;
-  const double aRunRatio = aWalk.IsRunning()
+  const Standard_Real aMaxDuration = aNewEventTime - aPrevEventTime;
+  const Standard_Real aRunRatio = aWalk.IsRunning()
                          ? theRunRatio
                          : aWalk.IsCrouching()
                           ? theCrouchRatio
                           : 1.0;
   if (myKeys.HoldDuration (Aspect_VKey_NavForward, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration));
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration));
     aProgress *= aRunRatio;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkTranslation_Forward].Value += aProgress;
@@ -1249,7 +1249,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavBackward, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration));
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration));
     aProgress *= aRunRatio;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkTranslation_Forward].Value += -aProgress;
@@ -1258,7 +1258,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavSlideLeft, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration));
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration));
     aProgress *= aRunRatio;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkTranslation_Side].Value = -aProgress;
@@ -1267,7 +1267,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavSlideRight, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration));
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration));
     aProgress *= aRunRatio;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkTranslation_Side].Value = aProgress;
@@ -1276,7 +1276,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavLookLeft, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkRotation_Yaw].Value = aProgress;
     aWalk[AIS_WalkRotation_Yaw].Pressure = aPressure;
@@ -1284,7 +1284,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavLookRight, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkRotation_Yaw].Value = -aProgress;
     aWalk[AIS_WalkRotation_Yaw].Pressure = aPressure;
@@ -1292,7 +1292,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavLookUp, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkRotation_Pitch].Value = !myToInvertPitch ? -aProgress : aProgress;
     aWalk[AIS_WalkRotation_Pitch].Pressure = aPressure;
@@ -1300,7 +1300,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavLookDown, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkRotation_Pitch].Value = !myToInvertPitch ? aProgress : -aProgress;
     aWalk[AIS_WalkRotation_Pitch].Pressure = aPressure;
@@ -1308,7 +1308,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavRollCCW, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkRotation_Roll].Value = -aProgress;
     aWalk[AIS_WalkRotation_Roll].Pressure = aPressure;
@@ -1316,7 +1316,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavRollCW, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration)) * aPressure;
     aWalk.SetDefined (true);
     aWalk[AIS_WalkRotation_Roll].Value = aProgress;
     aWalk[AIS_WalkRotation_Roll].Pressure = aPressure;
@@ -1324,7 +1324,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavSlideUp, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration));
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration));
     aWalk.SetDefined (true);
     aWalk[AIS_WalkTranslation_Up].Value = aProgress;
     aWalk[AIS_WalkTranslation_Up].Pressure = aPressure;
@@ -1332,7 +1332,7 @@ AIS_WalkDelta AIS_ViewController::FetchNavigationKeys (Standard_Real theCrouchRa
   }
   if (myKeys.HoldDuration (Aspect_VKey_NavSlideDown, aNewEventTime, aDuration, aPressure))
   {
-    double aProgress = Abs (Min (aMaxDuration, aDuration));
+    Standard_Real aProgress = Abs (Min (aMaxDuration, aDuration));
     aWalk.SetDefined (true);
     aWalk[AIS_WalkTranslation_Up].Value = -aProgress;
     aWalk[AIS_WalkTranslation_Up].Pressure = aPressure;
@@ -1386,8 +1386,8 @@ void AIS_ViewController::handlePanning (const Handle(V3d_View)& theView)
   const gp_Ax3 aCameraCS (aCam->Center(), aDir.Reversed(), aDir ^ aCam->Up());
   const gp_XYZ anEyeToPnt = myPanPnt3d.XYZ() - aCam->Eye().XYZ();
   const gp_Pnt aViewDims = aCam->ViewDimensions (anEyeToPnt.Dot (aCam->Direction().XYZ())); // view dimensions at 3D point
-  const Graphic3d_Vec2d aDxy (-aViewDims.X() * myGL.Panning.Delta.x() / double(aWinSize.x()),
-                              -aViewDims.X() * myGL.Panning.Delta.y() / double(aWinSize.x()));
+  const Graphic3d_Vec2d aDxy (-aViewDims.X() * myGL.Panning.Delta.x() / Standard_Real(aWinSize.x()),
+                              -aViewDims.X() * myGL.Panning.Delta.y() / Standard_Real(aWinSize.x()));
 
   //theView->Translate (aCam, aDxy.x(), aDxy.y());
   gp_Trsf aPanTrsf;
@@ -1442,7 +1442,7 @@ void AIS_ViewController::handleZoom (const Handle(V3d_View)& theView,
   const Handle(Graphic3d_Camera)& aCam = theView->Camera();
   if (thePnt != NULL)
   {
-    const double aViewDist = Max (myMinCamDistance, (thePnt->XYZ() - aCam->Eye().XYZ()).Modulus());
+    const Standard_Real aViewDist = Max (myMinCamDistance, (thePnt->XYZ() - aCam->Eye().XYZ()).Modulus());
     aCam->SetCenter (aCam->Eye().XYZ() + aCam->Direction().XYZ() * aViewDist);
   }
 
@@ -1460,7 +1460,7 @@ void AIS_ViewController::handleZoom (const Handle(V3d_View)& theView,
   //theView->StartZoomAtPoint (theParams.Point.x(), theParams.Point.y());
   //theView->ZoomAtPoint (0, 0, (int )theParams.Delta, (int )theParams.Delta);
 
-  double aDZoom = Abs (theParams.Delta) / 100.0 + 1.0;
+  Standard_Real aDZoom = Abs (theParams.Delta) / 100.0 + 1.0;
   aDZoom = (theParams.Delta > 0.0) ? aDZoom : 1.0 / aDZoom;
   if (aDZoom <= 0.0)
   {
@@ -1470,7 +1470,7 @@ void AIS_ViewController::handleZoom (const Handle(V3d_View)& theView,
   const Graphic3d_Vec2d aViewDims (aCam->ViewDimensions().X(), aCam->ViewDimensions().Y());
 
   // ensure that zoom will not be too small or too big
-  double aCoef = aDZoom;
+  Standard_Real aCoef = aDZoom;
   if (aViewDims.x() < aCoef * Precision::Confusion())
   {
     aCoef = aViewDims.x() / Precision::Confusion();
@@ -1511,10 +1511,10 @@ void AIS_ViewController::handleZoom (const Handle(V3d_View)& theView,
 
     Graphic3d_Vec2i aWinSize;
     theView->Window()->Size (aWinSize.x(), aWinSize.y());
-    const Graphic3d_Vec2d aPanFromCenterPx (double(theParams.Point.x()) - 0.5 * double(aWinSize.x()),
-                                            double(aWinSize.y() - theParams.Point.y() - 1) - 0.5 * double(aWinSize.y()));
-    aDxy.x() += -aViewDims1.X() * aPanFromCenterPx.x() / double(aWinSize.x());
-    aDxy.y() += -aViewDims1.Y() * aPanFromCenterPx.y() / double(aWinSize.y());
+    const Graphic3d_Vec2d aPanFromCenterPx (Standard_Real(theParams.Point.x()) - 0.5 * Standard_Real(aWinSize.x()),
+                                            Standard_Real(aWinSize.y() - theParams.Point.y() - 1) - 0.5 * Standard_Real(aWinSize.y()));
+    aDxy.x() += -aViewDims1.X() * aPanFromCenterPx.x() / Standard_Real(aWinSize.x());
+    aDxy.y() += -aViewDims1.Y() * aPanFromCenterPx.y() / Standard_Real(aWinSize.y());
   }
 
   //theView->Translate (aCam, aDxy.x(), aDxy.y());
@@ -1601,10 +1601,10 @@ void AIS_ViewController::handleOrbitRotation (const Handle(V3d_View)& theView,
     // amend camera to exclude roll angle (put camera Up vector to plane containing global Z and view direction)
     Graphic3d_Vec2i aWinXY;
     theView->Window()->Size (aWinXY.x(), aWinXY.y());
-    double aYawAngleDelta   =  ((myGL.OrbitRotation.PointStart.x() - myGL.OrbitRotation.PointTo.x()) / double (aWinXY.x())) * (M_PI * 0.5);
-    double aPitchAngleDelta = -((myGL.OrbitRotation.PointStart.y() - myGL.OrbitRotation.PointTo.y()) / double (aWinXY.y())) * (M_PI * 0.5);
-    double aPitchAngleNew = 0.0, aRoll = 0.0;
-    const double aYawAngleNew = myRotateStartYawPitchRoll[0] + aYawAngleDelta;
+    Standard_Real aYawAngleDelta   =  ((myGL.OrbitRotation.PointStart.x() - myGL.OrbitRotation.PointTo.x()) / Standard_Real (aWinXY.x())) * (M_PI * 0.5);
+    Standard_Real aPitchAngleDelta = -((myGL.OrbitRotation.PointStart.y() - myGL.OrbitRotation.PointTo.y()) / Standard_Real (aWinXY.y())) * (M_PI * 0.5);
+    Standard_Real aPitchAngleNew = 0.0, aRoll = 0.0;
+    const Standard_Real aYawAngleNew = myRotateStartYawPitchRoll[0] + aYawAngleDelta;
     if (!theView->View()->IsActiveXR())
     {
       aPitchAngleNew = Max (Min (myRotateStartYawPitchRoll[1] + aPitchAngleDelta, M_PI * 0.5 - M_PI / 180.0), -M_PI * 0.5 + M_PI / 180.0);
@@ -1639,9 +1639,9 @@ void AIS_ViewController::handleOrbitRotation (const Handle(V3d_View)& theView,
     const Standard_Real rx = (Standard_Real )theView->Convert (aWinXY.x());
     const Standard_Real ry = (Standard_Real )theView->Convert (aWinXY.y());
 
-    const double THE_2PI = M_PI * 2.0;
-    double aDX = (myGL.OrbitRotation.PointTo.x() - myGL.OrbitRotation.PointStart.x()) * M_PI / rx;
-    double aDY = (myGL.OrbitRotation.PointStart.y() - myGL.OrbitRotation.PointTo.y()) * M_PI / ry;
+    const Standard_Real THE_2PI = M_PI * 2.0;
+    Standard_Real aDX = (myGL.OrbitRotation.PointTo.x() - myGL.OrbitRotation.PointStart.x()) * M_PI / rx;
+    Standard_Real aDY = (myGL.OrbitRotation.PointStart.y() - myGL.OrbitRotation.PointTo.y()) * M_PI / ry;
 
     if     (aDX > 0.0) { while (aDX >  THE_2PI) { aDX -= THE_2PI; } }
     else if(aDX < 0.0) { while (aDX < -THE_2PI) { aDX += THE_2PI; } }
@@ -1671,9 +1671,9 @@ void AIS_ViewController::handleOrbitRotation (const Handle(V3d_View)& theView,
 // purpose  :
 // =======================================================================
 void AIS_ViewController::handleViewRotation (const Handle(V3d_View)& theView,
-                                             double theYawExtra,
-                                             double thePitchExtra,
-                                             double theRoll,
+                                             Standard_Real theYawExtra,
+                                             Standard_Real thePitchExtra,
+                                             Standard_Real theRoll,
                                              bool theToRestartOnIncrement)
 {
   if (!myToAllowRotation)
@@ -1697,7 +1697,7 @@ void AIS_ViewController::handleViewRotation (const Handle(V3d_View)& theView,
     aTrsf.SetTransformation (gp_Ax3 (gp::Origin(), aCam->OrthogonalizedUp(), aCam->Direction()),
                              gp_Ax3 (gp::Origin(), gp::DZ(), gp::DX()));
     const gp_Quaternion aRot = aTrsf.GetRotation();
-    double aRollDummy = 0.0;
+    Standard_Real aRollDummy = 0.0;
     aRot.GetEulerAngles (gp_YawPitchRoll, myRotateStartYawPitchRoll[0], myRotateStartYawPitchRoll[1], aRollDummy);
   }
   if (toRotateAnyway)
@@ -1717,10 +1717,10 @@ void AIS_ViewController::handleViewRotation (const Handle(V3d_View)& theView,
 
   Graphic3d_Vec2i aWinXY;
   theView->Window()->Size (aWinXY.x(), aWinXY.y());
-  double aYawAngleDelta   =  ((myGL.ViewRotation.PointStart.x() - myGL.ViewRotation.PointTo.x()) / double (aWinXY.x())) * (M_PI * 0.5);
-  double aPitchAngleDelta = -((myGL.ViewRotation.PointStart.y() - myGL.ViewRotation.PointTo.y()) / double (aWinXY.y())) * (M_PI * 0.5);
-  const double aPitchAngleNew = Max (Min (myRotateStartYawPitchRoll[1] + aPitchAngleDelta, M_PI * 0.5 - M_PI / 180.0), -M_PI * 0.5 + M_PI / 180.0);
-  const double aYawAngleNew   = myRotateStartYawPitchRoll[0] + aYawAngleDelta;
+  Standard_Real aYawAngleDelta   =  ((myGL.ViewRotation.PointStart.x() - myGL.ViewRotation.PointTo.x()) / Standard_Real (aWinXY.x())) * (M_PI * 0.5);
+  Standard_Real aPitchAngleDelta = -((myGL.ViewRotation.PointStart.y() - myGL.ViewRotation.PointTo.y()) / Standard_Real (aWinXY.y())) * (M_PI * 0.5);
+  const Standard_Real aPitchAngleNew = Max (Min (myRotateStartYawPitchRoll[1] + aPitchAngleDelta, M_PI * 0.5 - M_PI / 180.0), -M_PI * 0.5 + M_PI / 180.0);
+  const Standard_Real aYawAngleNew   = myRotateStartYawPitchRoll[0] + aYawAngleDelta;
   gp_Quaternion aRot;
   aRot.SetEulerAngles (gp_YawPitchRoll, aYawAngleNew, aPitchAngleNew, theRoll);
   gp_Trsf aTrsfRot;
@@ -1849,7 +1849,7 @@ void AIS_ViewController::FitAllAuto (const Handle(AIS_InteractiveContext)& theCt
                                      const Handle(V3d_View)& theView)
 {
   const Bnd_Box aBoxSel = theCtx->BoundingBoxOfSelection();
-  const double aFitMargin = 0.01;
+  const Standard_Real aFitMargin = 0.01;
   if (aBoxSel.IsVoid())
   {
     theView->FitAll (aFitMargin, false);
@@ -1857,7 +1857,7 @@ void AIS_ViewController::FitAllAuto (const Handle(AIS_InteractiveContext)& theCt
   }
 
   // fit all algorithm is not 100% stable - so compute some precision to compare equal camera values
-  const double  aFitTol = (aBoxSel.CornerMax().XYZ() - aBoxSel.CornerMin().XYZ()).Modulus() * 0.000001;
+  const Standard_Real  aFitTol = (aBoxSel.CornerMax().XYZ() - aBoxSel.CornerMin().XYZ()).Modulus() * 0.000001;
   const Bnd_Box aBoxAll = theView->View()->MinMaxValues();
 
   const Handle(Graphic3d_Camera)& aCam = theView->Camera();
@@ -1913,7 +1913,7 @@ void AIS_ViewController::handleViewOrientationKeys (const Handle(AIS_Interactive
   {
     Standard_Mutex::Sentry aLock (myKeys.Mutex());
     const size_t aNbKeys = sizeof(THE_VIEW_KEYS) / sizeof(*THE_VIEW_KEYS);
-    const double anEventTime = EventTime();
+    const Standard_Real anEventTime = EventTime();
     for (size_t aKeyIter = 0; aKeyIter < aNbKeys; ++aKeyIter)
     {
       const ViewKeyAction& aKeyAction = THE_VIEW_KEYS[aKeyIter];
@@ -1935,12 +1935,12 @@ void AIS_ViewController::handleViewOrientationKeys (const Handle(AIS_Interactive
       }
       else if (aKeyAction.Key == Aspect_VKey_ViewRoll90CW)
       {
-        const double aTwist = theView->Twist() + M_PI / 2.0;
+        const Standard_Real aTwist = theView->Twist() + M_PI / 2.0;
         theView->SetTwist (aTwist);
       }
       else if (aKeyAction.Key == Aspect_VKey_ViewRoll90CCW)
       {
-        const double aTwist = theView->Twist() - M_PI / 2.0;
+        const Standard_Real aTwist = theView->Twist() - M_PI / 2.0;
         theView->SetTwist (aTwist);
       }
       else if (aKeyAction.Key == Aspect_VKey_ViewFitAll)
@@ -1978,14 +1978,14 @@ AIS_WalkDelta AIS_ViewController::handleNavigationKeys (const Handle(AIS_Interac
                                                         const Handle(V3d_View)& theView)
 {
   // navigation keys
-  double aCrouchRatio = 1.0, aRunRatio = 1.0;
+  Standard_Real aCrouchRatio = 1.0, aRunRatio = 1.0;
   if (myNavigationMode == AIS_NavigationMode_FirstPersonFlight)
   {
     aRunRatio = 3.0;
   }
 
-  const double aRotSpeed = 0.5;
-  const double aWalkSpeedCoef = WalkSpeedRelative();
+  const Standard_Real aRotSpeed = 0.5;
+  const Standard_Real aWalkSpeedCoef = WalkSpeedRelative();
   AIS_WalkDelta aWalk = FetchNavigationKeys (aCrouchRatio, aRunRatio);
   if (aWalk.IsJumping())
   {
@@ -2014,13 +2014,13 @@ AIS_WalkDelta AIS_ViewController::handleNavigationKeys (const Handle(AIS_Interac
     aMin = aBndBox.CornerMin().XYZ();
     aMax = aBndBox.CornerMax().XYZ();
   }
-  double aBndDiam = Max (Max (aMax.X() - aMin.X(), aMax.Y() - aMin.Y()), aMax.Z() - aMin.Z());
+  Standard_Real aBndDiam = Max (Max (aMax.X() - aMin.X(), aMax.Y() - aMin.Y()), aMax.Z() - aMin.Z());
   if (aBndDiam <= gp::Resolution())
   {
     aBndDiam = 0.001;
   }
 
-  const double aWalkSpeed = myNavigationMode != AIS_NavigationMode_Orbit
+  const Standard_Real aWalkSpeed = myNavigationMode != AIS_NavigationMode_Orbit
                          && myNavigationMode != AIS_NavigationMode_FirstPersonFlight
                           ? theView->View()->UnitFactor() * WalkSpeedAbsolute()
                           : aWalkSpeedCoef * aBndDiam;
@@ -2058,7 +2058,7 @@ AIS_WalkDelta AIS_ViewController::handleNavigationKeys (const Handle(AIS_Interac
       {
         if (!aWalk[AIS_WalkTranslation_Forward].IsEmpty())
         {
-          const double aZoomDelta = aWalk[AIS_WalkTranslation_Forward].Value * aWalk[AIS_WalkTranslation_Forward].Pressure * aWalkSpeedCoef;
+          const Standard_Real aZoomDelta = aWalk[AIS_WalkTranslation_Forward].Value * aWalk[AIS_WalkTranslation_Forward].Pressure * aWalkSpeedCoef;
           handleZoom (theView, Aspect_ScrollDelta (aZoomDelta * 100.0), NULL);
         }
       }
@@ -2119,7 +2119,7 @@ void AIS_ViewController::handleCameraActions (const Handle(AIS_InteractiveContex
   // apply fit all
   if (myGL.Orientation.ToFitAll)
   {
-    const double aFitMargin = 0.01;
+    const Standard_Real aFitMargin = 0.01;
     theView->FitAll (aFitMargin, false);
     theView->Invalidate();
     myGL.Orientation.ToFitAll = false;
@@ -2259,7 +2259,7 @@ void AIS_ViewController::handleCameraActions (const Handle(AIS_InteractiveContex
       }
     }
 
-    double aRoll = 0.0;
+    Standard_Real aRoll = 0.0;
     if (!theWalk[AIS_WalkRotation_Roll].IsEmpty()
      && !myToLockOrbitZUp)
     {

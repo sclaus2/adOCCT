@@ -132,9 +132,9 @@ void DsgPrs_AnglePresentation::Add (const Handle(Prs3d_Presentation)& aPresentat
 
   //-------------------------- Compute angle ------------------------
   if( txt.Length() == 0 ) {
-    Standard_Real angle = UnitsAPI::CurrentFromLS( Abs( OppParam ),"PLANE ANGLE");
+    Standard_Real angle = UnitsAPI::CurrentFromLS( Abs( OppParam ).getValue(),"PLANE ANGLE");
     char res[80]; 
-    sprintf(res, "%g", angle );
+    sprintf(res, "%g", angle.getValue() );
     txt = TCollection_ExtendedString(res);
   }
   //-----------------------------------------------------------------
@@ -227,7 +227,7 @@ void DsgPrs_AnglePresentation::Add (const Handle(Prs3d_Presentation)& aPresentat
                                     const gp_Pnt& OffsetPoint)
 {
   char valcar[80];
-  sprintf(valcar,"%5.2f",theval);
+  sprintf(valcar,"%5.2f",theval.getValue());
 
   Handle(Prs3d_DimensionAspect) LA = aDrawer->DimensionAspect();
   Handle(Graphic3d_Group) aGroup = aPresentation->CurrentGroup();
@@ -340,7 +340,7 @@ void DsgPrs_AnglePresentation::Add (const Handle(Prs3d_Presentation)& aPresentat
                                     const DsgPrs_ArrowSide ArrowPrs )
 {
   char valcar[80];
-  sprintf(valcar,"%5.2f",theval);
+  sprintf(valcar,"%5.2f",theval.getValue());
   
   Handle( Prs3d_DimensionAspect ) LA = aDrawer->DimensionAspect();
   aPresentation->CurrentGroup()->SetPrimitivesAspect( LA->LineAspect()->Aspect() );
@@ -454,7 +454,7 @@ void DsgPrs_AnglePresentation::Add (const Handle(Prs3d_Presentation)& aPresentat
                                     const gp_Pnt& OffsetPoint)
 {
   char valcar[80];
-  sprintf(valcar,"%5.2f",theval);
+  sprintf(valcar,"%5.2f",theval.getValue());
   
   Handle(Prs3d_DimensionAspect) LA = aDrawer->DimensionAspect();
   aPresentation->CurrentGroup()->SetPrimitivesAspect(LA->LineAspect()->Aspect());
@@ -573,7 +573,7 @@ void DsgPrs_AnglePresentation::Add (const Handle(Prs3d_Presentation)& aPresentat
                                     const DsgPrs_ArrowSide ArrowPrs)
 {
   char valcar[80];
-  sprintf(valcar,"%5.2f",theval);
+  sprintf(valcar,"%5.2f",theval.getValue());
   
   Handle(Prs3d_DimensionAspect) LA = aDrawer->DimensionAspect();
   aPresentation->CurrentGroup()->SetPrimitivesAspect(LA->LineAspect()->Aspect());
@@ -686,7 +686,7 @@ void DsgPrs_AnglePresentation::Add (const Handle(Prs3d_Presentation)& aPresentat
                                     const gp_Pnt& OffsetPoint)
 {
   char valcar[80];
-  sprintf(valcar,"%5.2f",theval);
+  sprintf(valcar,"%5.2f",theval.getValue());
 
   TCollection_AsciiString valas(valcar);
   TCollection_ExtendedString aText(valas);
