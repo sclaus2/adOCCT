@@ -797,7 +797,8 @@ void OpenGl_ShaderManager::pushClippingState (const Handle(OpenGl_ShaderProgram)
       }
 
       myContext->core11fwd->glEnable (anFfpPlaneID);
-      myContext->core11ffp->glClipPlane (anFfpPlaneID, aPlaneEq);
+      NCollection_Vec4<double> aPlaneHelper(aPlaneEq);
+      myContext->core11ffp->glClipPlane (anFfpPlaneID, aPlaneHelper);
 
       ++aPlaneId;
     }

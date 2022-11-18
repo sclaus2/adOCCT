@@ -413,9 +413,9 @@ void OpenGl_Text::setupMatrix (const Handle(OpenGl_Context)& theCtx,
   if (myIs2d)
   {
     const gp_Pnt& aPoint = myText->Position();
-    Graphic3d_TransformUtils::Translate<GLdouble> (aModViewMat, aPoint.X() + theDVec.x(), aPoint.Y() + theDVec.y(), 0.f);
-    Graphic3d_TransformUtils::Scale<GLdouble> (aModViewMat, 1.f, -1.f, 1.f);
-    Graphic3d_TransformUtils::Rotate<GLdouble> (aModViewMat, theTextAspect.Aspect()->TextAngle(), 0.f, 0.f, 1.f);
+    Graphic3d_TransformUtils::Translate<Standard_Real> (aModViewMat, aPoint.X() + theDVec.x(), aPoint.Y() + theDVec.y(), 0.f);
+    Graphic3d_TransformUtils::Scale<Standard_Real> (aModViewMat, 1.f, -1.f, 1.f);
+    Graphic3d_TransformUtils::Rotate<Standard_Real> (aModViewMat, theTextAspect.Aspect()->TextAngle(), 0.f, 0.f, 1.f);
   }
   else
   {
@@ -460,17 +460,17 @@ void OpenGl_Text::setupMatrix (const Handle(OpenGl_Context)& theCtx,
     }
     else
     {
-      Graphic3d_TransformUtils::Translate<GLdouble> (aModViewMat, anObjXYZ.x(), anObjXYZ.y(), anObjXYZ.z());
-      Graphic3d_TransformUtils::Rotate<GLdouble> (aModViewMat, theTextAspect.Aspect()->TextAngle(), 0.0, 0.0, 1.0);
+      Graphic3d_TransformUtils::Translate<Standard_Real> (aModViewMat, anObjXYZ.x(), anObjXYZ.y(), anObjXYZ.z());
+      Graphic3d_TransformUtils::Rotate<Standard_Real> (aModViewMat, theTextAspect.Aspect()->TextAngle(), 0.0, 0.0, 1.0);
     }
 
     if (!theTextAspect.Aspect()->IsTextZoomable())
     {
-      Graphic3d_TransformUtils::Scale<GLdouble> (aModViewMat, myScaleHeight, myScaleHeight, myScaleHeight);
+      Graphic3d_TransformUtils::Scale<Standard_Real> (aModViewMat, myScaleHeight, myScaleHeight, myScaleHeight);
     }
     else if (theCtx->HasRenderScale())
     {
-      Graphic3d_TransformUtils::Scale<GLdouble> (aModViewMat, theCtx->RenderScaleInv(), theCtx->RenderScaleInv(), theCtx->RenderScaleInv());
+      Graphic3d_TransformUtils::Scale<Standard_Real> (aModViewMat, theCtx->RenderScaleInv(), theCtx->RenderScaleInv(), theCtx->RenderScaleInv());
     }
   }
 

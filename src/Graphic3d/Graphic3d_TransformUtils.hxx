@@ -240,8 +240,8 @@ void Graphic3d_TransformUtils::ConstructRotate (typename MatrixType<T>::Mat4& th
                                                 T                             theY,
                                                 T                             theZ)
 {
-  const T aSin = std::sin (theA * static_cast<T> (M_PI / 180.0));
-  const T aCos = std::cos (theA * static_cast<T> (M_PI / 180.0));
+  const T aSin = Sin (theA * static_cast<T> (M_PI / 180.0));
+  const T aCos = Cos (theA * static_cast<T> (M_PI / 180.0));
 
   const Standard_Boolean isOnlyX = (theX != static_cast<T> (0.0))
                                 && (theY == static_cast<T> (0.0))
@@ -310,7 +310,7 @@ void Graphic3d_TransformUtils::ConstructRotate (typename MatrixType<T>::Mat4& th
     return;
   }
 
-  T aNorm = std::sqrt (theX * theX + theY * theY + theZ * theZ);
+  T aNorm = Sqrt (theX * theX + theY * theY + theZ * theZ);
 
   if (aNorm <= static_cast<T> (1.0e-4))
   {

@@ -174,7 +174,7 @@ protected:
   mutable OpenGl_Mat4d myModelMatrix;
   mutable OpenGl_Mat4d myOrientationMatrix;
   mutable OpenGl_Vec3d myWinXYZ;
-  mutable GLdouble myScaleHeight;
+  mutable Standard_Real myScaleHeight;
 
 protected:
 

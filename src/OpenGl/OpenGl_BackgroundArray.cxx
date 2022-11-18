@@ -78,7 +78,7 @@ void OpenGl_BackgroundArray::SetGradientParameters (const Quantity_Color&       
     return;
   }
 
-  Standard_Real anR, aG, aB;
+  double anR, aG, aB;
   theColor1.Values (anR, aG, aB, Quantity_TOC_RGB);
   myGradientParams.color1 = OpenGl_Vec4 ((float)anR, (float)aG, (float)aB, 0.0f);
 
