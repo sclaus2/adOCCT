@@ -101,8 +101,8 @@ protected:
   CallbackOnUpdate_t              myCallbackFunction;  //!< callback function
   void*                           myCallbackUserPtr;   //!< callback data
   Graphic3d_Vec2i                 myFrameSize;         //!< front frame size
-  Standard_Real                   myProgress;          //!< playback progress in seconds
-  Standard_Real                   myDuration;          //!< stream duration
+  double                          myProgress;          //!< playback progress in seconds
+  double                          myDuration;          //!< stream duration
   Standard_Integer                myFront;             //!< index of front texture
   Standard_Boolean                myToPresentFrame;    //!< flag
   Standard_Boolean                myIsPlanarYUV;       //!< front frame contains planar YUV data or native texture format

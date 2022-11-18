@@ -1772,7 +1772,7 @@ bool Graphic3d_Camera::ZFitAll (const Standard_Real theScaleFactor,
 //=============================================================================
 void Graphic3d_Camera::Interpolate (const Handle(Graphic3d_Camera)& theStart,
                                     const Handle(Graphic3d_Camera)& theEnd,
-                                    const double theT,
+                                    const Standard_Real theT,
                                     Handle(Graphic3d_Camera)& theCamera)
 {
   if (Abs (theT - 1.0) < Precision::Confusion())

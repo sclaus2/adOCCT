@@ -62,20 +62,20 @@ public:
   virtual NCollection_Vec2<int> RecommendedViewport() const = 0;
 
   //! Return transformation from eye to head.
-  virtual NCollection_Mat4<double> EyeToHeadTransform (Aspect_Eye theEye) const = 0;
+  virtual NCollection_Mat4<Standard_Real> EyeToHeadTransform (Aspect_Eye theEye) const = 0;
 
   //! Return transformation from head to eye.
-  NCollection_Mat4<double> HeadToEyeTransform (Aspect_Eye theEye) const
+  NCollection_Mat4<Standard_Real> HeadToEyeTransform (Aspect_Eye theEye) const
   {
-    NCollection_Mat4<double> aMat;
+    NCollection_Mat4<Standard_Real> aMat;
     EyeToHeadTransform (theEye).Inverted (aMat);
     return aMat;
   }
 
   //! Return projection matrix.
-  virtual NCollection_Mat4<double> ProjectionMatrix (Aspect_Eye theEye,
-                                                     double theZNear,
-                                                     double theZFar) const = 0;
+  virtual NCollection_Mat4<Standard_Real> ProjectionMatrix (Aspect_Eye theEye,
+                                                     Standard_Real theZNear,
+                                                     Standard_Real theZFar) const = 0;
 
   //! Return FALSE if projection frustums are unsupported and general 4x4 projection matrix should be fetched instead
   virtual bool HasProjectionFrustums() const = 0;
@@ -117,7 +117,7 @@ public:
 
   //! Return projection frustum.
   //! @sa HasProjectionFrustums().
-  const Aspect_FrustumLRBT<double>& ProjectionFrustum (Aspect_Eye theEye) const
+  const Aspect_FrustumLRBT<Standard_Real>& ProjectionFrustum (Aspect_Eye theEye) const
   {
     return theEye == Aspect_Eye_Right ? myFrustumR : myFrustumL;
   }
@@ -249,8 +249,8 @@ protected:
   Aspect_TrackedDevicePoseArray   myTrackedPoses; //!< array of tracked poses
   gp_Trsf                         myHeadPose;     //!< head orientation
   NCollection_Vec2<int>           myRendSize;     //!< viewport Width x Height for rendering into VR
-  Aspect_FrustumLRBT<double>      myFrustumL;     //!< left  eye projection frustum
-  Aspect_FrustumLRBT<double>      myFrustumR;     //!< right eye projection frustum
+  Aspect_FrustumLRBT<Standard_Real>      myFrustumL;     //!< left  eye projection frustum
+  Aspect_FrustumLRBT<Standard_Real>      myFrustumR;     //!< right eye projection frustum
   Standard_Real                   myUnitFactor;   //!< unit scale factor defined as scale factor for m (meters)
   Standard_Real                   myAspect;       //!< aspect ratio
   Standard_Real                   myFieldOfView;  //!< field of view

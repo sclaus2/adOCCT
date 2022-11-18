@@ -153,9 +153,9 @@ bool Aspect_WindowInputListener::update3dMouseTranslation (const WNT_HIDSpaceMou
   bool isIdle = true;
   const double aTimeStamp = EventTime();
   const Graphic3d_Vec3d aTrans = theEvent.Translation (isIdle, my3dMouseIsQuadric) * my3dMouseAccelTrans;
-  myKeys.KeyFromAxis (Aspect_VKey_NavSlideLeft, Aspect_VKey_NavSlideRight, aTimeStamp, aTrans.x());
-  myKeys.KeyFromAxis (Aspect_VKey_NavForward,   Aspect_VKey_NavBackward,   aTimeStamp, aTrans.y());
-  myKeys.KeyFromAxis (Aspect_VKey_NavSlideUp,   Aspect_VKey_NavSlideDown,  aTimeStamp, aTrans.z());
+  myKeys.KeyFromAxis (Aspect_VKey_NavSlideLeft, Aspect_VKey_NavSlideRight, aTimeStamp, aTrans.x().getValue());
+  myKeys.KeyFromAxis (Aspect_VKey_NavForward,   Aspect_VKey_NavBackward,   aTimeStamp, aTrans.y().getValue());
+  myKeys.KeyFromAxis (Aspect_VKey_NavSlideUp,   Aspect_VKey_NavSlideDown,  aTimeStamp, aTrans.z().getValue());
   return true;
 }
 
@@ -175,17 +175,17 @@ bool Aspect_WindowInputListener::update3dMouseRotation (const WNT_HIDSpaceMouse&
   const Graphic3d_Vec3d aRot3 = theEvent.Rotation (isIdle, my3dMouseIsQuadric) * my3dMouseAccelRotate;
   if (!my3dMouseNoRotate.x())
   {
-    KeyFromAxis (Aspect_VKey_NavLookUp,   Aspect_VKey_NavLookDown,  aTimeStamp, !my3dMouseToReverse.x() ? aRot3.x() : -aRot3.x());
+    KeyFromAxis (Aspect_VKey_NavLookUp,   Aspect_VKey_NavLookDown,  aTimeStamp, !my3dMouseToReverse.x() ? aRot3.x().getValue() : -aRot3.x().getValue());
     toUpdate = true;
   }
   if (!my3dMouseNoRotate.y())
   {
-    KeyFromAxis (Aspect_VKey_NavRollCW,   Aspect_VKey_NavRollCCW,   aTimeStamp, !my3dMouseToReverse.y() ? aRot3.y() : -aRot3.y());
+    KeyFromAxis (Aspect_VKey_NavRollCW,   Aspect_VKey_NavRollCCW,   aTimeStamp, !my3dMouseToReverse.y() ? aRot3.y().getValue() : -aRot3.y().getValue());
     toUpdate = true;
   }
   if (!my3dMouseNoRotate.z())
   {
-    KeyFromAxis (Aspect_VKey_NavLookLeft, Aspect_VKey_NavLookRight, aTimeStamp, !my3dMouseToReverse.z() ? aRot3.z() : -aRot3.z());
+    KeyFromAxis (Aspect_VKey_NavLookLeft, Aspect_VKey_NavLookRight, aTimeStamp, !my3dMouseToReverse.z() ? aRot3.z().getValue() : -aRot3.z().getValue());
     toUpdate = true;
   }
   return toUpdate;

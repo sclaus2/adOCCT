@@ -1192,7 +1192,7 @@ bool Image_AlienPixMap::Save (const TCollection_AsciiString& theFileName)
 // function : AdjustGamma
 // purpose  :
 // =======================================================================
-bool Image_AlienPixMap::AdjustGamma (const Standard_Real theGammaCorr)
+bool Image_AlienPixMap::AdjustGamma (const double theGammaCorr)
 {
 #ifdef HAVE_FREEIMAGE
   return FreeImage_AdjustGamma (myLibImage, theGammaCorr) != FALSE;

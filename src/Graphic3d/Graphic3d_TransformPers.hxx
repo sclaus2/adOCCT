@@ -128,9 +128,9 @@ public:
     }
 
     myMode = theMode;
-    myParams.Params3d.PntX = thePnt.X();
-    myParams.Params3d.PntY = thePnt.Y();
-    myParams.Params3d.PntZ = thePnt.Z();
+    myParams.Params3d.PntX = thePnt.X().getValue();
+    myParams.Params3d.PntY = thePnt.Y().getValue();
+    myParams.Params3d.PntZ = thePnt.Z().getValue();
   }
 
   //! Set 2d/trihedron transformation persistence with a corner and 2D offset.
@@ -171,9 +171,9 @@ public:
       throw Standard_ProgramError("Graphic3d_TransformPers::SetAnchorPoint(), wrong persistence mode.");
     }
 
-    myParams.Params3d.PntX = thePnt.X();
-    myParams.Params3d.PntY = thePnt.Y();
-    myParams.Params3d.PntZ = thePnt.Z();
+    myParams.Params3d.PntX = thePnt.X().getValue();
+    myParams.Params3d.PntY = thePnt.Y().getValue();
+    myParams.Params3d.PntZ = thePnt.Z().getValue();
   }
 
   //! Return the corner for 2d/trihedron transformation persistence.
@@ -310,9 +310,9 @@ private:
   //! 3D anchor point for zoom/rotate transformation persistence.
   struct PersParams3d
   {
-    Standard_Real PntX;
-    Standard_Real PntY;
-    Standard_Real PntZ;
+    double PntX;
+    double PntY;
+    double PntZ;
 
     //! Dumps the content of me into the stream
     Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
@@ -462,7 +462,7 @@ void Graphic3d_TransformPers::Apply (const Handle(Graphic3d_Camera)& theCamera,
     }
     else
     {
-      Graphic3d_TransformUtils::Translate (aWorldView, myParams.Params3d.PntX, myParams.Params3d.PntY, myParams.Params3d.PntZ);
+      Graphic3d_TransformUtils::Translate (aWorldView, (Standard_Real)myParams.Params3d.PntX, (Standard_Real)myParams.Params3d.PntY, (Standard_Real)myParams.Params3d.PntZ);
     }
 
     if ((myMode & Graphic3d_TMF_RotatePers) != 0)

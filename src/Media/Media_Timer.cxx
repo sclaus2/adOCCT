@@ -42,7 +42,7 @@ void Media_Timer::Stop()
 //function : SetPlaybackSpeed
 //purpose  :
 //=============================================================================
-void Media_Timer::SetPlaybackSpeed (const Standard_Real theSpeed)
+void Media_Timer::SetPlaybackSpeed (const double theSpeed)
 {
   if (!myTimer.IsStarted())
   {
@@ -61,7 +61,7 @@ void Media_Timer::SetPlaybackSpeed (const Standard_Real theSpeed)
 //function : SetPlaybackSpeed
 //purpose  :
 //=============================================================================
-void Media_Timer::Seek (const Standard_Real theTime)
+void Media_Timer::Seek (const double theTime)
 {
   const Standard_Boolean isStarted = myTimer.IsStarted();
   myTimer.Stop();

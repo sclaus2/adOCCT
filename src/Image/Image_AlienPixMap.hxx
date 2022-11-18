@@ -85,7 +85,7 @@ public:
 
   //! Performs gamma correction on image.
   //! theGamma - gamma value to use; a value of 1.0 leaves the image alone
-  Standard_EXPORT bool AdjustGamma (const Standard_Real theGammaCorr);
+  Standard_EXPORT bool AdjustGamma (const double theGammaCorr);
 
 private:
 

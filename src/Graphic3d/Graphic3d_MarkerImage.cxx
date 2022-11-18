@@ -516,12 +516,12 @@ Handle(Graphic3d_MarkerImage) Graphic3d_MarkerImage::StandardMarker (const Aspec
       const Standard_ShortReal aDelta = 0.1f;
       while (aScale >= 1.0f)
       {
-        Quantity_Color::RgbHls (aColor.r(), aColor.g(), aColor.b(), aHLS[0], aHLS[1], aHLS[2]);
+        Quantity_Color::RgbHls (aColor.r().getValue(), aColor.g().getValue(), aColor.b().getValue(), aHLS[0], aHLS[1], aHLS[2]);
         aHLS[2] *= 0.95; // 5% saturation change
-        Quantity_Color::HlsRgb (aHLS[0], aHLS[1], aHLS[2], aColor.r(), aColor.g(), aColor.b());
-        aColor32.r() = Standard_Byte (255.0 * aColor.r());
-        aColor32.g() = Standard_Byte (255.0 * aColor.g());
-        aColor32.b() = Standard_Byte (255.0 * aColor.b());
+        Quantity_Color::HlsRgb (aHLS[0].getValue(), aHLS[1].getValue(), aHLS[2].getValue(), aColor.r(), aColor.g(), aColor.b());
+        aColor32.r() = Standard_Byte (255.0 * aColor.r().getValue());
+        aColor32.g() = Standard_Byte (255.0 * aColor.g().getValue());
+        aColor32.b() = Standard_Byte (255.0 * aColor.b().getValue());
 
         const Handle(Graphic3d_MarkerImage) aMarker = getTextureImage (Aspect_TOM_O, aScale);
         const Handle(Image_PixMap)& aCircle = aMarker->GetImage();

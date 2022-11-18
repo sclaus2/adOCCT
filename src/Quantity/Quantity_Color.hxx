@@ -336,7 +336,7 @@ public:
 
   //! Converts HLS components into sRGB ones.
   static void HlsRgb (const double theH, const double theL, const double theS,
-                      double& theR, double& theG, double& theB)
+                      Standard_Real& theR, Standard_Real& theG, Standard_Real& theB)
   {
     const NCollection_Vec3<float> anRgb = Convert_HLS_To_sRGB (NCollection_Vec3<float> ((float )theH, (float )theL, (float )theS));
     theR = anRgb[0];
@@ -346,7 +346,7 @@ public:
 
   //! Converts sRGB components into HLS ones.
   static void RgbHls (const double theR, const double theG, const double theB,
-                      double& theH, double& theL, double& theS)
+                      Standard_Real& theH, Standard_Real& theL, Standard_Real& theS)
   {
     const NCollection_Vec3<float> aHls = Convert_sRGB_To_HLS (NCollection_Vec3<float> ((float )theR, (float )theG, (float )theB));
     theH = aHls[0];

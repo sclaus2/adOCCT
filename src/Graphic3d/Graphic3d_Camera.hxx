@@ -172,7 +172,7 @@ public:
   //! @param theCamera [out] interpolation result
   Standard_EXPORT static void Interpolate (const Handle(Graphic3d_Camera)& theStart,
                                            const Handle(Graphic3d_Camera)& theEnd,
-                                           const double theT,
+                                           const Standard_Real theT,
                                            Handle(Graphic3d_Camera)& theCamera);
 
 public:
@@ -889,7 +889,7 @@ DEFINE_STANDARD_HANDLE (Graphic3d_Camera, Standard_Transient)
 //! This tool interpolates camera parameters scale, eye, center, rotation (up and direction vectors) independently.
 //! @sa Graphic3d_Camera::Interpolate()
 template<>
-inline void NCollection_Lerp<Handle(Graphic3d_Camera)>::Interpolate (const double theT,
+inline void NCollection_Lerp<Handle(Graphic3d_Camera)>::Interpolate (const Standard_Real theT,
                                                                      Handle(Graphic3d_Camera)& theResult) const
 {
   Graphic3d_Camera::Interpolate (myStart, myEnd, theT, theResult);

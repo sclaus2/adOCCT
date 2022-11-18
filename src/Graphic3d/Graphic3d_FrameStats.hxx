@@ -35,10 +35,10 @@ public:
   Standard_EXPORT virtual ~Graphic3d_FrameStats();
 
   //! Returns interval in seconds for updating meters across several frames; 1 second by default.
-  Standard_Real UpdateInterval() const { return myUpdateInterval; }
+  double UpdateInterval() const { return myUpdateInterval; }
 
   //! Sets interval in seconds for updating values.
-  void SetUpdateInterval (Standard_Real theInterval) { myUpdateInterval = theInterval; }
+  void SetUpdateInterval (double theInterval) { myUpdateInterval = theInterval; }
 
   //! Prefer longer lines over more greater of lines.
   Standard_Boolean IsLongLineFormat() const { return myIsLongLineFormat; }
@@ -64,12 +64,12 @@ public:
                                             Graphic3d_RenderingParams::PerfCounters theFlags) const;
 
   //! Returns duration of the last frame in seconds.
-  Standard_Real FrameDuration() const { return myFrameDuration; }
+  double FrameDuration() const { return myFrameDuration; }
 
   //! Returns FPS (frames per seconds, elapsed time).
   //! This number indicates an actual frame rate averaged for several frames within UpdateInterval() duration,
   //! basing on a real elapsed time between updates.
-  Standard_Real FrameRate() const { return LastDataFrame().FrameRate(); }
+  double FrameRate() const { return LastDataFrame().FrameRate(); }
 
   //! Returns CPU FPS (frames per seconds, CPU time).
   //! This number indicates a PREDICTED frame rate,
@@ -77,7 +77,7 @@ public:
   //! Number is expected to be greater then actual frame rate returned by FrameRate().
   //! Values significantly greater actual frame rate indicate that rendering is limited by GPU performance (CPU is stalled in-between),
   //! while values around actual frame rate indicate rendering being limited by CPU performance (GPU is stalled in-between).
-  Standard_Real FrameRateCpu() const { return LastDataFrame().FrameRateCpu(); }
+  double FrameRateCpu() const { return LastDataFrame().FrameRateCpu(); }
 
   //! Returns value of specified counter, cached between stats updates.
   //! Should NOT be called between ::FrameStart() and ::FrameEnd() calls.
@@ -85,7 +85,7 @@ public:
 
   //! Returns value of specified timer for modification, should be called between ::FrameStart() and ::FrameEnd() calls.
   //! Should NOT be called between ::FrameStart() and ::FrameEnd() calls.
-  Standard_Real TimerValue (Graphic3d_FrameStatsTimer theTimer) const { return LastDataFrame()[theTimer]; }
+  double TimerValue (Graphic3d_FrameStatsTimer theTimer) const { return LastDataFrame()[theTimer]; }
 
   //! Returns TRUE if some Layers have been culled.
   Standard_Boolean HasCulledLayers() const { return LastDataFrame()[Graphic3d_FrameStatsCounter_NbLayersNotCulled] != LastDataFrame()[Graphic3d_FrameStatsCounter_NbLayers]; }
@@ -112,7 +112,7 @@ public:
   Standard_Size& ChangeCounter (Graphic3d_FrameStatsCounter theCounter) { return ActiveDataFrame()[theCounter]; }
 
   //! Returns value of specified timer for modification, should be called between ::FrameStart() and ::FrameEnd() calls.
-  Standard_Real& ChangeTimer (Graphic3d_FrameStatsTimer theTimer) { return ActiveDataFrame()[theTimer]; }
+  double& ChangeTimer (Graphic3d_FrameStatsTimer theTimer) { return ActiveDataFrame()[theTimer]; }
 
   //! Returns currently filling data frame for modification, should be called between ::FrameStart() and ::FrameEnd() calls.
   Graphic3d_FrameStatsDataTmp& ActiveDataFrame() { return myCountersTmp; }
@@ -126,9 +126,9 @@ protected:
 protected:
 
   OSD_Timer        myFpsTimer;                //!< timer for FPS measurements
-  Standard_Real    myFrameStartTime;          //!< time at the beginning of frame redraw
-  Standard_Real    myFrameDuration;           //!< frame duration
-  Standard_Real    myUpdateInterval;          //!< interval to update meters
+  double    myFrameStartTime;          //!< time at the beginning of frame redraw
+  double    myFrameDuration;           //!< frame duration
+  double    myUpdateInterval;          //!< interval to update meters
   Standard_Size    myFpsFrameCount;           //!< FPS counter (within short measurement time slice)
   NCollection_Array1<Graphic3d_FrameStatsData> myCounters; //!< data frames history
   Graphic3d_FrameStatsDataTmp myCountersTmp;  //!< data frame values filled to be filled between FrameStart() and FrameEnd() calls

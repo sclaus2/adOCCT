@@ -29,16 +29,16 @@ public:
   Media_Timer() : myTimerFrom (0.0), myTimerSpeed (1.0) {}
 
   //! Return elapsed time in seconds.
-  Standard_Real ElapsedTime() const
+  double ElapsedTime() const
   {
     return myTimerFrom + myTimer.ElapsedTime() * myTimerSpeed;
   }
 
   //! Return playback speed coefficient (1.0 means normal speed).
-  Standard_Real PlaybackSpeed() const { return myTimerSpeed; }
+  double PlaybackSpeed() const { return myTimerSpeed; }
 
   //! Setup playback speed coefficient.
-  Standard_EXPORT void SetPlaybackSpeed (const Standard_Real theSpeed);
+  Standard_EXPORT void SetPlaybackSpeed (const double theSpeed);
 
   //! Return true if timer has been started.
   Standard_Boolean IsStarted() const
@@ -59,13 +59,13 @@ public:
   Standard_EXPORT void Stop();
 
   //! Seek the timer to specified position.
-  Standard_EXPORT void Seek (const Standard_Real theTime);
+  Standard_EXPORT void Seek (const double theTime);
 
 protected:
 
   OSD_Timer     myTimer;
-  Standard_Real myTimerFrom;
-  Standard_Real myTimerSpeed;
+  double myTimerFrom;
+  double myTimerSpeed;
 
 };
 

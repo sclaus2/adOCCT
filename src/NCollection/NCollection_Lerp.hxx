@@ -28,7 +28,7 @@ public:
   //!             with 0 pointing to theStart and 1 to theEnd.
   static T Interpolate (const T& theStart,
                         const T& theEnd,
-                        double theT)
+                        Standard_Real theT)
   {
     T aResult;
     NCollection_Lerp aLerp (theStart, theEnd);
@@ -58,7 +58,7 @@ public:
   //! @param theT normalized interpolation coefficient within [0, 1] range,
   //!             with 0 pointing to first value and 1 to the second value.
   //! @param theResult [out] interpolated value
-  void Interpolate (double theT, T& theResult) const
+  void Interpolate (Standard_Real theT, T& theResult) const
   {
     theResult = (1.0 - theT) * myStart + theT * myEnd;
   }

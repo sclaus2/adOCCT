@@ -332,9 +332,9 @@ public:
     if (myColData != NULL)
     {
       Graphic3d_Vec4ub* aColorPtr = reinterpret_cast<Graphic3d_Vec4ub* >(myColData + myColStride * (theIndex - 1));
-      aColorPtr->SetValues (Standard_Byte(theR * 255.0),
-                            Standard_Byte(theG * 255.0),
-                            Standard_Byte(theB * 255.0), 255);
+      aColorPtr->SetValues (Standard_Byte(theR.getValue() * 255.0),
+                            Standard_Byte(theG.getValue() * 255.0),
+                            Standard_Byte(theB.getValue() * 255.0), 255);
     }
     myAttribs->NbElements = Max (theIndex, myAttribs->NbElements);
   }
@@ -426,7 +426,7 @@ public:
   //! Returns the vertex color at rank theRank from the vertex table if defined.
   Quantity_Color VertexColor (const Standard_Integer theRank) const
   {
-    Standard_Real anRGB[3];
+    double anRGB[3];
     VertexColor (theRank, anRGB[0], anRGB[1], anRGB[2]);
     return Quantity_Color (anRGB[0], anRGB[1], anRGB[2], Quantity_TOC_RGB);
   }
@@ -440,7 +440,7 @@ public:
   }
 
   //! Returns the vertex color values at rank theRank from the vertex table if defined.
-  void VertexColor (const Standard_Integer theRank, Standard_Real& theR, Standard_Real& theG, Standard_Real& theB) const
+  void VertexColor (const Standard_Integer theRank, double& theR, double& theG, double& theB) const
   {
     theR = theG = theB = 0.0;
     Standard_OutOfRange_Raise_if (theRank < 1 || theRank > myAttribs->NbElements, "BAD VERTEX index");
@@ -449,9 +449,9 @@ public:
       return;
     }
     const Graphic3d_Vec4ub& aColor = *reinterpret_cast<const Graphic3d_Vec4ub* >(myColData + myColStride * (theRank - 1));
-    theR = Standard_Real(aColor.r()) / 255.0;
-    theG = Standard_Real(aColor.g()) / 255.0;
-    theB = Standard_Real(aColor.b()) / 255.0;
+    theR = double(aColor.r()) / 255.0;
+    theG = double(aColor.g()) / 255.0;
+    theB = double(aColor.b()) / 255.0;
   }
 
   //! Returns the vertex color values at rank theRank from the vertex table if defined.
@@ -687,7 +687,7 @@ public: //! @name optional array of Bounds/Subgroups within primitive array (e.g
   {
     Standard_Real anRGB[3] = {0.0, 0.0, 0.0};
     BoundColor (theRank, anRGB[0], anRGB[1], anRGB[2]);
-    return Quantity_Color (anRGB[0], anRGB[1], anRGB[2], Quantity_TOC_RGB);
+    return Quantity_Color (anRGB[0].getValue(), anRGB[1].getValue(), anRGB[2].getValue(), Quantity_TOC_RGB);
   }
 
   //! Returns the bound color values at rank theRank from the bound table if defined.

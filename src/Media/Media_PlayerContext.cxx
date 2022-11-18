@@ -255,8 +255,8 @@ void Media_PlayerContext::SetInput (const TCollection_AsciiString& theInputPath,
 // Purpose  :
 //================================================================
 void Media_PlayerContext::PlaybackState (Standard_Boolean& theIsPaused,
-                                         Standard_Real& theProgress,
-                                         Standard_Real& theDuration)
+                                         double& theProgress,
+                                         double& theDuration)
 {
   Standard_Mutex::Sentry aLock (myMutex);
   theIsPaused = !myTimer.IsStarted();
@@ -269,8 +269,8 @@ void Media_PlayerContext::PlaybackState (Standard_Boolean& theIsPaused,
 // Purpose  :
 //================================================================
 void Media_PlayerContext::PlayPause (Standard_Boolean& theIsPaused,
-                                     Standard_Real& theProgress,
-                                     Standard_Real& theDuration)
+                                     double& theProgress,
+                                     double& theDuration)
 {
   Standard_Mutex::Sentry aLock (myMutex);
   theProgress = myTimer.ElapsedTime();
@@ -291,7 +291,7 @@ void Media_PlayerContext::PlayPause (Standard_Boolean& theIsPaused,
 // Function : Seek
 // Purpose  :
 //================================================================
-void Media_PlayerContext::Seek (Standard_Real thePosSec)
+void Media_PlayerContext::Seek (double thePosSec)
 {
   Standard_Mutex::Sentry aLock (myMutex);
   mySeekTo = thePosSec;

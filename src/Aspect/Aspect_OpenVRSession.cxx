@@ -697,7 +697,7 @@ Handle(Graphic3d_ArrayOfTriangles) Aspect_OpenVRSession::loadRenderModel (Standa
 // function : EyeToHeadTransform
 // purpose  :
 // =======================================================================
-NCollection_Mat4<double> Aspect_OpenVRSession::EyeToHeadTransform (Aspect_Eye theEye) const
+NCollection_Mat4<Standard_Real> Aspect_OpenVRSession::EyeToHeadTransform (Aspect_Eye theEye) const
 {
 #ifdef HAVE_OPENVR
   if (myContext->System != NULL)
@@ -715,16 +715,16 @@ NCollection_Mat4<double> Aspect_OpenVRSession::EyeToHeadTransform (Aspect_Eye th
 #else
   (void )theEye;
 #endif
-  return NCollection_Mat4<double>();
+  return NCollection_Mat4<Standard_Real>();
 }
 
 // =======================================================================
 // function : ProjectionMatrix
 // purpose  :
 // =======================================================================
-NCollection_Mat4<double> Aspect_OpenVRSession::ProjectionMatrix (Aspect_Eye theEye,
-                                                                 double theZNear,
-                                                                 double theZFar) const
+NCollection_Mat4<Standard_Real> Aspect_OpenVRSession::ProjectionMatrix (Aspect_Eye theEye,
+                                                                 Standard_Real theZNear,
+                                                                 Standard_Real theZFar) const
 {
 #ifdef HAVE_OPENVR
   if (myContext->System != NULL)
@@ -738,7 +738,7 @@ NCollection_Mat4<double> Aspect_OpenVRSession::ProjectionMatrix (Aspect_Eye theE
   (void )theZNear;
   (void )theZFar;
 #endif
-  return NCollection_Mat4<double>();
+  return NCollection_Mat4<Standard_Real>();
 }
 
 // =======================================================================

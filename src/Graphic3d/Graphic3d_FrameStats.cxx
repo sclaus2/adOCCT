@@ -33,17 +33,17 @@ namespace
     theStream << std::setfill(' ') << std::setw (theWidth);
     if (theValue >= 1000000000)
     {
-      Standard_Real aValM = Standard_Real(theValue) / 1000000000.0;
+      double aValM = double(theValue) / 1000000000.0;
       theStream << std::fixed << std::setprecision (1) << aValM << "G";
     }
     else if (theValue >= 1000000)
     {
-      Standard_Real aValM = Standard_Real(theValue) / 1000000.0;
+      double aValM = double(theValue) / 1000000.0;
       theStream << std::fixed << std::setprecision (1) << aValM << "M";
     }
     else if (theValue >= 1000)
     {
-      Standard_Real aValK = Standard_Real(theValue) / 1000.0;
+      double aValK = double(theValue) / 1000.0;
       theStream << std::fixed << std::setprecision (1) << aValK << "k";
     }
     else
@@ -92,17 +92,17 @@ namespace
     theStream << std::setfill(' ') << std::setw (theWidth);
     if (theValue >= 1024 * 1024 * 1024)
     {
-      Standard_Real aValM = Standard_Real(theValue) / (1024.0 * 1024.0 * 1024.0);
+      double aValM = double(theValue) / (1024.0 * 1024.0 * 1024.0);
       theStream << std::fixed << std::setprecision (1) << aValM << " GiB";
     }
     else if (theValue >= 1024 * 1024)
     {
-      Standard_Real aValM = Standard_Real(theValue) / (1024.0 * 1024.0);
+      double aValM = double(theValue) / (1024.0 * 1024.0);
       theStream << std::fixed << std::setprecision (1) << aValM << " MiB";
     }
     else if (theValue >= 1024)
     {
-      Standard_Real aValK = Standard_Real(theValue) / 1024.0;
+      double aValK = double(theValue) / 1024.0;
       theStream << std::fixed << std::setprecision (1) << aValK << " KiB";
     }
     else
@@ -116,16 +116,16 @@ namespace
     return theStream;
   }
 
-  static const Standard_Real THE_SECONDS_IN_HOUR = 3600.0;
-  static const Standard_Real THE_SECONDS_IN_MINUTE = 60.0;
-  static const Standard_Real THE_SECOND_IN_HOUR   = 1.0 / THE_SECONDS_IN_HOUR;
-  static const Standard_Real THE_SECOND_IN_MINUTE = 1.0 / THE_SECONDS_IN_MINUTE;
+  static const double THE_SECONDS_IN_HOUR = 3600.0;
+  static const double THE_SECONDS_IN_MINUTE = 60.0;
+  static const double THE_SECOND_IN_HOUR   = 1.0 / THE_SECONDS_IN_HOUR;
+  static const double THE_SECOND_IN_MINUTE = 1.0 / THE_SECONDS_IN_MINUTE;
 
   //! Format time.
   static std::ostream& formatTime (std::ostream& theStream,
                                    Standard_Integer theWidth,
                                    const char* thePrefix,
-                                   Standard_Real theSeconds,
+                                   double theSeconds,
                                    const char* thePostfix = NULL)
   {
     if (thePrefix != NULL)
@@ -133,14 +133,14 @@ namespace
       theStream << thePrefix;
     }
 
-    Standard_Real aSecIn = theSeconds;
+    double aSecIn = theSeconds;
     unsigned int aHours   = (unsigned int )(aSecIn * THE_SECOND_IN_HOUR);
-    aSecIn -= Standard_Real(aHours) * THE_SECONDS_IN_HOUR;
+    aSecIn -= double(aHours) * THE_SECONDS_IN_HOUR;
     unsigned int aMinutes = (unsigned int )(aSecIn * THE_SECOND_IN_MINUTE);
-    aSecIn -= Standard_Real(aMinutes) * THE_SECONDS_IN_MINUTE;
+    aSecIn -= double(aMinutes) * THE_SECONDS_IN_MINUTE;
     unsigned int aSeconds = (unsigned int )aSecIn;
-    aSecIn -= Standard_Real(aSeconds);
-    Standard_Real aMilliSeconds = 1000.0 * aSecIn;
+    aSecIn -= double(aSeconds);
+    double aMilliSeconds = 1000.0 * aSecIn;
 
     char aBuffer[64];
     theStream << std::setfill(' ') << std::setw (theWidth);
@@ -183,7 +183,7 @@ namespace
   //! Add key-value pair to the dictionary.
   static void addInfo (TColStd_IndexedDataMapOfStringString& theDict,
                        const TCollection_AsciiString&        theKey,
-                       const Standard_Real                   theValue)
+                       const double                   theValue)
   {
     char aTmp[50];
     Sprintf (aTmp, "%.1g", theValue);
@@ -203,16 +203,16 @@ namespace
   //! Format time.
   static void addTimeInfo (TColStd_IndexedDataMapOfStringString& theDict,
                            const TCollection_AsciiString&        theKey,
-                           Standard_Real                         theSeconds)
+                           double                         theSeconds)
   {
-    Standard_Real aSecIn = theSeconds;
+    double aSecIn = theSeconds;
     unsigned int aHours   = (unsigned int )(aSecIn * THE_SECOND_IN_HOUR);
-    aSecIn -= Standard_Real(aHours) * THE_SECONDS_IN_HOUR;
+    aSecIn -= double(aHours) * THE_SECONDS_IN_HOUR;
     unsigned int aMinutes = (unsigned int )(aSecIn * THE_SECOND_IN_MINUTE);
-    aSecIn -= Standard_Real(aMinutes) * THE_SECONDS_IN_MINUTE;
+    aSecIn -= double(aMinutes) * THE_SECONDS_IN_MINUTE;
     unsigned int aSeconds = (unsigned int )aSecIn;
-    aSecIn -= Standard_Real(aSeconds);
-    Standard_Real aMilliSeconds = 1000.0 * aSecIn;
+    aSecIn -= double(aSeconds);
+    double aMilliSeconds = 1000.0 * aSecIn;
 
     char aBuffer[64];
     if (aHours > 0)

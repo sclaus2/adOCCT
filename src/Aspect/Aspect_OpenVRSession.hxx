@@ -51,12 +51,12 @@ public:
 
   //! Return transformation from eye to head.
   //! vr::GetEyeToHeadTransform() wrapper.
-  Standard_EXPORT virtual NCollection_Mat4<double> EyeToHeadTransform (Aspect_Eye theEye) const Standard_OVERRIDE;
+  Standard_EXPORT virtual NCollection_Mat4<Standard_Real> EyeToHeadTransform (Aspect_Eye theEye) const Standard_OVERRIDE;
 
   //! Return projection matrix.
-  Standard_EXPORT virtual NCollection_Mat4<double> ProjectionMatrix (Aspect_Eye theEye,
-                                                                     double theZNear,
-                                                                     double theZFar) const Standard_OVERRIDE;
+  Standard_EXPORT virtual NCollection_Mat4<Standard_Real> ProjectionMatrix (Aspect_Eye theEye,
+                                                                     Standard_Real theZNear,
+                                                                     Standard_Real theZFar) const Standard_OVERRIDE;
 
   //! Return TRUE.
   virtual bool HasProjectionFrustums() const Standard_OVERRIDE { return true; }

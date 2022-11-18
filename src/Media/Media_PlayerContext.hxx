@@ -69,16 +69,16 @@ public:
 
   //! Return playback state.
   Standard_EXPORT void PlaybackState (Standard_Boolean& theIsPaused,
-                                      Standard_Real& theProgress,
-                                      Standard_Real& theDuration);
+                                      double& theProgress,
+                                      double& theDuration);
 
   //! Pause/Pause playback depending on the current state.
   Standard_EXPORT void PlayPause (Standard_Boolean& theIsPaused,
-                                  Standard_Real& theProgress,
-                                  Standard_Real& theDuration);
+                                  double& theProgress,
+                                  double& theDuration);
 
   //! Seek to specified position.
-  Standard_EXPORT void Seek (Standard_Real thePosSec);
+  Standard_EXPORT void Seek (double thePosSec);
 
   //! Pause playback.
   void Pause() { pushPlayEvent (Media_PlayerEvent_PAUSE); }
@@ -138,7 +138,7 @@ private:
   Standard_Condition          myWakeEvent;      //!< event to wake up working thread and proceed new playback event
   Standard_Condition          myNextEvent;      //!< event to check if working thread processed next file event (e.g. released file handles of previous input)
   Media_Timer                 myTimer;          //!< playback timer       
-  Standard_Real               myDuration;       //!< playback duration
+  double                      myDuration;       //!< playback duration
 
   Handle(Media_BufferPool)    myBufferPools[4]; //!< per-plane pools
   Handle(Media_Frame)         myFrameTmp;       //!< temporary object holding decoded frame
@@ -147,7 +147,7 @@ private:
 
   volatile bool               myToShutDown;     //!< flag to terminate working thread
   TCollection_AsciiString     myInputPath;      //!< new input to open
-  volatile Standard_Real      mySeekTo;         //!< new seeking position
+  volatile double             mySeekTo;         //!< new seeking position
   volatile Media_PlayerEvent  myPlayEvent;      //!< playback event
 
 };

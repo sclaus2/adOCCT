@@ -121,7 +121,7 @@ void Graphic3d_CullingTool::SetViewportSize (Standard_Integer theViewportWidth,
 Standard_Real Graphic3d_CullingTool::SignedPlanePointDistance (const Graphic3d_Vec4d& theNormal,
                                                                const Graphic3d_Vec4d& thePnt)
 {
-  const Standard_Real aNormLength = std::sqrt (theNormal.x() * theNormal.x()
+  const Standard_Real aNormLength = Sqrt (theNormal.x() * theNormal.x()
                                              + theNormal.y() * theNormal.y()
                                              + theNormal.z() * theNormal.z());
 
