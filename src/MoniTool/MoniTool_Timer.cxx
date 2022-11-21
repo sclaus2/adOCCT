@@ -29,12 +29,12 @@ IMPLEMENT_STANDARD_RTTIEXT(MoniTool_Timer,Standard_Transient)
 void MoniTool_Timer::Dump(Standard_OStream &ostr)
 {
   Standard_Integer hours, minutes;
-  Standard_Real seconds, CPUtime, user, system;
+  double seconds, CPUtime, user, system;
     
   myTimer.Show(seconds,minutes,hours,CPUtime);
   myTimer.OSD_Chronometer::Show(user,system);
       
-  Standard_Real elapsed = seconds + minutes*60 + hours*3600;
+  double elapsed = seconds + minutes*60 + hours*3600;
   
   char buff[1024];
   Sprintf ( buff, "Elapsed:%6.1f sec, CPU User:%9.4f sec, CPU Sys:%9.4f sec, hits: %d",

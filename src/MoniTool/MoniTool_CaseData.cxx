@@ -142,19 +142,19 @@ static OSD_Timer& chrono() {
   (const Standard_Real lastCPU, const Standard_Real curCPU,
    const Standard_CString name)
 {
-  Standard_Real cpu = curCPU;
+  double cpu = curCPU.getValue();
   if (cpu == 0.) {
-    Standard_Real sec;  Standard_Integer i1,i2;
+    double sec;  Standard_Integer i1,i2;
     chrono().Show (sec,i1,i2,cpu);
   }
-  cpu = cpu - lastCPU;
+  cpu = cpu - lastCPU.getValue();
   AddData ( new Geom2d_CartesianPoint (cpu,0.), 9,name);
 }
 
     Standard_Real  MoniTool_CaseData::GetCPU () const
 {
   if (!stachr) { chrono().Start(); stachr = Standard_True; }
-  Standard_Real sec,cpu;  Standard_Integer i1,i2;
+  double sec,cpu;  Standard_Integer i1,i2;
   chrono().Show (sec,i1,i2,cpu);
   return cpu;
 }
@@ -163,12 +163,12 @@ static OSD_Timer& chrono() {
   (const Standard_Real maxCPU,
    const Standard_Real lastCPU, const Standard_Real curCPU) const
 {
-  Standard_Real cpu = curCPU;
+  double cpu = curCPU.getValue();
   if (cpu == 0.) {
-    Standard_Real sec;  Standard_Integer i1,i2;
+    double sec;  Standard_Integer i1,i2;
     chrono().Show (sec,i1,i2,cpu);
   }
-  cpu = cpu - lastCPU;
+  cpu = cpu - lastCPU.getValue();
   return (cpu >= maxCPU);
 }
 
