@@ -94,7 +94,7 @@ public:
   void SetMergeAngle (Standard_Real theAngleRad) { myMergeAngle = theAngleRad; }
 
   //! Return linear merge tolerance; 0.0 by default (only 3D points with exactly matching coordinates are merged).
-  double MergeTolerance() const { return myMergeTolearance; }
+  Standard_Real MergeTolerance() const { return myMergeTolearance; }
 
   //! Set linear merge tolerance.
   void SetMergeTolerance (double theTolerance) { myMergeTolearance = theTolerance; }

@@ -51,7 +51,7 @@ namespace
     //! Constructor
     MergeNodeTool (RWStl_Reader* theReader,
                    const Standard_Integer theNbFacets = -1)
-    : Poly_MergeNodesTool (theReader->MergeAngle(), 0.0, theNbFacets),
+    : Poly_MergeNodesTool (theReader->MergeAngle().getValue(), 0.0, theNbFacets),
       myReader (theReader),
       myNodeIndexMap (1024, new NCollection_IncAllocator (1024 * 1024))
     {
@@ -268,7 +268,7 @@ static inline bool str_starts_with (const char* theStr, const char* theWord, int
   return !strncasecmp (theStr, theWord, theN);
 }
 
-static bool ReadVertex (const char* theStr, double& theX, double& theY, double& theZ)
+static bool ReadVertex (const char* theStr, Standard_Real& theX, Standard_Real& theY, Standard_Real& theZ)
 {
   const char *aStr = theStr;
 
@@ -309,8 +309,8 @@ Standard_Boolean RWStl_Reader::ReadAscii (Standard_IStream& theStream,
   }
 
   MergeNodeTool aMergeTool (this);
-  aMergeTool.SetMergeAngle (myMergeAngle);
-  aMergeTool.SetMergeTolerance (myMergeTolearance);
+  aMergeTool.SetMergeAngle (myMergeAngle.getValue());
+  aMergeTool.SetMergeTolerance (myMergeTolearance.getValue());
 
   Standard_CLocaleSentry::clocale_t aLocale = Standard_CLocaleSentry::GetCLocale();
   (void)aLocale; // to avoid warning on GCC where it is actually not used
@@ -427,8 +427,8 @@ Standard_Boolean RWStl_Reader::ReadBinary (Standard_IStream& theStream,
   const Standard_Integer aNbFacets = *(int32_t*)(aHeader + 80);
 
   MergeNodeTool aMergeTool (this, aNbFacets);
-  aMergeTool.SetMergeAngle (myMergeAngle);
-  aMergeTool.SetMergeTolerance (myMergeTolearance);
+  aMergeTool.SetMergeAngle (myMergeAngle.getValue());
+  aMergeTool.SetMergeTolerance (myMergeTolearance.getValue());
 
   // don't trust the number of triangles which is coded in the file
   // sometimes it is wrong, and with this technique we don't need to swap endians for integer
