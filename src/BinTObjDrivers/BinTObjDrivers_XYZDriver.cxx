@@ -58,7 +58,7 @@ Standard_Boolean BinTObjDrivers_XYZDriver::Paste
                           BinObjMgt_RRelocationTable&) const
 {
   Handle(TObj_TXYZ) aTarget = Handle(TObj_TXYZ)::DownCast(theTarget);
-  Standard_Real aX, aY, aZ;
+  double aX, aY, aZ;
   if (! (theSource >> aX >> aY >> aZ))
     return Standard_False;
   aTarget->Set (gp_XYZ (aX, aY, aZ));
