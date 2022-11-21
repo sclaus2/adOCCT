@@ -208,6 +208,11 @@ public:
     return PutReal(aValue);
   }
 
+  Storage_BaseDriver& operator << (const Standard_Real aValue)
+  {
+    return PutReal(aValue.getValue());
+  }
+
   Standard_EXPORT virtual Storage_BaseDriver& PutShortReal(const Standard_ShortReal aValue) = 0;
   Storage_BaseDriver& operator << (const Standard_ShortReal aValue)
   {
@@ -245,6 +250,12 @@ public:
 
   Standard_EXPORT virtual Storage_BaseDriver& GetReal(double& aValue) = 0;
   Storage_BaseDriver& operator >> (double& aValue)
+  {
+    return GetReal(aValue);
+  }
+
+  Standard_EXPORT virtual Storage_BaseDriver& GetReal(Standard_Real& aValue) = 0;
+  Storage_BaseDriver& operator >> (Standard_Real& aValue)
   {
     return GetReal(aValue);
   }

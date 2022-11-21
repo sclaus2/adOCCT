@@ -55,6 +55,16 @@ Standard_Boolean OSD::CStringToReal(const Standard_CString aString,
   return Standard_True;
 }
 
+Standard_Boolean OSD::CStringToReal(const Standard_CString aString,
+                                    Standard_Real& aReal)
+{
+  char *endptr ;
+  aReal = Strtod(aString, &endptr);
+  if (*endptr)
+    return Standard_False ;
+  return Standard_True;
+}
+
 #ifdef _WIN32
   #include <windows.h>
 #else

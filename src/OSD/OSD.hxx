@@ -128,6 +128,7 @@ public:
   //!
   //! The conversion is independent from the current locale.
   Standard_EXPORT static Standard_Boolean CStringToReal (const Standard_CString aString, double & aReal);
+  Standard_EXPORT static Standard_Boolean CStringToReal (const Standard_CString aString, Standard_Real & aReal);
 
   //! since Windows NT does not support 'SIGINT' signal like UNIX,
   //! then this method checks whether Ctrl-Break keystroke was or

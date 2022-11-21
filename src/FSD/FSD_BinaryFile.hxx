@@ -265,6 +265,7 @@ public:
   Standard_EXPORT Storage_BaseDriver& GetBoolean (Standard_Boolean& aValue) Standard_OVERRIDE;
   
   Standard_EXPORT Storage_BaseDriver& GetReal (double& aValue) Standard_OVERRIDE;
+  Standard_EXPORT Storage_BaseDriver& GetReal (Standard_Real& aValue) Standard_OVERRIDE;
   
   Standard_EXPORT Storage_BaseDriver& GetShortReal (Standard_ShortReal& aValue) Standard_OVERRIDE;
   

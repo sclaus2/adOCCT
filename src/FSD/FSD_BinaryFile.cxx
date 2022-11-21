@@ -454,6 +454,17 @@ Storage_BaseDriver& FSD_BinaryFile::GetReal(double& aValue)
 #endif
   return *this;
 }
+Storage_BaseDriver& FSD_BinaryFile::GetReal(Standard_Real& aValue)
+{
+  double helper;
+  if (!fread(&helper,sizeof(double),1,myStream))
+    throw Storage_StreamTypeMismatchError();
+  aValue = helper;
+#if OCCT_BINARY_FILE_DO_INVERSE
+  aValue = InverseReal (aValue);
+#endif
+  return *this;
+}
 
 //=======================================================================
 //function : GetShortReal
