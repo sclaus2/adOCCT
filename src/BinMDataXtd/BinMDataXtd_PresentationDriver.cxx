@@ -92,7 +92,7 @@ Standard_Boolean BinMDataXtd_PresentationDriver::Paste
     anAttribute->UnsetMaterial();
 
   // Transparency
-  Standard_Real aRValue;
+  double aRValue;
   ok = theSource >> aRValue;
   if ( !ok ) return ok;
   if ( aRValue != -1. )
@@ -155,13 +155,13 @@ void BinMDataXtd_PresentationDriver::Paste(const Handle(TDF_Attribute)& theSourc
 
   // Transparency
   if (anAttribute->HasOwnTransparency())
-    theTarget.PutReal(anAttribute->Transparency());
+    theTarget.PutReal(anAttribute->Transparency().getValue());
   else
     theTarget.PutReal(-1.);
 
   // Width
   if (anAttribute->HasOwnWidth())
-    theTarget.PutReal(anAttribute->Width());
+    theTarget.PutReal(anAttribute->Width().getValue());
   else
     theTarget.PutReal(-1.);
 

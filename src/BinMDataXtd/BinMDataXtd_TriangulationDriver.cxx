@@ -52,7 +52,7 @@ Standard_Boolean BinMDataXtd_TriangulationDriver::Paste(const BinObjMgt_Persiste
   Handle(TDataXtd_Triangulation) attrubute = Handle(TDataXtd_Triangulation)::DownCast(theTarget);
 
   Standard_Integer i;
-  Standard_Real deflection, x, y, z;
+  double deflection, x, y, z;
   Standard_Integer n1, n2, n3;
   Standard_Integer nbNodes(0), nbTriangles(0);
   Standard_Boolean hasUV(Standard_False);
