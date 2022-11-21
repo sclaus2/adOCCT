@@ -372,8 +372,8 @@ static Standard_Boolean Connect (const Handle(ShapeAnalysis_Wire)& theSAW,
         sfw2->Perform();
         TopoDS_Wire w2 = sfw2->Wire();
         ShapeAnalysis_ShapeTolerance ST;
-        double tol3 = ST.Tolerance(w3,1);
-        double tol2 = ST.Tolerance(w2,1);
+        double tol3 = ST.Tolerance(w3,1).getValue();
+        double tol2 = ST.Tolerance(w2,1).getValue();
         Gsewd3d = new ShapeExtend_WireData;
         Gsewd2d = new ShapeExtend_WireData;
         Gsewd3d->Add(w3);
