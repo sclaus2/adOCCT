@@ -328,7 +328,7 @@ void IGESCAFControl_Writer::MakeColors (const TopoDS_Shape &S,
 	Handle(TCollection_HAsciiString) str = 
 	  new TCollection_HAsciiString ( col.StringName ( col.Name() ) );
 	colent = new IGESGraph_Color;
-	NCollection_Vec3<Standard_Real> aColor_sRGB;
+	NCollection_Vec3<double> aColor_sRGB;
 	col.Values (aColor_sRGB.r(), aColor_sRGB.g(), aColor_sRGB.b(), Quantity_TOC_sRGB);
 	colent->Init ( aColor_sRGB.r() * 100., aColor_sRGB.g() * 100., aColor_sRGB.b() * 100., str );
 	AddEntity ( colent );
