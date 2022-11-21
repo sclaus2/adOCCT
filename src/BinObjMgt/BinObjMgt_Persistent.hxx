@@ -92,8 +92,8 @@ BinObjMgt_Persistent& operator << (const Standard_Integer theValue)
   return PutBoolean(theValue);
 }
   
-  Standard_EXPORT BinObjMgt_Persistent& PutReal (const Standard_Real theValue);
-BinObjMgt_Persistent& operator << (const Standard_Real theValue)
+  Standard_EXPORT BinObjMgt_Persistent& PutReal (const double theValue);
+BinObjMgt_Persistent& operator << (const double theValue)
 {
   return PutReal(theValue);
 }
@@ -185,8 +185,8 @@ const BinObjMgt_Persistent& operator >> (Standard_Integer& theValue) const
   return GetBoolean(theValue);
 }
   
-  Standard_EXPORT const BinObjMgt_Persistent& GetReal (Standard_Real& theValue) const;
-const BinObjMgt_Persistent& operator >> (Standard_Real& theValue) const
+  Standard_EXPORT const BinObjMgt_Persistent& GetReal (double& theValue) const;
+const BinObjMgt_Persistent& operator >> (double& theValue) const
 {
   return GetReal(theValue);
 }

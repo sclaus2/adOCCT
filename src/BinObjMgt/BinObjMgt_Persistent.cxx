@@ -29,7 +29,7 @@
 
 #define BP_INTSIZE         ((Standard_Integer)sizeof(Standard_Integer))
 #define BP_EXTCHARSIZE     ((Standard_Integer)sizeof(Standard_ExtCharacter))
-#define BP_REALSIZE        ((Standard_Integer)sizeof(Standard_Real))
+#define BP_REALSIZE        ((Standard_Integer)sizeof(double))
 #define BP_SHORTREALSIZE   ((Standard_Integer)sizeof(Standard_ShortReal))
 #define BP_UUIDSIZE        ((Standard_Integer)sizeof(BinObjMgt_UUID))
 
@@ -292,7 +292,7 @@ BinObjMgt_Persistent& BinObjMgt_Persistent::PutInteger
 //=======================================================================
 
 BinObjMgt_Persistent& BinObjMgt_Persistent::PutReal
-  (const Standard_Real theValue)
+  (const double theValue)
 {
   alignOffset (BP_INTSIZE, Standard_True);
   Standard_Integer nbPieces = prepareForPut (BP_REALSIZE);
@@ -309,7 +309,7 @@ BinObjMgt_Persistent& BinObjMgt_Persistent::PutReal
   }
   else {
     // the value fits in the current piece => put it quickly
-    Standard_Real *aData = (Standard_Real*) ((char*)myData(myIndex) + myOffset);
+    double *aData = (double*) ((char*)myData(myIndex) + myOffset);
 #ifdef DO_INVERSE
     *aData = InverseReal (theValue);
 #else
@@ -665,7 +665,7 @@ const BinObjMgt_Persistent& BinObjMgt_Persistent::GetInteger
 //=======================================================================
 
 const BinObjMgt_Persistent& BinObjMgt_Persistent::GetReal
-  (Standard_Real& theValue) const
+  (double& theValue) const
 {
   alignOffset (BP_INTSIZE);
   if (noMoreData (BP_REALSIZE)) return *this;
@@ -676,7 +676,7 @@ const BinObjMgt_Persistent& BinObjMgt_Persistent::GetReal
   }
   else {
     // the value fits in the current piece => get it quickly
-    Standard_Real *aData = (Standard_Real*) ((char*)myData(myIndex) + myOffset);
+    double *aData = (double*) ((char*)myData(myIndex) + myOffset);
     theValue = *aData;
     ((BinObjMgt_Persistent*)this)->myOffset += BP_REALSIZE;
   }
@@ -1121,7 +1121,7 @@ void BinObjMgt_Persistent::inverseRealData
   Standard_Integer aLen = theSize;
 
   union {
-        Standard_Real*    aRealData;
+        double*    aRealData;
         Standard_Integer* aIntData;
       } aWrapUnion;
 
@@ -1129,7 +1129,7 @@ void BinObjMgt_Persistent::inverseRealData
   while (aLen > 0) {
     Standard_Integer aLenInPiece = Min (aLen, BP_PIECESIZE - anOffset);
 
-    aWrapUnion.aRealData = (Standard_Real*) ((char*)myData(anIndex) + anOffset);
+    aWrapUnion.aRealData = (double*) ((char*)myData(anIndex) + anOffset);
     
     if (aPrevPtr) {
       Standard_Integer aTmp;

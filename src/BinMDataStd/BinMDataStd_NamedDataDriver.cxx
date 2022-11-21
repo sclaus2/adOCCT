@@ -92,7 +92,7 @@ Standard_Boolean BinMDataStd_NamedDataDriver::Paste(const BinObjMgt_Persistent& 
     TDataStd_DataMapOfStringReal aReals;
     for (i=aLower; i<=anUpper; i++) {
       TCollection_ExtendedString aKey;
-      Standard_Real aValue;
+      double aValue;
       if (! (theSource >> aKey >> aValue))
         return Standard_False;
       aReals.Bind(aKey, aValue);
