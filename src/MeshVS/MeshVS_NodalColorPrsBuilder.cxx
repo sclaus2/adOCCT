@@ -274,7 +274,7 @@ void MeshVS_NodalColorPrsBuilder::Build ( const Handle(Prs3d_Presentation)& Prs,
   gp_Dir aDefNorm( 0., 0., 1. );
 
   // Prepare for scaling the incoming colors
-  const Standard_Real anColorRatio = 1.0;
+  const double anColorRatio = 1.0;
 
   for (it.Reset(); it.More(); it.Next())
   {
@@ -561,9 +561,9 @@ void MeshVS_NodalColorPrsBuilder::AddVolumePrs (const Handle(MeshVS_HArray1OfSeq
 
             if (theIsShaded)
             {
-              aNColor.SetValues (theColorRatio * aNColor.Red(),
-                                 theColorRatio * aNColor.Green(),
-                                 theColorRatio * aNColor.Blue(),
+              aNColor.SetValues (theColorRatio.getValue() * aNColor.Red(),
+                                 theColorRatio.getValue() * aNColor.Green(),
+                                 theColorRatio.getValue() * aNColor.Blue(),
                                  Quantity_TOC_RGB);
 
               theArray->AddVertex (aPnt, aNorm, aNColor);

@@ -213,7 +213,7 @@ void MeshVS_Mesh::Compute ( const Handle(PrsMgr_PresentationManager)& thePrsMgr,
 
   if (toShowComputeTime)
   {
-    Standard_Real aSec, aCpu;
+    double aSec, aCpu;
     Standard_Integer aMin, anHour;
     aTimer.Show (aSec, aMin, anHour, aCpu);
     std::cout << "DisplayMode : " << theMode << "\n";
@@ -654,7 +654,7 @@ void MeshVS_Mesh::ComputeSelection (const Handle(SelectMgr_Selection)& theSelect
 
   if (toShowComputeSelectionTime)
   {
-    Standard_Real sec, cpu;
+    double sec, cpu;
     Standard_Integer min, hour;
     gTimer.Show (sec, min, hour, cpu);
     std::cout << "SelectionMode : " << theMode << "\n";

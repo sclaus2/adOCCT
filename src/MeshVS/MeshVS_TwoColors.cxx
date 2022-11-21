@@ -71,7 +71,7 @@ Standard_Boolean operator== ( const MeshVS_TwoColors& K1,
 MeshVS_TwoColors BindTwoColors ( const Quantity_Color& theCol1, const Quantity_Color& theCol2 )
 {
   MeshVS_TwoColors aRes;
-  NCollection_Vec3<Standard_Real> aColor_sRGB;
+  NCollection_Vec3<double> aColor_sRGB;
   theCol1.Values (aColor_sRGB.r(), aColor_sRGB.g(), aColor_sRGB.b(), Quantity_TOC_sRGB);
   aRes.r1 = unsigned ( aColor_sRGB.r() * 255.0 );
   aRes.g1 = unsigned ( aColor_sRGB.g() * 255.0 );
@@ -91,16 +91,16 @@ MeshVS_TwoColors BindTwoColors ( const Quantity_Color& theCol1, const Quantity_C
 Quantity_Color ExtractColor ( MeshVS_TwoColors& theTwoColors, const Standard_Integer Index )
 {
   Quantity_Color aRes;
-  Standard_Real max = 255.0;
+  double max = 255.0;
 
   if ( Index == 1 )
-    aRes.SetValues ( Standard_Real (theTwoColors.r1) / max,
-                     Standard_Real (theTwoColors.g1) / max,
-                     Standard_Real (theTwoColors.b1) / max, Quantity_TOC_sRGB );
+    aRes.SetValues ( double (theTwoColors.r1) / max,
+                     double (theTwoColors.g1) / max,
+                     double (theTwoColors.b1) / max, Quantity_TOC_sRGB );
   else if (Index == 2)
-    aRes.SetValues ( Standard_Real (theTwoColors.r2) / max,
-                     Standard_Real (theTwoColors.g2) / max,
-                     Standard_Real (theTwoColors.b2) / max, Quantity_TOC_sRGB );
+    aRes.SetValues ( double (theTwoColors.r2) / max,
+                     double (theTwoColors.g2) / max,
+                     double (theTwoColors.b2) / max, Quantity_TOC_sRGB );
 
   return aRes;
 }
@@ -111,11 +111,11 @@ Quantity_Color ExtractColor ( MeshVS_TwoColors& theTwoColors, const Standard_Int
 //================================================================
 void ExtractColors ( MeshVS_TwoColors& theTwoColors, Quantity_Color& theCol1, Quantity_Color& theCol2 )
 {
-  Standard_Real max = 255.0;
-  theCol1.SetValues ( Standard_Real (theTwoColors.r1) / max,
-                      Standard_Real (theTwoColors.g1) / max,
-                      Standard_Real (theTwoColors.b1) / max, Quantity_TOC_sRGB );
-  theCol2.SetValues ( Standard_Real (theTwoColors.r2) / max,
-                      Standard_Real (theTwoColors.g2) / max,
-                      Standard_Real (theTwoColors.b2) / max, Quantity_TOC_sRGB );
+  double max = 255.0;
+  theCol1.SetValues ( double (theTwoColors.r1) / max,
+                      double (theTwoColors.g1) / max,
+                      double (theTwoColors.b1) / max, Quantity_TOC_sRGB );
+  theCol2.SetValues ( double (theTwoColors.r2) / max,
+                      double (theTwoColors.g2) / max,
+                      double (theTwoColors.b2) / max, Quantity_TOC_sRGB );
 }
