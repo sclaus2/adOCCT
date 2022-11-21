@@ -161,7 +161,7 @@ void XCAFDoc_Color::Set(const Quantity_ColorRGBA& C)
 {
   Backup();
   Quantity_Color aColor;
-  aColor.SetValues(R, G, B, Quantity_TOC_RGB);
+  aColor.SetValues(R.getValue(), G.getValue(), B.getValue(), Quantity_TOC_RGB);
   myColor.SetRGB(aColor);
   myColor.SetAlpha((Standard_ShortReal)alpha);
 }
@@ -205,7 +205,11 @@ const Quantity_ColorRGBA& XCAFDoc_Color::GetColorRGBA() const
 				  Standard_Real& G,
 				  Standard_Real& B) const
 {
-  myColor.GetRGB().Values(R,G,B, Quantity_TOC_RGB);
+  double rTmp, gTmp, bTmp;
+  myColor.GetRGB().Values(rTmp,gTmp,bTmp, Quantity_TOC_RGB);
+  R = rTmp;
+  G = gTmp;
+  B = bTmp;
 }
 
  //=======================================================================

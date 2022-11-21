@@ -348,7 +348,7 @@ void XCAFDoc_Editor::CloneMetaData(const TDF_Label& theSrcLabel,
       {
         Handle(XCAFDoc_MaterialTool) aSrcMaterialTool = XCAFDoc_DocumentTool::MaterialTool(theSrcLabel);
         Handle(XCAFDoc_MaterialTool) aDstMaterialTool = XCAFDoc_DocumentTool::MaterialTool(theDstLabel);
-        double aDensity = 0.0;
+        Standard_Real aDensity = 0.0;
         Handle(TCollection_HAsciiString) aName, aDescription, aDensName, aDensValType;
         if (aSrcMaterialTool->GetMaterial(aMaterialL, aName, aDescription, aDensity, aDensName, aDensValType)
           && !aName.IsNull()
