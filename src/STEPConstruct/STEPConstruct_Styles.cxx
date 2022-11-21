@@ -681,7 +681,7 @@ Handle(StepVisual_Colour) STEPConstruct_Styles::EncodeColor(const Quantity_Color
   else {
     Handle(TCollection_HAsciiString) ColName = new TCollection_HAsciiString ( "" );
     Handle(StepVisual_ColourRgb) ColRGB = new StepVisual_ColourRgb;
-    NCollection_Vec3<Standard_Real> aColor_sRGB;
+    NCollection_Vec3<double> aColor_sRGB;
     C.Values (aColor_sRGB.r(), aColor_sRGB.g(), aColor_sRGB.b(), Quantity_TOC_sRGB);
     ColRGB->Init ( ColName, aColor_sRGB.r(), aColor_sRGB.g(), aColor_sRGB.b() );
     return ColRGB;
@@ -727,10 +727,16 @@ Handle(StepVisual_Colour) STEPConstruct_Styles::EncodeColor
   else {
     Handle(StepVisual_ColourRgb) ColRGB;
     gp_Pnt P;
-    C.Values (P.ChangeCoord().ChangeData()[0],
-              P.ChangeCoord().ChangeData()[1],
-              P.ChangeCoord().ChangeData()[2],
+    double helper[3];
+    C.Values (helper[0],
+              helper[1],
+              helper[2],
               Quantity_TOC_sRGB);
+    P.SetCoord(helper[0], helper[1], helper[2]);
+    //C.Values (P.ChangeCoord().ChangeData()[0],
+    //          P.ChangeCoord().ChangeData()[1],
+    //          P.ChangeCoord().ChangeData()[2],
+    //          Quantity_TOC_sRGB);
     if(ColRGBs.IsBound(P)) {
       ColRGB = Handle(StepVisual_ColourRgb)::DownCast(ColRGBs.Find(P));
       if(!ColRGB.IsNull()) return ColRGB;
@@ -757,11 +763,11 @@ Standard_Boolean STEPConstruct_Styles::DecodeColor (const Handle(StepVisual_Colo
       Standard_Real norm = rgb->Red();
       if(norm<rgb->Green()) norm = rgb->Green();
       if(norm<rgb->Blue()) norm = rgb->Blue();
-      Col.SetValues(rgb->Red()/norm, rgb->Green()/norm,
-                    rgb->Blue()/norm, Quantity_TOC_sRGB);
+      Col.SetValues((rgb->Red()/norm).getValue(), (rgb->Green()/norm).getValue(),
+                    (rgb->Blue()/norm).getValue(), Quantity_TOC_sRGB);
     }
     else
-      Col.SetValues(rgb->Red(), rgb->Green(), rgb->Blue(), Quantity_TOC_sRGB);
+      Col.SetValues(rgb->Red().getValue(), rgb->Green().getValue(), rgb->Blue().getValue(), Quantity_TOC_sRGB);
     return Standard_True;
   }
   else if ( Colour->IsKind (STANDARD_TYPE(StepVisual_PreDefinedColour)) ) {
