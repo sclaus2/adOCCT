@@ -52,7 +52,7 @@ Standard_Boolean BinMXCAFDoc_MaterialDriver::Paste(const BinObjMgt_Persistent& t
                                                  BinObjMgt_RRelocationTable& /*theRelocTable*/) const 
 {
   Handle(XCAFDoc_Material) anAtt = Handle(XCAFDoc_Material)::DownCast(theTarget);
-  Standard_Real aDensity;
+  double aDensity;
   TCollection_AsciiString aName, aDescr, aDensName, aDensValType;
   if ( !(theSource >> aName >> aDescr >> aDensity >> aDensName >> aDensValType) )
     return Standard_False;

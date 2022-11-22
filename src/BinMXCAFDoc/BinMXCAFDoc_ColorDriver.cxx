@@ -48,7 +48,7 @@ Standard_Boolean BinMXCAFDoc_ColorDriver::Paste(const BinObjMgt_Persistent& theS
 						BinObjMgt_RRelocationTable& /*theRelocTable*/) const 
 {
   Handle(XCAFDoc_Color) anAtt = Handle(XCAFDoc_Color)::DownCast(theTarget);
-  Standard_Real R, G, B;
+  double R, G, B;
   Standard_ShortReal alpha;
   Standard_Boolean isOk = theSource >> R >> G >> B;
   if(isOk) {

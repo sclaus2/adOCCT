@@ -138,7 +138,7 @@ Standard_Boolean BinMXCAFDoc_LocationDriver::Translate(const BinObjMgt_Persisten
       // read the datum's transformation
       gp_Trsf aTrsf;
 
-      Standard_Real aScaleFactor;
+      double aScaleFactor;
       theSource >> aScaleFactor;
       aTrsf.SetScaleFactor(aScaleFactor);
 
@@ -150,12 +150,12 @@ Standard_Boolean BinMXCAFDoc_LocationDriver::Translate(const BinObjMgt_Persisten
       gp_Mat& aMat = (gp_Mat&)aTrsf.HVectorialPart();
       for(R = 1; R <= 3; R++)
         for(C = 1; C <= 3; C++) {
-          Standard_Real aVal;
+          double aVal;
           theSource >> aVal;
           aMat.SetValue(R, C, aVal);
         }
 
-      Standard_Real x, y, z;
+      double x, y, z;
       theSource >> x >> y >> z;
       gp_XYZ& aLoc = (gp_XYZ&)aTrsf.TranslationPart();
       aLoc.SetX(x);
