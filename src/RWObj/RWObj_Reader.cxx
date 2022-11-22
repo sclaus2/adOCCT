@@ -82,7 +82,7 @@ namespace
   static bool isClockwisePolygon (const Handle(BRepMesh_DataStructureOfDelaun)& theMesh,
                                   const IMeshData::VectorOfInteger& theIndexes)
   {
-    double aPtSum = 0;
+    Standard_Real aPtSum = 0;
     const int aNbElemNodes = theIndexes.Size();
     for (int aNodeIter = theIndexes.Lower(); aNodeIter <= theIndexes.Upper(); ++aNodeIter)
     {
@@ -578,7 +578,7 @@ Standard_Integer RWObj_Reader::triangulatePolygon (const NCollection_Array1<Stan
   // map polygon onto plane
   gp_XYZ aXDir;
   {
-    const double aAbsXYZ[] = { Abs(aPolygonNorm.X()), Abs(aPolygonNorm.Y()), Abs(aPolygonNorm.Z()) };
+    const Standard_Real aAbsXYZ[] = { Abs(aPolygonNorm.X()), Abs(aPolygonNorm.Y()), Abs(aPolygonNorm.Z()) };
     Standard_Integer aMinI = (aAbsXYZ[0] < aAbsXYZ[1]) ? 0 : 1;
     aMinI = (aAbsXYZ[aMinI] < aAbsXYZ[2]) ? aMinI : 2;
     const Standard_Integer aI1 = (aMinI + 1) % 3 + 1;

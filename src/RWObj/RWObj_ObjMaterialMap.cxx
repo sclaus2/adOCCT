@@ -115,7 +115,7 @@ void RWObj_ObjMaterialMap::DefineMaterial (const XCAFPrs_Style& theStyle,
 
   if (hasMaterial)
   {
-    Graphic3d_Vec3d anAmb, aDiff, aSpec;
+    NCollection_Vec3<double> anAmb, aDiff, aSpec;
     anAmbQ.Values (anAmb.r(), anAmb.g(), anAmb.b(), Quantity_TOC_sRGB);
     aDiffQ.Values (aDiff.r(), aDiff.g(), aDiff.b(), Quantity_TOC_sRGB);
     aSpecQ.Values (aSpec.r(), aSpec.g(), aSpec.b(), Quantity_TOC_sRGB);
