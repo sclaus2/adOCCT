@@ -915,7 +915,7 @@ Handle(VrmlData_Appearance) VrmlData_ShapeConvert::makeMaterialFromStyle (const 
   }
   else
   {
-    NCollection_Vec3<Standard_Real> aColor_sRGB;
+    NCollection_Vec3<double> aColor_sRGB;
     aColor.GetRGB().Values (aColor_sRGB.r(), aColor_sRGB.g(), aColor_sRGB.b(), Quantity_TOC_sRGB);
     aNodeName.AssignCat(aColor_sRGB.r());
     aNodeName.AssignCat("_");

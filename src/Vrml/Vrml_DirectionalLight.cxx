@@ -104,7 +104,7 @@ Standard_OStream& Vrml_DirectionalLight::Print(Standard_OStream& anOStream) cons
       Abs(myColor.Green() - 1) > 0.0001 || 
       Abs(myColor.Blue() - 1) > 0.0001 )
    {
-    NCollection_Vec3<Standard_Real> aColor_sRGB;
+    NCollection_Vec3<double> aColor_sRGB;
     myColor.Values (aColor_sRGB.r(), aColor_sRGB.g(), aColor_sRGB.b(), Quantity_TOC_sRGB);
     anOStream  << "    color\t";
     anOStream << aColor_sRGB.r() << " " << aColor_sRGB.g() << " " << aColor_sRGB.b() << "\n";

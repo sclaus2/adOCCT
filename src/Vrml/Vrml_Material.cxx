@@ -138,7 +138,7 @@ Handle(TColStd_HArray1OfReal) Vrml_Material::Transparency() const
 
 Standard_OStream& Vrml_Material::Print(Standard_OStream& anOStream) const 
 {
- NCollection_Vec3<Standard_Real> aColor_sRGB;
+ NCollection_Vec3<double> aColor_sRGB;
  Standard_Integer i;
  anOStream  << "Material {\n";
 

@@ -51,7 +51,7 @@ class VrmlData_Color : public VrmlData_ArrayVec3d
    *   the color value for the index. If index irrelevant, returns (0., 0., 0.)
    */
   inline const Quantity_Color Color (const Standard_Integer i) const
-  { return Quantity_Color (Value(i).X(), Value(i).Y(), Value(i).Z(),
+  { return Quantity_Color (Value(i).X().getValue(), Value(i).Y().getValue(), Value(i).Z().getValue(),
                            Quantity_TOC_sRGB); }
 
   /**

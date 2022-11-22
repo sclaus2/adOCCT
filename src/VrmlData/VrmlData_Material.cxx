@@ -168,11 +168,11 @@ VrmlData_ErrorStatus VrmlData_Material::Read (VrmlData_InBuffer& theBuffer)
     myAmbientIntensity  = anIntensity[0];
     myShininess         = anIntensity[1];
     myTransparency      = anIntensity[2];
-    myDiffuseColor.SetValues  (aColor[0].X(), aColor[0].Y(), aColor[0].Z(),
+    myDiffuseColor.SetValues  (aColor[0].X().getValue(), aColor[0].Y().getValue(), aColor[0].Z().getValue(),
                                Quantity_TOC_sRGB);
-    myEmissiveColor.SetValues (aColor[1].X(), aColor[1].Y(), aColor[1].Z(),
+    myEmissiveColor.SetValues (aColor[1].X().getValue(), aColor[1].Y().getValue(), aColor[1].Z().getValue(),
                                Quantity_TOC_sRGB);
-    mySpecularColor.SetValues (aColor[2].X(), aColor[2].Y(), aColor[2].Z(),
+    mySpecularColor.SetValues (aColor[2].X().getValue(), aColor[2].Y().getValue(), aColor[2].Z().getValue(),
                                Quantity_TOC_sRGB);
   }
   return aStatus;
@@ -192,12 +192,12 @@ VrmlData_ErrorStatus VrmlData_Material::Write (const char * thePrefix) const
       OK (aStatus, aScene.WriteLine (thePrefix, header, GlobalIndent())))
   {
     char buf[128];
-    Standard_Real val[3];
+    double val[3];
     const Quantity_TypeOfColor bidType = Quantity_TOC_sRGB;
     const Standard_Real aConf (0.001 * Precision::Confusion());
 
     if (OK(aStatus) && fabs(myAmbientIntensity - 0.2) > aConf) {
-      Sprintf (buf, "%.6g", myAmbientIntensity);
+      Sprintf (buf, "%.6g", myAmbientIntensity.getValue());
       aStatus = aScene.WriteLine ("ambientIntensity ", buf);
     }
     if (OK(aStatus)) {
@@ -218,7 +218,7 @@ VrmlData_ErrorStatus VrmlData_Material::Write (const char * thePrefix) const
       }
     }
     if (OK(aStatus) && fabs(myShininess - 0.2) > aConf) {
-      Sprintf (buf, "%.6g", myShininess);
+      Sprintf (buf, "%.6g", myShininess.getValue());
       aStatus = aScene.WriteLine ("shininess        ", buf);
     }
     if (OK(aStatus)) {
@@ -229,7 +229,7 @@ VrmlData_ErrorStatus VrmlData_Material::Write (const char * thePrefix) const
       }
     }
     if (OK(aStatus) && myTransparency > aConf) {
-      Sprintf (buf, "%.6g", myTransparency);
+      Sprintf (buf, "%.6g", myTransparency.getValue());
       aStatus = aScene.WriteLine ("transparency     ", buf);
     }
 
@@ -251,7 +251,7 @@ Standard_Boolean VrmlData_Material::IsDefault () const
       fabs(myShininess - 0.2)        < aConf &&
       myTransparency                 < aConf)
   {
-    Standard_Real val[3][3];
+    double val[3][3];
     const Quantity_TypeOfColor bidType = Quantity_TOC_sRGB;
     myDiffuseColor.Values  (val[0][0], val[0][1], val[0][2], bidType);
     myEmissiveColor.Values (val[1][0], val[1][1], val[1][2], bidType);
