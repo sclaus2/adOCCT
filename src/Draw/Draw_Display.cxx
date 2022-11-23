@@ -54,7 +54,7 @@ void Draw_Display::DrawMarker (const gp_Pnt2d& pt,
   gp_Pnt2d p1 = pt;
   gp_Pnt2d p2 = p1;
   gp_Circ2d C;
-  Standard_Real Size = ((Standard_Real) ISize) / Zoom();
+  double Size = ((double) ISize) / Zoom();
   
   switch (S) {
     
@@ -121,7 +121,7 @@ void Draw_Display::DrawMarker (const gp_Pnt2d& pt,
 
 void Draw_Display::DrawMarker (const gp_Pnt& pt, 
 			       const Draw_MarkerShape S, 
-			       const Standard_Real Size)
+			       const double Size)
 {
   gp_Pnt2d p;
   Project(pt,p);
@@ -135,7 +135,7 @@ void Draw_Display::DrawMarker (const gp_Pnt& pt,
 
 void Draw_Display::DrawMarker (const gp_Pnt2d& pt, 
 			       const Draw_MarkerShape S, 
-			       const Standard_Real R)
+			       const double R)
 {
   switch (S) {
   case Draw_Square :

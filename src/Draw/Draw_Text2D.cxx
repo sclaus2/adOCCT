@@ -63,5 +63,5 @@ void Draw_Text2D::DrawOn(Draw_Display& dis) const
 {
   dis.SetColor(myColor);
   dis.DrawString(myPoint,myText.ToCString(),
-		 (Standard_Real)mymoveX, (Standard_Real)mymoveY);
+		 (double)mymoveX, (double)mymoveY);
 }

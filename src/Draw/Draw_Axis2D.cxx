@@ -72,8 +72,8 @@ void Draw_Axis2D::DrawOn (Draw_Display& dis) const
 {
   Draw_Bounds = Standard_False;
   dis.SetColor(myColor);
-  Standard_Real z = dis.Zoom();
-  z = (Standard_Real)mySize / z;
+  double z = dis.Zoom();
+  z = (double)mySize / z;
   gp_Pnt2d P,P0 = myAxes.Location();
   P = P0.Translated(gp_Vec2d(myAxes.XDirection()) * z);
   dis.Draw(P0,P);

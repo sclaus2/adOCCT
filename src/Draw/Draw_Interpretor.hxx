@@ -188,8 +188,8 @@ public:
   inline Draw_Interpretor& operator<< (const Standard_Integer theResult) { return Append (theResult); }
 
   //! Appends to the result
-  Standard_EXPORT Draw_Interpretor& Append (const Standard_Real theResult);
-  inline Draw_Interpretor& operator<< (const Standard_Real theResult) { return Append (theResult); }
+  Standard_EXPORT Draw_Interpretor& Append (const double theResult);
+  inline Draw_Interpretor& operator<< (const double theResult) { return Append (theResult); }
 
   //! Appends to the result
   Standard_EXPORT Draw_Interpretor& Append (const Standard_SStream& theResult);

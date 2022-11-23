@@ -56,7 +56,7 @@ public: //! @name Tcl variables management tools
   Standard_EXPORT static void Set (const Standard_CString Name, const Handle(Draw_Drawable3D)& D);
   
   //! Sets a numeric variable.
-  Standard_EXPORT static void Set (const Standard_CString Name, const Standard_Real val);
+  Standard_EXPORT static void Set (const Standard_CString Name, const double val);
 
   //! Returns main DRAW interpretor.
   Standard_EXPORT static Draw_Interpretor& GetInterpretor();
@@ -74,7 +74,7 @@ public: //! @name Tcl variables management tools
 
   //! Gets a   numeric  variable. Returns  True   if the
   //! variable exist.
-  Standard_EXPORT static Standard_Boolean Get (const Standard_CString Name, Standard_Real& val);
+  Standard_EXPORT static Standard_Boolean Get (const Standard_CString Name, double& val);
   
   //! Sets a TCL string variable
   Standard_EXPORT static void Set (const Standard_CString Name, const Standard_CString val);
@@ -86,13 +86,13 @@ public: //! @name argument parsing tools
   
   //! Converts numeric expression, that can involve DRAW
   //! variables, to real value.
-  Standard_EXPORT static Standard_Real Atof (const Standard_CString Name);
+  Standard_EXPORT static double Atof (const Standard_CString Name);
 
   //! Converts the numeric expression, that can involve DRAW variables, to a real value
   //! @param theExpressionString the strings that contains the expression involving DRAW variables to be parsed
   //! @param theParsedRealValue a real value that is a result of parsing
   //! @return true if parsing was successful, or false otherwise
-  Standard_EXPORT static bool ParseReal (const Standard_CString theExpressionString, Standard_Real& theParsedRealValue);
+  Standard_EXPORT static bool ParseReal (const Standard_CString theExpressionString, double& theParsedRealValue);
 
   //! Converts numeric expression, that can involve DRAW
   //! variables, to integer value.

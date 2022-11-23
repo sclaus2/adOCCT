@@ -44,12 +44,12 @@ extern Standard_Boolean Draw_BlackBackGround;
 #define DEFFOCAL 1.1
 #define DEFFRAME 10
 #define DEFGRIDSTEP 100.0
-static Standard_Real steprot = DEFROTATE;
-static Standard_Real steppan = DEFPANNING;
-static Standard_Real stepmagnify = DEFMAGNIFY;
-static Standard_Real stepfocal = DEFFOCAL;
-static Standard_Real frame = DEFFRAME;
-static Standard_Real DefaultGridStep = DEFGRIDSTEP ;
+static double steprot = DEFROTATE;
+static double steppan = DEFPANNING;
+static double stepmagnify = DEFMAGNIFY;
+static double stepfocal = DEFFOCAL;
+static double frame = DEFFRAME;
+static double DefaultGridStep = DEFGRIDSTEP ;
 
 #define FONTLENGTH
 static char Draw_fontname[FONTLENGTH]="Helvetica";
@@ -95,7 +95,7 @@ static Standard_Integer zoom(Draw_Interpretor& , Standard_Integer n, const char*
   // two argument -> First is the view
   Standard_Boolean z2d = !strcasecmp(a[0],"2dzoom");
   if (n == 2) {
-    Standard_Real z = Draw::Atof(a[1]);
+    double z = Draw::Atof(a[1]);
     for (Standard_Integer id = 0; id < MAXVIEW; id++) {
       if (dout.HasView(id)) {
 	if ((z2d && !dout.Is3D(id)) || (!z2d && dout.Is3D(id))) {
@@ -110,7 +110,7 @@ static Standard_Integer zoom(Draw_Interpretor& , Standard_Integer n, const char*
   else if (n >= 3) {
     Standard_Integer id = ViewId(a[1]);
     if (id < 0) return 1;
-    Standard_Real z = Draw::Atof(a[2]);
+    double z = Draw::Atof(a[2]);
     dout.SetZoom(id,z);
     dout.RepaintView(id);
     SetTitle(id);
@@ -144,7 +144,7 @@ static Standard_Integer wzoom(Draw_Interpretor& di, Standard_Integer argc, const
     dout.GetTrsf(id,T);
     T.Invert();
     P0.Transform(T);
-    Standard_Real z = dout.Zoom(id);
+    double z = dout.Zoom(id);
 
     dX1=X1;       dY1=Y1;
     dX1-=P0.X();  dY1-=P0.Y();
@@ -213,15 +213,15 @@ static Standard_Integer wzoom(Draw_Interpretor& di, Standard_Integer argc, const
   }
 
   if ((X1 == X2) || (Y1 == Y2)) return 0;
-  zx = (Standard_Real) Abs(X2-X1) / (Standard_Real) W;
-  zy = (Standard_Real) Abs(Y2-Y1) / (Standard_Real) H;
+  zx = (double) Abs(X2-X1) / (double) W;
+  zy = (double) Abs(Y2-Y1) / (double) H;
   if (zy > zx) zx = zy;
   zx = 1/zx;
   if (X2 < X1) X1 = X2;
   if (Y2 > Y1) Y1 = Y2;
   X1 = (Standard_Integer ) (X1*zx);
   Y1 = (Standard_Integer ) (Y1*zx);
-  dout.SetZoom(id,zx*dout.Zoom(id));
+  dout.SetZoom(id,zx.getValue()*dout.Zoom(id));
   dout.SetPan(id,-X1,-Y1);
   dout.RepaintView(id);
   SetTitle(id);
@@ -332,7 +332,7 @@ static Standard_Integer fit(Draw_Interpretor& , Standard_Integer n, const char**
 {
   Standard_Boolean f2d = !strcasecmp(a[0],"2dfit");
   if (n == 1) {
-    Standard_Real zoom = RealLast();
+    double zoom = RealLast();
     Standard_Integer id;
     for ( id = 0; id < MAXVIEW; id++) {
       if (dout.HasView(id)) {
@@ -381,7 +381,7 @@ static Standard_Integer focal(Draw_Interpretor& , Standard_Integer n, const char
     if (anid < 0) return 1;
     start = end = anid;
   }
-  Standard_Real df = 1.;
+  double df = 1.;
   if (!strcasecmp(a[0],"fu"))
     df = stepfocal;
   if (!strcasecmp(a[0],"fd"))
@@ -410,7 +410,7 @@ static Standard_Integer setfocal(Draw_Interpretor& di, Standard_Integer n, const
     }
   }
   else {
-    Standard_Real f = Draw::Atof(a[1]);
+    double f = Draw::Atof(a[1]);
     for (Standard_Integer id = 0; id < MAXVIEW; id++) {
       if (!strcasecmp(dout.GetType(id),"PERS"))
 	dout.SetFocal(id,f);
@@ -438,7 +438,7 @@ static Standard_Integer magnify(Draw_Interpretor& , Standard_Integer n, const ch
   Standard_Boolean v2d = (a[0][0] == '2');   // 2dmu, 2dmd
   const char* com = a[0];
   if (v2d) com += 2;
-  Standard_Real dz = 1.;
+  double dz = 1.;
   if (!strcasecmp(com,"mu"))      // mu, 2dmu
     dz = stepmagnify;
   else                            // md, 2dmd
@@ -477,7 +477,7 @@ static Standard_Integer rotate(Draw_Interpretor& , Standard_Integer n, const cha
   }
 
   gp_Dir2d D;
-  Standard_Real ang=0;
+  double ang=0;
   if (!strcasecmp(a[0],"u")) {
     D.SetCoord(1.,0.);
     ang = -steprot;
@@ -556,7 +556,7 @@ static Standard_Integer panning(Draw_Interpretor& , Standard_Integer n, const ch
 
 static Standard_Integer ptv(Draw_Interpretor& , Standard_Integer n, const char** a)
 {
-  Standard_Real X,Y,Z;
+  double X,Y,Z;
   Standard_Integer start = 0;
   Standard_Integer end = MAXVIEW-1;
   if (n < 4) return 1;
@@ -595,7 +595,7 @@ static Standard_Integer ptv(Draw_Interpretor& , Standard_Integer n, const char**
 
 static Standard_Integer dptv(Draw_Interpretor& , Standard_Integer n, const char** a)
 {
-  Standard_Real DX,DY,DZ;
+  double DX,DY,DZ;
   Standard_Integer start = 0;
   Standard_Integer end = MAXVIEW-1;
   if (n < 4) return 1;
@@ -665,10 +665,10 @@ static Standard_Integer hardcopy(Draw_Interpretor& ,
   // 28.4 pixels / mm.
   // format par default papier a4 210 297 mm avec marge de 3 mm.
 
-  Standard_Real rap = 28.4;
-  Standard_Real cad = 3;
-  Standard_Real dx  = 210;
-  Standard_Real dy  = 210 * Sqrt(2.);
+  double rap = 28.4;
+  double cad = 3;
+  double dx  = 210;
+  double dy  = 210 * Sqrt(2.);
 
   Standard_Integer iview = 1;
   const char* file = "a4.ps";
@@ -733,9 +733,9 @@ static Standard_Integer hardcopy(Draw_Interpretor& ,
   Standard_Integer vxmin,vymin,vxmax,vymax;
   if (dout.HasView(iview)) {
     dout.GetFrame(iview,vxmin,vymin,vxmax,vymax);
-    Standard_Real kx = (Standard_Real) (pxmax - pxmin) / (vxmax - vxmin);
-    Standard_Real ky = (Standard_Real) (pymax - pymin) / (vymax - vymin);
-    Standard_Real k = Min(Abs(kx),Abs(ky));
+    double kx = (double) (pxmax - pxmin) / (vxmax - vxmin);
+    double ky = (double) (pymax - pymin) / (vymax - vymin);
+    double k = Min(Abs(kx),Abs(ky));
     kx = (kx > 0) ? k : -k;
     ky = (ky > 0) ? k : -k;
     pxmax = (Standard_Integer )( pxmin + kx * (vxmax - vxmin));
@@ -854,7 +854,7 @@ static Standard_Integer xwd(Draw_Interpretor& , Standard_Integer n, const char**
 
 static Standard_Integer grid (Draw_Interpretor& , Standard_Integer NbArg, const char **Arg)
 {
-  Standard_Real StepX, StepY, StepZ ;
+  double StepX, StepY, StepZ ;
 
   switch (NbArg) {
     case 1 :
@@ -921,8 +921,8 @@ static Standard_Integer dtext(Draw_Interpretor& di, Standard_Integer n, const ch
     dout.Select(id,X,Y,b);
     if (b != 1)
       return 0;
-    Standard_Real z = dout.Zoom(id);
-    P.SetCoord((Standard_Real)X /z,(Standard_Real)Y /z,0);
+    double z = dout.Zoom(id);
+    P.SetCoord((double)X /z,(double)Y /z,0);
     gp_Trsf T;
     dout.GetTrsf(id,T);
     T.Invert();

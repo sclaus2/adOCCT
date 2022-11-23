@@ -130,7 +130,7 @@ static Standard_Integer chronom(Draw_Interpretor& di,
         }
         else if (anArg == "counter")
         {
-          Standard_Real aSeconds,aCPUtime;
+          double aSeconds,aCPUtime;
           Standard_Integer aMinutes, aHours;
           C->Timer().Show(aSeconds,aMinutes,aHours,aCPUtime);
           std::cout << "COUNTER " << a[++anIter] << ": " << aCPUtime << "\n";
@@ -200,7 +200,7 @@ static Standard_Integer dchronom(Draw_Interpretor& theDI,
         }
         else if (anArg == "counter")
         {
-          Standard_Real aSeconds,aCPUtime;
+          double aSeconds,aCPUtime;
           Standard_Integer aMinutes, aHours;
           C->Timer().Show(aSeconds,aMinutes,aHours,aCPUtime);
           theDI << "COUNTER " << a[++anIter] << ": " << aCPUtime << "\n";
@@ -888,7 +888,7 @@ static int dmeminfo (Draw_Interpretor& theDI,
 
   for (NCollection_Map<OSD_MemInfo::Counter>::Iterator aCountersIt (aCounters); aCountersIt.More(); aCountersIt.Next())
   {
-    theDI << Standard_Real (aMemInfo.Value (aCountersIt.Value())) << " ";
+    theDI << double (aMemInfo.Value (aCountersIt.Value())) << " ";
   }
   theDI << "\n";
   return 0;

@@ -55,10 +55,10 @@ public: // @name getters and setters
   void SetDy (const Standard_Integer theDy) { myDy = theDy; }
 
   //! Gets parameter of zoom.
-  Standard_Real GetZoom() const { return myZoom; }
+  double GetZoom() const { return myZoom; }
 
   //! Sets parameter of zoom.
-  void SetZoom (const Standard_Real theZoom) { myZoom = theZoom; }
+  void SetZoom (const double theZoom) { myZoom = theZoom; }
 
   //! Gets matrix of view.
   const gp_Trsf& GetMatrix() const { return myMatrix; }
@@ -67,10 +67,10 @@ public: // @name getters and setters
   void SetMatrix (const gp_Trsf& theMatrix) { myMatrix = theMatrix; }
 
   //! Gets focal distance.
-  Standard_Real GetFocalDistance() const { return myFocalDistance; }
+  double GetFocalDistance() const { return myFocalDistance; }
 
   //! Sets focal distance.
-  void SetFocalDistance (const Standard_Real theDistance) { myFocalDistance = theDistance; }
+  void SetFocalDistance (const double theDistance) { myFocalDistance = theDistance; }
 
   //! Returns type of view.
   const char* Type() { return myType; }
@@ -79,7 +79,7 @@ public: // @name getters and setters
   Standard_Boolean Is2D() const { return myIs2D; }
 
   //! Returns true value if current view in perspective mode.
-  Standard_Real IsPerspective() const { return myIsPers; }
+  double IsPerspective() const { return myIsPers; }
 
 public: //! @name view API
 
@@ -106,8 +106,8 @@ protected:
   char                   myType[5];
   Standard_Boolean       myIsPers;
   Standard_Boolean       myIs2D;
-  Standard_Real          myFocalDistance;
-  Standard_Real          myZoom;
+  double          myFocalDistance;
+  double          myZoom;
   gp_Trsf                myMatrix;
   Standard_Integer       myDx;
   Standard_Integer       myDy;

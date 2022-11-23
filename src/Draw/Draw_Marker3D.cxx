@@ -39,7 +39,7 @@ Draw_Marker3D::Draw_Marker3D(const gp_Pnt& P, const Draw_MarkerShape T,
 //=======================================================================
 
 Draw_Marker3D::Draw_Marker3D(const gp_Pnt& P, const Draw_MarkerShape T,
-			     const Draw_Color& C, const Standard_Real RSize) :
+			     const Draw_Color& C, const double RSize) :
        myPos(P), myCol(C), myTyp(T), mySiz(0), myRSiz(RSize), myIsRSiz(Standard_True)
 {
 }
@@ -71,9 +71,9 @@ gp_Pnt& Draw_Marker3D::ChangePos()
 //purpose  : 
 //=======================================================================
 
-Standard_Boolean Draw_Marker3D::PickReject(const Standard_Real,
-					   const Standard_Real,
-					   const Standard_Real) const
+Standard_Boolean Draw_Marker3D::PickReject(const double,
+					   const double,
+					   const double) const
 {
   return Standard_False;
 }

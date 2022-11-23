@@ -32,7 +32,7 @@ IMPLEMENT_STANDARD_RTTIEXT(Draw_ProgressIndicator,Message_ProgressIndicator)
 //function : Draw_ProgressIndicator
 //purpose  : 
 //=======================================================================
-Draw_ProgressIndicator::Draw_ProgressIndicator (const Draw_Interpretor &di, Standard_Real theUpdateThreshold)
+Draw_ProgressIndicator::Draw_ProgressIndicator (const Draw_Interpretor &di, double theUpdateThreshold)
 : myTclMode ( DefaultTclMode() ),
   myConsoleMode ( DefaultConsoleMode() ),
   myGraphMode ( DefaultGraphMode() ),
@@ -99,7 +99,7 @@ void Draw_ProgressIndicator::Show (const Message_ProgressScope& theScope, const 
   }
 
   // unless show is forced, show updated state only if at least 1% progress has been reached since the last update
-  Standard_Real aPosition = GetPosition();
+  double aPosition = GetPosition().getValue();
   if ( ! force && (1. - aPosition) > Precision::Confusion() && Abs (aPosition - myLastPosition) < myUpdateThreshold)
     return; // return if update interval has not elapsed
 
@@ -120,7 +120,7 @@ void Draw_ProgressIndicator::Show (const Message_ProgressScope& theScope, const 
     aText << " " << aPS->Name() << ": ";
 
     // print progress info differently for finite and infinite scopes
-    Standard_Real aVal = aPS->Value();
+    double aVal = aPS->Value().getValue();
     if (aPS->IsInfinite())
     {
       if (Precision::IsInfinite(aVal))

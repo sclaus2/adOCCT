@@ -73,9 +73,9 @@ Draw_Drawable3D::Draw_Drawable3D()
 //function : PickReject
 //purpose  :
 //=======================================================================
-Standard_Boolean Draw_Drawable3D::PickReject(const Standard_Real X,
-					     const Standard_Real Y,
-					     const Standard_Real Prec) const
+Standard_Boolean Draw_Drawable3D::PickReject(const double X,
+					     const double Y,
+					     const double Prec) const
 {
   return ((X+Prec < myXmin) || (X-Prec > myXmax) ||
 	  (Y+Prec < myYmin) || (Y-Prec > myYmax));

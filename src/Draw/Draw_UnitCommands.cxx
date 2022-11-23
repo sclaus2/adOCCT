@@ -89,10 +89,10 @@ static Standard_Integer converttoSI
     return 1;
   }
 
-  Standard_Real aData = Draw::Atof(argv[1]);
+  double aData = Draw::Atof(argv[1]);
   Standard_CString aUnit = argv[2];
 
-  Standard_Real res = UnitsAPI::AnyToSI(aData,aUnit);
+  double res = UnitsAPI::AnyToSI(aData,aUnit);
   di<<"result: "<<res<<"\n";
 
   return 0;
@@ -111,11 +111,11 @@ static Standard_Integer converttoMDTV
     return 1;
   }
 
-  Standard_Real aData = Draw::Atof(argv[1]);
+  double aData = Draw::Atof(argv[1]);
   Standard_CString aUnit = argv[2];
 
   UnitsAPI::SetLocalSystem(UnitsAPI_MDTV);
-  Standard_Real res = UnitsAPI::AnyToLS(aData,aUnit);
+  double res = UnitsAPI::AnyToLS(aData,aUnit);
   di<<"result: "<<res<<"\n";
   
   return 0;

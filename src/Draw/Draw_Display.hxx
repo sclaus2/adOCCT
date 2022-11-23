@@ -85,17 +85,17 @@ public:
   
   Standard_EXPORT void DrawMarker (const gp_Pnt2d& pt, const Draw_MarkerShape S, const Standard_Integer Size = 5);
   
-  Standard_EXPORT void DrawMarker (const gp_Pnt& pt, const Draw_MarkerShape S, const Standard_Real Size);
+  Standard_EXPORT void DrawMarker (const gp_Pnt& pt, const Draw_MarkerShape S, const double Size);
   
-  Standard_EXPORT void DrawMarker (const gp_Pnt2d& pt, const Draw_MarkerShape S, const Standard_Real Size);
+  Standard_EXPORT void DrawMarker (const gp_Pnt2d& pt, const Draw_MarkerShape S, const double Size);
   
   Standard_EXPORT void DrawString (const gp_Pnt& pt, const Standard_CString S);
   
   Standard_EXPORT void DrawString (const gp_Pnt2d& pt, const Standard_CString S);
   
-  Standard_EXPORT void DrawString (const gp_Pnt& pt, const Standard_CString S, const Standard_Real moveX, const Standard_Real moveY);
+  Standard_EXPORT void DrawString (const gp_Pnt& pt, const Standard_CString S, const double moveX, const double moveY);
   
-  Standard_EXPORT void DrawString (const gp_Pnt2d& pt, const Standard_CString S, const Standard_Real moveX, const Standard_Real moveY);
+  Standard_EXPORT void DrawString (const gp_Pnt2d& pt, const Standard_CString S, const double moveX, const double moveY);
   
   //! Returns the 2D projection of a 3D point.
   Standard_EXPORT gp_Pnt2d Project (const gp_Pnt& pt) const;
@@ -104,7 +104,7 @@ public:
   Standard_EXPORT void Project (const gp_Pnt& pt, gp_Pnt2d& pt2d) const;
   
   //! Returns the current Zoom value.
-  Standard_EXPORT Standard_Real Zoom() const;
+  Standard_EXPORT double Zoom() const;
   
   //! Returns the   identifier  of the  view   where the
   //! display is drawing.

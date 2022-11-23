@@ -494,7 +494,7 @@ static Standard_Integer set(Draw_Interpretor& di, Standard_Integer n, const char
 {
   if (n < 2) return 1;
   Standard_Integer i = 1;
-  Standard_Real val=0;
+  double val=0;
   for (i = 1; i < n; i += 2) {
     val = 0;
     if (i+1 < n) val = Draw::Atof(a[i+1]);
@@ -594,16 +594,16 @@ static Standard_Integer pick(Draw_Interpretor& , Standard_Integer n, const char*
   Standard_Boolean wait = (n == 6);
   if (!wait) id = Draw::Atoi(a[1]);
   dout.Select(id,X,Y,b,wait);
-  Standard_Real z = dout.Zoom(id);
+  double z = dout.Zoom(id);
   gp_Pnt P((Standard_Real)X /z,(Standard_Real)Y /z,0);
   gp_Trsf T;
   dout.GetTrsf(id,T);
   T.Invert();
   P.Transform(T);
   Draw::Set(a[1],id);
-  Draw::Set(a[2],P.X());
-  Draw::Set(a[3],P.Y());
-  Draw::Set(a[4],P.Z());
+  Draw::Set(a[2],P.X().getValue());
+  Draw::Set(a[3],P.Y().getValue());
+  Draw::Set(a[4],P.Z().getValue());
   Draw::Set(a[5],b);
   return 0;
 }
@@ -624,15 +624,15 @@ static Standard_Integer lastrep(Draw_Interpretor& di, Standard_Integer n, const 
     Draw::Set(a[3],p_Y);
   }
   else if (n == 6) {
-    Standard_Real z = dout.Zoom(p_id);
+    double z = dout.Zoom(p_id);
     gp_Pnt P((Standard_Real)p_X /z,(Standard_Real)p_Y /z,0);
     gp_Trsf T;
     dout.GetTrsf(p_id,T);
     T.Invert();
     P.Transform(T);
-    Draw::Set(a[2],P.X());
-    Draw::Set(a[3],P.Y());
-    Draw::Set(a[4],P.Z());
+    Draw::Set(a[2],P.X().getValue());
+    Draw::Set(a[3],P.Y().getValue());
+    Draw::Set(a[4],P.Z().getValue());
   }
   else {
     di << "Too many args";
@@ -742,7 +742,7 @@ void Draw::Set(const Standard_CString name,
 //function : Set
 //purpose  : 
 //=======================================================================
-void Draw::Set(const Standard_CString theName, const Standard_Real theValue)
+void Draw::Set(const Standard_CString theName, const double theValue)
 {
   if (Handle(Draw_Number) aNumber = Handle(Draw_Number)::DownCast (Draw::GetExisting (theName)))
   {
@@ -793,7 +793,7 @@ Handle(Draw_Drawable3D) Draw::getDrawable (Standard_CString& theName,
 //purpose  : 
 //=======================================================================
 Standard_Boolean Draw::Get (const Standard_CString theName,
-                            Standard_Real& theValue)
+                            double& theValue)
 {
   if (Handle(Draw_Number) aNumber = Handle(Draw_Number)::DownCast (Draw::GetExisting (theName)))
   {
@@ -836,7 +836,7 @@ void  Draw::Repaint()
 static Standard_Integer trigo (Draw_Interpretor& di, Standard_Integer , const char** a)
 {
 
-  Standard_Real x = Draw::Atof(a[1]);
+  double x = Draw::Atof(a[1]);
 
   if (!strcasecmp(a[0],"cos"))
     di << Cos(x);
@@ -871,12 +871,12 @@ static Standard_Boolean Alphabetic(char c)
   return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c == '_'));
 }
 
-static Standard_Real Parse(char*&);
+static double Parse(char*&);
 
-static Standard_Real ParseValue (char*& theName)
+static double ParseValue (char*& theName)
 {
   while (*theName == ' ' || *theName == '\t') { ++theName; }
-  Standard_Real x = 0;
+  double x = 0;
   switch (*theName)
   {
     case '\0':
@@ -1025,9 +1025,9 @@ static Standard_Real ParseValue (char*& theName)
 }
 
 
-static Standard_Real ParseFactor(char*& name)
+static double ParseFactor(char*& name)
 {
-  Standard_Real x = ParseValue(name);
+  double x = ParseValue(name);
 
   for(;;) {
     char c = *name;
@@ -1051,9 +1051,9 @@ static Standard_Real ParseFactor(char*& name)
   }
 }
 
-static Standard_Real Parse(char*& name)
+static double Parse(char*& name)
 {
-  Standard_Real x = ParseFactor(name);
+  double x = ParseFactor(name);
 
   for(;;) {
     char c = *name;
@@ -1081,14 +1081,14 @@ static Standard_Real Parse(char*& name)
 // function : Atof
 // purpose  :
 //=======================================================================
-Standard_Real Draw::Atof(const Standard_CString theName)
+double Draw::Atof(const Standard_CString theName)
 {
   // copy the string
   NCollection_Array1<char> aBuff (0, (Standard_Integer )strlen (theName));
   char* n = &aBuff.ChangeFirst();
   strcpy (n, theName);
   Draw_ParseFailed = Standard_False;
-  Standard_Real x = Parse(n);
+  double x = Parse(n);
   while ((*n == ' ') || (*n == '\t')) n++;
   if (*n) Draw_ParseFailed = Standard_True;
   return x;
@@ -1098,9 +1098,9 @@ Standard_Real Draw::Atof(const Standard_CString theName)
 // function : ParseReal
 // purpose  :
 //=======================================================================
-bool Draw::ParseReal (const Standard_CString theExpressionString, Standard_Real& theParsedRealValue)
+bool Draw::ParseReal (const Standard_CString theExpressionString, double& theParsedRealValue)
 {
-  const Standard_Real aParsedRealValue = Atof (theExpressionString);
+  const double aParsedRealValue = Atof (theExpressionString);
   if (Draw_ParseFailed)
   {
     Draw_ParseFailed = Standard_False;
@@ -1125,13 +1125,13 @@ Standard_Integer Draw::Atoi(const Standard_CString name)
 //=======================================================================
 bool Draw::ParseInteger (const Standard_CString theExpressionString, Standard_Integer& theParsedIntegerValue)
 {
-  Standard_Real aParsedRealValue = 0.0;
+  double aParsedRealValue = 0.0;
   if (!ParseReal (theExpressionString, aParsedRealValue))
   {
     return false;
   }
   const Standard_Integer aParsedIntegerValue = static_cast<Standard_Integer> (aParsedRealValue);
-  if (static_cast<Standard_Real> (aParsedIntegerValue) != aParsedRealValue)
+  if (static_cast<double> (aParsedIntegerValue) != aParsedRealValue)
   {
     return false;
   }

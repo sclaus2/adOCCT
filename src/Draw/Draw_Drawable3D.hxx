@@ -60,7 +60,7 @@ public:
   Standard_EXPORT virtual void DrawOn (Draw_Display& dis) const = 0;
   
   //! Returns True if the pick is outside the box
-  Standard_EXPORT virtual Standard_Boolean PickReject (const Standard_Real X, const Standard_Real Y, const Standard_Real Prec) const;
+  Standard_EXPORT virtual Standard_Boolean PickReject (const double X, const double Y, const double Prec) const;
   
   //! For variable copy.
   Standard_EXPORT virtual Handle(Draw_Drawable3D) Copy() const;
@@ -80,8 +80,8 @@ public:
   //! Return TRUE if object can be displayed.
   virtual bool IsDisplayable() const { return true; }
 
-  void SetBounds (const Standard_Real theXMin, const Standard_Real theXMax,
-                  const Standard_Real theYMin, const Standard_Real theYMax)
+  void SetBounds (const double theXMin, const double theXMax,
+                  const double theYMin, const double theYMax)
   {
     myXmin = theXMin;
     myXmax = theXMax;
@@ -89,8 +89,8 @@ public:
     myYmax = theYMax;
   }
 
-  void Bounds (Standard_Real& theXMin, Standard_Real& theXMax,
-               Standard_Real& theYMin, Standard_Real& theYMax) const
+  void Bounds (double& theXMin, double& theXMax,
+               double& theYMin, double& theYMax) const
   {
     theXMin = myXmin;
     theXMax = myXmax;
@@ -116,10 +116,10 @@ protected:
 
 private:
 
-  Standard_Real myXmin;
-  Standard_Real myXmax;
-  Standard_Real myYmin;
-  Standard_Real myYmax;
+  double myXmin;
+  double myXmax;
+  double myYmin;
+  double myYmax;
   Standard_CString myName;
   Standard_Boolean isVisible;
   Standard_Boolean isProtected;

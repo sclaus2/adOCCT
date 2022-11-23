@@ -28,11 +28,11 @@ class Draw_Number : public Draw_Drawable3D
   Draw_Drawable3D_FACTORY
 public:
 
-  Standard_EXPORT Draw_Number (const Standard_Real theV);
+  Standard_EXPORT Draw_Number (const double theV);
 
-  Standard_Real Value() const { return myValue; }
+  double Value() const { return myValue; }
 
-  void Value (const Standard_Real theV) { myValue = theV; }
+  void Value (const double theV) { myValue = theV; }
   
   //! Does nothing,
   Standard_EXPORT virtual void DrawOn (Draw_Display& dis) const Standard_OVERRIDE;
@@ -54,7 +54,7 @@ public:
 
 private:
 
-  Standard_Real myValue;
+  double myValue;
 
 };
 

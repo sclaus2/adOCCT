@@ -447,7 +447,7 @@ Draw_Interpretor& Draw_Interpretor::Append(const Standard_Integer i)
 //purpose  : 
 //=======================================================================
 
-Draw_Interpretor& Draw_Interpretor::Append(const Standard_Real r)
+Draw_Interpretor& Draw_Interpretor::Append(const double r)
 {
   char s[100];
   Sprintf(s,"%.17g",r);

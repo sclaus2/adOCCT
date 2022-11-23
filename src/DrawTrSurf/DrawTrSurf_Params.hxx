@@ -33,7 +33,7 @@ public:
   Standard_Boolean IsShowPoles;
   Standard_Boolean IsShowKnots;
   Standard_Boolean NeedKnotsIsos;
-  Standard_Real    Deflection;
+  double    Deflection;
   Standard_Integer KnotsSize;
   Standard_Integer Discret;
   Standard_Integer DrawMode;

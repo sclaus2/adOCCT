@@ -42,7 +42,7 @@ public:
   
   Standard_EXPORT Draw_Marker3D(const gp_Pnt& P, const Draw_MarkerShape T, const Draw_Color& C, const Standard_Integer ISize = 5);
   
-  Standard_EXPORT Draw_Marker3D(const gp_Pnt& P, const Draw_MarkerShape T, const Draw_Color& C, const Standard_Real RSize);
+  Standard_EXPORT Draw_Marker3D(const gp_Pnt& P, const Draw_MarkerShape T, const Draw_Color& C, const double RSize);
   
   //! myPos field
   Standard_EXPORT gp_Pnt& ChangePos();
@@ -50,7 +50,7 @@ public:
   Standard_EXPORT void DrawOn (Draw_Display& dis) const Standard_OVERRIDE;
   
   //! Returns always false
-  Standard_EXPORT virtual Standard_Boolean PickReject (const Standard_Real X, const Standard_Real Y, const Standard_Real Prec) const Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Boolean PickReject (const double X, const double Y, const double Prec) const Standard_OVERRIDE;
 
 
 
@@ -69,7 +69,7 @@ private:
   Draw_Color myCol;
   Draw_MarkerShape myTyp;
   Standard_Integer mySiz;
-  Standard_Real myRSiz;
+  double myRSiz;
   Standard_Boolean myIsRSiz;
 
 

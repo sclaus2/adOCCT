@@ -39,7 +39,7 @@ Draw_Marker2D::Draw_Marker2D(const gp_Pnt2d& P, const Draw_MarkerShape T,
 //=======================================================================
 
 Draw_Marker2D::Draw_Marker2D(const gp_Pnt2d& P, const Draw_MarkerShape T,
-			     const Draw_Color& C, const Standard_Real /*RSize*/) :
+			     const Draw_Color& C, const double /*RSize*/) :
        myPos(P), myCol(C), myTyp(T), mySiz(0)
 {
 }
@@ -70,9 +70,9 @@ gp_Pnt2d& Draw_Marker2D::ChangePos()
 //purpose  : 
 //=======================================================================
 
-Standard_Boolean Draw_Marker2D::PickReject(const Standard_Real,
-                                           const Standard_Real,
-                                           const Standard_Real) const
+Standard_Boolean Draw_Marker2D::PickReject(const double,
+                                           const double,
+                                           const double) const
 {
   return Standard_False;
 }

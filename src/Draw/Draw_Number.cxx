@@ -24,7 +24,7 @@ IMPLEMENT_STANDARD_RTTIEXT(Draw_Number,Draw_Drawable3D)
 //function : Draw_Number
 //purpose  :
 //=======================================================================
-Draw_Number::Draw_Number (const Standard_Real theV)
+Draw_Number::Draw_Number (const double theV)
 : myValue (theV)
 {
   //
@@ -78,7 +78,7 @@ void Draw_Number::Save (Standard_OStream& theStream) const
 //=======================================================================
 Handle(Draw_Drawable3D) Draw_Number::Restore (Standard_IStream& theStream)
 {
-  Standard_Real aVal = RealLast();
+  double aVal = RealLast();
   theStream >> aVal;
   Handle(Draw_Number) aNumb = new Draw_Number (aVal);
   return aNumb;

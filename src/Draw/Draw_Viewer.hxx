@@ -63,19 +63,19 @@ class Draw_Viewer {
 				 const char* name);
   Standard_EXPORT void   ResetView   (const Standard_Integer id);
   Standard_EXPORT void   SetZoom     (const Standard_Integer id,
-				 const Standard_Real z);
+				 const double z);
   Standard_EXPORT void   RotateView  (const Standard_Integer id,
 				 const gp_Dir2d&,
-				 const Standard_Real);
+				 const double);
   Standard_EXPORT void   RotateView  (const Standard_Integer id,
 				 const gp_Pnt&,
 				 const gp_Dir&,
-				 const Standard_Real);
+				 const double);
   Standard_EXPORT void   SetFocal    (const Standard_Integer id,
-				 const Standard_Real FocalDist);
+				 const double FocalDist);
   Standard_EXPORT char*  GetType     (const Standard_Integer id) const;
-  Standard_EXPORT Standard_Real   Zoom        (const Standard_Integer id) const;
-  Standard_EXPORT Standard_Real   Focal       (const Standard_Integer id) const;
+  Standard_EXPORT double   Zoom        (const Standard_Integer id) const;
+  Standard_EXPORT double   Focal       (const Standard_Integer id) const;
   Standard_EXPORT void   SetTrsf     (const Standard_Integer id,
 				 gp_Trsf& T);
   Standard_EXPORT void   GetTrsf     (const Standard_Integer id,
@@ -117,7 +117,7 @@ class Draw_Viewer {
 				    std::ostream& sortie) const;
   Standard_EXPORT void   PostColor(const Standard_Integer icol,
 			      const Standard_Integer width,
-			      const Standard_Real    gray);
+			      const double    gray);
   Standard_EXPORT Standard_Boolean SaveView(const Standard_Integer id, const char* filename);
   Standard_EXPORT void   RepaintAll  () const;
   Standard_EXPORT void   Repaint2D  () const;
@@ -151,7 +151,7 @@ class Draw_Viewer {
 				   Handle(Draw_Drawable3D)& D,
 				   const Standard_Integer First = 0) const; // search after this drawable
   
-  Standard_EXPORT void LastPick(gp_Pnt& P1, gp_Pnt& P2, Standard_Real& Param);
+  Standard_EXPORT void LastPick(gp_Pnt& P1, gp_Pnt& P2, double& Param);
   // returns the extremities and parameter of the last picked segment
   
   Standard_EXPORT ~Draw_Viewer();

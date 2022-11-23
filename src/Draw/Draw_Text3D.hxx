@@ -41,7 +41,7 @@ public:
   
   Standard_EXPORT Draw_Text3D(const gp_Pnt& p, const Standard_CString T, const Draw_Color& col);
   
-  Standard_EXPORT Draw_Text3D(const gp_Pnt& p, const Standard_CString T, const Draw_Color& col, const Standard_Real moveX, const Standard_Real moveY);
+  Standard_EXPORT Draw_Text3D(const gp_Pnt& p, const Standard_CString T, const Draw_Color& col, const double moveX, const double moveY);
   
   Standard_EXPORT void SetPnt (const gp_Pnt& p);
   
@@ -63,8 +63,8 @@ private:
   gp_Pnt myPoint;
   Draw_Color myColor;
   TCollection_AsciiString myText;
-  Standard_Real mymoveX;
-  Standard_Real mymoveY;
+  double mymoveX;
+  double mymoveY;
 
 
 };

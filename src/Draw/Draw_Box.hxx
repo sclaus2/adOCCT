@@ -46,19 +46,19 @@ public:
 protected:
 
   //! Converts the point (theX, theY, theZ) in local coordinate system to WCS.
-  void ToWCS(const Standard_Real theX, 
-             const Standard_Real theY,
-             const Standard_Real theZ,
+  void ToWCS(const double theX,
+             const double theY,
+             const double theZ,
              gp_Pnt& theP) const;
 
   //! Moves the point thePt along X-direction of myOBB on the distance theShift.
-  void MoveX(const Standard_Real theShift, gp_Pnt& thePt) const;
+  void MoveX(const double theShift, gp_Pnt& thePt) const;
 
   //! Moves the point thePt along Y-direction of myOBB on the distance theShift.
-  void MoveY(const Standard_Real theShift, gp_Pnt& thePt) const;
+  void MoveY(const double theShift, gp_Pnt& thePt) const;
 
   //! Moves the point thePt along Z-direction of myOBB on the distance theShift.
-  void MoveZ(const Standard_Real theShift, gp_Pnt& thePt) const;
+  void MoveZ(const double theShift, gp_Pnt& thePt) const;
 
 private:
 

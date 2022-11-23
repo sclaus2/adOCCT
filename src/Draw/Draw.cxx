@@ -758,7 +758,7 @@ namespace
   static bool parseNumericalColorComponent (const Standard_CString theColorComponentString,
                                             Standard_ShortReal&    theRealColorComponent)
   {
-    Standard_Real aRealColorComponent;
+    double aRealColorComponent;
     if (!Draw::ParseReal (theColorComponentString, aRealColorComponent))
     {
       return false;
