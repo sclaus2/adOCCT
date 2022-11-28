@@ -293,7 +293,7 @@ static Standard_Integer triarea (Draw_Interpretor& di, int n, const char ** a)
   }
 
   // compute area by triangles
-  double aTriArea=0;
+  Standard_Real aTriArea=0;
   if (hasPoly) {
     for (i=1; i <= aMapF.Extent(); i++) {
       const TopoDS_Face& aFace = TopoDS::Face(aMapF(i));
@@ -313,7 +313,7 @@ static Standard_Integer triarea (Draw_Interpretor& di, int n, const char ** a)
         const gp_Pnt p3 = aPoly->Node (n3);
         gp_Vec v1(p1, p2);
         gp_Vec v2(p1, p3);
-        double ar = v1.CrossMagnitude(v2);
+        Standard_Real ar = v1.CrossMagnitude(v2);
         aTriArea += ar;
       }
     }
@@ -326,9 +326,9 @@ static Standard_Integer triarea (Draw_Interpretor& di, int n, const char ** a)
     BRepGProp::SurfaceProperties(shape, props);
   else
     BRepGProp::SurfaceProperties(shape, props, anEps);
-  double aGeomArea = props.Mass();
+  Standard_Real aGeomArea = props.Mass();
 
-  di << aTriArea << " " << aGeomArea << "\n";
+  di << aTriArea << " " << aGeomArea.getValue() << "\n";
   return 0;
 }
 

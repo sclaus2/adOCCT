@@ -1046,23 +1046,23 @@ static Standard_Integer value (Draw_Interpretor& ,
       if (n < 12) return 1;
       gp_Vec D2;
       GC->D2(U,P,D1,D2);
-      Draw::Set(a[9] ,D2.X());
-      Draw::Set(a[10],D2.Y());
-      Draw::Set(a[11],D2.Z());
+      Draw::Set(a[9] ,D2.X().getValue());
+      Draw::Set(a[10],D2.Y().getValue());
+      Draw::Set(a[11],D2.Z().getValue());
     }
     else 
       GC->D1(U,P,D1);
-    Draw::Set(a[6],D1.X());
-    Draw::Set(a[7],D1.Y());
-    Draw::Set(a[8],D1.Z());
+    Draw::Set(a[6],D1.X().getValue());
+    Draw::Set(a[7],D1.Y().getValue());
+    Draw::Set(a[8],D1.Z().getValue());
   }
   else 
     GC->D0(U,P);
 
   if ( n > 3) {
-    Draw::Set(a[3],P.X());
-    Draw::Set(a[4],P.Y());
-    Draw::Set(a[5],P.Z());
+    Draw::Set(a[3],P.X().getValue());
+    Draw::Set(a[4],P.Y().getValue());
+    Draw::Set(a[5],P.Z().getValue());
   }
   if ( DrawPoint) {
     DrawTrSurf::Set(a[n],P);
@@ -1098,20 +1098,20 @@ static Standard_Integer value2d (Draw_Interpretor& ,
       if (n < 9) return 1;
       gp_Vec2d D2;
       GC->D2(U,P,D1,D2);
-      Draw::Set(a[7] ,D2.X());
-      Draw::Set(a[8],D2.Y());
+      Draw::Set(a[7] ,D2.X().getValue());
+      Draw::Set(a[8],D2.Y().getValue());
     }
     else 
       GC->D1(U,P,D1);
-    Draw::Set(a[5],D1.X());
-    Draw::Set(a[6],D1.Y());
+    Draw::Set(a[5],D1.X().getValue());
+    Draw::Set(a[6],D1.Y().getValue());
   }
   else 
     GC->D0(U,P);
 
   if ( n > 3 ) {
-    Draw::Set(a[3],P.X());
-    Draw::Set(a[4],P.Y());
+    Draw::Set(a[3],P.X().getValue());
+    Draw::Set(a[4],P.Y().getValue());
   }
   if ( DrawPoint ) {
     DrawTrSurf::Set(a[n], P);
@@ -1211,15 +1211,15 @@ static Standard_Integer coord(Draw_Interpretor&,
   if ( n == 4) {
     gp_Pnt2d P;
     if ( !DrawTrSurf::GetPoint2d(a[1],P)) return 1;
-    Draw::Set(a[2],P.X());
-    Draw::Set(a[3],P.Y());
+    Draw::Set(a[2],P.X().getValue());
+    Draw::Set(a[3],P.Y().getValue());
   }
   else if ( n == 5) {
     gp_Pnt  P;
     if ( !DrawTrSurf::GetPoint(a[1],P)) return 1;
-    Draw::Set(a[2],P.X());
-    Draw::Set(a[3],P.Y());
-    Draw::Set(a[4],P.Z());
+    Draw::Set(a[2],P.X().getValue());
+    Draw::Set(a[3],P.Y().getValue());
+    Draw::Set(a[4],P.Z().getValue());
   }
   else 
     return 1;
@@ -1248,10 +1248,10 @@ static Standard_Integer minmaxcurandinf(Draw_Interpretor& di,
       Couleur = Draw_vert;
       if (Sommets.Type(i) == LProp_MinCur) {
 	Couleur = Draw_orange;
-	di << "  Maximum of curvature at U ="<<Sommets.Parameter(i)<<"\n";
+	di << "  Maximum of curvature at U ="<<Sommets.Parameter(i).getValue()<<"\n";
       }
       else {
-	di << "  Minimum of curvature at U ="<<Sommets.Parameter(i)<<"\n";
+	di << "  Minimum of curvature at U ="<<Sommets.Parameter(i).getValue()<<"\n";
       }
       gp_Pnt2d P = C1->Value(Sommets.Parameter(i));
       Handle(Draw_Marker2D) dr = new Draw_Marker2D(P,Draw_Plus,Couleur); 
@@ -1268,7 +1268,7 @@ static Standard_Integer minmaxcurandinf(Draw_Interpretor& di,
       gp_Pnt2d P = C1->Value(Sommets2.Parameter(i));
       Handle(Draw_Marker2D) dr = new Draw_Marker2D(P,Draw_Plus,Draw_bleu); 
       dout << dr;
-      di << "  Inflexion at U ="<<Sommets2.Parameter(i)<<"\n";
+      di << "  Inflexion at U ="<<Sommets2.Parameter(i).getValue()<<"\n";
     }
     dout.Flush();
   }
@@ -1399,7 +1399,7 @@ static Standard_Integer localprop(Draw_Interpretor& di,
     dout << drp;
     if (Prop.IsTangentDefined()) {
       Standard_Real K = Prop.Curvature();
-      di <<" Curvature : "<<K<<"\n";
+      di <<" Curvature : "<<K.getValue()<<"\n";
 
       if (Abs(K) > Precision::Confusion()) {
 	Standard_Real R = 1/Abs(K);
@@ -1432,7 +1432,7 @@ static Standard_Integer localprop(Draw_Interpretor& di,
       Standard_Real K = Prop.Curvature();
       gp_Pnt2d      Center;
 
-      di <<" Curvature : "<<K<<"\n";
+      di <<" Curvature : "<<K.getValue()<<"\n";
 
       if (Abs(K) > Precision::Confusion()) {
 	Standard_Real R = 1/Abs(K);
@@ -1809,7 +1809,7 @@ static Standard_Integer fitcurve(Draw_Interpretor& di, Standard_Integer n, const
   Handle(Geom_BSplineCurve) TheCurve = new Geom_BSplineCurve(NewPoles, NewKnots, NewMults, Conv.Degree());
 
   DrawTrSurf::Set(a[1], TheCurve);
-  di << a[1] << ": tolreached = " << tolreached << "\n";
+  di << a[1] << ": tolreached = " << tolreached.getValue() << "\n";
 
   return 0;
 
@@ -1981,7 +1981,7 @@ static Standard_Integer length(Draw_Interpretor& di,
     return 1;
   }
 
-  di << "The length " << a[1] << " is " << L << "\n";
+  di << "The length " << a[1] << " is " << L.getValue() << "\n";
   return 0;
 }
 

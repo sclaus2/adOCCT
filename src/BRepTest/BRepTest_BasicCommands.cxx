@@ -764,12 +764,12 @@ static Standard_Integer BoundBox(Draw_Interpretor& theDI,
       // save DRAW variables
       if (!anOutVars[0].IsEmpty())
       {
-        Draw::Set (anOutVars[0].ToCString(), aMin.X());
-        Draw::Set (anOutVars[1].ToCString(), aMin.Y());
-        Draw::Set (anOutVars[2].ToCString(), aMin.Z());
-        Draw::Set (anOutVars[3].ToCString(), aMax.X());
-        Draw::Set (anOutVars[4].ToCString(), aMax.Y());
-        Draw::Set (anOutVars[5].ToCString(), aMax.Z());
+        Draw::Set (anOutVars[0].ToCString(), aMin.X().getValue());
+        Draw::Set (anOutVars[1].ToCString(), aMin.Y().getValue());
+        Draw::Set (anOutVars[2].ToCString(), aMin.Z().getValue());
+        Draw::Set (anOutVars[3].ToCString(), aMax.X().getValue());
+        Draw::Set (anOutVars[4].ToCString(), aMax.Y().getValue());
+        Draw::Set (anOutVars[5].ToCString(), aMax.Z().getValue());
       }
 
       // add presentation to DRAW viewer

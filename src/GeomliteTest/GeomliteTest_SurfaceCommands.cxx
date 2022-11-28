@@ -116,7 +116,7 @@ static Standard_Integer surface_radius (Draw_Interpretor& di,
     if (myProperties.IsCurvatureDefined()) {
       radius = myProperties.MinCurvature();
       
-      if (report_curvature) Draw::Set(a[4],radius);
+      if (report_curvature) Draw::Set(a[4],radius.getValue());
       
       if (Abs(radius) > tolerance) { 
 	radius = 1.0e0/ radius ;
@@ -127,7 +127,7 @@ static Standard_Integer surface_radius (Draw_Interpretor& di,
       }
     
       radius = myProperties.MaxCurvature();
-      if (report_curvature) Draw::Set(a[5],radius);
+      if (report_curvature) Draw::Set(a[5],radius.getValue());
       if (Abs(radius) > tolerance)  { 
 	radius = 1.0e0/ radius;
 	di << "Max Radius of Curvature : " << radius  << "\n";
@@ -906,33 +906,33 @@ static Standard_Integer value (Draw_Interpretor& ,
     if (n >= 22) {
       gp_Vec D2U,D2V,D2UV;
       GS->D2(U,V,P,DU,DV,D2U,D2V,D2UV);
-      Draw::Set(a[13],D2U.X());
-      Draw::Set(a[14],D2U.Y());
-      Draw::Set(a[15],D2U.Z());
-      Draw::Set(a[16],D2V.X());
-      Draw::Set(a[17],D2V.Y());
-      Draw::Set(a[18],D2V.Z());
-      Draw::Set(a[19],D2UV.X());
-      Draw::Set(a[20],D2UV.Y());
-      Draw::Set(a[21],D2UV.Z());
+      Draw::Set(a[13],D2U.X().getValue());
+      Draw::Set(a[14],D2U.Y().getValue());
+      Draw::Set(a[15],D2U.Z().getValue());
+      Draw::Set(a[16],D2V.X().getValue());
+      Draw::Set(a[17],D2V.Y().getValue());
+      Draw::Set(a[18],D2V.Z().getValue());
+      Draw::Set(a[19],D2UV.X().getValue());
+      Draw::Set(a[20],D2UV.Y().getValue());
+      Draw::Set(a[21],D2UV.Z().getValue());
     }
     else
       GS->D1(U,V,P,DU,DV);
 
-    Draw::Set(a[7],DU.X());
-    Draw::Set(a[8],DU.Y());
-    Draw::Set(a[9],DU.Z());
-    Draw::Set(a[10],DV.X());
-    Draw::Set(a[11],DV.Y());
-    Draw::Set(a[12],DV.Z());
+    Draw::Set(a[7],DU.X().getValue());
+    Draw::Set(a[8],DU.Y().getValue());
+    Draw::Set(a[9],DU.Z().getValue());
+    Draw::Set(a[10],DV.X().getValue());
+    Draw::Set(a[11],DV.Y().getValue());
+    Draw::Set(a[12],DV.Z().getValue());
   }
   else 
     GS->D0(U,V,P);
 
   if ( n > 6) {
-    Draw::Set(a[4],P.X());
-    Draw::Set(a[5],P.Y());
-    Draw::Set(a[6],P.Z());
+    Draw::Set(a[4],P.X().getValue());
+    Draw::Set(a[5],P.Y().getValue());
+    Draw::Set(a[6],P.Z().getValue());
   }
   if ( DrawPoint) {
     DrawTrSurf::Set(a[n],P);
@@ -1495,8 +1495,8 @@ static Standard_Integer parameters (Draw_Interpretor& di, Standard_Integer n, co
       Standard_Real Tol = Draw::Atof(a[5]), U = 0., V = 0.;
       Standard_Boolean res = GeomLib_Tool::Parameters(S,P,Tol,U,V);
 
-      Draw::Set(a[6],U);
-      Draw::Set(a[7],V);
+      Draw::Set(a[6],U.getValue());
+      Draw::Set(a[7],V.getValue());
 
       if( !res ) { di << "Wrong point\n"; return 1; }
     }
@@ -1509,7 +1509,7 @@ static Standard_Integer parameters (Draw_Interpretor& di, Standard_Integer n, co
       Standard_Real Tol = Draw::Atof(a[5]), U = 0.;
       Standard_Boolean res = GeomLib_Tool::Parameter(C,P,Tol,U);
     
-      Draw::Set(a[6],U);
+      Draw::Set(a[6],U.getValue());
 
     if( !res ) { di << "Wrong point\n"; return 1; }
     }
@@ -1522,7 +1522,7 @@ static Standard_Integer parameters (Draw_Interpretor& di, Standard_Integer n, co
       Standard_Real Tol = Draw::Atof(a[4]), U = 0.;
       Standard_Boolean res = GeomLib_Tool::Parameter(C,P,Tol,U);
     
-      Draw::Set(a[5],U);
+      Draw::Set(a[5],U.getValue());
 
       if( !res ) { di << "Wrong point\n"; return 1; }
     }
@@ -1560,18 +1560,18 @@ Standard_Integer bounds(Draw_Interpretor&, Standard_Integer n, const char** a)
       U1 = C3d->FirstParameter();
       U2 = C3d->LastParameter();
     }
-    Draw::Set(a[2],U1);
-    Draw::Set(a[3],U2);
+    Draw::Set(a[2],U1.getValue());
+    Draw::Set(a[3],U2.getValue());
   }
   else if ( n == 6) { // compute on a Surface
     Handle(Geom_Surface) S = DrawTrSurf::GetSurface(a[1]);
     if ( S.IsNull()) return 1;
     S->Bounds(U1,U2,V1,V2);
 
-    Draw::Set(a[2],U1);
-    Draw::Set(a[3],U2);
-    Draw::Set(a[4],V1);
-    Draw::Set(a[5],V2);
+    Draw::Set(a[2],U1.getValue());
+    Draw::Set(a[3],U2.getValue());
+    Draw::Set(a[4],V1.getValue());
+    Draw::Set(a[5],V2.getValue());
   }
 
   return 0;

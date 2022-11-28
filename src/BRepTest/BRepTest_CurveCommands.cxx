@@ -1507,13 +1507,13 @@ again:
   }
   const char* aName;
   aName = "CurX";
-  Draw::Set(aName, x);
+  Draw::Set(aName, x.getValue());
   aName = "CurY";
-  Draw::Set(aName, y);
+  Draw::Set(aName, y.getValue());
   aName = "CurDX";
-  Draw::Set(aName, dx);
+  Draw::Set(aName, dx.getValue());
   aName = "CurDY";
-  Draw::Set(aName, dy);
+  Draw::Set(aName, dy.getValue());
 
   return 0;
 

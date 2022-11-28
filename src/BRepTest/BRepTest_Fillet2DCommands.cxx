@@ -219,10 +219,10 @@ static gp_Pnt findCommonPoint(const TopoDS_Shape& E1, const TopoDS_Shape& E2)
   gp_Pnt p22 = BRep_Tool::Pnt(v22);
 
   gp_Pnt common;
-  const double d1121 = p11.SquareDistance(p21);
-  const double d1122 = p11.SquareDistance(p22);
-  const double d1221 = p12.SquareDistance(p21);
-  const double d1222 = p12.SquareDistance(p22);
+  const double d1121 = p11.SquareDistance(p21).getValue();
+  const double d1122 = p11.SquareDistance(p22).getValue();
+  const double d1221 = p12.SquareDistance(p21).getValue();
+  const double d1222 = p12.SquareDistance(p22).getValue();
   if (d1121 < d1122 && d1121 < d1221 && d1121 < d1222)
     common = p11;
   else if (d1122 < d1121 && d1122 < d1221 && d1122 < d1222)

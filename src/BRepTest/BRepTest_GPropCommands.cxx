@@ -107,9 +107,9 @@ Standard_Integer props(Draw_Interpretor& di, Standard_Integer n, const char** a)
 
   if (n >= 5) {
     Standard_Integer shift =  n - 5;
-    Draw::Set(a[shift+2],P.X());
-    Draw::Set(a[shift+3],P.Y());
-    Draw::Set(a[shift+4],P.Z());
+    Draw::Set(a[shift+2],P.X().getValue());
+    Draw::Set(a[shift+3],P.Y().getValue());
+    Draw::Set(a[shift+4],P.Z().getValue());
   }
 
   GProp_PrincipalProps Pr = G.PrincipalProperties();
@@ -154,26 +154,26 @@ Standard_Integer props(Draw_Interpretor& di, Standard_Integer n, const char** a)
   }
   else
   {
-    di << "\n\nMass : " << G.Mass() << "\n\n";
+    di << "\n\nMass : " << G.Mass().getValue() << "\n\n";
     if (witheps && *a[0] != 'l')
     {
-      di << "Relative error of mass computation : " << eps <<  "\n\n";
+      di << "Relative error of mass computation : " << eps.getValue() <<  "\n\n";
     }
 
     di << "Center of gravity : \n";
-    di << "X = " << P.X() << "\n";
-    di << "Y = " << P.Y() << "\n";
-    di << "Z = " << P.Z() << "\n\n";
+    di << "X = " << P.X().getValue() << "\n";
+    di << "Y = " << P.Y().getValue() << "\n";
+    di << "Z = " << P.Z().getValue() << "\n\n";
 
     di << "Matrix of Inertia :\n";
-    di << I(1,1) << "    " << I(1,2) << "    " << I(1,3) << "\n";
-    di << I(2,1) << "    " << I(2,2) << "    " << I(2,3) << "\n";
-    di << I(3,1) << "    " << I(3,2) << "    " << I(3,3) << "\n\n";
+    di << I(1,1).getValue() << "    " << I(1,2).getValue() << "    " << I(1,3).getValue() << "\n";
+    di << I(2,1).getValue() << "    " << I(2,2).getValue() << "    " << I(2,3).getValue() << "\n";
+    di << I(3,1).getValue() << "    " << I(3,2).getValue() << "    " << I(3,3).getValue() << "\n\n";
 
     di << "Moments :\n";
-    di << "IX = " << Ix << "\n";
-    di << "IY = " << Iy << "\n";
-    di << "IZ = " << Iz << "\n\n";
+    di << "IX = " << Ix.getValue() << "\n";
+    di << "IY = " << Iy.getValue() << "\n";
+    di << "IZ = " << Iz.getValue() << "\n\n";
   }
 
   //if (n == 2) {  
@@ -258,13 +258,13 @@ Standard_Integer vpropsgk(Draw_Interpretor& di, Standard_Integer n, const char**
     Standard_SStream aSStream1;
     gp_Pnt P = G.CentreOfMass();
     if (n > 6) {
-      Draw::Set(a[6],P.X());
+      Draw::Set(a[6],P.X().getValue());
     }
     if (n > 7) {
-      Draw::Set(a[7],P.Y());
+      Draw::Set(a[7],P.Y().getValue());
     }
     if (n > 8) {
-      Draw::Set(a[8],P.Z());
+      Draw::Set(a[8],P.Z().getValue());
     }
   
     aSStream1.precision(15);

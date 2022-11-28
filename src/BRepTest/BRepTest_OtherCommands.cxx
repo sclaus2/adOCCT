@@ -300,7 +300,7 @@ Standard_Integer brepintcs(Draw_Interpretor& di, Standard_Integer n, const char*
   double tol=1e-6;
   if( indshape < n-1)
   {
-    Standard_Real preci = atof(a[n-1]);
+    double preci = atof(a[n-1]);
     if(preci >= Precision::Confusion())
       tol = preci;
   }

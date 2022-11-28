@@ -342,7 +342,7 @@ static Standard_Integer tessellate (Draw_Interpretor& /*di*/, Standard_Integer n
   }
 
   Handle(Geom_Surface) aSurf = DrawTrSurf::GetSurface(aSrcName);
-  double aUMin, aUMax, aVMin, aVMax;
+  Standard_Real aUMin, aUMax, aVMin, aVMax;
   if (! aSurf.IsNull())
   {
     aSurf->Bounds (aUMin, aUMax, aVMin, aVMax);
@@ -388,14 +388,14 @@ static Standard_Integer tessellate (Draw_Interpretor& /*di*/, Standard_Integer n
 
   // fill nodes
   GeomAdaptor_Surface anAdSurf (aSurf);
-  double aDU = (aUMax - aUMin) / aNbU;
-  double aDV = (aVMax - aVMin) / aNbV;
+  Standard_Real aDU = (aUMax - aUMin) / aNbU;
+  Standard_Real aDV = (aVMax - aVMin) / aNbV;
   for (int iU = 0, iShift = 1; iU <= aNbU; iU++, iShift += aNbV + 1)
   {
-    double aU = aUMin + iU * aDU;
+    Standard_Real aU = aUMin + iU * aDU;
     for (int iV = 0; iV <= aNbV; iV++)
     {
-      double aV = aVMin + iV * aDV;
+      Standard_Real aV = aVMin + iV * aDV;
       gp_Pnt aP = anAdSurf.Value (aU, aV);
       aTriangulation->SetNode (iShift + iV, aP);
     }
@@ -1293,7 +1293,7 @@ static Standard_Integer wavefront(Draw_Interpretor&, Standard_Integer nbarg, con
         x = Pnt.X();
         y = Pnt.Y();
         z = Pnt.Z();
-        fprintf(outfile, "%s      %f  %f  %f\n", "v", x, y, z);
+        fprintf(outfile, "%s      %f  %f  %f\n", "v", x.getValue(), y.getValue(), z.getValue());
       }
 
       fprintf(outfile, "\n%s    %d\n\n", "# number of vertex", nbNodes);
@@ -1316,7 +1316,7 @@ static Standard_Integer wavefront(Draw_Interpretor&, Standard_Integer nbarg, con
           }
           if (F.Orientation() == TopAbs_REVERSED) Nor.Reverse();
 
-          fprintf(outfile, "%s      %f  %f  %f\n", "vn", Nor.X(), Nor.Y(), Nor.Z());
+          fprintf(outfile, "%s      %f  %f  %f\n", "vn", Nor.X().getValue(), Nor.Y().getValue(), Nor.Z().getValue());
         }
 
         fprintf(outfile, "\n%s    %d\n\n", "# number of vertex normals", nbNodes);
@@ -1441,7 +1441,7 @@ static Standard_Integer TrMergeNodes (Draw_Interpretor& theDI, Standard_Integer 
     return 1;
   }
 
-  Standard_Real aMergeAngle = M_PI / 4.0, aMergeToler = 0.0;
+  double aMergeAngle = M_PI / 4.0, aMergeToler = 0.0;
   bool toForce = false;
   TCollection_AsciiString aResFace;
   for (Standard_Integer anArgIter = 2; anArgIter < theNbArgs; ++anArgIter)

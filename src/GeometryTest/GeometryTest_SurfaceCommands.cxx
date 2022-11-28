@@ -154,7 +154,7 @@ static Standard_Integer sweep (Draw_Interpretor& di,
   }
 
   Standard_Real Accuracy = Pipe.ErrorOnSurf();
-  di << "Accuracy of approximation = " << Accuracy << "\n";
+  di << "Accuracy of approximation = " << Accuracy.getValue() << "\n";
 
   DrawTrSurf::Set(a[1], Pipe.Surface());
   return 0;
@@ -242,7 +242,7 @@ static Standard_Integer tuyau (Draw_Interpretor& di,
   }
 
   Standard_Real Accuracy = Pipe.ErrorOnSurf();
-  di << "Accuracy of approximation = " << Accuracy << "\n";
+  di << "Accuracy of approximation = " << Accuracy.getValue() << "\n";
   
   DrawTrSurf::Set(a[indice_path-1], Pipe.Surface());
 

@@ -120,7 +120,7 @@ static Standard_Integer distmini(Draw_Interpretor& di, Standard_Integer n, const
     char named[100];
     Sprintf(named, "%s%s" ,ns0,"_val");
     char* tempd = named;
-    Draw::Set(tempd,dst.Value());
+    Draw::Set(tempd,dst.Value().getValue());
     di << named << " ";
 
     for (Standard_Integer i1 = 1; i1<= dst.NbSolution(); i1++)

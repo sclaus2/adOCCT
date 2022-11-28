@@ -670,7 +670,7 @@ static Standard_Integer extrema(Draw_Interpretor& di, Standard_Integer n, const 
       {
         Standard_Real aP = aPrms[aJ](aK);
         Sprintf(aName, "%s%d%s%d", "prm_", aJ + 1, "_", aK + 1);
-        Draw::Set(aName2, aP);
+        Draw::Set(aName2, aP.getValue());
         di << aName << " ";
       }
     }

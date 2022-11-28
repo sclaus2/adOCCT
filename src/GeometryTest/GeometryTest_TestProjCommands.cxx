@@ -96,7 +96,7 @@ static Standard_Integer xdistcc(Draw_Interpretor& , Standard_Integer n, const ch
       aMaxDist = aD;
     }
 
-    printf(" T=%lg\tD=%lg\n", aT, aD);
+    printf(" T=%lg\tD=%lg\n", aT.getValue(), aD.getValue());
 
     aMr=new Draw_Marker3D(aP1, Draw_Plus, aColor, iSize);
     dout << aMr;
@@ -192,7 +192,7 @@ static Standard_Integer xdistc2dc2dss(Draw_Interpretor& , Standard_Integer n, co
       aMaxDist = aD;
     }
 
-    printf(" T=%lg\tD=%lg\n", aT, aD);
+    printf(" T=%lg\tD=%lg\n", aT.getValue(), aD.getValue());
 
     aMr=new Draw_Marker3D(aP1, Draw_Plus, aColor, iSize);
     dout << aMr;
@@ -281,7 +281,7 @@ static Standard_Integer xdistcc2ds(Draw_Interpretor& , Standard_Integer n, const
       aMaxDist = aD;
     }
 
-    printf(" T=%lg\tD=%lg\n", aT, aD);
+    printf(" T=%lg\tD=%lg\n", aT.getValue(), aD.getValue());
 
     aMr=new Draw_Marker3D(aP, Draw_Plus, aColor, iSize);
     dout << aMr;
@@ -372,7 +372,7 @@ static Standard_Integer xdistcs(Draw_Interpretor& di, Standard_Integer n, const 
       di << "Attention (critical value of tolerance) :";
     }
     char aMsg[256];
-    sprintf(aMsg," T=%lg\tD=%lg\n", aT, aD);
+    sprintf(aMsg," T=%lg\tD=%lg\n", aT.getValue(), aD.getValue());
     di << aMsg;
     //
     aMr=new Draw_Marker3D(aP, Draw_Plus, aColor, iSize);
@@ -385,8 +385,8 @@ static Standard_Integer xdistcs(Draw_Interpretor& di, Standard_Integer n, const 
     }
   }
 
-  di << "Max distance = "  << aMaxDist << "\n" ;
-  di << "Param = " << aMaxParam << "\n" ;
+  di << "Max distance = "  << aMaxDist.getValue() << "\n" ;
+  di << "Param = " << aMaxParam.getValue() << "\n" ;
   //
   return 0;
 }

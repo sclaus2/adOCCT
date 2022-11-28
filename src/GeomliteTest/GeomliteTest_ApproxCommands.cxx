@@ -610,7 +610,7 @@ static Standard_Integer smoothingbybezier (Draw_Interpretor& di,
       AnMuC.Curve(1, ThePoints->ChangeArray1());
       Standard_Real err, err2d;
       Appr.Error(1, err, err2d);
-      di <<" Error2D is : " << err2d << "\n";
+      di <<" Error2D is : " << err2d.getValue() << "\n";
     }
     else {
       AppDef_Variational Varia(AML, 
@@ -625,7 +625,7 @@ static Standard_Integer smoothingbybezier (Draw_Interpretor& di,
       }
 
       AppParCurves_MultiBSpCurve  AnMuC = Varia.Value();
-      di <<" Error2D is : " << Varia.MaxError() << "\n";
+      di <<" Error2D is : " << Varia.MaxError().getValue() << "\n";
       ThePoints = new (TColgp_HArray1OfPnt2d) (1,  AnMuC.NbPoles() );
       AnMuC.Curve(1, ThePoints->ChangeArray1());    
  }
@@ -685,7 +685,7 @@ static Standard_Integer smoothingbybezier (Draw_Interpretor& di,
       AnMuC.Curve(1, ThePoints->ChangeArray1());
       Standard_Real err, err2d;
       Appr.Error(1, err, err2d);
-      di <<" Error3D is : " << err << "\n";
+      di <<" Error3D is : " << err.getValue() << "\n";
     }
     else {
       AppDef_Variational Varia(AML, 
@@ -700,7 +700,7 @@ static Standard_Integer smoothingbybezier (Draw_Interpretor& di,
       }
 
       AppParCurves_MultiBSpCurve  AnMuC = Varia.Value();
-      di <<" Error3D is : " << Varia.MaxError() << "\n";
+      di <<" Error3D is : " << Varia.MaxError().getValue() << "\n";
       ThePoints = new (TColgp_HArray1OfPnt) (1,  AnMuC.NbPoles() );
       AnMuC.Curve(1, ThePoints->ChangeArray1());    
     }    

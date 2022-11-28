@@ -178,7 +178,7 @@ static Standard_Integer plate (Draw_Interpretor & di,Standard_Integer n,const ch
 
   Standard_Real ErrG0 = 1.1*Henri.G0Error();
   //std::cout<<" dist. max = "<<Henri.G0Error()<<" ; angle max = "<<Henri.G1Error()<<std::endl;
-  di<<" dist. max = "<<Henri.G0Error()<<" ; angle max = "<<Henri.G1Error()<<"\n";
+  di<<" dist. max = "<<Henri.G0Error().getValue()<<" ; angle max = "<<Henri.G1Error().getValue()<<"\n";
 
   BRepBuilderAPI_MakeWire MW;
   for (i=1 ; i<=NbCurFront ; i++) {
@@ -391,7 +391,7 @@ static Standard_Integer approxplate (Draw_Interpretor & di,Standard_Integer n,co
   Standard_Real dmax = Henri.G0Error(),
                 anmax = Henri.G1Error();
   //std::cout<<" dist. max = "<<dmax<<" ; angle max = "<<anmax<<std::endl;
-  di<<" dist. max = "<<dmax<<" ; angle max = "<<anmax<<"\n";
+  di<<" dist. max = "<<dmax.getValue()<<" ; angle max = "<<anmax.getValue()<<"\n";
 
   Tol3d = Draw::Atof(a[3*NbCurFront+4]);
   Standard_Integer Nbmax = Draw::Atoi(a[3*NbCurFront+5]);
@@ -588,7 +588,7 @@ static Standard_Integer filling( Draw_Interpretor & di, Standard_Integer n, cons
   Standard_Real dmax = MakeFilling.G0Error(),
     angmax = MakeFilling.G1Error(),
     curvmax = MakeFilling.G2Error();
-  di<<" dist. max = "<<dmax<<" ; angle max = "<<angmax<<" ; diffcurv max = "<<curvmax<<"\n";
+  di<<" dist. max = "<<dmax.getValue()<<" ; angle max = "<<angmax.getValue()<<" ; diffcurv max = "<<curvmax.getValue()<<"\n";
   
   TopoDS_Face ResFace= TopoDS::Face( MakeFilling.Shape() );
   DBRep::Set( a[1], ResFace );
@@ -651,10 +651,10 @@ static Standard_Integer fillingparam( Draw_Interpretor & di, Standard_Integer n,
 	  di<<"NbIter = "<<NbIter<<"\n";
 	  di<<"Anisotropie = "<< (Standard_Integer) Anisotropie<<"\n\n";
 	  
-	  di<<"Tol2d = "<<Tol2d<<"\n";
-	  di<<"Tol3d = "<<Tol3d<<"\n";
-	  di<<"TolAng = "<<TolAng<<"\n";
-	  di<<"TolCurv = "<<TolCurv<<"\n\n";
+	  di<<"Tol2d = "<<Tol2d.getValue()<<"\n";
+	  di<<"Tol3d = "<<Tol3d.getValue()<<"\n";
+	  di<<"TolAng = "<<TolAng.getValue()<<"\n";
+	  di<<"TolCurv = "<<TolCurv.getValue()<<"\n\n";
 	  
 	  di<<"MaxDeg = "<<MaxDeg<<"\n";
 	  di<<"MaxSegments = "<<MaxSegments<<"\n\n";

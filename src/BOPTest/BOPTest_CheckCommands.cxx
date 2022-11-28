@@ -1163,7 +1163,7 @@ Standard_Integer checkcurveonsurf(Draw_Interpretor& di,
       sprintf(anEName, "e_%d", nE);
       sprintf(aFName , "f_%d", nF);
       sprintf(buf, "edge %s on face %s (max dist: %3.16f, parameter on curve: %3.16f)\n",
-              anEName, aFName, aDMax, aT);
+              anEName, aFName, aDMax.getValue(), aT.getValue());
       di << buf;
       //
       DBRep::Set(anEName, aE);
@@ -1190,7 +1190,7 @@ Standard_Integer checkcurveonsurf(Draw_Interpretor& di,
       //
       aTolE = aDMETol.Find(aE);
       aTolE *= 1.001;
-      sprintf(buf, "settolerance %s_%d %3.16f;\n", a[1], anECounter, aTolE);
+      sprintf(buf, "settolerance %s_%d %3.16f;\n", a[1], anECounter, aTolE.getValue());
       di << buf;
     }
   }
