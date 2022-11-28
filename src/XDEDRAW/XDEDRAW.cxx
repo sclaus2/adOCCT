@@ -1253,10 +1253,10 @@ static Standard_Integer XShowFaceBoundary (Draw_Interpretor& di,
   const Handle(Prs3d_Drawer)& aDrawer = anInteractive->Attributes ();
 
   // default attributes
-  Standard_Real aRed   = 0.0;
-  Standard_Real aGreen = 0.0;
-  Standard_Real aBlue  = 0.0;
-  Standard_Real aWidth = 1.0;
+  double aRed   = 0.0;
+  double aGreen = 0.0;
+  double aBlue  = 0.0;
+  double aWidth = 1.0;
   Aspect_TypeOfLine aLineType = Aspect_TOL_SOLID;
   
   // turn boundaries on/off
@@ -1275,7 +1275,7 @@ static Standard_Integer XShowFaceBoundary (Draw_Interpretor& di,
   // set line width
   if (argc >= 8)
   {
-    aWidth = (Standard_Real)Draw::Atof (argv[7]);
+    aWidth = (double)Draw::Atof (argv[7]);
   }
 
   // select appropriate line type

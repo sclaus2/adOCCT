@@ -62,9 +62,9 @@
 //function : TetraVol
 //purpose  : auxiliary
 //=======================================================================
-static double TetraVol(gp_Pnt RefPoint, gp_Pnt Som1, gp_Pnt Som2, gp_Pnt Som3)
+static Standard_Real TetraVol(gp_Pnt RefPoint, gp_Pnt Som1, gp_Pnt Som2, gp_Pnt Som3)
 {
-  double curVolume = 0;
+  Standard_Real curVolume = 0;
   gp_Dir Line12;
   gp_Pln Plane123;
   gp_Vec N;
@@ -81,7 +81,7 @@ static double TetraVol(gp_Pnt RefPoint, gp_Pnt Som1, gp_Pnt Som2, gp_Pnt Som3)
       }
     catch(Standard_Failure const&) {return(0.);}
   }
-  double L1, L2, L3;
+  Standard_Real L1, L2, L3;
   L1 = Som1.Distance(Som2);
   L2 = gp_Lin(Som1, Line12).Distance(Som3);
   L3 = Plane123.Distance(RefPoint);
