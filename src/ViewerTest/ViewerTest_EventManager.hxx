@@ -93,12 +93,12 @@ public:
 
   //! Release key.
   Standard_EXPORT virtual void KeyDown (Aspect_VKey theKey,
-                                        double theTime,
-                                        double thePressure = 1.0) Standard_OVERRIDE;
+                                        Standard_Real theTime,
+                                        Standard_Real thePressure = 1.0) Standard_OVERRIDE;
 
   //! Release key.
   Standard_EXPORT virtual void KeyUp (Aspect_VKey theKey,
-                                      double theTime) Standard_OVERRIDE;
+                                      Standard_Real theTime) Standard_OVERRIDE;
 
   //! Redraw the View on an Expose Event
   Standard_EXPORT virtual void ProcessExpose() Standard_OVERRIDE;

@@ -5532,7 +5532,7 @@ static int VFps (Draw_Interpretor& theDI,
     }
   }
   aTimer.Stop();
-  Standard_Real aCpu;
+  double aCpu;
   const Standard_Real aTime = aTimer.ElapsedTime();
   aTimer.OSD_Chronometer::Show (aCpu);
 
@@ -10085,7 +10085,7 @@ static int VLight (Draw_Interpretor& theDi,
            || anArgCase == "-prssize")
           && anArgIt + 1 < theArgsNb)
     {
-      Standard_Real aSize = 0.0;
+      double aSize = 0.0;
       if (!Draw::ParseReal (theArgVec[++anArgIt], aSize)
        || aSize <= 0.0
        || aLightPrs.IsNull())

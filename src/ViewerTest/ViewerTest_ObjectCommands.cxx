@@ -2984,9 +2984,9 @@ static int VDrawSphere (Draw_Interpretor& /*di*/, Standard_Integer argc, const c
   if (toPrintInfo)
     std::cout << "Compute Triangulation...\n";
   Handle(AIS_Triangulation) aShape
-    = new AIS_Triangulation (CalculationOfSphere (aCenterX, aCenterY, aCenterZ,
+    = new AIS_Triangulation (CalculationOfSphere (aCenterX.getValue(), aCenterY.getValue(), aCenterZ.getValue(),
                                                   aResolution,
-                                                  aRadius));
+                                                  aRadius.getValue()));
   const Standard_Integer aNumberPoints    = aShape->GetTriangulation()->NbNodes();
   const Standard_Integer aNumberTriangles = aShape->GetTriangulation()->NbTriangles();
 
@@ -4259,9 +4259,9 @@ static Standard_Integer VSetLocation (Draw_Interpretor& theDI,
   Sprintf (aText, "Location: %g %g %g\n"
                   "Rotation: %g %g %g %g\n"
                   "Scale:    %g\n",
-                  aLoc.X(), aLoc.Y(), aLoc.Z(),
-                  aRot.X(), aRot.Y(), aRot.Z(), aRot.W(),
-                  aTrsf.ScaleFactor());
+                  aLoc.X().getValue(), aLoc.Y().getValue(), aLoc.Z().getValue(),
+                  aRot.X().getValue(), aRot.Y().getValue(), aRot.Z().getValue(), aRot.W().getValue(),
+                  aTrsf.ScaleFactor().getValue());
   theDI << aText;
   return 0;
 }
@@ -6455,7 +6455,7 @@ static Standard_Integer VPointCloud (Draw_Interpretor& theDI,
         const Standard_Integer anIndexOfPoint = anArrayPoints->AddVertex (aPoint);
         if (toRandColors)
         {
-          Quantity_Color aColor (360.0 * Standard_Real(anIndexOfPoint) / Standard_Real(aNbPoints),
+          Quantity_Color aColor (360.0 * double(anIndexOfPoint) / double(aNbPoints),
                                  1.0, 0.5, Quantity_TOC_HLS);
           anArrayPoints->SetVertexColor (anIndexOfPoint, aColor);
         }
@@ -6508,7 +6508,7 @@ static Standard_Integer VPointCloud (Draw_Interpretor& theDI,
       const Standard_Integer anIndexOfPoint = anArrayPoints->AddVertex (aPoint);
       if (toRandColors)
       {
-        Quantity_Color aColor (360.0 * Standard_Real (anIndexOfPoint) / Standard_Real (aNbPoints),
+        Quantity_Color aColor (360.0 * double (anIndexOfPoint) / double (aNbPoints),
                                1.0, 0.5, Quantity_TOC_HLS);
         anArrayPoints->SetVertexColor (anIndexOfPoint, aColor);
       }

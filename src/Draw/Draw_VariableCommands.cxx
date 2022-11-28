@@ -1110,6 +1110,18 @@ bool Draw::ParseReal (const Standard_CString theExpressionString, double& thePar
   return true;
 }
 
+bool Draw::ParseReal (const Standard_CString theExpressionString, Standard_Real& theParsedRealValue)
+{
+  const double aParsedRealValue = Atof (theExpressionString);
+  if (Draw_ParseFailed)
+  {
+    Draw_ParseFailed = Standard_False;
+    return false;
+  }
+  theParsedRealValue = aParsedRealValue;
+  return true;
+}
+
 //=======================================================================
 // function : Atoi
 // purpose  :
