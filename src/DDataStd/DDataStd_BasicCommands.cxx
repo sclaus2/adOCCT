@@ -296,8 +296,8 @@ static Standard_Integer DDataStd_GetReal (Draw_Interpretor& di,
       }
     } 
     if (!DDF::Find(DF,arg[2],aGuid,A)) return 1;
-    if (nb == 4 && isdrawname) Draw::Set(arg[3],A->Get());
-    else         Draw::Set(arg[2],A->Get());
+    if (nb == 4 && isdrawname) Draw::Set(arg[3],A->Get().getValue());
+    else         Draw::Set(arg[2],A->Get().getValue());
     di << A->Get();
     return 0;
   }
@@ -3570,7 +3570,7 @@ static Standard_Integer DDataStd_GetNDReal (Draw_Interpretor& di,
     } else {
       std::cout << "Key = "  << arg[3]  << " Value = " <<anAtt->GetReal(aKey)<<std::endl;
       if(nb == 5) 
-        Draw::Set(arg[4], anAtt->GetReal(aKey));
+        Draw::Set(arg[4], anAtt->GetReal(aKey).getValue());
       return 0; 
     }
   }

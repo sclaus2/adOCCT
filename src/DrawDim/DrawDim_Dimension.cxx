@@ -100,7 +100,7 @@ void DrawDim_Dimension::DrawText(const gp_Pnt& P, Draw_Display& D) const
   if (is_valued) {
     t+="=";
     Standard_Integer l = t.Length();
-    t+= myValue;
+    t+= myValue.getValue();
     for (Standard_Integer i = l; i <= t.Length(); i++) {
       if (t.Value(i) == '.') { t.Trunc(i+2); break; }
     }
