@@ -73,6 +73,6 @@ void BinMXCAFDoc_ColorDriver::Paste(const Handle(TDF_Attribute)& theSource,
   Standard_ShortReal alpha;
   anAtt->GetRGB(R, G, B);
   alpha = anAtt->GetAlpha();
-  theTarget << R << G << B << alpha;
+  theTarget << R.getValue() << G.getValue() << B.getValue() << alpha;
 }
 

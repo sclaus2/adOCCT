@@ -63,12 +63,12 @@ static BRepFilletAPI_MakeFillet* Rakk = 0;
 
 static void printtolblend(Draw_Interpretor& di)
 {
-  di<<"tolerance ang : "<<ta<<"\n";
-  di<<"tolerance 3d  : "<<t3d<<"\n";
-  di<<"tolerance 2d  : "<<t2d<<"\n";
-  di<<"fleche        : "<<fl<<"\n";
+  di<<"tolerance ang : "<<ta.getValue()<<"\n";
+  di<<"tolerance 3d  : "<<t3d.getValue()<<"\n";
+  di<<"tolerance 2d  : "<<t2d.getValue()<<"\n";
+  di<<"fleche        : "<<fl.getValue()<<"\n";
 
-  di<<"tolblend "<<ta<<" "<<t3d<<" "<<t2d<<" "<<fl<<"\n";
+  di<<"tolblend "<<ta.getValue()<<" "<<t3d.getValue()<<" "<<t2d.getValue()<<" "<<fl.getValue()<<"\n";
 }
 
 static Standard_Integer VBLEND(Draw_Interpretor& di, Standard_Integer narg, const char** a)

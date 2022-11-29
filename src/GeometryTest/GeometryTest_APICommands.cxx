@@ -77,9 +77,9 @@ static void showProjSolution(Draw_Interpretor& di,
       di << " Point on curve ";
   }
   if (isSurface)
-    di << " Parameters: " << U << " " << V << "\n";
+    di << " Parameters: " << U.getValue() << " " << V.getValue() << "\n";
   else
-    di << " parameter " << i << " = " << U << "\n";
+    di << " parameter " << i << " = " << U.getValue() << "\n";
 }
 
 //=======================================================================
@@ -625,7 +625,7 @@ static Standard_Integer extrema(Draw_Interpretor& di, Standard_Integer n, const 
     // Infinity solutions flag may be set with 0 number of 
     // solutions in analytic extrema Curve/Curve.
     if (isInfinitySolutions) 
-      di << "Infinite number of extremas, distance = " << aMinDist << "\n";
+      di << "Infinite number of extremas, distance = " << aMinDist.getValue() << "\n";
     else
       di << "No solutions!\n";
   }
@@ -636,7 +636,7 @@ static Standard_Integer extrema(Draw_Interpretor& di, Standard_Integer n, const 
     if (aP1.Distance(aP2) < 1.e-16)
     {
       di << "Extrema " << aJ << " is point : " <<
-        aP1.X() << " " << aP1.Y() << " " << aP1.Z() << "\n";
+        aP1.X().getValue() << " " << aP1.Y().getValue() << " " << aP1.Z().getValue() << "\n";
       continue;
     }
 
@@ -716,7 +716,7 @@ static Standard_Integer totalextcc(Draw_Interpretor& di, Standard_Integer n, con
   gp_Pnt P1,P2;
   if(Ex.TotalNearestPoints(P1,P2)) {
     if (P1.Distance(P2) < 1.e-16) {
-      di << "Extrema is point : " << P1.X() << " " << P1.Y() << " " << P1.Z() << "\n";
+      di << "Extrema is point : " << P1.X().getValue() << " " << P1.Y().getValue() << " " << P1.Z().getValue() << "\n";
     }
     else {
       di << "Extrema is segment of line\n"; 
@@ -732,14 +732,14 @@ static Standard_Integer totalextcc(Draw_Interpretor& di, Standard_Integer n, con
     Standard_Real u1, u2;
     Ex.TotalLowerDistanceParameters(u1, u2);
 
-    di << "Parameters on curves : " << u1 << " " << u2 << "\n";
+    di << "Parameters on curves : " << u1.getValue() << " " << u2.getValue() << "\n";
 
   }
   else {
     di << "Curves are infinite and parallel\n";
   }
   
-  di << "Minimal distance : " << Ex.TotalLowerDistance() << "\n";
+  di << "Minimal distance : " << Ex.TotalLowerDistance().getValue() << "\n";
 
   return 0;
 

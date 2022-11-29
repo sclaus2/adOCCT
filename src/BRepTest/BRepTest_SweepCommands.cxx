@@ -887,7 +887,7 @@ static Standard_Integer errorsweep(Draw_Interpretor& di,
     return 1;
   }
   Standard_Real ErrorOnSurfaces = Sweep->ErrorOnSurface();
-  di << "Tolerance on surfaces = " << ErrorOnSurfaces << "\n";
+  di << "Tolerance on surfaces = " << ErrorOnSurfaces.getValue() << "\n";
   return 0;
 }
 

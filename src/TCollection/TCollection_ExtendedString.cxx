@@ -230,7 +230,7 @@ TCollection_ExtendedString::TCollection_ExtendedString
 // Create a String from a real
 // ----------------------------------------------------------------------------
 TCollection_ExtendedString::TCollection_ExtendedString
-                                        (const Standard_Real aValue)
+                                        (const double aValue)
 {
   union {int bid ;
          char t [50];} CHN ;

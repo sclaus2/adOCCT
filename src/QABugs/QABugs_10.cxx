@@ -121,7 +121,7 @@ static Standard_Integer OCC426 (Draw_Interpretor& di, Standard_Integer argc, con
   GProp_GProps G;
   BRepGProp::VolumeProperties(aFuseUnif, G);
   di<<" \n";
-  di<<"Mass: "<<G.Mass()<<"\n\n";
+  di<<"Mass: "<<G.Mass().getValue()<<"\n\n";
 
   di << "Trianglating Faces .....\n";
   TopExp_Explorer ExpFace;
@@ -251,10 +251,10 @@ static Standard_Integer OCC486(Draw_Interpretor& di, Standard_Integer argc, cons
         myExtPS.Point(indMin).Parameter ( S, T );
         gp_Pnt aCheckPnt = aSurf.Value( S, T );
         Standard_Real aCheckDist = P3D.Distance(aCheckPnt);
-        di << "Solution is : U = "<< S << "\t V = "<< T << "\n";
-        di << "Solution is : X = "<< aCheckPnt.X() << "\t Y = "<< aCheckPnt.Y() << "\t Z = "<< aCheckPnt.Z() << "\n";
-        di << "ExtremaDistance = " << distMin  << "\n";
-        di << "CheckDistance = " << aCheckDist << "\n";
+        di << "Solution is : U = "<< S.getValue() << "\t V = "<< T.getValue() << "\n";
+        di << "Solution is : X = "<< aCheckPnt.X().getValue() << "\t Y = "<< aCheckPnt.Y().getValue() << "\t Z = "<< aCheckPnt.Z().getValue() << "\n";
+        di << "ExtremaDistance = " << distMin.getValue()  << "\n";
+        di << "CheckDistance = " << aCheckDist.getValue() << "\n";
 
         if(fabs(distMin - aCheckDist) < Precision::Confusion()) return 0;
         else return 1;
@@ -722,9 +722,9 @@ static Standard_Integer OCC825 (Draw_Interpretor& di,Standard_Integer argc, cons
 
     GProp_GProps G;
     BRepGProp::VolumeProperties(cut1, G);
-    di << "CUT 1 Mass = " << G.Mass() << "\n\n";
+    di << "CUT 1 Mass = " << G.Mass().getValue() << "\n\n";
     BRepGProp::VolumeProperties(cut2, G);
-    di << "CUT 2 Mass = " << G.Mass() << "\n\n";
+    di << "CUT 2 Mass = " << G.Mass().getValue() << "\n\n";
 
     di << "Trianglating Faces of CUT 1 .....\n";
     performTriangulation(cut1, di);
@@ -928,7 +928,7 @@ int performBlend (TopoDS_Shape aShape, Standard_Real rad, TopoDS_Shape& bShape, 
   if(status) {
       di<<"*******************************************************\n";
       di<<"******                                          *******\n";
-      di<<"****** Blending Failed (Radius = " << rad << ") *******\n";
+      di<<"****** Blending Failed (Radius = " << rad.getValue() << ") *******\n";
       di<<"******                                          *******\n";
       di<<"*******************************************************\n";
       return 1;

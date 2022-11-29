@@ -845,18 +845,18 @@ static Standard_Integer trianglesinfo (Draw_Interpretor& theDI, Standard_Integer
   theDI << "                    " << aNbTriangles << " triangles.\n";
   theDI << "                    " << aNbNodes << " nodes.\n";
   theDI << "                    " << aNbRepresentations << " polygons on triangulation.\n";
-  theDI << "Maximal deflection " << aMaxDeflection << "\n";
+  theDI << "Maximal deflection " << aMaxDeflection.getValue() << "\n";
   if (aMeshingDefl > 0.0)
   {
-    theDI << "Meshing deflection " << aMeshingDefl << "\n";
+    theDI << "Meshing deflection " << aMeshingDefl.getValue() << "\n";
   }
   if (aMeshingAngDefl > 0.0)
   {
-    theDI << "Meshing angular deflection " << (aMeshingAngDefl * 180.0 / M_PI) << "\n";
+    theDI << "Meshing angular deflection " << (aMeshingAngDefl.getValue() * 180.0 / M_PI) << "\n";
   }
   if (aMeshingMinSize > 0.0)
   {
-    theDI << "Meshing min size " << aMeshingMinSize << "\n";
+    theDI << "Meshing min size " << aMeshingMinSize.getValue() << "\n";
   }
 
   if (aNbLODs.Size() > 0)
@@ -1124,13 +1124,13 @@ static Standard_Integer veriftriangles(Draw_Interpretor& di, Standard_Integer n,
             deflemin = Min(deflemin, defle);
 
             if (defle > defstock) {
-              di <<"face "<< nbface <<" deflection = " << defle <<" pour "<<defstock <<" stockee.\n";
+              di <<"face "<< nbface <<" deflection = " << defle.getValue() <<" pour "<<defstock.getValue() <<" stockee.\n";
             }
           }
         }
       }
       if (!quiet) {
-        di <<"face "<< nbface<<", deflemin = "<< deflemin<<", deflemax = "<<deflemax<<"\n";
+        di <<"face "<< nbface<<", deflemin = "<< deflemin.getValue()<<", deflemax = "<<deflemax.getValue()<<"\n";
       }
 
     }

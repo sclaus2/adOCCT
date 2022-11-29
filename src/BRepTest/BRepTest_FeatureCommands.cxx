@@ -1066,7 +1066,7 @@ Standard_Integer offsetparameter(Draw_Interpretor& di,
   if (n == 1) {
     di << " offsetparameter Tol Inter(c/p) JoinType(a/i/t) [RemoveInternalEdges(r/k)]\n";
     di << " Current Values\n";
-    di << "   --> Tolerance : " << TheTolerance << "\n";
+    di << "   --> Tolerance : " << TheTolerance.getValue() << "\n";
     di << "   --> TheInter  : ";
     if (TheInter) {
       di << "Complet";

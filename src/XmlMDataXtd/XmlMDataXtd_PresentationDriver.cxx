@@ -225,14 +225,14 @@ void XmlMDataXtd_PresentationDriver::Paste
   // transparency
   if (aTPrs->HasOwnTransparency())
   {
-    TCollection_AsciiString aRNbStr (aTPrs->Transparency());
+    TCollection_AsciiString aRNbStr (aTPrs->Transparency().getValue());
     theTarget.Element().setAttribute(::TransparencyString(), aRNbStr.ToCString());
   }
 
   // width
   if (aTPrs->HasOwnWidth())
   {
-    TCollection_AsciiString aRNbStr (aTPrs->Width());
+    TCollection_AsciiString aRNbStr (aTPrs->Width().getValue());
     theTarget.Element().setAttribute(::WidthString(), aRNbStr.ToCString());
   }
 

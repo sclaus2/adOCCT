@@ -164,11 +164,11 @@ static Standard_Boolean StaticPath(const Handle(TCollection_HAsciiString)& val)
       def.AssignCat("Real");
       Standard_Real rlim;
       if (RealLimit(Standard_False, rlim)) {
-	Sprintf(mess,"  >= %f",rlim);
+	Sprintf(mess,"  >= %f",rlim.getValue());
 	def.AssignCat(mess);
       }
       if (RealLimit(Standard_True,  rlim)) {
-	Sprintf(mess,"  <= %f",rlim);
+	Sprintf(mess,"  <= %f",rlim.getValue());
 	def.AssignCat(mess);
       }
       if (theunidef.Length() > 0)
@@ -682,7 +682,7 @@ static Standard_Boolean StaticPath(const Handle(TCollection_HAsciiString)& val)
 
     Standard_Boolean  MoniTool_TypedValue::SetRealValue (const Standard_Real rval)
 {
-  Handle(TCollection_HAsciiString) hval = new TCollection_HAsciiString(rval);
+  Handle(TCollection_HAsciiString) hval = new TCollection_HAsciiString(rval.getValue());
   if (hval->IsSameString (thehval)) return Standard_True;
   if (!Satisfies(hval))  return Standard_False;
   thehval->Clear();  thehval->AssignCat (hval->ToCString());

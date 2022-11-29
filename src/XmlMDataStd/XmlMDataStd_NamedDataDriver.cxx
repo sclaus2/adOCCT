@@ -671,7 +671,7 @@ void XmlMDataStd_NamedDataDriver::Paste(const Handle(TDF_Attribute)& theSource,
     TDataStd_DataMapIteratorOfDataMapOfStringReal itr(S->GetRealsContainer());
     for (i=1; itr.More(); itr.Next(),i++) {
       const TCollection_ExtendedString aValueStr = 
-        itr.Key() + ' ' + TCollection_ExtendedString(itr.Value());// key - value;
+        itr.Key() + ' ' + TCollection_ExtendedString(itr.Value().getValue());// key - value;
       XmlObjMgt_Element aCurTarget = aDoc.createElement( ::ExtString() );
       XmlObjMgt::SetExtendedString( aCurTarget, aValueStr );
       anElement.appendChild( aCurTarget );

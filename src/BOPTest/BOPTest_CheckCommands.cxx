@@ -1077,8 +1077,8 @@ Standard_Integer xdistef(Draw_Interpretor& di,
     return 1;
   }
   //
-  di << "Max Distance = " << aMaxDist 
-     << "; Parameter on curve = " << aMaxPar << "\n";
+  di << "Max Distance = " << aMaxDist.getValue()
+     << "; Parameter on curve = " << aMaxPar.getValue() << "\n";
   //
   return 0;
 }
@@ -1231,8 +1231,8 @@ void MakeShapeForFullOutput (const TCollection_AsciiString & aBaseName,
   di << "Made faulty shape: " << name;
   //
   if (bCurveOnSurf) {
-    di << " (MaxDist = " << aMaxDist 
-       << ", MaxPar = " << aMaxParameter << ")";
+    di << " (MaxDist = " << aMaxDist.getValue()
+       << ", MaxPar = " << aMaxParameter.getValue() << ")";
   }
   //
   di << "\n";

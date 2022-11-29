@@ -288,7 +288,7 @@ static Standard_Integer OCC862 (Draw_Interpretor& di, Standard_Integer argc, con
   GeomAPI_ExtremaCurveCurve Ex(C1,C2/*,C1f,C1l,C2f,C2l*/);
   if (Ex.Extrema().IsParallel())
   {
-    di<<"Info: Infinite number of extrema, distance = "<<Ex.LowerDistance()<<"\n";
+    di<<"Info: Infinite number of extrema, distance = "<<Ex.LowerDistance().getValue()<<"\n";
   }
   else
   {
@@ -303,9 +303,9 @@ static Standard_Integer OCC862 (Draw_Interpretor& di, Standard_Integer argc, con
       Ex.LowerDistanceParameters(U1,U2);
       const Standard_Real D = Ex.LowerDistance();
       // IMPORTANT: minimal distance here means accuracy reached in intersection
-      di<<"Info: Minimal distance is "<<D<<"\n";
-      di<<"Info: Minimal points are ("<<P1.X()<<","<<P1.Y()<<","<<P1.Z()<<"), ("<<P2.X()<<","<<P2.Y()<<","<<P2.Z()<<")\n";
-      di<<"Info: Minimal parameters are ("<<U1<<"), ("<<U2<<")\n";
+      di<<"Info: Minimal distance is "<<D.getValue()<<"\n";
+      di<<"Info: Minimal points are ("<<P1.X().getValue()<<","<<P1.Y().getValue()<<","<<P1.Z().getValue()<<"), ("<<P2.X().getValue()<<","<<P2.Y().getValue()<<","<<P2.Z().getValue()<<")\n";
+      di<<"Info: Minimal parameters are ("<<U1.getValue()<<"), ("<<U2.getValue()<<")\n";
     }
     else
     {

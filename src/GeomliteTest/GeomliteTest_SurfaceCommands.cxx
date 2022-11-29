@@ -120,7 +120,7 @@ static Standard_Integer surface_radius (Draw_Interpretor& di,
       
       if (Abs(radius) > tolerance) { 
 	radius = 1.0e0/ radius ;
-	di << "Min Radius of Curvature : " << radius  << "\n";
+	di << "Min Radius of Curvature : " << radius.getValue()  << "\n";
       }
       else {
 	di << "Min Radius of Curvature :  infinite\n";
@@ -130,7 +130,7 @@ static Standard_Integer surface_radius (Draw_Interpretor& di,
       if (report_curvature) Draw::Set(a[5],radius.getValue());
       if (Abs(radius) > tolerance)  { 
 	radius = 1.0e0/ radius;
-	di << "Max Radius of Curvature : " << radius  << "\n";
+	di << "Max Radius of Curvature : " << radius.getValue()  << "\n";
       }
       else
 	di << "Min Radius of Curvature :  infinite\n";

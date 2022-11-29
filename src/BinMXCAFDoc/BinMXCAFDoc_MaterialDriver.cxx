@@ -85,7 +85,7 @@ void BinMXCAFDoc_MaterialDriver::Paste(const Handle(TDF_Attribute)& theSource,
   Handle(XCAFDoc_Material) anAtt = Handle(XCAFDoc_Material)::DownCast(theSource);
   pasteString( theTarget, anAtt->GetName() );
   pasteString( theTarget, anAtt->GetDescription() );
-  theTarget << anAtt->GetDensity();
+  theTarget << anAtt->GetDensity().getValue();
   pasteString( theTarget, anAtt->GetDensName() );
   pasteString( theTarget, anAtt->GetDensValType() );
 }

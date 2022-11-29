@@ -57,11 +57,11 @@
 #include <stdio.h>
 
 
-static Standard_Real t3d = 1.e-4;
-static Standard_Real t2d = 1.e-5;
-static Standard_Real ta  = 1.e-2;
-static Standard_Real fl  = 1.e-3;
-static Standard_Real tapp_angle = 1.e-2;
+static double t3d = 1.e-4;
+static double t2d = 1.e-5;
+static double ta  = 1.e-2;
+static double fl  = 1.e-3;
+static double tapp_angle = 1.e-2;
 static GeomAbs_Shape blend_cont = GeomAbs_C1;
 
 static BRepFilletAPI_MakeFillet* Rakk = 0;
@@ -530,12 +530,12 @@ static Standard_Integer blend1(Draw_Interpretor& di, Standard_Integer narg, cons
     l = aRakk.LastParameter();
     //std::cout<<"parameter on edge start : "<<f<<std::endl;
     //std::cout<<"parameter on edge end   : "<<l<<std::endl;
-    di<<"parametre on edge start : "<<f<<"\n";
-    di<<"parametre on edge end   : "<<l<<"\n";
+    di<<"parametre on edge start : "<<f.getValue()<<"\n";
+    di<<"parametre on edge end   : "<<l.getValue()<<"\n";
     for (i=1;i<=nb;i++){
       //precision 
       //std::cout<<"precision "<< i << "= "<<Rakk.TolApp3d(i)<<std::endl;
-      di<<"precision "<< i << "= "<<aRakk.TolApp3d(i)<<"\n";
+      di<<"precision "<< i << "= "<<aRakk.TolApp3d(i).getValue()<<"\n";
       
       // display resulting surfaces  
       Sprintf(localname, "%s%d" ,ns0,i);

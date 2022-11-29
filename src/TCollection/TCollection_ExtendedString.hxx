@@ -96,7 +96,7 @@ public:
   Standard_EXPORT TCollection_ExtendedString(const Standard_Integer value);
   
   //! Initializes an ExtendedString with a real value
-  Standard_EXPORT TCollection_ExtendedString(const Standard_Real value);
+  Standard_EXPORT TCollection_ExtendedString(const double value);
   
   //! Initializes a ExtendedString with another ExtendedString.
   Standard_EXPORT TCollection_ExtendedString(const TCollection_ExtendedString& astring);

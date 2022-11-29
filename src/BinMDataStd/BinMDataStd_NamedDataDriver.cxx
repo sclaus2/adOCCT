@@ -219,7 +219,7 @@ void BinMDataStd_NamedDataDriver::Paste(const Handle(TDF_Attribute)& theSource,
     theTarget.PutInteger(1) << S->GetRealsContainer().Extent();
     TDataStd_DataMapIteratorOfDataMapOfStringReal itr(S->GetRealsContainer());
     for (; itr.More(); itr.Next()) {
-      theTarget << itr.Key() << itr.Value();
+      theTarget << itr.Key() << itr.Value().getValue();
     }
   } else {
     theTarget.PutInteger(0).PutInteger(0);

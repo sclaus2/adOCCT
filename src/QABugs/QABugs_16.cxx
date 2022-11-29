@@ -93,10 +93,10 @@ static Standard_Integer BUC60848 (Draw_Interpretor& di, Standard_Integer argc, c
   Standard_Real GRes;
   GRes = G.Mass();
   if ( GRes < 0 ) {
-    di << "Result is negative : " << GRes << "\n";
+    di << "Result is negative : " << GRes.getValue() << "\n";
     return 1;
   } else {
-    di << "Volume : " << GRes << "\n";
+    di << "Volume : " << GRes.getValue() << "\n";
   }
 
   return 0;
@@ -241,7 +241,7 @@ static Standard_Integer BUC60972 (Draw_Interpretor& di, Standard_Integer argc, c
   if(aPlane.IsNull())
     return 1;
   
-  di << aPlane->Pln().SquareDistance( gp_Pnt(0,0,0) ) << "\n";
+  di << aPlane->Pln().SquareDistance( gp_Pnt(0,0,0) ).getValue() << "\n";
   
   TCollection_ExtendedString aText(argv[5]);
   //Standard_ExtString ExtString_aText = aText.ToExtString();

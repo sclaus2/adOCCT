@@ -69,7 +69,7 @@ TCollection_HAsciiString::TCollection_HAsciiString
 // Create
 // ----------------------------------------------------------------------------
 TCollection_HAsciiString::TCollection_HAsciiString
-        (const Standard_Real aValue):myString(aValue)
+        (const double aValue):myString(aValue)
 {}
 
 // ----------------------------------------------------------------------------
@@ -394,7 +394,7 @@ void TCollection_HAsciiString::Print(Standard_OStream& S) const
 // ----------------------------------------------------------------------------
 // RealValue
 // ----------------------------------------------------------------------------
-Standard_Real TCollection_HAsciiString::RealValue() const
+double TCollection_HAsciiString::RealValue() const
 {
    return myString.RealValue();
 }

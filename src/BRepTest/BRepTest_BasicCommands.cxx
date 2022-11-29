@@ -206,7 +206,7 @@ static Standard_Integer transform(Draw_Interpretor&,Standard_Integer n,const cha
         }
         catch (const Standard_DomainError&)
         {
-          TCollection_AsciiString aScale(T.ScaleFactor());
+          TCollection_AsciiString aScale(T.ScaleFactor().getValue());
           Message::SendWarning() << "Operation is not done: " << aName << " is not a valid transformation - scale = " << aScale;
           return 0;
         }
@@ -489,7 +489,7 @@ static Standard_Integer getcoords(Draw_Interpretor& di,Standard_Integer n,const 
       const TopoDS_Vertex& aVertex = TopoDS::Vertex(aShape);
       gp_Pnt aPnt = BRep_Tool::Pnt(aVertex);
 
-      di << a[i] << " (x,y,z) : " << aPnt.X() << " " << aPnt.Y() << " " << aPnt.Z() << "\n";
+      di << a[i] << " (x,y,z) : " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
     }
   }
 
@@ -665,15 +665,15 @@ static Standard_Integer BoundBox(Draw_Interpretor& theDI,
                    &aYDir = anOBB.YDirection(),
                    &aZDir = anOBB.ZDirection();
       theDI << "Oriented bounding box\n";
-      theDI << "Center: " << aBaryCenter.X() << " " << 
-                             aBaryCenter.Y() << " " <<
-                             aBaryCenter.Z() << "\n";
-      theDI << "X-axis: " << aXDir.X() << " " << aXDir.Y() << " " << aXDir.Z() << "\n";
-      theDI << "Y-axis: " << aYDir.X() << " " << aYDir.Y() << " " << aYDir.Z() << "\n";
-      theDI << "Z-axis: " << aZDir.X() << " " << aZDir.Y() << " " << aZDir.Z() << "\n";
-      theDI << "Half X: " << anOBB.XHSize() << "\n"
-            << "Half Y: " << anOBB.YHSize() << "\n"
-            << "Half Z: " << anOBB.ZHSize() << "\n";
+      theDI << "Center: " << aBaryCenter.X().getValue() << " " <<
+                             aBaryCenter.Y().getValue() << " " <<
+                             aBaryCenter.Z().getValue() << "\n";
+      theDI << "X-axis: " << aXDir.X().getValue() << " " << aXDir.Y().getValue() << " " << aXDir.Z().getValue() << "\n";
+      theDI << "Y-axis: " << aYDir.X().getValue() << " " << aYDir.Y().getValue() << " " << aYDir.Z().getValue() << "\n";
+      theDI << "Z-axis: " << aZDir.X().getValue() << " " << aZDir.Y().getValue() << " " << aZDir.Z().getValue() << "\n";
+      theDI << "Half X: " << anOBB.XHSize().getValue() << "\n"
+            << "Half Y: " << anOBB.YHSize().getValue() << "\n"
+            << "Half Z: " << anOBB.ZHSize().getValue() << "\n";
     }
 
     if (doDumpJson)
@@ -729,15 +729,15 @@ static Standard_Integer BoundBox(Draw_Interpretor& theDI,
       {
         if (useOldSyntax)
         {
-          theDI << aMin.X() << " " << aMin.Y() << " " << aMin.Z() << " "
-                << aMax.X() << " " << aMax.Y() << " " << aMax.Z() << "\n";
+          theDI << aMin.X().getValue() << " " << aMin.Y().getValue() << " " << aMin.Z().getValue() << " "
+                << aMax.X().getValue() << " " << aMax.Y().getValue() << " " << aMax.Z().getValue() << "\n";
         }
         else
         {
           theDI << "Axes-aligned bounding box\n";
-          theDI << "X-range: " << aMin.X() << " " << aMax.X() << "\n"
-                << "Y-range: " << aMin.Y() << " " << aMax.Y() << "\n"
-                << "Z-range: " << aMin.Z() << " " << aMax.Z() << "\n";
+          theDI << "X-range: " << aMin.X().getValue() << " " << aMax.X().getValue() << "\n"
+                << "Y-range: " << aMin.Y().getValue() << " " << aMax.Y().getValue() << "\n"
+                << "Z-range: " << aMin.Z().getValue() << " " << aMax.Z().getValue() << "\n";
           if (anAABB.IsOpen()
            && anAABB.HasFinitePart())
           {
@@ -745,9 +745,9 @@ static Standard_Integer BoundBox(Draw_Interpretor& theDI,
             const gp_Pnt aFinMin = aFinitAabb.CornerMin();
             const gp_Pnt aFinMax = aFinitAabb.CornerMax();
             theDI << "Finite part\n";
-            theDI << "X-range: " << aFinMin.X() << " " << aFinMax.X() << "\n"
-                  << "Y-range: " << aFinMin.Y() << " " << aFinMax.Y() << "\n"
-                  << "Z-range: " << aFinMin.Z() << " " << aFinMax.Z() << "\n";
+            theDI << "X-range: " << aFinMin.X().getValue() << " " << aFinMax.X().getValue() << "\n"
+                  << "Y-range: " << aFinMin.Y().getValue() << " " << aFinMax.Y().getValue() << "\n"
+                  << "Z-range: " << aFinMin.Z().getValue() << " " << aFinMax.Z().getValue() << "\n";
           }
         }
       }
@@ -924,7 +924,7 @@ static Standard_Integer gbounding(Draw_Interpretor& di,Standard_Integer n,const 
       B.Get(axmin,aymin,azmin,axmax,aymax,azmax);
       DB = new Draw_Box(B, Draw_vert);
       dout<<DB;
-      di << axmin<<" "<< aymin<<" "<< azmin<<" "<< axmax<<" "<< aymax<<" "<< azmax;
+      di << axmin.getValue()<<" "<< aymin.getValue()<<" "<< azmin.getValue()<<" "<< axmax.getValue()<<" "<< aymax.getValue()<<" "<< azmax.getValue();
     }
     else
     {
@@ -938,7 +938,7 @@ static Standard_Integer gbounding(Draw_Interpretor& di,Standard_Integer n,const 
       Draw_Segment2D* S3 = new Draw_Segment2D(p3, p4, Draw_vert);
       Draw_Segment2D* S4 = new Draw_Segment2D(p4, p1, Draw_vert);
       dout << S1 << S2 << S3 << S4;
-      di << axmin<<" "<< aymin<<" "<< axmax<<" "<< aymax;
+      di << axmin.getValue()<<" "<< aymin.getValue()<<" "<< axmax.getValue()<<" "<< aymax.getValue();
     }
   }
   return 0;
@@ -975,7 +975,7 @@ static Standard_Integer precision(Draw_Interpretor& di,Standard_Integer n,const 
 
   if ( n == 0) {
     //std::cout << " Current Precision = " << BRepBuilderAPI::Precision() << std::endl;
-    di << " Current Precision = " << BRepBuilderAPI::Precision() << "\n";
+    di << " Current Precision = " << BRepBuilderAPI::Precision().getValue() << "\n";
   }
   else {
     BRepBuilderAPI::Precision(Draw::Atof(a[1]));
@@ -1041,7 +1041,7 @@ static Standard_Integer reperageshape(Draw_Interpretor& di, Standard_Integer nar
       Standard_Real PMin = Inter.WParameter(i);
       if(details) { 
 	//std::cout<<" w:"<<PMin<<std::endl;
-	di<<" w:"<<PMin<< "\n";
+	di<<" w:"<<PMin.getValue()<< "\n";
       }
       if(Inter.Transition(i) == IntCurveSurface_In) { 
 	if(Inter.State(i) == TopAbs_IN) { 
@@ -1192,7 +1192,7 @@ static Standard_Integer vecdc(Draw_Interpretor& di,Standard_Integer ,const char*
   dout << d;
   dout.Flush();
   //std::cout<<"\nttran   "<<PP1.X()-P1.X()<<" "<<PP1.Y()-P1.Y()<<" "<<PP1.Z()-P1.Z()<<std::endl;
-  di <<"\nttran   "<<PP1.X()-P1.X()<<" "<<PP1.Y()-P1.Y()<<" "<<PP1.Z()-P1.Z()<< "\n";
+  di <<"\nttran   "<<(PP1.X()-P1.X()).getValue()<<" "<<(PP1.Y()-P1.Y()).getValue()<<" "<<(PP1.Z()-P1.Z()).getValue()<< "\n";
 
   static Standard_Integer nboxvecdp=0;
   //std::cout<<"\nbox  b"<<++nboxvecdp<<" "<<Min(P1.X(),PP1.X())<<" "<<Min(P1.Y(),PP1.Y())<<" "<<Min(PP1.Z(),P1.Z());
@@ -1202,12 +1202,12 @@ static Standard_Integer vecdc(Draw_Interpretor& di,Standard_Integer ,const char*
 	//		     +(PP1.Y()-P1.Y())*(PP1.Y()-P1.Y())
 	//		     +(PP1.Z()-P1.Z())*(PP1.Z()-P1.Z()))<<std::endl;
 
-  di <<"\nbox  b"<<++nboxvecdp<<" "<<Min(P1.X(),PP1.X())<<" "<<Min(P1.Y(),PP1.Y())<<" "<<Min(PP1.Z(),P1.Z());
-  di <<"  "<<Abs(PP1.X()-P1.X())<<" "<<Abs(PP1.Y()-P1.Y())<<" "<<Abs(PP1.Z()-P1.Z())<< "\n";
+  di <<"\nbox  b"<<++nboxvecdp<<" "<<Min(P1.X(),PP1.X()).getValue()<<" "<<Min(P1.Y(),PP1.Y()).getValue()<<" "<<Min(PP1.Z(),P1.Z()).getValue();
+  di <<"  "<<Abs(PP1.X()-P1.X()).getValue()<<" "<<Abs(PP1.Y()-P1.Y()).getValue()<<" "<<Abs(PP1.Z()-P1.Z()).getValue()<< "\n";
 
-  di <<"\nDistance :"<<sqrt( (PP1.X()-P1.X())*(PP1.X()-P1.X())
+  di <<"\nDistance :"<<Sqrt( (PP1.X()-P1.X())*(PP1.X()-P1.X())
 			     +(PP1.Y()-P1.Y())*(PP1.Y()-P1.Y())
-			     +(PP1.Z()-P1.Z())*(PP1.Z()-P1.Z()))<< "\n";
+			     +(PP1.Z()-P1.Z())*(PP1.Z()-P1.Z())).getValue()<< "\n";
   return(0);
 }
 //=======================================================================

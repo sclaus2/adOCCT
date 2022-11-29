@@ -402,28 +402,28 @@ public:
     switch (myFormat)
     {
       case Seconds:
-        (*myDI) <<  ElapsedTime() / Standard_Real(myNbIters);
+        (*myDI) <<  ElapsedTime() / double(myNbIters);
         if (myToPrintFormat)
         {
           (*myDI) << " s";
         }
         break;
       case Milliseconds:
-        (*myDI) << (ElapsedTime() / Standard_Real(myNbIters)) * 1000.0;
+        (*myDI) << (ElapsedTime() / double(myNbIters)) * 1000.0;
         if (myToPrintFormat)
         {
           (*myDI) << " ms";
         }
         break;
       case Microseconds:
-        (*myDI) << (ElapsedTime() / Standard_Real(myNbIters)) * 1000000.0;
+        (*myDI) << (ElapsedTime() / double(myNbIters)) * 1000000.0;
         if (myToPrintFormat)
         {
           (*myDI) << " microseconds";
         }
         break;
       case Nanoseconds:
-        (*myDI) << (ElapsedTime() / Standard_Real(myNbIters)) * 1000000000.0;
+        (*myDI) << (ElapsedTime() / double(myNbIters)) * 1000000000.0;
         if (myToPrintFormat)
         {
           (*myDI) << " ns";

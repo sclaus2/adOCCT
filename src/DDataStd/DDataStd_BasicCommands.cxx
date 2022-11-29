@@ -298,7 +298,7 @@ static Standard_Integer DDataStd_GetReal (Draw_Interpretor& di,
     if (!DDF::Find(DF,arg[2],aGuid,A)) return 1;
     if (nb == 4 && isdrawname) Draw::Set(arg[3],A->Get().getValue());
     else         Draw::Set(arg[2],A->Get().getValue());
-    di << A->Get();
+    di << A->Get().getValue();
     return 0;
   }
   di << "DDataStd_GetReal : Error\n";
@@ -868,7 +868,7 @@ static Standard_Integer DDataStd_GetRealArray (Draw_Interpretor& di,
 #ifdef DEB_DDataStd
       std::cout <<  A->Value(i)   << std::endl; 
 #endif
-      di   <<  A->Value(i);
+      di   <<  A->Value(i).getValue();
       if(i<A->Upper())  
         di<<" ";
     }  
@@ -906,7 +906,7 @@ static Standard_Integer DDataStd_GetRealArrayValue (Draw_Interpretor& di,
     di << "Index is out of range\n";
     return 1;
   } else {
-    di << A->Value(index) << "\n";
+    di << A->Value(index).getValue() << "\n";
   }
 
   return 0; 
@@ -2818,7 +2818,7 @@ static Standard_Integer DDataStd_GetRealList (Draw_Interpretor& di,
       TColStd_ListIteratorOfListOfReal itr(rList);
       for (; itr.More(); itr.Next())
       {
-        di << itr.Value() << " ";
+        di << itr.Value().getValue() << " ";
       }
       di << "\n";
     } else
@@ -3530,7 +3530,7 @@ static Standard_Integer DDataStd_GetNDReals (Draw_Interpretor& di,
     for (; itr.More(); itr.Next()){
       TCollection_ExtendedString aKey(itr.Key());
       Standard_Real aValue = itr.Value();
-      di << "Key = " << aKey << " Value = " << aValue << "\n";
+      di << "Key = " << aKey << " Value = " << aValue.getValue() << "\n";
       }
     return 0; 
   }
@@ -4381,7 +4381,7 @@ static Standard_Integer DDataStd_DumpMesh (Draw_Interpretor& di,
       return 1;
     }
 
-    di << "Deflection            " << PT->Deflection() <<"\n";
+    di << "Deflection            " << PT->Deflection().getValue() <<"\n";
     di << "Number of nodes       " << PT->NbNodes() << "\n";
     di << "Number of triangles   " << PT->NbTriangles() << "\n";
     if (PT->HasUVNodes())

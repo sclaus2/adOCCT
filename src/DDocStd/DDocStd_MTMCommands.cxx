@@ -260,7 +260,7 @@ static Standard_Integer XAttributeValue (Draw_Interpretor& di, Standard_Integer 
   else if ( att->IsKind(STANDARD_TYPE(TDataStd_Real)) ) 
   {
     Handle(TDataStd_Real) val = Handle(TDataStd_Real)::DownCast ( att );
-    TCollection_AsciiString str ( val->Get() );
+    TCollection_AsciiString str ( val->Get().getValue() );
     di << str.ToCString();
   }
   else if ( att->IsKind(STANDARD_TYPE(TDataStd_Name)) )
@@ -294,7 +294,7 @@ static Standard_Integer XAttributeValue (Draw_Interpretor& di, Standard_Integer 
     for ( Standard_Integer j=val->Lower(); j <= val->Upper(); j++ ) 
     {
       if ( j > val->Lower() ) di << ", ";
-      TCollection_AsciiString str ( val->Value(j) );
+      TCollection_AsciiString str ( val->Value(j).getValue() );
       di << str.ToCString();
     }
   }

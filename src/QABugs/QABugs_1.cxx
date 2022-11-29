@@ -262,8 +262,8 @@ static Standard_Integer OCC10bug (Draw_Interpretor& di, Standard_Integer argc, c
   }
 
   Standard_Real getLength = theAISPlaneTri->GetLength();
-  di << "Length = " << Length << "\n";
-  di << "getLength = " << getLength << "\n";
+  di << "Length = " << Length.getValue() << "\n";
+  di << "getLength = " << getLength.getValue() << "\n";
 
   if (getLength == Length) {
     di << "OCC10: OK\n";

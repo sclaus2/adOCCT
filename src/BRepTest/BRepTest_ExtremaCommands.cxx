@@ -56,7 +56,7 @@ static Standard_Integer distance (Draw_Interpretor& di,
   Standard_Real D;
   if (!BRepExtrema_Poly::Distance(S1,S2,P1,P2,D)) return 1;
   //std::cout << " distance : " << D << std::endl;
-  di << " distance : " << D << "\n";
+  di << " distance : " << D.getValue() << "\n";
   TopoDS_Edge E = BRepLib_MakeEdge(P1,P2);
   DBRep::Set("distance",E);
   return 0;
@@ -262,8 +262,8 @@ static int ShapeProximity (Draw_Interpretor& theDI, Standard_Integer theNbArgs, 
   {
     theDI << "Number of primitives in shape 1: " << aTool.ElementSet1()->Size() << "\n";
     theDI << "Number of primitives in shape 2: " << aTool.ElementSet2()->Size() << "\n";
-    theDI << "Building data structures: " << aInitTime << "\n";
-    theDI << "Executing proximity test: " << aWorkTime << "\n";
+    theDI << "Building data structures: " << aInitTime.getValue() << "\n";
+    theDI << "Executing proximity test: " << aWorkTime.getValue() << "\n";
   }
 
   TopoDS_Builder aCompBuilder;
@@ -389,8 +389,8 @@ static int ShapeSelfIntersection (Draw_Interpretor& theDI, Standard_Integer theN
     aWorkTime = aTimer.ElapsedTime();
     aTimer.Stop();
 
-    theDI << "Building data structure (BVH):    " << aInitTime << "\n";
-    theDI << "Executing self-intersection test: " << aWorkTime << "\n";
+    theDI << "Building data structure (BVH):    " << aInitTime.getValue() << "\n";
+    theDI << "Executing self-intersection test: " << aWorkTime.getValue() << "\n";
   }
 
   // Extract output faces

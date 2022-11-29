@@ -3482,8 +3482,8 @@ static int VColorScale (Draw_Interpretor& theDI,
     }
 
     theDI << "Color scale parameters for '"<< theArgVec[1] << "':\n"
-          << "Min range: "            << aColorScale->GetMin() << "\n"
-          << "Max range: "            << aColorScale->GetMax() << "\n"
+          << "Min range: "            << aColorScale->GetMin().getValue() << "\n"
+          << "Max range: "            << aColorScale->GetMax().getValue() << "\n"
           << "Number of intervals: "  << aColorScale->GetNumberOfIntervals() << "\n"
           << "Text height: "          << aColorScale->GetTextHeight() << "\n"
           << "Color scale position: " << aColorScale->GetXPosition() << " " << aColorScale->GetYPosition() << "\n"
@@ -4468,9 +4468,9 @@ inline void printZLayerInfo (Draw_Interpretor& theDI,
   {
     theDI << "  Immediate: TRUE\n";
   }
-  theDI << "  Origin: " << theLayer.Origin().X() << " " << theLayer.Origin().Y() << " " << theLayer.Origin().Z() << "\n";
-  theDI << "  Culling distance: "      << theLayer.CullingDistance() << "\n";
-  theDI << "  Culling size: "          << theLayer.CullingSize() << "\n";
+  theDI << "  Origin: " << theLayer.Origin().X().getValue() << " " << theLayer.Origin().Y().getValue() << " " << theLayer.Origin().Z().getValue() << "\n";
+  theDI << "  Culling distance: "      << theLayer.CullingDistance().getValue() << "\n";
+  theDI << "  Culling size: "          << theLayer.CullingSize().getValue() << "\n";
   theDI << "  Depth test:   "          << (theLayer.ToEnableDepthTest() ? "enabled" : "disabled") << "\n";
   theDI << "  Depth write:  "          << (theLayer.ToEnableDepthWrite() ? "enabled" : "disabled") << "\n";
   theDI << "  Depth buffer clearing: " << (theLayer.ToClearDepth() ? "enabled" : "disabled") << "\n";
@@ -5275,9 +5275,9 @@ static int VPriviledgedPlane (Draw_Interpretor& theDI,
     const gp_Pnt& anOrig = aPriviledgedPlane.Location();
     const gp_Dir& aNorm = aPriviledgedPlane.Direction();
     const gp_Dir& aXDir = aPriviledgedPlane.XDirection();
-    theDI << "Origin: " << anOrig.X() << " " << anOrig.Y() << " " << anOrig.Z() << " "
-          << "Normal: " << aNorm.X() << " " << aNorm.Y() << " " << aNorm.Z() << " "
-          << "X-dir: "  << aXDir.X() << " " << aXDir.Y() << " " << aXDir.Z() << "\n";
+    theDI << "Origin: " << anOrig.X().getValue() << " " << anOrig.Y().getValue() << " " << anOrig.Z().getValue() << " "
+          << "Normal: " << aNorm.X().getValue() << " " << aNorm.Y().getValue() << " " << aNorm.Z().getValue() << " "
+          << "X-dir: "  << aXDir.X().getValue() << " " << aXDir.Y().getValue() << " " << aXDir.Z().getValue() << "\n";
     return 0;
   }
 
@@ -5385,7 +5385,7 @@ static int VConvert (Draw_Interpretor& theDI,
   {
     switch (aMode)
     {
-      case View   : theDI << "View Vv: "   << aView->Convert ((Standard_Integer)aCoord (1)); return 0;
+      case View   : theDI << "View Vv: "   << aView->Convert ((Standard_Integer)aCoord (1)).getValue(); return 0;
       case Window : theDI << "Window Vp: " << aView->Convert (aCoord (1)); return 0;
       default:
         Message::SendFail ("Error: wrong arguments! See usage:");
@@ -5401,12 +5401,12 @@ static int VConvert (Draw_Interpretor& theDI,
     {
       case Model :
         aView->Convert ((Standard_Integer) aCoord (1), (Standard_Integer) aCoord (2), aXYZ[0], aXYZ[1], aXYZ[2]);
-        theDI << "Model X,Y,Z: " << aXYZ[0] << " " << aXYZ[1] << " " << aXYZ[2] << "\n";
+        theDI << "Model X,Y,Z: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << " " << aXYZ[2].getValue() << "\n";
         return 0;
 
       case View :
         aView->Convert ((Standard_Integer) aCoord (1), (Standard_Integer) aCoord (2), aXYZ[0], aXYZ[1]);
-        theDI << "View Xv,Yv: " << aXYZ[0] << " " << aXYZ[1] << "\n";
+        theDI << "View Xv,Yv: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << "\n";
         return 0;
 
       case Window :
@@ -5417,7 +5417,7 @@ static int VConvert (Draw_Interpretor& theDI,
       case Grid :
         aView->Convert ((Standard_Integer) aCoord (1), (Standard_Integer) aCoord (2), aXYZ[0], aXYZ[1], aXYZ[2]);
         aView->ConvertToGrid (aXYZ[0], aXYZ[1], aXYZ[2], aXYZ[3], aXYZ[4], aXYZ[5]);
-        theDI << "Model X,Y,Z: " << aXYZ[3] << " " << aXYZ[4] << " " << aXYZ[5] << "\n";
+        theDI << "Model X,Y,Z: " << aXYZ[3].getValue() << " " << aXYZ[4].getValue() << " " << aXYZ[5].getValue() << "\n";
         return 0;
 
       case Ray :
@@ -5425,7 +5425,7 @@ static int VConvert (Draw_Interpretor& theDI,
                                 (Standard_Integer) aCoord (2),
                                 aXYZ[0], aXYZ[1], aXYZ[2],
                                 aXYZ[3], aXYZ[4], aXYZ[5]);
-        theDI << "Model DX,DY,DZ: " << aXYZ[3] << " " << aXYZ[4] << " " << aXYZ[5] << "\n";
+        theDI << "Model DX,DY,DZ: " << aXYZ[3].getValue() << " " << aXYZ[4].getValue() << " " << aXYZ[5].getValue() << "\n";
         return 0;
 
       default:
@@ -5447,7 +5447,7 @@ static int VConvert (Draw_Interpretor& theDI,
 
       case Grid :
         aView->ConvertToGrid (aCoord (1), aCoord (2), aCoord (3), aXYZ[0], aXYZ[1], aXYZ[2]);
-        theDI << "Model X,Y,Z: " << aXYZ[0] << " " << aXYZ[1] << " " << aXYZ[2] << "\n";
+        theDI << "Model X,Y,Z: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << " " << aXYZ[2].getValue() << "\n";
         return 0;
 
       default:
@@ -5540,8 +5540,8 @@ static int VFps (Draw_Interpretor& theDI,
   const Standard_Real aCpuAver = aCpu / Standard_Real(aFrameIter);
 
   // return statistics
-  theDI << "FPS: " << aFpsAver << "\n"
-        << "CPU: " << (1000.0 * aCpuAver) << " msec\n";
+  theDI << "FPS: " << aFpsAver.getValue() << "\n"
+        << "CPU: " << (1000.0 * aCpuAver.getValue()) << " msec\n";
 
   // compute additional statistics in ray-tracing mode
   const Graphic3d_RenderingParams& aParams = aView->RenderingParams();
@@ -5552,7 +5552,7 @@ static int VFps (Draw_Interpretor& theDI,
 
     // 1 shadow ray and 1 secondary ray pew each bounce
     const Standard_Real aMRays = aWinSize.x() * aWinSize.y() * aFpsAver * aParams.RaytracingDepth * 2 / 1.0e6f;
-    theDI << "MRays/sec (upper bound): " << aMRays << "\n";
+    theDI << "MRays/sec (upper bound): " << aMRays.getValue() << "\n";
   }
 
   return 0;
@@ -5593,7 +5593,7 @@ static int VMemGpu (Draw_Interpretor& theDI,
 
   if (theArgNb > 1 && *theArgVec[1] == 'f')
   {
-    theDI << Standard_Real (aFreeBytes);
+    theDI << double (aFreeBytes);
   }
   else
   {
@@ -6325,7 +6325,7 @@ static Standard_Integer VMoveTo (Draw_Interpretor& theDI,
       break;
     }
   }
-  theDI << aTopPnt.X() << " " << aTopPnt.Y() << " " << aTopPnt.Z();
+  theDI << aTopPnt.X().getValue() << " " << aTopPnt.Y().getValue() << " " << aTopPnt.Z().getValue();
   return 0;
 }
 
@@ -6505,7 +6505,7 @@ static Standard_Integer VSelectByAxis (Draw_Interpretor& theDI,
   for (NCollection_Sequence<gp_Pnt>::Iterator anIter(aPoints); anIter.More(); anIter.Next(), anIndex++)
   {
     const gp_Pnt& aPnt = anIter.Value();
-    theDI << aPnt.X() << " " << aPnt.Y() << " " << aPnt.Z() << "\n";
+    theDI << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
   }
   return 0;
 }
@@ -6538,11 +6538,11 @@ namespace
     virtual void update (const AIS_AnimationProgress& theProgress) Standard_OVERRIDE
     {
       TCollection_AsciiString aCmd = myCommand;
-      replace (aCmd, "%pts",             TCollection_AsciiString(theProgress.Pts));
-      replace (aCmd, "%localpts",        TCollection_AsciiString(theProgress.LocalPts));
-      replace (aCmd, "%ptslocal",        TCollection_AsciiString(theProgress.LocalPts));
-      replace (aCmd, "%normalized",      TCollection_AsciiString(theProgress.LocalNormalized));
-      replace (aCmd, "%localnormalized", TCollection_AsciiString(theProgress.LocalNormalized));
+      replace (aCmd, "%pts",             TCollection_AsciiString(theProgress.Pts.getValue()));
+      replace (aCmd, "%localpts",        TCollection_AsciiString(theProgress.LocalPts.getValue()));
+      replace (aCmd, "%ptslocal",        TCollection_AsciiString(theProgress.LocalPts.getValue()));
+      replace (aCmd, "%normalized",      TCollection_AsciiString(theProgress.LocalNormalized.getValue()));
+      replace (aCmd, "%localnormalized", TCollection_AsciiString(theProgress.LocalNormalized.getValue()));
       myDrawInter->Eval (aCmd.ToCString());
     }
 
@@ -6874,13 +6874,13 @@ static int VViewParams (Draw_Interpretor& theDi, Standard_Integer theArgsNb, con
       }
       if (anArg == "-scale")
       {
-        theDi << "Scale: " << aView->Scale() << "\n";
+        theDi << "Scale: " << aView->Scale().getValue() << "\n";
       }
       else if (anArg == "-size")
       {
         Graphic3d_Vec2d aSizeXY;
         aView->Size (aSizeXY.x(), aSizeXY.y());
-        theDi << "Size: " << aSizeXY.x() << " " << aSizeXY.y() << "\n";
+        theDi << "Size: " << aSizeXY.x().getValue() << " " << aSizeXY.y().getValue() << "\n";
       }
     }
     else if (anArg == "-eye"
@@ -6920,19 +6920,19 @@ static int VViewParams (Draw_Interpretor& theDi, Standard_Integer theArgsNb, con
 
       if (anArg == "-eye")
       {
-        theDi << "Eye:  " << aViewEye.X() << " " << aViewEye.Y() << " " << aViewEye.Z() << "\n";
+        theDi << "Eye:  " << aViewEye.X().getValue() << " " << aViewEye.Y().getValue() << " " << aViewEye.Z().getValue() << "\n";
       }
       else if (anArg == "-at")
       {
-        theDi << "At:   " << aViewAt.X() << " " << aViewAt.Y() << " " << aViewAt.Z() << "\n";
+        theDi << "At:   " << aViewAt.X().getValue() << " " << aViewAt.Y().getValue() << " " << aViewAt.Z().getValue() << "\n";
       }
       else if (anArg == "-up")
       {
-        theDi << "Up:   " << aViewUp.X() << " " << aViewUp.Y() << " " << aViewUp.Z() << "\n";
+        theDi << "Up:   " << aViewUp.X().getValue() << " " << aViewUp.Y().getValue() << " " << aViewUp.Z().getValue() << "\n";
       }
       else if (anArg == "-proj")
       {
-        theDi << "Proj: " << aViewProj.X() << " " << aViewProj.Y() << " " << aViewProj.Z() << "\n";
+        theDi << "Proj: " << aViewProj.X().getValue() << " " << aViewProj.Y().getValue() << " " << aViewProj.Z().getValue() << "\n";
       }
     }
     else if (anArg == "-center")
@@ -7056,7 +7056,7 @@ static Standard_Integer VAnimation (Draw_Interpretor& theDI,
     for (NCollection_DataMap<TCollection_AsciiString, Handle(AIS_Animation)>::Iterator
          anAnimIter (ViewerTest_AnimationTimelineMap); anAnimIter.More(); anAnimIter.Next())
     {
-      theDI << anAnimIter.Key() << " " << anAnimIter.Value()->Duration() << " sec\n";
+      theDI << anAnimIter.Key() << " " << anAnimIter.Value()->Duration().getValue() << " sec\n";
     }
     return 0;
   }
@@ -7151,7 +7151,7 @@ static Standard_Integer VAnimation (Draw_Interpretor& theDI,
     // just print the list of children
     for (NCollection_Sequence<Handle(AIS_Animation)>::Iterator anAnimIter (anAnimation->Children()); anAnimIter.More(); anAnimIter.Next())
     {
-      theDI << anAnimIter.Value()->Name() << " " << anAnimIter.Value()->Duration() << " sec\n";
+      theDI << anAnimIter.Value()->Name() << " " << anAnimIter.Value()->Duration().getValue() << " sec\n";
     }
     return 0;
   }
@@ -7732,8 +7732,8 @@ static Standard_Integer VAnimation (Draw_Interpretor& theDI,
   aPerfTimer.Stop();
   anAnimation->Stop();
   const Standard_Real aRecFps = Standard_Real(aNbFrames) / aPerfTimer.ElapsedTime();
-  theDI << "Average FPS: " << aRecFps << "\n"
-        << "Nb. Frames: "  << Standard_Real(aNbFrames);
+  theDI << "Average FPS: " << aRecFps.getValue() << "\n"
+        << "Nb. Frames: "  << double(aNbFrames);
 
   aView->Redraw();
   aView->SetImmediateUpdate (wasImmediateUpdate);
@@ -7810,7 +7810,7 @@ static Standard_Integer VSetViewSize (Draw_Interpretor& di,
     di<<"Usage : " << argv[0] << " Size\n";
     return 1;
   }
-  Standard_Real aSize = Draw::Atof (argv[1]);
+  double aSize = Draw::Atof (argv[1]);
   if (aSize <= 0.)
   {
     di<<"Bad Size value  : " << aSize << "\n";
@@ -8726,8 +8726,8 @@ static int VZRange (Draw_Interpretor& theDi, Standard_Integer theArgsNb, const c
 
   if (theArgsNb < 2)
   {
-    theDi << "ZNear: " << aCamera->ZNear() << "\n";
-    theDi << "ZFar: " << aCamera->ZFar() << "\n";
+    theDi << "ZNear: " << aCamera->ZNear().getValue() << "\n";
+    theDi << "ZFar: " << aCamera->ZFar().getValue() << "\n";
     return 0;
   }
 
@@ -8787,7 +8787,7 @@ static int VAutoZFit (Draw_Interpretor& theDi, Standard_Integer theArgsNb, const
   {
     theDi << "Auto z-fit mode: \n"
           << "On: " << (aCurrentView->AutoZFitMode() ? "enabled" : "disabled") << "\n"
-          << "Scale: " << aScale << "\n";
+          << "Scale: " << aScale.getValue() << "\n";
     return 0;
   }
 
@@ -8836,16 +8836,16 @@ static int VCamera (Draw_Interpretor& theDI,
   if (theArgsNb < 2)
   {
     theDI << "ProjType:   " << projTypeName (aCamera->ProjectionType()) << "\n";
-    theDI << "FOVy:       " << aCamera->FOVy() << "\n";
-    theDI << "FOVx:       " << aCamera->FOVx() << "\n";
-    theDI << "FOV2d:      " << aCamera->FOV2d() << "\n";
-    theDI << "Distance:   " << aCamera->Distance() << "\n";
-    theDI << "IOD:        " << aCamera->IOD() << "\n";
+    theDI << "FOVy:       " << aCamera->FOVy().getValue() << "\n";
+    theDI << "FOVx:       " << aCamera->FOVx().getValue() << "\n";
+    theDI << "FOV2d:      " << aCamera->FOV2d().getValue() << "\n";
+    theDI << "Distance:   " << aCamera->Distance().getValue() << "\n";
+    theDI << "IOD:        " << aCamera->IOD().getValue() << "\n";
     theDI << "IODType:    " << (aCamera->GetIODType() == Graphic3d_Camera::IODType_Absolute   ? "absolute" : "relative") << "\n";
-    theDI << "ZFocus:     " << aCamera->ZFocus() << "\n";
+    theDI << "ZFocus:     " << aCamera->ZFocus().getValue() << "\n";
     theDI << "ZFocusType: " << (aCamera->ZFocusType() == Graphic3d_Camera::FocusType_Absolute ? "absolute" : "relative") << "\n";
-    theDI << "ZNear:      " << aCamera->ZNear() << "\n";
-    theDI << "ZFar:       " << aCamera->ZFar() << "\n";
+    theDI << "ZNear:      " << aCamera->ZNear().getValue() << "\n";
+    theDI << "ZFar:       " << aCamera->ZFar().getValue() << "\n";
     return 0;
   }
 
@@ -8910,7 +8910,7 @@ static int VCamera (Draw_Interpretor& theDI,
         aCamera->SetDistance (Draw::Atof (anArgValue));
         continue;
       }
-      theDI << aCamera->Distance() << " ";
+      theDI << aCamera->Distance().getValue() << " ";
     }
     else if (anArgCase == "-iod")
     {
@@ -8922,7 +8922,7 @@ static int VCamera (Draw_Interpretor& theDI,
         aCamera->SetIOD (aCamera->GetIODType(), Draw::Atof (anArgValue));
         continue;
       }
-      theDI << aCamera->IOD() << " ";
+      theDI << aCamera->IOD().getValue() << " ";
     }
     else if (anArgCase == "-iodtype")
     {
@@ -8964,7 +8964,7 @@ static int VCamera (Draw_Interpretor& theDI,
         aCamera->SetZFocus (aCamera->ZFocusType(), Draw::Atof (anArgValue));
         continue;
       }
-      theDI << aCamera->ZFocus() << " ";
+      theDI << aCamera->ZFocus().getValue() << " ";
     }
     else if (anArgCase == "-zfocustype")
     {
@@ -9033,15 +9033,15 @@ static int VCamera (Draw_Interpretor& theDI,
       }
       if (anArgCase == "-fov2d")
       {
-        theDI << aCamera->FOV2d() << " ";
+        theDI << aCamera->FOV2d().getValue() << " ";
       }
       else if (anArgCase == "-fovx")
       {
-        theDI << aCamera->FOVx() << " ";
+        theDI << aCamera->FOVx().getValue() << " ";
       }
       else
       {
-        theDI << aCamera->FOVy() << " ";
+        theDI << aCamera->FOVy().getValue() << " ";
       }
     }
     else if (anArgIter + 1 < theArgsNb
@@ -9436,14 +9436,14 @@ static int VDefaults (Draw_Interpretor& theDi,
     if (aDefParams->TypeOfDeflection() == Aspect_TOD_RELATIVE)
     {
       theDi << "DeflType:           relative\n"
-            << "DeviationCoeff:     " << aDefParams->DeviationCoefficient() << "\n";
+            << "DeviationCoeff:     " << aDefParams->DeviationCoefficient().getValue() << "\n";
     }
     else
     {
       theDi << "DeflType:           absolute\n"
-            << "AbsoluteDeflection: " << aDefParams->MaximalChordialDeviation() << "\n";
+            << "AbsoluteDeflection: " << aDefParams->MaximalChordialDeviation().getValue() << "\n";
     }
-    theDi << "AngularDeflection:  " << (180.0 * aDefParams->DeviationAngle() / M_PI) << "\n";
+    theDi << "AngularDeflection:  " << (180.0 * aDefParams->DeviationAngle() / M_PI).getValue() << "\n";
     theDi << "AutoTriangulation:  " << (aDefParams->IsAutoTriangulation() ? "on" : "off") << "\n";
     return 0;
   }
@@ -9636,7 +9636,7 @@ static int VLight (Draw_Interpretor& theDi,
                 << "  Headlight:  " << (aLight->Headlight() ? "TRUE" : "FALSE") << "\n"
                 << "  CastShadows:" << (aLight->ToCastShadows() ? "TRUE" : "FALSE") << "\n"
                 << "  Smoothness: " << aLight->Smoothness() << "\n"
-                << "  Position:   " << aLight->Position().X() << " " << aLight->Position().Y() << " " << aLight->Position().Z() << "\n"
+                << "  Position:   " << aLight->Position().X().getValue() << " " << aLight->Position().Y().getValue() << " " << aLight->Position().Z().getValue() << "\n"
                 << "  Atten.:     " << aLight->ConstAttenuation() << " " << aLight->LinearAttenuation() << "\n"
                 << "  Range:      " << aLight->Range() << "\n";
           break;
@@ -9647,7 +9647,7 @@ static int VLight (Draw_Interpretor& theDi,
                 << "  Intensity:  " << aLight->Intensity() << "\n"
                 << "  Headlight:  " << (aLight->Headlight() ? "TRUE" : "FALSE") << "\n"
                 << "  CastShadows:" << (aLight->ToCastShadows() ? "TRUE" : "FALSE") << "\n"
-                << "  Position:   " << aLight->Position().X() << " " << aLight->Position().Y() << " " << aLight->Position().Z() << "\n"
+                << "  Position:   " << aLight->Position().X().getValue() << " " << aLight->Position().Y().getValue() << " " << aLight->Position().Z().getValue() << "\n"
                 << "  Direction:  " << aLight->PackedDirection().x() << " " << aLight->PackedDirection().y() << " " << aLight->PackedDirection().z() << "\n"
                 << "  Atten.:     " << aLight->ConstAttenuation() << " " << aLight->LinearAttenuation() << "\n"
                 << "  Angle:      " << (aLight->Angle() * 180.0 / M_PI) << "\n"

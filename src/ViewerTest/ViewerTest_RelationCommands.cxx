@@ -1303,7 +1303,7 @@ static int VRelationBuilder (Draw_Interpretor& /*theDi*/,
       }
 
       Standard_Real aDist = Round (sqrt (aDelta.SquareDistance (1)) * 10.0) / 10.0;
-      TCollection_ExtendedString aMessage (TCollection_ExtendedString ("offset=") + TCollection_ExtendedString (aDist));
+      TCollection_ExtendedString aMessage (TCollection_ExtendedString ("offset=") + TCollection_ExtendedString (aDist.getValue()));
       aRelation = new PrsDim_OffsetDimension (aFace1, aFace2, aDist, aMessage);
       break;
     }

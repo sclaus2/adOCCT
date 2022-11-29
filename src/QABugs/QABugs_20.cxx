@@ -1531,8 +1531,8 @@ static Standard_Integer OCC27235 (Draw_Interpretor& theDI, Standard_Integer n, c
   GProp_GProps aG;
   BRepGProp::LinearProperties(aPresentations, aG);
   gp_Pnt aPnt = aG.CentreOfMass();
-  theDI << "Centre of mass: " << aPnt.X() << " " << aPnt.Y() << " " << aPnt.Z() << "\n";
-  theDI << "Mass: " << aG.Mass() << "\n";
+  theDI << "Centre of mass: " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
+  theDI << "Mass: " << aG.Mass().getValue() << "\n";
 
   return 0;
 }
@@ -1633,7 +1633,7 @@ static Standard_Integer OCC27466(Draw_Interpretor& theDI,
     gp_Pnt2d aResUV(u, v);
     DrawTrSurf::Set((TCollection_AsciiString(theArgVal[2]) + "_res").ToCString(), aResPnt);
     DrawTrSurf::Set((TCollection_AsciiString(theArgVal[3]) + "_res").ToCString(), aResUV);
-    theDI << theArgVal[2] << "_res and " << theArgVal[3] << "_res are created, dist=" << sqrt(aSqDist);
+    theDI << theArgVal[2] << "_res and " << theArgVal[3] << "_res are created, dist=" << Sqrt(aSqDist).getValue();
   }
   return 0;
 }
@@ -1681,15 +1681,15 @@ static void OCC26747_CheckParabola(Draw_Interpretor& theDI,
 
   gp_Pnt2d aVert(aPrb.Value()->Parab2d().Location());
 
-  theDI << "Focal Length: " << aPrb.Value()->Parab2d().Focal() << "\n";
-  theDI << "Vertex (" << aVert.X() << ", " << aVert.Y() << ")\n";
-  theDI << "Parameter = " << aPrb.Value()->Parab2d().Parameter() << "\n";
+  theDI << "Focal Length: " << aPrb.Value()->Parab2d().Focal().getValue() << "\n";
+  theDI << "Vertex (" << aVert.X().getValue() << ", " << aVert.Y().getValue() << ")\n";
+  theDI << "Parameter = " << aPrb.Value()->Parab2d().Parameter().getValue() << "\n";
 
   Standard_Real aF[6] = {RealLast(), RealLast(), RealLast(),
                          RealLast(), RealLast(), RealLast()};  
   aPrb.Value()->Parab2d().Coefficients(aF[0], aF[1], aF[2], aF[3], aF[4], aF[5]);
-  theDI << "A = " << aF[0] << ", B = " << aF[1] << ", C = " << aF[2] <<
-           ", D = " << aF[3] << ", E = " << aF[4] << ", F = " << aF[5] << "\n";
+  theDI << "A = " << aF[0].getValue() << ", B = " << aF[1].getValue() << ", C = " << aF[2].getValue() <<
+           ", D = " << aF[3].getValue() << ", E = " << aF[4].getValue() << ", F = " << aF[5].getValue() << "\n";
 
   if(Abs(aPrb.Value()->Parab2d().Focal() - 
                         Parab2d_Bug26747::FocalLength) > aCompareTol)
@@ -1940,9 +1940,9 @@ static Standard_Integer OCC27357(Draw_Interpretor& theDI,
     try
     {
       Geom2dAPI_ProjectPointOnCurve projPc1(aP1, aCurve1);
-      double g1 = projPc1.LowerDistanceParameter();
+      Standard_Real g1 = projPc1.LowerDistanceParameter();
       Geom2dAPI_ProjectPointOnCurve projPc3(aP1, normalLine);
-      double g3 = projPc3.LowerDistanceParameter();
+      Standard_Real g3 = projPc3.LowerDistanceParameter();
       Geom2dGcc_Circ2d2TanOn aCircleBuilder(qualifiedC1,qualifiedC2,
         Geom2dAdaptor_Curve(normalLine),1e-9,g1,g1,g3);
       aDuumyList.Append(aCircleBuilder.NbSolutions());
@@ -2181,7 +2181,7 @@ static Standard_Integer OCC27884(Draw_Interpretor& theDI,
   }
   timer.Stop();
   Standard_Real aTimer2 = timer.UserTimeCPU();
-  theDI << "Improving time: " << (aTimer2 - aTimer1) / aTimer2 * 100 << " %\n";
+  theDI << "Improving time: " << ((aTimer2 - aTimer1) / aTimer2 * 100).getValue() << " %\n";
 
   return 0;
 }
@@ -2884,9 +2884,9 @@ static Standard_Integer OCC29430(Draw_Interpretor& theDI,
   DBRep::Set(theArgVal[1], circle);
 
   BRepAdaptor_CompCurve curve(circle);
-  theDI << "Curve.FirstParameter() = " << curve.FirstParameter() << "\n";
-  theDI << "Curve.LastParameter() = " << curve.LastParameter() << "\n";
-  theDI << "Curve.Period() = " << (curve.IsPeriodic()? curve.Period() : 0.0) << "\n";
+  theDI << "Curve.FirstParameter() = " << curve.FirstParameter().getValue() << "\n";
+  theDI << "Curve.LastParameter() = " << curve.LastParameter().getValue() << "\n";
+  theDI << "Curve.Period() = " << (curve.IsPeriodic()? curve.Period().getValue() : 0.0) << "\n";
   const gp_Pnt aStartPt = curve.Value(curve.FirstParameter());
   const gp_Pnt anEndPt = curve.Value(curve.LastParameter());
 
@@ -2974,7 +2974,7 @@ static Standard_Integer OCC29807(Draw_Interpretor& theDI, Standard_Integer theNA
   aPOn2S.SetValue(0.5*(aP1.XYZ() + aP2.XYZ()), aU1, aV1, aU2, aV2);
 
   const Standard_Real aCurvatureRadius = IntPatch_PointLine::CurvatureRadiusOfIntersLine(anAS1, anAS2, aPOn2S);
-  theDI << "Radius of curvature is " << aCurvatureRadius << "\n";
+  theDI << "Radius of curvature is " << aCurvatureRadius.getValue() << "\n";
   return 0;
 }
 
@@ -3460,7 +3460,7 @@ static Standard_Integer OCC30435(Draw_Interpretor& di, Standard_Integer, const c
   Handle(Geom_BSplineCurve) TheCurve = new Geom_BSplineCurve(NewPoles, NewKnots, NewMults, Conv.Degree());
 
   DrawTrSurf::Set(a[1], TheCurve);
-  di << a[1] << ": tolreached = " << tolreached << "\n";
+  di << a[1] << ": tolreached = " << tolreached.getValue() << "\n";
 
   return 0;
 
@@ -3596,19 +3596,19 @@ static Standard_Integer OCC30869 (Draw_Interpretor& theDI, Standard_Integer theA
   if (aVLast.SquareMagnitude() > gp::Resolution())
     aVLast.Normalize();
 
-  theDI << aFirst << ": point " << aPFirst.X() << " "
-                                << aPFirst.Y() << " "
-                                << aPFirst.Z()
-                  << ", tangent " << aVFirst.X() << " "
-                                  << aVFirst.Y() << " "
-                                  << aVFirst.Z() << "\n";
+  theDI << aFirst.getValue() << ": point " << aPFirst.X().getValue() << " "
+                                << aPFirst.Y().getValue() << " "
+                                << aPFirst.Z().getValue()
+                  << ", tangent " << aVFirst.X().getValue() << " "
+                                  << aVFirst.Y().getValue() << " "
+                                  << aVFirst.Z().getValue() << "\n";
 
-  theDI << aLast << ": point " << aPLast.X() << " "
-                              << aPLast.Y() << " "
-                              << aPLast.Z()
-                 << ", tangent " << aVLast.X() << " "
-                                 << aVLast.Y() << " "
-                                 << aVLast.Z() << "\n";
+  theDI << aLast.getValue() << ": point " << aPLast.X().getValue() << " "
+                              << aPLast.Y().getValue() << " "
+                              << aPLast.Z().getValue()
+                 << ", tangent " << aVLast.X().getValue() << " "
+                                 << aVLast.Y().getValue() << " "
+                                 << aVLast.Z().getValue() << "\n";
 
   return 0;
 }
@@ -3656,7 +3656,7 @@ static Standard_Integer OCC30880 (Draw_Interpretor& theDI, Standard_Integer theA
 
   if (anExtCF.IsParallel())
   {
-    theDI << "Infinite number of solutions, distance - " << Sqrt (anExtCF.SquareDistance (1)) << "\n";
+    theDI << "Infinite number of solutions, distance - " << Sqrt (anExtCF.SquareDistance (1)).getValue() << "\n";
     return 0;
   }
 
@@ -3679,7 +3679,7 @@ static Standard_Integer OCC30880 (Draw_Interpretor& theDI, Standard_Integer theA
     return 0;
   }
 
-  theDI << "Minimal distance - " << Sqrt (aDistMin) << "\n";
+  theDI << "Minimal distance - " << Sqrt (aDistMin).getValue() << "\n";
   return 0;
 }
 
@@ -3697,7 +3697,7 @@ static Standard_Integer OCC30704(Draw_Interpretor& di, Standard_Integer, const c
 
   // Print the center point of the bounding box.
   const gp_XYZ& center = aVoidBox.Center();
-  di << center.X() << " " << center.Y() << " " << center.Z();
+  di << center.X().getValue() << " " << center.Y().getValue() << " " << center.Z().getValue();
   return 0;
 }
 static Standard_Integer OCC30704_1(Draw_Interpretor& di, Standard_Integer, const char**)
@@ -3711,7 +3711,7 @@ static Standard_Integer OCC30704_1(Draw_Interpretor& di, Standard_Integer, const
 
   // Print the center point of the bounding box.
   const gp_XYZ& center = aVoidBox.Center();
-  di << center.X() << " " << center.Y() << " " << center.Z();
+  di << center.X().getValue() << " " << center.Y().getValue() << " " << center.Z().getValue();
   return 0;
 }
 
@@ -3750,7 +3750,7 @@ static Standard_Integer OCC30990 (Draw_Interpretor& theDI, Standard_Integer theN
   theDI << "U knots: ";
   for (int i = 1; i <= aSurf->NbUKnots(); i++)
   {
-    theDI << aSurf->UKnot(i);
+    theDI << aSurf->UKnot(i).getValue();
     if (i < aSurf->NbUKnots()) theDI << ",";
   }
   theDI << "\n";
@@ -3785,7 +3785,7 @@ static Standard_Integer OCC30990 (Draw_Interpretor& theDI, Standard_Integer theN
   theDI << "V knots: ";
   for (int j = 1; j <= aSurf->NbVKnots(); j++)
   {
-    theDI << aSurf->VKnot(j);
+    theDI << aSurf->VKnot(j).getValue();
     if (j < aSurf->NbVKnots()) theDI << ",";
   }
   theDI << "\n";

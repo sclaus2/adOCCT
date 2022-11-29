@@ -75,8 +75,8 @@ static Standard_Integer OCC527(Draw_Interpretor& di, Standard_Integer argc, cons
       aFaceBox.Get(X1,Y1,Z1,X2,Y2,Z2);
 
       // Build sections from Zmin to Zmax with step aStep
-      double gmaxdist = 0.0, gzmax = Zmax;
-      for (double zcur = Zmax; zcur > Zmin; zcur -= aStep)
+      Standard_Real gmaxdist = 0.0, gzmax = Zmax;
+      for (double zcur = Zmax.getValue(); zcur > Zmin; zcur -= aStep.getValue())
       {
         // If plane of the section does not intersect BndBox of the face do nothing
         if(zcur < Z1 || zcur > Z2 ) continue;
@@ -102,14 +102,14 @@ static Standard_Integer OCC527(Draw_Interpretor& di, Standard_Integer argc, cons
             {
               TopoDS_Vertex aV = TopoDS::Vertex(aExp2.Current());
               Standard_Real  toler = BRep_Tool::Tolerance(aV);
-              double dist = pl.Distance(BRep_Tool::Pnt(aV));
-              if (dist > lmaxdist) lmaxdist = dist;
+              Standard_Real dist = pl.Distance(BRep_Tool::Pnt(aV));
+              if (dist > lmaxdist) lmaxdist = dist.getValue();
               // If section was built check distance between vertexes and plane of the one
               str[0] = 0;
               if (dist > toler)
-                Sprintf(str, "Dist=%f, Toler=%f, Param=%f FAULTY\n", dist, toler, gzmax);
+                Sprintf(str, "Dist=%f, Toler=%f, Param=%f FAULTY\n", dist.getValue(), toler.getValue(), gzmax.getValue());
               else
-                Sprintf(str, "Dist=%f, Toler=%f, Param=%f\n", dist, toler, gzmax);
+                Sprintf(str, "Dist=%f, Toler=%f, Param=%f\n", dist.getValue(), toler.getValue(), gzmax.getValue());
               di << str;
             }
             if (lmaxdist > gmaxdist)

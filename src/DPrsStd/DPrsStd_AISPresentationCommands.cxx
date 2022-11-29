@@ -317,8 +317,8 @@ static Standard_Integer DPrsStd_AISTransparency (Draw_Interpretor& di,
       }
       else {
        if (prs->HasOwnTransparency()){ 
-         di << "Transparency = " << prs->Transparency() << "\n";
-         di<<prs->Transparency();
+         di << "Transparency = " << prs->Transparency().getValue() << "\n";
+         di<<prs->Transparency().getValue();
        }
        else{
          di << "DPrsStd_AISTransparency: Warning : Transparency wasn't set\n";

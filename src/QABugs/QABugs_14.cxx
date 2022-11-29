@@ -94,13 +94,13 @@ static Standard_Integer BUC60897 (Draw_Interpretor& di, Standard_Integer /*argc*
   for(Standard_Integer i = 1; i <= aGccCirc2d.NbSolutions(); i++)
   {
     gp_Circ2d aCirc2d = aGccCirc2d.ThisSolution(i);
-    di << "circle : X " << aCirc2d.Location().X() << " Y " << aCirc2d.Location().Y() << " R " << aCirc2d.Radius();
+    di << "circle : X " << aCirc2d.Location().X().getValue() << " Y " << aCirc2d.Location().Y().getValue() << " R " << aCirc2d.Radius().getValue();
     Standard_Real aTmpR1, aTmpR2;
     gp_Pnt2d aPnt2d1, aPnt2d2;
     aGccCirc2d.Tangency1(i, aTmpR1, aTmpR2, aPnt2d1);
     aGccCirc2d.Tangency2(i, aTmpR1, aTmpR2, aPnt2d2);
-    di << "\ntangency1 : X " << aPnt2d1.X() << " Y " << aPnt2d1.Y();
-    di << "\ntangency2 : X " << aPnt2d2.X() << " Y " << aPnt2d2.Y() << "\n";
+    di << "\ntangency1 : X " << aPnt2d1.X().getValue() << " Y " << aPnt2d1.Y().getValue();
+    di << "\ntangency2 : X " << aPnt2d2.X().getValue() << " Y " << aPnt2d2.Y().getValue() << "\n";
     
     Sprintf(abuf,"circle_%d",i);
     Handle(Geom2d_Curve) circ_res = new Geom2d_Circle(aCirc2d);
@@ -292,7 +292,7 @@ static Standard_Integer BUC60870 (Draw_Interpretor& di, Standard_Integer argc, c
     char named[100];
     Sprintf(named, "%s%s" ,ns0,"_val");
     char* tempd = named;
-    Draw::Set(tempd,dst.Value());
+    Draw::Set(tempd,dst.Value().getValue());
     di << named << " ";
     for (i1=1; i1<= dst.NbSolution(); i1++) {
       gp_Pnt P1,P2;
@@ -347,8 +347,8 @@ static Standard_Integer BUC60902 (Draw_Interpretor& di, Standard_Integer /*argc*
   gp_Vec aFirstTang, aLastTang;
   aCur->D1(aCur->FirstParameter(), aP, aFirstTang);
   aCur->D1(aCur->LastParameter(), aP, aLastTang);
-  di << " Used Tang1 = " << aFirstTang.X() << " " << aFirstTang.Y() << " " << aFirstTang.Z() << "\n"; 
-  di << " Used Tang2 = " << aLastTang.X() << " " << aLastTang.Y() << " " << aLastTang.Z() << "\n"; 
+  di << " Used Tang1 = " << aFirstTang.X().getValue() << " " << aFirstTang.Y().getValue() << " " << aFirstTang.Z().getValue() << "\n";
+  di << " Used Tang2 = " << aLastTang.X().getValue() << " " << aLastTang.Y().getValue() << " " << aLastTang.Z().getValue() << "\n";
   GeomAPI_Interpolate anInterpolater1(aPnts, Standard_False, Precision::Confusion());
   anInterpolater1.Load(aFirstTang, aLastTang, Standard_False); 
   anInterpolater1.Perform(); 
@@ -360,8 +360,8 @@ static Standard_Integer BUC60902 (Draw_Interpretor& di, Standard_Integer /*argc*
   gp_Vec aFirstTang1, aLastTang1;
   aCur->D1(aCur->FirstParameter(), aP, aFirstTang1);
   aCur->D1(aCur->LastParameter(), aP, aLastTang1);
-  di << " Tang1 after compute = " << aFirstTang1.X() << " " << aFirstTang1.Y() << " " << aFirstTang1.Z() << "\n"; 
-  di << " Tang2 after compute = " << aLastTang1.X() << " " << aLastTang1.Y() << " " << aLastTang1.Z() << "\n"; 
+  di << " Tang1 after compute = " << aFirstTang1.X().getValue() << " " << aFirstTang1.Y().getValue() << " " << aFirstTang1.Z().getValue() << "\n";
+  di << " Tang2 after compute = " << aLastTang1.X().getValue() << " " << aLastTang1.Y().getValue() << " " << aLastTang1.Z().getValue() << "\n";
   if(aFirstTang.IsEqual(aFirstTang1, Precision::Confusion(), Precision::Angular())) {
     di << "First tangent is OK\n";
   }
@@ -618,7 +618,7 @@ static Standard_Integer  BUC60920(Draw_Interpretor& di, Standard_Integer /*argc*
   
   Handle(V3d_View) myV3dView = ViewerTest::CurrentView();
   
-  double Xv,Yv;
+  Standard_Real Xv,Yv;
   myV3dView->Project(20,20,0,Xv,Yv);
 //  std::cout<<Xv<<"\t"<<Yv<<std::endl;
   
@@ -863,7 +863,7 @@ static Standard_Integer OCC1919_real (Draw_Interpretor& di, Standard_Integer arg
     TCollection_AsciiString AsciiStringReal(argv[3]);
     if (!AsciiStringReal.IsRealValue()) return 1;
     Standard_Real aReal = AsciiStringReal.RealValue();
-    di << "aReal = " << aReal << "\n";
+    di << "aReal = " << aReal.getValue() << "\n";
 
     TDataStd_Real::Set(L,aReal);
     return 0;
@@ -1051,7 +1051,7 @@ static Standard_Integer OCC16485 (Draw_Interpretor& di, Standard_Integer argc, c
   Box.Get (xmin, ymin, zmin, xmax, ymax, zmax);
   //std::cout.precision(16);
   //std::cout << "Resulting dimensions: Xmin = " << xmin << " , Xmax = " << xmax << " , Tolerance = " << tol << std::endl;
-  di << "Resulting dimensions: Xmin = " << xmin << " , Xmax = " << xmax << " , Tolerance = " << tol << "\n";
+  di << "Resulting dimensions: Xmin = " << xmin.getValue() << " , Xmax = " << xmax.getValue() << " , Tolerance = " << tol.getValue() << "\n";
   if ( Abs ( xmin + tol ) > 1e-10 )
       di << "TEST FAILED: Xmin must be equal to -1e3!\n";
   else

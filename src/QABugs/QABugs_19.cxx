@@ -148,14 +148,14 @@ static Standard_Integer OCC23237 (Draw_Interpretor& di, Standard_Integer /*argc*
   }
  
   int aNbEnters = 0;
-  Standard_Real aPerfMeter_CPUtime = 0., aTimer_CPUTime = 0., aS;
+  double aPerfMeter_CPUtime = 0., aTimer_CPUTime = 0., aS;
   Standard_Integer aM, aH;
   aTM.Show(aS, aM, aH, aTimer_CPUTime);
 
   perf_get_meter("TestMeter", &aNbEnters, &aPerfMeter_CPUtime);
   perf_init_meter("TestMeter");
 
-  Standard_Real aTimeDiff = (fabs(aTimer_CPUTime - aPerfMeter_CPUtime) / aTimer_CPUTime);
+  double aTimeDiff = (fabs(aTimer_CPUTime - aPerfMeter_CPUtime) / aTimer_CPUTime);
 
   printf("\nMeasurement results (%d cycles):\n", count);
   printf("\nOSD_PerfMeter CPU time: %lf\nOSD_Timer CPU time: %lf\n",
@@ -282,9 +282,9 @@ Standard_Integer OCC22595 (Draw_Interpretor& di, Standard_Integer /*argc*/, cons
 {
   gp_Mat M0;
   di << "M0 = "
-  << " {" << M0(1,1) << "} {" << M0(1,2) << "} {" << M0(1,3) <<"}"
-  << " {" << M0(2,1) << "} {" << M0(2,2) << "} {" << M0(2,3) <<"}"
-  << " {" << M0(1,1) << "} {" << M0(1,2) << "} {" << M0(1,3) <<"}";
+  << " {" << M0(1,1).getValue() << "} {" << M0(1,2).getValue() << "} {" << M0(1,3).getValue() <<"}"
+  << " {" << M0(2,1).getValue() << "} {" << M0(2,2).getValue() << "} {" << M0(2,3).getValue() <<"}"
+  << " {" << M0(1,1).getValue() << "} {" << M0(1,2).getValue() << "} {" << M0(1,3).getValue() <<"}";
   return 0;
 }
 
@@ -304,10 +304,10 @@ static Standard_Boolean OCC23774Test(const TopoDS_Face& grossPlateFace, const To
   }
 
   if(distShapeShape.Value() > 0.01) {
-    di << "Wrong Dist = " <<distShapeShape.Value() << "\n";
+    di << "Wrong Dist = " <<distShapeShape.Value().getValue() << "\n";
     return Standard_False;
   } else
-    di << "Dist0 = " <<distShapeShape.Value() <<"\n";
+    di << "Dist0 = " <<distShapeShape.Value().getValue() <<"\n";
 
   //////////////////////////////////////////////////////////////////////////
   /// First Flip Y
@@ -331,10 +331,10 @@ static Standard_Boolean OCC23774Test(const TopoDS_Face& grossPlateFace, const To
   if(!distShapeShape1.IsDone())
     return Standard_False;
   if(distShapeShape1.Value() > 0.01) {
-    di << "Dist = " <<distShapeShape1.Value() <<"\n";
+    di << "Dist = " <<distShapeShape1.Value().getValue() <<"\n";
     return Standard_False;
   } else
-    di << "Dist1 = " <<distShapeShape1.Value() <<"\n";
+    di << "Dist1 = " <<distShapeShape1.Value().getValue() <<"\n";
 
   //////////////////////////////////////////////////////////////////////////
   /// Second flip Y
@@ -355,14 +355,14 @@ static Standard_Boolean OCC23774Test(const TopoDS_Face& grossPlateFace, const To
 
   //This last test case give error (the value is 1008.8822038689706)
   if(distShapeShape2.Value() > 0.01) {
-    di  << "Wrong Dist2 = " <<distShapeShape2.Value() <<"\n";
+    di  << "Wrong Dist2 = " <<distShapeShape2.Value().getValue() <<"\n";
     Standard_Integer N = distShapeShape2.NbSolution();
     di << "Nb = " <<N <<"\n";
     for (Standard_Integer i=1;i <= N;i++)
-        di <<"Sol(" <<i<<") = " <<distShapeShape2.PointOnShape1(i).Distance(distShapeShape2.PointOnShape2(i)) <<"\n";
+        di <<"Sol(" <<i<<") = " <<distShapeShape2.PointOnShape1(i).Distance(distShapeShape2.PointOnShape2(i)).getValue() <<"\n";
     return Standard_False;
   }
-  di << "Distance2 = " <<distShapeShape2.Value() <<"\n";
+  di << "Distance2 = " <<distShapeShape2.Value().getValue() <<"\n";
  
   return Standard_True;
 }
@@ -682,33 +682,33 @@ static Standard_Integer OCC23945 (Draw_Interpretor& /*di*/,Standard_Integer n, c
     if (n >= 22) {
       gp_Vec D2U,D2V,D2UV;
       GS.D2(U,V,P,DU,DV,D2U,D2V,D2UV);
-      Draw::Set(a[13],D2U.X());
-      Draw::Set(a[14],D2U.Y());
-      Draw::Set(a[15],D2U.Z());
-      Draw::Set(a[16],D2V.X());
-      Draw::Set(a[17],D2V.Y());
-      Draw::Set(a[18],D2V.Z());
-      Draw::Set(a[19],D2UV.X());
-      Draw::Set(a[20],D2UV.Y());
-      Draw::Set(a[21],D2UV.Z());
+      Draw::Set(a[13],D2U.X().getValue());
+      Draw::Set(a[14],D2U.Y().getValue());
+      Draw::Set(a[15],D2U.Z().getValue());
+      Draw::Set(a[16],D2V.X().getValue());
+      Draw::Set(a[17],D2V.Y().getValue());
+      Draw::Set(a[18],D2V.Z().getValue());
+      Draw::Set(a[19],D2UV.X().getValue());
+      Draw::Set(a[20],D2UV.Y().getValue());
+      Draw::Set(a[21],D2UV.Z().getValue());
     }
     else
       GS.D1(U,V,P,DU,DV);
 
-    Draw::Set(a[7],DU.X());
-    Draw::Set(a[8],DU.Y());
-    Draw::Set(a[9],DU.Z());
-    Draw::Set(a[10],DV.X());
-    Draw::Set(a[11],DV.Y());
-    Draw::Set(a[12],DV.Z());
+    Draw::Set(a[7],DU.X().getValue());
+    Draw::Set(a[8],DU.Y().getValue());
+    Draw::Set(a[9],DU.Z().getValue());
+    Draw::Set(a[10],DV.X().getValue());
+    Draw::Set(a[11],DV.Y().getValue());
+    Draw::Set(a[12],DV.Z().getValue());
   }
   else 
     GS.D0(U,V,P);
 
   if ( n > 6) {
-    Draw::Set(a[4],P.X());
-    Draw::Set(a[5],P.Y());
-    Draw::Set(a[6],P.Z());
+    Draw::Set(a[4],P.X().getValue());
+    Draw::Set(a[5],P.Y().getValue());
+    Draw::Set(a[6],P.Z().getValue());
   }
   if ( DrawPoint) {
     DrawTrSurf::Set(a[n],P);
@@ -1015,7 +1015,7 @@ static Standard_Integer OCC11758 (Draw_Interpretor& di, Standard_Integer n, cons
     QCOMPARE (  da.IntegerValue(), i );
 
     // TCollection_ExtendedString (const Standard_Real aValue)
-    const TCollection_ExtendedString e( 0.1 * i );
+    const TCollection_ExtendedString e( 0.1 * (double)i );
     const TCollection_AsciiString ea( e );
     //assert( ea.IsRealValue() );
     //assert( Abs( ea.RealValue() - 0.1 * i ) < 1e-10 );
@@ -1335,7 +1335,7 @@ static Standard_Integer OCC24945 (Draw_Interpretor& di, Standard_Integer argc, c
   Extrema_ExtPC aExtPC( aP3D, aC3D );
   //Standard_Real aParam = (aExtPC.Point(1)).Parameter();
   gp_Pnt aProj = (aExtPC.Point(1)).Value();
-  di << "Projected point: X = " << aProj.X() << "; Y = " << aProj.Y() << "; Z = " << aProj.Z() << "\n";
+  di << "Projected point: X = " << aProj.X().getValue() << "; Y = " << aProj.Y().getValue() << "; Z = " << aProj.Z().getValue() << "\n";
 
   // Result of deviation
   gp_Ax2 aCylAxis( gp_Pnt( 0, 2103.87, 0 ), -gp::DY(), -gp::DX() );
@@ -1343,7 +1343,7 @@ static Standard_Integer OCC24945 (Draw_Interpretor& di, Standard_Integer argc, c
 
   Standard_Real aU = 0., aV = 0.;
   ElSLib::Parameters( aCylinder, aProj, aU, aV );
-  di << "Parameters on cylinder: U = " << aU << "; V = " << aV << "\n";
+  di << "Parameters on cylinder: U = " << aU.getValue() << "; V = " << aV.getValue() << "\n";
   
   return 0;
 }
@@ -1404,7 +1404,7 @@ static Standard_Integer OCC24137 (Draw_Interpretor& theDI, Standard_Integer theN
       return 1;
     }
 
-  theDI << aRoot.Root()(1) << " " << aRoot.Root()(2) << "\n";
+  theDI << aRoot.Root()(1).getValue() << " " << aRoot.Root()(2).getValue() << "\n";
   
   aSurf.D0 (aRoot.Root()(1), aRoot.Root()(2), aRes);
   DBRep::Set ("result", BRepBuilderAPI_MakeVertex (aRes));
@@ -1618,7 +1618,7 @@ static Standard_Integer OCC24370 (Draw_Interpretor& di, Standard_Integer argc,co
     islastdoneInteger = 1;
   }
 
-  di << isfirstdoneInteger << " "<< islastdoneInteger << " "<< first << " "<< last << " \n";
+  di << isfirstdoneInteger << " "<< islastdoneInteger << " "<< first.getValue() << " "<< last.getValue() << " \n";
 
   return 0;
 }
@@ -2040,12 +2040,12 @@ static Standard_Integer OCC24889 (Draw_Interpretor& theDI,
   };
 
   //theDI.precision( 5 );
-  theDI << "Int point: X = " << aIntRes.X() << "; Y = " << aIntRes.Y() << "\n";
+  theDI << "Int point: X = " << aIntRes.X().getValue() << "; Y = " << aIntRes.Y().getValue() << "\n";
   for (int i = 0; i < 2; ++i)
   {
-    theDI << "Curve " << i << ": FirstParam = " << aTrim[i]->FirstParameter() <<
-      "; LastParam = " << aTrim[i]->LastParameter() <<
-      "; IntParameter = " << aPar[i] << "\n";
+    theDI << "Curve " << i << ": FirstParam = " << aTrim[i]->FirstParameter().getValue() <<
+      "; LastParam = " << aTrim[i]->LastParameter().getValue() <<
+      "; IntParameter = " << aPar[i].getValue() << "\n";
   }
 
   return 0;
@@ -2192,7 +2192,7 @@ static Standard_Integer OCC25004 (Draw_Interpretor& theDI,
   //(-pi , 12.275), (pi , 2.275), (9.42478, 2.475)
 
   Standard_Real anExtValue = aFinder.GetF();
-  theDI << "F = " << anExtValue << "\n";
+  theDI << "F = " << anExtValue.getValue() << "\n";
 
   Standard_Integer aNbExt = aFinder.NbExtrema();
   theDI << "NbExtrema = " << aNbExt << "\n";
@@ -3532,7 +3532,7 @@ Standard_Integer xprojponf (Draw_Interpretor& di,
   }
   //
   aPS=aPPS.NearestPoint();
-  di<< " point px " << aPS.X() << " " << aPS.Y() << " " <<  aPS.Z() << "\n";
+  di<< " point px " << aPS.X().getValue() << " " << aPS.Y().getValue() << " " <<  aPS.Z().getValue() << "\n";
   //
   return 0;
 }
@@ -3616,12 +3616,12 @@ static Standard_Integer OCC24923(
   if (aDeviation > aMaxDeviation)
   {
     theDI << "Failed. Number of incorrect results is too huge: " << 
-      aDeviation * 100 << "% (Max " << aMaxDeviation * 100 << "%)\n";
+      aDeviation.getValue() * 100 << "% (Max " << aMaxDeviation.getValue() * 100 << "%)\n";
     return 1;
   }
 
   theDI << "Deviation of incorrect results is: " <<
-    aDeviation * 100 << "% (Max " << aMaxDeviation * 100 << "%)\n";
+    aDeviation.getValue() * 100 << "% (Max " << aMaxDeviation.getValue() * 100 << "%)\n";
   theDI << "Test completed\n";
   return 0;
 }
@@ -3732,8 +3732,8 @@ static Standard_Integer OCC25574 (Draw_Interpretor& theDI, Standard_Integer /*ar
         isTestOk = Standard_False;
         theDI << "Error: Euler sequence " << names[i - gp_Extrinsic_XYZ] << " is incorrect:\n";
         theDI << "rotating by angle 90 deg around " << (anAxis == 0 ? "X" : anAxis == 1 ? "Y" : "Z") <<
-                      " converts vector (" << v.X() << ", " << v.Y() << ", " << v.Z() << ") to ("
-                        << v2.X() << ", " << v2.Y() << ", " << v2.Z() << ")\n";
+                      " converts vector (" << v.X().getValue() << ", " << v.Y().getValue() << ", " << v.Z().getValue() << ") to ("
+                        << v2.X().getValue() << ", " << v2.Y().getValue() << ", " << v2.Z().getValue() << ")\n";
       }
     }
   }
@@ -3822,12 +3822,12 @@ static Standard_Integer OCC25574 (Draw_Interpretor& theDI, Standard_Integer /*ar
     if (Abs(alpha - computedAlpha) > 1e-5 || Abs(beta - computedBeta) > 1e-5 || Abs(gamma - computedGamma) > 1e-5)
     {
       theDI << "Error: unexpected values of Euler angles for YawPitchRoll sequence:\n";
-      theDI << "alpha: " << alpha / M_PI * 180.0 << " and computed alpha: "
-            << computedAlpha / M_PI * 180.0 << "\n";
-      theDI << "beta: " << beta / M_PI * 180.0 << " and computed beta: "
-            << computedBeta / M_PI * 180.0 << "\n";
-      theDI << "gamma: " << gamma / M_PI * 180.0 << " and computed gamma: "
-            << computedGamma / M_PI * 180.0 << "\n";
+      theDI << "alpha: " << alpha.getValue() / M_PI * 180.0 << " and computed alpha: "
+            << computedAlpha.getValue() / M_PI * 180.0 << "\n";
+      theDI << "beta: " << beta.getValue() / M_PI * 180.0 << " and computed beta: "
+            << computedBeta.getValue() / M_PI * 180.0 << "\n";
+      theDI << "gamma: " << gamma.getValue() / M_PI * 180.0 << " and computed gamma: "
+            << computedGamma.getValue() / M_PI * 180.0 << "\n";
       isTestOk = Standard_False;
     }
   }
@@ -3844,9 +3844,9 @@ static Standard_Integer OCC25574 (Draw_Interpretor& theDI, Standard_Integer /*ar
     if (Abs(alpha - gamma2) > 1e-5 || Abs(beta - beta2) > 1e-5 || Abs(gamma - alpha2) > 1e-5)
     {
       theDI << "Error: Euler angles computed for gp_Intrinsic_ZYX and gp_Extrinsic_XYZ do not match:\n";
-      theDI << "alpha: " << alpha / M_PI * 180.0 << " and " << alpha2 / M_PI * 180.0 << "\n";
-      theDI << "beta: " << beta / M_PI * 180.0 << " and " << beta2 / M_PI * 180.0 << "\n";
-      theDI << "gamma: " << gamma / M_PI * 180.0 << " and " << gamma2 / M_PI * 180.0 << "\n";
+      theDI << "alpha: " << alpha.getValue() / M_PI * 180.0 << " and " << alpha2.getValue() / M_PI * 180.0 << "\n";
+      theDI << "beta: " << beta.getValue() / M_PI * 180.0 << " and " << beta2.getValue() / M_PI * 180.0 << "\n";
+      theDI << "gamma: " << gamma.getValue() / M_PI * 180.0 << " and " << gamma2.getValue() / M_PI * 180.0 << "\n";
       isTestOk = Standard_False;
     }
   }
@@ -3919,12 +3919,12 @@ static Standard_Integer OCC26448 (Draw_Interpretor& theDI, Standard_Integer, con
   TColStd_SequenceOfReal aSeq1, aSeq2;
   aSeq1.Append(11.);
   aSeq1.Prepend (aSeq2);
-  theDI << "TCollection: 11 -> " << aSeq1.First() << "\n";
+  theDI << "TCollection: 11 -> " << aSeq1.First().getValue() << "\n";
 
   NCollection_Sequence<Standard_Real> nSeq1, nSeq2;
   nSeq1.Append(11.);
   nSeq1.Prepend (nSeq2);
-  theDI << "NCollection: 11 -> " << nSeq1.First() << "\n";
+  theDI << "NCollection: 11 -> " << nSeq1.First().getValue() << "\n";
 
   theDI << "OK";
   return 0;
@@ -4046,9 +4046,9 @@ static Standard_Integer OCC26485 (Draw_Interpretor& theDI, Standard_Integer theA
         char buf[256];
         sprintf(buf, "fail_%d", i+1);
         theDI << "Failed. Point " << buf << ": "
-              << aPoint.X() << " "
-              << aPoint.Y() << " "
-              << aPoint.Z() << "\n";
+              << aPoint.X().getValue() << " "
+              << aPoint.Y().getValue() << " "
+              << aPoint.Z().getValue() << "\n";
 
         DrawTrSurf::Set (buf, aPoint);
       }
@@ -4206,7 +4206,7 @@ static Standard_Integer OCC26195 (Draw_Interpretor& theDI, Standard_Integer theA
       Precision::IsInfinite (aFarPnt.Y()) ||
       Precision::IsInfinite (aFarPnt.Z()))
   {
-    theDI << "Near: " << aNearPnt.X() << " " << aNearPnt.Y() << " " << aNearPnt.Z() << "\n";
+    theDI << "Near: " << aNearPnt.X().getValue() << " " << aNearPnt.Y().getValue() << " " << aNearPnt.Z().getValue() << "\n";
     theDI << "Far: infinite point " << "\n";
     return 0;
   }
@@ -4219,8 +4219,8 @@ static Standard_Integer OCC26195 (Draw_Interpretor& theDI, Standard_Integer theA
 
   if (toPrint)
   {
-    theDI << "Near: " << aNearPnt.X() << " " << aNearPnt.Y() << " " << aNearPnt.Z() << "\n";
-    theDI << "Far: " << aFarPnt.X() << " " << aFarPnt.Y() << " " << aFarPnt.Z() << "\n";
+    theDI << "Near: " << aNearPnt.X().getValue() << " " << aNearPnt.Y().getValue() << " " << aNearPnt.Z().getValue() << "\n";
+    theDI << "Far: " << aFarPnt.X().getValue() << " " << aFarPnt.Y().getValue() << " " << aFarPnt.Z().getValue() << "\n";
   }
 
   return 0;
@@ -4401,7 +4401,7 @@ Standard_Integer OCC26525 (Draw_Interpretor& di,
     const IntCurveSurface_IntersectionPoint& aIP=aHInter.Point(i);
     aIP.Values(aP, aU, aV, aT, aTC);
     //
-    sprintf (buf, "point %s_%d %lg %lg %lg  ", a[1], i, aP.X(), aP.Y(), aP.Z());
+    sprintf (buf, "point %s_%d %lg %lg %lg  ", a[1], i, aP.X().getValue(), aP.Y().getValue(), aP.Z().getValue());
     di << buf << "\n";
   }
 
@@ -4531,18 +4531,18 @@ static Standard_Integer OCC24537(
     0x40,0x20,0x00,0x00,0x00,0x00,0x00,0x00,
     0x40,0x22,0x00,0x00,0x00,0x00,0x00,0x00,
     0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
-  const Standard_Real aRealArr[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 0.0};
+  const double aRealArr[] = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 0.0};
   if (aF.is_open())
   {
     for(int i = 0; i < 10; ++i)
     {
-      Standard_Real anInv = FSD_BinaryFile::InverseReal(aRealArr[i]);
+      double anInv = FSD_BinaryFile::InverseReal(aRealArr[i]);
       aF.write(reinterpret_cast<char*>(&anInv), sizeof(anInv));
     }
   }
   else
   {
-    Standard_Real anInv[10];
+    double anInv[10];
     for(int i = 0; i < 10; ++i)
       anInv[i] = FSD_BinaryFile::InverseReal(aRealArr[i]);
     if (memcmp(anInv, aRealRef, sizeof(aRealRef)) != 0)
@@ -4564,18 +4564,18 @@ static Standard_Integer OCC24537(
     0x40,0x20,0x00,0x00,0x00,0x00,0x00,0x00,
     0xC0,0x23,0xCC,0xCC,0xCC,0xCC,0xCC,0xCD,
     0x40,0x23,0xCC,0xCC,0xCC,0xCC,0xCC,0xCD};
-  const Standard_Real aRndRealArr[] = {-1e300, -1.e-9, 0., 1.e-9, 1., 3.1415296, 1.e100, 8.0, -9.9, 9.9};
+  const double aRndRealArr[] = {-1e300, -1.e-9, 0., 1.e-9, 1., 3.1415296, 1.e100, 8.0, -9.9, 9.9};
   if (aF.is_open())
   {
     for(int i = 0; i < 10; ++i)
     {
-      Standard_Real anInv = FSD_BinaryFile::InverseReal(aRndRealArr[i]);
+      double anInv = FSD_BinaryFile::InverseReal(aRndRealArr[i]);
       aF.write(reinterpret_cast<char*>(&anInv), sizeof(anInv));
     }
   }
   else
   {
-    Standard_Real anInv[10];
+    double anInv[10];
     for(int i = 0; i < 10; ++i)
       anInv[i] = FSD_BinaryFile::InverseReal(aRndRealArr[i]);
     if (memcmp(anInv, aRndRealRef, sizeof(aRndRealRef)) != 0)
@@ -4890,11 +4890,11 @@ static Standard_Integer OCC26746(
 
       if(Abs(aDelta) > aToler)
       {
-        theDI << "(" << aUpar << ", " << aVpar << "): Error in torus coefficients computation (Delta = " << aDelta << ").\n";
+        theDI << "(" << aUpar.getValue() << ", " << aVpar.getValue() << "): Error in torus coefficients computation (Delta = " << aDelta.getValue() << ").\n";
       }
       else
       {
-        theDI << "(" << aUpar << ", " << aVpar << "): OK (Delta = " << aDelta << ").\n";
+        theDI << "(" << aUpar.getValue() << ", " << aVpar.getValue() << "): OK (Delta = " << aDelta.getValue() << ").\n";
       }
 
       aVpar = (aVind == aNbPntsMax)? 2.0*M_PI : aVpar + aStep;

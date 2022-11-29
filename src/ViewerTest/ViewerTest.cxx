@@ -4012,8 +4012,8 @@ inline void bndPresentation (Draw_Interpretor&                         theDI,
       gp_Pnt aMin = aBox.CornerMin();
       gp_Pnt aMax = aBox.CornerMax();
       theDI << theName  << "\n"
-            << aMin.X() << " " << aMin.Y() << " " << aMin.Z() << " "
-            << aMax.X() << " " << aMax.Y() << " " << aMax.Z() << "\n";
+            << aMin.X().getValue() << " " << aMin.Y().getValue() << " " << aMin.Z().getValue() << " "
+            << aMax.X().getValue() << " " << aMax.Y().getValue() << " " << aMax.Z().getValue() << "\n";
       break;
     }
   }
@@ -7038,7 +7038,7 @@ static Standard_Integer TDraft(Draw_Interpretor& di, Standard_Integer argc, cons
     aDir.Reverse();
   if (Plane.Orientation() == TopAbs_REVERSED)
     aDir.Reverse();
-  di << "TEST : gp::Resolution() = " << gp::Resolution() << "\n";
+  di << "TEST : gp::Resolution() = " << gp::Resolution().getValue() << "\n";
 
   BRepOffsetAPI_DraftAngle Draft (Solid);
 

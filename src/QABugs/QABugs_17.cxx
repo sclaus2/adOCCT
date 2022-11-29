@@ -514,14 +514,14 @@ static Standard_Integer OCC566(Draw_Interpretor& di,Standard_Integer n,const cha
   BRepBndLib::AddClose(S,B);
   Standard_Real axmin,aymin,azmin,axmax,aymax,azmax;
   B.Get(axmin,aymin,azmin,axmax,aymax,azmax);
-  di << axmin<<" "<< aymin<<" "<< azmin<<" "<< axmax<<" "<< aymax<<" "<< azmax;
+  di << axmin.getValue()<<" "<< aymin.getValue()<<" "<< azmin.getValue()<<" "<< axmax.getValue()<<" "<< aymax.getValue()<<" "<< azmax.getValue();
   if (n >= 8) {
-    Draw::Set(a[2],axmin) ;
-    Draw::Set(a[3],aymin) ;
-    Draw::Set(a[4],azmin) ;
-    Draw::Set(a[5],axmax) ;
-    Draw::Set(a[6],aymax) ;
-    Draw::Set(a[7],azmax) ;
+    Draw::Set(a[2],axmin.getValue()) ;
+    Draw::Set(a[3],aymin.getValue()) ;
+    Draw::Set(a[4],azmin.getValue()) ;
+    Draw::Set(a[5],axmax.getValue()) ;
+    Draw::Set(a[6],aymax.getValue()) ;
+    Draw::Set(a[7],azmax.getValue()) ;
   }
   return 0;
 }
@@ -603,12 +603,12 @@ static char name[100];
 
 static void printtolblend(Draw_Interpretor& di)
 {
-  di<<"tolerance ang : "<<ta<<"\n";
-  di<<"tolerance 3d  : "<<t3d<<"\n";
-  di<<"tolerance 2d  : "<<t2d<<"\n";
-  di<<"fleche        : "<<fl<<"\n";
+  di<<"tolerance ang : "<<ta.getValue()<<"\n";
+  di<<"tolerance 3d  : "<<t3d.getValue()<<"\n";
+  di<<"tolerance 2d  : "<<t2d.getValue()<<"\n";
+  di<<"fleche        : "<<fl.getValue()<<"\n";
 
-  di<<"tolblend "<<ta<<" "<<t3d<<" "<<t2d<<" "<<fl<<"\n";
+  di<<"tolblend "<<ta.getValue()<<" "<<t3d.getValue()<<" "<<t2d.getValue()<<" "<<fl.getValue()<<"\n";
 }
 
 static Standard_Integer MKEVOL(Draw_Interpretor& di, 
@@ -963,7 +963,7 @@ static Standard_Integer OCC884 (Draw_Interpretor& di, Standard_Integer argc, con
   for (i = 1; i <= num; ++i)
   { 
     gp_Pnt pt = points3d(i); 
-    di << "Info: Intersecting pt : (" << pt.X() << ", " << pt.Y() << ", " << pt.Z() << ")\n";
+    di << "Info: Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", " << pt.Z().getValue() << ")\n";
     Sprintf(str,"p_%d",i);
     DrawTrSurf::Set(aName,pt);
   }
@@ -974,8 +974,8 @@ static Standard_Integer OCC884 (Draw_Interpretor& di, Standard_Integer argc, con
 
   if (argc > 3) sfw->SetPrecision(Draw::Atof(argv[3])/*0.1*/);
   if (argc > 4) sfw->SetMaxTolerance(Draw::Atof(argv[4]));
-  di << "Info: Precision is set to " << sfw->Precision() << "\n";
-  di << "Info: MaxTolerance is set to " << sfw->MaxTolerance() << "\n";
+  di << "Info: Precision is set to " << sfw->Precision().getValue() << "\n";
+  di << "Info: MaxTolerance is set to " << sfw->MaxTolerance().getValue() << "\n";
 
   sfw->ModifyTopologyMode() = 1;
   sfw->ModifyGeometryMode() = 1; 
@@ -1085,7 +1085,7 @@ static Standard_Integer OCC1174_1 (Draw_Interpretor& di, Standard_Integer argc, 
 
   anAISContext->Display (anAisIO, 1, 0, Standard_True);
 
-  Standard_Real r, g, b; 
+  double r, g, b;
   aShadingAspect->Color(Aspect_TOFM_FRONT_SIDE).Values(r,g,b, Quantity_TOC_sRGB);
   di << "Info: color on front side (" << r << "," << g << "," << b << ")\n";
   aShadingAspect->Color(Aspect_TOFM_BACK_SIDE).Values(r,g,b, Quantity_TOC_sRGB);
@@ -1338,7 +1338,7 @@ static Standard_Integer OCC1642 (Draw_Interpretor& di, Standard_Integer argc, co
 
     for(int i=1; i<=num; ++i) {
       gp_Pnt pt = points3d(i);
-      di << "\n Intersecting pt : (" << pt.X() << ", " << pt.Y()<< ", " << pt.Z() << ")";
+      di << "\n Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue()<< ", " << pt.Z().getValue() << ")";
     }
 
   }
@@ -1461,7 +1461,7 @@ static Standard_Integer OCC1642 (Draw_Interpretor& di, Standard_Integer argc, co
 
     for(int i=1; i<=num; ++i) {
       gp_Pnt pt = points3d(i);
-      di << "\n Intersecting pt : (" << pt.X() << ", " << pt.Y() << ", " << pt.Z() << ")";
+      di << "\n Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", " << pt.Z().getValue() << ")";
     }
 
   }

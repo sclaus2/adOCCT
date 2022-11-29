@@ -229,17 +229,17 @@ static Standard_Boolean IsTimeStamp
   form->LoadValue (12 ,new TCollection_HAsciiString(GS.MaxDigitsDouble()) );
 
   form->LoadValue (13 ,GS.ReceiveName());
-  form->LoadValue (14 ,new TCollection_HAsciiString(GS.Scale()) );
+  form->LoadValue (14 ,new TCollection_HAsciiString(GS.Scale().getValue()) );
 
   form->LoadValue (15 ,new TCollection_HAsciiString(GS.UnitFlag()) );
   form->LoadValue (16 ,GS.UnitName());
-  form->LoadValue (17 ,new TCollection_HAsciiString(GS.UnitValue()) );
+  form->LoadValue (17 ,new TCollection_HAsciiString(GS.UnitValue().getValue()) );
   form->LoadValue (18 ,new TCollection_HAsciiString(GS.LineWeightGrad()) );
-  form->LoadValue (19 ,new TCollection_HAsciiString(GS.MaxLineWeight()) );
+  form->LoadValue (19 ,new TCollection_HAsciiString(GS.MaxLineWeight().getValue()) );
 
   form->LoadValue (20 ,GS.Date());
-  form->LoadValue (21 ,new TCollection_HAsciiString(GS.Resolution()) );
-  if (GS.HasMaxCoord()) form->LoadValue (22 ,new TCollection_HAsciiString(GS.MaxCoord()) );
+  form->LoadValue (21 ,new TCollection_HAsciiString(GS.Resolution().getValue()) );
+  if (GS.HasMaxCoord()) form->LoadValue (22 ,new TCollection_HAsciiString(GS.MaxCoord().getValue()) );
 
   form->LoadValue (23 ,GS.AuthorName());
   form->LoadValue (24 ,GS.CompanyName());
@@ -269,7 +269,7 @@ static Standard_Boolean IsTimeStamp
     if (unitname[0] == '\0') return Standard_False;
     form->Touch (16,new TCollection_HAsciiString (unitname));
     form->Touch (17,new TCollection_HAsciiString
-		 (IGESData_BasicEditor::UnitFlagValue(unitflag)) );
+		 (IGESData_BasicEditor::UnitFlagValue(unitflag).getValue()) );
   }
   if (num == 16) {
     if (!enforce) return Standard_False;  // quand meme ...
@@ -279,7 +279,7 @@ static Standard_Boolean IsTimeStamp
     if (unitflag == 0) return Standard_False;  // pas bon
     form->Touch (15,new TCollection_HAsciiString (unitflag));
     form->Touch (17,new TCollection_HAsciiString
-		 (IGESData_BasicEditor::UnitFlagValue(unitflag)) );
+		 (IGESData_BasicEditor::UnitFlagValue(unitflag).getValue()) );
   }
 
   if (num == 25) {

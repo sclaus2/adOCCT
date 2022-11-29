@@ -93,7 +93,7 @@ static Standard_Integer BUC60632(Draw_Interpretor& di, Standard_Integer /*n*/, c
   Handle(Geom_Plane) Plane1 = new Geom_Plane(gp_Pnt(0,0,0),gp_Dir(0,0,1)); 
   TCollection_ExtendedString Ext1("Dim1"); 
   Handle(PrsDim_LengthDimension) Dim1 = new PrsDim_LengthDimension(V1,V2,Plane1->Pln());
-  Dim1->SetCustomValue (Draw::Atof(a[2]));
+  Dim1->SetCustomValue ((Standard_Real)Draw::Atof(a[2]));
 
   Handle(Prs3d_DimensionAspect) anAspect = new Prs3d_DimensionAspect();
   anAspect->MakeArrows3d (Standard_False);
@@ -246,9 +246,9 @@ static Standard_Integer BUC60792(Draw_Interpretor& di, Standard_Integer /*argc*/
       Standard_Real ParSol1, ParSol2, ParArg1, ParArg2; 
       gp_Pnt2d PntSol1, PntSol2; 
       cirtanrad.Tangency1(i, ParSol1, ParArg1, PntSol1);
-      printf("%f\t%f\t\t%f\t%f\n",ParSol1, ParArg1,PntSol1.X(),PntSol1.Y());
+      printf("%f\t%f\t\t%f\t%f\n",ParSol1.getValue(), ParArg1.getValue(),PntSol1.X().getValue(),PntSol1.Y().getValue());
       cirtanrad.Tangency2(i, ParSol2, ParArg2, PntSol2); 
-      printf("%f\t%f\t\t%f\t%f\n",ParSol2, ParArg2,PntSol2.X(),PntSol2.Y());
+      printf("%f\t%f\t\t%f\t%f\n",ParSol2.getValue(), ParArg2.getValue(),PntSol2.X().getValue(),PntSol2.Y().getValue());
     }
   }
   aContext->UpdateCurrentViewer();
@@ -1152,7 +1152,7 @@ static int AISWidth(Draw_Interpretor& di, Standard_Integer argc, const char ** a
       else {
        if (prs->HasOwnWidth()){ 
 //         std::cout << "Width = " << prs->Width() << std::endl;
-         di<<prs->Width();
+         di<<prs->Width().getValue();
        }
        else{
          di << "AISWidth: Warning : Width wasn't set\n";

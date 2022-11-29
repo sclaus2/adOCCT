@@ -129,15 +129,15 @@ void BinMDataXtd_TriangulationDriver::Paste(const Handle(TDF_Attribute)& theSour
     theTarget << nbTriangles;
     theTarget << (PT->HasUVNodes() ? 1 : 0);
     // write the deflection
-    theTarget << PT->Deflection();
+    theTarget << PT->Deflection().getValue();
 
     // write 3d nodes
     for (Standard_Integer i = 1; i <= nbNodes; i++)
     {
       const gp_Pnt aNode = PT->Node (i);
-      theTarget << aNode.X();
-      theTarget << aNode.Y();
-      theTarget << aNode.Z();
+      theTarget << aNode.X().getValue();
+      theTarget << aNode.Y().getValue();
+      theTarget << aNode.Z().getValue();
     }
 
     // write 2d nodes
@@ -146,8 +146,8 @@ void BinMDataXtd_TriangulationDriver::Paste(const Handle(TDF_Attribute)& theSour
       for (Standard_Integer i = 1; i <= nbNodes; i++)
       {
         const gp_Pnt2d aNode2d = PT->UVNode (i);
-        theTarget << aNode2d.X();
-        theTarget << aNode2d.Y();
+        theTarget << aNode2d.X().getValue();
+        theTarget << aNode2d.Y().getValue();
       }
     }
 

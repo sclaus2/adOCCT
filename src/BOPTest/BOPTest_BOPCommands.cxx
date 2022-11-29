@@ -665,7 +665,7 @@ Standard_Integer bopcurves (Draw_Interpretor& di,
           aTolR = anIC.Tolerance();
         }
       }
-      di << "Tolerance Reached=" << aTolR << "\n";
+      di << "Tolerance Reached=" << aTolR.getValue() << "\n";
     }
     //
     di << aNbCurves << " curve(s) found.\n";
@@ -719,8 +719,8 @@ Standard_Integer bopcurves (Draw_Interpretor& di,
       }
       //
       if (bExtOut) {
-        di << "\nTolerance: " << anIC.Tolerance() << "\n";
-        di << "Tangential tolerance: " << anIC.TangentialTolerance() << "\n";
+        di << "\nTolerance: " << anIC.Tolerance().getValue() << "\n";
+        di << "Tangential tolerance: " << anIC.TangentialTolerance().getValue() << "\n";
         di << "\n";
       }
     }

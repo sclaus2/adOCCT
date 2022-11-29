@@ -382,7 +382,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo (const Handle(TDF_Attribute)& the
   }
   else if ( theAtt->IsKind(STANDARD_TYPE(TDataStd_Real)) ) {
     Handle(TDataStd_Real) val = Handle(TDataStd_Real)::DownCast ( theAtt );
-    anInfo = TCollection_AsciiString ( val->Get() );
+    anInfo = TCollection_AsciiString ( val->Get().getValue() );
   }
   else if ( theAtt->IsKind(STANDARD_TYPE(TDataStd_Name)) ) {
     Handle(TDataStd_Name) val = Handle(TDataStd_Name)::DownCast ( theAtt );
@@ -398,7 +398,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo (const Handle(TDF_Attribute)& the
   }
   else if (theAtt->IsKind(STANDARD_TYPE(XCAFDoc_LengthUnit))) {
     Handle(XCAFDoc_LengthUnit) aVal = Handle(XCAFDoc_LengthUnit)::DownCast(theAtt);
-    anInfo = TCollection_AsciiString(aVal->GetUnitValue());
+    anInfo = TCollection_AsciiString(aVal->GetUnitValue().getValue());
     anInfo += " ";  anInfo += aVal->GetUnitName();
   }
   else if ( theAtt->IsKind(STANDARD_TYPE(TDataStd_IntegerArray)) ) {
@@ -412,7 +412,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo (const Handle(TDF_Attribute)& the
     Handle(TDataStd_RealArray) val = Handle(TDataStd_RealArray)::DownCast ( theAtt );
     for ( Standard_Integer j=val->Lower(); j <= val->Upper(); j++ ) {
       if ( j > val->Lower() ) anInfo += TCollection_AsciiString ( ", " );
-      anInfo += TCollection_AsciiString ( val->Value(j) );
+      anInfo += TCollection_AsciiString ( val->Value(j).getValue() );
     }
   }
   else if ( theAtt->IsKind(STANDARD_TYPE(TDataStd_ByteArray)) ) {
@@ -438,21 +438,21 @@ TCollection_AsciiString XCAFDoc::AttributeInfo (const Handle(TDF_Attribute)& the
   }
   else if ( theAtt->IsKind(STANDARD_TYPE(XCAFDoc_Volume)) ) {
     Handle(XCAFDoc_Volume) val = Handle(XCAFDoc_Volume)::DownCast ( theAtt );
-    anInfo += TCollection_AsciiString ( val->Get() );
+    anInfo += TCollection_AsciiString ( val->Get().getValue() );
   }
   else if ( theAtt->IsKind(STANDARD_TYPE(XCAFDoc_Area)) ) {
     Handle(XCAFDoc_Area) val = Handle(XCAFDoc_Area)::DownCast ( theAtt );
-    anInfo = TCollection_AsciiString ( val->Get() );
+    anInfo = TCollection_AsciiString ( val->Get().getValue() );
   }
   else if ( theAtt->IsKind(STANDARD_TYPE(XCAFDoc_Centroid)) ) {
     Handle(XCAFDoc_Centroid) val = Handle(XCAFDoc_Centroid)::DownCast ( theAtt );
     gp_Pnt myCentroid = val->Get();
     anInfo = "(" ;
-    anInfo += TCollection_AsciiString ( myCentroid.X() );
+    anInfo += TCollection_AsciiString ( myCentroid.X().getValue() );
     anInfo += TCollection_AsciiString ( " , " );
-    anInfo += TCollection_AsciiString ( TCollection_AsciiString ( myCentroid.Y() ) );
+    anInfo += TCollection_AsciiString ( TCollection_AsciiString ( myCentroid.Y().getValue() ) );
     anInfo += TCollection_AsciiString ( " , " );
-    anInfo += TCollection_AsciiString ( myCentroid.Z() );
+    anInfo += TCollection_AsciiString ( myCentroid.Z().getValue() );
     anInfo += TCollection_AsciiString ( ")" );
   }
   else if ( theAtt->IsKind(STANDARD_TYPE(TDataStd_UAttribute)) ) {
@@ -473,9 +473,9 @@ TCollection_AsciiString XCAFDoc::AttributeInfo (const Handle(TDF_Attribute)& the
     Handle(TColStd_HArray1OfReal) HAR = val->GetVal();
     if(kind<20) { //dimension
       anInfo = "Diameter (ValueRange[";
-      anInfo += TCollection_AsciiString ( HAR->Value(1) );
+      anInfo += TCollection_AsciiString ( HAR->Value(1).getValue() );
       anInfo += TCollection_AsciiString ( "," );
-      anInfo += TCollection_AsciiString ( HAR->Value(2) );
+      anInfo += TCollection_AsciiString ( HAR->Value(2).getValue() );
       anInfo += TCollection_AsciiString ( "])" );
     }
     else {
@@ -504,7 +504,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo (const Handle(TDF_Attribute)& the
       }
       if (anInfo.Length() > 0) {
         anInfo += " (Value=";
-        anInfo += TCollection_AsciiString (HAR->Value (1));
+        anInfo += TCollection_AsciiString (HAR->Value (1).getValue());
         anInfo += ")";
       }
     }
@@ -518,7 +518,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo (const Handle(TDF_Attribute)& the
     else {
       anInfo = val->GetName()->ToCString();
       anInfo += "(density=";
-      anInfo += TCollection_AsciiString ( dens );
+      anInfo += TCollection_AsciiString ( dens.getValue() );
       anInfo += dimdens;
       anInfo += ")";
     }

@@ -124,10 +124,10 @@ static Standard_Integer settolerance (Draw_Interpretor& di, Standard_Integer arg
   else if (mod2 == '>') { tmin = Draw::Atof (argv[argc-1]); tmax = 0; }
   else { tmin = Draw::Atof (argv[premarg]);  tmax = Draw::Atof (argv[argc-1]); }
 
-  if (argc == premarg + 1 || tmin == tmax) di<<"Setting Tolerance to "<<tmin<<"\n";
-  else if (tmax < tmin) di<<"Minimum Tolerance to "<<tmin<<"\n";
-  else if (tmin <= 0)   di<<"Maximum Tolerance to "<<tmax<<"\n";
-  else                  di<<"Tolerance Limited between "<<tmin<<" and "<<tmax<<"\n";
+  if (argc == premarg + 1 || tmin == tmax) di<<"Setting Tolerance to "<<tmin.getValue()<<"\n";
+  else if (tmax < tmin) di<<"Minimum Tolerance to "<<tmin.getValue()<<"\n";
+  else if (tmin <= 0)   di<<"Maximum Tolerance to "<<tmax.getValue()<<"\n";
+  else                  di<<"Tolerance Limited between "<<tmin.getValue()<<" and "<<tmax.getValue()<<"\n";
   ShapeFix_ShapeTolerance sat;
   sat.LimitTolerance (Shape,tmin,tmax,styp);
   return 0; // Done
@@ -199,7 +199,7 @@ static Standard_Integer stwire (Draw_Interpretor& di, Standard_Integer argc, con
     for (TopExp_Explorer exp(Shape,TopAbs_EDGE); exp.More(); exp.Next()) {
       TopoDS_Edge E = TopoDS::Edge (exp.Current());
       Standard_Integer orient = saw->CheckShapeConnect (E);
-      di<<"Orientation : "<<orient<<" LowerDist : "<< saw->MinDistance3d() << "\n";
+      di<<"Orientation : "<<orient<<" LowerDist : "<< saw->MinDistance3d().getValue() << "\n";
       if (ox) sbwd->AddOriented (E,orient);
       else sbwd->Add (E);
     }
@@ -238,7 +238,7 @@ static Standard_Integer stwire (Draw_Interpretor& di, Standard_Integer argc, con
       di<<"Edge n0 "<<i;
       if ( sbwd->Edge(iord).Orientation() == TopAbs_REVERSED) di<<" REV";
       else di<<" FWD";
-      di<<" ordered to "<<iord<<" Gap="<<WO.Gap(i)<<"\n";
+      di<<" ordered to "<<iord<<" Gap="<<WO.Gap(i).getValue()<<"\n";
     }
     di<<"Reorder not yet done\n";
     sfw->FixReorder (WO);
@@ -285,13 +285,13 @@ static Standard_Integer stwire (Draw_Interpretor& di, Standard_Integer argc, con
       switch (stat) {
       case 0 : di<<"Same Vertex\n"; break;
       case 1 : di<<"Same Coords with recorded precisions (but not Same Vertex)\n"; break;
-      case 2 : di<<"Close (with preci="<< saw->Precision()<<")\n"; break;
-      case 3 : di<<"End of "<<i<<" OK, Start of "<<(i == nb ? 1 : i+1)<<" at U="<<ufol; break;
-      case 4 : di<<"End of "<<i<<" at U="<<upre<<", Start of "<<(i == nb ? 1 : i+1)<<" OK"; break;
-      case 5 : di<<"Intersection, End of "<<i<<" at U="<<upre<<", Start of "<<(i == nb ? 1 : i+1)<<" at U="<<ufol; break;
+      case 2 : di<<"Close (with preci="<< saw->Precision().getValue()<<")\n"; break;
+      case 3 : di<<"End of "<<i<<" OK, Start of "<<(i == nb ? 1 : i+1)<<" at U="<<ufol.getValue(); break;
+      case 4 : di<<"End of "<<i<<" at U="<<upre.getValue()<<", Start of "<<(i == nb ? 1 : i+1)<<" OK"; break;
+      case 5 : di<<"Intersection, End of "<<i<<" at U="<<upre.getValue()<<", Start of "<<(i == nb ? 1 : i+1)<<" at U="<<ufol.getValue(); break;
 	default : di<<"Disjoined\n";
       }
-      if (stat >= 3 && stat <= 5) di<<"\n   - Position : "<<pos.X()<<"  "<<pos.Y()<<"  "<<pos.Z()<<"\n";
+      if (stat >= 3 && stat <= 5) di<<"\n   - Position : "<<pos.X().getValue()<<"  "<<pos.Y().getValue()<<"  "<<pos.Z().getValue()<<"\n";
     }
     ShapeFix_WireVertex sfwv;
     sfwv.Init ( sawv );
@@ -720,8 +720,8 @@ static Standard_Integer checkoverlapedges(Draw_Interpretor& di, Standard_Integer
        di<<"Edges are overlapping completely\n";
      else {
         di<<"Edges are overlapped\n";
-        di<<"with tolerance = "<<aTol<<"\n";
-        di<<"on segment length = "<<aDistDomain<<"\n";
+        di<<"with tolerance = "<<aTol.getValue()<<"\n";
+        di<<"on segment length = "<<aDistDomain.getValue()<<"\n";
      }
    }
    else di<<"Edges are not overlapped\n";
@@ -818,7 +818,7 @@ static Standard_Integer connectedges(Draw_Interpretor& di, Standard_Integer n, c
         TopoDS_Vertex aV1, aV2;
         TopExp::Vertices(TopoDS::Edge(aExp1.Current()), aV1,aV2);
         gp_Pnt aP = BRep_Tool::Pnt(aV1);
-        di<<aP.X()<<" "<<aP.Y()<<" "<<aP.Z()<<"\n";
+        di<<aP.X().getValue()<<" "<<aP.Y().getValue()<<" "<<aP.Z().getValue()<<"\n";
       }
     }
    

@@ -70,7 +70,7 @@ public:
   Standard_EXPORT TCollection_HAsciiString(const Standard_Integer value);
   
   //! Initializes a HAsciiString with a real value
-  Standard_EXPORT TCollection_HAsciiString(const Standard_Real value);
+  Standard_EXPORT TCollection_HAsciiString(const double value);
   
   //! Initializes a HAsciiString with a AsciiString.
   Standard_EXPORT TCollection_HAsciiString(const TCollection_AsciiString& aString);
@@ -320,7 +320,7 @@ public:
   //! Example:
   //! "215" returns 215.0.
   //! "3.14159267" returns 3.14159267.
-  Standard_EXPORT Standard_Real RealValue() const;
+  Standard_EXPORT double RealValue() const;
   
   //! Remove all the occurrences of the character C in the string
   //! Example:
