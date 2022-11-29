@@ -345,11 +345,11 @@ static void StatAssembly(const TDF_Label L,
   }
   Standard_Real tmp;
   if(XCAFDoc_Volume::Get(L,tmp)) {
-    if(PrintStructMode) di<<"Volume("<<tmp<<") ";
+    if(PrintStructMode) di<<"Volume("<<tmp.getValue()<<") ";
     NbVolumeProp++;
   }
   if(XCAFDoc_Area::Get(L,tmp)) {
-    if(PrintStructMode) di<<"Area("<<tmp<<") ";
+    if(PrintStructMode) di<<"Area("<<tmp.getValue()<<") ";
     NbAreaProp++;
   }
   Handle(XCAFDoc_ColorTool) CTool = XCAFDoc_DocumentTool::ColorTool(aDoc->Main());
@@ -1160,7 +1160,7 @@ static Standard_Integer dumpLengthUnit(Draw_Interpretor& di, Standard_Integer ar
     anOption.LowerCase();
     if (anOption.IsEqual("-scale"))
     {
-      di << aUnits->GetUnitValue();
+      di << aUnits->GetUnitValue().getValue();
       return 0;
     }
     else

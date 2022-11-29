@@ -78,5 +78,5 @@ void BinTObjDrivers_XYZDriver::Paste
 {
   Handle(TObj_TXYZ) aSource = Handle(TObj_TXYZ)::DownCast (theSource);
   gp_XYZ aXYZ = aSource->Get();
-  theTarget << aXYZ.X() << aXYZ.Y() << aXYZ.Z();
+  theTarget << aXYZ.X().getValue() << aXYZ.Y().getValue() << aXYZ.Z().getValue();
 }

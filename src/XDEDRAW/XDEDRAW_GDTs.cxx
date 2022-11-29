@@ -146,16 +146,16 @@ static Standard_Integer DumpDGTs (Draw_Interpretor& di, Standard_Integer argc, c
           di << " T " << aDimTolObj->GetType();
           if(aDimTolObj->IsDimWithRange())
           {
-            di << ", LB " << aDimTolObj->GetLowerBound();
-            di << ", UB " << aDimTolObj->GetUpperBound();
+            di << ", LB " << aDimTolObj->GetLowerBound().getValue();
+            di << ", UB " << aDimTolObj->GetUpperBound().getValue();
           }
           else
           {
-            di << ", V " << aDimTolObj->GetValue();
+            di << ", V " << aDimTolObj->GetValue().getValue();
             if (aDimTolObj->IsDimWithPlusMinusTolerance())
             {
-              di << ", VL " << aDimTolObj->GetLowerTolValue();
-              di << ", VU " << aDimTolObj->GetUpperTolValue();
+              di << ", VL " << aDimTolObj->GetLowerTolValue().getValue();
+              di << ", VU " << aDimTolObj->GetUpperTolValue().getValue();
             }
             else if (aDimTolObj->IsDimWithClassOfTolerance())
             {
@@ -172,7 +172,7 @@ static Standard_Integer DumpDGTs (Draw_Interpretor& di, Standard_Integer argc, c
           {
             gp_Dir aD;
             aDimTolObj->GetDirection(aD);
-            di << ", D (" << aD.X() << ", " << aD.Y() << ", " << aD.Z() << ")";
+            di << ", D (" << aD.X().getValue() << ", " << aD.Y().getValue() << ", " << aD.Z().getValue() << ")";
           }
           XCAFDimTolObjects_DimensionModifiersSequence aModif = 
             aDimTolObj->GetModifiers();
@@ -219,14 +219,14 @@ static Standard_Integer DumpDGTs (Draw_Interpretor& di, Standard_Integer argc, c
           }
           di << " T " << aDimTolObj->GetType();
           di << " TV " << aDimTolObj->GetTypeOfValue();
-          di << ", V " << aDimTolObj->GetValue();
+          di << ", V " << aDimTolObj->GetValue().getValue();
 
           if (aDimTolObj->HasAxis())
           {
             gp_Ax2 anAx = aDimTolObj->GetAxis();
-            di << ", A ( L (" << anAx.Location().X() << anAx.Location().Y() << anAx.Location().Z()
-              << "), XD (" << anAx.XDirection().X() << anAx.XDirection().Y() << anAx.XDirection().Z()
-              << "), RD (" << anAx.YDirection().X() << anAx.YDirection().Y() << anAx.YDirection().Z() << "))";
+            di << ", A ( L (" << anAx.Location().X().getValue() << anAx.Location().Y().getValue() << anAx.Location().Z().getValue()
+              << "), XD (" << anAx.XDirection().X().getValue() << anAx.XDirection().Y().getValue() << anAx.XDirection().Z().getValue()
+              << "), RD (" << anAx.YDirection().X().getValue() << anAx.YDirection().Y().getValue() << anAx.YDirection().Z().getValue() << "))";
           }
           XCAFDimTolObjects_GeomToleranceModifiersSequence aModif = 
             aDimTolObj->GetModifiers();
@@ -244,14 +244,14 @@ static Standard_Integer DumpDGTs (Draw_Interpretor& di, Standard_Integer argc, c
           }
           if (aDimTolObj->GetMaxValueModifier() > 0)
           {
-            di << "MaxV " << aDimTolObj->GetMaxValueModifier();
+            di << "MaxV " << aDimTolObj->GetMaxValueModifier().getValue();
           }
           if ( aDimTolObj->GetZoneModifier() != XCAFDimTolObjects_GeomToleranceZoneModif_None)
           {
             di << ", ZM " << aDimTolObj->GetZoneModifier();
             if (aDimTolObj->GetValueOfZoneModifier() > 0)
             {
-              di << " ZMV " <<aDimTolObj->GetValueOfZoneModifier();
+              di << " ZMV " <<aDimTolObj->GetValueOfZoneModifier().getValue();
             }
           }
           di << " )";
@@ -291,7 +291,7 @@ static Standard_Integer DumpDGTs (Draw_Interpretor& di, Standard_Integer argc, c
                 aDatumObj->GetModifierWithValue(aM, aV);
                 if (aM != XCAFDimTolObjects_DatumModifWithValue_None)
                 {
-                  di << ", MV" << aM << " " << aV; 
+                  di << ", MV" << aM << " " << aV.getValue();
                 }
                 di << " )";
               }
@@ -334,15 +334,15 @@ static Standard_Integer DumpDGTs (Draw_Interpretor& di, Standard_Integer argc, c
             if (aDatumObj->GetDatumTargetType() != XCAFDimTolObjects_DatumTargetType_Area)
             {
               gp_Ax2 anAx = aDatumObj->GetDatumTargetAxis();
-               di << ", A ( L (" << anAx.Location().X() << anAx.Location().Y() << anAx.Location().Z()
-                << "), XD (" << anAx.XDirection().X() << anAx.XDirection().Y() << anAx.XDirection().Z()
-                << "), RD (" << anAx.YDirection().X() << anAx.YDirection().Y() << anAx.YDirection().Z() << "))";
+               di << ", A ( L (" << anAx.Location().X().getValue() << anAx.Location().Y().getValue() << anAx.Location().Z().getValue()
+                << "), XD (" << anAx.XDirection().X().getValue() << anAx.XDirection().Y().getValue() << anAx.XDirection().Z().getValue()
+                << "), RD (" << anAx.YDirection().X().getValue() << anAx.YDirection().Y().getValue() << anAx.YDirection().Z().getValue() << "))";
               if (aDatumObj->GetDatumTargetType() != XCAFDimTolObjects_DatumTargetType_Point)
               {
-                di << ", L " << aDatumObj->GetDatumTargetLength() ;
+                di << ", L " << aDatumObj->GetDatumTargetLength().getValue() ;
                 if (aDatumObj->GetDatumTargetType() == XCAFDimTolObjects_DatumTargetType_Rectangle)
                 {
-                  di << ", W " << aDatumObj->GetDatumTargetWidth() ;
+                  di << ", W " << aDatumObj->GetDatumTargetWidth().getValue() ;
                 }
               }
             }
@@ -1126,7 +1126,7 @@ static Standard_Integer getTolVal (Draw_Interpretor& di, Standard_Integer argc, 
   Handle(XCAFDoc_GeomTolerance) aGeomTolerance;
   if(aLabel.FindAttribute(XCAFDoc_GeomTolerance::GetID(), aGeomTolerance))
   {
-    di << aGeomTolerance->GetObject()->GetValue();
+    di << aGeomTolerance->GetObject()->GetValue().getValue();
   }
   return 0;
 }
@@ -1310,7 +1310,7 @@ static Standard_Integer getZoneModVal (Draw_Interpretor& di, Standard_Integer ar
   Handle(XCAFDoc_GeomTolerance) aGeomTolerance;
   if(aLabel.FindAttribute(XCAFDoc_GeomTolerance::GetID(), aGeomTolerance))
   {
-    di << aGeomTolerance->GetObject()->GetValueOfZoneModifier();
+    di << aGeomTolerance->GetObject()->GetValueOfZoneModifier().getValue();
   }
   return 0;
 }
@@ -1450,7 +1450,7 @@ static Standard_Integer getTolMaxVal (Draw_Interpretor& di, Standard_Integer arg
   Handle(XCAFDoc_GeomTolerance) aGeomTolerance;
   if(aLabel.FindAttribute(XCAFDoc_GeomTolerance::GetID(), aGeomTolerance))
   {
-    di << aGeomTolerance->GetObject()->GetMaxValueModifier();
+    di << aGeomTolerance->GetObject()->GetMaxValueModifier().getValue();
   }
   return 0;
 }
@@ -1597,7 +1597,7 @@ static Standard_Integer getDimVal (Draw_Interpretor& di, Standard_Integer argc, 
   Handle(XCAFDoc_Dimension) aDimension;
   if(aLabel.FindAttribute(XCAFDoc_Dimension::GetID(), aDimension))
   {
-    di << aDimension->GetObject()->GetValue();
+    di << aDimension->GetObject()->GetValue().getValue();
   }
   return 0;
 }
@@ -1723,8 +1723,8 @@ static Standard_Integer getDimRange (Draw_Interpretor& di, Standard_Integer argc
   Handle(XCAFDoc_Dimension) aDimension;
   if(aLabel.FindAttribute(XCAFDoc_Dimension::GetID(), aDimension))
   {
-    di << "lower " << aDimension->GetObject()->GetLowerBound();
-    di << " upper " << aDimension->GetObject()->GetUpperBound();
+    di << "lower " << aDimension->GetObject()->GetLowerBound().getValue();
+    di << " upper " << aDimension->GetObject()->GetUpperBound().getValue();
   }
   return 0;
 }
@@ -1784,8 +1784,8 @@ static Standard_Integer getDimPlusMinusTol (Draw_Interpretor& di, Standard_Integ
   Handle(XCAFDoc_Dimension) aDimension;
   if(aLabel.FindAttribute(XCAFDoc_Dimension::GetID(), aDimension))
   {
-    di << "lower " << aDimension->GetObject()->GetLowerTolValue();
-    di << " upper " << aDimension->GetObject()->GetUpperTolValue();
+    di << "lower " << aDimension->GetObject()->GetLowerTolValue().getValue();
+    di << " upper " << aDimension->GetObject()->GetUpperTolValue().getValue();
   }
   return 0;
 }
@@ -2192,10 +2192,10 @@ static Standard_Integer getDimPoints (Draw_Interpretor& di, Standard_Integer arg
   {
     Handle(XCAFDimTolObjects_DimensionObject) anObj = aDimension->GetObject();
     if(anObj->HasPoint()) {
-      di << anObj->GetPoint().X() << ";" << anObj->GetPoint().Y() << ";" << anObj->GetPoint().Z() << " ";
+      di << anObj->GetPoint().X().getValue() << ";" << anObj->GetPoint().Y().getValue() << ";" << anObj->GetPoint().Z().getValue() << " ";
     }
     if(anObj->HasPoint2()) {
-      di << anObj->GetPoint2().X() << ";" << anObj->GetPoint2().Y() << ";" << anObj->GetPoint2().Z();
+      di << anObj->GetPoint2().X().getValue() << ";" << anObj->GetPoint2().Y().getValue() << ";" << anObj->GetPoint2().Z().getValue();
     }
  }
   return 0;
@@ -2255,7 +2255,7 @@ static Standard_Integer getDimDir (Draw_Interpretor& di, Standard_Integer argc, 
     gp_Dir dir;
     if(aDimension->GetObject()->GetDirection(dir))
     {
-      di << dir.X()<< ";"<< dir.Y()<< ";"<<dir.Z(); 
+      di << dir.X().getValue()<< ";"<< dir.Y().getValue()<< ";"<<dir.Z().getValue();
     }
   }
   return 0;
@@ -2426,9 +2426,9 @@ static Standard_Integer getGDTPosition (Draw_Interpretor& di, Standard_Integer a
     aDir = anObj->GetPlane().XDirection();
   }
 
-  di << "position: " << aPoint.X() << " " << aPoint.Y() << " " << aPoint.Z() << "\n";
-  di << "normal: " << aNormal.X() << " " << aNormal.Y() << " " << aNormal.Z() << "\n";
-  di << "x_direction: " << aDir.X() << " " << aDir.Y() << " " << aDir.Z() << "\n";
+  di << "position: " << aPoint.X().getValue() << " " << aPoint.Y().getValue() << " " << aPoint.Z().getValue() << "\n";
+  di << "normal: " << aNormal.X().getValue() << " " << aNormal.Y().getValue() << " " << aNormal.Z().getValue() << "\n";
+  di << "x_direction: " << aDir.X().getValue() << " " << aDir.Y().getValue() << " " << aDir.Z().getValue() << "\n";
   return 0;
 }
 

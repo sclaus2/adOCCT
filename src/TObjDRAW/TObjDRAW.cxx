@@ -379,7 +379,7 @@ static Standard_Integer getVal (Draw_Interpretor& di, Standard_Integer argc, con
       {
         if ( i > 1 )
           di << " ";
-        di << rArr->Value(i);
+        di << rArr->Value(i).getValue();
       }
   }
 

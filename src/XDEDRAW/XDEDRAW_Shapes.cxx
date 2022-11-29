@@ -585,7 +585,7 @@ static Standard_Integer XDumpLocation (Draw_Interpretor& di, Standard_Integer ar
     for (int j = 1; j <= 4; j++) // column number
     {
       if (j > 1) di << ",";
-      di << TCollection_AsciiString(aTrsf.Value(i,j)).ToCString();
+      di << TCollection_AsciiString(aTrsf.Value(i,j).getValue()).ToCString();
     }
     di << ")";
   }
@@ -983,7 +983,7 @@ static Standard_Integer XGetProperties(Draw_Interpretor& di, Standard_Integer ar
     TDataStd_DataMapOfStringReal aRealProperties = aNamedData->GetRealsContainer();
     for (TDataStd_DataMapIteratorOfDataMapOfStringReal anIter(aRealProperties); anIter.More(); anIter.Next())
     {
-      di << anIter.Key() << " : " << anIter.Value() << "\n";
+      di << anIter.Key() << " : " << anIter.Value().getValue() << "\n";
     }
   }
   if (aNamedData->HasStrings())

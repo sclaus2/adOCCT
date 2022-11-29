@@ -121,14 +121,14 @@ void XmlTObjDrivers_XYZDriver::Paste
   TCollection_AsciiString aCoord;
 
   // coordinate X
-  aCoord = TCollection_AsciiString( aXYZ.X() );
+  aCoord = TCollection_AsciiString( aXYZ.X().getValue() );
   Target.Element().setAttribute(::CoordX(), aCoord.ToCString());
 
   // coordinate Y
-  aCoord = TCollection_AsciiString( aXYZ.Y() );
+  aCoord = TCollection_AsciiString( aXYZ.Y().getValue() );
   Target.Element().setAttribute(::CoordY(), aCoord.ToCString());
 
   // coordinate Z
-  aCoord = TCollection_AsciiString( aXYZ.Z() );
+  aCoord = TCollection_AsciiString( aXYZ.Z().getValue() );
   Target.Element().setAttribute(::CoordZ(), aCoord.ToCString());
 }

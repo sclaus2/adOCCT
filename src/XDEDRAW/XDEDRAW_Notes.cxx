@@ -1271,7 +1271,7 @@ noteDump(Draw_Interpretor& di, Standard_Integer argc, const char** argv)
     if (aNoteObj->HasPointText())
     {
       const gp_Pnt& aP = aNoteObj->GetPointText();
-      di << "[ " << aP.X() << " " << aP.Y() << " " << aP.Z() << " ]\n";
+      di << "[ " << aP.X().getValue() << " " << aP.Y().getValue() << " " << aP.Z().getValue() << " ]\n";
     }
     else
       di << " not specified\n";
@@ -1280,15 +1280,15 @@ noteDump(Draw_Interpretor& di, Standard_Integer argc, const char** argv)
     {
       const gp_Ax2& anAx = aNoteObj->GetPlane();
       const gp_Pnt& aP = anAx.Location();
-      di << "P : [ " << aP.X() << " " << aP.Y() << " " << aP.Z() << " ]";
+      di << "P : [ " << aP.X().getValue() << " " << aP.Y().getValue() << " " << aP.Z().getValue() << " ]";
       const gp_Dir& aN = anAx.Direction();
-      di << "N : [ " << aN.X() << " " << aN.Y() << " " << aN.Z() << " ]";
+      di << "N : [ " << aN.X().getValue() << " " << aN.Y().getValue() << " " << aN.Z().getValue() << " ]";
     }
     di << "attachment point : ";
     if (aNoteObj->HasPoint())
     {
       const gp_Pnt& aP = aNoteObj->GetPoint();
-      di << "[ " << aP.X() << " " << aP.Y() << " " << aP.Z() << " ]\n";
+      di << "[ " << aP.X().getValue() << " " << aP.Y().getValue() << " " << aP.Z().getValue() << " ]\n";
     }
     else
       di << " not specified\n";

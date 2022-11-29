@@ -168,9 +168,9 @@ static Standard_Real CalculVolume(const TopoDS_Shape& So,
   localCentroid = localCentroid * (1./ myVolume);
   
   di << "Centroid:\n";
-  di << "X=\t" << localCentroid.X() << "\n";
-  di << "Y=\t" << localCentroid.Y() << "\n";
-  di << "Z=\t" << localCentroid.Z() << "\n";
+  di << "X=\t" << localCentroid.X().getValue() << "\n";
+  di << "Y=\t" << localCentroid.Y().getValue() << "\n";
+  di << "Z=\t" << localCentroid.Z().getValue() << "\n";
   return (myVolume);
 }
 
@@ -237,8 +237,8 @@ static Standard_Integer SetProps (Draw_Interpretor& di, Standard_Integer argc, c
     if (!aLabel.FindAttribute (XCAFDoc_Area::GetID(), aArea)) aLabel.AddAttribute(aArea);
     aArea->Set(Ares);
     
-    di << argv[2] << ": Volume = " << Vres << ", Area = " << Ares << 
-      ", Centroid is (" << aPoint.X() << ", " << aPoint.Y() << ", " << aPoint.Z() << ")";
+    di << argv[2] << ": Volume = " << Vres.getValue() << ", Area = " << Ares.getValue() <<
+      ", Centroid is (" << aPoint.X().getValue() << ", " << aPoint.Y().getValue() << ", " << aPoint.Z().getValue() << ")";
   }
   return 0;
 }
@@ -277,7 +277,7 @@ static Standard_Integer SetVolume (Draw_Interpretor& di, Standard_Integer argc, 
     aVolume->Set(res);
   }
   
-  di << res;
+  di << res.getValue();
   return 0;
 }
 
@@ -314,7 +314,7 @@ static Standard_Integer SetArea (Draw_Interpretor& di, Standard_Integer argc, co
     if (!aLabel.FindAttribute (XCAFDoc_Area::GetID(), aArea)) aLabel.AddAttribute(aArea);
     aArea->Set(res);
   }
-  di << res;
+  di << res.getValue();
   return 0;
 }
 
@@ -388,7 +388,7 @@ static Standard_Integer GetVolume (Draw_Interpretor& di, Standard_Integer argc, 
     // another case
     Standard_Real aVol;
     if(XCAFDoc_Volume::Get(aLabel, aVol))
-      di << aVol;
+      di << aVol.getValue();
   }
   return 0;
 }
@@ -424,7 +424,7 @@ static Standard_Integer GetArea (Draw_Interpretor& di, Standard_Integer argc, co
     // another case
     Standard_Real anA;
     if(XCAFDoc_Area::Get(aLabel, anA))
-      di << anA;
+      di << anA.getValue();
   }
   return 0;
 }
@@ -463,7 +463,7 @@ static Standard_Integer GetCentroid (Draw_Interpretor& di, Standard_Integer argc
 //       di << aPoint.X()<<" "<<aPoint.Y()<<" "<<aPoint.Z();
       // another case
       if(XCAFDoc_Centroid::Get(aLabel, aPoint))
-        di << aPoint.X()<<" "<<aPoint.Y()<<" "<<aPoint.Z();
+        di << aPoint.X().getValue()<<" "<<aPoint.Y().getValue()<<" "<<aPoint.Z().getValue();
     }
   }
   return 0;
@@ -851,8 +851,8 @@ static Standard_Integer ShapeMassProps (Draw_Interpretor& di, Standard_Integer a
       TDF_Tool::Entry ( aLabel, str );
     if(aMassVal>0) {
       di<<"Shape from label : "<<str.ToCString()<<"\n";
-      di<<"Mass = "<<aMassVal<<"\n";
-      di<<"CenterOfGravity X = "<<aCenterGravity.X()<<",Y = "<<aCenterGravity.Y()<<",Z = "<<aCenterGravity.Z()<<"\n";
+      di<<"Mass = "<<aMassVal.getValue()<<"\n";
+      di<<"CenterOfGravity X = "<<aCenterGravity.X().getValue()<<",Y = "<<aCenterGravity.Y().getValue()<<",Z = "<<aCenterGravity.Z().getValue()<<"\n";
       di<<"\n";
     }
     else {
@@ -961,14 +961,14 @@ static Standard_Integer GetValidationProps(Draw_Interpretor& di, Standard_Intege
       {
         if( aProp[j] > 0)
         {
-          di<<(j == Vol ? "; Volume - " : "; Area - ")<<aProp[j];
+          di<<(j == Vol ? "; Volume - " : "; Area - ")<<aProp[j].getValue();
           nbProps[j]++;
         }
       }
 
       if( !Precision::IsInfinite(aP.X()) )
       {      
-        di<< "; Centroid -  "<< aP.X()<<" "<<aP.Y()<<" "<<aP.Z();
+        di<< "; Centroid -  "<< aP.X().getValue()<<" "<<aP.Y().getValue()<<" "<<aP.Z().getValue();
         nbProps[Centroid]++;
       }
        di<<"\n";

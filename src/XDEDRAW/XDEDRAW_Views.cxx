@@ -508,7 +508,7 @@ static Standard_Integer getProjectionPoint(Draw_Interpretor& di, Standard_Intege
   if (aLabel.FindAttribute(XCAFDoc_View::GetID(), aView))
   {
     gp_Pnt aPnt = aView->GetObject()->ProjectionPoint();
-    di << aPnt.X() << " " << aPnt.Y() << " " << aPnt.Z();
+    di << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue();
   }
   return 0;
 }
@@ -577,7 +577,7 @@ static Standard_Integer getViewDir(Draw_Interpretor& di, Standard_Integer argc, 
   if (aLabel.FindAttribute(XCAFDoc_View::GetID(), aView))
   {
     gp_Dir aDir = aView->GetObject()->ViewDirection();
-    di << aDir.X() << " " << aDir.Y() << " " << aDir.Z();
+    di << aDir.X().getValue() << " " << aDir.Y().getValue() << " " << aDir.Z().getValue();
   }
   return 0;
 }
@@ -646,7 +646,7 @@ static Standard_Integer getUpDir(Draw_Interpretor& di, Standard_Integer argc, co
   if (aLabel.FindAttribute(XCAFDoc_View::GetID(), aView))
   {
     gp_Dir aDir = aView->GetObject()->UpDirection();
-    di << aDir.X() << " " << aDir.Y() << " " << aDir.Z();
+    di << aDir.X().getValue() << " " << aDir.Y().getValue() << " " << aDir.Z().getValue();
   }
   return 0;
 }
@@ -714,7 +714,7 @@ static Standard_Integer getZoomFactor(Draw_Interpretor& di, Standard_Integer arg
   Handle(XCAFDoc_View) aView;
   if (aLabel.FindAttribute(XCAFDoc_View::GetID(), aView))
   {
-    di << aView->GetObject()->ZoomFactor();
+    di << aView->GetObject()->ZoomFactor().getValue();
   }
   return 0;
 }
@@ -783,8 +783,8 @@ static Standard_Integer getWindowSize(Draw_Interpretor& di, Standard_Integer arg
   Handle(XCAFDoc_View) aView;
   if (aLabel.FindAttribute(XCAFDoc_View::GetID(), aView))
   {
-    di << "width " << aView->GetObject()->WindowHorizontalSize();
-    di << " height " << aView->GetObject()->WindowVerticalSize();
+    di << "width " << aView->GetObject()->WindowHorizontalSize().getValue();
+    di << " height " << aView->GetObject()->WindowVerticalSize().getValue();
   }
   return 0;
 }
@@ -888,7 +888,7 @@ static Standard_Integer getFrontPlaneDistance(Draw_Interpretor& di, Standard_Int
   if (aLabel.FindAttribute(XCAFDoc_View::GetID(), aView))
   {
     if (aView->GetObject()->HasFrontPlaneClipping())
-      di << aView->GetObject()->FrontPlaneDistance();
+      di << aView->GetObject()->FrontPlaneDistance().getValue();
     else
       di << "View has not front plane clipping\n";
   }
@@ -994,7 +994,7 @@ static Standard_Integer getBackPlaneDistance(Draw_Interpretor& di, Standard_Inte
   if (aLabel.FindAttribute(XCAFDoc_View::GetID(), aView))
   {
     if (aView->GetObject()->HasBackPlaneClipping())
-      di << aView->GetObject()->BackPlaneDistance();
+      di << aView->GetObject()->BackPlaneDistance().getValue();
     else
       di << "View has not back plane clipping\n";
   }
@@ -1142,25 +1142,25 @@ static Standard_Integer dump(Draw_Interpretor& di, Standard_Integer argc, const 
   }
 
   gp_Pnt aPnt = aView->GetObject()->ProjectionPoint();
-  di << "Projection point: "<< aPnt.X() << " " << aPnt.Y() << " " << aPnt.Z() << "\n";
+  di << "Projection point: "<< aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
 
   gp_Dir aDir = aView->GetObject()->ViewDirection();
-  di << "View Direction: " << aDir.X() << " " << aDir.Y() << " " << aDir.Z() << "\n";
+  di << "View Direction: " << aDir.X().getValue() << " " << aDir.Y().getValue() << " " << aDir.Z().getValue() << "\n";
 
   aDir = aView->GetObject()->UpDirection();
-  di << "Up Direction: " << aDir.X() << " " << aDir.Y() << " " << aDir.Z() << "\n";
+  di << "Up Direction: " << aDir.X().getValue() << " " << aDir.Y().getValue() << " " << aDir.Z().getValue() << "\n";
 
-  di << "Zoom factor: " << aView->GetObject()->ZoomFactor() << "\n";
+  di << "Zoom factor: " << aView->GetObject()->ZoomFactor().getValue() << "\n";
 
-  di << "Window Size: width " << aView->GetObject()->WindowHorizontalSize() << ", " << " height " << aView->GetObject()->WindowVerticalSize() << "\n";
+  di << "Window Size: width " << aView->GetObject()->WindowHorizontalSize().getValue() << ", " << " height " << aView->GetObject()->WindowVerticalSize().getValue() << "\n";
 
   if (aView->GetObject()->HasFrontPlaneClipping())
-    di << "Front Plane Distance: " << aView->GetObject()->FrontPlaneDistance() << "\n";
+    di << "Front Plane Distance: " << aView->GetObject()->FrontPlaneDistance().getValue() << "\n";
   else
     di << "No Front Plane\n";
 
   if (aView->GetObject()->HasFrontPlaneClipping())
-    di << "Front Back Distance: " << aView->GetObject()->BackPlaneDistance() << "\n";
+    di << "Front Back Distance: " << aView->GetObject()->BackPlaneDistance().getValue() << "\n";
   else
     di << "No Back Plane\n";
 
