@@ -24,6 +24,13 @@ else()
   set (CSF_FREETYPE)
 endif()
 
+# ADOL-C
+if (USE_ADOLC)
+  set (CSF_ADOLC "adolc")
+else()
+  set (CSF_ADOLC)
+endif()
+
 # FFmpeg
 if (USE_FFMPEG)
   set (CSF_FFmpeg "avcodec avformat swscale avutil")
