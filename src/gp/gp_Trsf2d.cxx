@@ -371,7 +371,7 @@ void gp_Trsf2d::Power (const Standard_Integer N)
 	  shape = gp_Identity;
 	  scale = 1.0;
 	  matrix.SetIdentity ();
-	  loc.SetCoord (0.0, 0.0);
+	  loc.SetCoord ((Standard_Real)0.0, (Standard_Real)0.0);
 	}
       }
       else {

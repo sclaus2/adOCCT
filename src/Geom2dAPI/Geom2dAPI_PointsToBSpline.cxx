@@ -206,7 +206,7 @@ void Geom2dAPI_PointsToBSpline::Init
   
   for (i = YValues.Lower(); i <= YValues.Upper(); i++) {
     Param(i) = (X0+(i-1)*DX)/(X0+length);
-    Points(i).SetCoord(0.0, YValues(i));
+    Points(i).SetCoord((Standard_Real)0.0, YValues(i));
   }
 
   AppDef_BSplineCompute TheComputer

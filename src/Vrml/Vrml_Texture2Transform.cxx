@@ -23,7 +23,7 @@ Vrml_Texture2Transform::Vrml_Texture2Transform()
 
   myRotation = 0;
 
-  tmpVec.SetCoord(1,1);
+  tmpVec.SetCoord((Standard_Real)1,(Standard_Real)1);
   myScaleFactor = tmpVec;
 }
 

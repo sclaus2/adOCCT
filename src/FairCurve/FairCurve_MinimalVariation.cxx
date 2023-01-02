@@ -226,7 +226,7 @@ Standard_Boolean FairCurve_MinimalVariation::Compute(const gp_Vec2d& DeltaP1,
 // Interpolation
   gp_XY AuxXY (0,0);
   for (ii=1; ii<=L; ii++) {
-      AuxXY.SetCoord(0.0, 0);
+      AuxXY.SetCoord((Standard_Real)0.0, (Standard_Real)0);
       for (kk=1; kk<=L; kk++) {
           AuxXY +=  HermiteCoef(kk, ii) * ADelta(kk);       
       }

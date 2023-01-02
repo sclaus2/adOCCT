@@ -108,14 +108,14 @@ void BuildPolynomialCosAndSin
 
   TColgp_Array1OfPnt2d TPoles(1,8),
   NewTPoles(1,8) ;
-  TPoles(1).SetCoord(1.,0.);
-  TPoles(2).SetCoord(1.,1.013854);
-  TPoles(3).SetCoord(-0.199043,1.871905);
-  TPoles(4).SetCoord(-1.937729,1.057323);
-  TPoles(5).SetCoord(-1.937729,-1.057323);
-  TPoles(6).SetCoord(-0.199043,-1.871905);
-  TPoles(7).SetCoord(1.,-1.013854);
-  TPoles(8).SetCoord(1.,0.);
+  TPoles(1).SetCoord((Standard_Real)1.,(Standard_Real)0.);
+  TPoles(2).SetCoord((Standard_Real)1.,(Standard_Real)1.013854);
+  TPoles(3).SetCoord((Standard_Real)-0.199043,(Standard_Real)1.871905);
+  TPoles(4).SetCoord((Standard_Real)-1.937729,(Standard_Real)1.057323);
+  TPoles(5).SetCoord((Standard_Real)-1.937729,(Standard_Real)-1.057323);
+  TPoles(6).SetCoord((Standard_Real)-0.199043,(Standard_Real)-1.871905);
+  TPoles(7).SetCoord((Standard_Real)1.,(Standard_Real)-1.013854);
+  TPoles(8).SetCoord((Standard_Real)1.,(Standard_Real)0.);
   gp_Trsf2d T;
   T.SetRotation(gp::Origin2d(),Angle);
   for (ii=1; ii<=num_poles; ii++) {

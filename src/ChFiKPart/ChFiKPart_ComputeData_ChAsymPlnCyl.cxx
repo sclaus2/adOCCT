@@ -228,7 +228,7 @@ Standard_Boolean ChFiKPart_MakeChAsym(TopOpeBRepDS_DataStructure& DStr,
     v= -sqrt(dis1 * dis1 + dis2 * dis2);
   else 
     v = sqrt(dis1 * dis1 + dis2 * dis2);
-  p2dch.SetCoord(0., v);
+  p2dch.SetCoord((Standard_Real)0., v);
   ElSLib::ConeD1(0., v, ConAx3, ConRad, SemiAngl, Pt, deru, derv);
   gp_Lin2d lin2dch(p2dch, gp::DX2d());
   Handle(Geom2d_Line) GLin2dCh1 = new Geom2d_Line(lin2dch);
@@ -264,7 +264,7 @@ Standard_Boolean ChFiKPart_MakeChAsym(TopOpeBRepDS_DataStructure& DStr,
   Handle(Geom_Circle) GCirCyl = new Geom_Circle(CirCyl);
 
   //pcurve on the chamfer
-  p2dch.SetCoord(0., 0.);
+  p2dch.SetCoord((Standard_Real)0., (Standard_Real)0.);
   ElSLib::ConeD1(0., 0., ConAx3, ConRad, SemiAngl, Pt, deru, derv);
   lin2dch.SetLocation(p2dch);
   Handle(Geom2d_Line) GLin2dCh2 = new Geom2d_Line(lin2dch);

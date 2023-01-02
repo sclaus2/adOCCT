@@ -281,7 +281,7 @@ Standard_Boolean ChFiKPart_MakeChAsym(TopOpeBRepDS_DataStructure& DStr,
     
     //pcurve on chamfer
     gp_Pnt2d p2dch;
-    p2dch.SetCoord(0.,0.);
+    p2dch.SetCoord((Standard_Real)0.,(Standard_Real)0.);
     // ElSLib::CylinderD1(0.,0.,ChamfAx3,ChamfRad,Pt,deru,derv);
     gp_Lin2d lin2dch(p2dch,gp::DX2d());
     Handle(Geom2d_Line) GLin2dCh1 = new Geom2d_Line(lin2dch);
@@ -329,7 +329,7 @@ Standard_Boolean ChFiKPart_MakeChAsym(TopOpeBRepDS_DataStructure& DStr,
       v = sqrt(dis*dis + move*move);
     else
       v = - sqrt(dis*dis + move*move);
-    p2dch.SetCoord(0.,v);
+    p2dch.SetCoord((Standard_Real)0.,v);
     ElSLib::CylinderD1(0.,v,ChamfAx3,ChamfRad,Pt,deru,derv);
     lin2dch.SetLocation(p2dch);
     Handle(Geom2d_Line) GLin2dCh2 = new Geom2d_Line(lin2dch);
@@ -454,7 +454,7 @@ Standard_Boolean ChFiKPart_MakeChAsym(TopOpeBRepDS_DataStructure& DStr,
 
     //pcurve on chamfer
     gp_Pnt2d p2dch;
-    p2dch.SetCoord(0.,0.);
+    p2dch.SetCoord((Standard_Real)0.,(Standard_Real)0.);
     ElSLib::ConeD1(0.,0.,ChamfAx3,ChamfRad,SemiAngl,Pt,deru,derv);
     gp_Lin2d lin2dch(p2dch,gp::DX2d());
     Handle(Geom2d_Line) GLin2dCh1 = new Geom2d_Line(lin2dch);
@@ -504,7 +504,7 @@ Standard_Boolean ChFiKPart_MakeChAsym(TopOpeBRepDS_DataStructure& DStr,
       v = sqrt(dis*dis + move*move);
     else
       v = - sqrt(dis*dis + move*move);
-    p2dch.SetCoord(0.,v);
+    p2dch.SetCoord((Standard_Real)0.,v);
     ElSLib::ConeD1(0.,v,ChamfAx3,ChamfRad,SemiAngl,Pt,deru,derv);
     lin2dch.SetLocation(p2dch);
     Handle(Geom2d_Line) GLin2dCh2 = new Geom2d_Line(lin2dch);

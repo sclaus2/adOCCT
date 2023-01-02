@@ -961,7 +961,7 @@ static Standard_Boolean Filling(const TopoDS_Shape& EF,
   L = new (Geom2d_Line) (P2d, gp::DY2d());
   C1 = new (Geom2d_TrimmedCurve) (L, f1, l1);
 
-  P2d.SetCoord(Angle,0.);
+  P2d.SetCoord(Angle,(Standard_Real)0.);
   L = new (Geom2d_Line) (P2d, gp::DY2d());
   C2 = new (Geom2d_TrimmedCurve) (L, f1, l1);
  
@@ -997,12 +997,12 @@ static Standard_Boolean Filling(const TopoDS_Shape& EF,
   P2 = BRep_Tool::Pnt(V2);
 //  pointu_l = Vl.IsSame(V2) || (P1.Distance(P2) < BT.Tolerance(Vl));
 
-  P2d.SetCoord(0.,f1);
+  P2d.SetCoord((Standard_Real)0.,f1);
   L = new (Geom2d_Line) (P2d, gp::DX2d());
   C3 = new (Geom2d_TrimmedCurve) (L, 0, Angle);
 
 
-  P2d.SetCoord(0.,l1);
+  P2d.SetCoord((Standard_Real)0.,l1);
   L = new (Geom2d_Line) (P2d, gp::DX2d());   
   C4 = new (Geom2d_TrimmedCurve) (L, 0, Angle);
 /*

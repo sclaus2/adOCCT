@@ -1530,7 +1530,7 @@ IntAna_QuadQuadGeo::IntAna_QuadQuadGeo(const gp_Cylinder& Cyl,
     aHalfPI=0.5*M_PI;
     aD1=1.;
     aPA1.SetCoord(aD1, 0.);
-    aP0.SetCoord(0., 0.);
+    aP0.SetCoord((Standard_Real)0., (Standard_Real)0.);
     //
     aAx1=Con1.Axis();
     aAx2=Con2.Axis();

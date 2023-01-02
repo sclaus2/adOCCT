@@ -576,7 +576,7 @@ void  BRepSweep_Rotation::SetDirectingPCurve
       gp_Cone cone = AS.Cone();
       ElSLib::ConeParameters(cone.Position(),cone.RefRadius(),
 			     cone.SemiAngle(),p2,u,v);
-      p22d.SetCoord(0.,v);
+      p22d.SetCoord((Standard_Real)0.,v);
       gp_Lin2d L(p22d,gp::DX2d());
       Handle(Geom2d_Line) GL = new Geom2d_Line(L);
       thePCurve = GL;
@@ -587,7 +587,7 @@ void  BRepSweep_Rotation::SetDirectingPCurve
     {
       gp_Sphere sph = AS.Sphere();
       ElSLib::SphereParameters(sph.Position(),sph.Radius(),p2,u,v);
-      p22d.SetCoord(0.,v);
+      p22d.SetCoord((Standard_Real)0.,v);
       gp_Lin2d L(p22d,gp::DX2d());
       Handle(Geom2d_Line) GL = new Geom2d_Line(L);
       thePCurve = GL;
@@ -638,7 +638,7 @@ void  BRepSweep_Rotation::SetDirectingPCurve
 
   default :
     {
-      p22d.SetCoord(0.,par);
+      p22d.SetCoord((Standard_Real)0.,par);
       gp_Lin2d L(p22d,gp::DX2d());
       Handle(Geom2d_Line) GL = new Geom2d_Line(L);
       thePCurve = GL;

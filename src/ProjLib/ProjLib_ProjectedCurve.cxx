@@ -216,25 +216,25 @@ static void ExtendC2d (Handle(Geom2d_BSplineCurve)& aRes,
   case 1:
     {
       thePole.SetCoord(u1, v1);
-      theBoundDir.SetCoord(0., 1.);
+      theBoundDir.SetCoord((Standard_Real)0., (Standard_Real)1.);
       break;
     }
   case 2:
     {
       thePole.SetCoord(u2, v1);
-      theBoundDir.SetCoord(0., 1.);
+      theBoundDir.SetCoord((Standard_Real)0., (Standard_Real)1.);
       break;
     }
   case 3:
     {
       thePole.SetCoord(u1, v1);
-      theBoundDir.SetCoord(1., 0.);
+      theBoundDir.SetCoord((Standard_Real)1., (Standard_Real)0.);
       break;
     }
   case 4:
     {
       thePole.SetCoord(u1, v2);
-      theBoundDir.SetCoord(1., 0.);
+      theBoundDir.SetCoord((Standard_Real)1., (Standard_Real)0.);
       break;
     }
   }

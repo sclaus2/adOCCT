@@ -217,7 +217,7 @@ void Geom2d_Line::D2 (const Standard_Real U,
 		            Vec2d& V1, Vec2d& V2) const 
 {
   ElCLib::LineD1 (U, pos, P, V1);
-  V2.SetCoord (0.0, 0.0);
+  V2.SetCoord ((Standard_Real)0.0, (Standard_Real)0.0);
 }
 
 //=======================================================================
@@ -230,8 +230,8 @@ void Geom2d_Line::D3 (const Standard_Real U,
 		            Vec2d& V1, Vec2d& V2, Vec2d& V3) const
 {
   ElCLib::LineD1 (U, pos, P, V1);
-  V2.SetCoord (0.0, 0.0);
-  V3.SetCoord (0.0, 0.0);
+  V2.SetCoord ((Standard_Real)0.0, (Standard_Real)0.0);
+  V3.SetCoord ((Standard_Real)0.0, (Standard_Real)0.0);
 }
 
 

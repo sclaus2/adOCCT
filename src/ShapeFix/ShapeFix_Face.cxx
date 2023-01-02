@@ -1626,7 +1626,7 @@ Standard_Boolean ShapeFix_Face::FixMissingSeam()
       else return Standard_False;
 
       p.SetCoord ( uCoord, ( ismodev < 0 ? 0. : VRange ) );
-      d.SetCoord ( 0., -ismodev);
+      d.SetCoord ( (Standard_Real)0., -ismodev);
       aRange = VRange;
     }
     else if ( ismodeu && mySurf->Surface()->IsKind(STANDARD_TYPE(Geom_BSplineSurface))) {
@@ -1637,7 +1637,7 @@ Standard_Boolean ShapeFix_Face::FixMissingSeam()
         vCoord = SVL;
       else return Standard_False;
 
-      p.SetCoord ( ( ismodeu < 0 ? 0. : URange ), vCoord );
+      p.SetCoord ( ( ismodeu < 0 ? (Standard_Real)0. : URange ), vCoord );
       Standard_Real aXCoord = -ismodeu;
       d.SetCoord ( aXCoord, 0.);
       aRange = URange;

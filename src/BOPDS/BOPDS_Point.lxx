@@ -19,7 +19,7 @@
   inline BOPDS_Point::BOPDS_Point()
 {
   myPnt.SetCoord(99.,99.,99.);
-  myPnt2D1.SetCoord(99.,99.);
+  myPnt2D1.SetCoord((Standard_Real)99.,(Standard_Real)99.);
   myPnt2D2=myPnt2D1;
   myIndex=-1;
 }

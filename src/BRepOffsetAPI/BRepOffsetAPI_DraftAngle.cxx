@@ -887,14 +887,14 @@ void BRepOffsetAPI_DraftAngle::CorrectWires()
           Plast.X () - 2.*M_PI > Precision::Confusion () ||
           Pmid.X () - 2.*M_PI > Precision::Confusion ())
         {
-          offset.SetCoord (-2.*M_PI, 0);
+          offset.SetCoord ((Standard_Real)-2.*M_PI, (Standard_Real)0);
           translate = Standard_True;
         }
         if (Pfirst.X () < -Precision::Confusion () ||
           Plast.X () < -Precision::Confusion () ||
           Pmid.X () < -Precision::Confusion ())
         {
-          offset.SetCoord (2.*M_PI, 0);
+          offset.SetCoord ((Standard_Real)2.*M_PI, (Standard_Real)0);
           translate = Standard_True;
         }
         if (translate)

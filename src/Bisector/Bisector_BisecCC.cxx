@@ -955,7 +955,7 @@ void Bisector_BisecCC::D1(const Standard_Real     U,
   gp_Pnt2d&         P,
   gp_Vec2d&         V ) const
 {
-  V.SetCoord(0.,0.);
+  V.SetCoord((Standard_Real)0.,(Standard_Real)0.);
   gp_Vec2d V2,V3;
   Values(U,1,P,V,V2,V3);
 } 
@@ -969,8 +969,8 @@ void Bisector_BisecCC::D2(const Standard_Real     U,
   gp_Vec2d&         V1,
   gp_Vec2d&         V2) const
 {
-  V1.SetCoord(0.,0.);
-  V2.SetCoord(0.,0.);
+  V1.SetCoord((Standard_Real)0.,(Standard_Real)0.);
+  V2.SetCoord((Standard_Real)0.,(Standard_Real)0.);
   gp_Vec2d V3;
   Values(U,2,P,V1,V2,V3);
 }
@@ -985,9 +985,9 @@ void Bisector_BisecCC::D3(const Standard_Real     U,
   gp_Vec2d&         V2,
   gp_Vec2d&         V3) const
 {
-  V1.SetCoord(0.,0.);
-  V2.SetCoord(0.,0.);
-  V3.SetCoord(0.,0.);
+  V1.SetCoord((Standard_Real)0.,(Standard_Real)0.);
+  V2.SetCoord((Standard_Real)0.,(Standard_Real)0.);
+  V3.SetCoord((Standard_Real)0.,(Standard_Real)0.);
   Values(U,3,P,V1,V2,V3);
 }
 

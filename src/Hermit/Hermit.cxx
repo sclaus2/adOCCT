@@ -216,10 +216,10 @@ static void PolyTest(const TColStd_Array1OfReal&         Herm,
   //sort of the array of knots
   std::sort (knots.begin(), knots.end());
 
-  Polesinit(0).SetCoord(0.0,Herm(0));                 //poles of the Hermite polynome in the BSpline form
-  Polesinit(1).SetCoord(0.0,Herm(0)+Herm(1)/3.0);
-  Polesinit(2).SetCoord(0.0,Herm(3)-Herm(2)/3.0);
-  Polesinit(3).SetCoord(0.0,Herm(3));
+  Polesinit(0).SetCoord((Standard_Real)0.0,Herm(0));                 //poles of the Hermite polynome in the BSpline form
+  Polesinit(1).SetCoord((Standard_Real)0.0,Herm(0)+Herm(1)/3.0);
+  Polesinit(2).SetCoord((Standard_Real)0.0,Herm(3)-Herm(2)/3.0);
+  Polesinit(3).SetCoord((Standard_Real)0.0,Herm(3));
 
                               //loop to check the tolerances on poles
   if (TolPoles!=0.0){
@@ -232,23 +232,23 @@ static void PolyTest(const TColStd_Array1OfReal&         Herm,
       if ((max==0)||(max==3))
       {
         for (i=0;i<=3;i++)
-          Polesinit(i).SetCoord(0.0,(Polesinit(i).Y()-TolPoles*Polemax));
+          Polesinit(i).SetCoord((Standard_Real)0.0,(Polesinit(i).Y()-TolPoles*Polemax));
       }
       else if ((max==1)||(max==2)) {
         if ((min==0)||(min==3))
         {
           for (i=0;i<=3;i++)
-            Polesinit(i).SetCoord(0.0,(Polesinit(i).Y()-(1/TolPoles)*Polemin));
+            Polesinit(i).SetCoord((Standard_Real)0.0,(Polesinit(i).Y()-(1/TolPoles)*Polemin));
         }
         else{                                                                  
           if ((TolPoles*Polemax<Polesinit(0).Y())&&(TolPoles*Polemax<Polesinit(3).Y())){
             for (i=0;i<=3;i++)                                             
-              Polesinit(i).SetCoord(0.0,(Polesinit(i).Y()-TolPoles*Polemax));
+              Polesinit(i).SetCoord((Standard_Real)0.0,(Polesinit(i).Y()-TolPoles*Polemax));
             mark=1;
           }
           if ((1/TolPoles*Polemin>Polesinit(0).Y())&&(1/TolPoles*Polemin>Polesinit(3).Y())&&(mark==0)){
             for (i=0;i<=3;i++)                                             
-              Polesinit(i).SetCoord(0.0,(Polesinit(i).Y()-1/TolPoles*Polemin));
+              Polesinit(i).SetCoord((Standard_Real)0.0,(Polesinit(i).Y()-1/TolPoles*Polemin));
             mark=1;
           }
           if (mark==0){
@@ -260,12 +260,12 @@ static void PolyTest(const TColStd_Array1OfReal&         Herm,
               if (boucle==2)
               {
                 for (i=0;i<=3;i++)                                                    
-                  Polesinit(i).SetCoord(0.0, Polesinit(i).Y()-(Pole3*(Pow(10.0,(-0.5*Log10(TolPoles)-a/2.0))))); 
+                  Polesinit(i).SetCoord((Standard_Real)0.0, Polesinit(i).Y()-(Pole3*(Pow(10.0,(-0.5*Log10(TolPoles)-a/2.0)))));
               }
               if (boucle==1)
               {
                 for (i=0;i<=3;i++)                                                    
-                  Polesinit(i).SetCoord(0.0, Polesinit(i).Y()-(Pole0*(Pow(10.0,(a/2.0+0.5*Log10(TolPoles)))))); 
+                  Polesinit(i).SetCoord((Standard_Real)0.0, Polesinit(i).Y()-(Pole0*(Pow(10.0,(a/2.0+0.5*Log10(TolPoles))))));
                 dercas=1;
               }
             }
@@ -275,12 +275,12 @@ static void PolyTest(const TColStd_Array1OfReal&         Herm,
               if (boucle==2)
               {
                 for (i=0;i<=3;i++)                                                    
-                  Polesinit(i).SetCoord(0.0, Polesinit(i).Y()-(Pole0*(Pow(10.0,(-0.5*Log10(TolPoles)-a/2.0)))));
+                  Polesinit(i).SetCoord((Standard_Real)0.0, Polesinit(i).Y()-(Pole0*(Pow(10.0,(-0.5*Log10(TolPoles)-a/2.0)))));
               }
               if (boucle==1)
               {
                 for (i=0;i<=3;i++)                                                    
-                  Polesinit(i).SetCoord(0.0, Polesinit(i).Y()-(Pole3*(Pow(10.0,(a/2.0+0.5*Log10(TolPoles)))))); 
+                  Polesinit(i).SetCoord((Standard_Real)0.0, Polesinit(i).Y()-(Pole3*(Pow(10.0,(a/2.0+0.5*Log10(TolPoles))))));
                 dercas=1;
               }
             }
@@ -293,7 +293,7 @@ static void PolyTest(const TColStd_Array1OfReal&         Herm,
   if (!SignDenom(Polesinit)) //invertion of the polynome sign
   {
     for (index=0;index<=3;index++)
-      Polesinit(index).SetCoord(0.0,-Polesinit(index).Y());
+      Polesinit(index).SetCoord((Standard_Real)0.0,-Polesinit(index).Y());
   }
 
   // loop of positivity
@@ -440,10 +440,10 @@ static void PolyTest(const TColStd_Array1OfReal&        Herm,
   //sort of the array of knots
   std::sort (knots.begin(), knots.end());
 
-  Polesinit(0).SetCoord(0.0,Herm(0));              //poles of the Hermite polynome in the BSpline form
-  Polesinit(1).SetCoord(0.0,Herm(0)+Herm(1)/3.0);
-  Polesinit(2).SetCoord(0.0,Herm(3)-Herm(2)/3.0);
-  Polesinit(3).SetCoord(0.0,Herm(3));
+  Polesinit(0).SetCoord((Standard_Real)0.0,Herm(0));              //poles of the Hermite polynome in the BSpline form
+  Polesinit(1).SetCoord((Standard_Real)0.0,Herm(0)+Herm(1)/3.0);
+  Polesinit(2).SetCoord((Standard_Real)0.0,Herm(3)-Herm(2)/3.0);
+  Polesinit(3).SetCoord((Standard_Real)0.0,Herm(3));
 
   // loop to check the tolerances on poles
   if (TolPoles!=0.0)
@@ -458,28 +458,28 @@ static void PolyTest(const TColStd_Array1OfReal&        Herm,
       if ((max==0)||(max==3))
       {
         for (i=0;i<=3;i++)
-          Polesinit(i).SetCoord(0.0,(Polesinit(i).Y()-TolPoles*Polemax));
+          Polesinit(i).SetCoord((Standard_Real)0.0,(Polesinit(i).Y()-TolPoles*Polemax));
       }
       else if ((max==1)||(max==2))
       {
         if ((min==0)||(min==3))
         {
           for (i=0;i<=3;i++)
-            Polesinit(i).SetCoord(0.0,(Polesinit(i).Y()-(1/TolPoles)*Polemin));
+            Polesinit(i).SetCoord((Standard_Real)0.0,(Polesinit(i).Y()-(1/TolPoles)*Polemin));
         }
         else
         {
           if ((TolPoles*Polemax<Polesinit(0).Y())&&(TolPoles*Polemax<Polesinit(3).Y()))
           {
             for (i=0;i<=3;i++)                                             
-              Polesinit(i).SetCoord(0.0,(Polesinit(i).Y()-TolPoles*Polemax));
+              Polesinit(i).SetCoord((Standard_Real)0.0,(Polesinit(i).Y()-TolPoles*Polemax));
             mark=1;
           }
 
           if ((1/TolPoles*Polemin>Polesinit(0).Y())&&(1/TolPoles*Polemin>Polesinit(3).Y())&&(mark==0))
           {
             for (i=0;i<=3;i++)                                             
-              Polesinit(i).SetCoord(0.0,(Polesinit(i).Y()-1/TolPoles*Polemin));
+              Polesinit(i).SetCoord((Standard_Real)0.0,(Polesinit(i).Y()-1/TolPoles*Polemin));
             mark=1;
           }
           if (mark==0)
@@ -493,12 +493,12 @@ static void PolyTest(const TColStd_Array1OfReal&        Herm,
               if (boucle==2)
               {
                 for (i=0;i<=3;i++)
-                  Polesinit(i).SetCoord(0.0, Polesinit(i).Y()-(Pole3*(Pow(10.0,(-0.5*Log10(TolPoles)-a/2.0)))));
+                  Polesinit(i).SetCoord((Standard_Real)0.0, Polesinit(i).Y()-(Pole3*(Pow(10.0,(-0.5*Log10(TolPoles)-a/2.0)))));
               }
               if (boucle==1)
               {
                 for (i=0;i<=3;i++)
-                  Polesinit(i).SetCoord(0.0, Polesinit(i).Y()-(Pole0*(Pow(10.0,(a/2.0+0.5*Log10(TolPoles)))))); 
+                  Polesinit(i).SetCoord((Standard_Real)0.0, Polesinit(i).Y()-(Pole0*(Pow(10.0,(a/2.0+0.5*Log10(TolPoles))))));
                 dercas=1;
               }
             }
@@ -508,12 +508,12 @@ static void PolyTest(const TColStd_Array1OfReal&        Herm,
               if (boucle==2)
               {
                 for (i=0;i<=3;i++)                                                    
-                  Polesinit(i).SetCoord(0.0, Polesinit(i).Y()-(Pole0*(Pow(10.0,(-0.5*Log10(TolPoles)-a/2.0))))); 
+                  Polesinit(i).SetCoord((Standard_Real)0.0, Polesinit(i).Y()-(Pole0*(Pow(10.0,(-0.5*Log10(TolPoles)-a/2.0)))));
               }
               else if (boucle==1)
               {
                 for (i=0;i<=3;i++)                                                    
-                  Polesinit(i).SetCoord(0.0, Polesinit(i).Y()-(Pole3*(Pow(10.0,(a/2.0+0.5*Log10(TolPoles)))))); 
+                  Polesinit(i).SetCoord((Standard_Real)0.0, Polesinit(i).Y()-(Pole3*(Pow(10.0,(a/2.0+0.5*Log10(TolPoles))))));
                 dercas=1;
               }
             }
@@ -526,7 +526,7 @@ static void PolyTest(const TColStd_Array1OfReal&        Herm,
   if (!SignDenom(Polesinit)) // invertion of the polynome sign
   {
     for (index=0;index<=3;index++)
-      Polesinit(index).SetCoord(0.0,-Polesinit(index).Y());
+      Polesinit(index).SetCoord((Standard_Real)0.0,-Polesinit(index).Y());
   }
 
   // boucle de positivite
@@ -661,10 +661,10 @@ Handle(Geom2d_BSplineCurve) Hermit::Solution(const Handle(Geom_BSplineCurve)& BS
   Standard_Integer           zeroboucle = 0 ;
   HermiteCoeff(BS,Herm);                             //computation of the Hermite coefficient
 
-  Poles(1).SetCoord(0.0,Herm(0));                    //poles of the Hermite polynome in the BSpline form
-  Poles(2).SetCoord(0.0,Herm(0)+Herm(1)/3.0);
-  Poles(3).SetCoord(0.0,Herm(3)-Herm(2)/3.0);
-  Poles(4).SetCoord(0.0,Herm(3));
+  Poles(1).SetCoord((Standard_Real)0.0,Herm(0));                    //poles of the Hermite polynome in the BSpline form
+  Poles(2).SetCoord((Standard_Real)0.0,Herm(0)+Herm(1)/3.0);
+  Poles(3).SetCoord((Standard_Real)0.0,Herm(3)-Herm(2)/3.0);
+  Poles(4).SetCoord((Standard_Real)0.0,Herm(3));
   Knots(1)=0.0;
   Knots(2)=1.0;
   Multiplicities(1)=4;
@@ -751,10 +751,10 @@ Handle(Geom2d_BSplineCurve) Hermit::Solution(const Handle(Geom2d_BSplineCurve)& 
   Standard_Integer           zeroboucle = 0 ;
   HermiteCoeff(BS,Herm);                             //computation of the Hermite coefficient
 
-  Poles(1).SetCoord(0.0,Herm(0));                    //poles of the Hermite polynome in the BSpline form
-  Poles(2).SetCoord(0.0,Herm(0)+Herm(1)/3.0);
-  Poles(3).SetCoord(0.0,Herm(3)-Herm(2)/3.0);
-  Poles(4).SetCoord(0.0,Herm(3));
+  Poles(1).SetCoord((Standard_Real)0.0,Herm(0));                    //poles of the Hermite polynome in the BSpline form
+  Poles(2).SetCoord((Standard_Real)0.0,Herm(0)+Herm(1)/3.0);
+  Poles(3).SetCoord((Standard_Real)0.0,Herm(3)-Herm(2)/3.0);
+  Poles(4).SetCoord((Standard_Real)0.0,Herm(3));
   Knots(1)=0.0;
   Knots(2)=1.0;
   Multiplicities(1)=4;
@@ -843,10 +843,10 @@ void Hermit::Solutionbis(const Handle(Geom_BSplineCurve)& BS,
   Standard_Integer           zeroboucle = 0 ;
   HermiteCoeff(BS,Herm);                             //computation of the Hermite coefficient
   
-  Poles(1).SetCoord(0.0,Herm(0));                    //poles of the Hermite polynome in the BSpline form
-  Poles(2).SetCoord(0.0,Herm(0)+Herm(1)/3.0);
-  Poles(3).SetCoord(0.0,Herm(3)-Herm(2)/3.0);
-  Poles(4).SetCoord(0.0,Herm(3));
+  Poles(1).SetCoord((Standard_Real)0.0,Herm(0));                    //poles of the Hermite polynome in the BSpline form
+  Poles(2).SetCoord((Standard_Real)0.0,Herm(0)+Herm(1)/3.0);
+  Poles(3).SetCoord((Standard_Real)0.0,Herm(3)-Herm(2)/3.0);
+  Poles(4).SetCoord((Standard_Real)0.0,Herm(3));
   Knots(1)=0.0;
   Knots(2)=1.0;
   Multiplicities(1)=4;

@@ -134,7 +134,7 @@ Standard_Boolean ChFiKPart_MakeRotule(TopOpeBRepDS_DataStructure& DStr,
   //--------------
   Handle(Geom_Curve) bid;
   Handle(Geom2d_Curve) bid2d;
-  p2dlin.SetCoord(0.,M_PI);
+  p2dlin.SetCoord((Standard_Real)0.,(Standard_Real)M_PI);
   Handle(Geom2d_Line) GL2dcoin = new Geom2d_Line(p2dlin,gp::DX2d());
   Data->ChangeInterferenceOnS2().
     SetInterference(ChFiKPart_IndexCurveInDS(bid,DStr),trans,bid2d,GL2dcoin);

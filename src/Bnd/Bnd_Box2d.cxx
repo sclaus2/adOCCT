@@ -121,22 +121,22 @@ Bnd_Box2d Bnd_Box2d::Transformed (const gp_Trsf2d& T) const
     Standard_Integer directions = 0;
 
     if (Flags & XminMask) {
-      D[directions].SetCoord(-1., 0.);
+      D[directions].SetCoord((Standard_Real)-1., (Standard_Real)0.);
       directions++;
       Vertex[0] = Vertex[2] = Standard_False;
     }
     if (Flags & XmaxMask) {
-      D[directions].SetCoord( 1., 0.);
+      D[directions].SetCoord( (Standard_Real)1., (Standard_Real)0.);
       directions++;
       Vertex[1] = Vertex[3] = Standard_False;
     }
     if (Flags & YminMask) {
-      D[directions].SetCoord( 0.,-1.);
+      D[directions].SetCoord( (Standard_Real)0.,(Standard_Real)-1.);
       directions++;
       Vertex[0] = Vertex[1] = Standard_False;
     }
     if (Flags & YmaxMask) {
-      D[directions].SetCoord( 0., 1.);
+      D[directions].SetCoord( (Standard_Real)0., (Standard_Real)1.);
       directions++;
       Vertex[2] = Vertex[3] = Standard_False;
     }

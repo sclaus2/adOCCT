@@ -227,7 +227,7 @@ inline gp_Trsf2d::gp_Trsf2d()
   shape = gp_Identity;
   scale = 1.0;
   matrix.SetIdentity();
-  loc.SetCoord (0.0, 0.0);
+  loc.SetCoord ((Standard_Real)0.0, (Standard_Real)0.0);
 }
 
 //=======================================================================

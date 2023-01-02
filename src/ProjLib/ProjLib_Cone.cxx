@@ -176,9 +176,9 @@ void  ProjLib_Cone::Project(const gp_Circ& C)
   gp_Pnt2d P2d1 (U, V);
   gp_Dir2d D2d;
   if ( ZCone.Dot(ZCir) > 0.) 
-    D2d.SetCoord(1., 0.);
+    D2d.SetCoord((Standard_Real)1., (Standard_Real)0.);
   else
-    D2d.SetCoord(-1., 0.);
+    D2d.SetCoord((Standard_Real)-1., (Standard_Real)0.);
 
   myLin = gp_Lin2d(P2d1, D2d);
   isDone = Standard_True;

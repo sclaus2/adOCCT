@@ -33,7 +33,7 @@
         (pnt).SetY ((carr)[1] op)
 
 #define NullifyPoint(pnt) \
-        (pnt).SetCoord (0.,0.)
+        (pnt).SetCoord ((Standard_Real)0.,(Standard_Real)0.)
 
 #define NullifyCoords(carr) \
         (carr)[0] = (carr)[1] = 0.

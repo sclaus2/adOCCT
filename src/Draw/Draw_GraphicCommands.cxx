@@ -479,19 +479,19 @@ static Standard_Integer rotate(Draw_Interpretor& , Standard_Integer n, const cha
   gp_Dir2d D;
   double ang=0;
   if (!strcasecmp(a[0],"u")) {
-    D.SetCoord(1.,0.);
+    D.SetCoord((Standard_Real)1.,(Standard_Real)0.);
     ang = -steprot;
   }
   if (!strcasecmp(a[0],"d")) {
-    D.SetCoord(1.,0.);
+    D.SetCoord((Standard_Real)1.,(Standard_Real)0.);
     ang = steprot;
   }
   if (!strcasecmp(a[0],"l")) {
-    D.SetCoord(0.,1.);
+    D.SetCoord((Standard_Real)0.,(Standard_Real)1.);
     ang = -steprot;
   }
   if (!strcasecmp(a[0],"r")) {
-    D.SetCoord(0.,1.);
+    D.SetCoord((Standard_Real)0.,(Standard_Real)1.);
     ang = steprot;
   }
 
@@ -922,7 +922,7 @@ static Standard_Integer dtext(Draw_Interpretor& di, Standard_Integer n, const ch
     if (b != 1)
       return 0;
     double z = dout.Zoom(id);
-    P.SetCoord((double)X /z,(double)Y /z,0);
+    P.SetCoord((Standard_Real)X /z,(Standard_Real)Y /z,0);
     gp_Trsf T;
     dout.GetTrsf(id,T);
     T.Invert();

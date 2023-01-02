@@ -1013,8 +1013,8 @@ void  BRep_Tool::UVPoints(const TopoDS_Edge& E,
   }
   else
   {
-    PFirst.SetCoord (0., 0.);
-    PLast.SetCoord (0., 0.);
+    PFirst.SetCoord ((Standard_Real)0., (Standard_Real)0.);
+    PLast.SetCoord ((Standard_Real)0., (Standard_Real)0.);
   }
 }
 

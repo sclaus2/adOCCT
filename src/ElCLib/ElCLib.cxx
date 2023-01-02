@@ -890,7 +890,7 @@ void ElCLib::ParabolaD2 (const Standard_Real U,
   gp_XY Vxy;
   gp_XY Xdir (Pos.XDirection().XY());
   if (Focal == 0.0) {
-    V2.SetCoord (0.0, 0.0);
+    V2.SetCoord ((Standard_Real)0.0, (Standard_Real)0.0);
     V1.SetXY (Xdir);
     Vxy.SetLinearForm (U, Xdir, Pos.Location().XY());
   }

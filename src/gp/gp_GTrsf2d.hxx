@@ -60,7 +60,7 @@ public:
   {
     shape = gp_Identity;
     matrix.SetScale (1.0);
-    loc.SetCoord (0.0, 0.0);
+    loc.SetCoord ((Standard_Real)0.0, (Standard_Real)0.0);
     scale = 1.0;
   }
 

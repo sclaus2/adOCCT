@@ -227,7 +227,7 @@ Standard_Boolean ChFiKPart_MakeFillet(TopOpeBRepDS_DataStructure& DStr,
     if(plandab && Ang < M_PI/2 && dedans) v = v + 2*M_PI;
   }  
   norFil = deru.Crossed(derv);
-  p2dFil.SetCoord(0.,v);
+  p2dFil.SetCoord((Standard_Real)0.,v);
   lin2dFil.SetLocation(p2dFil);
   Handle(Geom2d_Line) GLin2dFil2 = new Geom2d_Line(lin2dFil);
   ElSLib::Parameters(Con,P,u,v);

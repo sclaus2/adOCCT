@@ -287,7 +287,7 @@ void Geom2d_Parabola::D3 (const Standard_Real U,
 			        Vec2d& V1, Vec2d& V2, Vec2d& V3) const 
 {
    ElCLib::ParabolaD2 (U, pos, focalLength, P, V1, V2);
-   V3.SetCoord (0.0, 0.0);
+   V3.SetCoord ((Standard_Real)0.0, (Standard_Real)0.0);
 }
 
 //=======================================================================

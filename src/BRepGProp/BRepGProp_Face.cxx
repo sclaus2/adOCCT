@@ -512,20 +512,20 @@ void BRepGProp_Face::Load(const Standard_Boolean IsFirstParam,
 
     if (IsFirstParam) {
       aLoc.SetCoord(aU1, aV2);
-      aDir.SetCoord(0., -1.);
+      aDir.SetCoord((Standard_Real)0., (Standard_Real)-1.);
     } else {
       aLoc.SetCoord(aU2, aV1);
-      aDir.SetCoord(0., 1.);
+      aDir.SetCoord((Standard_Real)0., (Standard_Real)1.);
     }
   } else if (theIsoType == GeomAbs_IsoV) {
     aLen = aU2 - aU1;
 
     if (IsFirstParam) {
       aLoc.SetCoord(aU1, aV1);
-      aDir.SetCoord(1., 0.);
+      aDir.SetCoord((Standard_Real)1., (Standard_Real)0.);
     } else {
       aLoc.SetCoord(aU2, aV2);
-      aDir.SetCoord(-1., 0.);
+      aDir.SetCoord((Standard_Real)-1., (Standard_Real)0.);
     }
   } else
     return;

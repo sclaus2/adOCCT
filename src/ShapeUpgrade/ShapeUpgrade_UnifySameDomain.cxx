@@ -648,7 +648,7 @@ static void ReconstructMissedSeam(const TopTools_SequenceOfShape& theEdges,
   if (theIsU)
     Offset.SetCoord(thePeriod, 0.);
   else
-    Offset.SetCoord(0., thePeriod);
+    Offset.SetCoord((Standard_Real)0., thePeriod);
   if (aRemovedEdge.IsNull())
   {
     Standard_Real SeamCoordOrigin = 0.;
@@ -713,7 +713,7 @@ static void ReconstructMissedSeam(const TopTools_SequenceOfShape& theEdges,
       if (theIsU)
         Offset.SetCoord (anOffset, 0.);
       else
-        Offset.SetCoord (0., anOffset);
+        Offset.SetCoord ((Standard_Real)0., anOffset);
 
       aCopyPC->Translate(Offset);
     }
@@ -738,9 +738,9 @@ static void ReconstructMissedSeam(const TopTools_SequenceOfShape& theEdges,
     else
     {
       if (aFirstP2d.X() < aLastP2d.X())
-        Offset.SetCoord (0., thePeriod);
+        Offset.SetCoord ((Standard_Real)0., thePeriod);
       else
-        Offset.SetCoord (0., -thePeriod);
+        Offset.SetCoord ((Standard_Real)0., -thePeriod);
     }
     Handle(Geom2d_Curve) AnotherPC = Handle(Geom2d_Curve)::DownCast(aCopyPC->Copy());
     AnotherPC->Translate(Offset);

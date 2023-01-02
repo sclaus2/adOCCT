@@ -529,12 +529,12 @@ Standard_Real Poly::PointOnTriangle (const gp_XY& theP1, const gp_XY& theP2, con
   {
     if ( aL2V < gp::Resolution() ) // whole triangle is degenerated to point
     {
-      theUV.SetCoord (0., 0.);
+      theUV.SetCoord ((Standard_Real)0., (Standard_Real)0.);
       return (theP - theP1).SquareModulus();
     }
     else
     {
-      theUV.SetCoord (0., (aDP * aDV) / aL2V);
+      theUV.SetCoord ((Standard_Real)0., (aDP * aDV) / aL2V);
       return (theP - (theP1 + theUV.Y() * aDV)).SquareModulus();
     }
   }
@@ -557,7 +557,7 @@ Standard_Real Poly::PointOnTriangle (const gp_XY& theP1, const gp_XY& theP2, con
     }
     else
     {
-      theUV.SetCoord (0., (aDP * aDV) / aL2V);
+      theUV.SetCoord ((Standard_Real)0., (aDP * aDV) / aL2V);
       return aD2;
     }
   }

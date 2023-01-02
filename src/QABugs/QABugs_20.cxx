@@ -1753,7 +1753,7 @@ static Standard_Integer OCC26747_1(Draw_Interpretor& theDI,
   //  0 * X^2 + 1 * Y^2 + 2*0*X*Y + 2*(-1)*X + 2*(-3)*Y + 10 = 0.
 
   Parab2d_Bug26747::Axes = gp_Ax2d(gp_Pnt2d(0.0, 3.0), gp_Dir2d(0.0, 1.0));
-  Parab2d_Bug26747::FocusPoint.SetCoord(1.0, 3.0);
+  Parab2d_Bug26747::FocusPoint.SetCoord((Standard_Real)1.0, (Standard_Real)3.0);
 
   Parab2d_Bug26747::FocalLength = 0.5;
 
@@ -1818,7 +1818,7 @@ static Standard_Integer OCC26747_2(Draw_Interpretor& theDI,
 
 
   Parab2d_Bug26747::Axes = gp_Ax2d(gp_Pnt2d(0.0, 0.0), gp_Dir2d(0.0, 1.0));
-  Parab2d_Bug26747::FocusPoint.SetCoord(-1.0, 3.0);
+  Parab2d_Bug26747::FocusPoint.SetCoord((Standard_Real)-1.0, (Standard_Real)3.0);
 
   Parab2d_Bug26747::FocalLength = 0.5;
 
@@ -1883,7 +1883,7 @@ static Standard_Integer OCC26747_3(Draw_Interpretor& theDI,
   //  0 * X^2 + 1 * (Y^2) + 2*0*(X*Y) + 2*0*X + 2*(-3)*Y + 9 = 0.
 
   Parab2d_Bug26747::Axes = gp_Ax2d(gp_Pnt2d(0.0, 0.0), gp_Dir2d(0.0, 1.0));
-  Parab2d_Bug26747::FocusPoint.SetCoord(0.0, 3.0);
+  Parab2d_Bug26747::FocusPoint.SetCoord((Standard_Real)0.0, (Standard_Real)3.0);
 
   Parab2d_Bug26747::FocalLength = 0.0;
 

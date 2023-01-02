@@ -230,7 +230,7 @@ void Adaptor2d_Line2d::D1(const Standard_Real X, gp_Pnt2d& P, gp_Vec2d& V) const
 void Adaptor2d_Line2d::D2(const Standard_Real X, gp_Pnt2d& P, gp_Vec2d& V1, gp_Vec2d& V2) const 
 {
   ElCLib::LineD1(X,myAx2d,P,V1);
-  V2.SetCoord(0.,0.);
+  V2.SetCoord((Standard_Real)0.,(Standard_Real)0.);
 }
 
 //=======================================================================
@@ -241,8 +241,8 @@ void Adaptor2d_Line2d::D2(const Standard_Real X, gp_Pnt2d& P, gp_Vec2d& V1, gp_V
 void Adaptor2d_Line2d::D3(const Standard_Real X, gp_Pnt2d& P, gp_Vec2d& V1, gp_Vec2d& V2, gp_Vec2d& V3) const 
 {
   ElCLib::LineD1(X,myAx2d,P,V1);
-  V2.SetCoord(0.,0.);
-  V3.SetCoord(0.,0.);
+  V2.SetCoord((Standard_Real)0.,(Standard_Real)0.);
+  V3.SetCoord((Standard_Real)0.,(Standard_Real)0.);
 }
 
 //=======================================================================
