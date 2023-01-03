@@ -20,7 +20,7 @@
 #include <Standard_OutOfMemory.hxx>
 #include <Standard_OutOfRange.hxx>
 
-#include <NCollection_DefineAlloc.hxx>
+//#include <NCollection_DefineAlloc.hxx>
 #include <NCollection_StlIterator.hxx>
 
 //! The class NCollection_Array1 represents unidimensional arrays of fixed size known at run time.
