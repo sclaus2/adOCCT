@@ -41,12 +41,34 @@
 Intf_Tool::Intf_Tool()
      : nbSeg(0)
 {
-  memset (beginOnCurve, 0, sizeof (beginOnCurve));
+  //memset (beginOnCurve, 0, sizeof (beginOnCurve));
+  for(int i = 0; i < 6; ++i)
+  {
+    beginOnCurve[i] = 0.;
+  }
+
   memset (bord, 0, sizeof (bord));
-  memset (xint, 0, sizeof (xint));
-  memset (yint, 0, sizeof (yint));
-  memset (zint, 0, sizeof (zint));
-  memset (parint, 0, sizeof (parint));
+
+  //memset (xint, 0, sizeof (xint));
+  for(int i = 0; i < 12; ++i)
+  {
+    xint[i] = 0.;
+  }
+  //memset (yint, 0, sizeof (yint));
+  for(int i = 0; i < 12; ++i)
+  {
+    yint[i] = 0.;
+  }
+  //memset (zint, 0, sizeof (zint));
+  for(int i = 0; i < 12; ++i)
+  {
+    zint[i] = 0.;
+  }
+  //memset (parint, 0, sizeof (parint));
+  for(int i = 0; i < 12; ++i)
+  {
+    parint[i] = 0.;
+  }
 }
 
 //=======================================================================
