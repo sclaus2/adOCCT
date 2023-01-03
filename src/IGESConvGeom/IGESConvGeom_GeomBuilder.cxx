@@ -27,8 +27,8 @@
 #include <TColStd_HArray1OfReal.hxx>
 #include <TColStd_HArray2OfReal.hxx>
 
-static Standard_Real epsl = 1.E-10;
-static Standard_Real epsa = 1.E-10;
+static double epsl = 1.E-10;
+static double epsa = 1.E-10;
 
     IGESConvGeom_GeomBuilder::IGESConvGeom_GeomBuilder ()
       {  Clear();  }

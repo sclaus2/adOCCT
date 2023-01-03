@@ -591,11 +591,11 @@ static Standard_Integer OCC570 (Draw_Interpretor& di, Standard_Integer argc,cons
 
 #include <Law_Interpol.hxx>
 
-static Standard_Real t3d = 1.e-4;
-static Standard_Real t2d = 1.e-5;
-static Standard_Real ta  = 1.e-2;
-static Standard_Real fl  = 1.e-3;
-static Standard_Real tapp_angle = 1.e-2;
+static double t3d = 1.e-4;
+static double t2d = 1.e-5;
+static double ta  = 1.e-2;
+static double fl  = 1.e-3;
+static double tapp_angle = 1.e-2;
 static GeomAbs_Shape blend_cont = GeomAbs_C1;
 
 static BRepFilletAPI_MakeFillet* Rake = 0;
@@ -603,12 +603,12 @@ static char name[100];
 
 static void printtolblend(Draw_Interpretor& di)
 {
-  di<<"tolerance ang : "<<ta.getValue()<<"\n";
-  di<<"tolerance 3d  : "<<t3d.getValue()<<"\n";
-  di<<"tolerance 2d  : "<<t2d.getValue()<<"\n";
-  di<<"fleche        : "<<fl.getValue()<<"\n";
+  di<<"tolerance ang : "<<ta<<"\n";
+  di<<"tolerance 3d  : "<<t3d<<"\n";
+  di<<"tolerance 2d  : "<<t2d<<"\n";
+  di<<"fleche        : "<<fl<<"\n";
 
-  di<<"tolblend "<<ta.getValue()<<" "<<t3d.getValue()<<" "<<t2d.getValue()<<" "<<fl.getValue()<<"\n";
+  di<<"tolblend "<<ta<<" "<<t3d<<" "<<t2d<<" "<<fl<<"\n";
 }
 
 static Standard_Integer MKEVOL(Draw_Interpretor& di, 

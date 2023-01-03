@@ -22,7 +22,7 @@
 #include <TColgp_Array2OfVec.hxx>
 #include <math_DirectPolynomialRoots.hxx>
 
-static const Standard_Real MinStep   = 1.0e-7;
+static const double MinStep   = 1.0e-7;
 
 static Standard_Boolean IsTangentDefined (LProp_SLProps& SProp,
                                           const Standard_Integer cn,

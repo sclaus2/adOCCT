@@ -82,7 +82,7 @@ namespace
   static const TCollection_AsciiString    THE_UNDEFINED_UNITS;
 
   // default text margin and resolution
-  static const Standard_Real THE_3D_TEXT_MARGIN    = 0.1;
+  static const double THE_3D_TEXT_MARGIN    = 0.1;
 
   // default selection priorities
   static const Standard_Integer THE_NEUTRAL_SEL_PRIORITY = 5;

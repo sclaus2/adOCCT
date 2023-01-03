@@ -34,8 +34,8 @@
 #include <algorithm>
 IMPLEMENT_STANDARD_RTTIEXT(GeomFill_Frenet,GeomFill_TrihedronLaw)
 
-static const Standard_Real NullTol = 1.e-10;
-static const Standard_Real MaxSingular = 1.e-5;
+static const double NullTol = 1.e-10;
+static const double MaxSingular = 1.e-5;
 
 static const Standard_Integer maxDerivOrder = 3;
 

@@ -34,7 +34,7 @@
 #include <TopoDS_Edge.hxx>
 #include <TopoDS_Face.hxx>
 
-static const Standard_Real Epsilon1 = Epsilon(1.);
+static const double Epsilon1 = Epsilon(1.);
 
 //=======================================================================
 //function : UIntegrationOrder
@@ -226,7 +226,7 @@ void BRepGProp_Face::Normal (const Standard_Real  U,
 //  APO 17.04.2002 (OCC104)
 // This is functions that calculate coeff. to optimize "integration order".
 // They had been produced experimentally for some hard example.
-static Standard_Real AS = -0.15, AL = -0.50, B = 1.0, C = 0.75, D = 0.25;
+static double AS = -0.15, AL = -0.50, B = 1.0, C = 0.75, D = 0.25;
 static inline Standard_Real SCoeff(const Standard_Real Eps){
   return Eps < 0.1? AS*(B+Log10(Eps)) + C: C;
 }

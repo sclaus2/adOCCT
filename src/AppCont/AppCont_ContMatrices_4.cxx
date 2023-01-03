@@ -23,7 +23,7 @@
 #include <math_Matrix.hxx>
 #include <Standard_DimensionError.hxx>
 
-static const Standard_Real VBMatrix[] = {
+static const double VBMatrix[] = {
 0.5, 0.5, 
 
 0.788675134594813, 0.211324865405187, 0.211324865405187, 0.788675134594813, 
@@ -1242,7 +1242,7 @@ void VBernstein(const Standard_Integer classe,
   // 300 = 1+2+  ... +24 points.
   Som = (Standard_Integer )( 300*((classe-1)*classe/2.-1) + classe * (nbpoints-1)*nbpoints/2.);
   
-  const Standard_Real *tmpVB;
+  const double *tmpVB;
   tmpVB = VBMatrix + Som;
   for (i = 1; i <= classe; i++) {
     for (j = 1; j <= nbpoints; j++) {

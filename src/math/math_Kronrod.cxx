@@ -23,7 +23,7 @@ Standard_Integer math::KronrodPointsMax()
 }
 
 // The array of Kronrod points.
-static const Standard_Real Point[] = {
+static const double Point[] = {
 7.74596669241483404277914814883843e-01,      // N = 3
 0.0e+00,
 9.25820099772551419192723187734373e-01,      // N = 5
@@ -1979,7 +1979,7 @@ static const Standard_Real Point[] = {
 };
 
 // The array of Kronrod weights
-static const Standard_Real Weight[] = {
+static const double Weight[] = {
 5.55555555555555802271783250034787e-01,      // N = 3
 8.88888888888888839545643349993043e-01,
 1.97979797979798310958443607887602e-01,      // N = 5

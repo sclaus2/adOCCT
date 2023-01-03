@@ -29,7 +29,7 @@
 
 // (Sqrt(5.0) - 1.0) / 4.0
 //static const Standard_Real aSinCoeff = 0.30901699437494742410229341718282;
-static const Standard_Real aSinCoeff2 = 0.09549150281252627; // aSinCoeff^2 = (3. - Sqrt(5.)) / 8.
+static const double aSinCoeff2 = 0.09549150281252627; // aSinCoeff^2 = (3. - Sqrt(5.)) / 8.
 static const Standard_Integer aMaxPntCoeff = 15;
 
 //=======================================================================

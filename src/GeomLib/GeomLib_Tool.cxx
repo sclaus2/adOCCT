@@ -80,7 +80,7 @@
 // To make search process more common the MaxDist value is used to define
 // the proximity of point to curve or surface. It is clear that this MaxDist
 // value can't be too high to be not in conflict with previous rule.
-static const Standard_Real PARTOLERANCE = 1.e-9;
+static const double PARTOLERANCE = 1.e-9;
 
 //=======================================================================
 //function : Parameter

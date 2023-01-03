@@ -23,7 +23,7 @@
 #include <math_Matrix.hxx>
 #include <Standard_DimensionError.hxx>
 
-static const Standard_Real IBP[] = {
+static const double IBP[] = {
 
 26.47058823529411764705882,
 

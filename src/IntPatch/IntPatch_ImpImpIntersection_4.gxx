@@ -22,7 +22,7 @@
 #include <Standard_DivideByZero.hxx>
 
 //If Abs(a) <= aNulValue then it is considered that a = 0.
-static const Standard_Real aNulValue = 1.0e-11;
+static const double aNulValue = 1.0e-11;
 
 static void ShortCosForm( const Standard_Real theCosFactor,
                           const Standard_Real theSinFactor,

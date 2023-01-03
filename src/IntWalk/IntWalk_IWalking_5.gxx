@@ -13,9 +13,9 @@
 // commercial license or contractual agreement.
 
 namespace {
-  static const Standard_Real CosRef3D = 0.98;// rule by tests in U4 
+  static const double CosRef3D = 0.98;// rule by tests in U4
                                              // correspond to  11.478 d
-  static const Standard_Real CosRef2D = 0.88; // correspond to 25 d
+  static const double CosRef2D = 0.88; // correspond to 25 d
   static const Standard_Integer MaxDivision = 60;  // max number of step division 
                                                    // because the angle is too great in 2d (U4)
 }

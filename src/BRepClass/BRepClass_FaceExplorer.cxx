@@ -27,9 +27,9 @@
 #include <TopExp.hxx>
 #include <Geom2dAPI_ProjectPointOnCurve.hxx>
 
-static const Standard_Real Probing_Start = 0.123;
-static const Standard_Real Probing_End = 0.7;
-static const Standard_Real Probing_Step = 0.2111;
+static const double Probing_Start = 0.123;
+static const double Probing_End = 0.7;
+static const double Probing_Step = 0.2111;
 
 //=======================================================================
 //function : BRepClass_FaceExplorer

@@ -29,7 +29,7 @@
 
 IMPLEMENT_STANDARD_RTTIEXT(GeomFill_DiscreteTrihedron,GeomFill_TrihedronLaw)
 
-static const Standard_Real TolConf = Precision::Confusion();
+static const double TolConf = Precision::Confusion();
 
 //=======================================================================
 //function : GeomFill_DiscreteTrihedron

@@ -25,7 +25,7 @@
 
 
 
-static const Standard_Real IBT[] = {
+static const double IBT[] = {
 
 111.9289340101522842639594,
 

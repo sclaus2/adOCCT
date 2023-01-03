@@ -92,7 +92,7 @@ void PLib_JacobiPolynomial::Weights(const Standard_Integer NbGaussPoints,
 {
 
   Standard_Integer i,j;
-  Standard_Real const *pdb=NULL;     // the current pointer to WeightsDB
+  double const *pdb=NULL;     // the current pointer to WeightsDB
   switch (myNivConstr) {
     case 0: pdb = WeightsDB_C0; break;
     case 1: pdb = WeightsDB_C1; break;
@@ -117,7 +117,7 @@ void PLib_JacobiPolynomial::Weights(const Standard_Integer NbGaussPoints,
 
   if (NbGaussPoints % 2 == 1) {
     // NbGaussPoints is odd - the values addition for 0.
-    Standard_Real const *pdb0=NULL;  // the current pointer to WeightsDB0
+    double const *pdb0=NULL;  // the current pointer to WeightsDB0
     switch (myNivConstr) {
       case 0: pdb0 = WeightsDB0_C0; break;
       case 1: pdb0 = WeightsDB0_C1; break;
@@ -147,7 +147,7 @@ void PLib_JacobiPolynomial::Weights(const Standard_Integer NbGaussPoints,
 
 void PLib_JacobiPolynomial::MaxValue(TColStd_Array1OfReal& TabMax) const 
 {
-  Standard_Real const *pdb=NULL;  // the pointer to MaxValues
+  double const *pdb=NULL;  // the pointer to MaxValues
   switch (myNivConstr) {
       case 0: pdb = MaxValuesDB_C0; break;
       case 1: pdb = MaxValuesDB_C1; break;
@@ -274,7 +274,7 @@ void PLib_JacobiPolynomial::ToCoefficients(const Standard_Integer Dimension,
 {
   const Standard_Integer MAXM=31;
   Standard_Integer i,iptt,j,idim, ii, jj;
-  Standard_Real const *pTr=NULL;  // the pointer to TransMatrix
+  double const *pTr=NULL;  // the pointer to TransMatrix
   Standard_Real Bid;
   Standard_Integer ibegJC=JacCoeff.Lower(), ibegC=Coefficients.Lower();
 

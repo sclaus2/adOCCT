@@ -26,7 +26,7 @@
 #include <Standard_OutOfRange.hxx>
 #include <StdFail_NotDone.hxx>
 
-static const Standard_Real ExtPElS_MyEps = Epsilon(2. * M_PI);
+static const double ExtPElS_MyEps = Epsilon(2. * M_PI);
 //=============================================================================
 
 Extrema_ExtPElS::Extrema_ExtPElS()

@@ -25,9 +25,9 @@
 namespace
 {
   // Minimal value of interval's range for computation | minimal value of "dim" | ... 
-  static const Standard_Real EPS_PARAM          = 1.e-12;
-  static const Standard_Real EPS_DIM            = 1.e-30;
-  static const Standard_Real ERROR_ALGEBR_RATIO = 2.0 / 3.0;
+  static const double EPS_PARAM          = 1.e-12;
+  static const double EPS_DIM            = 1.e-30;
+  static const double ERROR_ALGEBR_RATIO = 2.0 / 3.0;
 
   // Maximum of GaussPoints on a subinterval and maximum of subintervals
   static const Standard_Integer GPM        = math::GaussPointsMax();

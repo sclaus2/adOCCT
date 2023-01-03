@@ -44,7 +44,7 @@
 #include <gp_Vec.hxx>
 #include <gp_Vec2d.hxx>
 
-static Standard_Real PIPI = M_PI + M_PI;
+static double PIPI = M_PI + M_PI;
 
 //=======================================================================
 //function : InPeriod

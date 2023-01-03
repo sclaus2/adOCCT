@@ -29,7 +29,7 @@
 #include <gp.hxx>
 
 
-static Standard_Real PIpPI = M_PI + M_PI;
+static double PIpPI = M_PI + M_PI;
 
 //======================================================================
 //==========          P R O T O T Y P E S                   ============

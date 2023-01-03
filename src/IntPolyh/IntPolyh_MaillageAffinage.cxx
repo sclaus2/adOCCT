@@ -56,9 +56,9 @@ typedef NCollection_IndexedDataMap
    TColStd_MapIntegerHasher> IntPolyh_IndexedDataMapOfIntegerListOfInteger;
 
 
-static Standard_Real MyTolerance=10.0e-7;
-static Standard_Real MyConfusionPrecision=10.0e-12;
-static Standard_Real SquareMyConfusionPrecision=10.0e-24;
+static double MyTolerance=10.0e-7;
+static double MyConfusionPrecision=10.0e-12;
+static double SquareMyConfusionPrecision=10.0e-24;
 //
 static
   inline Standard_Real maxSR(const Standard_Real a,

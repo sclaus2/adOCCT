@@ -37,7 +37,7 @@
 #include <gp_Vec.hxx>
 #include <gp_XYZ.hxx>
 
-static Standard_Real PIPI = M_PI + M_PI;
+static double PIPI = M_PI + M_PI;
 
 gp_Pnt ElSLib::PlaneValue (const Standard_Real U,
 			   const Standard_Real V,

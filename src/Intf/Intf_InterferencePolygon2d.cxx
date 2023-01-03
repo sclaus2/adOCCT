@@ -32,7 +32,7 @@
 // are considered as having a potential zone of tangency.
 namespace
 {
-  static const Standard_Real PRCANG = Precision::Angular();
+  static const double PRCANG = Precision::Angular();
 }
 
 //=======================================================================

@@ -27,8 +27,8 @@
 #include <Plate_PinpointConstraint.hxx>
 
 //alr le 12/11/96
-static const Standard_Real NORMIN = 1.e-10;
-static const Standard_Real COSMIN = 1.e-2;
+static const double NORMIN = 1.e-10;
+static const double COSMIN = 1.e-2;
 
 Plate_GtoCConstraint::Plate_GtoCConstraint(const Plate_GtoCConstraint& ref)
 :myD1SurfInit(ref.myD1SurfInit)

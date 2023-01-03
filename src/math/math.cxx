@@ -27,7 +27,7 @@ Standard_Integer math::GaussPointsMax()
   return 61;
 }
 
-static const Standard_Real Point[] = {
+static const double Point[] = {
 0.0e+00,
 0.0e+00,                                      // N = 1
 0.577350269189625764509148780501958e+00,      // N = 2
@@ -991,7 +991,7 @@ static const Standard_Real Point[] = {
 0.510589067079743493668875006189008e-01,
 0.0e+00};
 
-static const Standard_Real Weight[] = {
+static const double Weight[] = {
 0.0e+00,
 0.200000000000000000000000000000000e+01,      // N = 1
 0.100000000000000000000000000000000e+01,      // N = 2

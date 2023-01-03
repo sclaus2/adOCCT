@@ -102,7 +102,7 @@ static Standard_Boolean CheckEnds (const Handle(Geom2d_Geometry)& Elt    ,
                                    const Standard_Real            Distance,
                                    const Standard_Real            Tol); 
 
-static Standard_Real MAT2d_TOLCONF = 1.e-7;
+static double MAT2d_TOLCONF = 1.e-7;
 
 //============================================================================
 //function : 

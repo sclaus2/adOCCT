@@ -30,9 +30,9 @@
 #include <TopAbs_Orientation.hxx>
 #include <Precision.hxx>
 
-static const Standard_Real Probing_Start = 0.123;
-static const Standard_Real Probing_End = 0.8;
-static const Standard_Real Probing_Step = 0.2111;
+static const double Probing_Start = 0.123;
+static const double Probing_End = 0.8;
+static const double Probing_Step = 0.2111;
 
 Geom2dHatch_Elements::Geom2dHatch_Elements(const Geom2dHatch_Elements& )
 : NumWire(0),

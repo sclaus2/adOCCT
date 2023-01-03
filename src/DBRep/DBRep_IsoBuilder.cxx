@@ -44,8 +44,8 @@
 // Providing consistency with intersection tolerance for the linear curves
 static Standard_Real IntersectorConfusion = Precision::PConfusion();
 static Standard_Real IntersectorTangency  = Precision::PConfusion();
-static Standard_Real HatcherConfusion2d   = 1.e-8 ;
-static Standard_Real HatcherConfusion3d   = 1.e-8 ;
+static double HatcherConfusion2d   = 1.e-8 ;
+static double HatcherConfusion3d   = 1.e-8 ;
 
 //=======================================================================
 // Function : DBRep_IsoBuilder

@@ -66,8 +66,8 @@
 #endif
 
 
-static const Standard_Real aPipeLinearTolerance = 1.0e-4;
-static const Standard_Real aPipeAngularTolerance = 1.0e-2;
+static const double aPipeLinearTolerance = 1.0e-4;
+static const double aPipeAngularTolerance = 1.0e-2;
 
 static Standard_Boolean ContainsInList(const TopTools_ListOfShape& theL,
                                        const TopoDS_Shape& theObject);

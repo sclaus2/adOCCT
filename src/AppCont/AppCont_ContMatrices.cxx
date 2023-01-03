@@ -24,7 +24,7 @@
 #include <math_Matrix.hxx>
 #include <Standard_DimensionError.hxx>
 
-static const Standard_Real IMatrix[] = {
+static const double IMatrix[] = {
 4.0, -2.0,
 -2.0, 4.0,
 

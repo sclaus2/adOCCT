@@ -33,7 +33,7 @@ Standard_Integer BRepBlend_HCurve2dTool::NbSamples (const Handle(Adaptor2d_Curve
 						       const Standard_Real U0,
 						       const Standard_Real U1) {
   GeomAbs_CurveType typC = C->GetType();
-  static Standard_Real nbsOther = 10.0;
+  static double nbsOther = 10.0;
   Standard_Real nbs = nbsOther;
   
   if(typC == GeomAbs_Line) 

@@ -66,7 +66,7 @@ IMPLEMENT_STANDARD_RTTIEXT(DDataStd_DrawDriver,Standard_Transient)
 // drawable object
 static Standard_Integer DISCRET    = 100;
 static Standard_Integer NBISOS     = 10;
-static Standard_Real    THESIZE       = 1000.;
+static double    THESIZE       = 1000.;
 
 static Handle(DDataStd_DrawDriver) DrawDriver;
 

@@ -47,7 +47,7 @@
 #include <Standard_OutOfRange.hxx>
 #include <StdFail_NotDone.hxx>
 
-static Standard_Real PIpPI = M_PI + M_PI;
+static double PIpPI = M_PI + M_PI;
 //=============================================================================
 //==                                          E m p t y   C o n s t r u c t o r
 //== 

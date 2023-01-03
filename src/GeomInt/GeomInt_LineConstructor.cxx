@@ -42,7 +42,7 @@
 #include <TColStd_IndexedMapOfInteger.hxx>
 #include <TopAbs_Orientation.hxx>
 
-static const Standard_Real TwoPI = M_PI + M_PI;
+static const double TwoPI = M_PI + M_PI;
 
 //=======================================================================
 //class    : GeomInt_Vertex

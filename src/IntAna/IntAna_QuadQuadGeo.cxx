@@ -825,8 +825,8 @@ IntAna_QuadQuadGeo::IntAna_QuadQuadGeo( const gp_Pln& P
   //-- On a du mal a gerer plus loin (Value ProjLib, Params ... )
   //-- des hyperboles trop bizarres
   //-- On retourne False -> Traitement par biparametree
-  static Standard_Real EllipseLimit   = 1.0E+9; //OCC513(apo) 1000000
-  static Standard_Real HyperbolaLimit = 2.0E+6; //OCC537(apo) 50000
+  static double EllipseLimit   = 1.0E+9; //OCC513(apo) 1000000
+  static double HyperbolaLimit = 2.0E+6; //OCC537(apo) 50000
   if(typeres==IntAna_Ellipse && nbint>=1) { 
     if(Abs(param1) > EllipseLimit || Abs(param1bis) > EllipseLimit)  { 
       done=Standard_False; 

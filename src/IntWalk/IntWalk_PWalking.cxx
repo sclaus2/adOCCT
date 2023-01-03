@@ -2996,9 +2996,9 @@ RepartirOuDiviser(Standard_Boolean& DejaReparti,
 
 namespace {
   //OCC431(apo): modified ->
-  static const Standard_Real CosRef2D =  Cos(M_PI/9.0),  AngRef2D = M_PI/2.0; 
+  static const double CosRef2D =  Cos(M_PI/9.0),  AngRef2D = M_PI/2.0;
 
-  static const Standard_Real d = 7.0;
+  static const double d = 7.0;
 }
 
 IntWalk_StatusDeflection  IntWalk_PWalking::TestDeflection(const IntImp_ConstIsoparametric choixIso,

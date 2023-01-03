@@ -30,8 +30,8 @@
 #include <Plate_LinearScalarConstraint.hxx>
 #include <Plate_PinpointConstraint.hxx>
 
-static const Standard_Real NORMIN = 1.e-10;
-static const Standard_Real COSMIN = 1.e-2;
+static const double NORMIN = 1.e-10;
+static const double COSMIN = 1.e-2;
 
 
 // G1 Constraints  

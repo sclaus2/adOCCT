@@ -24,7 +24,7 @@
 #include <math_Matrix.hxx>
 #include <Standard_DimensionError.hxx>
 
-static const Standard_Real BBMatrix[] = {
+static const double BBMatrix[] = {
 
 0.3333333333333333333333333, 0.1666666666666666666666667,
 0.1666666666666666666666667,0.3333333333333333333333333,

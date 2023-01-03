@@ -47,9 +47,9 @@
 //              Ellipse    - Hyperbola
 //              Hyperbola - Hyperbola
 //=======================================================================
-static const Standard_Real PARAM_MAX_ON_PARABOLA  = 100000000.0;
-static const Standard_Real PARAM_MAX_ON_HYPERBOLA = 10000.0;
-static const Standard_Real TOL_EXACT_INTER        = 1.e-7;
+static const double PARAM_MAX_ON_PARABOLA  = 100000000.0;
+static const double PARAM_MAX_ON_HYPERBOLA = 10000.0;
+static const double TOL_EXACT_INTER        = 1.e-7;
 
 static inline Standard_Boolean BOUNDED_DOMAIN(const IntRes2d_Domain& domain)
 {

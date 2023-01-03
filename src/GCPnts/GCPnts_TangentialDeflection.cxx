@@ -34,7 +34,7 @@
 
 namespace
 {
-  static const Standard_Real Us3 = 0.3333333333333333333333333333;
+  static const double Us3 = 0.3333333333333333333333333333;
 
   inline static void D0 (const Adaptor3d_Curve& C, const Standard_Real U, gp_Pnt& P)
   {

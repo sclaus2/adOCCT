@@ -64,7 +64,7 @@
 
 IMPLEMENT_STANDARD_RTTIEXT(DBRep_DrawableShape,Draw_Drawable3D)
 
-static Standard_Real IsoRatio = 1.001;
+static double IsoRatio = 1.001;
 
 static Standard_Integer MaxPlotCount = 5; // To avoid huge recursive calls in
 static Standard_Integer PlotCount = 0;    // PlotEdge and PlotIso for cases of "bad" 

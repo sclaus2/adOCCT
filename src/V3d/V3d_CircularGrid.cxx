@@ -30,7 +30,7 @@ IMPLEMENT_STANDARD_RTTIEXT(V3d_CircularGrid,Aspect_CircularGrid)
 
 namespace
 {
-  static const Standard_Real THE_DEFAULT_GRID_STEP = 10.0;
+  static const double THE_DEFAULT_GRID_STEP = 10.0;
   #define DIVISION 8
   #define MYFACTOR 50.
 }

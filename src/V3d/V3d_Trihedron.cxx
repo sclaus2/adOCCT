@@ -35,11 +35,11 @@ IMPLEMENT_STANDARD_RTTIEXT (V3d_Trihedron, Standard_Transient)
 namespace
 {
   //! Compensates difference between old implementation (without transform persistence) and current implementation.
-  static const Standard_Real THE_INTERNAL_SCALE_FACTOR = 500.0;
+  static const double THE_INTERNAL_SCALE_FACTOR = 500.0;
 
   static const Standard_ShortReal THE_CYLINDER_LENGTH      = 0.75f;
   static const Standard_Integer   THE_CIRCLE_SERMENTS_NB   = 24;
-  static const Standard_Real      THE_CIRCLE_SEGMENT_ANGLE = 2.0 * M_PI / THE_CIRCLE_SERMENTS_NB;
+  static const double      THE_CIRCLE_SEGMENT_ANGLE = 2.0 * M_PI / THE_CIRCLE_SERMENTS_NB;
 
   //! Create new or return existing group in the structure at specified position.
   //! @param theStruct     [in]     structure holding graphic groups

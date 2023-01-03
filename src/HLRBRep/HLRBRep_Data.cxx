@@ -52,12 +52,12 @@ Standard_Integer nbCal1Intersection; // pairs of unrejected edges
 Standard_Integer nbCal2Intersection; // true intersections (not vertex)
 Standard_Integer nbCal3Intersection; // Curve-Surface intersections
 
-static const Standard_Real CutLar = 2.e-1;
-static const Standard_Real CutBig = 1.e-1;
+static const double CutLar = 2.e-1;
+static const double CutBig = 1.e-1;
 
 //-- voir HLRAlgo.cxx 
 
-static const Standard_Real DERIVEE_PREMIERE_NULLE = 0.000000000001;
+static const double DERIVEE_PREMIERE_NULLE = 0.000000000001;
 
 //-- ======================================================================
 //--  

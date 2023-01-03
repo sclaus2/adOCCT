@@ -21,7 +21,7 @@
 #endif
 
 
-static const Standard_Real CosRef3D = 0.88;
+static const double CosRef3D = 0.88;
 
 static void RecadreIfPeriodic(Standard_Real& NewU,
                               Standard_Real& NewV,

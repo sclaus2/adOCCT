@@ -48,7 +48,7 @@
 #include <Draw_ColorKind.hxx>
 #include <Draw_MarkerShape.hxx>
 static Standard_Boolean dodraw = 0;
-static Standard_Real drawfac = 0.1;
+static double drawfac = 0.1;
 #endif
 #ifdef OCCT_DEBUG
 Standard_IMPORT void Law_draw1dcurve(const TColStd_Array1OfReal&    pol,

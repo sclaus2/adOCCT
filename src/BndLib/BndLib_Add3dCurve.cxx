@@ -165,7 +165,7 @@ void BndLib_Add3dCurve::Add( const Adaptor3d_Curve& C,
 			   const Standard_Real Tol,
 			         Bnd_Box&      B )
 {
-  static Standard_Real weakness = 1.5;  //OCC566(apo)
+  static double weakness = 1.5;  //OCC566(apo)
   Standard_Real tol = 0.0;
   switch (C.GetType()) {
 

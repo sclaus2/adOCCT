@@ -76,7 +76,7 @@
 
 IMPLEMENT_STANDARD_RTTIEXT(Geom_OffsetSurface,Geom_Surface)
 
-static const Standard_Real MyAngularToleranceForG1 = Precision::Angular();
+static const double MyAngularToleranceForG1 = Precision::Angular();
 
 
 //=======================================================================

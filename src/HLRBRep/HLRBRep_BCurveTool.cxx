@@ -39,7 +39,7 @@ HLRBRep_BCurveTool::NbSamples (const BRepAdaptor_Curve& C,
 			       const Standard_Real U1)
 {
   GeomAbs_CurveType typC = C.GetType();
-  static Standard_Real nbsOther = 10.0;
+  static double nbsOther = 10.0;
   Standard_Real nbs = nbsOther;
   
   if(typC == GeomAbs_Line) 
