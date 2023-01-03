@@ -166,7 +166,7 @@ void IntCurve_IConicTool::D2(const Standard_Real X,
 			   gp_Vec2d& Norm) const { 
     		 
   switch(type) {
-  case GeomAbs_Line:     ElCLib::LineD1(X,Axis.XAxis(),Pt,Tan); Norm.SetCoord(0.0,0.0); break;
+  case GeomAbs_Line:     ElCLib::LineD1(X,Axis.XAxis(),Pt,Tan); Norm.SetCoord((Standard_Real)0.0,(Standard_Real)0.0); break;
   case GeomAbs_Ellipse:     ElCLib::EllipseD2(X,Axis,Elips_a,Elips_b,Pt,Tan,Norm); break;
   case GeomAbs_Circle:     ElCLib::CircleD2(X,Axis,Circle_r,Pt,Tan,Norm); break;
   case GeomAbs_Parabola:     ElCLib::ParabolaD2(X,Axis,Parab_f,Pt,Tan,Norm); break;
