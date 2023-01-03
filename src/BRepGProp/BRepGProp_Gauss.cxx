@@ -128,16 +128,16 @@ namespace
 //purpose  : Constructor
 //=======================================================================
 BRepGProp_Gauss::Inertia::Inertia()
-: Mass(0.0),
-  Ix  (0.0),
-  Iy  (0.0),
-  Iz  (0.0),
-  Ixx (0.0),
-  Iyy (0.0),
-  Izz (0.0),
-  Ixy (0.0),
-  Ixz (0.0),
-  Iyz (0.0)
+: Mass((Standard_Real)0.0),
+  Ix  ((Standard_Real)0.0),
+  Iy  ((Standard_Real)0.0),
+  Iz  ((Standard_Real)0.0),
+  Ixx ((Standard_Real)0.0),
+  Iyy ((Standard_Real)0.0),
+  Izz ((Standard_Real)0.0),
+  Ixy ((Standard_Real)0.0),
+  Ixz ((Standard_Real)0.0),
+  Iyz ((Standard_Real)0.0)
 {
 }
 
@@ -147,7 +147,17 @@ BRepGProp_Gauss::Inertia::Inertia()
 //=======================================================================
 void BRepGProp_Gauss::Inertia::Reset()
 {
-  memset(reinterpret_cast<void*>(this), 0, sizeof(BRepGProp_Gauss::Inertia));
+  //memset(reinterpret_cast<void*>(this), 0, sizeof(BRepGProp_Gauss::Inertia));
+  this->Mass = 0.;
+  this->Ix = 0.;
+  this->Iy = 0.;
+  this->Iz = 0.;
+  this->Ixx = 0.;
+  this->Iyy = 0.;
+  this->Izz = 0.;
+  this->Ixy = 0.;
+  this->Ixz = 0.;
+  this->Iyz = 0.;
 }
 
 //=======================================================================
