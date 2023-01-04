@@ -118,7 +118,7 @@ static Standard_Boolean SingularProcessing( const gp_Vec& theDU,
 
       const Standard_Real aNorm = sqrt(aSqMagnDV);
       theTg3D = theDV.Divided(aNorm);
-      theTg2D.SetCoord(0.0, aTgMagn/aNorm);
+      theTg2D.SetCoord((Standard_Real)0.0, aTgMagn/aNorm);
     }
     else
     {

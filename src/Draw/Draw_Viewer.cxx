@@ -1519,20 +1519,20 @@ Standard_Boolean Trim(gp_Pnt2d& P1,gp_Pnt2d& P2,
 
     if(amab > 0) { //-- M est compris entre A et B
       if(PmDistP1 > d) {
-	P1.SetCoord(xm-d*dx,ym-d*dy);
+	P1.SetCoord((Standard_Real)xm-d*dx,(Standard_Real)ym-d*dy);
       }
       if(PmDistP2 >d) {
-	P2.SetCoord(xm+d*dx,ym+d*dy);
+	P2.SetCoord((Standard_Real)xm+d*dx,(Standard_Real)ym+d*dy);
       }
     }
     else if(PmDistP1 < PmDistP2) {  //-- On a     M    P1 P2
       if(PmDistP2 > d) {
-	P2.SetCoord(xm+d*dx,ym+d*dy);
+	P2.SetCoord((Standard_Real)xm+d*dx,(Standard_Real)ym+d*dy);
       }
     }
     else { //-- On a      P1 P2 M
       if(PmDistP1 > d) {
-	P1.SetCoord(xm-d*dx,ym-d*dy);
+	P1.SetCoord((Standard_Real)xm-d*dx,(Standard_Real)ym-d*dy);
       }
     }
     return(Standard_True);
