@@ -245,7 +245,11 @@ CPnts_UniformDeflection::CPnts_UniformDeflection ()
   myLastParam(0.0),
   myDu(0.0)
 {
-  memset (myParams, 0, sizeof (myParams));
+  //memset (myParams, 0, sizeof (myParams));
+  for(int i = 0; i < 3; ++i)
+  {
+    myParams[i] = 0.;
+  }
 } 
 
 //=======================================================================

@@ -47,9 +47,18 @@ IntPatch_InterferencePolyhedron::IntPatch_InterferencePolyhedron  ()
 {
   memset (OI, 0, sizeof (OI));
   memset (TI, 0, sizeof (TI));
-  memset (dpOeT, 0, sizeof (dpOeT));
-  memset (dpOpT, 0, sizeof (dpOpT));
-  memset (deOpT, 0, sizeof (deOpT));
+  //memset (dpOeT, 0, sizeof (dpOeT));
+  //memset (dpOpT, 0, sizeof (dpOpT));
+  //memset (deOpT, 0, sizeof (deOpT));
+  for(int i = 0; i < 3; ++i)
+  {
+    for(int j = 0; j < 3; ++j)
+    {
+      dpOeT[i][j] = 0.;
+      dpOpT[i][j] = 0.;
+      deOpT[i][j] = 0.;
+    }
+  }
 }
 
 //=======================================================================
@@ -64,9 +73,16 @@ IntPatch_InterferencePolyhedron::IntPatch_InterferencePolyhedron
 {
   memset (OI, 0, sizeof (OI));
   memset (TI, 0, sizeof (TI));
-  memset (dpOeT, 0, sizeof (dpOeT));
-  memset (dpOpT, 0, sizeof (dpOpT));
-  memset (deOpT, 0, sizeof (deOpT));
+  //memset (dpOeT, 0, sizeof (dpOeT));
+  //memset (dpOpT, 0, sizeof (dpOpT));
+  //memset (deOpT, 0, sizeof (deOpT));
+  for(int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+      dpOeT[i][j] = 0.;
+      dpOpT[i][j] = 0.;
+      deOpT[i][j] = 0.;
+    }
+  }
   if (!IntPatch_PolyhedronTool::Bounding(FirstPol).IsOut
       (IntPatch_PolyhedronTool::Bounding(SeconPol))) {
     Tolerance=IntPatch_PolyhedronTool::DeflectionOverEstimation(FirstPol)+
@@ -89,9 +105,16 @@ IntPatch_InterferencePolyhedron::IntPatch_InterferencePolyhedron
 {
   memset (OI, 0, sizeof (OI));
   memset (TI, 0, sizeof (TI));
-  memset (dpOeT, 0, sizeof (dpOeT));
-  memset (dpOpT, 0, sizeof (dpOpT));
-  memset (deOpT, 0, sizeof (deOpT));
+  //memset (dpOeT, 0, sizeof (dpOeT));
+  //memset (dpOpT, 0, sizeof (dpOpT));
+  //memset (deOpT, 0, sizeof (deOpT));
+  for(int i = 0; i < 3; ++i) {
+    for (int j = 0; j < 3; ++j) {
+      dpOeT[i][j] = 0.;
+      dpOpT[i][j] = 0.;
+      deOpT[i][j] = 0.;
+    }
+  }
   Tolerance=IntPatch_PolyhedronTool::DeflectionOverEstimation(Objet)*2;
   if (Tolerance==0.)
     Tolerance=Epsilon(1000.);

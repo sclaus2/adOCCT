@@ -62,8 +62,13 @@ AppDef_LinearCriteria::AppDef_LinearCriteria(const AppDef_MultiLine& SSP,
        IF(0),
        IL(0)
 {
-  memset (myEstimation, 0, sizeof (myEstimation));
-  memset (myPercent, 0, sizeof (myPercent));
+  //memset (myEstimation, 0, sizeof (myEstimation));
+  //memset (myPercent, 0, sizeof (myPercent));
+  for(int i = 0; i < 3; ++i)
+  {
+    myEstimation[i] = 0.;
+    myPercent[i] = 0.;
+  }
   myPntWeight.Init(1.);
 }
 

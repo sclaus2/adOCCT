@@ -56,7 +56,11 @@ CREATE(void) {
   parallel = Standard_False;
   inquadric = Standard_False;
   nbpts = 0;
-  memset (paramonc, 0, sizeof (paramonc));
+  //memset (paramonc, 0, sizeof (paramonc));
+  for(int i = 0; i < 4; ++i)
+  {
+    paramonc[i] = 0.;
+  }
 }
 //=============================================================================
 //==                                                 L i n e  -   Q u a d r i c  

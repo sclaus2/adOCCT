@@ -89,7 +89,11 @@ struct aFuncStruct
     myTolU(0.0),
     myTolV(0.0)
   {
-    memset(myPeriod, 0, sizeof (myPeriod));
+    //memset(myPeriod, 0, sizeof (myPeriod));
+    for(int i = 0; i < 2; ++i)
+    {
+      myPeriod[i] = 0.;
+    }
   }
 
   Handle(Adaptor3d_Surface) mySurf; // Surface where to project.

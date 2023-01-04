@@ -37,7 +37,11 @@ GeomAPI_ExtremaCurveCurve::GeomAPI_ExtremaCurveCurve()
   myIsInfinite(Standard_False),
   myTotalDist(0.0)
 {
-  memset (myTotalPars, 0, sizeof (myTotalPars));
+  //memset (myTotalPars, 0, sizeof (myTotalPars));
+  for(int i = 0; i < 2; ++i)
+  {
+    myTotalPars[i] = 0.;
+  }
 }
 
 
