@@ -320,7 +320,11 @@ GeomFill_ConstrainedFilling::GeomFill_ConstrainedFilling
   memset (ctr, 0, sizeof (ctr));
   memset (degree, 0, sizeof (degree));
   memset (ibound, 0, sizeof (ibound));
-  memset (mig, 0, sizeof (mig));
+  //memset (mig, 0, sizeof (mig));
+  for(int i = 0; i < 4; ++i)
+  {
+    mig[i] = 0;
+  }
 }
 
 

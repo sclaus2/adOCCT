@@ -46,8 +46,13 @@ Plate_Plate::Plate_Plate()
   L (0.0)
 {
   PolynomialPartOnly = Standard_False;
-  memset (ddu, 0, sizeof (ddu));
-  memset (ddv, 0, sizeof (ddv));
+  //memset (ddu, 0, sizeof (ddu));
+  //memset (ddv, 0, sizeof (ddv));
+  for(int i = 0; i < 10; ++i)
+  {
+    ddu[i] = 0.;
+    ddv[i] = 0.;
+  }
 }
 
 //=======================================================================
