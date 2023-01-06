@@ -132,7 +132,7 @@ static Standard_Integer polygon2d(Draw_Interpretor& di, Standard_Integer n, cons
       di << "Not enough nodes";
       return 1;
     }
-    Nodes(i).SetCoord(Draw::Atof(a[j]),Draw::Atof(a[j+1]));
+    Nodes(i).SetCoord((Standard_Real)Draw::Atof(a[j]),(Standard_Real)Draw::Atof(a[j+1]));
     j += 2;
   }
 

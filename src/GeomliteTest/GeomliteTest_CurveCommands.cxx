@@ -426,7 +426,7 @@ static Standard_Integer polecurve2d (Draw_Interpretor& , Standard_Integer n, con
     
     k = 3;
     for (i = 1; i <= np; i++) {
-      poles(i).SetCoord(Draw::Atof(a[k]),Draw::Atof(a[k+1]));
+      poles(i).SetCoord((Standard_Real)Draw::Atof(a[k]),(Standard_Real)Draw::Atof(a[k+1]));
       k += 2;
       if (hasw) {
 	weights(i) = Draw::Atof(a[k]);
@@ -470,7 +470,7 @@ static Standard_Integer polecurve2d (Draw_Interpretor& , Standard_Integer n, con
     TColStd_Array1OfReal weights(1, np);
     
     for (i = 1; i <= np; i++) {
-      poles(i).SetCoord(Draw::Atof(a[k]),Draw::Atof(a[k+1]));
+      poles(i).SetCoord((Standard_Real)Draw::Atof(a[k]),(Standard_Real)Draw::Atof(a[k+1]));
       k += 2;
       weights(i) = Draw::Atof(a[k]);
       k++;
