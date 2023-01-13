@@ -167,7 +167,7 @@ void XmlMXCAFDoc_DimTolDriver::Paste (const Handle(TDF_Attribute)& theSource,
     for ( Standard_Integer i = aFirstInd; i <= aLastInd; i++ )
     {
       char aValueChar[256];
-      Sprintf(aValueChar, "%.15g", aHArr->Value(i));
+      Sprintf(aValueChar, "%.15g", aHArr->Value(i).getValue());
       aValueStr += aValueChar;
       if ( i < aLastInd )
         aValueStr += ' ';

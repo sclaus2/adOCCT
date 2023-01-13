@@ -945,11 +945,11 @@ VrmlData_ErrorStatus VrmlData_Scene::WriteXYZ
   char buf[240];
   if (IsDummyWrite() == Standard_False) {
     if (isApplyScale && myLinearScale > Precision::Confusion())
-      Sprintf (buf, "%.12g %.12g %.12g%s", theXYZ.X() / myLinearScale,
-               theXYZ.Y() / myLinearScale, theXYZ.Z() / myLinearScale,
+      Sprintf (buf, "%.12g %.12g %.12g%s", (theXYZ.X() / myLinearScale).getValue(),
+               (theXYZ.Y() / myLinearScale).getValue(), (theXYZ.Z() / myLinearScale).getValue(),
                thePostfix ? thePostfix : "");
     else
-      Sprintf (buf, "%.12g %.12g %.12g%s", theXYZ.X(), theXYZ.Y(), theXYZ.Z(),
+      Sprintf (buf, "%.12g %.12g %.12g%s", theXYZ.X().getValue(), theXYZ.Y().getValue(), theXYZ.Z().getValue(),
                thePostfix ? thePostfix : "");
   }
   return WriteLine (buf);

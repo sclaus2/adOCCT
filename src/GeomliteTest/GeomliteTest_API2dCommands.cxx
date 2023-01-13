@@ -186,7 +186,7 @@ static Standard_Integer appro(Draw_Interpretor& di, Standard_Integer n, const ch
 	// points
 	nc = 3;
 	for (i = 1; i <= Nb; i++) {
-	  Points(i).SetCoord(Draw::Atof(a[nc]),Draw::Atof(a[nc+1]));
+	  Points(i).SetCoord((Standard_Real)Draw::Atof(a[nc]),(Standard_Real)Draw::Atof(a[nc+1]));
 	  nc += 2;
 	}
       }

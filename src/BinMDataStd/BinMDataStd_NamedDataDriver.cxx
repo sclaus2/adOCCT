@@ -180,8 +180,13 @@ Standard_Boolean BinMDataStd_NamedDataDriver::Paste(const BinObjMgt_Persistent& 
       if(low | up) {
         Handle(TColStd_HArray1OfReal) aTargetArray =
           new TColStd_HArray1OfReal(low, up);
-        if(!theSource.GetRealArray (&(aTargetArray->ChangeArray1())(low), up-low+1))
+        NCollection_Array1<double> aTargetArrayDouble(low, up);
+        if(!theSource.GetRealArray (&aTargetArrayDouble(low), up-low+1))
           return Standard_False;
+        for(int i = aTargetArrayDouble.Lower(); i <= aTargetArrayDouble.Upper(); ++i)
+        {
+          aTargetArray->SetValue(i, (Standard_Real)aTargetArrayDouble.Value(i));
+        }
         Standard_Boolean Ok = aRealArrays.Bind(aKey, aTargetArray);
         aResult |= Ok;
       }
@@ -267,8 +272,13 @@ void BinMDataStd_NamedDataDriver::Paste(const Handle(TDF_Attribute)& theSource,
     for (; itr.More(); itr.Next()) {
       theTarget << itr.Key();//key
       const TColStd_Array1OfReal& anArr1 = itr.Value()->Array1();
+      NCollection_Array1<double> anArr1Double(anArr1.Lower(), anArr1.Upper());
+      for(int i = anArr1.Lower(); i <= anArr1.Upper(); ++i)
+      {
+        anArr1Double.SetValue(i, anArr1.Value(i).getValue());
+      }
       theTarget << anArr1.Lower() <<anArr1.Upper(); // value Arr1 dimensions
-      Standard_Real *aPtr = (Standard_Real *) &anArr1(anArr1.Lower());
+      double *aPtr = (double *) &anArr1(anArr1Double.Lower());
       theTarget.PutRealArray(aPtr, anArr1.Length());
     }
   } else {

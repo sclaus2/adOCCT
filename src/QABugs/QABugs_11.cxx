@@ -3084,8 +3084,8 @@ static Standard_Integer OCC13963 (Draw_Interpretor& di, Standard_Integer argc, c
   aTrf.Transforms(aResult);
   char sbf[512];
   Sprintf(sbf, "( %8.3f %8.3f %8.3f ) => ( %8.3f %8.3f %8.3f )\n",
-          aOrigin.X(), aOrigin.Y(), aOrigin.Z(),
-          aResult.X(), aResult.Y(), aResult.Z());
+          aOrigin.X().getValue(), aOrigin.Y().getValue(), aOrigin.Z().getValue(),
+          aResult.X().getValue(), aResult.Y().getValue(), aResult.Z().getValue());
   di<<sbf;
   return 0;
 }

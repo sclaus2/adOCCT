@@ -56,9 +56,11 @@ Standard_OStream& BinTools::PutReal (Standard_OStream& theOS,
 {
 #ifdef DO_INVERSE
   const Standard_Real aRValue = InverseReal (theValue);
-  theOS.write ((char*)&aRValue, sizeof (Standard_Real));
+  double aValueHelper = aRValue.getValue();
+  theOS.write ((char*)&aValueHelper, sizeof (double));
 #else
-  theOS.write ((char*)&theValue, sizeof (Standard_Real));
+  double aValueHelper = theValue.getValue();
+  theOS.write ((char*)&aValueHelper, sizeof (double));
 #endif
   return theOS;
 }
@@ -101,10 +103,12 @@ Standard_OStream& BinTools::PutExtChar(Standard_OStream& OS, const Standard_ExtC
 Standard_IStream& BinTools::GetReal (Standard_IStream& theIS,
                                      Standard_Real& theValue)
 {
-  if (!theIS.read ((char*)&theValue, sizeof(Standard_Real)))
+  double aValueHelper;
+  if (!theIS.read ((char*)&aValueHelper, sizeof(double)))
   {
     throw Storage_StreamTypeMismatchError();
   }
+  theValue = aValueHelper;
 #ifdef DO_INVERSE
   theValue = InverseReal (theValue);
 #endif

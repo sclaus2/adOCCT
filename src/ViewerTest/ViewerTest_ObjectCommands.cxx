@@ -4079,7 +4079,7 @@ static Standard_Integer VSetLocation (Draw_Interpretor& theDI,
         }
 
         char aText[1024];
-        Sprintf (aText, "%g ", anObj->LocalTransformation().ScaleFactor());
+        Sprintf (aText, "%g ", anObj->LocalTransformation().ScaleFactor().getValue());
         theDI << aText;
         continue;
       }
@@ -4191,7 +4191,7 @@ static Standard_Integer VSetLocation (Draw_Interpretor& theDI,
 
       char aText[1024];
       const gp_Quaternion aQuat = anObj->LocalTransformation().GetRotation();
-      Sprintf (aText, "%g %g %g %g ", aQuat.X(), aQuat.Y(), aQuat.Z(), aQuat.W());
+      Sprintf (aText, "%g %g %g %g ", aQuat.X().getValue(), aQuat.Y().getValue(), aQuat.Z().getValue(), aQuat.W().getValue());
       theDI << aText;
     }
     else if (anArg == "-setlocation"
@@ -4215,7 +4215,7 @@ static Standard_Integer VSetLocation (Draw_Interpretor& theDI,
 
       char aText[1024];
       const gp_XYZ aLoc = anObj->LocalTransformation().TranslationPart();
-      Sprintf (aText, "%g %g %g ", aLoc.X(), aLoc.Y(), aLoc.Z());
+      Sprintf (aText, "%g %g %g ", aLoc.X().getValue(), aLoc.Y().getValue(), aLoc.Z().getValue());
       theDI << aText;
     }
     else if (aCmdName == "vsetlocation")

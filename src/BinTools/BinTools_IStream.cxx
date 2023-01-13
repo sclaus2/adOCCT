@@ -145,9 +145,11 @@ BinTools_IStream::operator bool() const
 //=======================================================================
 BinTools_IStream& BinTools_IStream::operator >> (Standard_Real& theValue)
 {
-  if (!myStream->read ((char*)&theValue, sizeof (Standard_Real)))
+  double aValueHelper;
+  if (!myStream->read ((char*)&aValueHelper, sizeof (double)))
     throw Storage_StreamTypeMismatchError();
-  myPosition += sizeof (Standard_Real);
+  theValue = aValueHelper;
+  myPosition += sizeof (double);
 #if DO_INVERSE
   theValue = InverseReal (theValue);
 #endif
@@ -175,17 +177,17 @@ BinTools_IStream& BinTools_IStream::operator >> (Standard_Integer& theValue)
 //=======================================================================
 BinTools_IStream& BinTools_IStream::operator >> (gp_Pnt& theValue)
 {
-  Standard_Real aValue;
+  double aValue;
   for (int aCoord = 1; aCoord <= 3; aCoord++)
   {
-    if (!myStream->read ((char*)&aValue, sizeof (Standard_Real)))
+    if (!myStream->read ((char*)&aValue, sizeof (double)))
       throw Storage_StreamTypeMismatchError();
 #if DO_INVERSE
     aValue = InverseReal (aValue);
 #endif
-    theValue.SetCoord (aCoord, aValue);
+    theValue.SetCoord (aCoord, (Standard_Real)aValue);
   }
-  myPosition += 3 * sizeof (Standard_Real);
+  myPosition += 3 * sizeof (double);
   return *this;
 }
 

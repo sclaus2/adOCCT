@@ -92,7 +92,7 @@ StepSelect_FloatFormat::StepSelect_FloatFormat ()
   if (theformrange.Length() > 0) {
     char mess[30];
     Sprintf(mess,", in range %f %f %s",
-	    therangemin,therangemax,theformrange.ToCString());
+	    therangemin.getValue(),therangemax.getValue(),theformrange.ToCString());
     lab.AssignCat(mess);
   }
   return lab;

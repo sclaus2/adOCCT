@@ -565,7 +565,7 @@ static Standard_Integer CheckProps (Draw_Interpretor& di, Standard_Integer argc,
 	//	( wholeDoc ? "" : "\n" ));
 	char string2[260];
 	Sprintf (string2, "%s%9.1f (%3d%%)%s", ( wholeDoc ? "" : "  Area defect:   " ),
-		 aArea->Get() - G.Mass(), 
+           (aArea->Get() - G.Mass()).getValue(),
 		 (Standard_Integer)( Abs ( G.Mass() ) > 1e-10 ? 100. * ( aArea->Get() - G.Mass() ) / G.Mass() : 999. ),
 		 ( wholeDoc ? "" : "\n" ));
 	di << string2;
@@ -612,7 +612,7 @@ static Standard_Integer CheckProps (Draw_Interpretor& di, Standard_Integer argc,
 		//  ( wholeDoc ? "" : "\n" ));
 	  char string5[260];
 	  Sprintf (string5, "%s%9.1f (%3d%%)%s", ( wholeDoc ? "" : "  Volume defect: " ),
-		   aVolume->Get() - localVolume,
+             (aVolume->Get() - localVolume).getValue(),
 		   (Standard_Integer)( Abs ( localVolume ) > 1e-10 ? 100. * ( aVolume->Get() - localVolume ) / localVolume : 999. ),
 		   ( wholeDoc ? "" : "\n" ));
 	  di << string5;
@@ -630,13 +630,13 @@ static Standard_Integer CheckProps (Draw_Interpretor& di, Standard_Integer argc,
 	  if ( wholeDoc ) {
 	    //printf ( " %7.2f %7.2f %7.2f", 
 		//    p.X() - pcg.X(), p.Y() - pcg.Y(), p.Z() - pcg.Z() );
-	    Sprintf (string7, " %7.2f %7.2f %7.2f", 
-		    p.X() - pcg.X(), p.Y() - pcg.Y(), p.Z() - pcg.Z() );
+	    Sprintf (string7, " %7.2f %7.2f %7.2f",
+               (p.X() - pcg.X()).getValue(), (p.Y() - pcg.Y()).getValue(), (p.Z() - pcg.Z()).getValue() );
 	  } else {
 	    //printf ( "  CG defect: dX=%.3f, dY=%.3f, dZ=%.3f\n", 
 		//    p.X() - pcg.X(), p.Y() - pcg.Y(), p.Z() - pcg.Z() );
-	    Sprintf (string7, "  CG defect: dX=%.3f, dY=%.3f, dZ=%.3f\n", 
-		    p.X() - pcg.X(), p.Y() - pcg.Y(), p.Z() - pcg.Z() );
+	    Sprintf (string7, "  CG defect: dX=%.3f, dY=%.3f, dZ=%.3f\n",
+               (p.X() - pcg.X()).getValue(), (p.Y() - pcg.Y()).getValue(), (p.Z() - pcg.Z()).getValue() );
 	  }
 	  di << string7;
 	}

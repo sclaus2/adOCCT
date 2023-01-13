@@ -96,9 +96,9 @@ IGESSelect_Dumper::IGESSelect_Dumper ()    {  }
     if (hasrange) {
       char flotrange[20];
       file.SendText(forminrange.ToCString());
-      Sprintf(flotrange,"%f",rangemin);
+      Sprintf(flotrange,"%f",rangemin.getValue());
       file.SendText(flotrange);
-      Sprintf(flotrange,"%f",rangemax);
+      Sprintf(flotrange,"%f",rangemax.getValue());
       file.SendText(flotrange);
     }
     return Standard_True;

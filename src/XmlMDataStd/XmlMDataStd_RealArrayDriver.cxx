@@ -199,7 +199,7 @@ void XmlMDataStd_RealArrayDriver::Paste (const Handle(TDF_Attribute)& theSource,
       Standard_Integer i(aL), nbChars(0);
       while (i <= anU)
       {
-        nbChars += Sprintf(buf, "%.17g ", realArray.Value(i++)) + 1/*a space*/;
+        nbChars += Sprintf(buf, "%.17g ", realArray.Value(i++).getValue()) + 1/*a space*/;
       }
       if (nbChars)
         str.Allocate(nbChars);
@@ -209,7 +209,7 @@ void XmlMDataStd_RealArrayDriver::Paste (const Handle(TDF_Attribute)& theSource,
   Standard_Integer i = aL;
   for (;;) 
   {
-    iChar += Sprintf(&(str[iChar]), "%.17g ", realArray.Value(i));
+    iChar += Sprintf(&(str[iChar]), "%.17g ", realArray.Value(i).getValue());
     if (i >= anU)
       break;
     ++i;

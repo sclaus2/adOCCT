@@ -311,7 +311,7 @@ Standard_OStream& TDataStd_RealArray::Dump (Standard_OStream& anOS) const
     lower = myValue->Lower();
     upper = myValue->Upper();
     for(i = lower; i<=upper; i++)
-      anOS << " " <<myValue->Value(i);
+      anOS << " " <<myValue->Value(i).getValue();
   }
   anOS << " Delta is " << (myIsDelta ? "ON":"OFF");
   Standard_Character sguid[Standard_GUID_SIZE_ALLOC];
@@ -351,7 +351,7 @@ void TDataStd_RealArray::DumpJson (Standard_OStream& theOStream, Standard_Intege
 
     for (TColStd_Array1OfReal::Iterator aValueIt (myValue->Array1()); aValueIt.More(); aValueIt.Next())
     {
-      const Standard_Real& aValue = aValueIt.Value();
+      const double& aValue = aValueIt.Value().getValue();
       OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, aValue)
     }
   }

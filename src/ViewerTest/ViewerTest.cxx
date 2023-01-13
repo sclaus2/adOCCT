@@ -5548,18 +5548,18 @@ static Standard_Integer VState (Draw_Interpretor& theDI,
       {
         Sprintf (anInfoStr,
                  " Depth: %g Distance: %g Point: %g %g %g Normal: %g %g %g",
-                 aPickData.Depth,
-                 aPickData.MinDist,
-                 aPickData.Point.X(), aPickData.Point.Y(), aPickData.Point.Z(),
+                 aPickData.Depth.getValue(),
+                 aPickData.MinDist.getValue(),
+                 aPickData.Point.X().getValue(), aPickData.Point.Y().getValue(), aPickData.Point.Z().getValue(),
                  aPickData.Normal.x(), aPickData.Normal.y(), aPickData.Normal.z());
       }
       else
       {
         Sprintf (anInfoStr,
                  " Depth: %g Distance: %g Point: %g %g %g",
-                 aPickData.Depth,
-                 aPickData.MinDist,
-                 aPickData.Point.X(), aPickData.Point.Y(), aPickData.Point.Z());
+                 aPickData.Depth.getValue(),
+                 aPickData.MinDist.getValue(),
+                 aPickData.Point.X().getValue(), aPickData.Point.Y().getValue(), aPickData.Point.Z().getValue());
       }
       theDI << "  " << aName
             << anInfoStr

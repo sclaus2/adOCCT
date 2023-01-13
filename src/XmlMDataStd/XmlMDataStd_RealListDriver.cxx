@@ -163,7 +163,7 @@ void XmlMDataStd_RealListDriver::Paste(const Handle(TDF_Attribute)& theSource,
     for (; itr.More(); itr.Next())
     {
       const Standard_Real& realValue = itr.Value();
-      iChar += Sprintf(&(str[iChar]), "%.17g ", realValue);
+      iChar += Sprintf(&(str[iChar]), "%.17g ", realValue.getValue());
     }
   }
   XmlObjMgt::SetStringValue (theTarget, (Standard_Character*)str, Standard_True);

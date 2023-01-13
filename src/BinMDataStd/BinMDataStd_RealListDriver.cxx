@@ -61,10 +61,11 @@ Standard_Boolean BinMDataStd_RealListDriver::Paste(const BinObjMgt_Persistent&  
   if(aLastInd > 0) {
     const Standard_Integer aLength = aLastInd - aFirstInd + 1;
     if (aLength > 0) {    
-      TColStd_Array1OfReal aTargetArray(aFirstInd, aLastInd);
-      theSource.GetRealArray (&aTargetArray(aFirstInd), aLength);
+      //TColStd_Array1OfReal aTargetArray(aFirstInd, aLastInd);
+      NCollection_Array1<double> aTargetArrayDouble(aFirstInd, aLastInd);
+      theSource.GetRealArray (&aTargetArrayDouble(aFirstInd), aLength);
       for (aIndex = aFirstInd; aIndex <= aLastInd; aIndex++)
-        anAtt->Append(aTargetArray.Value(aIndex));  
+        anAtt->Append((Standard_Real)aTargetArrayDouble.Value(aIndex));
     }
   }
 
@@ -88,15 +89,15 @@ void BinMDataStd_RealListDriver::Paste(const Handle(TDF_Attribute)& theSource,
     return;
   theTarget << aFirstInd << aLastInd;
   if(aLastInd == 0) return;
-  TColStd_Array1OfReal aSourceArray(aFirstInd, aLastInd);
+  NCollection_Array1<double> aSourceArray(aFirstInd, aLastInd);
   if (aLastInd >= 1)
   {
     TColStd_ListIteratorOfListOfReal itr(anAtt->List());
     for (Standard_Integer i = 1; itr.More(); itr.Next(), i++)
     {
-      aSourceArray.SetValue(i, itr.Value());
+      aSourceArray.SetValue(i, itr.Value().getValue());
     }
-    Standard_Real *aPtr = (Standard_Real *) &aSourceArray(aFirstInd);
+    double *aPtr = (double *) &aSourceArray(aFirstInd);
     theTarget.PutRealArray(aPtr, aLength);
   }
 

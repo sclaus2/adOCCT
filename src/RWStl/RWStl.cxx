@@ -316,10 +316,10 @@ Standard_Boolean RWStl::writeASCII (const Handle(Poly_Triangulation)& theMesh,
           "     vertex % 12e % 12e % 12e\n"
           "   endloop\n"
           " endfacet\n",
-          aVNorm.X(), aVNorm.Y(), aVNorm.Z(),
-          aP1.X(), aP1.Y(), aP1.Z(),
-          aP2.X(), aP2.Y(), aP2.Z(),
-          aP3.X(), aP3.Y(), aP3.Z());
+          aVNorm.X().getValue(), aVNorm.Y().getValue(), aVNorm.Z().getValue(),
+          aP1.X().getValue(), aP1.Y().getValue(), aP1.Z().getValue(),
+          aP2.X().getValue(), aP2.Y().getValue(), aP2.Z().getValue(),
+          aP3.X().getValue(), aP3.Y().getValue(), aP3.Z().getValue());
 
     if (fprintf (theFile, "%s", aBuffer) < 0)
     {

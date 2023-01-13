@@ -153,12 +153,12 @@ void XmlMNaming_Shape1::SetVertex (const TopoDS_Shape& theVertex)
   gp_Pnt aPos = BRep_Tool::Pnt(aV);
 
   char buf [16];
-  Sprintf (buf, "%.8g", aPos.X());
+  Sprintf (buf, "%.8g", aPos.X().getValue());
   Element().setAttribute (::XCoordString(), buf);
 
-  Sprintf (buf, "%.8g", aPos.Y());
+  Sprintf (buf, "%.8g", aPos.Y().getValue());
   Element().setAttribute (::YCoordString(), buf);
 
-  Sprintf (buf, "%.8g", aPos.Z());
+  Sprintf (buf, "%.8g", aPos.Z().getValue());
   Element().setAttribute (::ZCoordString(), buf);
 }
