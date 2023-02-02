@@ -133,7 +133,7 @@ static Standard_Boolean SingularProcessing( const gp_Vec& theDU,
         //Use sign "+" if theTg3D and theDV are codirectional
         //and sign "-" if opposite
         const Standard_Real aDP = theTg3D.Dot(theDV);
-        theTg2D.SetCoord(0.0, Sign(sqrt(aSQTan/aSqMagnDV), aDP));
+        theTg2D.SetCoord((Standard_Real)0.0, Sign(sqrt(aSQTan/aSqMagnDV), aDP));
       }
       else
       {
