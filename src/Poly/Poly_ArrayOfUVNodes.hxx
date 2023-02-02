@@ -15,8 +15,10 @@
 #define _Poly_ArrayOfUVNodes_HeaderFile
 
 #include <NCollection_AliasedArray.hxx>
-#include <gp_Pnt2d.hxx>
+//#include <gp_Pnt2d.hxx>
 #include <gp_Vec2f.hxx>
+
+typedef NCollection_Vec2<double> gp_Vec2double;
 
 //! Defines an array of 2D nodes of single/double precision configurable at construction time.
 class Poly_ArrayOfUVNodes : public NCollection_AliasedArray<>
@@ -24,14 +26,14 @@ class Poly_ArrayOfUVNodes : public NCollection_AliasedArray<>
 public:
 
   //! Empty constructor of double-precision array.
-  Poly_ArrayOfUVNodes() : NCollection_AliasedArray ((Standard_Integer )sizeof(gp_Pnt2d))
+  Poly_ArrayOfUVNodes() : NCollection_AliasedArray ((Standard_Integer )sizeof(gp_Vec2double))
   {
     //
   }
 
   //! Constructor of double-precision array.
   Poly_ArrayOfUVNodes (Standard_Integer theLength)
-  : NCollection_AliasedArray ((Standard_Integer )sizeof(gp_Pnt2d), theLength)
+  : NCollection_AliasedArray ((Standard_Integer )sizeof(gp_Vec2double), theLength)
   {
     //
   }
@@ -40,7 +42,7 @@ public:
   Standard_EXPORT Poly_ArrayOfUVNodes (const Poly_ArrayOfUVNodes& theOther);
 
   //! Constructor wrapping pre-allocated C-array of values without copying them.
-  Poly_ArrayOfUVNodes (const gp_Pnt2d& theBegin,
+  Poly_ArrayOfUVNodes (const gp_Vec2double& theBegin,
                        Standard_Integer theLength)
   : NCollection_AliasedArray (theBegin, theLength)
   {
@@ -59,14 +61,14 @@ public:
   Standard_EXPORT ~Poly_ArrayOfUVNodes();
 
   //! Returns TRUE if array defines nodes with double precision.
-  bool IsDoublePrecision() const { return myStride == (Standard_Integer )sizeof(gp_Pnt2d); }
+  bool IsDoublePrecision() const { return myStride == (Standard_Integer )sizeof(gp_Vec2double); }
 
   //! Sets if array should define nodes with double or single precision.
   //! Raises exception if array was already allocated.
   void SetDoublePrecision (bool theIsDouble)
   {
     if (myData != NULL) { throw Standard_ProgramError ("Poly_ArrayOfUVNodes::SetDoublePrecision() should be called before allocation"); }
-    myStride = Standard_Integer(theIsDouble ? sizeof(gp_Pnt2d) : sizeof(gp_Vec2f));
+    myStride = Standard_Integer(theIsDouble ? sizeof(gp_Vec2double) : sizeof(gp_Vec2f));
   }
 
   //! Copies data of theOther array to this.
@@ -102,13 +104,13 @@ public:
 public:
 
   //! A generalized accessor to point.
-  inline gp_Pnt2d Value (Standard_Integer theIndex) const;
+  inline gp_Vec2double Value (Standard_Integer theIndex) const;
 
   //! A generalized setter for point.
-  inline void SetValue (Standard_Integer theIndex, const gp_Pnt2d& theValue);
+  inline void SetValue (Standard_Integer theIndex, const gp_Vec2double& theValue);
 
   //! operator[] - alias to Value
-  gp_Pnt2d operator[] (Standard_Integer theIndex) const { return Value (theIndex); }
+  gp_Vec2double operator[] (Standard_Integer theIndex) const { return Value (theIndex); }
 
 };
 
@@ -116,16 +118,16 @@ public:
 // function : Value
 // purpose  :
 // =======================================================================
-inline gp_Pnt2d Poly_ArrayOfUVNodes::Value (Standard_Integer theIndex) const
+inline gp_Vec2double Poly_ArrayOfUVNodes::Value (Standard_Integer theIndex) const
 {
-  if (myStride == (Standard_Integer )sizeof(gp_Pnt2d))
+  if (myStride == (Standard_Integer )sizeof(gp_Vec2double))
   {
-    return NCollection_AliasedArray::Value<gp_Pnt2d> (theIndex);
+    return NCollection_AliasedArray::Value<gp_Vec2double> (theIndex);
   }
   else
   {
     const gp_Vec2f& aVec2 = NCollection_AliasedArray::Value<gp_Vec2f> (theIndex);
-    return gp_Pnt2d (aVec2.x(), aVec2.y());
+    return gp_Vec2double (aVec2.x(), aVec2.y());
   }
 }
 
@@ -133,16 +135,16 @@ inline gp_Pnt2d Poly_ArrayOfUVNodes::Value (Standard_Integer theIndex) const
 // function : SetValue
 // purpose  :
 // =======================================================================
-inline void Poly_ArrayOfUVNodes::SetValue (Standard_Integer theIndex, const gp_Pnt2d& theValue)
+inline void Poly_ArrayOfUVNodes::SetValue (Standard_Integer theIndex, const gp_Vec2double& theValue)
 {
-  if (myStride == (Standard_Integer )sizeof(gp_Pnt2d))
+  if (myStride == (Standard_Integer )sizeof(gp_Vec2double))
   {
-    NCollection_AliasedArray::ChangeValue<gp_Pnt2d> (theIndex) = theValue;
+    NCollection_AliasedArray::ChangeValue<gp_Vec2double> (theIndex) = theValue;
   }
   else
   {
     gp_Vec2f& aVec2 = NCollection_AliasedArray::ChangeValue<gp_Vec2f> (theIndex);
-    aVec2.SetValues ((float )theValue.X(), (float )theValue.Y());
+    aVec2.SetValues ((float )theValue.x(), (float )theValue.y());
   }
 }
 

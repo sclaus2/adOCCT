@@ -54,7 +54,7 @@ Poly_ArrayOfNodes& Poly_ArrayOfNodes::Assign (const Poly_ArrayOfNodes& theOther)
   if (mySize != theOther.mySize) { throw Standard_DimensionMismatch ("Poly_ArrayOfNodes::Assign(), arrays have different sizes"); }
   for (int anIter = 0; anIter < mySize; ++anIter)
   {
-    const gp_Pnt aPnt = theOther.Value (anIter);
+    const gp_Vec3double aPnt = theOther.Value (anIter);
     SetValue (anIter, aPnt);
   }
   return *this;

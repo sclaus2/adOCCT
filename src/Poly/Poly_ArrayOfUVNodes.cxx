@@ -54,7 +54,7 @@ Poly_ArrayOfUVNodes& Poly_ArrayOfUVNodes::Assign (const Poly_ArrayOfUVNodes& the
   if (mySize != theOther.mySize) { throw Standard_DimensionMismatch ("Poly_ArrayOfUVNodes::Assign(), arrays have different sizes"); }
   for (int anIter = 0; anIter < mySize; ++anIter)
   {
-    const gp_Pnt2d aPnt = theOther.Value (anIter);
+    const gp_Vec2double aPnt = theOther.Value (anIter);
     SetValue (anIter, aPnt);
   }
   return *this;

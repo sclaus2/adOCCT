@@ -72,7 +72,18 @@ Poly_Triangulation::Poly_Triangulation (const TColgp_Array1OfPnt&    theNodes,
   myTriangles    (1, theTriangles.Length()),
   myPurpose      (Poly_MeshPurpose_NONE)
 {
-  const Poly_ArrayOfNodes aNodeWrapper (theNodes.First(), theNodes.Length());
+  //prepare points
+  NCollection_Array1<gp_Vec3double> array1(theNodes.Lower(), theNodes.Upper());
+  for(Standard_Integer i = theNodes.Lower(); i <= theNodes.Upper(); ++i)
+  {
+//    array1.SetValue(i, gp_Vec3double(theNodes.Value(i).X().getValue(),
+//                                                      theNodes.Value(i).Y().getValue(),
+//                                                      theNodes.Value(i).Z().getValue()));
+    array1.ChangeValue(i).SetValues(theNodes.Value(i).X().getValue(),
+                                            theNodes.Value(i).Y().getValue(),
+                                            theNodes.Value(i).Z().getValue());
+  }
+  const Poly_ArrayOfNodes aNodeWrapper (array1.First(), array1.Length());
   myNodes = aNodeWrapper;
   myTriangles = theTriangles;
 }
@@ -92,10 +103,27 @@ Poly_Triangulation::Poly_Triangulation (const TColgp_Array1OfPnt&    theNodes,
   myUVNodes      (theNodes.Length()),
   myPurpose      (Poly_MeshPurpose_NONE)
 {
-  const Poly_ArrayOfNodes aNodeWrapper (theNodes.First(), theNodes.Length());
+  //prepare points
+  NCollection_Array1<gp_Vec3double> array1(theNodes.Lower(), theNodes.Upper());
+  for(Standard_Integer i = theNodes.Lower(); i <= theNodes.Upper(); ++i)
+  {
+//    array1.SetValue(i, gp_Vec3d(theNodes.Value(i).X().getValue(),
+//                                theNodes.Value(i).Y().getValue(),
+//                                theNodes.Value(i).Z().getValue()));
+    array1.ChangeValue(i).SetValues(theNodes.Value(i).X().getValue(),
+                                              theNodes.Value(i).Y().getValue(),
+                                              theNodes.Value(i).Z().getValue());
+  }
+  const Poly_ArrayOfNodes aNodeWrapper (array1.First(), array1.Length());
   myNodes = aNodeWrapper;
   myTriangles = theTriangles;
-  const Poly_ArrayOfUVNodes aUVNodeWrapper (theUVNodes.First(), theUVNodes.Length());
+  NCollection_Array1<gp_Vec2double> array2(theUVNodes.Lower(), theUVNodes.Upper());
+  for(Standard_Integer i = theUVNodes.Lower(); i <= theUVNodes.Upper(); ++i)
+  {
+    array2.ChangeValue(i).SetValues(theUVNodes.Value(i).X().getValue(),
+                                              theUVNodes.Value(i).Y().getValue());
+  }
+  const Poly_ArrayOfUVNodes aUVNodeWrapper (array2.First(), array2.Length());
   myUVNodes = aUVNodeWrapper;
 }
 
@@ -194,22 +222,23 @@ Handle(TColgp_HArray1OfPnt) Poly_Triangulation::MapNodeArray() const
     return Handle(TColgp_HArray1OfPnt)();
   }
 
-  if (myNodes.IsDoublePrecision())
-  {
-    // wrap array
-    const gp_Pnt* aPntArr = &myNodes.First<gp_Pnt>();
-    Handle(TColgp_HArray1OfPnt) anHArray = new TColgp_HArray1OfPnt();
-    TColgp_Array1OfPnt anArray (*aPntArr, 1, NbNodes());
-    anHArray->Move (anArray);
-    return anHArray;
-  }
+  //deep copy (below) will be always executed, since we cannot cast double pointer to adouble pointer
+//  if (myNodes.IsDoublePrecision())
+//  {
+//    // wrap array
+//    const gp_Vec3double* aPntArr = &myNodes.First<gp_Vec3double>();
+//    Handle(TColgp_HArray1OfPnt) anHArray = new TColgp_HArray1OfPnt();
+//    TColgp_Array1OfPnt anArray (*aPntArr, 1, NbNodes());
+//    anHArray->Move (anArray);
+//    return anHArray;
+//  }
 
   // deep copy
   Handle(TColgp_HArray1OfPnt) anArray = new TColgp_HArray1OfPnt (1, NbNodes());
   for (Standard_Integer aNodeIter = 0; aNodeIter < NbNodes(); ++aNodeIter)
   {
-    const gp_Pnt aPnt = myNodes.Value (aNodeIter);
-    anArray->SetValue (aNodeIter + 1, aPnt);
+    const gp_Vec3double aPnt = myNodes.Value (aNodeIter);
+    anArray->SetValue (aNodeIter + 1, gp_Pnt(aPnt.x(), aPnt.y(), aPnt.z()));
   }
   return anArray;
 }
@@ -242,22 +271,23 @@ Handle(TColgp_HArray1OfPnt2d) Poly_Triangulation::MapUVNodeArray() const
     return Handle(TColgp_HArray1OfPnt2d)();
   }
 
-  if (myUVNodes.IsDoublePrecision())
-  {
-    // wrap array
-    const gp_Pnt2d* aPntArr = &myUVNodes.First<gp_Pnt2d>();
-    Handle(TColgp_HArray1OfPnt2d) anHArray = new TColgp_HArray1OfPnt2d();
-    TColgp_Array1OfPnt2d anArray (*aPntArr, 1, NbNodes());
-    anHArray->Move (anArray);
-    return anHArray;
-  }
+  //deep copy (below) will be always executed, since we cannot cast double pointer to adouble pointer
+//  if (myUVNodes.IsDoublePrecision())
+//  {
+//    // wrap array
+//    const gp_Pnt2d* aPntArr = &myUVNodes.First<gp_Pnt2d>();
+//    Handle(TColgp_HArray1OfPnt2d) anHArray = new TColgp_HArray1OfPnt2d();
+//    TColgp_Array1OfPnt2d anArray (*aPntArr, 1, NbNodes());
+//    anHArray->Move (anArray);
+//    return anHArray;
+//  }
 
   // deep copy
   Handle(TColgp_HArray1OfPnt2d) anArray = new TColgp_HArray1OfPnt2d (1, NbNodes());
   for (Standard_Integer aNodeIter = 0; aNodeIter < NbNodes(); ++aNodeIter)
   {
-    const gp_Pnt2d aPnt = myUVNodes.Value (aNodeIter);
-    anArray->SetValue (aNodeIter + 1, aPnt);
+    const gp_Vec2double aPnt = myUVNodes.Value (aNodeIter);
+    anArray->SetValue (aNodeIter + 1, gp_Pnt2d(aPnt.x(), aPnt.y()));
   }
   return anArray;
 }
@@ -463,14 +493,20 @@ Bnd_Box Poly_Triangulation::computeBoundingBox (const gp_Trsf& theTrsf) const
   {
     for (Standard_Integer aNodeIdx = 0; aNodeIdx < NbNodes(); aNodeIdx++)
     {
-      aBox.Add (myNodes.Value (aNodeIdx));
+      gp_Pnt aPnt(myNodes.Value(aNodeIdx).x(),
+                  myNodes.Value(aNodeIdx).y(),
+                  myNodes.Value(aNodeIdx).z());
+      aBox.Add (aPnt);
     }
   }
   else
   {
     for (Standard_Integer aNodeIdx = 0; aNodeIdx < NbNodes(); aNodeIdx++)
     {
-      aBox.Add (myNodes.Value (aNodeIdx).Transformed (theTrsf));
+      gp_Pnt aPnt(myNodes.Value(aNodeIdx).x(),
+                  myNodes.Value(aNodeIdx).y(),
+                  myNodes.Value(aNodeIdx).z());
+      aBox.Add (aPnt.Transformed (theTrsf));
     }
   }
   return aBox;
@@ -490,9 +526,12 @@ void Poly_Triangulation::ComputeNormals()
   for (Poly_Array1OfTriangle::Iterator aTriIter (myTriangles); aTriIter.More(); aTriIter.Next())
   {
     aTriIter.Value().Get (anElem[0], anElem[1], anElem[2]);
-    const gp_Pnt aNode0 = myNodes.Value (anElem[0] - 1);
-    const gp_Pnt aNode1 = myNodes.Value (anElem[1] - 1);
-    const gp_Pnt aNode2 = myNodes.Value (anElem[2] - 1);
+    const gp_Vec3double aNodeHelper0 = myNodes.Value (anElem[0] - 1);
+    const gp_Vec3double aNodeHelper1 = myNodes.Value (anElem[1] - 1);
+    const gp_Vec3double aNodeHelper2 = myNodes.Value (anElem[2] - 1);
+    const gp_Pnt aNode0(aNodeHelper0.x(), aNodeHelper0.y(), aNodeHelper0.z());
+    const gp_Pnt aNode1(aNodeHelper1.x(), aNodeHelper1.y(), aNodeHelper1.z());
+    const gp_Pnt aNode2(aNodeHelper2.x(), aNodeHelper2.y(), aNodeHelper2.z());
 
     const gp_XYZ aVec01 = aNode1.XYZ() - aNode0.XYZ();
     const gp_XYZ aVec02 = aNode2.XYZ() - aNode0.XYZ();

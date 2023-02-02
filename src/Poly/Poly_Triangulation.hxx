@@ -134,23 +134,31 @@ public:
   Standard_Boolean HasNormals() const { return !myNormals.IsEmpty(); }
 
   //! Returns a node at the given index.
-  gp_Pnt Node (Standard_Integer theIndex) const { return myNodes.Value (theIndex - 1); }
+  gp_Pnt Node (Standard_Integer theIndex) const
+  {
+    gp_Vec3double aVal = myNodes.Value (theIndex - 1);
+    return gp_Pnt(aVal.x(), aVal.y(), aVal.z());
+  }
 
   //! Sets a node coordinates.
   void SetNode (Standard_Integer theIndex,
                 const gp_Pnt& thePnt)
   {
-    myNodes.SetValue (theIndex - 1, thePnt);
+    myNodes.SetValue (theIndex - 1, gp_Vec3double(thePnt.X().getValue(), thePnt.Y().getValue(), thePnt.Z().getValue()));
   }
 
   //! Returns UV-node at the given index.
-  gp_Pnt2d UVNode (Standard_Integer theIndex) const { return myUVNodes.Value (theIndex - 1); }
+  gp_Pnt2d UVNode (Standard_Integer theIndex) const
+  {
+    gp_Vec2double aVal = myUVNodes.Value (theIndex - 1);
+    return gp_Pnt2d((Standard_Real)aVal.x(), (Standard_Real)aVal.y());
+  }
 
   //! Sets an UV-node coordinates.
   void SetUVNode (Standard_Integer theIndex,
                   const gp_Pnt2d&  thePnt)
   {
-    myUVNodes.SetValue (theIndex - 1, thePnt);
+    myUVNodes.SetValue (theIndex - 1, gp_Vec2double(thePnt.X().getValue(), thePnt.Y().getValue()));
   }
 
   //! Returns triangle at the given index.
