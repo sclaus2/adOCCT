@@ -108,9 +108,9 @@ Standard_Integer Interface_FloatWriter::Convert (const Standard_Real val,
   pText=(char *)text;
   //
   if ( (val >= R1 && val <  R2) || (val <= -R1 && val > -R2) ) 
-    Sprintf(pText,rangeform,val);
+    Sprintf(pText,rangeform,val.getValue());
   else 
-    Sprintf(pText,mainform,val);
+    Sprintf(pText,mainform,val.getValue());
   
   if (zsup) 
   {

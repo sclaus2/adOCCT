@@ -250,7 +250,7 @@ Standard_CString  Interface_Static::CDef
   if (part[0] == 'r') {
     Standard_Real rlim;
     if (!stat->RealLimit((part[2] == 'a'),rlim)) return "";
-    Sprintf(defmess,"%f",rlim);  return defmess;
+    Sprintf(defmess,"%f",rlim.getValue());  return defmess;
   }
   if (part[0] == 'u') return stat->UnitDef();
   return "";
