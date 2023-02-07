@@ -52,10 +52,18 @@ public:
 
   SelectMgr_Frustum() : SelectMgr_BaseFrustum()
   {
-    memset (myMaxOrthoVertsProjections, 0, sizeof (myMaxOrthoVertsProjections));
-    memset (myMinOrthoVertsProjections, 0, sizeof (myMinOrthoVertsProjections));
-    memset (myMaxVertsProjections, 0, sizeof (myMaxVertsProjections));
-    memset (myMinVertsProjections, 0, sizeof (myMinVertsProjections));
+    //memset (myMaxOrthoVertsProjections, 0, sizeof (myMaxOrthoVertsProjections));
+    //memset (myMinOrthoVertsProjections, 0, sizeof (myMinOrthoVertsProjections));
+    //memset (myMaxVertsProjections, 0, sizeof (myMaxVertsProjections));
+    //memset (myMinVertsProjections, 0, sizeof (myMinVertsProjections));
+    for(int i = 0; i < 3; ++i) {
+      myMaxOrthoVertsProjections[i] = 0.;
+      myMinOrthoVertsProjections[i] = 0.;
+    }
+    for(int i = 0; i < (N+2); ++i) {
+      myMaxVertsProjections[i] = 0.;
+      myMinVertsProjections[i] = 0.;
+    }
   }
 
   //! Dumps the content of me into the stream
