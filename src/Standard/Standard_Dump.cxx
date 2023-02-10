@@ -69,7 +69,7 @@ void Standard_Dump::DumpRealValues (Standard_OStream& theOStream, int theCount, 
   {
     if (i > 0)
       theOStream << ", ";
-    theOStream << va_arg(vl, Standard_Real);
+    theOStream << va_arg(vl, double);
   }
   va_end(vl);
 }
