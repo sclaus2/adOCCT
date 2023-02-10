@@ -247,10 +247,10 @@ void MeshVS_MeshPrsBuilder::BuildElements( const Handle(Prs3d_Presentation)& Prs
   showEdges = IsWireFrame || showEdges;
 
   Standard_Integer* aNodesBuf  = (Standard_Integer*) alloca (maxnodes * sizeof (Standard_Integer));
-  Standard_Real*    aCoordsBuf = (Standard_Real*)    alloca (3 * maxnodes * sizeof (Standard_Real));
+  //Standard_Real*    aCoordsBuf = (Standard_Real*)    alloca (3 * maxnodes * sizeof (Standard_Real));
 
   TColStd_Array1OfInteger aNodes  (*aNodesBuf, 1, maxnodes);
-  TColStd_Array1OfReal    aCoords (*aCoordsBuf, 1, 3 * maxnodes);
+  TColStd_Array1OfReal    aCoords (1, 3 * maxnodes); //(*aCoordsBuf, 1, 3 * maxnodes);
 
   Standard_Integer aNbFacePrimitives = 0;
   Standard_Integer aNbVolmPrimitives = 0;
@@ -852,8 +852,8 @@ void MeshVS_MeshPrsBuilder::AddVolumePrs (const Handle(MeshVS_HArray1OfSequenceO
       const TColStd_SequenceOfInteger& aFaceNodes = theTopo->Value (aFaceIdx);
       const Standard_Integer aNbPolyNodes = aFaceNodes.Length();
       
-      Standard_Real* aPolyNodesBuf = (Standard_Real*) alloca ((3 * aNbPolyNodes + 1) * sizeof (Standard_Real));
-      TColStd_Array1OfReal aPolyNodes (*aPolyNodesBuf, 0, 3 * aNbPolyNodes);
+      //Standard_Real* aPolyNodesBuf = (Standard_Real*) alloca ((3 * aNbPolyNodes + 1) * sizeof (Standard_Real));
+      TColStd_Array1OfReal aPolyNodes (0, 3 * aNbPolyNodes); //(*aPolyNodesBuf, 0, 3 * aNbPolyNodes);
 
       for (Standard_Integer aNodeIdx = 0; aNodeIdx < aNbPolyNodes; ++aNodeIdx)
       {
