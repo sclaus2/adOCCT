@@ -109,11 +109,11 @@ gp_Ax3  gp_Ax3::Mirrored(const gp_Ax2& A2)const
 
 void gp_Ax3::DumpJson (Standard_OStream& theOStream, Standard_Integer) const
 {
-  OCCT_DUMP_VECTOR_CLASS (theOStream, "Location", 3, Location().X(), Location().Y(), Location().Z())
-  OCCT_DUMP_VECTOR_CLASS (theOStream, "Direction", 3, Direction().X(), Direction().Y(), Direction().Z())
+  OCCT_DUMP_VECTOR_CLASS (theOStream, "Location", 3, Location().X().getValue(), Location().Y().getValue(), Location().Z().getValue())
+  OCCT_DUMP_VECTOR_CLASS (theOStream, "Direction", 3, Direction().X().getValue(), Direction().Y().getValue(), Direction().Z().getValue())
 
-  OCCT_DUMP_VECTOR_CLASS (theOStream, "XDirection", 3, XDirection().X(), XDirection().Y(), XDirection().Z())
-  OCCT_DUMP_VECTOR_CLASS (theOStream, "YDirection", 3, YDirection().X(), YDirection().Y(), YDirection().Z())
+  OCCT_DUMP_VECTOR_CLASS (theOStream, "XDirection", 3, XDirection().X().getValue(), XDirection().Y().getValue(), XDirection().Z().getValue())
+  OCCT_DUMP_VECTOR_CLASS (theOStream, "YDirection", 3, YDirection().X().getValue(), YDirection().Y().getValue(), YDirection().Z().getValue())
 }
 
 Standard_Boolean  gp_Ax3::InitFromJson (const Standard_SStream& theSStream, Standard_Integer& theStreamPos)

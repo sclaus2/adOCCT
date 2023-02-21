@@ -40,7 +40,7 @@ Standard_Boolean gp_XYZ::IsEqual (const gp_XYZ& Other,
 //=======================================================================
 void gp_XYZ::DumpJson (Standard_OStream& theOStream, Standard_Integer) const
 {
-  OCCT_DUMP_VECTOR_CLASS (theOStream, "gp_XYZ", 3, x, y, z)
+  OCCT_DUMP_VECTOR_CLASS (theOStream, "gp_XYZ", 3, x.getValue(), y.getValue(), z.getValue())
 }
 
 //=======================================================================

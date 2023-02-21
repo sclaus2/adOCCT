@@ -116,11 +116,11 @@ gp_Ax2 gp_Ax2::Mirrored(const gp_Ax2& A2) const
 
 void gp_Ax2::DumpJson (Standard_OStream& theOStream, Standard_Integer) const
 {
-  OCCT_DUMP_VECTOR_CLASS (theOStream, "Location", 3, axis.Location().X(), axis.Location().Y(), axis.Location().Z())
-  OCCT_DUMP_VECTOR_CLASS (theOStream, "Direction", 3, axis.Direction().X(), axis.Direction().Y(), axis.Direction().Z())
+  OCCT_DUMP_VECTOR_CLASS (theOStream, "Location", 3, axis.Location().X().getValue(), axis.Location().Y().getValue(), axis.Location().Z().getValue())
+  OCCT_DUMP_VECTOR_CLASS (theOStream, "Direction", 3, axis.Direction().X().getValue(), axis.Direction().Y().getValue(), axis.Direction().Z().getValue())
 
-  OCCT_DUMP_VECTOR_CLASS (theOStream, "XDirection", 3, vxdir.X(), vxdir.Y(), vxdir.Z())
-  OCCT_DUMP_VECTOR_CLASS (theOStream, "YDirection", 3, vydir.X(), vydir.Y(), vydir.Z())
+  OCCT_DUMP_VECTOR_CLASS (theOStream, "XDirection", 3, vxdir.X().getValue(), vxdir.Y().getValue(), vxdir.Z().getValue())
+  OCCT_DUMP_VECTOR_CLASS (theOStream, "YDirection", 3, vydir.X().getValue(), vydir.Y().getValue(), vydir.Z().getValue())
 }
 
 Standard_Boolean gp_Ax2::InitFromJson (const Standard_SStream& theSStream, Standard_Integer& theStreamPos)

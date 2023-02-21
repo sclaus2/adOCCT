@@ -296,7 +296,7 @@ void gp_Mat::Power (const Standard_Integer theN)
 void gp_Mat::DumpJson (Standard_OStream& theOStream, Standard_Integer) const
 {
   OCCT_DUMP_VECTOR_CLASS (theOStream, "gp_Mat", 9,
-                          myMat[0][0], myMat[0][1], myMat[0][2],
-                          myMat[1][0], myMat[1][1], myMat[1][2],
-                          myMat[2][0], myMat[2][1], myMat[2][2])
+                          myMat[0][0].getValue(), myMat[0][1].getValue(), myMat[0][2].getValue(),
+                          myMat[1][0].getValue(), myMat[1][1].getValue(), myMat[1][2].getValue(),
+                          myMat[2][0].getValue(), myMat[2][1].getValue(), myMat[2][2].getValue())
 }
