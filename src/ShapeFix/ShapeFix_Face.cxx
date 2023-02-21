@@ -1612,7 +1612,7 @@ Standard_Boolean ShapeFix_Face::FixMissingSeam()
     Standard_Real aRange;
 
     if ( ismodeu && mySurf->Surface()->IsKind(STANDARD_TYPE(Geom_SphericalSurface)) ) {
-      p.SetCoord ( ( ismodeu < 0 ? 0. : 2.*M_PI ), ismodeu * 0.5 * M_PI );
+      p.SetCoord ( Standard_Real ( ismodeu < 0 ? 0. : 2.*M_PI ), Standard_Real (ismodeu * 0.5 * M_PI) );
       Standard_Real aXCoord = -ismodeu;
       d.SetCoord ( aXCoord, 0.);
       aRange = 2.*M_PI;
