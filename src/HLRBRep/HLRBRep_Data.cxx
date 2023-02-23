@@ -113,13 +113,13 @@ public:
     StNbLect=StNbEcr=StNbMax=StNbMoy=0;
 #endif
     N=n;
-    UV   = (Standard_Real **)       malloc(N*sizeof(Standard_Real *));
+    UV   = new Standard_Real*[N]; //(Standard_Real **)       malloc(N*sizeof(Standard_Real *));
     IndUV = (Standard_Integer **)   malloc(N*sizeof(Standard_Integer *));
     nbUV = (Standard_Integer *)     malloc(N*sizeof(Standard_Integer));
 //    for(Standard_Integer i=0;i<N;i++) { 
     Standard_Integer i;
     for( i=0;i<N;i++) { 
-      UV[i]=(Standard_Real *)       malloc(SIZEUV*sizeof(Standard_Real));
+      UV[i]= new Standard_Real[SIZEUV]; //(Standard_Real *)       malloc(SIZEUV*sizeof(Standard_Real));
     }
     for(i=0;i<N;i++) {
       IndUV[i]=(Standard_Integer *) malloc(SIZEUV*sizeof(Standard_Integer));
@@ -178,7 +178,7 @@ public:
       }
       for(i=0;i<N;i++) { 
 	if(UV[i]) { 
-	  free(UV[i]);
+	  delete[] UV[i]; //free(UV[i]);
 	  UV[i]=NULL;
 	}
 #ifdef OCCT_DEBUG
@@ -188,7 +188,10 @@ public:
       
       if(nbUV)  { free(nbUV);  nbUV=NULL; } 
       if(IndUV) { free(IndUV); IndUV=NULL;}
-      if(UV) { free(UV);    UV=NULL; }
+      if(UV) {
+        delete[] UV; //free(UV);
+        UV=NULL;
+      }
       N=0;
     }
   }
@@ -213,7 +216,7 @@ public:
       
       //-- std::cout<<" \n alloc nbUV["<<i0<<"]="<<nbUV[i0];
 
-      Standard_Real    *NvLigneUV  = (Standard_Real *)   malloc((nbUV[i0]+SIZEUV)*sizeof(Standard_Real));
+      Standard_Real    *NvLigneUV  = new Standard_Real[nbUV[i0]+SIZEUV]; //(Standard_Real *)   malloc((nbUV[i0]+SIZEUV)*sizeof(Standard_Real));
       Standard_Integer *NvLigneInd = (Standard_Integer *)malloc((nbUV[i0]+SIZEUV)*sizeof(Standard_Integer));
       //--
       //-- Recopie des anciennes valeurs ds la nouvelle ligne 
@@ -226,7 +229,7 @@ public:
       //-- mise a jour de la nouvelle dimension   ;  free des anciennes lignes et affectation
       k=nbUV[i0];
       nbUV[i0]+=SIZEUV;
-      free(UV[i0]);
+      delete[] UV[i0]; //free(UV[i0]);
       free(IndUV[i0]);
       UV[i0]=NvLigneUV;
       IndUV[i0]=NvLigneInd;
