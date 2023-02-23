@@ -28,17 +28,18 @@
  */
 
 //! define the constant to the size of 10 points
-#define MeshVS_BufSize 10*3*sizeof(double)
+#define MeshVS_BufSize 10*3
 
+template<class T>
 class MeshVS_Buffer 
 {
 public:
   //! Constructor of the buffer of the requested size
-  MeshVS_Buffer (const Standard_Size theSize)
-    : myDynData (0)
+  MeshVS_Buffer (const Standard_Size theLength)
+    : myDynData (nullptr)
   {
-    if (theSize > MeshVS_BufSize)
-      myDynData = Standard::Allocate (theSize);
+    if (theLength > MeshVS_BufSize)
+      myDynData = new T[theLength];
   }
 
   //! Destructor
@@ -46,28 +47,28 @@ public:
   {
     if (myDynData)
     {
-      Standard::Free (myDynData);
-      myDynData = 0;
+      //Standard::Free (myDynData);
+      delete[] myDynData;
     }
   }
 
-  //! Cast the buffer to the void pointer
-  operator void* ()
+  //! Cast the buffer to the void pointer. Commented in the AD version of OCCT, also not used
+//  operator void* ()
+//  {
+//    return myDynData ? myDynData : (void*) myAutoData;
+//  }
+
+  //! Interpret the buffer as a reference to T
+  operator T& ()
   {
-    return myDynData ? myDynData : (void*) myAutoData;
+    return * (myDynData ? myDynData : myAutoData);
   }
 
-  //! Interpret the buffer as a reference to double
-  operator Standard_Real& ()
-  {
-    return * (myDynData ? (Standard_Real*) myDynData : (Standard_Real*) myAutoData);
-  }
-
-  //! Interpret the buffer as a reference to int
-  operator Standard_Integer& ()
-  {
-    return * (myDynData ? (Standard_Integer*) myDynData : (Standard_Integer*) myAutoData);
-  }
+  //! Interpret the buffer as a reference to int. Commented in the AD version of OCCT, accessing adouble array with an int pointer does not make sense
+//  operator Standard_Integer& ()
+//  {
+//    return * (myDynData ? (Standard_Integer*) myDynData : (Standard_Integer*) myAutoData);
+//  }
 
   //! Interpret the buffer as a reference to gp_Pnt
   operator gp_Pnt& ()
@@ -82,8 +83,8 @@ private:
   //! Deprecate copy operation
   MeshVS_Buffer& operator=(const MeshVS_Buffer&) {return *this;}
 
-  char  myAutoData[ MeshVS_BufSize ];
-  void* myDynData;
+  T  myAutoData[ MeshVS_BufSize ];
+  T* myDynData;
 };
 
 #endif

@@ -194,7 +194,7 @@ void MeshVS_TextPrsBuilder::Build ( const Handle(Prs3d_Presentation)& Prs,
   aTextAspect->SetTextFontAspect( AFontAspectType );
   aTextGroup->SetGroupPrimitivesAspect( aTextAspect );
 
-  MeshVS_Buffer aCoordsBuf (3*aMaxFaceNodes*sizeof(Standard_Real));
+  MeshVS_Buffer<Standard_Real> aCoordsBuf (3*aMaxFaceNodes);
   TColStd_Array1OfReal aCoords (aCoordsBuf, 1, 3*aMaxFaceNodes);
   Standard_Integer NbNodes;
   TCollection_AsciiString aStr;

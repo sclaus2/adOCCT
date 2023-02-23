@@ -159,7 +159,7 @@ Select3D_BndBox3d MeshVS_CommonSensitiveEntity::Box (const Standard_Integer theI
   Select3D_BndBox3d aBox;
   if (mySelMethod == MeshVS_MSM_PRECISE)
   {
-    MeshVS_Buffer aCoordsBuf (3 * myMaxFaceNodes * sizeof (Standard_Real));
+    MeshVS_Buffer<Standard_Real> aCoordsBuf (3 * myMaxFaceNodes );
     TColStd_Array1OfReal aCoords (aCoordsBuf, 1, 3 * myMaxFaceNodes);
     Standard_Integer aNbNodes = 0;
     MeshVS_EntityType aType = MeshVS_ET_NONE;
@@ -169,7 +169,7 @@ Select3D_BndBox3d MeshVS_CommonSensitiveEntity::Box (const Standard_Integer theI
       return aBox;
     }
 
-    MeshVS_Buffer aNodesBuf (aNbNodes * sizeof (Standard_Integer));
+    MeshVS_Buffer<Standard_Integer> aNodesBuf (aNbNodes );
     TColStd_Array1OfInteger aElemNodes (aNodesBuf, 1, aNbNodes);
     if (!myDataSource->GetNodesByElement (anItemIdx, aElemNodes, aNbNodes))
     {
@@ -236,7 +236,7 @@ Standard_Boolean MeshVS_CommonSensitiveEntity::overlapsElement (SelectBasics_Pic
   const Standard_Integer anItemIdx = myItemIndexes.Value (theElemIdx);
   if (mySelMethod == MeshVS_MSM_PRECISE)
   {
-    MeshVS_Buffer aCoordsBuf (3 * myMaxFaceNodes * sizeof (Standard_Real));
+    MeshVS_Buffer<Standard_Real> aCoordsBuf (3 * myMaxFaceNodes);
     TColStd_Array1OfReal aCoords (aCoordsBuf, 1, 3 * myMaxFaceNodes);
     Standard_Integer aNbNodes = 0;
     MeshVS_EntityType aType = MeshVS_ET_NONE;
@@ -246,7 +246,7 @@ Standard_Boolean MeshVS_CommonSensitiveEntity::overlapsElement (SelectBasics_Pic
       return Standard_False;
     }
 
-    MeshVS_Buffer aNodesBuf (aNbNodes * sizeof (Standard_Integer));
+    MeshVS_Buffer<Standard_Integer> aNodesBuf (aNbNodes );
     TColStd_Array1OfInteger aElemNodes (aNodesBuf, 1, aNbNodes);
     if (!myDataSource->GetNodesByElement (anItemIdx, aElemNodes, aNbNodes))
     {
@@ -260,7 +260,7 @@ Standard_Boolean MeshVS_CommonSensitiveEntity::overlapsElement (SelectBasics_Pic
                                       Select3D_TOS_INTERIOR, thePickResult);
     }
 
-    MeshVS_Buffer aFacePntsBuf (aNbNodes * 3 * sizeof (Standard_Real));
+    MeshVS_Buffer<Standard_Real> aFacePntsBuf (aNbNodes * 3 );
     TColgp_Array1OfPnt aFacePnts (aFacePntsBuf, 1, aNbNodes);
     for (Standard_Integer aNodeIdx = 1; aNodeIdx <= aNbNodes; aNodeIdx++)
     {
@@ -294,7 +294,7 @@ Standard_Boolean MeshVS_CommonSensitiveEntity::elementIsInside (SelectBasics_Sel
   const Standard_Integer anItemIdx = myItemIndexes.Value (theElemIdx);
   if (mySelMethod == MeshVS_MSM_PRECISE)
   {
-    MeshVS_Buffer aCoordsBuf (3 * myMaxFaceNodes * sizeof (Standard_Real));
+    MeshVS_Buffer<Standard_Real> aCoordsBuf (3 * myMaxFaceNodes );
     TColStd_Array1OfReal aCoords (aCoordsBuf, 1, 3 * myMaxFaceNodes);
     Standard_Integer aNbNodes = 0;
     MeshVS_EntityType aType = MeshVS_ET_NONE;
@@ -304,14 +304,14 @@ Standard_Boolean MeshVS_CommonSensitiveEntity::elementIsInside (SelectBasics_Sel
       return Standard_False;
     }
 
-    MeshVS_Buffer aNodesBuf (aNbNodes * sizeof (Standard_Integer));
+    MeshVS_Buffer<Standard_Integer> aNodesBuf (aNbNodes );
     TColStd_Array1OfInteger aElemNodes (aNodesBuf, 1, aNbNodes);
     if (!myDataSource->GetNodesByElement (anItemIdx, aElemNodes, aNbNodes))
     {
       return Standard_False;
     }
 
-    MeshVS_Buffer aFacePntsBuf (aNbNodes * 3 * sizeof (Standard_Real));
+    MeshVS_Buffer<Standard_Real> aFacePntsBuf (aNbNodes * 3 );
     TColgp_Array1OfPnt aFacePnts (aFacePntsBuf, 1, aNbNodes);
     for (Standard_Integer aNodeIdx = 1; aNodeIdx <= aNbNodes; ++aNodeIdx)
     {

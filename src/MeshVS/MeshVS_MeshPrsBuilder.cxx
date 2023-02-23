@@ -527,7 +527,7 @@ void MeshVS_MeshPrsBuilder::BuildHilightPrs ( const Handle(Prs3d_Presentation)& 
        maxnodes <= 0 )
     return;
 
-  MeshVS_Buffer aCoordsBuf (3*maxnodes*sizeof(Standard_Real));
+  MeshVS_Buffer<Standard_Real> aCoordsBuf (3*maxnodes);
   TColStd_Array1OfReal aCoords (aCoordsBuf, 1, 3*maxnodes);
 
   Graphic3d_MaterialAspect AMat;

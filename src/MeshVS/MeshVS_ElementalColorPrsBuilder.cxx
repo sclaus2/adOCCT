@@ -93,7 +93,7 @@ void MeshVS_ElementalColorPrsBuilder::Build ( const Handle(Prs3d_Presentation)& 
   MeshVS_DataMapOfColorMapOfInteger     aColorsOfElements;
   MeshVS_DataMapOfTwoColorsMapOfInteger aTwoColorsOfElements;
 
-  MeshVS_Buffer aCoordsBuf (3*aMaxFaceNodes*sizeof(Standard_Real));
+  MeshVS_Buffer<Standard_Real> aCoordsBuf (3*aMaxFaceNodes);
   TColStd_Array1OfReal aCoords (aCoordsBuf, 1, 3*aMaxFaceNodes);
   Standard_Integer NbNodes;
   MeshVS_EntityType aType;
