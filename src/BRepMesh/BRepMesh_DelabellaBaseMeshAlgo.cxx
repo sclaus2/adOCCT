@@ -136,7 +136,7 @@ void BRepMesh_DelabellaBaseMeshAlgo::buildBaseTriangulation()
   {
     const int aVerticesNb = aTriangulator->Triangulate (
       static_cast<int>(aPoints.size () / 2),
-      &aPoints[0], &aPoints[1], 2 * sizeof (Standard_Real));
+      &aPoints[0], &aPoints[1], 2 * sizeof (double));
 
     if (aVerticesNb > 0)
     {
