@@ -178,8 +178,8 @@ void Graphic3d_CullingTool::CacheClipPtsProjections()
   const Standard_Integer anIncFactor = myIsProjectionParallel ? 2 : 1;
   for (Standard_Integer aPlaneIter = 0; aPlaneIter < PlanesNB - 1; aPlaneIter += anIncFactor)
   {
-    Standard_Real aMaxProj = -std::numeric_limits<Standard_Real>::max();
-    Standard_Real aMinProj =  std::numeric_limits<Standard_Real>::max();
+    Standard_Real aMaxProj = -std::numeric_limits<double>::max();
+    Standard_Real aMinProj =  std::numeric_limits<double>::max();
     for (Standard_Integer aCornerIter = 0; aCornerIter < Graphic3d_Camera::FrustumVerticesNB; ++aCornerIter)
     {
       Standard_Real aProjection = myClipVerts[aCornerIter].Dot (myClipPlanes[aPlaneIter].Normal);
@@ -196,8 +196,8 @@ void Graphic3d_CullingTool::CacheClipPtsProjections()
                                Graphic3d_Vec3d (0.0, 0.0, 1.0) };
   for (Standard_Integer aDim = 0; aDim < 3; ++aDim)
   {
-    Standard_Real aMaxProj = -std::numeric_limits<Standard_Real>::max();
-    Standard_Real aMinProj =  std::numeric_limits<Standard_Real>::max();
+    Standard_Real aMaxProj = -std::numeric_limits<double>::max();
+    Standard_Real aMinProj =  std::numeric_limits<double>::max();
     for (Standard_Integer aCornerIter = 0; aCornerIter < Graphic3d_Camera::FrustumVerticesNB; ++aCornerIter)
     {
       Standard_Real aProjection = myClipVerts[aCornerIter].Dot (anAxes[aDim]);

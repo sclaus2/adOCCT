@@ -231,7 +231,7 @@ typename BVH_QueueBuilder<T, N>::BVH_ChildNodes BVH_BinnedBuilder<T, N, Bins>::b
   BVH_Box<T, N> aMinSplitBoxLft;
   BVH_Box<T, N> aMinSplitBoxRgh;
 
-  Standard_Real aMinSplitCost = std::numeric_limits<Standard_Real>::max();
+  Standard_Real aMinSplitCost = std::numeric_limits<double>::max();
   const Standard_Integer aMainAxis = BVH::BVH_AxisSelector<T, N>::MainAxis (aSize);
 
   // Find best split

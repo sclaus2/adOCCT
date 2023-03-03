@@ -54,7 +54,7 @@ void BRepExtrema_OverlapTool::LoadTriangleSets (const Handle(BRepExtrema_Triangl
 }
 
 #ifndef DBL_EPSILON
-  #define DBL_EPSILON std::numeric_limits<Standard_Real>::epsilon()
+  #define DBL_EPSILON std::numeric_limits<double>::epsilon()
 #endif
 
 namespace

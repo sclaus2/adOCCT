@@ -58,7 +58,7 @@ protected:
 
     NCollection_Array1<Standard_Real> aLftSet (0, aNodeNbPrimitives - 1);
     NCollection_Array1<Standard_Real> aRghSet (0, aNodeNbPrimitives - 1);
-    Standard_Real aMinSplitCost = std::numeric_limits<Standard_Real>::max();
+    Standard_Real aMinSplitCost = std::numeric_limits<double>::max();
 
     // Find best split
     for (Standard_Integer anAxis = 0; anAxis < (N < 4 ? N : 3); ++anAxis)

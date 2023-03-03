@@ -21,6 +21,16 @@
 #include <Standard_math.hxx>
 #include <Standard_TypeDef.hxx>
 
+namespace std {
+    template<> class numeric_limits<adtl::adouble>{
+    public:
+        static adtl::adouble min() {return adtl::adouble(std::numeric_limits<double>::min());};
+        static adtl::adouble max() {return adtl::adouble(std::numeric_limits<double>::max());};
+        static adtl::adouble epsilon() {return adtl::adouble(std::numeric_limits<double>::epsilon());};
+        static constexpr bool is_specialized { true };
+    };
+}
+
 // ===============================================
 // Methods from Standard_Entity class which are redefined:  
 //    - Hascode
