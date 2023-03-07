@@ -351,7 +351,7 @@ static int pipe_OCC9 (Draw_Interpretor& di,
 		      Draw::Atof (a[5]) );
 
   if (n == 7) {
-    aPipe.Perform(Draw::Atof (a[6]), Standard_True);
+    aPipe.Perform((Standard_Real)Draw::Atof (a[6]), Standard_True);
   } else {
     aPipe.Perform(Standard_True/*, Standard_True*/);
   }
