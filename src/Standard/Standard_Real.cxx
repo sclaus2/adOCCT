@@ -76,7 +76,7 @@ Standard_Real ACos (const Standard_Real Value)
   {
     return M_PI; //acos(-1.)
   }
-  return acos(Value);
+  return adtl::acos(Value);
 }
 double ACos (const double Value)
 {
@@ -106,7 +106,7 @@ inline Standard_Real apx_for_ACosApprox (const Standard_Real x)
     x * (0.163910606547823220 +
     x * (0.047654245891495528 -
     x * (0.005516443930088506 +
-    0.015098965761299077 * x))))) / sqrt(2*x);
+    0.015098965761299077 * x))))) / adtl::sqrt(2*x);
 }
 inline double apx_for_ACosApprox (const double x)
 {
@@ -181,7 +181,7 @@ Standard_Real ASin (const Standard_Real Value)
   {
     return -M_PI_2; //asin(-1.)
   }
-  return asin(Value);
+  return adtl::asin(Value);
 }
 double ASin (const double Value)
 {
@@ -207,7 +207,7 @@ Standard_Real ATan2 (const Standard_Real Value, const Standard_Real Other)
   if ( Value == 0. && Other == 0. ){
     throw Standard_NullValue();
   }
-  return atan2(Value,Other); 
+  return adtl::atan2(Value,Other);
 }
 double ATan2 (const double Value, const double Other)
 {
@@ -403,7 +403,7 @@ Standard_Real     ATanh(const Standard_Real Value)
 #if defined(__QNX__)
   return std::atanh(Value);
 #else
-  return atanh(Value);
+  return adtl::atanh(Value);
 #endif
 }
 double     ATanh(const double Value)
@@ -435,7 +435,7 @@ Standard_Real     ACosh (const Standard_Real Value)
 #if defined(__QNX__)
   return std::acosh(Value);
 #else
-  return acosh(Value);
+  return adtl::acosh(Value);
 #endif
 }
 double     ACosh (const double Value)
@@ -464,7 +464,7 @@ Standard_Real     Cosh (const Standard_Real Value)
 #endif
     throw Standard_NumericError("Result of Cosh exceeds the maximum value Standard_Real");
   } 
-  return cosh(Value); 
+  return adtl::cosh(Value);
 }
 double     Cosh (const double Value)
 {
@@ -488,7 +488,7 @@ Standard_Real     Sinh (const Standard_Real Value)
 #endif
     throw Standard_NumericError("Result of Sinh exceeds the maximum value Standard_Real");
   } 
-  return sinh(Value); 
+  return adtl::sinh(Value);
 }
 double     Sinh (const double Value)
 {
@@ -511,7 +511,7 @@ Standard_Real     Log (const Standard_Real Value)
 #endif
     throw Standard_NumericError("Illegal argument in Log");
   } 
- return log(Value); 
+ return adtl::log(Value);
 }
 double     Log (const double Value)
 {   if ( Value <= 0. ){
@@ -533,7 +533,7 @@ Standard_Real     Sqrt (const Standard_Real Value)
 #endif
     throw Standard_NumericError("Illegal argument in Sqrt");
   } 
- return sqrt(Value); 
+ return adtl::sqrt(Value);
 }
 double     Sqrt (const double Value)
 {

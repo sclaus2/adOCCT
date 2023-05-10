@@ -75,12 +75,40 @@
 #include <adolc/adtl.h>
 using adtl::adouble;
 
-typedef int           Standard_Integer;
-
-typedef adouble        Standard_Real;
-
 typedef bool          Standard_Boolean;
+typedef int           Standard_Integer;
 typedef float         Standard_ShortReal;
+
+class myadouble : public adouble {
+public:
+    inline myadouble() : adouble() {}
+    inline myadouble(const double v) : adouble(v){}
+    inline myadouble(const double v, const double* adv) : adouble(v,adv) {}
+    inline myadouble(const adouble& a) : adouble(a) {}
+    inline myadouble(const adouble&& a) : adouble(a) {}
+    inline myadouble(const myadouble& a) : adouble(static_cast<const adouble&>(a)) {}
+    inline ~myadouble() {}
+
+    inline explicit operator Standard_Boolean() const { return static_cast<Standard_Boolean>(this->getValue()); }
+    inline explicit operator Standard_Integer() const { return static_cast<Standard_Integer>(this->getValue()); }
+    inline explicit operator Standard_ShortReal() const { return static_cast<Standard_ShortReal>(this->getValue()); }
+
+    friend ostream& operator << ( ostream& out, const myadouble& a) {
+      out << a.getValue();
+      return out;
+    }
+
+    friend istream& operator >> ( istream& in, myadouble& a) {
+      double temp;
+      in >> temp;
+      a.setValue(temp);
+      return in;
+    }
+};
+
+
+typedef myadouble        Standard_Real;
+
 typedef char          Standard_Character;
 typedef unsigned char Standard_Byte;
 typedef void*         Standard_Address;
