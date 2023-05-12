@@ -111,7 +111,7 @@ void Extrema_GExtPC::Perform(const ThePoint& P)
       if (TheCurveTool::IsPeriodic(aCurve))
       {
         Standard_Integer aPeriodShift =
-          Standard_Integer ((myuinf - aKnots(aFirstIdx)) / TheCurveTool::Period(aCurve));
+          Standard_Integer (Standard_Real((myuinf - aKnots(aFirstIdx)) / TheCurveTool::Period(aCurve)));
         
         if (myuinf < aKnots(aFirstIdx) - aTolCoeff)
           aPeriodShift--;

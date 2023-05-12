@@ -26,7 +26,7 @@ typedef myadouble doublereal;
 typedef unsigned long uinteger;
 typedef char *address;
 typedef short int shortint;
-typedef adouble real;
+typedef myadouble real;
 typedef struct { real r, i; } complex;
 typedef struct { doublereal r, i; } doublecomplex;
 typedef long int logical;

@@ -875,7 +875,7 @@ void ProjLib_ProjectedCurve::Perform(const Handle(Adaptor3d_Curve)& C)
             gp_Pnt2d aPnt2d;
             aRes->D0(aCurrParam, aPnt2d);
 
-            Standard_Integer aMapKey = Standard_Integer ((aPnt2d.Coord(anIdx) - aSurfFirstPar[anIdx - 1]) / aSurfPeriod[anIdx - 1]);
+            Standard_Integer aMapKey = Standard_Integer (Standard_Real((aPnt2d.Coord(anIdx) - aSurfFirstPar[anIdx - 1]) / aSurfPeriod[anIdx - 1]));
 
             if (aPnt2d.Coord(anIdx) - aSurfFirstPar[anIdx - 1] < 0.0)
               aMapKey--;

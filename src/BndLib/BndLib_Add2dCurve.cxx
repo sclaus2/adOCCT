@@ -1144,11 +1144,11 @@ Standard_Real BndLib_Box2dCurve::AdjustToPeriod(const Standard_Real aT,
   //
   aTRet=aT;
   if (aT<0.) {
-    k=1+(Standard_Integer)(-aT/aPeriod);
+    k=1+(Standard_Integer)Standard_Real(-aT/aPeriod);
     aTRet=aT+k*aPeriod;
   }
   else if (aT>aPeriod) {
-    k=(Standard_Integer)(aT/aPeriod);
+    k=(Standard_Integer)Standard_Real(aT/aPeriod);
     aTRet=aT-k*aPeriod;
   }
   if (aTRet==aPeriod) {

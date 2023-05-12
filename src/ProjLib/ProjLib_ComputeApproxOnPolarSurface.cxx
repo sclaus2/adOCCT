@@ -250,8 +250,8 @@ static gp_Pnt2d Function_Value(const Standard_Real theU,
       {
         gp_Cylinder Cylinder = theData.mySurf->Cylinder();
         ElSLib::Parameters( Cylinder, p, S, T);
-        if(U0 < Uinf) decalU = -int((Uinf - U0)/(2*M_PI))-1;
-        if(U0 > Usup) decalU =  int((U0 - Usup)/(2*M_PI))+1;
+        if(U0 < Uinf) decalU = -int(Standard_Real((Uinf - U0)/(2*M_PI)))-1;
+        if(U0 > Usup) decalU =  int(Standard_Real((U0 - Usup)/(2*M_PI)))+1;
         S += decalU*2*M_PI;
         break;
       }
@@ -259,8 +259,8 @@ static gp_Pnt2d Function_Value(const Standard_Real theU,
       {
         gp_Cone Cone = theData.mySurf->Cone();
         ElSLib::Parameters( Cone, p, S, T);
-        if(U0 < Uinf) decalU = -int((Uinf - U0)/(2*M_PI))-1;
-        if(U0 > Usup) decalU =  int((U0 - Usup)/(2*M_PI))+1;
+        if(U0 < Uinf) decalU = -int(Standard_Real((Uinf - U0)/(2*M_PI)))-1;
+        if(U0 > Usup) decalU =  int(Standard_Real((U0 - Usup)/(2*M_PI)))+1;
         S += decalU*2*M_PI;
         break;
       }
@@ -268,11 +268,11 @@ static gp_Pnt2d Function_Value(const Standard_Real theU,
       {
         gp_Sphere Sphere = theData.mySurf->Sphere();
         ElSLib::Parameters( Sphere, p, S, T);
-        if(U0 < Uinf) decalU = -int((Uinf - U0)/(2*M_PI))-1;
-        if(U0 > Usup) decalU =  int((U0 - Usup)/(2*M_PI))+1;
+        if(U0 < Uinf) decalU = -int(Standard_Real((Uinf - U0)/(2*M_PI)))-1;
+        if(U0 > Usup) decalU =  int(Standard_Real((U0 - Usup)/(2*M_PI)))+1;
         S += decalU*2*M_PI;
-        if(V0 < Vinf) decalV = -int((Vinf - V0)/(2*M_PI))-1;
-        if(V0 > (Vsup+(Vsup-Vinf))) decalV =  int((V0 - Vsup+(Vsup-Vinf))/(2*M_PI))+1;
+        if(V0 < Vinf) decalV = -int(Standard_Real((Vinf - V0)/(2*M_PI)))-1;
+        if(V0 > (Vsup+(Vsup-Vinf))) decalV =  int(Standard_Real((V0 - Vsup+(Vsup-Vinf))/(2*M_PI)))+1;
         T += decalV*2*M_PI;
         if(0.4*M_PI < Abs(U0 - S) && Abs(U0 - S) < 1.6*M_PI)
         {
@@ -288,10 +288,10 @@ static gp_Pnt2d Function_Value(const Standard_Real theU,
       {
         gp_Torus Torus = theData.mySurf->Torus();
         ElSLib::Parameters( Torus, p, S, T);
-        if(U0 < Uinf) decalU = -int((Uinf - U0)/(2*M_PI))-1;
-        if(U0 > Usup) decalU =  int((U0 - Usup)/(2*M_PI))+1;
-        if(V0 < Vinf) decalV = -int((Vinf - V0)/(2*M_PI))-1;
-        if(V0 > Vsup) decalV =  int((V0 - Vsup)/(2*M_PI))+1;
+        if(U0 < Uinf) decalU = -int(Standard_Real((Uinf - U0)/(2*M_PI)))-1;
+        if(U0 > Usup) decalU =  int(Standard_Real((U0 - Usup)/(2*M_PI)))+1;
+        if(V0 < Vinf) decalV = -int(Standard_Real((Vinf - V0)/(2*M_PI)))-1;
+        if(V0 > Vsup) decalV =  int(Standard_Real((V0 - Vsup)/(2*M_PI)))+1;
         S += decalU*2*M_PI; T += decalV*2*M_PI;
         break;
       }
@@ -314,7 +314,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU,
       U0 = Uinf;
     else
     {
-      decalU = int((Uinf - U0)/uperiod)+1;
+      decalU = int(Standard_Real((Uinf - U0)/uperiod))+1;
       U0 += decalU*uperiod;
     }
   }
@@ -324,7 +324,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU,
       U0 = Usup;
     else
     {
-      decalU = -(int((U0 - Usup)/uperiod)+1);
+      decalU = -(int(Standard_Real((U0 - Usup)/uperiod))+1);
       U0 += decalU*uperiod;
     }
   }
@@ -334,7 +334,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU,
       V0 = Vinf;
     else
     {
-      decalV = int((Vinf - V0)/vperiod)+1;
+      decalV = int(Standard_Real((Vinf - V0)/vperiod))+1;
       V0 += decalV*vperiod;
     }
   }
@@ -344,7 +344,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU,
       V0 = Vsup;
     else
     {
-      decalV = -int((V0 - Vsup)/vperiod)-1;
+      decalV = -int(Standard_Real((V0 - Vsup)/vperiod))-1;
       V0 += decalV*vperiod;
     }
   }

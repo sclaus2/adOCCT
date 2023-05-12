@@ -124,8 +124,8 @@ namespace
 #define addPoint6 theB.Add(PointType(theO.Coord() -aRbm*theYd.Coord()))
 #define addPoint7 theB.Add(PointType(theO.Coord() +aRam*PI4*theXd.Coord() -aRbm*PI4*theYd.Coord()))
 
-    Standard_Integer aDeb = (Standard_Integer )( aTeta1/(M_PI/4.));
-    Standard_Integer aFin = (Standard_Integer )( aTeta2/(M_PI/4.));
+    Standard_Integer aDeb = (Standard_Integer )Standard_Real( aTeta1/(M_PI/4.));
+    Standard_Integer aFin = (Standard_Integer )Standard_Real( aTeta2/(M_PI/4.));
     aDeb++;
 
     if (aDeb > aFin) return;
@@ -1255,12 +1255,12 @@ void BndLib::Add(const gp_Torus& S,const Standard_Real UMin,
   Standard_Integer Fi1;
   Standard_Integer Fi2;
   if (VMax<VMin) {
-    Fi1 = (Standard_Integer )( VMax/(M_PI/4.));
-    Fi2 = (Standard_Integer )( VMin/(M_PI/4.));
+    Fi1 = (Standard_Integer )Standard_Real( VMax/(M_PI/4.));
+    Fi2 = (Standard_Integer )Standard_Real( VMin/(M_PI/4.));
   }
   else {
-    Fi1 = (Standard_Integer )( VMin/(M_PI/4.));
-    Fi2 = (Standard_Integer )( VMax/(M_PI/4.));
+    Fi1 = (Standard_Integer )Standard_Real( VMin/(M_PI/4.));
+    Fi2 = (Standard_Integer )Standard_Real( VMax/(M_PI/4.));
   }
   Fi2++;
   

@@ -263,7 +263,7 @@ static Standard_Boolean PerformCircular (const TheCurve& theC,
 {
   Standard_Real anAngle = Max (1.0 - (theDeflection / theC.Circle().Radius()), 0.0);
   anAngle = 2.0 * ACos (anAngle);
-  Standard_Integer aNbPoints = (Standard_Integer )((theU2 - theU1) / anAngle);
+  Standard_Integer aNbPoints = (Standard_Integer )Standard_Real((theU2 - theU1) / anAngle);
   aNbPoints += 2;
   anAngle = (theU2 - theU1) / (Standard_Real) (aNbPoints - 1);
   Standard_Real U = theU1;

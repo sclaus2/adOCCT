@@ -691,7 +691,7 @@ Standard_Boolean PSO_Perform(GeomLib_CheckCurveOnSurface_TargetFunc& theFunction
   const Standard_Real aStep = aDeltaParam/(aNbControlPoints-1);
   Standard_Integer aCount = 1;
   for(Standard_Real aPrm = theParInf(1); aCount <= aNbControlPoints; aCount++,
-    aPrm = (aCount == aNbControlPoints)? theParSup(1) : aPrm+aStep)
+    aPrm = (aCount == aNbControlPoints)? theParSup(1) : Standard_Real(aPrm+aStep))
   {
     Standard_Real aVal = RealLast();
     if(!theFunction.Value(aPrm, aVal))
