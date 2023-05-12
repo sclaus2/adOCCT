@@ -75,7 +75,7 @@ Standard_Integer Adaptor3d_HSurfaceTool::NbSamplesU(const Handle(Adaptor3d_Surfa
   { 
     const Standard_Real uf = FirstUParameter(S);
     const Standard_Real ul = LastUParameter(S);
-    n *= (Standard_Integer)((u2-u1)/(ul-uf));
+    n *= (Standard_Integer)Standard_Real((u2-u1)/(ul-uf));
     if (n>nbs || n>50) n = nbs;
     if (n<5)   n = 5;
   }
@@ -92,7 +92,7 @@ Standard_Integer Adaptor3d_HSurfaceTool::NbSamplesV(const Handle(Adaptor3d_Surfa
   {
     const Standard_Real vf = FirstVParameter(S);
     const Standard_Real vl = LastVParameter(S);
-    n *= (Standard_Integer)((v2-v1)/(vl-vf));
+    n *= (Standard_Integer)Standard_Real((v2-v1)/(vl-vf));
     if (n>nbs || n>50) n = nbs;
     if (n<5)   n = 5;
   }

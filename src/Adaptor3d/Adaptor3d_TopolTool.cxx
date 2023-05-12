@@ -1012,12 +1012,12 @@ void Adaptor3d_TopolTool::BSplSamplePnts(const Standard_Real theDefl,
   if (nbsu < theNUmin || nbsv < theNVmin) {
     Standard_Integer aNb;
     if (nbsu < nbsv) {
-      aNb = (Standard_Integer)(nbsv * ((Standard_Real)theNUmin)/((Standard_Real)nbsu));
+      aNb = (Standard_Integer)Standard_Real(nbsv * ((Standard_Real)theNUmin)/((Standard_Real)nbsu));
       aNb = Min(aNb, 30);
       bVuniform = (aNb > nbsv) ? Standard_True : bVuniform;
       nbsv = bVuniform ? aNb : nbsv;
     } else {
-      aNb = (Standard_Integer)(nbsu * ((Standard_Real)theNVmin)/((Standard_Real)nbsv));
+      aNb = (Standard_Integer)Standard_Real(nbsu * ((Standard_Real)theNVmin)/((Standard_Real)nbsv));
       aNb = Min(aNb, 30);
       bUuniform = (aNb > nbsu) ? Standard_True : bUuniform;
       nbsu = bUuniform ? aNb : nbsu;
