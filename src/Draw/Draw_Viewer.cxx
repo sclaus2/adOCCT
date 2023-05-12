@@ -1321,8 +1321,8 @@ void Draw_Display::DrawString(const gp_Pnt2d& ppt,
 
   case DRAW :
     {
-      int X =   (int) ( pt.X() + moveX + curview->GetDx());
-      int Y =   (int) (-pt.Y() + moveY - curview->GetDy());
+      int X =   (int) Standard_Real( pt.X() + moveX + curview->GetDx());
+      int Y =   (int) Standard_Real(-pt.Y() + moveY - curview->GetDy());
       curview->DrawString(X,Y,(char *)S);
       if (Draw_Bounds) {
 	if (pt.X() + moveX > xmax) xmax = pt.X().getValue();
@@ -1335,8 +1335,8 @@ void Draw_Display::DrawString(const gp_Pnt2d& ppt,
 
   case POSTSCRIPT :
     {
-      Standard_Integer x = (Standard_Integer )( (pt.X() + moveX - ps_vx) * ps_kx + ps_px);
-      Standard_Integer y = (Standard_Integer )( (pt.Y() + moveY - ps_vy) * ps_ky + ps_py);
+      Standard_Integer x = (Standard_Integer )Standard_Real( (pt.X() + moveX - ps_vx) * ps_kx + ps_px);
+      Standard_Integer y = (Standard_Integer )Standard_Real( (pt.Y() + moveY - ps_vy) * ps_ky + ps_py);
       (*ps_stream) <<"stroke\n";
       (*ps_stream) << x << " " << y << " m\n";
       (*ps_stream) <<"("<<S<<") show\nnewpath\n";
@@ -1456,8 +1456,8 @@ void Draw_Display::MoveTo (const gp_Pnt2d& pp)
 
   case POSTSCRIPT :
     {
-      Standard_Integer x = (Standard_Integer )( (pt.X() - ps_vx) * ps_kx + ps_px);
-      Standard_Integer y = (Standard_Integer )( (pt.Y() - ps_vy) * ps_ky + ps_py);
+      Standard_Integer x = (Standard_Integer )Standard_Real( (pt.X() - ps_vx) * ps_kx + ps_px);
+      Standard_Integer y = (Standard_Integer )Standard_Real( (pt.Y() - ps_vy) * ps_ky + ps_py);
       (*ps_stream) <<"stroke\nnewpath\n"<< x << " " << y << " m\n";
     }
     break;
@@ -1582,10 +1582,10 @@ void Draw_Display::DrawTo (const gp_Pnt2d& pp2)
 
     if(Trim(PI1,PI2,x0,y0,x1,y1))
     {
-      segm[nbseg].Init(static_cast<Standard_Integer>( PI1.X() + curview->GetDx()),
-                       static_cast<Standard_Integer>(-PI1.Y() - curview->GetDy()),
-                       static_cast<Standard_Integer>( PI2.X() + curview->GetDx()),
-                       static_cast<Standard_Integer>(-PI2.Y() - curview->GetDy()));
+      segm[nbseg].Init(static_cast<Standard_Integer>(Standard_Real(PI1.X() + curview->GetDx())),
+                       static_cast<Standard_Integer>(Standard_Real(-PI1.Y() - curview->GetDy())),
+                       static_cast<Standard_Integer>(Standard_Real(PI2.X() + curview->GetDx())),
+                       static_cast<Standard_Integer>(Standard_Real(-PI2.Y() - curview->GetDy())));
       ++nbseg;
     }
 #else
@@ -1696,8 +1696,8 @@ void Draw_Display::DrawTo (const gp_Pnt2d& pp2)
 
   case POSTSCRIPT :
     {
-      Standard_Integer x = (Standard_Integer )( (p2.X() - ps_vx) * ps_kx + ps_px);
-      Standard_Integer y = (Standard_Integer )( (p2.Y() - ps_vy) * ps_ky + ps_py);
+      Standard_Integer x = (Standard_Integer )Standard_Real( (p2.X() - ps_vx) * ps_kx + ps_px);
+      Standard_Integer y = (Standard_Integer )Standard_Real( (p2.Y() - ps_vy) * ps_ky + ps_py);
       (*ps_stream) << x << " " << y << " l\n";
     }
     break;
