@@ -7677,7 +7677,7 @@ static Standard_Integer VAnimation (Draw_Interpretor& theDI,
   Standard_Real aPts = aPlayStartTime;
   int64_t aNbFrames = 0;
   Message_ProgressScope aPS(Message_ProgressIndicator::Start(aProgress),
-                            "Video recording, sec", Max(1, Standard_Integer(aPlayDuration / aPlaySpeed)));
+                            "Video recording, sec", Max(1, Standard_Integer(Standard_Real(aPlayDuration / aPlaySpeed))));
   Standard_Integer aSecondsProgress = 0;
   for (; aPts <= anUpperPts && aPS.More();)
   {
@@ -7722,7 +7722,7 @@ static Standard_Integer VAnimation (Draw_Interpretor& theDI,
       aView->Redraw();
     }
 
-    while (aSecondsProgress < Standard_Integer(aRecPts / aPlaySpeed))
+    while (aSecondsProgress < Standard_Integer(Standard_Real(aRecPts / aPlaySpeed)))
     {
       aPS.Next();
       ++aSecondsProgress;
