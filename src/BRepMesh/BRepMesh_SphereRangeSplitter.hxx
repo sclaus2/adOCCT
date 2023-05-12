@@ -48,7 +48,7 @@ private:
     std::pair<Standard_Real, Standard_Real>&       theStepAndOffset) const
   {
     const Standard_Real aDiff = theRange.second - theRange.first;
-    theStepAndOffset.first  = aDiff / ((Standard_Integer) (aDiff / theDefaultStep) + 1);
+    theStepAndOffset.first  = aDiff / ((Standard_Integer) Standard_Real(aDiff / theDefaultStep) + 1);
     theStepAndOffset.second = theRange.second - Precision::PConfusion();
   }
 };

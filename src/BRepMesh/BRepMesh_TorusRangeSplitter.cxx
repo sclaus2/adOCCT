@@ -39,7 +39,7 @@ Handle(IMeshData::ListOfPnt2d) BRepMesh_TorusRangeSplitter::GenerateSurfaceNodes
   Standard_Real Dv = 0.9*oldDv; //TWOTHIRD * oldDv;
   Dv = oldDv;
 
-  const Standard_Integer nbV = Max((Standard_Integer) (aDiffV / Dv), 2);
+  const Standard_Integer nbV = Max((Standard_Integer) Standard_Real(aDiffV / Dv), 2);
   Dv = aDiffV / (nbV + 1);
 
   Standard_Real Du;
@@ -62,8 +62,8 @@ Handle(IMeshData::ListOfPnt2d) BRepMesh_TorusRangeSplitter::GenerateSurfaceNodes
     Du = Dv;
   }
 
-  Standard_Integer nbU = Max((Standard_Integer) (aDiffU / Du), 2);
-  nbU = Max(nbU, (Standard_Integer) (nbV * aDiffU * R / (aDiffV * r) / 5.));
+  Standard_Integer nbU = Max((Standard_Integer) Standard_Real(aDiffU / Du), 2);
+  nbU = Max(nbU, (Standard_Integer) Standard_Real(nbV * aDiffU * R / (aDiffV * r) / 5.));
   Du = aDiffU / (nbU + 1);
 
   const Handle(NCollection_IncAllocator) aTmpAlloc =
