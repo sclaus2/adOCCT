@@ -1242,7 +1242,7 @@ void V3d_View::SetSize (const Standard_Real theSize)
 
   Handle(Graphic3d_Camera) aCamera = Camera();
 
-  aCamera->SetScale (aCamera->Aspect() >= 1.0 ? theSize / aCamera->Aspect() : theSize);
+  aCamera->SetScale (aCamera->Aspect() >= 1.0 ? Standard_Real(theSize / aCamera->Aspect()) : theSize);
 
   ImmediateUpdate();
 }

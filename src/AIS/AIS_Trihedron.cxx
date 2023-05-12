@@ -869,7 +869,7 @@ void AIS_Trihedron::updatePrimitives(const Handle(Prs3d_DatumAspect)& theAspect,
         {
           // draw cylinder
           myPrimitives[aPart] = Prs3d_Arrow::DrawShaded (anAxis, anAxisLength * aTubeRadiusPercent,
-                                                         aDrawArrow ? (anAxisLength - anAxisLength * aConeLengthPercent) : anAxisLength,
+                                                         aDrawArrow ? Standard_Real(anAxisLength - anAxisLength * aConeLengthPercent) : anAxisLength,
                                                          0.0, 0.0, aNbOfFacettes);
         }
 

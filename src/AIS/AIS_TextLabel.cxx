@@ -67,7 +67,7 @@ void AIS_TextLabel::SetColor (const Quantity_Color& theColor)
 void AIS_TextLabel::SetTransparency (const Standard_Real theValue)
 {
   Quantity_ColorRGBA aTextColor (myDrawer->TextAspect()->Aspect()->Color());
-  aTextColor.SetAlpha (Standard_ShortReal(1.0 - theValue));
+  aTextColor.SetAlpha (Standard_ShortReal(Standard_Real(1.0 - theValue)));
 
   Quantity_ColorRGBA aSubColor (myDrawer->TextAspect()->Aspect()->ColorSubTitle());
   aSubColor.SetAlpha (aTextColor.Alpha());

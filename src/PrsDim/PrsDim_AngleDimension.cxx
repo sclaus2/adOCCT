@@ -405,7 +405,7 @@ void PrsDim_AngleDimension::DrawArc (const Handle(Prs3d_Presentation)& thePresen
   if (myType == PrsDim_TypeOfAngle_Exterior)
     anAngle = 2.0 * M_PI - anAngle;
   // it sets 50 points on PI, and a part of points if angle is less
-  const Standard_Integer aNbPoints = Max (4, Standard_Integer (50.0 * anAngle / M_PI));
+  const Standard_Integer aNbPoints = Max (4, Standard_Integer (Standard_Real(50.0 * anAngle / M_PI)));
 
   GCPnts_UniformAbscissa aMakePnts (anArcAdaptor, aNbPoints);
   if (!aMakePnts.IsDone())

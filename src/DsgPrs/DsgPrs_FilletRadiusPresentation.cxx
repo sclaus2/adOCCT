@@ -95,7 +95,7 @@ void DsgPrs_FilletRadiusPresentation::Add (const Handle(Prs3d_Presentation)& aPr
   if( !SpecCase )
   {
     const Standard_Real Alpha = Abs(LastParCirc - FirstParCirc);
-    const Standard_Integer NodeNumber = Max (4 , Standard_Integer (50. * Alpha / M_PI));
+    const Standard_Integer NodeNumber = Max (4 , Standard_Integer (Standard_Real(50. * Alpha / M_PI)));
     const Standard_Real delta = Alpha / ( NodeNumber - 1 );
 
     Handle(Graphic3d_ArrayOfPolylines) aPrims = new Graphic3d_ArrayOfPolylines(NodeNumber);

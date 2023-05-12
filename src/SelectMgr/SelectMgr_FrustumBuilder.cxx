@@ -122,7 +122,7 @@ gp_Pnt SelectMgr_FrustumBuilder::ProjectPntOnViewPlane (const Standard_Real& the
   {
     anXYZ.SetCoord (2.0 * theX / myWidth - 1.0,
                     (myHeight - 1 - theY) / myHeight * 2.0 - 1.0,
-                    myCamera->IsZeroToOneDepth() ? theZ : (2.0 * theZ - 1.0));
+                    myCamera->IsZeroToOneDepth() ? theZ : Standard_Real(2.0 * theZ - 1.0));
   }
   else
   {

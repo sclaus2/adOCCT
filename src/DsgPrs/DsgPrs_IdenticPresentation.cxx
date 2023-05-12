@@ -120,7 +120,7 @@ void DsgPrs_IdenticPresentation::Add(const Handle(Prs3d_Presentation)& aPresenta
   Standard_Real pSAttach =  ElCLib::Parameter(CC, aSAttach);
   Standard_Real alpha = pSAttach - pFAttach;
   if ( alpha < 0 ) alpha += 2. * M_PI;
-  const Standard_Integer nb = (Standard_Integer )( 50. * alpha / M_PI);
+  const Standard_Integer nb = (Standard_Integer )Standard_Real( 50. * alpha / M_PI);
   const Standard_Integer nbp = Max (4, nb);
   const Standard_Real dteta = alpha/(nbp-1);
 
@@ -169,7 +169,7 @@ void DsgPrs_IdenticPresentation::Add(const Handle(Prs3d_Presentation)& aPresenta
   Standard_Real pSAttach = ElCLib::Parameter(CC, aSAttach);
   Standard_Real alpha = pSAttach - pFAttach;
   if ( alpha < 0 ) alpha += 2. * M_PI;
-  const Standard_Integer nb = (Standard_Integer)( 50. * alpha / M_PI);
+  const Standard_Integer nb = (Standard_Integer)Standard_Real( 50. * alpha / M_PI);
   const Standard_Integer nbp = Max (4, nb);
   const Standard_Real dteta = alpha/(nbp-1);
 
@@ -214,7 +214,7 @@ void DsgPrs_IdenticPresentation::Add(const Handle(Prs3d_Presentation)& aPresenta
   Standard_Real pSAttach =  ElCLib::Parameter(anEllipse, aSAttach);
   Standard_Real alpha = pSAttach - pFAttach;
   if ( alpha < 0 ) alpha += 2. * M_PI;
-  const Standard_Integer nb = (Standard_Integer)(50.0*alpha/M_PI);
+  const Standard_Integer nb = (Standard_Integer)Standard_Real(50.0*alpha/M_PI);
   const Standard_Integer nbp = Max (4, nb);
   const Standard_Real dteta = alpha/(nbp-1);
 

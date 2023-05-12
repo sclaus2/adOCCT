@@ -366,8 +366,8 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors (Standard_Integer theNb
     aParam = aPrev + aMetric(i);
     while (aTarget <= aParam)
     {
-      float aCoefPrev = float((aParam - aTarget) / (aParam - aPrev));
-      float aCoefCurr = float((aTarget - aPrev) / (aParam - aPrev));
+      float aCoefPrev = float(Standard_Real((aParam - aTarget) / (aParam - aPrev)));
+      float aCoefCurr = float(Standard_Real((aTarget - aPrev) / (aParam - aPrev)));
       Quantity_Color aColor (aGrid(i).Rgb() * aCoefCurr + aGrid(i-1).Rgb() * aCoefPrev);
       aResult.Append (aColor);
       aTarget += aDStep;
@@ -660,7 +660,7 @@ void AIS_ColorScale::drawColorBar (const Handle(Prs3d_Presentation)& thePrs,
                                                  (aColors.Length() + 1) * 2 * 3, // quads as triangles
                                                  false, true);                   // per-vertex colors
     Quantity_Color aColor1 (aColors.Value (1)), aColor2;
-    Standard_Integer       aSizeY        = Standard_Integer(aStepY / 2);
+    Standard_Integer       aSizeY        = Standard_Integer(Standard_Real(aStepY / 2));
     const Standard_Integer anYBottom     = theBarBottom + aSizeY;
     Standard_Integer       anYBottomIter = anYBottom;
     addColoredQuad (aTriangles,
@@ -671,7 +671,7 @@ void AIS_ColorScale::drawColorBar (const Handle(Prs3d_Presentation)& thePrs,
     {
       aColor1 = aColors.Value (aColorIter + 1);
       aColor2 = aColors.Value (aColorIter + 2);
-      aSizeY  = anYBottom + Standard_Integer((aColorIter + 1) * aStepY) - anYBottomIter;
+      aSizeY  = anYBottom + Standard_Integer(Standard_Real((aColorIter + 1) * aStepY)) - anYBottomIter;
       addColoredQuad (aTriangles,
                       anXLeft, anYBottomIter,
                       theColorBreadth, aSizeY,
@@ -731,7 +731,7 @@ void AIS_ColorScale::drawColorBar (const Handle(Prs3d_Presentation)& thePrs,
     for (Standard_Integer aColorIter = 0; aColorIter < myNbIntervals; ++aColorIter)
     {
       const Quantity_Color&  aColor = aColors.Value (aColorIter + 1);
-      const Standard_Integer aSizeY = theBarBottom + Standard_Integer((aColorIter + 1) * aStepY) - anYBottomIter;
+      const Standard_Integer aSizeY = theBarBottom + Standard_Integer(Standard_Real((aColorIter + 1) * aStepY)) - anYBottomIter;
       addColoredQuad (aTriangles,
                       anXLeft, anYBottomIter,
                       theColorBreadth, aSizeY,
@@ -823,7 +823,7 @@ void AIS_ColorScale::drawLabels (const Handle(Graphic3d_Group)& theGroup,
   Standard_Integer aLast2 = i2;
   const Standard_Integer anYBottom = myIsLabelAtBorder
                                    ? theBarBottom
-                                   : theBarBottom + Standard_Integer(aStepY / 2);
+                                   : theBarBottom + Standard_Integer(Standard_Real(aStepY / 2));
   while (i2 - i1 >= aFilter || ( i2 == 0 && i1 == 0 ))
   {
     Standard_Integer aPos1 = i1;
@@ -831,14 +831,14 @@ void AIS_ColorScale::drawLabels (const Handle(Graphic3d_Group)& theGroup,
     if (aFilter && !(aPos1 % aFilter))
     {
       drawText (theGroup, theLabels.Value (i1 + 1),
-                anXLeft, anYBottom + Standard_Integer(i1 * aStepY + anAscent),
+                anXLeft, anYBottom + Standard_Integer(Standard_Real(i1 * aStepY + anAscent)),
                 Graphic3d_VTA_CENTER);
       aLast1 = i1;
     }
     if (aFilter && !(aPos2 % aFilter))
     {
       drawText (theGroup, theLabels.Value (i2 + 1),
-                anXLeft, anYBottom + Standard_Integer(i2 * aStepY + anAscent),
+                anXLeft, anYBottom + Standard_Integer(Standard_Real(i2 * aStepY + anAscent)),
                 Graphic3d_VTA_CENTER);
       aLast2 = i2;
     }
@@ -861,7 +861,7 @@ void AIS_ColorScale::drawLabels (const Handle(Graphic3d_Group)& theGroup,
   if (i0 != -1)
   {
     drawText (theGroup, theLabels.Value (i0 + 1),
-              anXLeft, anYBottom + Standard_Integer(i0 * aStepY + anAscent),
+              anXLeft, anYBottom + Standard_Integer(Standard_Real(i0 * aStepY + anAscent)),
               Graphic3d_VTA_CENTER);
   }
 }

@@ -76,7 +76,7 @@ void V3d_Plane::Display (const Handle(V3d_View)& theView,
   anAsp->SetHatchStyle (new Graphic3d_HatchStyle (Aspect_HS_GRID_DIAGONAL_WIDE));
   aGroup->SetGroupPrimitivesAspect (anAsp);
 
-  const Standard_ShortReal aSize = (Standard_ShortReal)(0.5*aViewer->DefaultViewSize());
+  const Standard_ShortReal aSize = (Standard_ShortReal)Standard_Real(0.5*aViewer->DefaultViewSize());
   const Standard_ShortReal anOffset = aSize/5000.0f;
 
   Handle(Graphic3d_ArrayOfQuadrangles) aPrims = new Graphic3d_ArrayOfQuadrangles(4);

@@ -292,11 +292,11 @@ void V3d_Trihedron::SetPosition (const Aspect_TypeOfTriedronPosition thePosition
   Graphic3d_Vec2i anOffset (0, 0);
   if ((thePosition & (Aspect_TOTP_LEFT | Aspect_TOTP_RIGHT)) != 0)
   {
-    anOffset.x() = static_cast<Standard_Integer> (myScale * THE_INTERNAL_SCALE_FACTOR);
+    anOffset.x() = static_cast<Standard_Integer> (Standard_Real(myScale * THE_INTERNAL_SCALE_FACTOR));
   }
   if ((thePosition & (Aspect_TOTP_TOP | Aspect_TOTP_BOTTOM)) != 0)
   {
-    anOffset.y() = static_cast<Standard_Integer> (myScale * THE_INTERNAL_SCALE_FACTOR);
+    anOffset.y() = static_cast<Standard_Integer> (Standard_Real(myScale * THE_INTERNAL_SCALE_FACTOR));
   }
 
   myTransformPers->SetCorner2d (thePosition);
@@ -316,7 +316,7 @@ void V3d_Trihedron::compute()
   const Standard_Real aScale          = myScale * myRatio * THE_INTERNAL_SCALE_FACTOR;
   const Standard_Real aCylinderLength = aScale * THE_CYLINDER_LENGTH;
   const Standard_Real aCylinderRadius = aScale * myDiameter;
-  const Standard_Real aConeRadius     = myIsWireframe ? aCylinderRadius : (aCylinderRadius * 2.0);
+  const Standard_Real aConeRadius     = myIsWireframe ? aCylinderRadius : Standard_Real(aCylinderRadius * 2.0);
   const Standard_Real aConeLength     = aScale * (1.0 - THE_CYLINDER_LENGTH);
   const Standard_Real aSphereRadius   = aCylinderRadius * 2.0;
   const Standard_Real aRayon          = aScale / 30.0;

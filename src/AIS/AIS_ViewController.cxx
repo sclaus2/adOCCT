@@ -444,7 +444,7 @@ void AIS_ViewController::flushGestures (const Handle(AIS_InteractiveContext)& ,
 
       myGL.Panning.ToPan = true;
       myGL.Panning.Delta.x() = int( aPinchCenterXDev);
-      myGL.Panning.Delta.y() = int(-aPinchCenterYDev);
+      myGL.Panning.Delta.y() = int(Standard_Real(-aPinchCenterYDev));
       anIsClearDev = true;
     }
 
