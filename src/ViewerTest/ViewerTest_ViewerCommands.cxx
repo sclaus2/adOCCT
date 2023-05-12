@@ -6807,19 +6807,19 @@ static int VViewParams (Draw_Interpretor& theDi, Standard_Integer theArgsNb, con
              "              %12g %12g %12g %12g\n"
              "              %12g %12g %12g %12g\n"
              "              %12g %12g %12g %12g\n",
-              aViewScale, aViewAspect,
-              aViewProj.X(), aViewProj.Y(), aViewProj.Z(),
-              aViewUp.X(),   aViewUp.Y(),   aViewUp.Z(),
-              aViewAt.X(),   aViewAt.Y(),   aViewAt.Z(),
-              aViewEye.X(),  aViewEye.Y(),  aViewEye.Z(),
-              anOrientMat.GetValue (0, 0), anOrientMat.GetValue (0, 1), anOrientMat.GetValue (0, 2), anOrientMat.GetValue (0, 3),
-              anOrientMat.GetValue (1, 0), anOrientMat.GetValue (1, 1), anOrientMat.GetValue (1, 2), anOrientMat.GetValue (1, 3),
-              anOrientMat.GetValue (2, 0), anOrientMat.GetValue (2, 1), anOrientMat.GetValue (2, 2), anOrientMat.GetValue (2, 3),
-              anOrientMat.GetValue (3, 0), anOrientMat.GetValue (3, 1), anOrientMat.GetValue (3, 2), anOrientMat.GetValue (3, 3),
-              aProjMat.GetValue (0, 0), aProjMat.GetValue (0, 1), aProjMat.GetValue (0, 2), aProjMat.GetValue (0, 3),
-              aProjMat.GetValue (1, 0), aProjMat.GetValue (1, 1), aProjMat.GetValue (1, 2), aProjMat.GetValue (1, 3),
-              aProjMat.GetValue (2, 0), aProjMat.GetValue (2, 1), aProjMat.GetValue (2, 2), aProjMat.GetValue (2, 3),
-              aProjMat.GetValue (3, 0), aProjMat.GetValue (3, 1), aProjMat.GetValue (3, 2), aProjMat.GetValue (3, 3));
+              aViewScale.getValue(), aViewAspect.getValue(),
+              aViewProj.X().getValue(), aViewProj.Y().getValue(), aViewProj.Z().getValue(),
+              aViewUp.X().getValue(),   aViewUp.Y().getValue(),   aViewUp.Z().getValue(),
+              aViewAt.X().getValue(),   aViewAt.Y().getValue(),   aViewAt.Z().getValue(),
+              aViewEye.X().getValue(),  aViewEye.Y().getValue(),  aViewEye.Z().getValue(),
+              anOrientMat.GetValue (0, 0).getValue(), anOrientMat.GetValue (0, 1).getValue(), anOrientMat.GetValue (0, 2).getValue(), anOrientMat.GetValue (0, 3).getValue(),
+              anOrientMat.GetValue (1, 0).getValue(), anOrientMat.GetValue (1, 1).getValue(), anOrientMat.GetValue (1, 2).getValue(), anOrientMat.GetValue (1, 3).getValue(),
+              anOrientMat.GetValue (2, 0).getValue(), anOrientMat.GetValue (2, 1).getValue(), anOrientMat.GetValue (2, 2).getValue(), anOrientMat.GetValue (2, 3).getValue(),
+              anOrientMat.GetValue (3, 0).getValue(), anOrientMat.GetValue (3, 1).getValue(), anOrientMat.GetValue (3, 2).getValue(), anOrientMat.GetValue (3, 3).getValue(),
+              aProjMat.GetValue (0, 0).getValue(), aProjMat.GetValue (0, 1).getValue(), aProjMat.GetValue (0, 2).getValue(), aProjMat.GetValue (0, 3).getValue(),
+              aProjMat.GetValue (1, 0).getValue(), aProjMat.GetValue (1, 1).getValue(), aProjMat.GetValue (1, 2).getValue(), aProjMat.GetValue (1, 3).getValue(),
+              aProjMat.GetValue (2, 0).getValue(), aProjMat.GetValue (2, 1).getValue(), aProjMat.GetValue (2, 2).getValue(), aProjMat.GetValue (2, 3).getValue(),
+              aProjMat.GetValue (3, 0).getValue(), aProjMat.GetValue (3, 1).getValue(), aProjMat.GetValue (3, 2).getValue(), aProjMat.GetValue (3, 3).getValue());
     theDi << aText;
     return 0;
   }
@@ -6843,10 +6843,10 @@ static int VViewParams (Draw_Interpretor& theDi, Standard_Integer theArgsNb, con
                "-proj %g %g %g "
                "-up %g %g %g "
                "-at %g %g %g\n",
-                aViewScale,
-                aViewProj.X(), aViewProj.Y(), aViewProj.Z(),
-                aViewUp.X(),   aViewUp.Y(),   aViewUp.Z(),
-                aViewAt.X(),   aViewAt.Y(),   aViewAt.Z());
+                aViewScale.getValue(),
+                aViewProj.X().getValue(), aViewProj.Y().getValue(), aViewProj.Z().getValue(),
+                aViewUp.X().getValue(),   aViewUp.Y().getValue(),   aViewUp.Z().getValue(),
+                aViewAt.X().getValue(),   aViewAt.Y().getValue(),   aViewAt.Z().getValue());
       theDi << aText;
     }
     else if (anArg == "-scale"
