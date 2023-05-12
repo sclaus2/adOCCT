@@ -179,7 +179,7 @@ static Standard_Boolean GoodOrientation(const Bnd_Box& B,
  
   Standard_Integer ii, Ind;
 //#ifndef OCCT_DEBUG
-  Standard_Integer Nb = (Standard_Integer) (4+(10*r));
+  Standard_Integer Nb = (Standard_Integer) Standard_Real(4+(10*r));
 //#else
 //  Standard_Integer Nb = 4+(10*r);
 //#endif

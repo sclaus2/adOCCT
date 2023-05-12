@@ -206,14 +206,14 @@ static Standard_Boolean CheckPCurve
 
   if (aSurf->IsUPeriodic()) {
     Standard_Real aPer = aSurf->UPeriod();
-    Standard_Integer nshift = (Standard_Integer) ((u-umin)/aPer);
+    Standard_Integer nshift = (Standard_Integer) Standard_Real((u-umin)/aPer);
     if (u < umin+aPer*nshift) nshift--;
     umin += aPer*nshift;
     umax += aPer*nshift;
   }
   if (aSurf->IsVPeriodic()) {
     Standard_Real aPer = aSurf->VPeriod();
-    Standard_Integer nshift = (Standard_Integer) ((v-vmin)/aPer);
+    Standard_Integer nshift = (Standard_Integer) Standard_Real((v-vmin)/aPer);
     if (v < vmin+aPer*nshift) nshift--;
     vmin += aPer*nshift;
     vmax += aPer*nshift;
