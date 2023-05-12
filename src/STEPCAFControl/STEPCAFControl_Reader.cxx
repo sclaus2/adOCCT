@@ -1117,7 +1117,7 @@ Standard_Boolean STEPCAFControl_Reader::ReadColors(const Handle(XSControl_WorkSe
             Styles.DecodeColor(CurveCol, aCCol);
           if (!RenderCol.IsNull()) {
             Styles.DecodeColor(RenderCol, aRCol);
-            aFullSCol = Quantity_ColorRGBA(aRCol, static_cast<float>(1.0f - RenderTransp));
+            aFullSCol = Quantity_ColorRGBA(aRCol, static_cast<float>(Standard_Real(1.0f - RenderTransp)));
           }
           if (isFound)
           {
@@ -1736,7 +1736,7 @@ Standard_Boolean STEPCAFControl_Reader::ReadSHUOs(const Handle(XSControl_WorkSes
         }
         if (!RenderCol.IsNull()) {
             Styles.DecodeColor(RenderCol, col);
-            colRGBA = Quantity_ColorRGBA(col, static_cast<float>(1.0 - RenderTransp));
+            colRGBA = Quantity_ColorRGBA(col, static_cast<float>(Standard_Real(1.0 - RenderTransp)));
         }
         CTool->SetColor(aLabelForStyle, colRGBA, XCAFDoc_ColorSurf);
       }
