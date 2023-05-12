@@ -69,13 +69,13 @@ void Aspect_CircularGrid::Compute(const Standard_Real X,
   Standard_Real xo = XOrigin();
   Standard_Real yo = YOrigin();
   Standard_Real d = Sqrt( (xo-X)*(xo-X) + (yo-Y)*(yo-Y) );
-  Standard_Integer n = (Standard_Integer ) ( d/myRadiusStep + 0.5 ) ;
+  Standard_Integer n = (Standard_Integer ) Standard_Real( d/myRadiusStep + 0.5 ) ;
   Standard_Real radius = Standard_Real(n) * myRadiusStep;
   Standard_Real cosinus = (X-xo)/d;
   Standard_Real a = ACos(cosinus);
   Standard_Real ra = RotationAngle();
   if ( Y < yo ) a = 2 * M_PI - a;
-  n = (Standard_Integer ) ((a-ra)/myAlpha + Sign(0.5, a-ra)) ;
+  n = (Standard_Integer ) Standard_Real((a-ra)/myAlpha + Sign(0.5, a-ra)) ;
 
   Standard_Real cs=0,sn=0;
   Standard_Boolean done = Standard_False;

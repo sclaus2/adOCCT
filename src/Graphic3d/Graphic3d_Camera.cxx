@@ -626,11 +626,11 @@ static Graphic3d_Vec4d safePointCast (const gp_Pnt& thePnt)
   gp_Pnt aSafePoint = thePnt;
   const Standard_Real aBigFloat = aLim * 0.1f;
   if (Abs (aSafePoint.X()) > aLim)
-    aSafePoint.SetX (aSafePoint.X() >= 0 ? aBigFloat : -aBigFloat);
+    aSafePoint.SetX (aSafePoint.X() >= 0 ? aBigFloat : Standard_Real(-aBigFloat));
   if (Abs (aSafePoint.Y()) > aLim)
-    aSafePoint.SetY (aSafePoint.Y() >= 0 ? aBigFloat : -aBigFloat);
+    aSafePoint.SetY (aSafePoint.Y() >= 0 ? aBigFloat : Standard_Real(-aBigFloat));
   if (Abs (aSafePoint.Z()) > aLim)
-    aSafePoint.SetZ (aSafePoint.Z() >= 0 ? aBigFloat : -aBigFloat);
+    aSafePoint.SetZ (aSafePoint.Z() >= 0 ? aBigFloat : Standard_Real(-aBigFloat));
 
   // convert point
   Graphic3d_Vec4d aPnt (aSafePoint.X(), aSafePoint.Y(), aSafePoint.Z(), 1.0);
@@ -781,7 +781,7 @@ gp_Pnt Graphic3d_Camera::ConvertView2World (const gp_Pnt& thePnt) const
 gp_XYZ Graphic3d_Camera::ViewDimensions (const Standard_Real theZValue) const
 {
   // view plane dimensions
-  Standard_Real aSize = IsOrthographic() ? myScale : (2.0 * theZValue * myFOVyTan);
+  Standard_Real aSize = IsOrthographic() ? myScale : Standard_Real(2.0 * theZValue * myFOVyTan);
   Standard_Real aSizeX, aSizeY;
   if (myAspect > 1.0)
   {
@@ -993,15 +993,15 @@ void Graphic3d_Camera::stereoProjection (NCollection_Mat4<Elem_t>& theProjL,
   computeProjection (aDummy, theProjL, theProjR, false);
 
   const Standard_Real aIOD = myIODType == IODType_Relative
-                           ? myIOD * Distance()
+                           ? Standard_Real(myIOD * Distance())
                            : myIOD;
   if (aIOD != 0.0)
   {
     // X translation to cancel parallax
     theHeadToEyeL.InitIdentity();
-    theHeadToEyeL.SetColumn (3, NCollection_Vec3<Elem_t> (Elem_t ( 0.5 * aIOD), Elem_t (0.0), Elem_t (0.0)));
+    theHeadToEyeL.SetColumn (3, NCollection_Vec3<Elem_t> (Elem_t (Standard_Real(0.5 * aIOD)), Elem_t (0.0), Elem_t (0.0)));
     theHeadToEyeR.InitIdentity();
-    theHeadToEyeR.SetColumn (3, NCollection_Vec3<Elem_t> (Elem_t (-0.5 * aIOD), Elem_t (0.0), Elem_t (0.0)));
+    theHeadToEyeR.SetColumn (3, NCollection_Vec3<Elem_t> (Elem_t (Standard_Real(-0.5 * aIOD)), Elem_t (0.0), Elem_t (0.0)));
   }
 }
 
@@ -1094,11 +1094,11 @@ void Graphic3d_Camera::computeProjection (NCollection_Mat4<Elem_t>& theProjM,
   anLRBT.Top    =  aDYHalf;
 
   Elem_t aIOD  = myIODType == IODType_Relative 
-    ? static_cast<Elem_t> (myIOD * Distance())
+    ? static_cast<Elem_t> (Standard_Real(myIOD * Distance()))
     : static_cast<Elem_t> (myIOD);
 
   Elem_t aFocus = myZFocusType == FocusType_Relative 
-    ? static_cast<Elem_t> (myZFocus * Distance())
+    ? static_cast<Elem_t> (Standard_Real(myZFocus * Distance()))
     : static_cast<Elem_t> (myZFocus);
 
   if (myTile.IsValid())
