@@ -363,8 +363,8 @@ void Analyse(const TColgp_Array2OfPnt& array2,
   case GeomAbs_Torus:                 { 
     //-- Set 15 for 2pi
     //-- Not enough ->25 for 2pi
-    nbsu = (Standard_Integer)(8*(usup-uinf));
-    nbsv = (Standard_Integer)(7*(vsup-vinf));
+    nbsu = (Standard_Integer)Standard_Real(8*(usup-uinf));
+    nbsv = (Standard_Integer)Standard_Real(7*(vsup-vinf));
     if(nbsu<5) nbsu=5;
     if(nbsv<5) nbsv=5;
     if(nbsu>30) nbsu=30; //modif HRT buc60462

@@ -1814,7 +1814,7 @@ static Standard_Boolean DiscretPar(const Standard_Real     DU,
 
   if (Eps < EpsMin) {
     Eps = EpsMin;
-    Nb  = Standard_Integer(DU/EpsMin);
+    Nb  = Standard_Integer(Standard_Real(DU/EpsMin));
   }  
   else { Nb = NbMax;}
 
