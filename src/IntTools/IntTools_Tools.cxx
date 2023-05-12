@@ -842,7 +842,7 @@ Standard_Real IntTools_Tools::ComputeIntRange(const Standard_Real theTol1,
   else {
     Standard_Real a1, a2, anAngle;
     //
-    anAngle = (theAngle > M_PI_2) ? (M_PI - theAngle) : theAngle;
+    anAngle = (theAngle > M_PI_2) ? Standard_Real(M_PI - theAngle) : theAngle;
     a1 = theTol1 * tan(M_PI_2 - anAngle);
     a2 = theTol2 / sin(anAngle);
     aDt = a1 + a2;

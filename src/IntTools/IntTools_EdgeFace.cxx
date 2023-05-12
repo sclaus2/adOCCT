@@ -814,7 +814,7 @@ Standard_Integer AdaptiveDiscret (const Standard_Integer iDiscret,
    aRadius=aCylinder.Radius();
    dLR=2*aRadius;
 
-   iDiscretNew=(Standard_Integer)(aELength/dLR);
+   iDiscretNew=(Standard_Integer)Standard_Real(aELength/dLR);
    
    if (iDiscretNew<iDiscret) {
      iDiscretNew=iDiscret;

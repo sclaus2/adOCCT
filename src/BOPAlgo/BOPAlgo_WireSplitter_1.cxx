@@ -1039,7 +1039,7 @@ Standard_Boolean RefineAngle2D(const TopoDS_Vertex& aV,
   aDomain1.SetValues(aP1, aT1, aTolInt, aP2, aT2, aTolInt);
   //
   for (i=0; i<2; ++i) {
-    aAi=(!i) ? aA1 : (aA2 + M_PI);
+    aAi=(!i) ? aA1 : Standard_Real(aA2 + M_PI);
     aXi=cos(aAi);
     aYi=sin(aAi);
     gp_Dir2d aDiri(aXi, aYi);

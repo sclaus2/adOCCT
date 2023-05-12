@@ -384,7 +384,7 @@ Standard_Integer ComputeTangentZones( const Handle(GeomAdaptor_Surface)& theSurf
           // iteration on period bounds
           for ( Standard_Integer k1 = 0; k1 < 2; k1++ ) {
             Standard_Real aBound = ( k1 == 0 ) ? 0 : twoPI;
-            Standard_Real aShift = ( k1 == 0 ) ? twoPI : -twoPI;
+            Standard_Real aShift = ( k1 == 0 ) ? twoPI : Standard_Real(-twoPI);
 
             // iteration on surfaces
             for ( Standard_Integer k2 = 0; k2 < 2; k2++ ) {

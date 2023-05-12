@@ -130,9 +130,9 @@ void IntTools_TopolTool::ComputeSamplePoints()
       aMaxAngle = ACos(1. - aDeflection / aRadius) * 2.;
     }
     if(aMaxAngle > Precision::Angular()) {
-      nbsu = Standard_Integer((usup-uinf) / aMaxAngle);
+      nbsu = Standard_Integer(Standard_Real((usup-uinf) / aMaxAngle));
     }
-    nbsv = (Standard_Integer)(vsup-vinf);
+    nbsv = (Standard_Integer)Standard_Real(vsup-vinf);
     nbsv /= 10;
 
     if(nbsu < 2) nbsu = 2;
@@ -160,9 +160,9 @@ void IntTools_TopolTool::ComputeSamplePoints()
     }
 
     if(aMaxAngle > Precision::Angular()) {
-      nbsu = Standard_Integer((usup - uinf) / aMaxAngle);
+      nbsu = Standard_Integer(Standard_Real((usup - uinf) / aMaxAngle));
     }
-    nbsv = (Standard_Integer)(vsup - vinf);
+    nbsv = (Standard_Integer)Standard_Real(vsup - vinf);
     nbsv /= 10;
 
 //     if(nbsu < 2) nbsu = 2;
@@ -204,7 +204,7 @@ void IntTools_TopolTool::ComputeSamplePoints()
     }
     
     if(aMaxAngle > Precision::Angular()) {
-      nbsu = Standard_Integer((usup - uinf) / aMaxAngle);
+      nbsu = Standard_Integer(Standard_Real((usup - uinf) / aMaxAngle));
     }
     aMaxAngle = M_PI * 0.5;
 
@@ -213,7 +213,7 @@ void IntTools_TopolTool::ComputeSamplePoints()
     }
     
     if(aMaxAngle > Precision::Angular()) {
-      nbsv = Standard_Integer((vsup - vinf) / aMaxAngle);
+      nbsv = Standard_Integer(Standard_Real((vsup - vinf) / aMaxAngle));
     }
     if(nbsu < 10) nbsu = 10;
     if(nbsv < 10) nbsv = 10;
@@ -264,7 +264,7 @@ void IntTools_TopolTool::ComputeSamplePoints()
     break;
   case GeomAbs_SurfaceOfExtrusion: {
     nbsu = 15;
-    nbsv = (Standard_Integer)(vsup - vinf);
+    nbsv = (Standard_Integer)Standard_Real(vsup - vinf);
     nbsv /= 10;
     if(nbsv < 15) nbsv = 15;
     if(nbsv > aMaxNbSample) nbsv = aMaxNbSample;

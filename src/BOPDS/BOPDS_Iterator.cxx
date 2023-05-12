@@ -190,7 +190,7 @@ Standard_Integer BOPDS_Iterator::BlockLength() const
     return 1;
   }
   //
-  aNbIIs=(Standard_Integer) (aCfPredict*(Standard_Real)aNbIIs);
+  aNbIIs=(Standard_Integer) Standard_Real(aCfPredict*(Standard_Real)aNbIIs);
   return aNbIIs;
 }
 //=======================================================================

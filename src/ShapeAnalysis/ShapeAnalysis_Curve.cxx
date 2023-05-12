@@ -1042,7 +1042,7 @@ Standard_Boolean ShapeAnalysis_Curve::GetSamplePoints (const Handle(Geom_Curve)&
   if(!adelta )
     return Standard_False;
   
-  Standard_Integer aK = (Standard_Integer)ceil ((last - first) / adelta);
+  Standard_Integer aK = (Standard_Integer)Standard_Real(ceil ((last - first) / adelta));
   Standard_Integer nbp =100*aK;
   if(curve->IsKind(STANDARD_TYPE(Geom_Line)))
     nbp =2;
