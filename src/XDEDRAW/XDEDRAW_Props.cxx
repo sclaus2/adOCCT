@@ -558,7 +558,7 @@ static Standard_Integer CheckProps (Draw_Interpretor& di, Standard_Integer argc,
     if ( ! aArea.IsNull() ) {
       try { 
         OCC_CATCH_SIGNALS
-	BRepGProp::SurfaceProperties(aShape,G,0.001);
+	BRepGProp::SurfaceProperties(aShape,G,Standard_Real(0.001));
 	//printf ("%s%9.1f (%3d%%)%s", ( wholeDoc ? "" : "  Area defect:   " ),
 	//	aArea->Get() - G.Mass(), 
 	//	(Standard_Integer)( Abs ( G.Mass() ) > 1e-10 ? 100. * ( aArea->Get() - G.Mass() ) / G.Mass() : 999. ),
@@ -600,7 +600,7 @@ static Standard_Integer CheckProps (Draw_Interpretor& di, Standard_Integer argc,
 	  localVolume = CalculVolume(aShape, pcg, tol, withForce, di);
 	}
 	else {
-	  BRepGProp::VolumeProperties(aShape,G,0.001,Standard_True);
+	  BRepGProp::VolumeProperties(aShape,G,Standard_Real(0.001),Standard_True);
 	  localVolume = G.Mass();
 	  pcg = G.CentreOfMass();
 	}
@@ -723,7 +723,7 @@ static Standard_Boolean GetMassProps(const TDF_Label& aLabel, gp_XYZ& theCenterG
   if(aDensity >0) {
     TopoDS_Shape aShape = XCAFDoc_ShapeTool::GetShape(aLabel);
     GProp_GProps G;
-    BRepGProp::VolumeProperties(aShape,G,0.001,Standard_True);
+    BRepGProp::VolumeProperties(aShape,G,Standard_Real(0.001),Standard_True);
     Standard_Real localVolume = G.Mass();
     theMassVal = aDensity*localVolume;
     theCenterGravity = G.CentreOfMass().XYZ();
