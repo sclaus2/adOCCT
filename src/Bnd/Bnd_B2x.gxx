@@ -122,11 +122,11 @@ Bnd_B2x Bnd_B2x::Transformed (const gp_Trsf2d& theTrsf) const
   else if (aForm== gp_Translation || aForm== gp_PntMirror || aForm== gp_Scale)
   {
     aResult.myCenter[0] =
-      (RealType)(myCenter[0] * aScale + theTrsf.TranslationPart().X());
+      (RealType)Standard_Real(myCenter[0] * aScale + theTrsf.TranslationPart().X());
     aResult.myCenter[1] =
-      (RealType)(myCenter[1] * aScale + theTrsf.TranslationPart().Y());
-    aResult.myHSize[0] = (RealType)(myHSize[0] * aScaleAbs);
-    aResult.myHSize[1] = (RealType)(myHSize[1] * aScaleAbs);
+      (RealType)Standard_Real(myCenter[1] * aScale + theTrsf.TranslationPart().Y());
+    aResult.myHSize[0] = (RealType)Standard_Real(myHSize[0] * aScaleAbs);
+    aResult.myHSize[1] = (RealType)Standard_Real(myHSize[1] * aScaleAbs);
   } else {
     gp_XY aCenter ((Standard_Real)myCenter[0],
                    (Standard_Real)myCenter[1]);
@@ -135,9 +135,9 @@ Bnd_B2x Bnd_B2x::Transformed (const gp_Trsf2d& theTrsf) const
     aResult.myCenter[1] = (RealType)aCenter.Y();
 
     const Standard_Real * aMat = &theTrsf.HVectorialPart().Value(1,1);
-    aResult.myHSize[0] = (RealType)(aScaleAbs * (Abs(aMat[0]) * myHSize[0]+
+    aResult.myHSize[0] = (RealType)Standard_Real(aScaleAbs * (Abs(aMat[0]) * myHSize[0]+
                                                  Abs(aMat[1]) * myHSize[1]));
-    aResult.myHSize[1] = (RealType)(aScaleAbs * (Abs(aMat[2]) * myHSize[0]+
+    aResult.myHSize[1] = (RealType)Standard_Real(aScaleAbs * (Abs(aMat[2]) * myHSize[0]+
                                                  Abs(aMat[3]) * myHSize[1]));
   }
   return aResult;
@@ -208,12 +208,12 @@ Standard_Boolean Bnd_B2x::IsOut (const Bnd_B2x&   theBox,
       aForm == gp_PntMirror   || aForm == gp_Scale)
   {
     aResult =
-      (Abs (RealType(theBox.myCenter[0]*aScale + theTrsf.TranslationPart().X())
+      (Abs (RealType(Standard_Real(theBox.myCenter[0]*aScale + theTrsf.TranslationPart().X()))
             - myCenter[0])
-         > RealType (theBox.myHSize[0]*aScaleAbs) + myHSize[0] ||
-       Abs (RealType(theBox.myCenter[1]*aScale + theTrsf.TranslationPart().Y())
+         > RealType (Standard_Real(theBox.myHSize[0]*aScaleAbs)) + myHSize[0] ||
+       Abs (RealType(Standard_Real(theBox.myCenter[1]*aScale + theTrsf.TranslationPart().Y()))
             - myCenter[1])
-         > RealType (theBox.myHSize[1]*aScaleAbs) + myHSize[1]);
+         > RealType (Standard_Real(theBox.myHSize[1]*aScaleAbs)) + myHSize[1]);
 
   }
   else {
@@ -320,12 +320,12 @@ Standard_Boolean Bnd_B2x::IsIn (const Bnd_B2x&   theBox,
       aForm == gp_PntMirror   || aForm == gp_Scale)
   {
     aResult =
-      (Abs (RealType(theBox.myCenter[0]*aScale + theTrsf.TranslationPart().X())
+      (Abs (RealType(Standard_Real(theBox.myCenter[0]*aScale + theTrsf.TranslationPart().X()))
             - myCenter[0])
-         < RealType (theBox.myHSize[0]*aScaleAbs) - myHSize[0] &&
-       Abs (RealType(theBox.myCenter[1]*aScale + theTrsf.TranslationPart().Y())
+         < RealType (Standard_Real(theBox.myHSize[0]*aScaleAbs)) - myHSize[0] &&
+       Abs (RealType(Standard_Real(theBox.myCenter[1]*aScale + theTrsf.TranslationPart().Y()))
             - myCenter[1])
-         < RealType (theBox.myHSize[1]*aScaleAbs) - myHSize[1]);
+         < RealType (Standard_Real(theBox.myHSize[1]*aScaleAbs)) - myHSize[1]);
 
   } else {
     // theBox is rotated, scaled and translated. We apply the reverse

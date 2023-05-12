@@ -114,10 +114,10 @@ const Standard_Real ZERO = 1.0e-30;
     Standard_Integer BaseExponent(const Standard_Real X) {
 
         if(X > 1.0) {
-          return (Standard_Integer)(log(X) * Un_Sur_Log_RADIX);
+          return (Standard_Integer)Standard_Real(log(X) * Un_Sur_Log_RADIX);
         }
         else if(X < -1.0) {
-          return (Standard_Integer)(-log(-X) * Un_Sur_Log_RADIX);
+          return (Standard_Integer)Standard_Real(-log(-X) * Un_Sur_Log_RADIX);
         }
         else {
           return 0;

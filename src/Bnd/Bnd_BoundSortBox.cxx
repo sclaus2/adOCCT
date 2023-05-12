@@ -408,12 +408,12 @@ void Bnd_BoundSortBox::SortBoxes()
   for (labox=i0; labox<=i1; labox++) {
     if (!taBox(labox).IsVoid()) {
       taBox(labox).Get(xmin, ymin, zmin, xmax, ymax, zmax);
-      if(xmin>Xmin) firstcaseX=(Standard_Integer )((xmin-Xmin)*deltaX)-1; else  firstcaseX=1;
-      if(ymin>Ymin) firstcaseY=(Standard_Integer )((ymin-Ymin)*deltaY)-1; else  firstcaseY=1;
-      if(zmin>Zmin) firstcaseZ=(Standard_Integer )((zmin-Zmin)*deltaZ)-1; else  firstcaseZ=1;
-      if(xmax<_Xmax) lastcaseX=(Standard_Integer )((xmax-Xmin)*deltaX)+1; else  lastcaseX=discrX;
-      if(ymax<_Ymax) lastcaseY=(Standard_Integer )((ymax-Ymin)*deltaY)+1; else  lastcaseY=discrY;
-      if(zmax<_Zmax) lastcaseZ=(Standard_Integer )((zmax-Zmin)*deltaZ)+1; else  lastcaseZ=discrZ;
+      if(xmin>Xmin) firstcaseX=(Standard_Integer )Standard_Real((xmin-Xmin)*deltaX)-1; else  firstcaseX=1;
+      if(ymin>Ymin) firstcaseY=(Standard_Integer )Standard_Real((ymin-Ymin)*deltaY)-1; else  firstcaseY=1;
+      if(zmin>Zmin) firstcaseZ=(Standard_Integer )Standard_Real((zmin-Zmin)*deltaZ)-1; else  firstcaseZ=1;
+      if(xmax<_Xmax) lastcaseX=(Standard_Integer )Standard_Real((xmax-Xmin)*deltaX)+1; else  lastcaseX=discrX;
+      if(ymax<_Ymax) lastcaseY=(Standard_Integer )Standard_Real((ymax-Ymin)*deltaY)+1; else  lastcaseY=discrY;
+      if(zmax<_Zmax) lastcaseZ=(Standard_Integer )Standard_Real((zmax-Zmin)*deltaZ)+1; else  lastcaseZ=discrZ;
       if(firstcaseX<1) firstcaseX=1; else if(firstcaseX>discrX) firstcaseX=discrX;
       if(firstcaseY<1) firstcaseY=1; else if(firstcaseY>discrY) firstcaseY=discrY;
       if(firstcaseZ<1) firstcaseZ=1; else if(firstcaseZ>discrZ) firstcaseZ=discrZ;
@@ -530,12 +530,12 @@ void Bnd_BoundSortBox::Add(const Bnd_Box& theBox,
     }
     Standard_Real _Xmax,_Ymax,_Zmax;
     _Xmax=Map->Xmax; _Ymax=Map->Ymax; _Zmax=Map->Zmax;
-    if(xmin>Xmin) firstGapX=(Standard_Integer )((xmin-Xmin)*deltaX)-1; else  firstGapX=1;
-    if(ymin>Ymin) firstGapY=(Standard_Integer )((ymin-Ymin)*deltaY)-1; else  firstGapY=1;
-    if(zmin>Zmin) firstGapZ=(Standard_Integer ) ((zmin-Zmin)*deltaZ)-1; else  firstGapZ=1;
-    if(xmax<_Xmax) lastGapX=(Standard_Integer )((xmax-Xmin)*deltaX)+1; else  lastGapX=discrX;
-    if(ymax<_Ymax) lastGapY=(Standard_Integer )((ymax-Ymin)*deltaY)+1; else  lastGapY=discrY;
-    if(zmax<_Zmax) lastGapZ=(Standard_Integer )((zmax-Zmin)*deltaZ)+1; else  lastGapZ=discrZ;
+    if(xmin>Xmin) firstGapX=(Standard_Integer )Standard_Real((xmin-Xmin)*deltaX)-1; else  firstGapX=1;
+    if(ymin>Ymin) firstGapY=(Standard_Integer )Standard_Real((ymin-Ymin)*deltaY)-1; else  firstGapY=1;
+    if(zmin>Zmin) firstGapZ=(Standard_Integer )Standard_Real((zmin-Zmin)*deltaZ)-1; else  firstGapZ=1;
+    if(xmax<_Xmax) lastGapX=(Standard_Integer )Standard_Real((xmax-Xmin)*deltaX)+1; else  lastGapX=discrX;
+    if(ymax<_Ymax) lastGapY=(Standard_Integer )Standard_Real((ymax-Ymin)*deltaY)+1; else  lastGapY=discrY;
+    if(zmax<_Zmax) lastGapZ=(Standard_Integer )Standard_Real((zmax-Zmin)*deltaZ)+1; else  lastGapZ=discrZ;
     if(firstGapX<1) firstGapX=1; else if(firstGapX>discrX) firstGapX=discrX;
     if(firstGapY<1) firstGapY=1; else if(firstGapY>discrY) firstGapY=discrY;
     if(firstGapZ<1) firstGapZ=1; else if(firstGapZ>discrZ) firstGapZ=discrZ;
@@ -651,12 +651,12 @@ const TColStd_ListOfInteger& Bnd_BoundSortBox::Compare (const Bnd_Box& theBox)
   _Xmax=Map->Xmax; _Ymax=Map->Ymax; _Zmax=Map->Zmax;
   theBox.Get(xmin, ymin, zmin, xmax, ymax, zmax);
   Standard_Integer i0,i1,j0,j1,k0,k1;
-  if(xmin>Xmin) i0=(Standard_Integer )((xmin-Xmin)*deltaX)-1; else  i0=1;
-  if(ymin>Ymin) j0=(Standard_Integer )((ymin-Ymin)*deltaY)-1; else  j0=1;
-  if(zmin>Zmin) k0=(Standard_Integer )((zmin-Zmin)*deltaZ)-1; else  k0=1;
-  if(xmax<_Xmax) i1=(Standard_Integer )((xmax-Xmin)*deltaX)+1; else  i1=discrX;
-  if(ymax<_Ymax) j1=(Standard_Integer )((ymax-Ymin)*deltaY)+1; else  j1=discrY;
-  if(zmax<_Zmax) k1=(Standard_Integer )((zmax-Zmin)*deltaZ)+1; else  k1=discrZ;
+  if(xmin>Xmin) i0=(Standard_Integer )Standard_Real((xmin-Xmin)*deltaX)-1; else  i0=1;
+  if(ymin>Ymin) j0=(Standard_Integer )Standard_Real((ymin-Ymin)*deltaY)-1; else  j0=1;
+  if(zmin>Zmin) k0=(Standard_Integer )Standard_Real((zmin-Zmin)*deltaZ)-1; else  k0=1;
+  if(xmax<_Xmax) i1=(Standard_Integer )Standard_Real((xmax-Xmin)*deltaX)+1; else  i1=discrX;
+  if(ymax<_Ymax) j1=(Standard_Integer )Standard_Real((ymax-Ymin)*deltaY)+1; else  j1=discrY;
+  if(zmax<_Zmax) k1=(Standard_Integer )Standard_Real((zmax-Zmin)*deltaZ)+1; else  k1=discrZ;
   if(i0<1) i0=1; else if(i0>discrX) i0=discrX;
   if(j0<1) j0=1; else if(j0>discrY) j0=discrY;
   if(k0<1) k0=1; else if(k0>discrZ) k0=discrZ;

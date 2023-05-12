@@ -168,7 +168,7 @@ namespace BVH
       if (theProb > 0.0)
       {
         EstimateSAH (theTree, theTree->template Child<0> (theNode),
-                     theProb * aLftBox.Area() / aBox.Area(), theSAH);
+                     T(theProb * aLftBox.Area() / aBox.Area()), theSAH);
       }
 
       BVH_Box<T, N> aRghBox (theTree->MinPoint (theTree->template Child<1> (theNode)),
@@ -177,7 +177,7 @@ namespace BVH
       if (theProb > 0.0)
       {
         EstimateSAH (theTree, theTree->template Child<1> (theNode),
-                     theProb * aRghBox.Area() / aBox.Area(), theSAH);
+                     T(theProb * aRghBox.Area() / aBox.Area()), theSAH);
       }
     }
   }

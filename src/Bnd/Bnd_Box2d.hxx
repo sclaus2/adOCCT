@@ -113,7 +113,7 @@ public:
   //! increased by the same amount.
   void Enlarge (const Standard_Real theTol)
   {
-    Standard_Real aTol = theTol < 0.0 ? -theTol : theTol;
+    Standard_Real aTol = theTol < 0.0 ? (Standard_Real)-theTol : theTol;
     if (Gap < aTol) Gap = aTol;
   }
 

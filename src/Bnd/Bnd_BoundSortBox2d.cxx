@@ -73,7 +73,7 @@ void Bnd_BoundSortBox2d::Initialize(const Bnd_Box2d& CompleteBox,
     deltaX=Xmax-Xmin;
   }
   else if (middleX > deltaX) {
-    discrX=(Standard_Integer)((Xmax-Xmin)/middleX);
+    discrX=(Standard_Integer)Standard_Real((Xmax-Xmin)/middleX);
     deltaX=middleX;
     discrX++;
   }
@@ -83,7 +83,7 @@ void Bnd_BoundSortBox2d::Initialize(const Bnd_Box2d& CompleteBox,
     deltaY=Ymax-Ymin;
   }
   else if (middleY > deltaY) {
-    discrY=(Standard_Integer)((Ymax-Ymin)/middleY + 0.1);
+    discrY=(Standard_Integer)Standard_Real((Ymax-Ymin)/middleY + 0.1);
     deltaY=middleY;
     discrY++;
   }
@@ -130,7 +130,7 @@ void  Bnd_BoundSortBox2d::Initialize(const Handle(Bnd_HArray1OfBox2d)& SetOfBox)
     deltaX=Xmax-Xmin;
   }
   else if (middleX > deltaX) {
-    discrX=(Standard_Integer)((Xmax-Xmin)/middleX);
+    discrX=(Standard_Integer)Standard_Real((Xmax-Xmin)/middleX);
     deltaX=middleX;
     discrX++;
   }
@@ -140,7 +140,7 @@ void  Bnd_BoundSortBox2d::Initialize(const Handle(Bnd_HArray1OfBox2d)& SetOfBox)
     deltaY=Ymax-Ymin;
   }
   else if (middleY > deltaY) {
-    discrY=(Standard_Integer)((Ymax-Ymin)/middleY + 0.1);
+    discrY=(Standard_Integer)Standard_Real((Ymax-Ymin)/middleY + 0.1);
     deltaY=middleY;
     discrY++;
   }
