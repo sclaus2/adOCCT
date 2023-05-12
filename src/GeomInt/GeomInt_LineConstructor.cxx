@@ -168,7 +168,7 @@ void GeomInt_LineConstructor::Perform(const Handle(IntPatch_Line)& L)
       { 
         if (lastp != firstp + 1)
         {
-          const Standard_Integer pmid = (Standard_Integer) ((firstp + lastp) / 2);
+          const Standard_Integer pmid = (Standard_Integer) Standard_Real((firstp + lastp) / 2);
           const IntSurf_PntOn2S& Pmid = WLine->Point(pmid);
           Pmid.Parameters(u1,v1,u2,v2);
           AdjustPeriodic(myHS1, myHS2, u1, v1, u2, v2);

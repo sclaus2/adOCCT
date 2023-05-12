@@ -690,8 +690,8 @@ void BoundedArc (const TheArc& A,
 
             //All members in TabSol array has already been sorted in increase order.
             //Now, we limit precise boundaries in order to avoid changing this order.
-            const Standard_Real aFPar = (i == 1) ? Pdeb : (para + aSI(i - 1).Value()) / 2.0;
-            const Standard_Real aLPar = (i == Nbp) ? Pfin : (para + aSI(i + 1).Value()) / 2.0;
+            const Standard_Real aFPar = (i == 1) ? Pdeb : Standard_Real((para + aSI(i - 1).Value()) / 2.0);
+            const Standard_Real aLPar = (i == Nbp) ? Pfin : Standard_Real((para + aSI(i + 1).Value()) / 2.0);
 
             MinFunction aNewFunc(Func);
             math_BrentMinimum aMin(Precision::Confusion());

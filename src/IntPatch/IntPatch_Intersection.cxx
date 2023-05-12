@@ -370,8 +370,8 @@ static void FUN_GetUiso(const Handle(Geom_Surface)& GS,
       Standard_Real VmTr, VMTr;
       if(GACT != GeomAbs_Hyperbola)
       {
-        if(FirstV >= 0. && LastV >= 0.){ VmTr = FirstV; VMTr = ((LastV - FirstV) > 1.e+4) ? (FirstV + 1.e+4) : LastV; }
-        else if(FirstV < 0. && LastV < 0.){ VMTr = LastV; VmTr = ((FirstV - LastV) < -1.e+4) ? (LastV - 1.e+4) : FirstV; }
+        if(FirstV >= 0. && LastV >= 0.){ VmTr = FirstV; VMTr = ((LastV - FirstV) > 1.e+4) ? Standard_Real(FirstV + 1.e+4) : LastV; }
+        else if(FirstV < 0. && LastV < 0.){ VMTr = LastV; VmTr = ((FirstV - LastV) < -1.e+4) ? Standard_Real(LastV - 1.e+4) : FirstV; }
         else { VmTr = (FirstV < -1.e+4) ? -1.e+4 : FirstV; VMTr = (LastV > 1.e+4) ? 1.e+4 : LastV; }
       }
       else//Hyperbola
@@ -440,8 +440,8 @@ static void FUN_GetViso(const Handle(Geom_Surface)& GS,
       Standard_Real UmTr, UMTr;
       if(GACT != GeomAbs_Hyperbola)
       {
-        if(FirstU >= 0. && LastU >= 0.){ UmTr = FirstU; UMTr = ((LastU - FirstU) > 1.e+4) ? (FirstU + 1.e+4) : LastU; }
-        else if(FirstU < 0. && LastU < 0.){ UMTr = LastU; UmTr = ((FirstU - LastU) < -1.e+4) ? (LastU - 1.e+4) : FirstU; }
+        if(FirstU >= 0. && LastU >= 0.){ UmTr = FirstU; UMTr = ((LastU - FirstU) > 1.e+4) ? Standard_Real(FirstU + 1.e+4) : LastU; }
+        else if(FirstU < 0. && LastU < 0.){ UMTr = LastU; UmTr = ((FirstU - LastU) < -1.e+4) ? Standard_Real(LastU - 1.e+4) : FirstU; }
         else { UmTr = (FirstU < -1.e+4) ? -1.e+4 : FirstU; UMTr = (LastU > 1.e+4) ? 1.e+4 : LastU; }
       }
       else//Hyperbola
@@ -625,16 +625,16 @@ static void FUN_NewFirstLast(const GeomAbs_CurveType& ga_ct,
         if(Fst >= 0. && Lst >= 0.)
         {
           NewFst = Fst;
-          NewLst = ((Fst + TrVal) < Lst) ? (Fst + TrVal) : Lst;
+          NewLst = ((Fst + TrVal) < Lst) ? Standard_Real(Fst + TrVal) : Lst;
         }
         if(Fst < 0. && Lst < 0.)
         {
           NewLst = Lst;
-          NewFst = ((Lst - TrVal) > Fst) ? (Lst - TrVal) : Fst;
+          NewFst = ((Lst - TrVal) > Fst) ? Standard_Real(Lst - TrVal) : Fst;
         }
         else
         {
-          NewFst = (Fst < -TrVal) ? -TrVal : Fst;
+          NewFst = (Fst < -TrVal) ? Standard_Real(-TrVal) : Fst;
           NewLst = (Lst > TrVal) ? TrVal : Lst;
         }
         NeedTr = Standard_True;

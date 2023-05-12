@@ -32,7 +32,7 @@ const Standard_Real infVal = Precision::Infinite();
 
 static inline Standard_Real LimitInfinite(const Standard_Real Val)
 {
-  return ( Abs(Val) > infVal ? (Val>0 ? infVal : -infVal) : Val );
+  return ( Abs(Val) > infVal ? (Val>0 ? infVal : Standard_Real(-infVal)) : Val );
 }
 
 //=======================================================================

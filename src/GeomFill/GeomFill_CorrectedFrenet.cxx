@@ -422,7 +422,7 @@ Handle(GeomFill_TrihedronLaw) GeomFill_CorrectedFrenet::Copy() const
   NbStep = 10;
   AvStep = (myTrimmed->LastParameter() - myTrimmed->FirstParameter())/NbStep;  
   for(i = 1; i <= NbI; i++) {
-    NbStep = Max(Standard_Integer((T(i+1) - T(i))/AvStep), 3);
+    NbStep = Max(Standard_Integer(Standard_Real((T(i+1) - T(i))/AvStep)), 3);
     Step = (T(i+1) - T(i))/NbStep;
     if(!InitInterval(T(i), T(i+1), Step, StartAng, Tangent, Normal, AT, AN, Func,
                      SeqPoles, SeqAngle, SeqTangent, SeqNormal))

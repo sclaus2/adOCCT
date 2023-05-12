@@ -1541,7 +1541,7 @@ void GeomPlate_BuildPlateSurface::ComputeSurfInit(const Message_ProgressRange& t
       for ( i=1;i<=NTLinCont;i++) 
 	LenT+=myLinCont->Value(i)->Length();
       for (i=1;i<=NTLinCont;i++) 
-	{ Standard_Integer NbPoint= (Standard_Integer )( NTPoint*(myLinCont->Value(i)->Length())/LenT);
+	{ Standard_Integer NbPoint= (Standard_Integer )Standard_Real( NTPoint*(myLinCont->Value(i)->Length())/LenT);
 	  if (NbPoint<10)
 	    NbPoint=10;
 
@@ -2205,15 +2205,15 @@ void GeomPlate_BuildPlateSurface::CalculNbPtsInit ()
       switch(Cont)
 	{ case 0 : // Case G0 *1.2
 	    myLinCont->ChangeValue(i)->SetNbPoints( 
-						   Standard_Integer(1.2*NTPoint*(myLinCont->Value(i)->Length())/LenT)); 
+						   Standard_Integer(Standard_Real(1.2*NTPoint*(myLinCont->Value(i)->Length())/LenT)));
 	    break;
 	  case 1 : // Case G1 *1
 	    myLinCont->ChangeValue(i)->SetNbPoints(
-				 Standard_Integer(NTPoint*(myLinCont->Value(i)->Length())/LenT)); 
+				 Standard_Integer(Standard_Real(NTPoint*(myLinCont->Value(i)->Length())/LenT)));
 	    break;
 	  case 2 : // Case G2 *0.7
 	    myLinCont->ChangeValue(i)->SetNbPoints( 
-			      Standard_Integer(0.7*NTPoint*(myLinCont->Value(i)->Length())/LenT));
+			      Standard_Integer(Standard_Real(0.7*NTPoint*(myLinCont->Value(i)->Length())/LenT)));
 	    break;
 	  } 
       if (myLinCont->Value(i)->NbPoints()<3)
@@ -2513,7 +2513,7 @@ VerifSurface(const Standard_Integer NbBoucle)
 	  if (LinCont->NbPoints()>=Floor(LinCont->NbPoints()*Coef))
 	    Coef=2;// to provide increase of the number of points
 
-	  LinCont->SetNbPoints(Standard_Integer(LinCont->NbPoints() * Coef));
+	  LinCont->SetNbPoints(Standard_Integer(Standard_Real(LinCont->NbPoints() * Coef)));
 	  Result=Standard_False;	    	
 	}
      else
@@ -2522,7 +2522,7 @@ VerifSurface(const Standard_Integer NbBoucle)
 	    if ((LinCont->NbPoints()+1)>=Floor(LinCont->NbPoints()*Coef))
 	      Coef=2;
 
-	    LinCont->SetNbPoints(Standard_Integer(LinCont->NbPoints()*Coef )) ;
+	    LinCont->SetNbPoints(Standard_Integer(Standard_Real(LinCont->NbPoints()*Coef)));
 	    Result=Standard_False;
  	  }
     }

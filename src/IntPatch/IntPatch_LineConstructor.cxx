@@ -1267,7 +1267,7 @@ void IntPatch_LineConstructor::Perform(const IntPatch_SequenceOfLine& slinref,
       lastp =  WLineVertex_ip1.ParameterOnLine();
       if(firstp!=lastp && !IsSegmentSmall(WLine,i,i+1/*,TolArc*/)) {  
 	Standard_Integer pmid;
-	pmid = (Standard_Integer)((firstp+lastp)/2);
+	pmid = (Standard_Integer)Standard_Real((firstp+lastp)/2);
 	Standard_Integer int_lastp = (Standard_Integer)lastp;
 	Standard_Integer int_firstp = (Standard_Integer)firstp;
 	if(pmid==int_lastp) pmid=int_firstp;
