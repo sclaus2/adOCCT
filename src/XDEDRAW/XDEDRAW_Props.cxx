@@ -566,7 +566,7 @@ static Standard_Integer CheckProps (Draw_Interpretor& di, Standard_Integer argc,
 	char string2[260];
 	Sprintf (string2, "%s%9.1f (%3d%%)%s", ( wholeDoc ? "" : "  Area defect:   " ),
            (aArea->Get() - G.Mass()).getValue(),
-		 (Standard_Integer)( Abs ( G.Mass() ) > 1e-10 ? 100. * ( aArea->Get() - G.Mass() ) / G.Mass() : 999. ),
+		 (Standard_Integer)Standard_Real( Abs ( G.Mass() ) > 1e-10 ? 100. * ( aArea->Get() - G.Mass() ) / G.Mass() : 999. ),
 		 ( wholeDoc ? "" : "\n" ));
 	di << string2;
       }
@@ -613,7 +613,7 @@ static Standard_Integer CheckProps (Draw_Interpretor& di, Standard_Integer argc,
 	  char string5[260];
 	  Sprintf (string5, "%s%9.1f (%3d%%)%s", ( wholeDoc ? "" : "  Volume defect: " ),
              (aVolume->Get() - localVolume).getValue(),
-		   (Standard_Integer)( Abs ( localVolume ) > 1e-10 ? 100. * ( aVolume->Get() - localVolume ) / localVolume : 999. ),
+		   (Standard_Integer)Standard_Real( Abs ( localVolume ) > 1e-10 ? 100. * ( aVolume->Get() - localVolume ) / localVolume : 999. ),
 		   ( wholeDoc ? "" : "\n" ));
 	  di << string5;
 	}
