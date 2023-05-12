@@ -105,7 +105,7 @@ inline void Intrv_Interval::FuseAtStart
     Standard_Real a = Min(myStart-myTolStart,Start-TolStart);
     Standard_Real b = Min(myStart+myTolStart,Start+TolStart);
     myStart    =                     (a+b)/2;
-    myTolStart = (Standard_ShortReal)(b-a)/2;
+    myTolStart = (Standard_ShortReal)Standard_Real((b-a)/2);
   }
 }
 
@@ -126,7 +126,7 @@ inline void Intrv_Interval::CutAtStart
     Standard_Real a = Max(myStart-myTolStart,Start-TolStart);
     Standard_Real b = Max(myStart+myTolStart,Start+TolStart);
     myStart    =                     (a+b)/2;
-    myTolStart = (Standard_ShortReal)(b-a)/2;
+    myTolStart = (Standard_ShortReal)Standard_Real((b-a)/2);
   }
 }
 
@@ -159,7 +159,7 @@ inline void Intrv_Interval::FuseAtEnd
     Standard_Real a = Max(myEnd-myTolEnd,End-TolEnd);
     Standard_Real b = Max(myEnd+myTolEnd,End+TolEnd);
     myEnd    =                     (a+b)/2;
-    myTolEnd = (Standard_ShortReal)(b-a)/2;
+    myTolEnd = (Standard_ShortReal)Standard_Real((b-a)/2);
   }
 }
 
@@ -180,7 +180,7 @@ inline void Intrv_Interval::CutAtEnd
     Standard_Real a = Min(myEnd-myTolEnd,End-TolEnd);
     Standard_Real b = Min(myEnd+myTolEnd,End+TolEnd);
     myEnd    =                     (a+b)/2;
-    myTolEnd = (Standard_ShortReal)(b-a)/2;
+    myTolEnd = (Standard_ShortReal)Standard_Real((b-a)/2);
   }
 }
 

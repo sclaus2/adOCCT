@@ -124,12 +124,12 @@ void HLRAlgo_PolyAlgo::Update ()
       else                 { ySegmnMin = aPoints.PntP2.Y(); ySegmnMax = aPoints.PntP1.Y(); }
       if (aPoints.PntP1.Z() < aPoints.PntP2.Z()) { zSegmnMin = aPoints.PntP1.Z(); zSegmnMax = aPoints.PntP2.Z(); }
       else                 { zSegmnMin = aPoints.PntP2.Z(); zSegmnMax = aPoints.PntP1.Z(); }
-      nxMin = (Standard_Integer)((DecaX + xSegmnMin) * SurDX);
-      nyMin = (Standard_Integer)((DecaY + ySegmnMin) * SurDY);
-      nzMin = (Standard_Integer)((DecaZ + zSegmnMin) * SurDZ);
-      nxMax = (Standard_Integer)((DecaX + xSegmnMax) * SurDX);
-      nyMax = (Standard_Integer)((DecaY + ySegmnMax) * SurDY);
-      nzMax = (Standard_Integer)((DecaZ + zSegmnMax) * SurDZ);
+      nxMin = (Standard_Integer)Standard_Real((DecaX + xSegmnMin) * SurDX);
+      nyMin = (Standard_Integer)Standard_Real((DecaY + ySegmnMin) * SurDY);
+      nzMin = (Standard_Integer)Standard_Real((DecaZ + zSegmnMin) * SurDZ);
+      nxMax = (Standard_Integer)Standard_Real((DecaX + xSegmnMax) * SurDX);
+      nyMax = (Standard_Integer)Standard_Real((DecaY + ySegmnMax) * SurDY);
+      nzMax = (Standard_Integer)Standard_Real((DecaZ + zSegmnMax) * SurDZ);
       theIndices.MinSeg = nyMin + (nxMin << 11);
       theIndices.MinSeg <<= 10;
       theIndices.MinSeg += nzMin;
@@ -199,12 +199,12 @@ void HLRAlgo_PolyAlgo::Update ()
 	    else if (yTrianMax < Y3) yTrianMax = Y3;
 	    if      (zTrianMin > Z3) zTrianMin = Z3;
 	    else if (zTrianMax < Z3) zTrianMax = Z3;
-	    nxMin = (Standard_Integer)((DecaX + xTrianMin) * SurDX);
-	    nyMin = (Standard_Integer)((DecaY + yTrianMin) * SurDY);
-	    nzMin = (Standard_Integer)((DecaZ + zTrianMin) * SurDZ);
-	    nxMax = (Standard_Integer)((DecaX + xTrianMax) * SurDX);
-	    nyMax = (Standard_Integer)((DecaY + yTrianMax) * SurDY);
-	    nzMax = (Standard_Integer)((DecaZ + zTrianMax) * SurDZ);
+	    nxMin = (Standard_Integer)Standard_Real((DecaX + xTrianMin) * SurDX);
+	    nyMin = (Standard_Integer)Standard_Real((DecaY + yTrianMin) * SurDY);
+	    nzMin = (Standard_Integer)Standard_Real((DecaZ + zTrianMin) * SurDZ);
+	    nxMax = (Standard_Integer)Standard_Real((DecaX + xTrianMax) * SurDX);
+	    nyMax = (Standard_Integer)Standard_Real((DecaY + yTrianMax) * SurDY);
+	    nzMax = (Standard_Integer)Standard_Real((DecaZ + zTrianMax) * SurDZ);
 	    Standard_Integer MinTrian,MaxTrian;
 	    MinTrian   = nyMin + (nxMin << 11);
 	    MinTrian <<= 10;
@@ -258,12 +258,12 @@ void HLRAlgo_PolyAlgo::Update ()
 	    if (zPolyTMax < zTrianMax) zPolyTMax = zTrianMax;
 	  }
 	}
-	nxMin = (Standard_Integer)((DecaX + xPolyTMin) * SurDX);
-	nyMin = (Standard_Integer)((DecaY + yPolyTMin) * SurDY);
-	nzMin = (Standard_Integer)((DecaZ + zPolyTMin) * SurDZ);
-	nxMax = (Standard_Integer)((DecaX + xPolyTMax) * SurDX);
-	nyMax = (Standard_Integer)((DecaY + yPolyTMax) * SurDY);
-	nzMax = (Standard_Integer)((DecaZ + zPolyTMax) * SurDZ);
+	nxMin = (Standard_Integer)Standard_Real((DecaX + xPolyTMin) * SurDX);
+	nyMin = (Standard_Integer)Standard_Real((DecaY + yPolyTMin) * SurDY);
+	nzMin = (Standard_Integer)Standard_Real((DecaZ + zPolyTMin) * SurDZ);
+	nxMax = (Standard_Integer)Standard_Real((DecaX + xPolyTMax) * SurDX);
+	nyMax = (Standard_Integer)Standard_Real((DecaY + yPolyTMax) * SurDY);
+	nzMax = (Standard_Integer)Standard_Real((DecaZ + zPolyTMax) * SurDZ);
 	PolyTIndices.Min = nyMin + (nxMin << 11);
 	PolyTIndices.Min <<= 10;
 	PolyTIndices.Min  += nzMin - 0x00000200;
@@ -279,12 +279,12 @@ void HLRAlgo_PolyAlgo::Update ()
       }
     }
     if (nbFaHi > 0) {
-      nxMin = (Standard_Integer)((DecaX + xShellMin) * SurDX);
-      nyMin = (Standard_Integer)((DecaY + yShellMin) * SurDY);
-      nzMin = (Standard_Integer)((DecaZ + zShellMin) * SurDZ);
-      nxMax = (Standard_Integer)((DecaX + xShellMax) * SurDX);
-      nyMax = (Standard_Integer)((DecaY + yShellMax) * SurDY);
-      nzMax = (Standard_Integer)((DecaZ + zShellMax) * SurDZ);
+      nxMin = (Standard_Integer)Standard_Real((DecaX + xShellMin) * SurDX);
+      nyMin = (Standard_Integer)Standard_Real((DecaY + yShellMin) * SurDY);
+      nzMin = (Standard_Integer)Standard_Real((DecaZ + zShellMin) * SurDZ);
+      nxMax = (Standard_Integer)Standard_Real((DecaX + xShellMax) * SurDX);
+      nyMax = (Standard_Integer)Standard_Real((DecaY + yShellMax) * SurDY);
+      nzMax = (Standard_Integer)Standard_Real((DecaZ + zShellMax) * SurDZ);
       aShellIndices.Min = nyMin + (nxMin << 11);
       aShellIndices.Min <<= 10;
       aShellIndices.Min += nzMin - 0x00000200;

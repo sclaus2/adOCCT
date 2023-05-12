@@ -70,7 +70,7 @@ void Contap_ContAna::Perform (const gp_Sphere& S,
   else {
     dir2 = D.Crossed(S.YAxis().Direction());
   }
-  Standard_Real alpha = (S.Direct() ? Angle : -Angle); 
+  Standard_Real alpha = (S.Direct() ? Angle : Standard_Real(-Angle));
   pt1.SetXYZ(S.Location().XYZ() - S.Radius()*sin(alpha)*D.XYZ()) ;
   prm   = S.Radius()*cos(alpha);
   nbSol = 1;
