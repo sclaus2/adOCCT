@@ -36,7 +36,7 @@ namespace
     const Standard_Real aFpsVal = theSeconds != 0.0 ? 1.0 / theSeconds : 0.0;
     char aFps[50];
     Sprintf (aFps, "%.1f", aFpsVal.getValue());
-    return TCollection_AsciiString() + Standard_Integer(theSeconds * 1000.0) + " ms (" + aFps + " FPS)";
+    return TCollection_AsciiString() + Standard_Integer(Standard_Real(theSeconds * 1000.0)) + " ms (" + aFps + " FPS)";
   }
 }
 
@@ -322,8 +322,8 @@ void OpenGl_FrameStatsPrs::updateChart (const Handle(OpenGl_Workspace)& theWorks
     {
       { Graphic3d_Vec3((float )anOffset.x(), (float )anOffset.y(),                0.0f), aWhite },
       { Graphic3d_Vec3(float(anOffset.x() + aCharSize.x()), (float )anOffset.y(), 0.0f), aWhite },
-      { Graphic3d_Vec3((float )anOffset.x(), float(anOffset.y() - aBinSize.y()),  0.0f), aWhite },
-      { Graphic3d_Vec3(float(anOffset.x() + aCharSize.x()), float(anOffset.y() - aBinSize.y()),+ 0.0f), aWhite },
+      { Graphic3d_Vec3((float )anOffset.x(), float(Standard_Real(anOffset.y() - aBinSize.y())),  0.0f), aWhite },
+      { Graphic3d_Vec3(float(anOffset.x() + aCharSize.x()), float(Standard_Real(anOffset.y() - aBinSize.y())),+ 0.0f), aWhite },
     };
     myChartLines->init (aCtx, sizeof(OpenGl_Vec3Vec4ub), 4, aLines, GL_UNSIGNED_BYTE, sizeof(OpenGl_Vec3Vec4ub));
   }
@@ -351,10 +351,10 @@ void OpenGl_FrameStatsPrs::updateChart (const Handle(OpenGl_Workspace)& theWorks
     myChartLabels[0].Text()->SetPosition (gp_Pnt (aLabX, float(anOffset.y()), 0.0f));
 
     myChartLabels[1].Text()->SetText (aLabels[isTopDown ? 1 : 1].ToCString());
-    myChartLabels[1].Text()->SetPosition (gp_Pnt (aLabX, float(anOffset.y() - aBinSize.y() / 2), 0.0f));
+    myChartLabels[1].Text()->SetPosition (gp_Pnt (aLabX, float(Standard_Real(anOffset.y() - aBinSize.y() / 2)), 0.0f));
 
     myChartLabels[2].Text()->SetText (aLabels[isTopDown ? 2 : 0].ToCString());
-    myChartLabels[2].Text()->SetPosition (gp_Pnt (aLabX, float(anOffset.y() - aBinSize.y()), 0.0f));
+    myChartLabels[2].Text()->SetPosition (gp_Pnt (aLabX, float(Standard_Real(anOffset.y() - aBinSize.y())), 0.0f));
 
     for (int i = 0; i < 3; i++)
     {

@@ -2060,11 +2060,11 @@ void OpenGl_View::updatePerspCameraPT (const OpenGl_Mat4&           theOrientati
   
   // get camera stereo params
   float anIOD = myCamera->GetIODType() == Graphic3d_Camera::IODType_Relative
-    ? static_cast<float> (myCamera->IOD() * myCamera->Distance())
+    ? static_cast<float> (Standard_Real(myCamera->IOD() * myCamera->Distance()))
     : static_cast<float> (myCamera->IOD());
 
   float aZFocus = myCamera->ZFocusType() == Graphic3d_Camera::FocusType_Relative
-    ? static_cast<float> (myCamera->ZFocus() * myCamera->Distance())
+    ? static_cast<float> (Standard_Real(myCamera->ZFocus() * myCamera->Distance()))
     : static_cast<float> (myCamera->ZFocus());
 
   // get camera view vectors

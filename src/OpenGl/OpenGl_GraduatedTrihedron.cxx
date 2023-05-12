@@ -520,7 +520,7 @@ void OpenGl_GraduatedTrihedron::renderTickmarkLabels (const Handle(OpenGl_Worksp
   {
     Standard_Real anOffset = aCurAspect.NameOffset() + aCurAspect.TickmarksLength();
 
-    OpenGl_Vec3 aMiddle (theGridAxes.Ticks[theIndex] + aSizeVec * theGridAxes.Axes[theIndex] * 0.5f + aDir * (Standard_ShortReal)(theDpix * anOffset));
+    OpenGl_Vec3 aMiddle (theGridAxes.Ticks[theIndex] + aSizeVec * theGridAxes.Axes[theIndex] * 0.5f + aDir * (Standard_ShortReal)Standard_Real(theDpix * anOffset));
 
     myAspectLabels.Aspect()->SetColor (anAxis.NameColor);
     theWorkspace->SetAspects (&myAspectLabels);
@@ -537,7 +537,7 @@ void OpenGl_GraduatedTrihedron::renderTickmarkLabels (const Handle(OpenGl_Worksp
     for (Standard_Integer anIt = 0; anIt <= aCurAspect.TickmarksNumber(); ++anIt)
     {
       sprintf (aTextValue, "%g", theGridAxes.Ticks[theIndex].GetData()[theIndex] + anIt * aStep);
-      OpenGl_Vec3 aPos (theGridAxes.Ticks[theIndex] + anAxis.Direction* (Standard_ShortReal) (anIt * aStep) + aDir * (Standard_ShortReal) (theDpix * anOffset));
+      OpenGl_Vec3 aPos (theGridAxes.Ticks[theIndex] + anAxis.Direction* (Standard_ShortReal) (anIt * aStep) + aDir * (Standard_ShortReal)Standard_Real(theDpix * anOffset));
 
       Handle(Graphic3d_Text) aText = myLabelValues.Text();
       aText->SetText (aTextValue);
