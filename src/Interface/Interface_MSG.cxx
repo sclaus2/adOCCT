@@ -261,7 +261,7 @@ Standard_Real  Interface_MSG::Intervalled
   (const Standard_Real val,
    const Standard_Integer order, const Standard_Boolean upper)
 {
-  Standard_Real vl = (val > 0. ? val : -val);
+  Standard_Real vl = (val > 0. ? val : Standard_Real(-val));
   Standard_Real bl = 1., bu = 1.;
   if (vl >= 1.) {
     bu = 10.;
