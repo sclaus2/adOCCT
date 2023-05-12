@@ -987,7 +987,7 @@ static Standard_Integer evaluateMaxSegment(const Adaptor3d_CurveOnSurface& aCurv
   if (aCurv2d->GetType() == GeomAbs_BSplineCurve) {
     aNbC2dKnots = aCurv2d->NbKnots();
   }
-  Standard_Integer aReturn = (Standard_Integer) (  30 + Max(aNbSKnots, aNbC2dKnots) ) ;
+  Standard_Integer aReturn = (Standard_Integer) Standard_Real(  30 + Max(aNbSKnots, aNbC2dKnots) ) ;
   return aReturn;
 }
 
