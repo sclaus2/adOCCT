@@ -354,10 +354,10 @@ static void PutInBoundsU (Standard_Real      umin,
   Standard_Real maxC    = Max(Pf.X(),Pl.X()); maxC = Max(maxC,Pm.X());
   Standard_Real du = 0.;
   if (minC< umin - eps) {
-    du = (int((umin - minC)/period) + 1)*period;
+    du = (int(Standard_Real((umin - minC)/period)) + 1)*period;
   }
   if (minC > umax + eps) {
-    du = -(int((minC - umax)/period) + 1)*period;
+    du = -(int(Standard_Real((minC - umax)/period)) + 1)*period;
   }
   if (du != 0) {
     gp_Vec2d T1(du,0.);
@@ -400,10 +400,10 @@ static void PutInBoundsV (Standard_Real     vmin,
   Standard_Real maxC    = Max(Pf.Y(),Pl.Y()); maxC = Max(maxC,Pm.Y());
   Standard_Real dv = 0.;
   if (minC< vmin - eps) {
-    dv = (int((vmin - minC)/period) + 1)*period;
+    dv = (int(Standard_Real((vmin - minC)/period)) + 1)*period;
   }
   if (minC > vmax + eps) {
-    dv = -(int((minC - vmax)/period) + 1)*period;
+    dv = -(int(Standard_Real((minC - vmax)/period)) + 1)*period;
   }
   if (dv != 0) {
     gp_Vec2d T1(0.,dv);
