@@ -184,9 +184,9 @@ void AppParCurves_MultiPoint::Dump(Standard_OStream& o) const
     {
       o << "3D-Point #" << i << std::endl;
 
-      o << " Pole x = " << (tabPoint->Value(i)/*->Point(j)*/).X() << std::endl;
-      o << " Pole y = " << (tabPoint->Value(i)/*->Point(j)*/).Y() << std::endl;
-      o << " Pole z = " << (tabPoint->Value(i)/*->Point(j)*/).Z() << std::endl;
+      o << " Pole x = " << (tabPoint->Value(i)/*->Point(j)*/).X().getValue() << std::endl;
+      o << " Pole y = " << (tabPoint->Value(i)/*->Point(j)*/).Y().getValue() << std::endl;
+      o << " Pole z = " << (tabPoint->Value(i)/*->Point(j)*/).Z().getValue() << std::endl;
     }
   }
   
@@ -196,8 +196,8 @@ void AppParCurves_MultiPoint::Dump(Standard_OStream& o) const
     {
       o << "2D-Point #" << i << std::endl;
 
-      o << " Pole x = " << (tabPoint2d->Value(i)/*->Point2d(j)*/).X() << std::endl;
-      o << " Pole y = " << (tabPoint2d->Value(i)/*->Point2d(j)*/).Y() << std::endl;
+      o << " Pole x = " << (tabPoint2d->Value(i)/*->Point2d(j)*/).X().getValue() << std::endl;
+      o << " Pole y = " << (tabPoint2d->Value(i)/*->Point2d(j)*/).Y().getValue() << std::endl;
     }
   }
 }
