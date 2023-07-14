@@ -81,13 +81,16 @@ typedef float         Standard_ShortReal;
 
 class myadouble : public adouble {
 public:
-    inline myadouble() : adouble() {}
+    using adouble::adouble;
+
+    // inline myadouble() : adouble() {}
     inline myadouble(const double v) : adouble(v){}
     inline myadouble(const double v, const double* adv) : adouble(v,adv) {}
     inline myadouble(const adouble& a) : adouble(a) {}
     inline myadouble(const adouble&& a) : adouble(a) {}
     inline myadouble(const myadouble& a) : adouble(static_cast<const adouble&>(a)) {}
-    inline ~myadouble() {}
+
+    ~myadouble() = default;
 
     inline explicit operator Standard_Boolean() const { return static_cast<Standard_Boolean>(this->getValue()); }
     inline explicit operator Standard_Integer() const { return static_cast<Standard_Integer>(this->getValue()); }
@@ -104,6 +107,8 @@ public:
       a.setValue(temp);
       return in;
     }
+
+
 };
 
 
