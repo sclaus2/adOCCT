@@ -78,7 +78,7 @@ typedef bool          Standard_Boolean;
 typedef int           Standard_Integer;
 typedef float         Standard_ShortReal;
 
-typedef myadouble        Standard_Real;
+typedef Standard_Adouble Standard_Real;
 
 typedef char          Standard_Character;
 typedef unsigned char Standard_Byte;

@@ -19,14 +19,14 @@
 
 #ifndef F2CTYPE_DEFINED
 typedef int integer;
-typedef myadouble doublereal;
+typedef Standard_Adouble doublereal;
 #define  F2CTYPE_DEFINED
 #endif
 
 typedef unsigned long uinteger;
 typedef char *address;
 typedef short int shortint;
-typedef myadouble real;
+typedef Standard_Adouble real;
 typedef struct { real r, i; } complex;
 typedef struct { doublereal r, i; } doublecomplex;
 typedef long int logical;

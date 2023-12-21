@@ -22,11 +22,11 @@
 #include <Standard_TypeDef.hxx>
 
 namespace std {
-    template<> class numeric_limits<myadouble>{
+    template<> class numeric_limits<Standard_Adouble>{
     public:
-        static myadouble min() {return myadouble(std::numeric_limits<double>::min());};
-        static myadouble max() {return myadouble(std::numeric_limits<double>::max());};
-        static myadouble epsilon() {return myadouble(std::numeric_limits<double>::epsilon());};
+        static Standard_Adouble min() {return Standard_Adouble(std::numeric_limits<double>::min());};
+        static Standard_Adouble max() {return Standard_Adouble(std::numeric_limits<double>::max());};
+        static Standard_Adouble epsilon() {return Standard_Adouble(std::numeric_limits<double>::epsilon());};
         static constexpr bool is_specialized { true };
     };
 }
