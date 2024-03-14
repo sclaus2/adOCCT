@@ -180,7 +180,7 @@ Standard_Integer NCollection_UBTreeFiller<TheObjType,TheBndType>::CheckTree
   const Standard_Real aLen0 = log(num) / log(2.);
   char buf[128];
   sprintf (buf,  "Checking UBTree:%8d leaves, balance =%7.2f",
-           aNumber, aLen1 / aLen0);
+           aNumber, (aLen1 / aLen0).getValue());
   theStream << buf << std::endl;
   return aNumber;
 }
