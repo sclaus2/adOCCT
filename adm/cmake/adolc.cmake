@@ -22,6 +22,12 @@ if (NOT DEFINED 3RDPARTY_ADOLC_LIBRARY_DIR)
   #set (3RDPARTY_ADOLC_LIBRARY_DIR "${CMAKE_SOURCE_DIR}/../adolc_base/lib64" CACHE FILEPATH "The directory containing ADOL-C library")
 endif()
 
+# BOOST directory that was previously used to build ADOL-C (optional)
+if (NOT DEFINED 3RDPARTY_BOOST_DIR)
+  set (3RDPARTY_BOOST_DIR "" CACHE PATH "The directory containing Boost used for ADOL-C (optional)")
+endif()
+
+
 # include occt macros. compiler_bitness, os_wiht_bit, compiler
 #OCCT_INCLUDE_CMAKE_FILE ("adm/cmake/occt_macros")
 #OCCT_MAKE_COMPILER_BITNESS()
@@ -61,6 +67,20 @@ if (3RDPARTY_ADOLC_LIBRARY AND EXISTS "${3RDPARTY_ADOLC_LIBRARY}")
   list (APPEND 3RDPARTY_LIBRARY_DIRS "${3RDPARTY_ADOLC_LIBRARY_DIR}")
 else()
   list (APPEND 3RDPARTY_NOT_INCLUDED 3RDPARTY_ADOLC_LIBRARY_DIR)
+endif()
+
+# optionally, include Boost
+find_path(
+  3RDPARTY_BOOST_INCLUDE_DIR 
+  NAMES "boost/pool/pool_alloc.hpp" 
+  PATHS "${3RDPARTY_BOOST_DIR}/include" NO_DEFAULT_PATH 
+  DOC "Boost include directory used by ADOL-C (Optional)"
+)
+if(${3RDPARTY_BOOST_INCLUDE_DIR} STREQUAL "3RDPARTY_BOOST_INCLUDE_DIR-NOTFOUND")
+  message(STATUS "Info: Boost include directory not found (optional). To include it, specify 3RDPARTY_BOOST_DIR.")
+else()
+  message(STATUS "Info: Boost (for ADOL-C) found and is included.")
+  list (APPEND 3RDPARTY_INCLUDE_DIRS "${3RDPARTY_BOOST_INCLUDE_DIR}")
 endif()
 
 #if (WIN32)
