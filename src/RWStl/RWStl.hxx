@@ -50,7 +50,7 @@ public:
   static Handle(Poly_Triangulation) ReadFile (const Standard_CString theFile,
                                               const Message_ProgressRange& theProgress = Message_ProgressRange())
   {
-    return ReadFile (theFile, M_PI / 2.0, theProgress);
+    return ReadFile (theFile, Standard_Real(M_PI / 2.0), theProgress);
   }
 
   //! Read specified STL file and returns its content as triangulation.

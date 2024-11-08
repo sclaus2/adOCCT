@@ -807,7 +807,7 @@ void GeomFill_Pipe::Perform(const Standard_Boolean WithParameters,
 {
 
   if ( (! myLoc.IsNull()) && (! mySec.IsNull()) ) {
-    Perform(1.e-4, Polynomial);
+    Perform(Standard_Real (1.e-4), Polynomial);
     return;
   }
 
