@@ -18,12 +18,9 @@
 #define _IGESData_LevelListEntity_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <IGESData_IGESEntity.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
-
 
 class IGESData_LevelListEntity;
 DEFINE_STANDARD_HANDLE(IGESData_LevelListEntity, IGESData_IGESEntity)
@@ -34,39 +31,20 @@ class IGESData_LevelListEntity : public IGESData_IGESEntity
 {
 
 public:
-
-  
   //! Must return the count of levels
   Standard_EXPORT virtual Standard_Integer NbLevelNumbers() const = 0;
-  
+
   //! returns the Level Number of <me>, indicated by <num>
   //! raises an exception if num is out of range
-  Standard_EXPORT virtual Standard_Integer LevelNumber (const Standard_Integer num) const = 0;
-  
+  Standard_EXPORT virtual Standard_Integer LevelNumber(const Standard_Integer num) const = 0;
+
   //! returns True if <level> is in the list
-  Standard_EXPORT Standard_Boolean HasLevelNumber (const Standard_Integer level) const;
+  Standard_EXPORT Standard_Boolean HasLevelNumber(const Standard_Integer level) const;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(IGESData_LevelListEntity,IGESData_IGESEntity)
+  DEFINE_STANDARD_RTTIEXT(IGESData_LevelListEntity, IGESData_IGESEntity)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _IGESData_LevelListEntity_HeaderFile

@@ -15,10 +15,8 @@
 #ifndef TColStd_Array1OfByte_HeaderFile
 #define TColStd_Array1OfByte_HeaderFile
 
-#include <Standard_Byte.hxx>
 #include <NCollection_Array1.hxx>
 
 typedef NCollection_Array1<Standard_Byte> TColStd_Array1OfByte;
-
 
 #endif

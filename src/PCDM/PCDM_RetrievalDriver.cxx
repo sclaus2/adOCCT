@@ -14,40 +14,43 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
-#include <CDM_Application.hxx>
-#include <CDM_Document.hxx>
 #include <Message_Messenger.hxx>
 #include <CDM_MetaData.hxx>
-#include <PCDM.hxx>
-#include <PCDM_BaseDriverPointer.hxx>
-#include <PCDM_Document.hxx>
-#include <PCDM_DriverError.hxx>
 #include <PCDM_ReadWriter.hxx>
 #include <PCDM_RetrievalDriver.hxx>
-#include <PCDM_TypeOfFileDriver.hxx>
 #include <Resource_Manager.hxx>
-#include <Standard_ErrorHandler.hxx>
-#include <Standard_NoSuchObject.hxx>
 #include <Standard_Type.hxx>
-#include <Standard_TypeMismatch.hxx>
-#include <TCollection_AsciiString.hxx>
 #include <TCollection_ExtendedString.hxx>
-#include <TColStd_SequenceOfAsciiString.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(PCDM_RetrievalDriver,PCDM_Reader)
+IMPLEMENT_STANDARD_RTTIEXT(PCDM_RetrievalDriver, PCDM_Reader)
 
-void PCDM_RetrievalDriver::References(const TCollection_ExtendedString& aFileName, PCDM_SequenceOfReference& theReferences, const Handle(Message_Messenger)& theMsgDriver)
-  { PCDM_ReadWriter::Reader(aFileName)->ReadReferences(aFileName, theReferences, theMsgDriver);}
+void PCDM_RetrievalDriver::References(const TCollection_ExtendedString& aFileName,
+                                      PCDM_SequenceOfReference&         theReferences,
+                                      const Handle(Message_Messenger)&  theMsgDriver)
+{
+  PCDM_ReadWriter::Reader(aFileName)->ReadReferences(aFileName, theReferences, theMsgDriver);
+}
 
-Standard_Integer PCDM_RetrievalDriver::DocumentVersion(const TCollection_ExtendedString& aFileName, const Handle(Message_Messenger)& theMsgDriver)
-  { return PCDM_ReadWriter::Reader(aFileName)->ReadDocumentVersion(aFileName, theMsgDriver); }
+Standard_Integer PCDM_RetrievalDriver::DocumentVersion(
+  const TCollection_ExtendedString& aFileName,
+  const Handle(Message_Messenger)&  theMsgDriver)
+{
+  return PCDM_ReadWriter::Reader(aFileName)->ReadDocumentVersion(aFileName, theMsgDriver);
+}
 
-Standard_Integer PCDM_RetrievalDriver::ReferenceCounter(const TCollection_ExtendedString& aFileName, const Handle(Message_Messenger)& theMsgDriver)
-  { return PCDM_ReadWriter::Reader(aFileName)->ReadReferenceCounter(aFileName, theMsgDriver); }
+Standard_Integer PCDM_RetrievalDriver::ReferenceCounter(
+  const TCollection_ExtendedString& aFileName,
+  const Handle(Message_Messenger)&  theMsgDriver)
+{
+  return PCDM_ReadWriter::Reader(aFileName)->ReadReferenceCounter(aFileName, theMsgDriver);
+}
 
-void PCDM_RetrievalDriver::SetFormat (const TCollection_ExtendedString& aformat)
-  { myFormat = aformat; }
+void PCDM_RetrievalDriver::SetFormat(const TCollection_ExtendedString& aformat)
+{
+  myFormat = aformat;
+}
 
-TCollection_ExtendedString PCDM_RetrievalDriver::GetFormat () const
-  { return myFormat; }
+TCollection_ExtendedString PCDM_RetrievalDriver::GetFormat() const
+{
+  return myFormat;
+}

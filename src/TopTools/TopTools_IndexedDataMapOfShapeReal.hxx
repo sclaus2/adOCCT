@@ -16,10 +16,10 @@
 #define TopTools_IndexedDataMapOfShapeReal_HeaderFile
 
 #include <NCollection_IndexedDataMap.hxx>
-#include <Standard_Real.hxx>
 #include <TopoDS_Shape.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 
-typedef NCollection_IndexedDataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher> TopTools_IndexedDataMapOfShapeReal;
+typedef NCollection_IndexedDataMap<TopoDS_Shape, Standard_Real, TopTools_ShapeMapHasher>
+  TopTools_IndexedDataMapOfShapeReal;
 
 #endif

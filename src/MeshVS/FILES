@@ -51,7 +51,6 @@ MeshVS_MeshOwner.cxx
 MeshVS_MeshOwner.hxx
 MeshVS_MeshPrsBuilder.cxx
 MeshVS_MeshPrsBuilder.hxx
-MeshVS_MeshPrsBuilder.lxx
 MeshVS_MeshPtr.hxx
 MeshVS_MeshSelectionMethod.hxx
 MeshVS_NodalColorPrsBuilder.cxx
@@ -77,8 +76,6 @@ MeshVS_Tool.cxx
 MeshVS_Tool.hxx
 MeshVS_TwoColors.cxx
 MeshVS_TwoColors.hxx
-MeshVS_TwoColorsHasher.hxx
 MeshVS_TwoNodes.hxx
-MeshVS_TwoNodesHasher.hxx
 MeshVS_VectorPrsBuilder.cxx
 MeshVS_VectorPrsBuilder.hxx

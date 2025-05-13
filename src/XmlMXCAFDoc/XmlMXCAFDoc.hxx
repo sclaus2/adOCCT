@@ -22,60 +22,17 @@
 
 class XmlMDF_ADriverTable;
 class Message_Messenger;
-class XmlMXCAFDoc_CentroidDriver;
-class XmlMXCAFDoc_ColorDriver;
-class XmlMXCAFDoc_GraphNodeDriver;
-class XmlMXCAFDoc_LengthUnitDriver;
-class XmlMXCAFDoc_LocationDriver;
-class XmlMXCAFDoc_DatumDriver;
-class XmlMXCAFDoc_DimTolDriver;
-class XmlMXCAFDoc_MaterialDriver;
-class XmlMXCAFDoc_NoteDriver;
-class XmlMXCAFDoc_NoteCommentDriver;
-class XmlMXCAFDoc_NoteBinDataDriver;
-
 
 //! Storage and Retrieval drivers for modelling attributes.
 //! Transient attributes are defined in package XCAFDoc
-class XmlMXCAFDoc 
+class XmlMXCAFDoc
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Adds the attribute drivers to <aDriverTable>.
-  Standard_EXPORT static void AddDrivers (const Handle(XmlMDF_ADriverTable)& aDriverTable, const Handle(Message_Messenger)& anMsgDrv);
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class XmlMXCAFDoc_CentroidDriver;
-friend class XmlMXCAFDoc_ColorDriver;
-friend class XmlMXCAFDoc_GraphNodeDriver;
-friend class XmlMXCAFDoc_LengthUnitDriver;
-friend class XmlMXCAFDoc_LocationDriver;
-friend class XmlMXCAFDoc_DatumDriver;
-friend class XmlMXCAFDoc_DimTolDriver;
-friend class XmlMXCAFDoc_MaterialDriver;
-
+  Standard_EXPORT static void AddDrivers(const Handle(XmlMDF_ADriverTable)& aDriverTable,
+                                         const Handle(Message_Messenger)&   anMsgDrv);
 };
-
-
-
-
-
-
 
 #endif // _XmlMXCAFDoc_HeaderFile

@@ -20,69 +20,49 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
 #include <Draw_Drawable3D.hxx>
 class Draw_Display;
 
-
 class Draw_Grid;
 DEFINE_STANDARD_HANDLE(Draw_Grid, Draw_Drawable3D)
-
 
 class Draw_Grid : public Draw_Drawable3D
 {
 
 public:
-
-  
   //! Creates a grid.
   Standard_EXPORT Draw_Grid();
-  
+
   //! Sets the steps along the X, Y & Z axis.
-  Standard_EXPORT void Steps (const double StepX, const double StepY, const double StepZ);
-  
+  Standard_EXPORT void Steps(const double StepX,
+                             const double StepY,
+                             const double StepZ);
+
   //! Returns the step along the X axis.
-    double StepX() const;
-  
+  double StepX() const;
+
   //! Returns the step along the Y axis.
-    double StepY() const;
-  
+  double StepY() const;
+
   //! Returns the step along the Z axis.
-    double StepZ() const;
-  
+  double StepZ() const;
+
   //! Returns if the grid is active or not.
-    Standard_Boolean IsActive() const;
-  
+  Standard_Boolean IsActive() const;
+
   //! Displays the grid.
-  Standard_EXPORT void DrawOn (Draw_Display& Out) const Standard_OVERRIDE;
+  Standard_EXPORT void DrawOn(Draw_Display& Out) const Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(Draw_Grid,Draw_Drawable3D)
+  DEFINE_STANDARD_RTTIEXT(Draw_Grid, Draw_Drawable3D)
 
 protected:
-
-
-
-
 private:
-
-
-  double myStepX;
-  double myStepY;
-  double myStepZ;
+  double    myStepX;
+  double    myStepY;
+  double    myStepZ;
   Standard_Boolean myIsActive;
-
-
 };
 
-
 #include <Draw_Grid.lxx>
-
-
-
-
 
 #endif // _Draw_Grid_HeaderFile

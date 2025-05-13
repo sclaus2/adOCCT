@@ -18,7 +18,6 @@
 #ifndef XmlTObjDrivers_HeaderFile
 #define XmlTObjDrivers_HeaderFile
 
-#include <TObj_Common.hxx>
 #include <Standard_GUID.hxx>
 
 class XmlMDF_ADriverTable;
@@ -27,22 +26,18 @@ class TDocStd_Application;
 
 //! Class for registering storage/retrieval drivers for TObj XML persistence
 
-class XmlTObjDrivers 
+class XmlTObjDrivers
 {
- public:
-  
+public:
   //! Returns a driver corresponding to <aGUID>. Used for plugin.
-  Standard_EXPORT static const Handle(Standard_Transient)& Factory
-                        (const Standard_GUID& aGUID);
+  Standard_EXPORT static const Handle(Standard_Transient)& Factory(const Standard_GUID& aGUID);
 
   //! Defines format "TObjXml" and registers its read and write drivers
   //! in the specified application
-  Standard_EXPORT static void DefineFormat (const Handle(TDocStd_Application)& theApp);
+  Standard_EXPORT static void DefineFormat(const Handle(TDocStd_Application)& theApp);
 
-  Standard_EXPORT static void AddDrivers
-                        (const Handle(XmlMDF_ADriverTable)& aDriverTable,
-                         const Handle(Message_Messenger)& anMsgDrv);
-
+  Standard_EXPORT static void AddDrivers(const Handle(XmlMDF_ADriverTable)& aDriverTable,
+                                         const Handle(Message_Messenger)&   anMsgDrv);
 };
 
 #endif

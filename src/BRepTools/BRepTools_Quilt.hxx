@@ -19,14 +19,11 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopTools_IndexedDataMapOfShapeShape.hxx>
-#include <Standard_Boolean.hxx>
 class TopoDS_Edge;
 class TopoDS_Vertex;
 class TopoDS_Shape;
-
 
 //! A Tool to glue faces at common edges and reconstruct shells.
 //!
@@ -38,18 +35,18 @@ class TopoDS_Shape;
 //! The user can add shapes with the Add method, all the faces are registered and copies of faces
 //! and edges are made to glue at the bound edges.
 //!
-//! The user can call the Shells methods to compute a compound of shells from the current set of faces.
+//! The user can call the Shells methods to compute a compound of shells from the current set of
+//! faces.
 //!
-//! If no binding is made this class can be used to make shell from faces already sharing their edges.
-class BRepTools_Quilt 
+//! If no binding is made this class can be used to make shell from faces already sharing their
+//! edges.
+class BRepTools_Quilt
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT BRepTools_Quilt();
-  
+
   //! Binds <Enew> to   be  the  new edge  instead   of
   //! <Eold>.
   //!
@@ -66,53 +63,34 @@ public:
   //!
   //! <Eold> must belong to the next added shape, <Enew> must belong
   //! to a Shape added before.
-  Standard_EXPORT void Bind (const TopoDS_Edge& Eold, const TopoDS_Edge& Enew);
-  
+  Standard_EXPORT void Bind(const TopoDS_Edge& Eold, const TopoDS_Edge& Enew);
+
   //! Binds <VNew> to be a new vertex instead of <Vold>.
   //!
   //! The faces  of  the added  shape containing  <Vold>
   //! will be copied to substitute <Vold> by <Vnew>.
-  Standard_EXPORT void Bind (const TopoDS_Vertex& Vold, const TopoDS_Vertex& Vnew);
-  
+  Standard_EXPORT void Bind(const TopoDS_Vertex& Vold, const TopoDS_Vertex& Vnew);
+
   //! Add   the faces of  <S>  to  the Quilt,  the faces
   //! containing bounded edges are copied.
-  Standard_EXPORT void Add (const TopoDS_Shape& S);
-  
+  Standard_EXPORT void Add(const TopoDS_Shape& S);
+
   //! Returns   True if <S> has   been  copied (<S> is a
   //! vertex, an edge or a face)
-  Standard_EXPORT Standard_Boolean IsCopied (const TopoDS_Shape& S) const;
-  
+  Standard_EXPORT Standard_Boolean IsCopied(const TopoDS_Shape& S) const;
+
   //! Returns the shape substituted to <S> in the Quilt.
-  Standard_EXPORT const TopoDS_Shape& Copy (const TopoDS_Shape& S) const;
-  
+  Standard_EXPORT const TopoDS_Shape& Copy(const TopoDS_Shape& S) const;
+
   //! Returns a Compound of shells made from the current
   //! set of faces. The shells will be flagged as closed
   //! or not closed.
   Standard_EXPORT TopoDS_Shape Shells() const;
 
-
-
-
 protected:
-
-
-
-
-
 private:
-
-
-
   TopTools_IndexedDataMapOfShapeShape myBounds;
-  Standard_Boolean hasCopy;
-
-
+  Standard_Boolean                    hasCopy;
 };
-
-
-
-
-
-
 
 #endif // _BRepTools_Quilt_HeaderFile

@@ -11,9 +11,6 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
-#include <Standard_Type.hxx>
-#include <Standard_TypeMismatch.hxx>
 #include <TopoDS.hxx>
 #include <TopoDS_Compound.hxx>
 #include <TopoDS_CompSolid.hxx>
@@ -26,39 +23,58 @@
 #include <TopoDS_Wire.hxx>
 #include <TransferBRep_ShapeBinder.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(TransferBRep_ShapeBinder,TransferBRep_BinderOfShape)
+IMPLEMENT_STANDARD_RTTIEXT(TransferBRep_ShapeBinder, TransferBRep_BinderOfShape)
 
-TransferBRep_ShapeBinder::TransferBRep_ShapeBinder ()    {  }
+TransferBRep_ShapeBinder::TransferBRep_ShapeBinder() {}
 
-    TransferBRep_ShapeBinder::TransferBRep_ShapeBinder (const TopoDS_Shape& shape)
-    :  TransferBRep_BinderOfShape (shape)    {  }
-
-    TopAbs_ShapeEnum  TransferBRep_ShapeBinder::ShapeType () const
+TransferBRep_ShapeBinder::TransferBRep_ShapeBinder(const TopoDS_Shape& shape)
+    : TransferBRep_BinderOfShape(shape)
 {
-  if (!HasResult()) return TopAbs_SHAPE;
-  return  Result().ShapeType();
 }
 
-    TopoDS_Vertex  TransferBRep_ShapeBinder::Vertex() const
-      {  return TopoDS::Vertex(Result());  }
+TopAbs_ShapeEnum TransferBRep_ShapeBinder::ShapeType() const
+{
+  if (!HasResult())
+    return TopAbs_SHAPE;
+  return Result().ShapeType();
+}
 
-    TopoDS_Edge  TransferBRep_ShapeBinder::Edge() const
-      {  return TopoDS::Edge(Result());  }
+TopoDS_Vertex TransferBRep_ShapeBinder::Vertex() const
+{
+  return TopoDS::Vertex(Result());
+}
 
-    TopoDS_Wire  TransferBRep_ShapeBinder::Wire() const
-      {  return TopoDS::Wire(Result());  }
+TopoDS_Edge TransferBRep_ShapeBinder::Edge() const
+{
+  return TopoDS::Edge(Result());
+}
 
-    TopoDS_Face  TransferBRep_ShapeBinder::Face() const
-      {  return TopoDS::Face(Result());  }
+TopoDS_Wire TransferBRep_ShapeBinder::Wire() const
+{
+  return TopoDS::Wire(Result());
+}
 
-    TopoDS_Shell  TransferBRep_ShapeBinder::Shell() const
-      {  return TopoDS::Shell(Result());  }
+TopoDS_Face TransferBRep_ShapeBinder::Face() const
+{
+  return TopoDS::Face(Result());
+}
 
-    TopoDS_Solid  TransferBRep_ShapeBinder::Solid() const
-      {  return TopoDS::Solid(Result());  }
+TopoDS_Shell TransferBRep_ShapeBinder::Shell() const
+{
+  return TopoDS::Shell(Result());
+}
 
-    TopoDS_CompSolid  TransferBRep_ShapeBinder::CompSolid() const
-      {  return TopoDS::CompSolid(Result());  }
+TopoDS_Solid TransferBRep_ShapeBinder::Solid() const
+{
+  return TopoDS::Solid(Result());
+}
 
-    TopoDS_Compound  TransferBRep_ShapeBinder::Compound() const
-      {  return TopoDS::Compound(Result());  }
+TopoDS_CompSolid TransferBRep_ShapeBinder::CompSolid() const
+{
+  return TopoDS::CompSolid(Result());
+}
+
+TopoDS_Compound TransferBRep_ShapeBinder::Compound() const
+{
+  return TopoDS::Compound(Result());
+}

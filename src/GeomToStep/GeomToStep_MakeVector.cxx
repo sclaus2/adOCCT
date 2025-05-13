@@ -14,7 +14,6 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
 #include <Geom2d_Vector.hxx>
 #include <Geom_Vector.hxx>
 #include <GeomToStep_MakeDirection.hxx>
@@ -24,26 +23,30 @@
 #include <gp_Vec.hxx>
 #include <gp_Vec2d.hxx>
 #include <StdFail_NotDone.hxx>
-#include <StepData_GlobalFactors.hxx>
+#include <StepData_Factors.hxx>
 #include <StepGeom_Vector.hxx>
 #include <TCollection_HAsciiString.hxx>
 
 //=============================================================================
 // Creation d' un vector de prostep a partir d' un Vec de gp
 //=============================================================================
-GeomToStep_MakeVector::GeomToStep_MakeVector( const gp_Vec& V)
+GeomToStep_MakeVector::GeomToStep_MakeVector(const gp_Vec&           V,
+                                             const StepData_Factors& theLocalFactors)
 {
-  gp_Dir D = gp_Dir(V);
-  Standard_Real lFactor = StepData_GlobalFactors::Intance().LengthFactor();
+  gp_Dir        D       = gp_Dir(V);
+  Standard_Real lFactor = theLocalFactors.LengthFactor();
 #include "GeomToStep_MakeVector_gen.pxx"
 }
+
 //=============================================================================
 // Creation d' un vector de prostep a partir d' un Vec2d de gp
 //=============================================================================
 
-GeomToStep_MakeVector::GeomToStep_MakeVector( const gp_Vec2d& V)
+GeomToStep_MakeVector::GeomToStep_MakeVector(const gp_Vec2d&         V,
+                                             const StepData_Factors& theLocalFactors)
 {
-  gp_Dir2d D = gp_Dir2d(V);
+  (void)theLocalFactors;
+  gp_Dir2d      D       = gp_Dir2d(V);
   Standard_Real lFactor = 1.;
 #include "GeomToStep_MakeVector_gen.pxx"
 }
@@ -52,13 +55,13 @@ GeomToStep_MakeVector::GeomToStep_MakeVector( const gp_Vec2d& V)
 // Creation d' un vector de prostep a partir d' un Vector de Geom
 //=============================================================================
 
-GeomToStep_MakeVector::GeomToStep_MakeVector ( const Handle(Geom_Vector)&
-					    GVector)
+GeomToStep_MakeVector::GeomToStep_MakeVector(const Handle(Geom_Vector)& GVector,
+                                             const StepData_Factors&    theLocalFactors)
 {
   gp_Vec V;
-  V = GVector->Vec();
-  gp_Dir D = gp_Dir(V);
-  Standard_Real lFactor = StepData_GlobalFactors::Intance().LengthFactor();
+  V                     = GVector->Vec();
+  gp_Dir        D       = gp_Dir(V);
+  Standard_Real lFactor = theLocalFactors.LengthFactor();
 #include "GeomToStep_MakeVector_gen.pxx"
 }
 
@@ -66,12 +69,13 @@ GeomToStep_MakeVector::GeomToStep_MakeVector ( const Handle(Geom_Vector)&
 // Creation d' un vector de prostep a partir d' un Vector de Geom2d
 //=============================================================================
 
-GeomToStep_MakeVector::GeomToStep_MakeVector ( const Handle(Geom2d_Vector)&
-					    GVector)
+GeomToStep_MakeVector::GeomToStep_MakeVector(const Handle(Geom2d_Vector)& GVector,
+                                             const StepData_Factors&      theLocalFactors)
 {
+  (void)theLocalFactors;
   gp_Vec2d V;
-  V = GVector->Vec2d();
-  gp_Dir2d D = gp_Dir2d(V);
+  V                     = GVector->Vec2d();
+  gp_Dir2d      D       = gp_Dir2d(V);
   Standard_Real lFactor = 1.;
 #include "GeomToStep_MakeVector_gen.pxx"
 }
@@ -80,9 +84,8 @@ GeomToStep_MakeVector::GeomToStep_MakeVector ( const Handle(Geom2d_Vector)&
 // renvoi des valeurs
 //=============================================================================
 
-const Handle(StepGeom_Vector) &
-      GeomToStep_MakeVector::Value() const
+const Handle(StepGeom_Vector)& GeomToStep_MakeVector::Value() const
 {
-  StdFail_NotDone_Raise_if (!done, "GeomToStep_MakeVector::Value() - no result");
+  StdFail_NotDone_Raise_if(!done, "GeomToStep_MakeVector::Value() - no result");
   return theVector;
 }

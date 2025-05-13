@@ -17,11 +17,9 @@
 #ifndef StepGeom_HArray2OfSurfacePatch_HeaderFile
 #define StepGeom_HArray2OfSurfacePatch_HeaderFile
 
-#include <StepGeom_SurfacePatch.hxx>
 #include <StepGeom_Array2OfSurfacePatch.hxx>
 #include <NCollection_DefineHArray2.hxx>
 
 DEFINE_HARRAY2(StepGeom_HArray2OfSurfacePatch, StepGeom_Array2OfSurfacePatch)
-
 
 #endif

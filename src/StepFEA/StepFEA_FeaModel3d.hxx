@@ -17,10 +17,8 @@
 #define _StepFEA_FeaModel3d_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepFEA_FeaModel.hxx>
-
 
 class StepFEA_FeaModel3d;
 DEFINE_STANDARD_HANDLE(StepFEA_FeaModel3d, StepFEA_FeaModel)
@@ -30,32 +28,13 @@ class StepFEA_FeaModel3d : public StepFEA_FeaModel
 {
 
 public:
-
-  
   //! Empty constructor
   Standard_EXPORT StepFEA_FeaModel3d();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepFEA_FeaModel3d,StepFEA_FeaModel)
+  DEFINE_STANDARD_RTTIEXT(StepFEA_FeaModel3d, StepFEA_FeaModel)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepFEA_FeaModel3d_HeaderFile

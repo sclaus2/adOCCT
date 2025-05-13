@@ -17,24 +17,20 @@
 #define _BRepMesh_CylinderRangeSplitter_HeaderFile
 
 #include <BRepMesh_DefaultRangeSplitter.hxx>
-#include <IMeshTools_Parameters.hxx>
 
 //! Auxiliary class extending default range splitter in
 //! order to generate internal nodes for cylindrical surface.
 class BRepMesh_CylinderRangeSplitter : public BRepMesh_DefaultRangeSplitter
 {
 public:
-
   //! Constructor.
   BRepMesh_CylinderRangeSplitter()
-    : myDu(1.)
+      : myDu(1.)
   {
   }
 
   //! Destructor.
-  virtual ~BRepMesh_CylinderRangeSplitter()
-  {
-  }
+  virtual ~BRepMesh_CylinderRangeSplitter() {}
 
   //! Resets this splitter. Must be called before first use.
   Standard_EXPORT virtual void Reset(const IMeshData::IFaceHandle& theDFace,
@@ -45,14 +41,11 @@ public:
     const IMeshTools_Parameters& theParameters) const Standard_OVERRIDE;
 
 protected:
-
   //! Computes parametric delta taking length along U and V into account.
-  Standard_EXPORT virtual void computeDelta(
-    const Standard_Real theLengthU,
-    const Standard_Real theLengthV) Standard_OVERRIDE;
+  Standard_EXPORT virtual void computeDelta(const Standard_Real theLengthU,
+                                            const Standard_Real theLengthV) Standard_OVERRIDE;
 
 private:
-
   Standard_Real myDu;
 };
 

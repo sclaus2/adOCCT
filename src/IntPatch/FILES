@@ -23,13 +23,6 @@ IntPatch_IType.hxx
 IntPatch_ImpImpIntersection.cxx
 IntPatch_ImpImpIntersection.hxx
 IntPatch_ImpImpIntersection.lxx
-IntPatch_ImpImpIntersection_0.gxx
-IntPatch_ImpImpIntersection_1.gxx
-IntPatch_ImpImpIntersection_2.gxx
-IntPatch_ImpImpIntersection_3.gxx
-IntPatch_ImpImpIntersection_4.gxx
-IntPatch_ImpImpIntersection_5.gxx
-IntPatch_ImpImpIntersection_6.gxx
 IntPatch_ImpPrmIntersection.cxx
 IntPatch_ImpPrmIntersection.hxx
 IntPatch_ImpPrmIntersection.lxx
@@ -64,7 +57,6 @@ IntPatch_PrmPrmIntersection.hxx
 IntPatch_PrmPrmIntersection.lxx
 IntPatch_PrmPrmIntersection_T3Bits.cxx
 IntPatch_PrmPrmIntersection_T3Bits.hxx
-IntPatch_PrmPrmIntersection_T3Bits.lxx
 IntPatch_RLine.cxx
 IntPatch_RLine.hxx
 IntPatch_RLine.lxx

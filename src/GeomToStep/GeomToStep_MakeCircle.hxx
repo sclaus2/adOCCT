@@ -22,53 +22,38 @@
 #include <Standard_Handle.hxx>
 
 #include <GeomToStep_Root.hxx>
+
 class StepGeom_Circle;
 class gp_Circ;
 class Geom_Circle;
 class Geom2d_Circle;
 
-
 //! This class implements the mapping between classes
 //! Circle from Geom, and Circ from gp, and the class
 //! Circle from StepGeom which describes a circle from
 //! Prostep.
-class GeomToStep_MakeCircle  : public GeomToStep_Root
+class GeomToStep_MakeCircle : public GeomToStep_Root
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
-  Standard_EXPORT GeomToStep_MakeCircle(const gp_Circ& C);
-  
-  Standard_EXPORT GeomToStep_MakeCircle(const Handle(Geom_Circle)& C);
-  
-  Standard_EXPORT GeomToStep_MakeCircle(const Handle(Geom2d_Circle)& C);
-  
+  Standard_EXPORT GeomToStep_MakeCircle(
+    const gp_Circ&          C,
+    const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeCircle(
+    const Handle(Geom_Circle)& C,
+    const StepData_Factors&    theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeCircle(
+    const Handle(Geom2d_Circle)& C,
+    const StepData_Factors&      theLocalFactors = StepData_Factors());
+
   Standard_EXPORT const Handle(StepGeom_Circle)& Value() const;
 
-
-
-
 protected:
-
-
-
-
-
 private:
-
-
-
   Handle(StepGeom_Circle) theCircle;
-
-
 };
-
-
-
-
-
-
 
 #endif // _GeomToStep_MakeCircle_HeaderFile

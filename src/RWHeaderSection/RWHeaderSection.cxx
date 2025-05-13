@@ -11,26 +11,25 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#include <RWHeaderSection.hxx>
 
 #include <HeaderSection.hxx>
 #include <HeaderSection_Protocol.hxx>
-#include <RWHeaderSection.hxx>
 #include <RWHeaderSection_GeneralModule.hxx>
 #include <RWHeaderSection_ReadWriteModule.hxx>
 #include <StepData.hxx>
 
 /// #include <EuclidStandard.hxx>
 static Handle(RWHeaderSection_ReadWriteModule) rwm;
-static Handle(RWHeaderSection_GeneralModule) rwg;
-
+static Handle(RWHeaderSection_GeneralModule)   rwg;
 
 void RWHeaderSection::Init()
 {
-///   EuclidStandard::Init();
+  ///   EuclidStandard::Init();
   Handle(HeaderSection_Protocol) proto = HeaderSection::Protocol();
   StepData::AddHeaderProtocol(proto);
-  if (rwm.IsNull()) rwm = new RWHeaderSection_ReadWriteModule;
-  if (rwg.IsNull()) rwg = new RWHeaderSection_GeneralModule;
+  if (rwm.IsNull())
+    rwm = new RWHeaderSection_ReadWriteModule;
+  if (rwg.IsNull())
+    rwg = new RWHeaderSection_GeneralModule;
 }
-
-

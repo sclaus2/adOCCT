@@ -23,44 +23,15 @@
 #include <Standard_Integer.hxx>
 class XmlMDF_ADriverTable;
 class Message_Messenger;
-class XmlMNaming_NamedShapeDriver;
-class XmlMNaming_NamingDriver;
-class XmlMNaming_Shape1;
 
-
-
-class XmlMNaming 
+class XmlMNaming
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Adds the attribute drivers to <aDriverTable>.
-  Standard_EXPORT static void AddDrivers (const Handle(XmlMDF_ADriverTable)& aDriverTable, const Handle(Message_Messenger)& aMessageDriver);
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class XmlMNaming_NamedShapeDriver;
-friend class XmlMNaming_NamingDriver;
-friend class XmlMNaming_Shape1;
-
+  Standard_EXPORT static void AddDrivers(const Handle(XmlMDF_ADriverTable)& aDriverTable,
+                                         const Handle(Message_Messenger)&   aMessageDriver);
 };
-
-
-
-
-
-
 
 #endif // _XmlMNaming_HeaderFile

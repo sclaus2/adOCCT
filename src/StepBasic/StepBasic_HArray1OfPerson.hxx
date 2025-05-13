@@ -17,11 +17,9 @@
 #ifndef StepBasic_HArray1OfPerson_HeaderFile
 #define StepBasic_HArray1OfPerson_HeaderFile
 
-#include <StepBasic_Person.hxx>
 #include <StepBasic_Array1OfPerson.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepBasic_HArray1OfPerson, StepBasic_Array1OfPerson)
-
 
 #endif

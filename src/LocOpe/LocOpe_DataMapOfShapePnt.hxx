@@ -17,13 +17,12 @@
 #ifndef LocOpe_DataMapOfShapePnt_HeaderFile
 #define LocOpe_DataMapOfShapePnt_HeaderFile
 
-#include <TopoDS_Shape.hxx>
 #include <gp_Pnt.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TopoDS_Shape,gp_Pnt,TopTools_ShapeMapHasher> LocOpe_DataMapOfShapePnt;
-typedef NCollection_DataMap<TopoDS_Shape,gp_Pnt,TopTools_ShapeMapHasher>::Iterator LocOpe_DataMapIteratorOfDataMapOfShapePnt;
-
+typedef NCollection_DataMap<TopoDS_Shape, gp_Pnt, TopTools_ShapeMapHasher> LocOpe_DataMapOfShapePnt;
+typedef NCollection_DataMap<TopoDS_Shape, gp_Pnt, TopTools_ShapeMapHasher>::Iterator
+  LocOpe_DataMapIteratorOfDataMapOfShapePnt;
 
 #endif

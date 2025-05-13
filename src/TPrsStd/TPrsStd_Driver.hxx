@@ -21,10 +21,8 @@
 #include <Standard_Type.hxx>
 
 #include <Standard_Transient.hxx>
-#include <Standard_Boolean.hxx>
 class TDF_Label;
 class AIS_InteractiveObject;
-
 
 class TPrsStd_Driver;
 DEFINE_STANDARD_HANDLE(TPrsStd_Driver, Standard_Transient)
@@ -48,36 +46,17 @@ class TPrsStd_Driver : public Standard_Transient
 {
 
 public:
-
-  
-
   //! Updates the interactive object ais with
   //! information found on the attributes associated with the label L.
-  Standard_EXPORT virtual Standard_Boolean Update (const TDF_Label& L, Handle(AIS_InteractiveObject)& ais) = 0;
+  Standard_EXPORT virtual Standard_Boolean Update(const TDF_Label&               L,
+                                                  Handle(AIS_InteractiveObject)& ais) = 0;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(TPrsStd_Driver,Standard_Transient)
+  DEFINE_STANDARD_RTTIEXT(TPrsStd_Driver, Standard_Transient)
 
 protected:
-
-  
   Standard_EXPORT TPrsStd_Driver();
 
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _TPrsStd_Driver_HeaderFile

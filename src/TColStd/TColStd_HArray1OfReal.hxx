@@ -15,11 +15,9 @@
 #ifndef TColStd_HArray1OfReal_HeaderFile
 #define TColStd_HArray1OfReal_HeaderFile
 
-#include <Standard_Real.hxx>
 #include <TColStd_Array1OfReal.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(TColStd_HArray1OfReal, TColStd_Array1OfReal)
-
 
 #endif

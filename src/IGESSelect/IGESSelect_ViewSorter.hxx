@@ -23,7 +23,6 @@
 #include <TColStd_IndexedMapOfTransient.hxx>
 #include <TColStd_SequenceOfInteger.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_Boolean.hxx>
 #include <TColStd_HSequenceOfTransient.hxx>
 #include <Standard_Integer.hxx>
 class IGESData_IGESModel;
@@ -31,7 +30,6 @@ class IGESData_IGESEntity;
 class Interface_InterfaceModel;
 class Interface_Graph;
 class IFSelect_PacketList;
-
 
 class IGESSelect_ViewSorter;
 DEFINE_STANDARD_HANDLE(IGESSelect_ViewSorter, Standard_Transient)
@@ -48,34 +46,32 @@ class IGESSelect_ViewSorter : public Standard_Transient
 {
 
 public:
-
-  
   //! Creates a ViewSorter, empty. SetModel remains to be called
   Standard_EXPORT IGESSelect_ViewSorter();
-  
+
   //! Sets the Model (for PacketList)
-  Standard_EXPORT void SetModel (const Handle(IGESData_IGESModel)& model);
-  
+  Standard_EXPORT void SetModel(const Handle(IGESData_IGESModel)& model);
+
   //! Clears recorded data
   Standard_EXPORT void Clear();
-  
+
   //! Adds an item according its type : AddEntity,AddList,AddModel
-  Standard_EXPORT Standard_Boolean Add (const Handle(Standard_Transient)& ent);
-  
+  Standard_EXPORT Standard_Boolean Add(const Handle(Standard_Transient)& ent);
+
   //! Adds an IGES entity. Records the view it is attached to.
   //! Records directly <ent> if it is a ViewKindEntity or a Drawing
   //! Returns True if added, False if already in the map
-  Standard_EXPORT Standard_Boolean AddEntity (const Handle(IGESData_IGESEntity)& igesent);
-  
+  Standard_EXPORT Standard_Boolean AddEntity(const Handle(IGESData_IGESEntity)& igesent);
+
   //! Adds a list of entities by adding each of the items
-  Standard_EXPORT void AddList (const Handle(TColStd_HSequenceOfTransient)& list);
-  
+  Standard_EXPORT void AddList(const Handle(TColStd_HSequenceOfTransient)& list);
+
   //! Adds all the entities contained in a Model
-  Standard_EXPORT void AddModel (const Handle(Interface_InterfaceModel)& model);
-  
+  Standard_EXPORT void AddModel(const Handle(Interface_InterfaceModel)& model);
+
   //! Returns the count of already recorded
   Standard_EXPORT Standard_Integer NbEntities() const;
-  
+
   //! Prepares the result to keep only sets attached to Single Views
   //! If <alsoframes> is given True, it keeps also the Drawings as
   //! specific sets, in order to get their frames.
@@ -83,8 +79,8 @@ public:
   //!
   //! Result can then be read by the methods NbSets,SetItem,SetList,
   //! RemainingList(final = True)
-  Standard_EXPORT void SortSingleViews (const Standard_Boolean alsoframes);
-  
+  Standard_EXPORT void SortSingleViews(const Standard_Boolean alsoframes);
+
   //! Prepares the result to the sets attached to Drawings :
   //! All the single views referenced by a Drawing become bound to
   //! the set for this Drawing
@@ -94,8 +90,8 @@ public:
   //!
   //! Result can then be read by the methods NbSets,SetItem,SetList,
   //! RemainingList(final = True)
-  Standard_EXPORT void SortDrawings (const Interface_Graph& G);
-  
+  Standard_EXPORT void SortDrawings(const Interface_Graph& G);
+
   //! Returns the count of sets recorded, one per distinct item.
   //! The Remaining List is not counted.
   //! If <final> is False, the sets are attached to distinct views
@@ -105,45 +101,29 @@ public:
   //!
   //! Warning : Drawings directly recorded are also counted as sets, because
   //! of their Frame (which is made of Annotations)
-  Standard_EXPORT Standard_Integer NbSets (const Standard_Boolean final) const;
-  
+  Standard_EXPORT Standard_Integer NbSets(const Standard_Boolean final) const;
+
   //! Returns the Item which is attached to a set of entities
   //! For <final> and definition of sets, see method NbSets.
   //! This item can be a kind of View or a Drawing
-  Standard_EXPORT Handle(IGESData_IGESEntity) SetItem (const Standard_Integer num, const Standard_Boolean final) const;
-  
+  Standard_EXPORT Handle(IGESData_IGESEntity) SetItem(const Standard_Integer num,
+                                                      const Standard_Boolean final) const;
+
   //! Returns the complete content of the determined Sets, which
   //! include Duplicated and Remaining (duplication 0) lists
   //! For <final> and definition of sets, see method NbSets.
-  Standard_EXPORT Handle(IFSelect_PacketList) Sets (const Standard_Boolean final) const;
+  Standard_EXPORT Handle(IFSelect_PacketList) Sets(const Standard_Boolean final) const;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(IGESSelect_ViewSorter,Standard_Transient)
+  DEFINE_STANDARD_RTTIEXT(IGESSelect_ViewSorter, Standard_Transient)
 
 protected:
-
-
-
-
 private:
-
-
-  Handle(IGESData_IGESModel) themodel;
+  Handle(IGESData_IGESModel)    themodel;
   TColStd_IndexedMapOfTransient themap;
   TColStd_IndexedMapOfTransient theitems;
   TColStd_IndexedMapOfTransient thefinals;
-  TColStd_SequenceOfInteger theinditem;
-  TColStd_SequenceOfInteger theindfin;
-
-
+  TColStd_SequenceOfInteger     theinditem;
+  TColStd_SequenceOfInteger     theindfin;
 };
-
-
-
-
-
-
 
 #endif // _IGESSelect_ViewSorter_HeaderFile

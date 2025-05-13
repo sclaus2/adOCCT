@@ -15,15 +15,11 @@
 
 // Generator:	ExpToCas (EXPRESS -> CASCADE/XSTEP Translator) V1.2
 
-#include <Standard_Type.hxx>
 #include <StepDimTol_TotalRunoutTolerance.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepDimTol_TotalRunoutTolerance,StepDimTol_GeometricToleranceWithDatumReference)
+IMPLEMENT_STANDARD_RTTIEXT(StepDimTol_TotalRunoutTolerance,
+                           StepDimTol_GeometricToleranceWithDatumReference)
 
-//=======================================================================
-//function : StepDimTol_TotalRunoutTolerance
-//purpose  : 
-//=======================================================================
-StepDimTol_TotalRunoutTolerance::StepDimTol_TotalRunoutTolerance ()
-{
-}
+//=================================================================================================
+
+StepDimTol_TotalRunoutTolerance::StepDimTol_TotalRunoutTolerance() {}

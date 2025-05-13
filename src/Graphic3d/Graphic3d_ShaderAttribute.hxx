@@ -17,43 +17,34 @@
 #define _Graphic3d_ShaderAttribute_HeaderFile
 
 #include <Standard_Transient.hxx>
+#include <NCollection_DefineAlloc.hxx>
 #include <TCollection_AsciiString.hxx>
 
 //! Describes custom vertex shader attribute.
 class Graphic3d_ShaderAttribute : public Standard_Transient
 {
 public:
-
   //! Creates new attribute.
-  Standard_EXPORT Graphic3d_ShaderAttribute (const TCollection_AsciiString& theName,
-                                             const int theLocation);
+  Standard_EXPORT Graphic3d_ShaderAttribute(const TCollection_AsciiString& theName,
+                                            const int                      theLocation);
 
   //! Destructor.
   Standard_EXPORT virtual ~Graphic3d_ShaderAttribute();
 
   //! Returns name of shader variable.
-  const TCollection_AsciiString& Name() const
-  {
-    return myName;
-  }
+  const TCollection_AsciiString& Name() const { return myName; }
 
   //! Returns attribute location to be bound on GLSL program linkage stage.
-  int Location() const
-  {
-    return myLocation;
-  }
+  int Location() const { return myLocation; }
 
 protected:
-
   TCollection_AsciiString myName;     //!< attribute name
   int                     myLocation; //!< attribute location
 
 public:
-
-  DEFINE_STANDARD_RTTIEXT(Graphic3d_ShaderAttribute,Standard_Transient)
-
+  DEFINE_STANDARD_RTTIEXT(Graphic3d_ShaderAttribute, Standard_Transient)
 };
 
-DEFINE_STANDARD_HANDLE (Graphic3d_ShaderAttribute, Standard_Transient)
+DEFINE_STANDARD_HANDLE(Graphic3d_ShaderAttribute, Standard_Transient)
 
 #endif // _Graphic3d_ShaderAttribute_HeaderFile

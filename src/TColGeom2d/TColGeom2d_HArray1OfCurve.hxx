@@ -17,11 +17,9 @@
 #ifndef TColGeom2d_HArray1OfCurve_HeaderFile
 #define TColGeom2d_HArray1OfCurve_HeaderFile
 
-#include <Geom2d_Curve.hxx>
 #include <TColGeom2d_Array1OfCurve.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(TColGeom2d_HArray1OfCurve, TColGeom2d_Array1OfCurve)
-
 
 #endif

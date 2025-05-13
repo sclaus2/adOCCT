@@ -17,11 +17,9 @@
 #ifndef StepAP203_HArray1OfClassifiedItem_HeaderFile
 #define StepAP203_HArray1OfClassifiedItem_HeaderFile
 
-#include <StepAP203_ClassifiedItem.hxx>
 #include <StepAP203_Array1OfClassifiedItem.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepAP203_HArray1OfClassifiedItem, StepAP203_Array1OfClassifiedItem)
-
 
 #endif

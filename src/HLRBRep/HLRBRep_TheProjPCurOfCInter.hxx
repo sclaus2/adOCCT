@@ -21,7 +21,6 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Address.hxx>
 #include <Standard_Real.hxx>
 class HLRBRep_CurveTool;
 class HLRBRep_TheCurveLocatorOfTheProjPCurOfCInter;
@@ -29,10 +28,9 @@ class HLRBRep_TheLocateExtPCOfTheProjPCurOfCInter;
 class HLRBRep_PCLocFOfTheLocateExtPCOfTheProjPCurOfCInter;
 class gp_Pnt2d;
 
-class HLRBRep_TheProjPCurOfCInter 
+class HLRBRep_TheProjPCurOfCInter
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
   //! Returns the parameter V of the point on the
@@ -46,8 +44,10 @@ public:
   //! In that case, no bounds are given. The research of
   //! the right parameter has to be made on the natural
   //! parametric domain of the curve.
-  Standard_EXPORT static Standard_Real FindParameter (const Standard_Address& C, const gp_Pnt2d& Pnt, const Standard_Real Tol);
-  
+  Standard_EXPORT static Standard_Real FindParameter(const Standard_Address& C,
+                                                     const gp_Pnt2d&         Pnt,
+                                                     const Standard_Real     Tol);
+
   //! Returns the parameter V of the point on the
   //! parametric curve corresponding to the Point Pnt.
   //! The Correspondence between Pnt and the point P(V)
@@ -62,8 +62,11 @@ public:
   //! implement a more efficient algorithm. So, it is not
   //! necessary to check that the returned value verifies
   //! LowParameter <= Value <= HighParameter.
-  Standard_EXPORT static Standard_Real FindParameter (const Standard_Address& C, const gp_Pnt2d& Pnt, const Standard_Real LowParameter, const Standard_Real HighParameter, const Standard_Real Tol);
-
+  Standard_EXPORT static Standard_Real FindParameter(const Standard_Address& C,
+                                                     const gp_Pnt2d&         Pnt,
+                                                     const Standard_Real     LowParameter,
+                                                     const Standard_Real     HighParameter,
+                                                     const Standard_Real     Tol);
 };
 
 #endif // _HLRBRep_TheProjPCurOfCInter_HeaderFile

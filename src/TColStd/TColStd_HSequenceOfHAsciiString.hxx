@@ -15,11 +15,9 @@
 #ifndef TColStd_HSequenceOfHAsciiString_HeaderFile
 #define TColStd_HSequenceOfHAsciiString_HeaderFile
 
-#include <TCollection_HAsciiString.hxx>
 #include <TColStd_SequenceOfHAsciiString.hxx>
 #include <NCollection_DefineHSequence.hxx>
 
 DEFINE_HSEQUENCE(TColStd_HSequenceOfHAsciiString, TColStd_SequenceOfHAsciiString)
-
 
 #endif

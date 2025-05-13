@@ -17,11 +17,9 @@
 #ifndef StepVisual_HArray1OfFillStyleSelect_HeaderFile
 #define StepVisual_HArray1OfFillStyleSelect_HeaderFile
 
-#include <StepVisual_FillStyleSelect.hxx>
 #include <StepVisual_Array1OfFillStyleSelect.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepVisual_HArray1OfFillStyleSelect, StepVisual_Array1OfFillStyleSelect)
-
 
 #endif

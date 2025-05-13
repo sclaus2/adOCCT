@@ -24,7 +24,6 @@
 #include <Bnd_BoundSortBox.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_XYZ.hxx>
- 
 
 #define Polygon3d IntCurveSurface_ThePolygonOfHInter
 #define Polygon3d_hxx <IntCurveSurface_ThePolygonOfHInter.hxx>
@@ -36,5 +35,4 @@
 #define ToolPolyh_hxx <IntCurveSurface_ThePolyhedronToolOfHInter.hxx>
 #define Intf_InterferencePolygonPolyhedron IntCurveSurface_TheInterferenceOfHInter
 #define Intf_InterferencePolygonPolyhedron_hxx <IntCurveSurface_TheInterferenceOfHInter.hxx>
-#include <Intf_InterferencePolygonPolyhedron.gxx>
-
+#include "../Intf/Intf_InterferencePolygonPolyhedron.gxx"

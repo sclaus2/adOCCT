@@ -18,12 +18,10 @@
 #define _IGESGraph_DefinitionLevel_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TColStd_HArray1OfInteger.hxx>
 #include <IGESData_LevelListEntity.hxx>
 #include <Standard_Integer.hxx>
-
 
 class IGESGraph_DefinitionLevel;
 DEFINE_STANDARD_HANDLE(IGESGraph_DefinitionLevel, IGESData_LevelListEntity)
@@ -37,48 +35,30 @@ class IGESGraph_DefinitionLevel : public IGESData_LevelListEntity
 {
 
 public:
-
-  
   Standard_EXPORT IGESGraph_DefinitionLevel();
-  
+
   //! This method is used to set the fields of the class
   //! DefinitionLevel
   //! - allLevelNumbers : Values of Level Numbers
-  Standard_EXPORT void Init (const Handle(TColStd_HArray1OfInteger)& allLevelNumbers);
-  
+  Standard_EXPORT void Init(const Handle(TColStd_HArray1OfInteger)& allLevelNumbers);
+
   //! returns the number of property values in <me>
   Standard_EXPORT Standard_Integer NbPropertyValues() const;
-  
+
   //! Must return the count of levels (== NbPropertyValues)
   Standard_EXPORT Standard_Integer NbLevelNumbers() const Standard_OVERRIDE;
-  
+
   //! returns the Level Number of <me> indicated by <LevelIndex>
   //! raises an exception if LevelIndex is <= 0 or
   //! LevelIndex > NbPropertyValues
-  Standard_EXPORT Standard_Integer LevelNumber (const Standard_Integer LevelIndex) const Standard_OVERRIDE;
+  Standard_EXPORT Standard_Integer
+    LevelNumber(const Standard_Integer LevelIndex) const Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(IGESGraph_DefinitionLevel,IGESData_LevelListEntity)
+  DEFINE_STANDARD_RTTIEXT(IGESGraph_DefinitionLevel, IGESData_LevelListEntity)
 
 protected:
-
-
-
-
 private:
-
-
   Handle(TColStd_HArray1OfInteger) theLevelNumbers;
-
-
 };
-
-
-
-
-
-
 
 #endif // _IGESGraph_DefinitionLevel_HeaderFile

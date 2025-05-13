@@ -21,50 +21,27 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Real.hxx>
 #include <TopoDS_Shape.hxx>
 
-
-
-class HLRTopoBRep_VData 
+class HLRTopoBRep_VData
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
-    HLRTopoBRep_VData();
-  
+  HLRTopoBRep_VData();
+
   Standard_EXPORT HLRTopoBRep_VData(const Standard_Real P, const TopoDS_Shape& V);
-  
-    Standard_Real Parameter() const;
-  
-    const TopoDS_Shape& Vertex() const;
 
+  Standard_Real Parameter() const;
 
-
+  const TopoDS_Shape& Vertex() const;
 
 protected:
-
-
-
-
-
 private:
-
-
-
   Standard_Real myParameter;
-  TopoDS_Shape myVertex;
-
-
+  TopoDS_Shape  myVertex;
 };
 
-
 #include <HLRTopoBRep_VData.lxx>
-
-
-
-
 
 #endif // _HLRTopoBRep_VData_HeaderFile

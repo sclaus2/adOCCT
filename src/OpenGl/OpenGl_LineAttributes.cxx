@@ -18,90 +18,65 @@
 #include <OpenGl_LineAttributes.hxx>
 #include <OpenGl_Context.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(OpenGl_LineAttributes,OpenGl_Resource)
+IMPLEMENT_STANDARD_RTTIEXT(OpenGl_LineAttributes, OpenGl_Resource)
 
-// =======================================================================
-// function : OpenGl_LineAttributes
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 OpenGl_LineAttributes::OpenGl_LineAttributes()
 {
   //
 }
 
-// =======================================================================
-// function : ~OpenGl_LineAttributes
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 OpenGl_LineAttributes::~OpenGl_LineAttributes()
 {
-  Release (NULL);
+  Release(NULL);
 }
 
-// =======================================================================
-// function : Release
-// purpose  :
-// =======================================================================
-void OpenGl_LineAttributes::Release (OpenGl_Context* theGlCtx)
+//=================================================================================================
+
+void OpenGl_LineAttributes::Release(OpenGl_Context* theGlCtx)
 {
-#if !defined(GL_ES_VERSION_2_0)
-  if (theGlCtx != NULL
-   && theGlCtx->IsValid())
+  if (theGlCtx != NULL && theGlCtx->IsValid())
   {
-    for (OpenGl_MapOfHatchStylesAndIds::Iterator anIter (myStyles); anIter.More(); anIter.Next())
+    for (OpenGl_MapOfHatchStylesAndIds::Iterator anIter(myStyles); anIter.More(); anIter.Next())
     {
-      theGlCtx->core11ffp->glDeleteLists ((GLuint)anIter.Value(), 1);
+      theGlCtx->core11ffp->glDeleteLists((GLuint)anIter.Value(), 1);
     }
   }
-#else
-  (void )theGlCtx;
-#endif
   myStyles.Clear();
 }
 
-// =======================================================================
-// function : init
-// purpose  :
-// =======================================================================
-unsigned int OpenGl_LineAttributes::init (const OpenGl_Context* theGlCtx,
-                                          const Handle(Graphic3d_HatchStyle)& theStyle)
+//=================================================================================================
+
+unsigned int OpenGl_LineAttributes::init(const OpenGl_Context*               theGlCtx,
+                                         const Handle(Graphic3d_HatchStyle)& theStyle)
 {
-#if !defined(GL_ES_VERSION_2_0)
   const unsigned int aListId = theGlCtx->core11ffp->glGenLists(1);
-  theGlCtx->core11ffp->glNewList ((GLuint)aListId, GL_COMPILE);
-  theGlCtx->core11ffp->glPolygonStipple ((const GLubyte*)theStyle->Pattern());
+  theGlCtx->core11ffp->glNewList((GLuint)aListId, GL_COMPILE);
+  theGlCtx->core11ffp->glPolygonStipple((const GLubyte*)theStyle->Pattern());
   theGlCtx->core11ffp->glEndList();
   return aListId;
-#else
-  (void )theGlCtx;
-  (void )theStyle;
-  return 0;
-#endif
 }
 
-// =======================================================================
-// function : SetTypeOfHatch
-// purpose  :
-// =======================================================================
-bool OpenGl_LineAttributes::SetTypeOfHatch (const OpenGl_Context*               theGlCtx,
-                                            const Handle(Graphic3d_HatchStyle)& theStyle)
+//=================================================================================================
+
+bool OpenGl_LineAttributes::SetTypeOfHatch(const OpenGl_Context*               theGlCtx,
+                                           const Handle(Graphic3d_HatchStyle)& theStyle)
 {
-  if (theStyle.IsNull()
-   || theStyle->HatchType() == Aspect_HS_SOLID
-   || theGlCtx->core11ffp == NULL)
+  if (theStyle.IsNull() || theStyle->HatchType() == Aspect_HS_SOLID || theGlCtx->core11ffp == NULL)
   {
     return false;
   }
 
   unsigned int aGpuListId = 0;
-  if (!myStyles.Find (theStyle, aGpuListId))
+  if (!myStyles.Find(theStyle, aGpuListId))
   {
-    aGpuListId = init (theGlCtx, theStyle);
-    myStyles.Bind (theStyle, aGpuListId);
+    aGpuListId = init(theGlCtx, theStyle);
+    myStyles.Bind(theStyle, aGpuListId);
   }
 
-#if !defined(GL_ES_VERSION_2_0)
-  theGlCtx->core11ffp->glCallList ((GLuint)aGpuListId);
-#endif
+  theGlCtx->core11ffp->glCallList((GLuint)aGpuListId);
   return true;
 }

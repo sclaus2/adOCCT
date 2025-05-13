@@ -25,21 +25,15 @@ private:
   typedef OpenGl_GlCore43 theBaseClass_t;
 
 public: //! @name OpenGL 4.4 additives to 4.3
-
-#if !defined(GL_ES_VERSION_2_0)
-
+  using theBaseClass_t::glBindBuffersBase;
+  using theBaseClass_t::glBindBuffersRange;
+  using theBaseClass_t::glBindImageTextures;
+  using theBaseClass_t::glBindSamplers;
+  using theBaseClass_t::glBindTextures;
+  using theBaseClass_t::glBindVertexBuffers;
   using theBaseClass_t::glBufferStorage;
   using theBaseClass_t::glClearTexImage;
   using theBaseClass_t::glClearTexSubImage;
-  using theBaseClass_t::glBindBuffersBase;
-  using theBaseClass_t::glBindBuffersRange;
-  using theBaseClass_t::glBindTextures;
-  using theBaseClass_t::glBindSamplers;
-  using theBaseClass_t::glBindImageTextures;
-  using theBaseClass_t::glBindVertexBuffers;
-
-#endif
-
 };
 
 #endif // _OpenGl_GlCore44_Header

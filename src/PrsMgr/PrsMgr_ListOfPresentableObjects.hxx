@@ -17,10 +17,12 @@
 #define _PrsMgr_ListOfPresentableObjects_HeaderFile
 
 #include <NCollection_List.hxx>
-#include <Standard_Transient.hxx>
 
+// clang-format off
 class PrsMgr_PresentableObject; // use forward declaration since PrsMgr_PresentableObject.hxx uses PrsMgr_ListOfPresentableObjects
+// clang-format on
 typedef NCollection_List<Handle(PrsMgr_PresentableObject)> PrsMgr_ListOfPresentableObjects;
-typedef NCollection_List<Handle(PrsMgr_PresentableObject)>::Iterator PrsMgr_ListOfPresentableObjectsIter;
+typedef NCollection_List<Handle(PrsMgr_PresentableObject)>::Iterator
+  PrsMgr_ListOfPresentableObjectsIter;
 
 #endif // _PrsMgr_ListOfPresentableObjects_HeaderFile

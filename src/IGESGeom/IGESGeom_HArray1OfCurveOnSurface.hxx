@@ -17,11 +17,9 @@
 #ifndef IGESGeom_HArray1OfCurveOnSurface_HeaderFile
 #define IGESGeom_HArray1OfCurveOnSurface_HeaderFile
 
-#include <IGESGeom_CurveOnSurface.hxx>
 #include <IGESGeom_Array1OfCurveOnSurface.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(IGESGeom_HArray1OfCurveOnSurface, IGESGeom_Array1OfCurveOnSurface)
-
 
 #endif

@@ -16,9 +16,8 @@
 #ifndef _StepVisual_NullStyle_HeaderFile
 #define _StepVisual_NullStyle_HeaderFile
 
-#include <Standard_PrimitiveTypes.hxx>
-
-enum StepVisual_NullStyle {
+enum StepVisual_NullStyle
+{
   StepVisual_Null
 };
 

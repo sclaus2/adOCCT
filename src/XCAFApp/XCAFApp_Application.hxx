@@ -20,10 +20,7 @@
 #include <Standard_Type.hxx>
 
 #include <TDocStd_Application.hxx>
-#include <TColStd_SequenceOfExtendedString.hxx>
 #include <Standard_CString.hxx>
-class TDocStd_Document;
-
 
 class XCAFApp_Application;
 DEFINE_STANDARD_HANDLE(XCAFApp_Application, TDocStd_Application)
@@ -33,14 +30,14 @@ class XCAFApp_Application : public TDocStd_Application
 {
 
 public:
-
   //! methods from TDocStd_Application
   //! ================================
   Standard_EXPORT virtual Standard_CString ResourcesName() Standard_OVERRIDE;
-  
+
   //! Set XCAFDoc_DocumentTool attribute
-  Standard_EXPORT virtual void InitDocument (const Handle(CDM_Document)& aDoc) const Standard_OVERRIDE;
-  
+  Standard_EXPORT virtual void InitDocument(const Handle(CDM_Document)& aDoc) const
+    Standard_OVERRIDE;
+
   //! Initializes (for the first time) and returns the
   //! static object (XCAFApp_Application)
   //! This is the only valid method to get XCAFApp_Application
@@ -49,12 +46,11 @@ public:
   Standard_EXPORT static Handle(XCAFApp_Application) GetApplication();
 
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
-  DEFINE_STANDARD_RTTIEXT(XCAFApp_Application,TDocStd_Application)
+  DEFINE_STANDARD_RTTIEXT(XCAFApp_Application, TDocStd_Application)
 
 protected:
-  
   Standard_EXPORT XCAFApp_Application();
 };
 

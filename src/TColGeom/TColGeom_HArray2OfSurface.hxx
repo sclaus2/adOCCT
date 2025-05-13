@@ -17,11 +17,9 @@
 #ifndef TColGeom_HArray2OfSurface_HeaderFile
 #define TColGeom_HArray2OfSurface_HeaderFile
 
-#include <Geom_Surface.hxx>
 #include <TColGeom_Array2OfSurface.hxx>
 #include <NCollection_DefineHArray2.hxx>
 
 DEFINE_HARRAY2(TColGeom_HArray2OfSurface, TColGeom_Array2OfSurface)
-
 
 #endif

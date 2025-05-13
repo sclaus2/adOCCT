@@ -11,12 +11,7 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <Adaptor3d_Curve.hxx>
-#include <Adaptor3d_Surface.hxx>
-#include <GeomAdaptor_Curve.hxx>
 #include <BRepBndLib.hxx>
-#include <GProp_GProps.hxx>
-#include <TopoDS_Shape.hxx>
 #include <BRep_Tool.hxx>
 #include <TopoDS.hxx>
 #include <Bnd_OBB.hxx>
@@ -26,19 +21,14 @@
 #include <gp_Ax3.hxx>
 #include <BRepBuilderAPI_Transform.hxx>
 #include <Bnd_Box.hxx>
-#include <NCollection_List.hxx>
 #include <TColgp_Array1OfPnt.hxx>
 #include <TColStd_Array1OfReal.hxx>
 #include <Geom_Plane.hxx>
-#include <Geom_Line.hxx>
-#include <TColStd_Array1OfInteger.hxx>
 #include <BRepAdaptor_Curve.hxx>
 #include <BRepAdaptor_Surface.hxx>
 
 #include <Geom_OffsetCurve.hxx>
 #include <Geom_BSplineCurve.hxx>
-#include <Geom_BezierCurve.hxx>
-#include <Geom_BSplineSurface.hxx>
 #include <Geom_BezierSurface.hxx>
 
 //=======================================================================
@@ -48,22 +38,21 @@
 static Standard_Boolean IsLinear(const Adaptor3d_Curve& theC)
 {
   const GeomAbs_CurveType aCT = theC.GetType();
-  if(aCT == GeomAbs_OffsetCurve)
+  if (aCT == GeomAbs_OffsetCurve)
   {
     return IsLinear(GeomAdaptor_Curve(theC.OffsetCurve()->BasisCurve()));
   }
 
-  if((aCT == GeomAbs_BSplineCurve) || (aCT == GeomAbs_BezierCurve))
+  if ((aCT == GeomAbs_BSplineCurve) || (aCT == GeomAbs_BezierCurve))
   {
-    // Indeed, curves with C0-continuity and degree==1, may be 
+    // Indeed, curves with C0-continuity and degree==1, may be
     // represented with set of points. It will be possible made
     // in the future.
 
-    return ((theC.Degree() == 1) &&
-            (theC.Continuity() != GeomAbs_C0));
+    return ((theC.Degree() == 1) && (theC.Continuity() != GeomAbs_C0));
   }
 
-  if(aCT == GeomAbs_Line)
+  if (aCT == GeomAbs_Line)
   {
     return Standard_True;
   }
@@ -78,29 +67,29 @@ static Standard_Boolean IsLinear(const Adaptor3d_Curve& theC)
 static Standard_Boolean IsPlanar(const Adaptor3d_Surface& theS)
 {
   const GeomAbs_SurfaceType aST = theS.GetType();
-  if(aST == GeomAbs_OffsetSurface)
+  if (aST == GeomAbs_OffsetSurface)
   {
-    return IsPlanar (*theS.BasisSurface());
+    return IsPlanar(*theS.BasisSurface());
   }
 
-  if(aST == GeomAbs_SurfaceOfExtrusion)
+  if (aST == GeomAbs_SurfaceOfExtrusion)
   {
-    return IsLinear (*theS.BasisCurve());
+    return IsLinear(*theS.BasisCurve());
   }
 
-  if((aST == GeomAbs_BSplineSurface) || (aST == GeomAbs_BezierSurface))
+  if ((aST == GeomAbs_BSplineSurface) || (aST == GeomAbs_BezierSurface))
   {
-    if((theS.UDegree() != 1) || (theS.VDegree() != 1))
+    if ((theS.UDegree() != 1) || (theS.VDegree() != 1))
       return Standard_False;
 
-    // Indeed, surfaces with C0-continuity and degree==1, may be 
+    // Indeed, surfaces with C0-continuity and degree==1, may be
     // represented with set of points. It will be possible made
     // in the future.
 
     return ((theS.UContinuity() != GeomAbs_C0) && (theS.VContinuity() != GeomAbs_C0));
   }
 
-  if(aST == GeomAbs_Plane)
+  if (aST == GeomAbs_Plane)
   {
     return Standard_True;
   }
@@ -112,45 +101,45 @@ static Standard_Boolean IsPlanar(const Adaptor3d_Surface& theS)
 // Function : PointsForOBB
 // purpose : Returns number of points for array.
 //
-// Attention!!! 
+// Attention!!!
 //  1. Start index for thePts must be 0 strictly.
 //  2. Currently, infinite edges/faces (e.g. half-space) are not
 //      processed correctly because computation of UV-bounds is a costly operation.
 //=======================================================================
-static Standard_Integer PointsForOBB(const TopoDS_Shape& theS,
+static Standard_Integer PointsForOBB(const TopoDS_Shape&    theS,
                                      const Standard_Boolean theIsTriangulationUsed,
-                                     TColgp_Array1OfPnt* thePts = 0,
-                                     TColStd_Array1OfReal* theArrOfToler = 0)
+                                     TColgp_Array1OfPnt*    thePts        = 0,
+                                     TColStd_Array1OfReal*  theArrOfToler = 0)
 {
   Standard_Integer aRetVal = 0;
-  TopExp_Explorer anExpF, anExpE;
+  TopExp_Explorer  anExpF, anExpE;
 
   // get all vertices from the shape
-  for(anExpF.Init(theS, TopAbs_VERTEX); anExpF.More(); anExpF.Next())
+  for (anExpF.Init(theS, TopAbs_VERTEX); anExpF.More(); anExpF.Next())
   {
-    const TopoDS_Vertex &aVert = TopoDS::Vertex(anExpF.Current());
-    if(thePts)
+    const TopoDS_Vertex& aVert = TopoDS::Vertex(anExpF.Current());
+    if (thePts)
     {
-      const gp_Pnt aP = BRep_Tool::Pnt(aVert);
+      const gp_Pnt aP    = BRep_Tool::Pnt(aVert);
       (*thePts)(aRetVal) = aP;
     }
 
-    if(theArrOfToler)
+    if (theArrOfToler)
     {
-      (*theArrOfToler) (aRetVal) = BRep_Tool::Tolerance(aVert);
+      (*theArrOfToler)(aRetVal) = BRep_Tool::Tolerance(aVert);
     }
 
     ++aRetVal;
   }
 
-  if(aRetVal == 0)
+  if (aRetVal == 0)
     return 0;
 
   // analyze the faces of the shape on planarity and existence of triangulation
   TopLoc_Location aLoc;
-  for(anExpF.Init(theS, TopAbs_FACE); anExpF.More(); anExpF.Next())
+  for (anExpF.Init(theS, TopAbs_FACE); anExpF.More(); anExpF.Next())
   {
-    const TopoDS_Face &aF = TopoDS::Face(anExpF.Current());
+    const TopoDS_Face&        aF = TopoDS::Face(anExpF.Current());
     const BRepAdaptor_Surface anAS(aF, Standard_False);
 
     if (!IsPlanar(anAS.Surface()))
@@ -162,10 +151,10 @@ static Standard_Integer PointsForOBB(const TopoDS_Shape& theS,
     else
     {
       // planar face
-      for(anExpE.Init(aF, TopAbs_EDGE); anExpE.More(); anExpE.Next())
+      for (anExpE.Init(aF, TopAbs_EDGE); anExpE.More(); anExpE.Next())
       {
-        const TopoDS_Edge &anE = TopoDS::Edge(anExpE.Current());
-        if (BRep_Tool::IsGeometric (anE))
+        const TopoDS_Edge& anE = TopoDS::Edge(anExpE.Current());
+        if (BRep_Tool::IsGeometric(anE))
         {
           const BRepAdaptor_Curve anAC(anE);
           if (!IsLinear(anAC))
@@ -185,7 +174,7 @@ static Standard_Integer PointsForOBB(const TopoDS_Shape& theS,
     }
 
     // Use triangulation of the face
-    const Handle(Poly_Triangulation)& aTrng = BRep_Tool::Triangulation (aF, aLoc);
+    const Handle(Poly_Triangulation)& aTrng = BRep_Tool::Triangulation(aF, aLoc);
     if (aTrng.IsNull())
     {
       // no triangulation on the face
@@ -193,20 +182,19 @@ static Standard_Integer PointsForOBB(const TopoDS_Shape& theS,
     }
 
     const Standard_Integer aCNode = aTrng->NbNodes();
-    const gp_Trsf aTrsf = aLoc;
+    const gp_Trsf          aTrsf  = aLoc;
     for (Standard_Integer i = 1; i <= aCNode; i++)
     {
       if (thePts != NULL)
       {
-        const gp_Pnt aP = aTrsf.Form() == gp_Identity
-                        ? aTrng->Node (i)
-                        : aTrng->Node (i).Transformed (aTrsf);
+        const gp_Pnt aP =
+          aTrsf.Form() == gp_Identity ? aTrng->Node(i) : aTrng->Node(i).Transformed(aTrsf);
         (*thePts)(aRetVal) = aP;
       }
 
       if (theArrOfToler != NULL)
       {
-        (*theArrOfToler) (aRetVal) = aTrng->Deflection();
+        (*theArrOfToler)(aRetVal) = aTrng->Deflection();
       }
 
       ++aRetVal;
@@ -215,10 +203,10 @@ static Standard_Integer PointsForOBB(const TopoDS_Shape& theS,
 
   // Consider edges without faces
 
-  for(anExpE.Init(theS, TopAbs_EDGE, TopAbs_FACE); anExpE.More(); anExpE.Next())
+  for (anExpE.Init(theS, TopAbs_EDGE, TopAbs_FACE); anExpE.More(); anExpE.Next())
   {
-    const TopoDS_Edge &anE = TopoDS::Edge(anExpE.Current());
-    if (BRep_Tool::IsGeometric (anE))
+    const TopoDS_Edge& anE = TopoDS::Edge(anExpE.Current());
+    if (BRep_Tool::IsGeometric(anE))
     {
       const BRepAdaptor_Curve anAC(anE);
       if (IsLinear(anAC))
@@ -232,24 +220,23 @@ static Standard_Integer PointsForOBB(const TopoDS_Shape& theS,
       // not linear and triangulation usage disabled
       return 0;
 
-    const Handle(Poly_Polygon3D) &aPolygon = BRep_Tool::Polygon3D(anE, aLoc);
+    const Handle(Poly_Polygon3D)& aPolygon = BRep_Tool::Polygon3D(anE, aLoc);
     if (aPolygon.IsNull())
       return 0;
 
-    const Standard_Integer aCNode = aPolygon->NbNodes();
+    const Standard_Integer    aCNode    = aPolygon->NbNodes();
     const TColgp_Array1OfPnt& aNodesArr = aPolygon->Nodes();
     for (Standard_Integer i = 1; i <= aCNode; i++)
     {
       if (thePts)
       {
-        const gp_Pnt aP = aLoc.IsIdentity() ? aNodesArr[i] :
-          aNodesArr[i].Transformed(aLoc);
+        const gp_Pnt aP    = aLoc.IsIdentity() ? aNodesArr[i] : aNodesArr[i].Transformed(aLoc);
         (*thePts)(aRetVal) = aP;
       }
 
       if (theArrOfToler)
       {
-        (*theArrOfToler) (aRetVal) = aPolygon->Deflection();
+        (*theArrOfToler)(aRetVal) = aPolygon->Deflection();
       }
 
       ++aRetVal;
@@ -266,23 +253,19 @@ static Standard_Integer PointsForOBB(const TopoDS_Shape& theS,
 //=======================================================================
 static Standard_Integer IsWCS(const gp_Dir& theDir)
 {
-  const Standard_Real aToler = Precision::Angular()*Precision::Angular();
+  constexpr Standard_Real aToler = Precision::Angular() * Precision::Angular();
 
-  const Standard_Real aX = theDir.X(),
-                      aY = theDir.Y(),
-                      aZ = theDir.Z();
+  const Standard_Real aX = theDir.X(), aY = theDir.Y(), aZ = theDir.Z();
 
-  const Standard_Real aVx = aY*aY + aZ*aZ,
-                      aVy = aX*aX + aZ*aZ,
-                      aVz = aX*aX + aY*aY;
+  const Standard_Real aVx = aY * aY + aZ * aZ, aVy = aX * aX + aZ * aZ, aVz = aX * aX + aY * aY;
 
-  if(aVz < aToler)
+  if (aVz < aToler)
     return 3; // Z-axis
 
-  if(aVy < aToler)
+  if (aVy < aToler)
     return 2; // Y-axis
 
-  if(aVx < aToler)
+  if (aVx < aToler)
     return 1; // X-axis
 
   return 0;
@@ -294,30 +277,30 @@ static Standard_Integer IsWCS(const gp_Dir& theDir)
 //            linear/planar shapes and shapes having triangulation
 //            (http://www.idt.mdh.se/~tla/publ/FastOBBs.pdf).
 //=======================================================================
-static Standard_Boolean CheckPoints(const TopoDS_Shape& theS,
+static Standard_Boolean CheckPoints(const TopoDS_Shape&    theS,
                                     const Standard_Boolean theIsTriangulationUsed,
                                     const Standard_Boolean theIsOptimal,
                                     const Standard_Boolean theIsShapeToleranceUsed,
-                                    Bnd_OBB& theOBB)
+                                    Bnd_OBB&               theOBB)
 {
   const Standard_Integer aNbPnts = PointsForOBB(theS, theIsTriangulationUsed);
 
-  if(aNbPnts < 1)
+  if (aNbPnts < 1)
     return Standard_False;
 
-  TColgp_Array1OfPnt anArrPnts(0, theOBB.IsVoid() ? aNbPnts - 1 : aNbPnts + 7);
+  TColgp_Array1OfPnt   anArrPnts(0, theOBB.IsVoid() ? aNbPnts - 1 : aNbPnts + 7);
   TColStd_Array1OfReal anArrOfTolerances;
-  if(theIsShapeToleranceUsed)
+  if (theIsShapeToleranceUsed)
   {
     anArrOfTolerances.Resize(anArrPnts.Lower(), anArrPnts.Upper(), Standard_False);
     anArrOfTolerances.Init(0.0);
   }
 
-  TColStd_Array1OfReal *aPtrArrTol = theIsShapeToleranceUsed ? &anArrOfTolerances : 0;
+  TColStd_Array1OfReal* aPtrArrTol = theIsShapeToleranceUsed ? &anArrOfTolerances : 0;
 
   PointsForOBB(theS, theIsTriangulationUsed, &anArrPnts, aPtrArrTol);
 
-  if(!theOBB.IsVoid())
+  if (!theOBB.IsVoid())
   {
     // All points of old OBB have zero-tolerance
     theOBB.GetVertex(&anArrPnts(aNbPnts));
@@ -342,32 +325,31 @@ static Standard_Boolean CheckPoints(const TopoDS_Shape& theS,
 // Function : ComputeProperties
 // purpose : Computes properties of theS.
 //=======================================================================
-static void ComputeProperties(const TopoDS_Shape& theS,
-                              GProp_GProps& theGCommon)
+static void ComputeProperties(const TopoDS_Shape& theS, GProp_GProps& theGCommon)
 {
   TopExp_Explorer anExp;
-  for(anExp.Init(theS, TopAbs_SOLID); anExp.More(); anExp.Next())
+  for (anExp.Init(theS, TopAbs_SOLID); anExp.More(); anExp.Next())
   {
     GProp_GProps aG;
     BRepGProp::VolumeProperties(anExp.Current(), aG, Standard_True);
     theGCommon.Add(aG);
   }
 
-  for(anExp.Init(theS, TopAbs_FACE, TopAbs_SOLID); anExp.More(); anExp.Next())
+  for (anExp.Init(theS, TopAbs_FACE, TopAbs_SOLID); anExp.More(); anExp.Next())
   {
     GProp_GProps aG;
     BRepGProp::SurfaceProperties(anExp.Current(), aG, Standard_True);
     theGCommon.Add(aG);
   }
 
-  for(anExp.Init(theS, TopAbs_EDGE, TopAbs_FACE); anExp.More(); anExp.Next())
+  for (anExp.Init(theS, TopAbs_EDGE, TopAbs_FACE); anExp.More(); anExp.Next())
   {
     GProp_GProps aG;
     BRepGProp::LinearProperties(anExp.Current(), aG, Standard_True);
     theGCommon.Add(aG);
   }
 
-  for(anExp.Init(theS, TopAbs_VERTEX, TopAbs_EDGE); anExp.More(); anExp.Next())
+  for (anExp.Init(theS, TopAbs_VERTEX, TopAbs_EDGE); anExp.More(); anExp.Next())
   {
     GProp_GProps aG(BRep_Tool::Pnt(TopoDS::Vertex(anExp.Current())));
     theGCommon.Add(aG);
@@ -378,8 +360,8 @@ static void ComputeProperties(const TopoDS_Shape& theS,
 // Function : ComputePCA
 // purpose : Creates OBB with axes of inertia.
 //=======================================================================
-static void ComputePCA(const TopoDS_Shape& theS,
-                       Bnd_OBB& theOBB,
+static void ComputePCA(const TopoDS_Shape&    theS,
+                       Bnd_OBB&               theOBB,
                        const Standard_Boolean theIsTriangulationUsed,
                        const Standard_Boolean theIsOptimal,
                        const Standard_Boolean theIsShapeToleranceUsed)
@@ -391,12 +373,10 @@ static void ComputePCA(const TopoDS_Shape& theS,
   // Transform the shape to the local coordinate system
   gp_Trsf aTrsf;
 
-  const Standard_Integer anIdx1 =
-                  IsWCS(aGCommon.PrincipalProperties().FirstAxisOfInertia());
-  const Standard_Integer anIdx2 =
-                  IsWCS(aGCommon.PrincipalProperties().SecondAxisOfInertia());
+  const Standard_Integer anIdx1 = IsWCS(aGCommon.PrincipalProperties().FirstAxisOfInertia());
+  const Standard_Integer anIdx2 = IsWCS(aGCommon.PrincipalProperties().SecondAxisOfInertia());
 
-  if((anIdx1 == 0) || (anIdx2 == 0))
+  if ((anIdx1 == 0) || (anIdx2 == 0))
   {
     // Coordinate system in which the shape will have the optimal bounding box
     gp_Ax3 aLocCoordSys(aGCommon.CentreOfMass(),
@@ -405,12 +385,12 @@ static void ComputePCA(const TopoDS_Shape& theS,
     aTrsf.SetTransformation(aLocCoordSys);
   }
 
-  const TopoDS_Shape aST = (aTrsf.Form() == gp_Identity) ? theS :
-                                              theS.Moved(TopLoc_Location(aTrsf));
+  const TopoDS_Shape aST =
+    (aTrsf.Form() == gp_Identity) ? theS : theS.Moved(TopLoc_Location(aTrsf));
 
   // Initial axis-aligned BndBox
   Bnd_Box aShapeBox;
-  if(theIsOptimal)
+  if (theIsOptimal)
   {
     BRepBndLib::AddOptimal(aST, aShapeBox, theIsTriangulationUsed, theIsShapeToleranceUsed);
   }
@@ -438,20 +418,20 @@ static void ComputePCA(const TopoDS_Shape& theS,
   gp_XYZ anOBBHSize = (aPMax.XYZ() - aPMin.XYZ()) / 2.;
 
   // Apply transformation if necessary
-  if(aTrsf.Form() != gp_Identity)
+  if (aTrsf.Form() != gp_Identity)
   {
     aTrsf.Invert();
     aTrsf.Transforms(aCenter);
 
     // Make transformation
-    const Standard_Real * aMat = &aTrsf.HVectorialPart().Value(1, 1);
+    const Standard_Real* aMat = &aTrsf.HVectorialPart().Value(1, 1);
     // Compute axes directions of the box
     aXDir = gp_XYZ(aMat[0], aMat[3], aMat[6]);
     aYDir = gp_XYZ(aMat[1], aMat[4], aMat[7]);
     aZDir = gp_XYZ(aMat[2], aMat[5], aMat[8]);
   }
 
-  if(theOBB.IsVoid())
+  if (theOBB.IsVoid())
   {
     // Create the OBB box
 
@@ -474,30 +454,26 @@ static void ComputePCA(const TopoDS_Shape& theS,
     const Standard_Real aY = anOBBHSize.Y();
     const Standard_Real aZ = anOBBHSize.Z();
 
-    const gp_XYZ aXext = aX*aXDir,
-                 aYext = aY*aYDir,
-                 aZext = aZ*aZDir;
+    const gp_XYZ aXext = aX * aXDir, aYext = aY * aYDir, aZext = aZ * aZDir;
 
     Standard_Integer aPntIdx = 8;
-    aListOfPnts(aPntIdx++) = aCenter - aXext - aYext - aZext;
-    aListOfPnts(aPntIdx++) = aCenter + aXext - aYext - aZext;
-    aListOfPnts(aPntIdx++) = aCenter - aXext + aYext - aZext;
-    aListOfPnts(aPntIdx++) = aCenter + aXext + aYext - aZext;
-    aListOfPnts(aPntIdx++) = aCenter - aXext - aYext + aZext;
-    aListOfPnts(aPntIdx++) = aCenter + aXext - aYext + aZext;
-    aListOfPnts(aPntIdx++) = aCenter - aXext + aYext + aZext;
-    aListOfPnts(aPntIdx++) = aCenter + aXext + aYext + aZext;
+    aListOfPnts(aPntIdx++)   = aCenter - aXext - aYext - aZext;
+    aListOfPnts(aPntIdx++)   = aCenter + aXext - aYext - aZext;
+    aListOfPnts(aPntIdx++)   = aCenter - aXext + aYext - aZext;
+    aListOfPnts(aPntIdx++)   = aCenter + aXext + aYext - aZext;
+    aListOfPnts(aPntIdx++)   = aCenter - aXext - aYext + aZext;
+    aListOfPnts(aPntIdx++)   = aCenter + aXext - aYext + aZext;
+    aListOfPnts(aPntIdx++)   = aCenter - aXext + aYext + aZext;
+    aListOfPnts(aPntIdx++)   = aCenter + aXext + aYext + aZext;
 
     theOBB.ReBuild(aListOfPnts);
   }
 }
 
-//=======================================================================
-// Function : AddOBB
-// purpose : 
-//=======================================================================
-void BRepBndLib::AddOBB(const TopoDS_Shape& theS,
-                        Bnd_OBB& theOBB,
+//=================================================================================================
+
+void BRepBndLib::AddOBB(const TopoDS_Shape&    theS,
+                        Bnd_OBB&               theOBB,
                         const Standard_Boolean theIsTriangulationUsed,
                         const Standard_Boolean theIsOptimal,
                         const Standard_Boolean theIsShapeToleranceUsed)

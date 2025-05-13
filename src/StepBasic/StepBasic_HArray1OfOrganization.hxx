@@ -17,11 +17,9 @@
 #ifndef StepBasic_HArray1OfOrganization_HeaderFile
 #define StepBasic_HArray1OfOrganization_HeaderFile
 
-#include <StepBasic_Organization.hxx>
 #include <StepBasic_Array1OfOrganization.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepBasic_HArray1OfOrganization, StepBasic_Array1OfOrganization)
-
 
 #endif

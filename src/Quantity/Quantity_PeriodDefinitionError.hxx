@@ -18,7 +18,6 @@
 #define _Quantity_PeriodDefinitionError_HeaderFile
 
 #include <Standard_Type.hxx>
-#include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
 
@@ -26,8 +25,9 @@ class Quantity_PeriodDefinitionError;
 DEFINE_STANDARD_HANDLE(Quantity_PeriodDefinitionError, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_Quantity_PeriodDefinitionError
-  #define Quantity_PeriodDefinitionError_Raise_if(CONDITION, MESSAGE) \
-  if (CONDITION) throw Quantity_PeriodDefinitionError(MESSAGE);
+  #define Quantity_PeriodDefinitionError_Raise_if(CONDITION, MESSAGE)                              \
+    if (CONDITION)                                                                                 \
+      throw Quantity_PeriodDefinitionError(MESSAGE);
 #else
   #define Quantity_PeriodDefinitionError_Raise_if(CONDITION, MESSAGE)
 #endif

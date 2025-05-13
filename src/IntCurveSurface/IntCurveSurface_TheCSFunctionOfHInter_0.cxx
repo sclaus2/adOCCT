@@ -22,7 +22,6 @@
 #include <IntCurveSurface_TheHCurveTool.hxx>
 #include <math_Matrix.hxx>
 #include <gp_Pnt.hxx>
- 
 
 #define ThePSurface Handle(Adaptor3d_Surface)
 #define ThePSurface_hxx <Adaptor3d_Surface.hxx>
@@ -34,5 +33,4 @@
 #define TheCurveTool_hxx <IntCurveSurface_TheHCurveTool.hxx>
 #define IntImp_ZerCSParFunc IntCurveSurface_TheCSFunctionOfHInter
 #define IntImp_ZerCSParFunc_hxx <IntCurveSurface_TheCSFunctionOfHInter.hxx>
-#include <IntImp_ZerCSParFunc.gxx>
-
+#include "../IntImp/IntImp_ZerCSParFunc.gxx"

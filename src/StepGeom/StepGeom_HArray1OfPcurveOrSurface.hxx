@@ -17,11 +17,9 @@
 #ifndef StepGeom_HArray1OfPcurveOrSurface_HeaderFile
 #define StepGeom_HArray1OfPcurveOrSurface_HeaderFile
 
-#include <StepGeom_PcurveOrSurface.hxx>
 #include <StepGeom_Array1OfPcurveOrSurface.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepGeom_HArray1OfPcurveOrSurface, StepGeom_Array1OfPcurveOrSurface)
-
 
 #endif

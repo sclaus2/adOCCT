@@ -32,6 +32,7 @@ set "BUILD_ModelingAlgorithms=ON"
 set "BUILD_Visualization=ON"
 set "BUILD_ApplicationFramework=ON"
 set "BUILD_DataExchange=ON"
+set "BUILD_DETools=OFF"
 set "BUILD_Draw=OFF"
 
 rem Optional 3rd-party libraries to enable
@@ -54,8 +55,8 @@ if not ["%aCmakeBin%"] == [""] ( set "PATH=%aCmakeBin%;%PATH%" )
 set "anOcctVerSuffix="
 set "anOcctVersion=0.0.0"
 set "aGitBranch="
-for /f tokens^=2^ delims^=^" %%i in ('findstr /b /c:"#define OCC_VERSION_DEVELOPMENT" "%aCasSrc%\src\Standard\Standard_Version.hxx"') do ( set "anOcctVerSuffix=%%i" )
-for /f tokens^=2^ delims^=^" %%i in ('findstr /b /c:"#define OCC_VERSION_COMPLETE" "%aCasSrc%\src\Standard\Standard_Version.hxx"') do ( set "anOcctVersion=%%i" )
+call "%~dp0build_common.bat"
+set "aGitBranch="
 for /f %%i in ('git symbolic-ref --short HEAD') do ( set "aGitBranch=%%i" )
 
 set "aBuildType=Release"
@@ -175,6 +176,7 @@ if ["%toCMake%"] == ["1"] (
  -D BUILD_MODULE_Visualization:BOOL="%BUILD_Visualization%" ^
  -D BUILD_MODULE_ApplicationFramework:BOOL="%BUILD_ApplicationFramework%" ^
  -D BUILD_MODULE_DataExchange:BOOL="%BUILD_DataExchange%" ^
+ -D BUILD_MODULE_DETools:BOOL="%BUILD_DETools%" ^
  -D BUILD_MODULE_Draw:BOOL="%BUILD_Draw%" ^
  -D BUILD_DOC_Overview:BOOL="OFF" ^
  -D USE_FREETYPE:BOOL="%USE_FREETYPE%" ^

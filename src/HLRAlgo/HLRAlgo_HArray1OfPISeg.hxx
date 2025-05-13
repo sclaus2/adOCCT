@@ -17,11 +17,9 @@
 #ifndef HLRAlgo_HArray1OfPISeg_HeaderFile
 #define HLRAlgo_HArray1OfPISeg_HeaderFile
 
-#include <HLRAlgo_PolyInternalSegment.hxx>
 #include <HLRAlgo_Array1OfPISeg.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(HLRAlgo_HArray1OfPISeg, HLRAlgo_Array1OfPISeg)
-
 
 #endif

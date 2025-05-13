@@ -18,13 +18,11 @@
 
 IMPLEMENT_STANDARD_RTTIEXT(AIS_GlobalStatus, Standard_Transient)
 
-// =======================================================================
-// function : AIS_GlobalStatus
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 AIS_GlobalStatus::AIS_GlobalStatus()
-: myDispMode (0),
-  myIsHilit(Standard_False),
-  mySubInt (Standard_False)
-{  
+    : myDispMode(0),
+      myIsHilit(Standard_False),
+      mySubInt(Standard_False)
+{
 }

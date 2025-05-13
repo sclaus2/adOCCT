@@ -22,10 +22,7 @@
 #include <Standard_Handle.hxx>
 
 #include <gp_Trsf2d.hxx>
-#include <Standard_Real.hxx>
 class gp_Pnt2d;
-class gp_Trsf2d;
-
 
 //! Implements an elementary construction algorithm for
 //! a rotation in 2D space. The result is a gp_Trsf2d transformation.
@@ -33,44 +30,23 @@ class gp_Trsf2d;
 //! -   defining the construction of the transformation,
 //! -   implementing the construction algorithm, and
 //! -   consulting the result.
-class gce_MakeRotation2d 
+class gce_MakeRotation2d
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Constructs a rotation through angle Angle about the center Point.
   Standard_EXPORT gce_MakeRotation2d(const gp_Pnt2d& Point, const Standard_Real Angle);
-  
+
   //! Returns the constructed transformation.
   Standard_EXPORT const gp_Trsf2d& Value() const;
-  
+
   Standard_EXPORT const gp_Trsf2d& Operator() const;
-Standard_EXPORT operator gp_Trsf2d() const;
-
-
-
+  Standard_EXPORT                  operator gp_Trsf2d() const;
 
 protected:
-
-
-
-
-
 private:
-
-
-
   gp_Trsf2d TheRotation2d;
-
-
 };
-
-
-
-
-
-
 
 #endif // _gce_MakeRotation2d_HeaderFile

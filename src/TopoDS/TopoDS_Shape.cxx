@@ -18,33 +18,18 @@
 
 #include <Standard_DomainError.hxx>
 #include <Standard_NullObject.hxx>
-#include <Standard_TypeMismatch.hxx>
 #include <Standard_Dump.hxx>
 #include <TopLoc_Location.hxx>
 #include <TopoDS_TShape.hxx>
 
-//=======================================================================
-// function : HashCode
-// purpose  :
-//=======================================================================
-Standard_Integer TopoDS_Shape::HashCode (const Standard_Integer theUpperBound) const
+//=================================================================================================
+
+void TopoDS_Shape::DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth) const
 {
-  // PKV
-  const Standard_Integer aHS = ::HashCode (myTShape.get(), theUpperBound);
-  const Standard_Integer aHL = myLocation.HashCode (theUpperBound);
-  return ::HashCode (aHS ^ aHL, theUpperBound);
-}
+  OCCT_DUMP_CLASS_BEGIN(theOStream, TopoDS_Shape)
 
-//=======================================================================
-//function : DumpJson
-//purpose  : 
-//=======================================================================
-void TopoDS_Shape::DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth) const
-{
-  OCCT_DUMP_CLASS_BEGIN (theOStream, TopoDS_Shape)
+  OCCT_DUMP_FIELD_VALUES_DUMPED(theOStream, theDepth, myTShape.get())
+  OCCT_DUMP_FIELD_VALUES_DUMPED(theOStream, theDepth, &myLocation)
 
-  OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, myTShape.get())
-  OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, &myLocation)
-
-  OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myOrient)
+  OCCT_DUMP_FIELD_VALUE_NUMERICAL(theOStream, myOrient)
 }

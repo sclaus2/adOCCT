@@ -15,18 +15,9 @@
 
 #include <OpenGlTest.hxx>
 
-#include <AIS_InteractiveContext.hxx>
-#include <AIS_InteractiveObject.hxx>
 #include <Draw.hxx>
 #include <Draw_Interpretor.hxx>
-#include <Graphic3d_Group.hxx>
-#include <Graphic3d_ShaderObject.hxx>
-#include <Graphic3d_ShaderProgram.hxx>
-#include <Message.hxx>
 
-#include <OpenGl_Aspects.hxx>
-#include <OpenGl_Context.hxx>
-#include <OpenGl_Element.hxx>
 #include <OpenGl_GlCore20.hxx>
 #include <OpenGl_GraphicDriver.hxx>
 #include <OpenGl_GraphicDriverFactory.hxx>
@@ -34,31 +25,25 @@
 #include <OpenGl_ShaderManager.hxx>
 #include <OpenGl_Workspace.hxx>
 
-#include <OSD_File.hxx>
 #include <OSD_OpenFile.hxx>
-#include <Prs3d_Drawer.hxx>
-#include <Prs3d_Presentation.hxx>
-#include <Prs3d_LineAspect.hxx>
-#include <Prs3d_ShadingAspect.hxx>
 #include <Select3D_SensitiveCurve.hxx>
-#include <SelectMgr_EntityOwner.hxx>
-#include <SelectMgr_Selection.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <V3d_View.hxx>
-#include <V3d_Viewer.hxx>
 
 #include <ViewerTest.hxx>
 #include <ViewerTest_AutoUpdater.hxx>
 
 static Handle(OpenGl_Caps) getDefaultCaps()
 {
-  Handle(OpenGl_GraphicDriverFactory) aFactory = Handle(OpenGl_GraphicDriverFactory)::DownCast (Graphic3d_GraphicDriverFactory::DefaultDriverFactory());
+  Handle(OpenGl_GraphicDriverFactory) aFactory = Handle(OpenGl_GraphicDriverFactory)::DownCast(
+    Graphic3d_GraphicDriverFactory::DefaultDriverFactory());
   if (aFactory.IsNull())
   {
-    for (Graphic3d_GraphicDriverFactoryList::Iterator aFactoryIter (Graphic3d_GraphicDriverFactory::DriverFactories());
-         aFactoryIter.More(); aFactoryIter.Next())
+    for (Graphic3d_GraphicDriverFactoryList::Iterator aFactoryIter(
+           Graphic3d_GraphicDriverFactory::DriverFactories());
+         aFactoryIter.More();
+         aFactoryIter.Next())
     {
-      aFactory = Handle(OpenGl_GraphicDriverFactory)::DownCast (aFactoryIter.Value());
+      aFactory = Handle(OpenGl_GraphicDriverFactory)::DownCast(aFactoryIter.Value());
       if (!aFactory.IsNull())
       {
         break;
@@ -67,7 +52,7 @@ static Handle(OpenGl_Caps) getDefaultCaps()
   }
   if (aFactory.IsNull())
   {
-    throw Standard_ProgramError ("Error: no OpenGl_GraphicDriverFactory registered");
+    throw Standard_ProgramError("Error: no OpenGl_GraphicDriverFactory registered");
   }
   return aFactory->DefaultOptions();
 }
@@ -76,8 +61,8 @@ namespace
 {
 
 //=======================================================================
-//function : VUserDraw
-//purpose  : Checks availability and operation of UserDraw feature
+// function : VUserDraw
+// purpose  : Checks availability and operation of UserDraw feature
 //=======================================================================
 class VUserDrawObj : public AIS_InteractiveObject
 {
@@ -90,9 +75,9 @@ public:
     myCoords[0] = -10.;
     myCoords[1] = -20.;
     myCoords[2] = -30.;
-    myCoords[3] =  10.;
-    myCoords[4] =  20.;
-    myCoords[5] =  30.;
+    myCoords[3] = 10.;
+    myCoords[4] = 20.;
+    myCoords[5] = 30.;
   }
 
 public:
@@ -102,17 +87,20 @@ public:
     Handle(VUserDrawObj) myIObj;
 
   public:
-    Element (const Handle(VUserDrawObj)& theIObj) : myIObj (theIObj) {}
+    Element(const Handle(VUserDrawObj)& theIObj)
+        : myIObj(theIObj)
+    {
+    }
 
     virtual ~Element() {}
 
-    virtual void Render (const Handle(OpenGl_Workspace)& theWorkspace) const
+    virtual void Render(const Handle(OpenGl_Workspace)& theWorkspace) const
     {
       if (!myIObj.IsNull())
         myIObj->Render(theWorkspace);
     }
 
-    virtual void Release (OpenGl_Context*)
+    virtual void Release(OpenGl_Context*)
     {
       //
     }
@@ -123,12 +111,12 @@ public:
 
 private:
   // Virtual methods implementation
-  virtual void Compute (const Handle(PrsMgr_PresentationManager)& thePrsMgr,
-                        const Handle(Prs3d_Presentation)& thePrs,
-                        const Standard_Integer theMode) Standard_OVERRIDE;
+  virtual void Compute(const Handle(PrsMgr_PresentationManager)& thePrsMgr,
+                       const Handle(Prs3d_Presentation)&         thePrs,
+                       const Standard_Integer                    theMode) Standard_OVERRIDE;
 
-  virtual void ComputeSelection (const Handle(SelectMgr_Selection)& theSelection,
-                                 const Standard_Integer theMode) Standard_OVERRIDE;
+  virtual void ComputeSelection(const Handle(SelectMgr_Selection)& theSelection,
+                                const Standard_Integer             theMode) Standard_OVERRIDE;
 
   // Called by VUserDrawElement
   void Render(const Handle(OpenGl_Workspace)& theWorkspace) const;
@@ -139,31 +127,37 @@ private:
 };
 
 void VUserDrawObj::Compute(const Handle(PrsMgr_PresentationManager)& thePrsMgr,
-                           const Handle(Prs3d_Presentation)& thePrs,
-                           const Standard_Integer theMode)
+                           const Handle(Prs3d_Presentation)&         thePrs,
+                           const Standard_Integer                    theMode)
 {
-  if (theMode != 0) { return; }
+  if (theMode != 0)
+  {
+    return;
+  }
   thePrs->Clear();
 
-  Graphic3d_Vec4 aBndMin (myCoords[0], myCoords[1], myCoords[2], 1.0f);
-  Graphic3d_Vec4 aBndMax (myCoords[3], myCoords[4], myCoords[5], 1.0f);
-  Handle(OpenGl_Group) aGroup = Handle(OpenGl_Group)::DownCast (thePrs->NewGroup());
-  aGroup->SetMinMaxValues (aBndMin.x(), aBndMin.y(), aBndMin.z(),
-                           aBndMax.x(), aBndMax.y(), aBndMax.z());
-  aGroup->SetGroupPrimitivesAspect (myDrawer->LineAspect()->Aspect());
-  VUserDrawObj::Element* anElem = new VUserDrawObj::Element (this);
+  Graphic3d_Vec4       aBndMin(myCoords[0], myCoords[1], myCoords[2], 1.0f);
+  Graphic3d_Vec4       aBndMax(myCoords[3], myCoords[4], myCoords[5], 1.0f);
+  Handle(OpenGl_Group) aGroup = Handle(OpenGl_Group)::DownCast(thePrs->NewGroup());
+  aGroup
+    ->SetMinMaxValues(aBndMin.x(), aBndMin.y(), aBndMin.z(), aBndMax.x(), aBndMax.y(), aBndMax.z());
+  aGroup->SetGroupPrimitivesAspect(myDrawer->LineAspect()->Aspect());
+  VUserDrawObj::Element* anElem = new VUserDrawObj::Element(this);
   aGroup->AddElement(anElem);
 
   // invalidate bounding box of the scene
   thePrsMgr->StructureManager()->Update();
 }
 
-void VUserDrawObj::ComputeSelection (const Handle(SelectMgr_Selection)& theSelection,
-                                     const Standard_Integer theMode)
+void VUserDrawObj::ComputeSelection(const Handle(SelectMgr_Selection)& theSelection,
+                                    const Standard_Integer             theMode)
 {
-  if (theMode != 0) { return; }
+  if (theMode != 0)
+  {
+    return;
+  }
   Handle(SelectMgr_EntityOwner) anEntityOwner = new SelectMgr_EntityOwner(this);
-  Handle(TColgp_HArray1OfPnt) aPnts = new TColgp_HArray1OfPnt(1, 5);
+  Handle(TColgp_HArray1OfPnt)   aPnts         = new TColgp_HArray1OfPnt(1, 5);
   aPnts->SetValue(1, gp_Pnt(myCoords[0], myCoords[1], myCoords[2]));
   aPnts->SetValue(2, gp_Pnt(myCoords[3], myCoords[4], myCoords[2]));
   aPnts->SetValue(3, gp_Pnt(myCoords[3], myCoords[4], myCoords[5]));
@@ -182,113 +176,110 @@ void VUserDrawObj::Render(const Handle(OpenGl_Workspace)& theWorkspace) const
   aMA->Aspect()->MarkerType();
   OpenGl_Vec4 aColor = theWorkspace->InteriorColor();
 
-  aCtx->ShaderManager()->BindLineProgram (Handle(OpenGl_TextureSet)(), Aspect_TOL_SOLID,
-                                          Graphic3d_TypeOfShadingModel_Unlit, Graphic3d_AlphaMode_Opaque, false,
-                                          Handle(OpenGl_ShaderProgram)());
-  aCtx->SetColor4fv (aColor);
+  aCtx->ShaderManager()->BindLineProgram(Handle(OpenGl_TextureSet)(),
+                                         Aspect_TOL_SOLID,
+                                         Graphic3d_TypeOfShadingModel_Unlit,
+                                         Graphic3d_AlphaMode_Opaque,
+                                         false,
+                                         Handle(OpenGl_ShaderProgram)());
+  aCtx->SetColor4fv(aColor);
 
-  const OpenGl_Vec3 aVertArray[4] =
-  {
+  const OpenGl_Vec3 aVertArray[4] = {
     OpenGl_Vec3(myCoords[0], myCoords[1], myCoords[2]),
     OpenGl_Vec3(myCoords[3], myCoords[4], myCoords[2]),
     OpenGl_Vec3(myCoords[3], myCoords[4], myCoords[5]),
     OpenGl_Vec3(myCoords[0], myCoords[1], myCoords[5]),
   };
   Handle(OpenGl_VertexBuffer) aVertBuffer = new OpenGl_VertexBuffer();
-  aVertBuffer->Init (aCtx, 3, 4, aVertArray[0].GetData());
+  aVertBuffer->Init(aCtx, 3, 4, aVertArray[0].GetData());
 
   // Finally draw something to make sure UserDraw really works
-  aVertBuffer->BindAttribute  (aCtx, Graphic3d_TOA_POS);
-  glDrawArrays(GL_LINE_LOOP, 0, aVertBuffer->GetElemsNb());
+  aVertBuffer->BindAttribute(aCtx, Graphic3d_TOA_POS);
+  aCtx->core11fwd->glDrawArrays(GL_LINE_LOOP, 0, aVertBuffer->GetElemsNb());
   aVertBuffer->UnbindAttribute(aCtx, Graphic3d_TOA_POS);
-  aVertBuffer->Release (aCtx.get());
+  aVertBuffer->Release(aCtx.get());
 }
 
 } // end of anonymous namespace
 
-static Standard_Integer VUserDraw (Draw_Interpretor& ,
-                                   Standard_Integer argc,
-                                   const char ** argv)
+static Standard_Integer VUserDraw(Draw_Interpretor&, Standard_Integer argc, const char** argv)
 {
   Handle(AIS_InteractiveContext) aContext = ViewerTest::GetAISContext();
   if (aContext.IsNull())
   {
-    Message::SendFail ("Error: no active viewer");
+    Message::SendFail("Error: no active viewer");
     return 1;
   }
 
-  Handle(OpenGl_GraphicDriver) aDriver = Handle(OpenGl_GraphicDriver)::DownCast (aContext->CurrentViewer()->Driver());
+  Handle(OpenGl_GraphicDriver) aDriver =
+    Handle(OpenGl_GraphicDriver)::DownCast(aContext->CurrentViewer()->Driver());
   if (aDriver.IsNull())
   {
-    Message::SendFail ("Error: Graphic driver not available.");
+    Message::SendFail("Error: Graphic driver not available.");
     return 1;
   }
 
   if (argc > 2)
   {
-    Message::SendFail ("Syntax error: wrong number of arguments");
+    Message::SendFail("Syntax error: wrong number of arguments");
     return 1;
   }
 
-  TCollection_AsciiString aName (argv[1]);
-  ViewerTest::Display (aName, Handle(AIS_InteractiveObject)());
+  TCollection_AsciiString aName(argv[1]);
+  ViewerTest::Display(aName, Handle(AIS_InteractiveObject)());
 
   Handle(VUserDrawObj) anIObj = new VUserDrawObj();
-  ViewerTest::Display (aName, anIObj);
+  ViewerTest::Display(aName, anIObj);
 
   return 0;
 }
 
-//==============================================================================
-//function : VGlShaders
-//purpose  :
-//==============================================================================
-static Standard_Integer VGlShaders (Draw_Interpretor& theDI,
-                                    Standard_Integer  theArgNb,
-                                    const char**      theArgVec)
+//=================================================================================================
+
+static Standard_Integer VGlShaders(Draw_Interpretor& theDI,
+                                   Standard_Integer  theArgNb,
+                                   const char**      theArgVec)
 {
   Handle(AIS_InteractiveContext) aCtx = ViewerTest::GetAISContext();
   if (aCtx.IsNull())
   {
-    Message::SendFail ("Error: no active viewer");
+    Message::SendFail("Error: no active viewer");
     return 1;
   }
 
   Handle(OpenGl_Context) aGlCtx;
-  if (Handle(OpenGl_GraphicDriver) aDriver = Handle(OpenGl_GraphicDriver)::DownCast (aCtx->CurrentViewer()->Driver()))
+  if (Handle(OpenGl_GraphicDriver) aDriver =
+        Handle(OpenGl_GraphicDriver)::DownCast(aCtx->CurrentViewer()->Driver()))
   {
     aGlCtx = aDriver->GetSharedContext();
   }
   if (aGlCtx.IsNull())
   {
-    Message::SendFail ("Error: no OpenGl_Context");
+    Message::SendFail("Error: no OpenGl_Context");
     return 1;
   }
 
   bool toList = theArgNb < 2;
   for (Standard_Integer anArgIter = 1; anArgIter < theArgNb; ++anArgIter)
   {
-    TCollection_AsciiString anArg (theArgVec[anArgIter]);
+    TCollection_AsciiString anArg(theArgVec[anArgIter]);
     anArg.LowerCase();
     if (anArg == "-list")
     {
       toList = true;
     }
-    else if ((anArg == "-update"
-           || anArg == "-dump"
-           || anArg == "-debug"
-           || anArg == "-reload"
-           || anArg == "-load")
-          && anArgIter + 1 < theArgNb)
+    else if ((anArg == "-update" || anArg == "-dump" || anArg == "-debug" || anArg == "-reload"
+              || anArg == "-load")
+             && anArgIter + 1 < theArgNb)
     {
-      TCollection_AsciiString aShaderName = theArgVec[++anArgIter];
+      TCollection_AsciiString      aShaderName = theArgVec[++anArgIter];
       Handle(OpenGl_ShaderProgram) aResProg;
-      if (!aGlCtx->GetResource (aShaderName, aResProg))
+      if (!aGlCtx->GetResource(aShaderName, aResProg))
       {
         Message::SendFail() << "Syntax error: shader resource '" << aShaderName << "' is not found";
         return 1;
       }
-      if (aResProg->UpdateDebugDump (aGlCtx, "", false, anArg == "-dump"))
+      if (aResProg->UpdateDebugDump(aGlCtx, "", false, anArg == "-dump"))
       {
         aCtx->UpdateCurrentViewer();
       }
@@ -302,9 +293,12 @@ static Standard_Integer VGlShaders (Draw_Interpretor& theDI,
   }
   if (toList)
   {
-    for (OpenGl_Context::OpenGl_ResourcesMap::Iterator aResIter (aGlCtx->SharedResources()); aResIter.More(); aResIter.Next())
+    for (OpenGl_Context::OpenGl_ResourcesMap::Iterator aResIter(aGlCtx->SharedResources());
+         aResIter.More();
+         aResIter.Next())
     {
-      if (Handle(OpenGl_ShaderProgram) aResProg = Handle(OpenGl_ShaderProgram)::DownCast (aResIter.Value()))
+      if (Handle(OpenGl_ShaderProgram) aResProg =
+            Handle(OpenGl_ShaderProgram)::DownCast(aResIter.Value()))
       {
         theDI << aResProg->ResourceId() << " ";
       }
@@ -315,13 +309,12 @@ static Standard_Integer VGlShaders (Draw_Interpretor& theDI,
 }
 
 //! Auxiliary function for parsing glsl dump level argument.
-static Standard_Boolean parseGlslSourceFlag (Standard_CString               theArg,
-                                             OpenGl_ShaderProgramDumpLevel& theGlslDumpLevel)
+static Standard_Boolean parseGlslSourceFlag(Standard_CString               theArg,
+                                            OpenGl_ShaderProgramDumpLevel& theGlslDumpLevel)
 {
-  TCollection_AsciiString aTypeStr (theArg);
+  TCollection_AsciiString aTypeStr(theArg);
   aTypeStr.LowerCase();
-  if (aTypeStr == "off"
-   || aTypeStr == "0")
+  if (aTypeStr == "off" || aTypeStr == "0")
   {
     theGlslDumpLevel = OpenGl_ShaderProgramDumpLevel_Off;
   }
@@ -329,8 +322,7 @@ static Standard_Boolean parseGlslSourceFlag (Standard_CString               theA
   {
     theGlslDumpLevel = OpenGl_ShaderProgramDumpLevel_Short;
   }
-  else if (aTypeStr == "full"
-        || aTypeStr == "1")
+  else if (aTypeStr == "full" || aTypeStr == "1")
   {
     theGlslDumpLevel = OpenGl_ShaderProgramDumpLevel_Full;
   }
@@ -341,19 +333,20 @@ static Standard_Boolean parseGlslSourceFlag (Standard_CString               theA
   return Standard_True;
 }
 
-//==============================================================================
-//function : VGlDebug
-//purpose  :
-//==============================================================================
-static int VGlDebug (Draw_Interpretor& theDI,
-                     Standard_Integer  theArgNb,
-                     const char**      theArgVec)
+//=================================================================================================
+
+static int VGlDebug(Draw_Interpretor& theDI, Standard_Integer theArgNb, const char** theArgVec)
 {
   Handle(OpenGl_GraphicDriver) aDriver;
-  Handle(V3d_View) aView = ViewerTest::CurrentView();
+  Handle(OpenGl_Context)       aGlCtx;
+  Handle(V3d_View)             aView = ViewerTest::CurrentView();
   if (!aView.IsNull())
   {
-    aDriver = Handle(OpenGl_GraphicDriver)::DownCast (aView->Viewer()->Driver());
+    aDriver = Handle(OpenGl_GraphicDriver)::DownCast(aView->Viewer()->Driver());
+    if (!aDriver.IsNull())
+    {
+      aGlCtx = aDriver->GetSharedContext();
+    }
   }
   OpenGl_Caps* aDefCaps = getDefaultCaps().get();
   OpenGl_Caps* aCaps    = !aDriver.IsNull() ? &aDriver->ChangeOptions() : NULL;
@@ -365,48 +358,45 @@ static int VGlDebug (Draw_Interpretor& theDI,
     {
       aCaps = aDefCaps;
     }
-    else
+    else if (!aGlCtx.IsNull())
     {
-      Standard_Boolean isActive = OpenGl_Context::CheckExtension ((const char* )::glGetString (GL_EXTENSIONS),
-                                                                  "GL_ARB_debug_output");
+      Standard_Boolean isActive =
+        OpenGl_Context::CheckExtension((const char*)aGlCtx->core11fwd->glGetString(GL_EXTENSIONS),
+                                       "GL_ARB_debug_output");
       aDebActive = isActive ? " (active)" : " (inactive)";
       if (isActive)
       {
         // GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB
-        aSyncActive = ::glIsEnabled (0x8242) == GL_TRUE ? " (active)" : " (inactive)";
+        aSyncActive =
+          aGlCtx->core11fwd->glIsEnabled(0x8242) == GL_TRUE ? " (active)" : " (inactive)";
       }
     }
 
-    TCollection_AsciiString aGlslCodeDebugStatus = TCollection_AsciiString()
-      + "glslSourceCode: "
-      + (aCaps->glslDumpLevel == OpenGl_ShaderProgramDumpLevel_Off
-         ? "Off"
-         : aCaps->glslDumpLevel == OpenGl_ShaderProgramDumpLevel_Short
-          ? "Short"
-          : "Full")
+    TCollection_AsciiString aGlslCodeDebugStatus =
+      TCollection_AsciiString() + "glslSourceCode: "
+      + (aCaps->glslDumpLevel == OpenGl_ShaderProgramDumpLevel_Off     ? "Off"
+         : aCaps->glslDumpLevel == OpenGl_ShaderProgramDumpLevel_Short ? "Short"
+                                                                       : "Full")
       + "\n";
-    theDI << "debug:          " << (aCaps->contextDebug      ? "1" : "0") << aDebActive  << "\n"
-          << "sync:           " << (aCaps->contextSyncDebug  ? "1" : "0") << aSyncActive << "\n"
-          << "glslWarn:       " << (aCaps->glslWarnings      ? "1" : "0") << "\n"
-          << aGlslCodeDebugStatus
-          << "extraMsg:       " << (aCaps->suppressExtraMsg  ? "0" : "1") << "\n";
+    theDI << "debug:          " << (aCaps->contextDebug ? "1" : "0") << aDebActive << "\n"
+          << "sync:           " << (aCaps->contextSyncDebug ? "1" : "0") << aSyncActive << "\n"
+          << "glslWarn:       " << (aCaps->glslWarnings ? "1" : "0") << "\n"
+          << aGlslCodeDebugStatus << "extraMsg:       " << (aCaps->suppressExtraMsg ? "0" : "1")
+          << "\n";
     return 0;
   }
 
   for (Standard_Integer anArgIter = 1; anArgIter < theArgNb; ++anArgIter)
   {
-    Standard_CString        anArg     = theArgVec[anArgIter];
-    TCollection_AsciiString anArgCase (anArg);
+    Standard_CString        anArg = theArgVec[anArgIter];
+    TCollection_AsciiString anArgCase(anArg);
     anArgCase.LowerCase();
     Standard_Boolean toEnableDebug = Standard_True;
-    if (anArgCase == "-glsl"
-     || anArgCase == "-glslwarn"
-     || anArgCase == "-glslwarns"
-     || anArgCase == "-glslwarnings")
+    if (anArgCase == "-glsl" || anArgCase == "-glslwarn" || anArgCase == "-glslwarns"
+        || anArgCase == "-glslwarnings")
     {
       Standard_Boolean toShowWarns = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toShowWarns))
+      if (++anArgIter < theArgNb && !Draw::ParseOnOff(theArgVec[anArgIter], toShowWarns))
       {
         --anArgIter;
       }
@@ -416,13 +406,10 @@ static int VGlDebug (Draw_Interpretor& theDI,
         aCaps->glslWarnings = toShowWarns;
       }
     }
-    else if (anArgCase == "-extra"
-          || anArgCase == "-extramsg"
-          || anArgCase == "-extramessages")
+    else if (anArgCase == "-extra" || anArgCase == "-extramsg" || anArgCase == "-extramessages")
     {
       Standard_Boolean toShow = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toShow))
+      if (++anArgIter < theArgNb && !Draw::ParseOnOff(theArgVec[anArgIter], toShow))
       {
         --anArgIter;
       }
@@ -432,13 +419,11 @@ static int VGlDebug (Draw_Interpretor& theDI,
         aCaps->suppressExtraMsg = !toShow;
       }
     }
-    else if (anArgCase == "-noextra"
-          || anArgCase == "-noextramsg"
-          || anArgCase == "-noextramessages")
+    else if (anArgCase == "-noextra" || anArgCase == "-noextramsg"
+             || anArgCase == "-noextramessages")
     {
       Standard_Boolean toSuppress = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toSuppress))
+      if (++anArgIter < theArgNb && !Draw::ParseOnOff(theArgVec[anArgIter], toSuppress))
       {
         --anArgIter;
       }
@@ -451,8 +436,7 @@ static int VGlDebug (Draw_Interpretor& theDI,
     else if (anArgCase == "-sync")
     {
       Standard_Boolean toSync = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toSync))
+      if (++anArgIter < theArgNb && !Draw::ParseOnOff(theArgVec[anArgIter], toSync))
       {
         --anArgIter;
       }
@@ -462,12 +446,10 @@ static int VGlDebug (Draw_Interpretor& theDI,
         aDefCaps->contextDebug = Standard_True;
       }
     }
-    else if (anArgCase == "-glslsourcecode"
-          || anArgCase == "-glslcode")
+    else if (anArgCase == "-glslsourcecode" || anArgCase == "-glslcode")
     {
       OpenGl_ShaderProgramDumpLevel aGslsDumpLevel = OpenGl_ShaderProgramDumpLevel_Full;
-      if (++anArgIter < theArgNb
-      && !parseGlslSourceFlag (theArgVec[anArgIter], aGslsDumpLevel))
+      if (++anArgIter < theArgNb && !parseGlslSourceFlag(theArgVec[anArgIter], aGslsDumpLevel))
       {
         --anArgIter;
       }
@@ -479,15 +461,13 @@ static int VGlDebug (Draw_Interpretor& theDI,
     }
     else if (anArgCase == "-debug")
     {
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnableDebug))
+      if (++anArgIter < theArgNb && !Draw::ParseOnOff(theArgVec[anArgIter], toEnableDebug))
       {
         --anArgIter;
       }
       aDefCaps->contextDebug = toEnableDebug;
     }
-    else if (Draw::ParseOnOff (anArg, toEnableDebug)
-          && (anArgIter + 1 == theArgNb))
+    else if (Draw::ParseOnOff(anArg, toEnableDebug) && (anArgIter + 1 == theArgNb))
     {
       // simple alias to turn on almost everything
       aDefCaps->contextDebug     = toEnableDebug;
@@ -520,16 +500,12 @@ static int VGlDebug (Draw_Interpretor& theDI,
   return 0;
 }
 
-//==============================================================================
-//function : VVbo
-//purpose  :
-//==============================================================================
-static int VVbo (Draw_Interpretor& theDI,
-                 Standard_Integer  theArgNb,
-                 const char**      theArgVec)
+//=================================================================================================
+
+static int VVbo(Draw_Interpretor& theDI, Standard_Integer theArgNb, const char** theArgVec)
 {
   const Standard_Boolean toSet    = (theArgNb > 1);
-  const Standard_Boolean toUseVbo = toSet ? (Draw::Atoi (theArgVec[1]) == 0) : 1;
+  const Standard_Boolean toUseVbo = toSet ? (Draw::Atoi(theArgVec[1]) == 0) : 1;
   if (toSet)
   {
     getDefaultCaps()->vboDisable = toUseVbo;
@@ -541,11 +517,12 @@ static int VVbo (Draw_Interpretor& theDI,
   {
     if (!toSet)
     {
-      Message::SendFail ("Error: no active viewer");
+      Message::SendFail("Error: no active viewer");
     }
     return 1;
   }
-  Handle(OpenGl_GraphicDriver) aDriver = Handle(OpenGl_GraphicDriver)::DownCast (aContextAIS->CurrentViewer()->Driver());
+  Handle(OpenGl_GraphicDriver) aDriver =
+    Handle(OpenGl_GraphicDriver)::DownCast(aContextAIS->CurrentViewer()->Driver());
   if (!aDriver.IsNull())
   {
     if (!toSet)
@@ -561,249 +538,146 @@ static int VVbo (Draw_Interpretor& theDI,
   return 0;
 }
 
-//==============================================================================
-//function : VCaps
-//purpose  :
-//==============================================================================
-static int VCaps (Draw_Interpretor& theDI,
-                  Standard_Integer  theArgNb,
-                  const char**      theArgVec)
+//=================================================================================================
+
+static int VCaps(Draw_Interpretor& theDI, Standard_Integer theArgNb, const char** theArgVec)
 {
-  OpenGl_Caps* aCaps = getDefaultCaps().get();
+  OpenGl_Caps*                   aCaps = getDefaultCaps().get();
   Handle(OpenGl_GraphicDriver)   aDriver;
   Handle(AIS_InteractiveContext) aContext = ViewerTest::GetAISContext();
   if (!aContext.IsNull())
   {
-    aDriver = Handle(OpenGl_GraphicDriver)::DownCast (aContext->CurrentViewer()->Driver());
+    aDriver = Handle(OpenGl_GraphicDriver)::DownCast(aContext->CurrentViewer()->Driver());
     aCaps   = &aDriver->ChangeOptions();
   }
 
   if (theArgNb < 2)
   {
-    theDI << "sRGB:    " << (aCaps->sRGBDisable       ? "0" : "1") << "\n";
-    theDI << "VBO:     " << (aCaps->vboDisable        ? "0" : "1") << "\n";
+    theDI << "sRGB:    " << (aCaps->sRGBDisable ? "0" : "1") << "\n";
+    theDI << "VBO:     " << (aCaps->vboDisable ? "0" : "1") << "\n";
     theDI << "Sprites: " << (aCaps->pntSpritesDisable ? "0" : "1") << "\n";
-    theDI << "SoftMode:" << (aCaps->contextNoAccel    ? "1" : "0") << "\n";
-    theDI << "FFP:     " << (aCaps->ffpEnable         ? "1" : "0") << "\n";
+    theDI << "SoftMode:" << (aCaps->contextNoAccel ? "1" : "0") << "\n";
+    theDI << "FFP:     " << (aCaps->ffpEnable ? "1" : "0") << "\n";
     theDI << "PolygonMode: " << (aCaps->usePolygonMode ? "1" : "0") << "\n";
     theDI << "DepthZeroToOne: " << (aCaps->useZeroToOneDepth ? "1" : "0") << "\n";
-    theDI << "VSync:   " <<  aCaps->swapInterval                   << "\n";
+    theDI << "VSync:   " << aCaps->swapInterval << "\n";
     theDI << "Compatible:" << (aCaps->contextCompatible ? "1" : "0") << "\n";
     theDI << "Stereo:  " << (aCaps->contextStereo ? "1" : "0") << "\n";
     theDI << "WinBuffer: " << (aCaps->useSystemBuffer ? "1" : "0") << "\n";
     theDI << "OpaqueAlpha: " << (aCaps->buffersOpaqueAlpha ? "1" : "0") << "\n";
-    theDI << "NoExt:"    << (aCaps->contextNoExtensions ? "1" : "0") << "\n";
-    theDI << "MaxVersion:" << aCaps->contextMajorVersionUpper << "." << aCaps->contextMinorVersionUpper << "\n";
+    theDI << "DeepColor: " << (aCaps->buffersDeepColor ? "1" : "0") << "\n";
+    theDI << "NoExt:" << (aCaps->contextNoExtensions ? "1" : "0") << "\n";
+    theDI << "MaxVersion:" << aCaps->contextMajorVersionUpper << "."
+          << aCaps->contextMinorVersionUpper << "\n";
     theDI << "CompressTextures: " << (aCaps->compressedTexturesDisable ? "0" : "1") << "\n";
     return 0;
   }
 
-  ViewerTest_AutoUpdater anUpdateTool (aContext, ViewerTest::CurrentView());
+  ViewerTest_AutoUpdater anUpdateTool(aContext, ViewerTest::CurrentView());
   for (Standard_Integer anArgIter = 1; anArgIter < theArgNb; ++anArgIter)
   {
-    Standard_CString        anArg     = theArgVec[anArgIter];
-    TCollection_AsciiString anArgCase (anArg);
+    Standard_CString        anArg = theArgVec[anArgIter];
+    TCollection_AsciiString anArgCase(anArg);
     anArgCase.LowerCase();
-    if (anUpdateTool.parseRedrawMode (anArg))
+    if (anUpdateTool.parseRedrawMode(anArg))
     {
       continue;
     }
-    else if (anArgCase == "-vsync"
-          || anArgCase == "-swapinterval")
+    else if (anArgCase == "-vsync" || anArgCase == "-novsync" || anArgCase == "-swapinterval")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->swapInterval = toEnable;
+      aCaps->swapInterval = Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-ffp")
+    else if (anArgCase == "-ffp" || anArgCase == "-noffp")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->ffpEnable = toEnable;
+      aCaps->ffpEnable = Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-polygonmode")
+    else if (anArgCase == "-polygonmode" || anArgCase == "-nopolygonmode")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->usePolygonMode = toEnable;
+      aCaps->usePolygonMode = Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-srgb")
+    else if (anArgCase == "-srgb" || anArgCase == "-nosrgb")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->sRGBDisable = !toEnable;
+      aCaps->sRGBDisable = !Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-compressedtextures")
+    else if (anArgCase == "-compressedtextures" || anArgCase == "-nocompressedtextures")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->compressedTexturesDisable = !toEnable;
+      aCaps->compressedTexturesDisable =
+        !Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-vbo")
+    else if (anArgCase == "-vbo" || anArgCase == "-novbo")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->vboDisable = !toEnable;
+      aCaps->vboDisable = !Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-sprite"
-          || anArgCase == "-sprites")
+    else if (anArgCase == "-sprite" || anArgCase == "-sprites")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->pntSpritesDisable = !toEnable;
+      aCaps->pntSpritesDisable = !Draw::ParseOnOffIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-depthzerotoone"
-          || anArgCase == "-zerotoonedepth"
-          || anArgCase == "-usezerotoonedepth"
-          || anArgCase == "-iszerotoonedepth")
+    else if (anArgCase == "-depthzerotoone" || anArgCase == "-zerotoonedepth"
+             || anArgCase == "-usezerotoonedepth" || anArgCase == "-iszerotoonedepth")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->useZeroToOneDepth = toEnable;
+      aCaps->useZeroToOneDepth = Draw::ParseOnOffIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-softmode")
+    else if (anArgCase == "-softmode" || anArgCase == "-contextnoaccel")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->contextNoAccel = toEnable;
+      aCaps->contextNoAccel = Draw::ParseOnOffIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-opaquealpha"
-          || anArgCase == "-buffersOpaqueAlpha")
+    else if (anArgCase == "-opaquealpha" || anArgCase == "-noopaquealpha"
+             || anArgCase == "-buffersopaquealpha" || anArgCase == "-nobuffersopaquealpha")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->buffersOpaqueAlpha = toEnable;
+      aCaps->buffersOpaqueAlpha = Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-winbuffer"
-          || anArgCase == "-windowbuffer"
-          || anArgCase == "-usewinbuffer"
-          || anArgCase == "-usewindowbuffer"
-          || anArgCase == "-usesystembuffer")
+    else if (anArgCase == "-deepcolor" || anArgCase == "-nodeepcolor"
+             || anArgCase == "-buffersdeepcolor" || anArgCase == "-nobuffersdeepcolor")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->useSystemBuffer = toEnable;
+      aCaps->buffersDeepColor = Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-accel"
-          || anArgCase == "-acceleration")
+    else if (anArgCase == "-winbuffer" || anArgCase == "-windowbuffer"
+             || anArgCase == "-nowinbuffer" || anArgCase == "-nowindowbuffer"
+             || anArgCase == "-usewinbuffer" || anArgCase == "-usewindowbuffer"
+             || anArgCase == "-usesystembuffer")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->contextNoAccel = !toEnable;
+      aCaps->useSystemBuffer = Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-compat"
-          || anArgCase == "-compatprofile"
-          || anArgCase == "-compatible"
-          || anArgCase == "-compatibleprofile")
+    else if (anArgCase == "-accel" || anArgCase == "-acceleration" || anArgCase == "-noaccel"
+             || anArgCase == "-noacceleration")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->contextCompatible = toEnable;
+      aCaps->contextNoAccel = !Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
+    }
+    else if (anArgCase == "-compat" || anArgCase == "-compatprofile" || anArgCase == "-compatible"
+             || anArgCase == "-compatibleprofile")
+    {
+      aCaps->contextCompatible = Draw::ParseOnOffIterator(theArgNb, theArgVec, anArgIter);
       if (!aCaps->contextCompatible)
       {
         aCaps->ffpEnable = Standard_False;
       }
     }
-    else if (anArgCase == "-core"
-          || anArgCase == "-coreprofile")
+    else if (anArgCase == "-core" || anArgCase == "-coreprofile")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->contextCompatible = !toEnable;
+      aCaps->contextCompatible = !Draw::ParseOnOffIterator(theArgNb, theArgVec, anArgIter);
       if (!aCaps->contextCompatible)
       {
         aCaps->ffpEnable = Standard_False;
       }
     }
-    else if (anArgCase == "-stereo"
-          || anArgCase == "-quadbuffer")
+    else if (anArgCase == "-stereo" || anArgCase == "-quadbuffer" || anArgCase == "-nostereo"
+             || anArgCase == "-noquadbuffer")
     {
-      Standard_Boolean toEnable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toEnable))
-      {
-        --anArgIter;
-      }
-      aCaps->contextStereo = toEnable;
+      aCaps->contextStereo = Draw::ParseOnOffNoIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-noext"
-          || anArgCase == "-noextensions"
-          || anArgCase == "-noextension")
+    else if (anArgCase == "-noext" || anArgCase == "-noextensions" || anArgCase == "-noextension")
     {
-      Standard_Boolean toDisable = Standard_True;
-      if (++anArgIter < theArgNb
-      && !Draw::ParseOnOff (theArgVec[anArgIter], toDisable))
-      {
-        --anArgIter;
-      }
-      aCaps->contextNoExtensions = toDisable;
+      aCaps->contextNoExtensions = Draw::ParseOnOffIterator(theArgNb, theArgVec, anArgIter);
     }
-    else if (anArgCase == "-maxversion"
-          || anArgCase == "-upperversion"
-          || anArgCase == "-limitversion")
+    else if (anArgCase == "-maxversion" || anArgCase == "-upperversion"
+             || anArgCase == "-limitversion")
     {
-      Standard_Integer aVer[2] = { -2, -1 };
+      Standard_Integer aVer[2] = {-2, -1};
       for (Standard_Integer aValIter = 0; aValIter < 2; ++aValIter)
       {
         if (anArgIter + 1 < theArgNb)
         {
-          const TCollection_AsciiString aStr (theArgVec[anArgIter + 1]);
+          const TCollection_AsciiString aStr(theArgVec[anArgIter + 1]);
           if (aStr.IsIntegerValue())
           {
             aVer[aValIter] = aStr.IntegerValue();
@@ -811,8 +685,7 @@ static int VCaps (Draw_Interpretor& theDI,
           }
         }
       }
-      if (aVer[0] < -1
-       || aVer[1] < -1)
+      if (aVer[0] < -1 || aVer[1] < -1)
       {
         Message::SendFail() << "Syntax error at '" << anArgCase << "'";
         return 1;
@@ -833,28 +706,31 @@ static int VCaps (Draw_Interpretor& theDI,
   return 0;
 }
 
-//=======================================================================
-//function : Commands
-//purpose  :
-//=======================================================================
-void OpenGlTest::Commands (Draw_Interpretor& theCommands)
+//=================================================================================================
+
+void OpenGlTest::Commands(Draw_Interpretor& theCommands)
 {
-  const char* aGroup ="Commands for low-level TKOpenGl features";
+  const char* aGroup = "Commands for low-level TKOpenGl features";
 
   theCommands.Add("vuserdraw",
-    "vuserdraw : name - simulates drawing with help of UserDraw",
-    __FILE__, VUserDraw, aGroup);
+                  "vuserdraw : name - simulates drawing with help of UserDraw",
+                  __FILE__,
+                  VUserDraw,
+                  aGroup);
   theCommands.Add("vglshaders",
                   "vglshaders [-list] [-dump] [-reload] ShaderId"
                   "\n\t\t:  -list   prints the list of registered GLSL programs"
                   "\n\t\t:  -dump   dumps specified GLSL program (for debugging)"
                   "\n\t\t:  -reload restores dump of specified GLSL program",
-    __FILE__, VGlShaders, aGroup);
-  theCommands.Add ("vcaps",
-            "vcaps [-sRGB {0|1}] [-vbo {0|1}] [-sprites {0|1}] [-ffp {0|1}] [-polygonMode {0|1}]"
+                  __FILE__,
+                  VGlShaders,
+                  aGroup);
+  theCommands.Add(
+    "vcaps",
+    "vcaps [-sRGB {0|1}] [-vbo {0|1}] [-sprites {0|1}] [-ffp {0|1}] [-polygonMode {0|1}]"
     "\n\t\t:       [-compatibleProfile {0|1}] [-compressedTextures {0|1}]"
     "\n\t\t:       [-vsync {0|1}] [-useWinBuffer {0|1}] [-opaqueAlpha {0|1}]"
-    "\n\t\t:       [-quadBuffer {0|1}] [-stereo {0|1}]"
+    "\n\t\t:       [-deepColor {0|1}] [-quadBuffer {0|1}] [-stereo {0|1}]"
     "\n\t\t:       [-softMode {0|1}] [-noupdate|-update]"
     "\n\t\t:       [-zeroToOneDepth {0|1}]"
     "\n\t\t:       [-noExtensions {0|1}] [-maxVersion Major Minor]"
@@ -872,30 +748,38 @@ void OpenGlTest::Commands (Draw_Interpretor& theCommands)
     "\n\t\t:  opaqueAlpha - disable writes in alpha component of color buffer"
     "\n\t\t:  winBuffer - allow using window buffer for rendering"
     "\n\t\t:  zeroToOneDepth - use [0,1] depth range instead of [-1,1] range"
+    "\n\t\t: Window buffer creation options:"
+    "\n\t\t:  quadbuffer  - QuadBuffer for stereoscopic displays"
+    "\n\t\t:  deepColor   - window buffer with higher color precision (30bit instead of 24bit RGB)"
     "\n\t\t: Context creation options:"
     "\n\t\t:  softMode          - software OpenGL implementation"
     "\n\t\t:  compatibleProfile - backward-compatible profile"
-    "\n\t\t:  quadbuffer        - QuadBuffer"
     "\n\t\t:  noExtensions      - disallow usage of extensions"
     "\n\t\t:  maxVersion        - force upper OpenGL version to be used"
     "\n\t\t: These parameters control alternative"
     "\n\t\t: rendering paths producing the same visual result when possible.",
-    __FILE__, VCaps, aGroup);
-  theCommands.Add ("vgldebug",
-            "vgldebug [-sync {0|1}] [-debug {0|1}] [-glslWarn {0|1}]"
-    "\n\t\t:          [-glslCode {off|short|full}] [-extraMsg {0|1}] [{0|1}]"
-    "\n\t\t: Request debug GL context. Should be called BEFORE vinit."
-    "\n\t\t: Debug context can be requested only on Windows"
-    "\n\t\t: with GL_ARB_debug_output extension implemented by GL driver!"
-    "\n\t\t:  -sync     - request synchronized debug GL context"
-    "\n\t\t:  -glslWarn - log GLSL compiler/linker warnings,"
-    "\n\t\t:              which are suppressed by default,"
-    "\n\t\t:  -glslCode - log GLSL program source code,"
-    "\n\t\t:              which are suppressed by default,"
-    "\n\t\t:  -extraMsg - log extra diagnostic messages from GL context,"
-    "\n\t\t:              which are suppressed by default",
-    __FILE__, VGlDebug, aGroup);
-  theCommands.Add ("vvbo",
-    "vvbo [{0|1}] : turn VBO usage On/Off; affects only newly displayed objects",
-    __FILE__, VVbo, aGroup);
+    __FILE__,
+    VCaps,
+    aGroup);
+  theCommands.Add("vgldebug",
+                  "vgldebug [-sync {0|1}] [-debug {0|1}] [-glslWarn {0|1}]"
+                  "\n\t\t:          [-glslCode {off|short|full}] [-extraMsg {0|1}] [{0|1}]"
+                  "\n\t\t: Request debug GL context. Should be called BEFORE vinit."
+                  "\n\t\t: Debug context can be requested only on Windows"
+                  "\n\t\t: with GL_ARB_debug_output extension implemented by GL driver!"
+                  "\n\t\t:  -sync     - request synchronized debug GL context"
+                  "\n\t\t:  -glslWarn - log GLSL compiler/linker warnings,"
+                  "\n\t\t:              which are suppressed by default,"
+                  "\n\t\t:  -glslCode - log GLSL program source code,"
+                  "\n\t\t:              which are suppressed by default,"
+                  "\n\t\t:  -extraMsg - log extra diagnostic messages from GL context,"
+                  "\n\t\t:              which are suppressed by default",
+                  __FILE__,
+                  VGlDebug,
+                  aGroup);
+  theCommands.Add("vvbo",
+                  "vvbo [{0|1}] : turn VBO usage On/Off; affects only newly displayed objects",
+                  __FILE__,
+                  VVbo,
+                  aGroup);
 }

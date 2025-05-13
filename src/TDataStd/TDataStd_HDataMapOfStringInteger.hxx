@@ -17,7 +17,6 @@
 #define _TDataStd_HDataMapOfStringInteger_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TColStd_DataMapOfStringInteger.hxx>
 #include <Standard_Transient.hxx>
@@ -29,7 +28,6 @@ class TDataStd_HDataMapOfStringInteger : public Standard_Transient
 {
   DEFINE_STANDARD_RTTIEXT(TDataStd_HDataMapOfStringInteger, Standard_Transient)
 public:
-
   Standard_EXPORT TDataStd_HDataMapOfStringInteger(const Standard_Integer NbBuckets = 1);
 
   Standard_EXPORT TDataStd_HDataMapOfStringInteger(const TColStd_DataMapOfStringInteger& theOther);
@@ -39,9 +37,7 @@ public:
   TColStd_DataMapOfStringInteger& ChangeMap() { return myMap; }
 
 private:
-
   TColStd_DataMapOfStringInteger myMap;
-
 };
 
 DEFINE_STANDARD_HANDLE(TDataStd_HDataMapOfStringInteger, Standard_Transient)

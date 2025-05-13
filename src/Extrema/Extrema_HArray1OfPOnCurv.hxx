@@ -17,11 +17,9 @@
 #ifndef Extrema_HArray1OfPOnCurv_HeaderFile
 #define Extrema_HArray1OfPOnCurv_HeaderFile
 
-#include <Extrema_POnCurv.hxx>
 #include <Extrema_Array1OfPOnCurv.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(Extrema_HArray1OfPOnCurv, Extrema_Array1OfPOnCurv)
-
 
 #endif

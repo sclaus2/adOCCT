@@ -25,7 +25,6 @@
 #include <gp_Pnt.hxx>
 #include <gp_Dir.hxx>
 #include <BRepLProp_CurveTool.hxx>
- 
 
 #define Curve BRepAdaptor_Curve
 #define Curve_hxx <BRepAdaptor_Curve.hxx>
@@ -39,5 +38,4 @@
 #define Tool_hxx <BRepLProp_CurveTool.hxx>
 #define LProp_CLProps BRepLProp_CLProps
 #define LProp_CLProps_hxx <BRepLProp_CLProps.hxx>
-#include <LProp_CLProps.gxx>
-
+#include "../LProp/LProp_CLProps.gxx"

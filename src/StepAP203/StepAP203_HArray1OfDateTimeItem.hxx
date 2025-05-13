@@ -17,11 +17,9 @@
 #ifndef StepAP203_HArray1OfDateTimeItem_HeaderFile
 #define StepAP203_HArray1OfDateTimeItem_HeaderFile
 
-#include <StepAP203_DateTimeItem.hxx>
 #include <StepAP203_Array1OfDateTimeItem.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepAP203_HArray1OfDateTimeItem, StepAP203_Array1OfDateTimeItem)
-
 
 #endif

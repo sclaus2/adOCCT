@@ -7,6 +7,8 @@ Upgrade from older OCCT versions  {#occt__upgrade}
 
 This document provides technical details on changes made in particular versions of OCCT. It can help to upgrade user applications based on previous versions of OCCT to newer ones.
 
+@ref upgrade_occt790 "SEEK TO THE LAST CHAPTER (UPGRADE TO 7.9.0)"
+
 @subsection upgrade_intro_precautions Precautions
 
 Back-up your code before the upgrade.
@@ -23,7 +25,6 @@ Take this document with discretion; apply your expertise and knowledge of your a
 The automatic upgrade tool is provided as is, without warranty of any kind, and we explicitly disclaim any liability for possible errors that may appear due to use of this tool. 
 It is your responsibility to ensure that the changes you made in your code are correct. 
 When you upgrade the code by an automatic script, make sure to carefully review the introduced changes at each step before committing them.
-
 
 @section upgrade_65 Upgrade to OCCT 6.5.0
 
@@ -2293,3 +2294,192 @@ void Perform(const Handle(Adaptor3d_CurveOnSurface)& theCurveOnSurface,
   - *BRepAlgo_Cut*
   - *BRepAlgo_Section*
   The corresponding classes from the *BRepAlgoAPI* package have to be used instead.
+  
+@section upgrade_occt770 Upgrade to OCCT 7.7.0
+
+Building OCCT now requires C++11-compliant compiler, so that some legacy compilers (Visual Studio 2010 and 2012) are no more supported.
+It is recommended using Visual Studio 2015 or newer for building OCCT on Windows platform.
+
+@subsection upgrade_770_removed_features Removed features
+
+* One of the constructors of the BRepExtrema_DistanceSS class (the one without deflection parameter) has been removed as excessive. The remaining constructor has to be used instead.
+
+@subsection upgrade_occt770_parallel_flag_removed Removed parameter theIsParallel from Put/Compute/Perform
+
+theIsParallel parameter has been removed from Put/Compute/Perform from the next classes:
+ - BRepCheck_Analyzer
+ - BRepCheck_Edge
+ - BRepLib_ValidateEdge
+ - GeomLib_CheckCurveOnSurface
+ - BRepLib_CheckCurveOnSurface
+
+Now, to set this flag, it is necessary to use method SetParallel()
+For example:
+~~~~{.cpp}
+BRepLib_ValidateEdge aValidateEdge(myHCurve, ACS, SameParameter);
+aValidateEdge.SetParallel(toRunParallel);
+aValidateEdge.Process();
+~~~~
+
+@subsection upgrade_occt770_drawer_aspects Prs3d_Drawer aspects
+
+`Prs3d_Drawer` getters no more implicitly create "default" aspects.
+If specific property has not been set before to this drawer instance nor to linked drawer instance, then NULL property will be returned.
+Make sure to set property beforehand or to call `SetOwn*` / `SetupOwn*` methods to derive from defaults.
+
+@subsection upgrade_occt770_opengl OpenGL functions
+
+Applications extending OCCT 3D Viewer and calling OpenGL functions directly (like @c @::glEnable(), e.g. using global namespace) might be affected by changes in `OpenGl_GlFunctions.hxx`.
+This header, as well as `OpenGl_GlCore20.hxx` and similar, no more include system OpenGL / OpenGL ES headers to define function table.
+Application code calling OpenGL functions directly should be changed to either use `OpenGl_Context::core11fwd` (as designed)
+or to include system OpenGL headers in advance (with help of `OpenGl_GlNative.hxx`).
+
+@subsection upgrade_occt770_tooltriangulatedshape StdPrs_ToolTriangulatedShape
+
+Method `StdPrs_ToolTriangulatedShape::Normal()` has been removed.
+Please use `BRepLib_ToolTriangulatedShape::ComputeNormals()` to fill in normal attributes in triangulation and fetch them directly using `Poly_Triangulation::Normal()`.
+
+@subsection upgrade_occt770_shapeproximity BRepExtrema_ShapeProximity
+
+A new way of using the `BRepExtrema_ShapeProximity` class was provided for computing a proximity value between two shapes.
+If at initialization of the `BRepExtrema_ShapeProximity` class the *theTolerance* parameter is not defined (Precision::Infinite() by default), the proximity value will be computed.
+
+@section upgrade_occt780 Upgrade to OCCT 7.8.0
+
+@subsection upgrade_780_recommendations New Features and Recommendations
+
+The NCollection containers have been modernized to work with move semantics through the new `Move operator` and `Move constructor`. It is recommended to leverage this functionality in the development process.<br />
+Backward compatibility with STL allocators has been implemented to use the OCCT memory manager with STL allocators (NCollection_Allocator, NCollection_OccAllocator).<br />
+Additionally, utilities have been introduced to work with `shared_ptr` and `unique_ptr` using the OCCT memory manager (`Standard_MemoryUtils.hxx`).
+
+@subsection upgrade_780_ncollection_update Change in Default Clear Behavior for Containers
+
+NCollection container's `Clear(const bool theReleaseMemory = true)` have been changed to `Clear(const bool theReleaseMemory = false)`.<br />
+Impacted classes include `IndexedMap`, `IndexedDataMap`, `Map`, `DataMap`, `DynamicArray(Vector)`, `IncAllocator`.<br />
+This means that allocated memory for the container will be reused. In this case, it's necessary to be careful with `IncAllocator::Reset()` to control owners of memory blocks.
+
+@subsection upgrade_780_hash_utils Reworked Hash Mechanism for Hash Map (NCollection's map)
+
+The `HashCode(value, upperBound)` static method has been removed and `IsEqual(value1, value2)` is no longer used in the map.<br />
+NCollection's map now operates on an STL-like hash mechanism: a struct with a public operator `size_t operator()(object&) const` and `bool operator(object&, object&) const`.<br />
+The difference between STL and OCCT is that the hash struct and comparator are combined into a single struct to reduce conflicts on OCCT's user side.<br />
+Hash utils have been implemented to hash objects, returning `uint32_t` and `uint64_t` depending on the template (`Standard_HashUtils.hxx`). Algorithms used are `MurmurHash` and `FNVHash`.<br />
+Benefits:
+* x64 using 8 bytes to store the hash instead of 4 bytes.
+* OCCT classes will now be usable as elements in STL `unordered_map` and `unordered_set`.
+
+The migration problem will occur at compile time. Make sure that `int HashCode` has been changed anywhere to `size operator` and `bool IsEqual` to `bool operator`.
+
+@subsection upgrade_780_removed_files Removed Hash Specialization Classes
+
+The majority of include files containing only specialized hashes have been removed.
+Their functionality has been consolidated into the hashed object include file (in the "std" namespace).<br />
+It is guaranteed that each removed hash class has been transferred to the native hash mechanism of the hashed class.
+
+The migration problem may arise at compile time. Ensure that you remove any files that have been deprecated.
+
+@subsection upgrade_780_tk_rework Reorganized DE TK
+
+DE TK components have been combined or separated based on specific CAD formats to support plug-in ability.
+* Components now have a "TKDE" prefix. The available list includes `TKDESTEP`, `TKDEOBJ`, `TKDEIGES`, `TKDEGLTF`, `TKDEVRML`, `TKDEPLY`, `TKDESTL`.
+* The DE DRAW TK has been updated in a similar way: DRAW components now have a "TKXSDRAW" prefix. The available list includes `TKXSDRAWSTEP`, `TKXSDRAWOBJ`, `TKXSDRAWIGES`, `TKXSDRAWGLTF`, `TKXSDRAWVRML`, `TKXSDRAWPLY`, `TKXSDRAWSTL`.
+
+Migration problems may occur during configuration time or compile time. Ensure that you update your project configuration accordingly.
+
+@subsection upgrade_780_step_thread_safety Implemented STEP Thread-safety Interface
+
+The STEP interface now uses Static_Interface to extract exchange settings.<br />
+A new ability has been implemented to determine parameters in STEP, avoiding Static_Interface.
+* For reading, use an additional argument with STEP's parameters in `ReadFile` or `Perform`.
+* For writing, use an additional argument with STEP's parameters in `Transfer` or `Perform`.
+
+@subsection upgrade_780_new_memory_manager New Memory Management Functionality
+
+`Standard.hxx` has a new method `AllocateOptimal` for allocating without post-processing (cleaning).<br />
+New profiles to allocate memory (defined at configuration time):
+* `Native` - allocates with standard `malloc` and `calloc` functionality, performance depends on the OS.
+* `TBB` - allocates with TBB's `scalable` allocator functionality.
+* `JeMalloc` - allocates with `jemalloc` functions.
+* `Flexible` - old-way allocation which defines allocation method in real-time by environment variables.<br />
+
+The most recommended manager is `JeMalloc`. To use it with a plugin system, like `DRAW`, please ensure that JeMalloc was built with the `--disable-initial-exec-tls` flag. For more details, visit [JeMalloc](http://jemalloc.net/).
+
+@subsection upgrade_780_optimization_profiles New CMake Variable for Optimization Profiles
+
+`BUILD_OPT_PROFILE` is a new variable to define optimization level. Available profiles:
+* `Default` - specializes only in quality-dependent parameters for the compiler.
+* `Production` - specializes in performance and quality-dependent parameters for the compiler and linker.
+
+@section upgrade_occt790 Upgrade to OCCT 7.9.0
+
+@subsection upgrade_790_code_formatting Code Formatting update
+
+The entire code base has been formatted with `clang-format` 18.1.8 (Windows) using settings available in the root of the repository.
+Most custom patches on top of previous releases will likely have merge conflicts.
+When encountering merge conflicts, it is recommended to use `clang-format` to format the code.
+To maintain patches, it is recommended to merge them into the main repository as part of a contribution. See [Get Involved](https://dev.opencascade.org/get_involved) and [Contribution Guide](https://github.com/Open-Cascade-SAS/OCCT/discussions/36).
+
+@subsection upgrade_790_migration Migration to GitHub
+
+The OCCT repository has been migrated to GitHub. The new repository is available at [GitHub](https://github.com/Open-Cascade-SAS/OCCT).
+The old repository will be available for some time, but it is recommended to use the new repository for all new changes.
+Contribution to the new repository is available through the GitHub interface - see [Get Involved](https://dev.opencascade.org/get_involved) and [Contribution Guide](https://github.com/Open-Cascade-SAS/OCCT/discussions/36).
+
+@subsection upgrade_790_configuration GenProj no longer supported
+
+The `GenProj` tool is no longer supported. It is recommended to use CMake for building OCCT.
+In case of problems, please refer to the [CMake Guide](https://dev.opencascade.org/doc/overview/html/build_upgrade__building_occt.html).
+
+@subsection upgrade_790_modeling_scale_exception Disabling exception for transformation with scale
+
+The exception for transformation with scale has been disabled by default.
+These exceptions were enabled in OCCT 7.6.0 for all cases of applying a transformation on a `TopoDS_Shape` with scale or negative determinant.
+Now the exceptions are disabled by default but can be enabled by changing the parameter in the method which applies the transformation on `TopoDS_Shape`.
+
+@subsection upgrade_790_de_wrapper Migration of DE_Wrapper classes
+
+The DE Wrapper classes have been reorganized to follow a single style throughout the OCCT open source and commercial code.
+All DE formats starting from 7.8.0 were grouped into their own TKs with the `TKDE` prefix.
+Now all DE Wrapper interfaces have moved to their own package with the `DE` prefix.
+DE Wrapper classes follow the pattern: `DE<Format>_Parameters`, `DE<Format>_Provider`, and `DE<Format>_ConfigurationNode`.
+Example: `DESTEP_Parameters`, `DESTEP_Provider`, `DESTEP_ConfigurationNode`.
+
+@subsection upgrade_790_de_shape_healing Migration of shape healing parameters
+
+The shape healing parameters have migrated from the resource file to the DE interface.
+The previous implementation was based on the resource file or `Interface_Static`.
+Now the parameters are stored in the `DE_ShapeFixParameters` structure with the option to use a string-string map to store extra parameters.
+To use the previous interface, use code similar to:
+
+~~~~{.cpp}
+  STEPControl_Reader aReader;
+  XSAlgo_ShapeProcessor::ProcessingData aProcessingData =
+    XSAlgo_ShapeProcessor::ReadProcessingData("read.step.resource.name", "read.step.sequence");
+  aReader.SetShapeFixParameters(std::move(aProcessingData.first));
+  aReader.SetShapeProcessFlags(aProcessingData.second);
+~~~~
+
+It is recommended to use the new interface to store parameters in the `DE_ShapeFixParameters` structure directly.
+
+@subsection upgrade_790_de_interface_static Migration of DE parameters from Interface_Static
+
+During transfer operations, all parameters that were stored in `Interface_Static` have moved to their own DE structure.
+The parameters are read only once during initialization and stored in the model.
+Parameters are now available as part of the DE Wrapper interface, for example: `DESTEP_Parameters`, `DEIGES_Parameters`.
+Code samples showing how to set the parameters can be found in `DESTEP_Provider` and `DEIGES_Provider`.
+
+@subsection upgrade_790_general_handle_types Deprecated Handle types
+
+The `Handle_*` type names have been deprecated in favor of directly using the macro.
+The `Handle_*` type names are still available, but it is recommended to use the macro directly.
+Example:
+
+~~~~{.cpp}
+  Handle(TDataStd_Application) anApp = new TDataStd_Application(); // recommended
+  Handle_TDataStd_Application anApp = new TDataStd_Application(); // deprecated
+~~~~
+
+@subsection upgrade_790_general_map NCollection_Map algorithm method migration
+
+The `NCollection_Map` class has been reorganized to migrate extra methods to the `NCollection_MapAlgo` class.
+Boolean operations on maps are now available in the `NCollection_MapAlgo` class.

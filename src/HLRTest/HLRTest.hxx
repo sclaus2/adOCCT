@@ -21,68 +21,38 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_CString.hxx>
 #include <Standard_Boolean.hxx>
 #include <Draw_Interpretor.hxx>
 class HLRAlgo_Projector;
 class TopoDS_Shape;
 class HLRTopoBRep_OutLiner;
 
-
 //! This package   is  a test  of  the    Hidden Lines
 //! algorithms instantiated on the BRep Data Structure
 //! and using the Draw package to display the results.
-class HLRTest 
+class HLRTest
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Draw Variable Outliner to test
   //! Set a Projector Variable
-  Standard_EXPORT static void Set (const Standard_CString Name, const HLRAlgo_Projector& P);
-  
+  Standard_EXPORT static void Set(const Standard_CString Name, const HLRAlgo_Projector& P);
+
   //! Get a projector variable
   //! Returns false if the variable is not a projector
-  Standard_EXPORT static Standard_Boolean GetProjector (Standard_CString& Name, HLRAlgo_Projector& P);
-  
+  Standard_EXPORT static Standard_Boolean GetProjector(Standard_CString&  Name,
+                                                       HLRAlgo_Projector& P);
+
   //! Set a OutLiner Variable
-  Standard_EXPORT static void Set (const Standard_CString Name, const TopoDS_Shape& S);
-  
+  Standard_EXPORT static void Set(const Standard_CString Name, const TopoDS_Shape& S);
+
   //! Get a outliner variable
   //! Returns a null handle if the variable is not a outliner
-  Standard_EXPORT static Handle(HLRTopoBRep_OutLiner) GetOutLiner (Standard_CString& Name);
-  
+  Standard_EXPORT static Handle(HLRTopoBRep_OutLiner) GetOutLiner(Standard_CString& Name);
+
   //! Defines commands to test the Hidden Line Removal
-  Standard_EXPORT static void Commands (Draw_Interpretor& I);
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class HLRTest_ShapeData;
-friend class HLRTest_DrawableEdgeTool;
-friend class HLRTest_DrawablePolyEdgeTool;
-friend class HLRTest_Projector;
-friend class HLRTest_OutLiner;
-
+  Standard_EXPORT static void Commands(Draw_Interpretor& I);
 };
-
-
-
-
-
-
 
 #endif // _HLRTest_HeaderFile

@@ -18,58 +18,37 @@
 #define _Storage_InternalData_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Storage_BucketOfPersistent.hxx>
 #include <Standard_Integer.hxx>
 #include <Storage_HPArray.hxx>
 #include <Storage_MapOfCallBack.hxx>
 #include <Standard_Transient.hxx>
-class Storage_Schema;
-
 
 class Storage_InternalData;
 DEFINE_STANDARD_HANDLE(Storage_InternalData, Standard_Transient)
-
 
 class Storage_InternalData : public Standard_Transient
 {
 
 public:
-
   Handle(Storage_HPArray)& ReadArray() { return myReadArray; }
-  
+
   Standard_EXPORT Storage_InternalData();
-  
+
   Standard_EXPORT void Clear();
 
+  friend class Storage_Schema;
 
-friend class Storage_Schema;
-
-
-  DEFINE_STANDARD_RTTIEXT(Storage_InternalData,Standard_Transient)
+  DEFINE_STANDARD_RTTIEXT(Storage_InternalData, Standard_Transient)
 
 protected:
-
-
-
-
 private:
-
-
   Storage_BucketOfPersistent myPtoA;
-  Standard_Integer myObjId;
-  Standard_Integer myTypeId;
-  Handle(Storage_HPArray) myReadArray;
-  Storage_MapOfCallBack myTypeBinding;
-
-
+  Standard_Integer           myObjId;
+  Standard_Integer           myTypeId;
+  Handle(Storage_HPArray)    myReadArray;
+  Storage_MapOfCallBack      myTypeBinding;
 };
-
-
-
-
-
-
 
 #endif // _Storage_InternalData_HeaderFile

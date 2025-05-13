@@ -27,7 +27,6 @@
 #include <IntSurf_PntOn2S.hxx>
 #include <gp_Dir.hxx>
 #include <gp_Dir2d.hxx>
- 
 
 #define ThePSurface Handle(Adaptor3d_Surface)
 #define ThePSurface_hxx <Adaptor3d_Surface.hxx>
@@ -37,5 +36,4 @@
 #define IntImp_TheFunction_hxx <IntWalk_TheFunctionOfTheInt2S.hxx>
 #define IntImp_Int2S IntWalk_TheInt2S
 #define IntImp_Int2S_hxx <IntWalk_TheInt2S.hxx>
-#include <IntImp_Int2S.gxx>
-
+#include "../IntImp/IntImp_Int2S.gxx"

@@ -17,10 +17,11 @@
 //--------------------------------------------------------------------
 
 #include <IGESBasic_GroupWithoutBackP.hxx>
-#include <Standard_OutOfRange.hxx>
 #include <Standard_Type.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(IGESBasic_GroupWithoutBackP,IGESBasic_Group)
+IMPLEMENT_STANDARD_RTTIEXT(IGESBasic_GroupWithoutBackP, IGESBasic_Group)
 
-IGESBasic_GroupWithoutBackP::IGESBasic_GroupWithoutBackP ()
-      {  InitTypeAndForm(402,7);  }
+IGESBasic_GroupWithoutBackP::IGESBasic_GroupWithoutBackP()
+{
+  InitTypeAndForm(402, 7);
+}

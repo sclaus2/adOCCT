@@ -14,11 +14,9 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
 #include <Geom_Plane.hxx>
 #include <GeomToStep_MakeAxis2Placement3d.hxx>
 #include <GeomToStep_MakePlane.hxx>
-#include <gp_Dir.hxx>
 #include <gp_Pln.hxx>
 #include <StdFail_NotDone.hxx>
 #include <StepGeom_Axis2Placement3d.hxx>
@@ -28,49 +26,48 @@
 //=============================================================================
 // Creation d' un plane de prostep a partir d' un Pln de gp
 //=============================================================================
-GeomToStep_MakePlane::GeomToStep_MakePlane( const gp_Pln& P)
+GeomToStep_MakePlane::GeomToStep_MakePlane(const gp_Pln& P, const StepData_Factors& theLocalFactors)
 {
-  Handle(StepGeom_Plane) Plan = new StepGeom_Plane;
+  Handle(StepGeom_Plane)            Plan = new StepGeom_Plane;
   Handle(StepGeom_Axis2Placement3d) aPosition;
 
-  GeomToStep_MakeAxis2Placement3d MkAxis2(P.Position());
+  GeomToStep_MakeAxis2Placement3d MkAxis2(P.Position(), theLocalFactors);
   aPosition = MkAxis2.Value();
   Plan->SetPosition(aPosition);
   Handle(TCollection_HAsciiString) name = new TCollection_HAsciiString("");
   Plan->SetName(name);
   thePlane = Plan;
-  done = Standard_True;
+  done     = Standard_True;
 }
 
 //=============================================================================
 // Creation d' un plane de prostep a partir d' un Plane de Geom
 //=============================================================================
 
-GeomToStep_MakePlane::GeomToStep_MakePlane( const Handle(Geom_Plane)& Gpln)
+GeomToStep_MakePlane::GeomToStep_MakePlane(const Handle(Geom_Plane)& Gpln,
+                                           const StepData_Factors&   theLocalFactors)
 {
-  gp_Pln P;
-  Handle(StepGeom_Plane) Plan = new StepGeom_Plane;
+  gp_Pln                            P;
+  Handle(StepGeom_Plane)            Plan = new StepGeom_Plane;
   Handle(StepGeom_Axis2Placement3d) aPosition;
 
   P = Gpln->Pln();
-  
-  GeomToStep_MakeAxis2Placement3d MkAxis2(P.Position());
+
+  GeomToStep_MakeAxis2Placement3d MkAxis2(P.Position(), theLocalFactors);
   aPosition = MkAxis2.Value();
   Plan->SetPosition(aPosition);
   Handle(TCollection_HAsciiString) name = new TCollection_HAsciiString("");
   Plan->SetName(name);
   thePlane = Plan;
-  done = Standard_True;
+  done     = Standard_True;
 }
 
 //=============================================================================
 // renvoi des valeurs
 //=============================================================================
 
-const Handle(StepGeom_Plane) &
-      GeomToStep_MakePlane::Value() const
+const Handle(StepGeom_Plane)& GeomToStep_MakePlane::Value() const
 {
-  StdFail_NotDone_Raise_if (!done, "GeomToStep_MakePlane::Value() - no result");
+  StdFail_NotDone_Raise_if(!done, "GeomToStep_MakePlane::Value() - no result");
   return thePlane;
 }
-

@@ -23,15 +23,6 @@
 #include <Standard_NoSuchObject.hxx>
 #include <IGESData_IGESType.hxx>
 
- 
-
-
-
-
-
-
-
-
 #define TheKey IGESData_IGESType
 #define TheKey_hxx <IGESData_IGESType.hxx>
 #define Handle_TheResul Handle(IGESData_IGESEntity)
@@ -40,5 +31,4 @@
 #define Interface_Recognizer IGESData_FileRecognizer
 #define Interface_Recognizer_hxx <IGESData_FileRecognizer.hxx>
 #define Handle_Interface_Recognizer Handle(IGESData_FileRecognizer)
-#include <Interface_Recognizer.gxx>
-
+#include "../Interface/Interface_Recognizer.gxx"

@@ -17,11 +17,9 @@
 #ifndef BRepAdaptor_HArray1OfCurve_HeaderFile
 #define BRepAdaptor_HArray1OfCurve_HeaderFile
 
-#include <BRepAdaptor_Curve.hxx>
 #include <BRepAdaptor_Array1OfCurve.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(BRepAdaptor_HArray1OfCurve, BRepAdaptor_Array1OfCurve)
-
 
 #endif

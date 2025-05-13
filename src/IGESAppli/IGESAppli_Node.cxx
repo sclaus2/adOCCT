@@ -20,47 +20,44 @@
 #include <gp_Pnt.hxx>
 #include <gp_XYZ.hxx>
 #include <IGESAppli_Node.hxx>
-#include <IGESData_TransfEntity.hxx>
 #include <IGESGeom_TransformationMatrix.hxx>
-#include <Interface_Macros.hxx>
 #include <Standard_Type.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(IGESAppli_Node,IGESData_IGESEntity)
+IMPLEMENT_STANDARD_RTTIEXT(IGESAppli_Node, IGESData_IGESEntity)
 
-IGESAppli_Node::IGESAppli_Node ()    {  }
+IGESAppli_Node::IGESAppli_Node() {}
 
-
-    void  IGESAppli_Node::Init
-  (const gp_XYZ& aCoord,
-   const Handle(IGESGeom_TransformationMatrix)& aCoordSystem)
+void IGESAppli_Node::Init(const gp_XYZ&                                aCoord,
+                          const Handle(IGESGeom_TransformationMatrix)& aCoordSystem)
 {
   theCoord  = aCoord;
   theSystem = aCoordSystem;
-  InitTypeAndForm(134,0);
+  InitTypeAndForm(134, 0);
 }
 
-    gp_Pnt  IGESAppli_Node::Coord () const
+gp_Pnt IGESAppli_Node::Coord() const
 {
-  return  gp_Pnt(theCoord);
+  return gp_Pnt(theCoord);
 }
 
-    Handle(IGESData_TransfEntity)  IGESAppli_Node::System () const
+Handle(IGESData_TransfEntity) IGESAppli_Node::System() const
 {
-  //if Null, Global Cartesian Coordinate System
+  // if Null, Global Cartesian Coordinate System
   return Handle(IGESData_TransfEntity)(theSystem);
 }
 
-    Standard_Integer  IGESAppli_Node::SystemType () const
+Standard_Integer IGESAppli_Node::SystemType() const
 {
-  if (theSystem.IsNull()) return 0;      // 0 Global Cartesien
-  return (theSystem->FormNumber() - 9);  // 1 Cartesien, 2 Cylind. 3 Spher.
+  if (theSystem.IsNull())
+    return 0;                           // 0 Global Cartesien
+  return (theSystem->FormNumber() - 9); // 1 Cartesien, 2 Cylind. 3 Spher.
 }
 
-
-    gp_Pnt IGESAppli_Node::TransformedNodalCoord () const
+gp_Pnt IGESAppli_Node::TransformedNodalCoord() const
 {
-  gp_XYZ tempCoord = Coord().XYZ();
-  Handle(IGESData_TransfEntity) temp = System();
-  if (!temp.IsNull())    temp->Value().Transforms(tempCoord);
+  gp_XYZ                        tempCoord = Coord().XYZ();
+  Handle(IGESData_TransfEntity) temp      = System();
+  if (!temp.IsNull())
+    temp->Value().Transforms(tempCoord);
   return gp_Pnt(tempCoord);
 }

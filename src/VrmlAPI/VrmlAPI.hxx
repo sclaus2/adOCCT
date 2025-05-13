@@ -21,46 +21,20 @@
 #include <Standard_Handle.hxx>
 
 #include <Standard_CString.hxx>
-#include <Standard_Integer.hxx>
 class TopoDS_Shape;
-class VrmlAPI_Writer;
-
 
 //! API for writing to VRML 1.0
-class VrmlAPI 
+class VrmlAPI
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! With help of this class user can change parameters of writing.
   //! Converts the shape aShape to VRML format of the passed version and writes it
   //! to the file identified by aFileName using default parameters.
-  Standard_EXPORT static Standard_Boolean Write (const TopoDS_Shape& aShape, const Standard_CString aFileName, const Standard_Integer aVersion = 2);
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class VrmlAPI_Writer;
-
+  Standard_EXPORT static Standard_Boolean Write(const TopoDS_Shape&    aShape,
+                                                const Standard_CString aFileName,
+                                                const Standard_Integer aVersion = 2);
 };
-
-
-
-
-
-
 
 #endif // _VrmlAPI_HeaderFile

@@ -18,12 +18,10 @@
 #define _GccInt_BLine_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <gp_Lin2d.hxx>
 #include <GccInt_Bisec.hxx>
 #include <GccInt_IType.hxx>
-
 
 class GccInt_BLine;
 DEFINE_STANDARD_HANDLE(GccInt_BLine, GccInt_Bisec)
@@ -34,39 +32,20 @@ class GccInt_BLine : public GccInt_Bisec
 {
 
 public:
-
-  
   //! Constructs a bisecting line whose geometry is the 2D line Line.
   Standard_EXPORT GccInt_BLine(const gp_Lin2d& Line);
-  
+
   //! Returns a 2D line which is the geometry of this bisecting line.
   Standard_EXPORT virtual gp_Lin2d Line() const Standard_OVERRIDE;
-  
+
   //! Returns GccInt_Lin, which is the type of any GccInt_BLine bisecting line.
   Standard_EXPORT GccInt_IType ArcType() const Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(GccInt_BLine,GccInt_Bisec)
+  DEFINE_STANDARD_RTTIEXT(GccInt_BLine, GccInt_Bisec)
 
 protected:
-
-
-
-
 private:
-
-
   gp_Lin2d lin;
-
-
 };
-
-
-
-
-
-
 
 #endif // _GccInt_BLine_HeaderFile

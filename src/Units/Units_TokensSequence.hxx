@@ -17,11 +17,9 @@
 #ifndef Units_TokensSequence_HeaderFile
 #define Units_TokensSequence_HeaderFile
 
-#include <Units_Token.hxx>
 #include <Units_TksSequence.hxx>
 #include <NCollection_DefineHSequence.hxx>
 
 DEFINE_HSEQUENCE(Units_TokensSequence, Units_TksSequence)
-
 
 #endif

@@ -19,14 +19,10 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TCollection_AsciiString.hxx>
 #include <gp_Vec.hxx>
 #include <Standard_OStream.hxx>
-class TCollection_AsciiString;
-class gp_Vec;
-
 
 //! defines a WWWInline node of VRML specifying group properties.
 //! The  WWWInline  group  node  reads  its  children  from  anywhere  in  the
@@ -41,55 +37,36 @@ class gp_Vec;
 //! myName  ("")
 //! myBboxSize (0,0,0)
 //! myBboxCenter  (0,0,0)
-class Vrml_WWWInline 
+class Vrml_WWWInline
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT Vrml_WWWInline();
-  
-  Standard_EXPORT Vrml_WWWInline(const TCollection_AsciiString& aName, const gp_Vec& aBboxSize, const gp_Vec& aBboxCenter);
-  
-  Standard_EXPORT void SetName (const TCollection_AsciiString& aName);
-  
+
+  Standard_EXPORT Vrml_WWWInline(const TCollection_AsciiString& aName,
+                                 const gp_Vec&                  aBboxSize,
+                                 const gp_Vec&                  aBboxCenter);
+
+  Standard_EXPORT void SetName(const TCollection_AsciiString& aName);
+
   Standard_EXPORT TCollection_AsciiString Name() const;
-  
-  Standard_EXPORT void SetBboxSize (const gp_Vec& aBboxSize);
-  
+
+  Standard_EXPORT void SetBboxSize(const gp_Vec& aBboxSize);
+
   Standard_EXPORT gp_Vec BboxSize() const;
-  
-  Standard_EXPORT void SetBboxCenter (const gp_Vec& aBboxCenter);
-  
+
+  Standard_EXPORT void SetBboxCenter(const gp_Vec& aBboxCenter);
+
   Standard_EXPORT gp_Vec BboxCenter() const;
-  
-  Standard_EXPORT Standard_OStream& Print (Standard_OStream& anOStream) const;
 
-
-
+  Standard_EXPORT Standard_OStream& Print(Standard_OStream& anOStream) const;
 
 protected:
-
-
-
-
-
 private:
-
-
-
   TCollection_AsciiString myName;
-  gp_Vec myBboxSize;
-  gp_Vec myBboxCenter;
-
-
+  gp_Vec                  myBboxSize;
+  gp_Vec                  myBboxCenter;
 };
-
-
-
-
-
-
 
 #endif // _Vrml_WWWInline_HeaderFile

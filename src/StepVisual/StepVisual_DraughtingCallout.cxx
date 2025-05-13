@@ -13,23 +13,19 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <Standard_Type.hxx>
 #include <StepVisual_DraughtingCallout.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepVisual_DraughtingCallout,StepGeom_GeometricRepresentationItem)
+IMPLEMENT_STANDARD_RTTIEXT(StepVisual_DraughtingCallout, StepGeom_GeometricRepresentationItem)
 
-//=======================================================================
-//function : StepVisual_DraughtingCallout
-//purpose  : 
-//=======================================================================
-StepVisual_DraughtingCallout::StepVisual_DraughtingCallout ()  {}
+//=================================================================================================
 
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
-void StepVisual_DraughtingCallout::Init (const Handle(TCollection_HAsciiString)& theName,
-                                         const Handle(StepVisual_HArray1OfDraughtingCalloutElement)& theContents)
+StepVisual_DraughtingCallout::StepVisual_DraughtingCallout() {}
+
+//=================================================================================================
+
+void StepVisual_DraughtingCallout::Init(
+  const Handle(TCollection_HAsciiString)&                     theName,
+  const Handle(StepVisual_HArray1OfDraughtingCalloutElement)& theContents)
 {
   StepGeom_GeometricRepresentationItem::Init(theName);
   myContents = theContents;

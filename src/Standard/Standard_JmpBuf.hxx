@@ -14,17 +14,16 @@
 #ifndef _Standard_JmpBuf_HeaderFile
 #define _Standard_JmpBuf_HeaderFile
 
-#include <stdlib.h>
 #include <setjmp.h>
 
-typedef 
+typedef
 #ifdef SOLARIS
-           sigjmp_buf   
+  sigjmp_buf
 #elif defined(IRIX)
-           sigjmp_buf   
+  sigjmp_buf
 #else
-           jmp_buf      
+  jmp_buf
 #endif
-Standard_JmpBuf;
+    Standard_JmpBuf;
 
 #endif

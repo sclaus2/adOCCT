@@ -19,9 +19,6 @@
 
 #include <TDF_DerivedAttribute.hxx>
 
-class Standard_GUID;
-class TDF_Label;
-class TDF_Attribute;
 class TDF_RelocationTable;
 
 class TDataStd_GenericEmpty;
@@ -33,17 +30,18 @@ class TDataStd_GenericEmpty : public TDF_Attribute
 {
 
 public:
+  Standard_EXPORT void Restore(const Handle(TDF_Attribute)&) Standard_OVERRIDE {};
 
-  Standard_EXPORT void Restore (const Handle(TDF_Attribute)&) Standard_OVERRIDE {};
+  Standard_EXPORT void Paste(const Handle(TDF_Attribute)&,
+                             const Handle(TDF_RelocationTable)&) const Standard_OVERRIDE
+  {
+  }
 
-  Standard_EXPORT void Paste (const Handle(TDF_Attribute)&, const Handle(TDF_RelocationTable)&) const Standard_OVERRIDE {}
-  
   //! Dumps the content of me into the stream
-  Standard_EXPORT virtual void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const Standard_OVERRIDE;
+  Standard_EXPORT virtual void DumpJson(Standard_OStream& theOStream,
+                                        Standard_Integer  theDepth = -1) const Standard_OVERRIDE;
 
-
-  DEFINE_STANDARD_RTTIEXT(TDataStd_GenericEmpty,TDF_Attribute)
-
+  DEFINE_STANDARD_RTTIEXT(TDataStd_GenericEmpty, TDF_Attribute)
 };
 
 #endif // _TDataStd_GenericEmpty_HeaderFile

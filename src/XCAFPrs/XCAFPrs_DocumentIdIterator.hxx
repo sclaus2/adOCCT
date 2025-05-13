@@ -17,17 +17,14 @@
 
 #include <XCAFPrs_Style.hxx>
 
-#include <TDF_ChildIterator.hxx>
-#include <TDF_Label.hxx>
-#include <TopLoc_Location.hxx>
-
 //! Auxiliary tool for iterating through Path identification string.
 class XCAFPrs_DocumentIdIterator
 {
 public:
   //! Main constructor.
-  XCAFPrs_DocumentIdIterator (const TCollection_AsciiString& thePath)
-  : myPath (thePath), myPosition (0)
+  XCAFPrs_DocumentIdIterator(const TCollection_AsciiString& thePath)
+      : myPath(thePath),
+        myPosition(0)
   {
     Next();
   }
@@ -42,9 +39,8 @@ public:
   void Next();
 
 private:
-
   // Disable assignment operator.
-  XCAFPrs_DocumentIdIterator& operator= (const XCAFPrs_DocumentIdIterator& );
+  XCAFPrs_DocumentIdIterator& operator=(const XCAFPrs_DocumentIdIterator&);
 
 private:
   const TCollection_AsciiString& myPath;     //!< full path
@@ -60,7 +56,7 @@ inline void XCAFPrs_DocumentIdIterator::Next()
 {
   for (Standard_Integer aCharIndex = myPosition + 1; aCharIndex <= myPath.Length(); ++aCharIndex)
   {
-    if (myPath.Value (aCharIndex) == '/')
+    if (myPath.Value(aCharIndex) == '/')
     {
       // intermediate items have trailing dot and separator before the next item
       const Standard_Integer aLen = aCharIndex - myPosition - 2;
@@ -69,7 +65,7 @@ inline void XCAFPrs_DocumentIdIterator::Next()
         return; // assert - should never happen for valid IDs!
       }
 
-      mySubId = myPath.SubString (myPosition + 1, aCharIndex - 2);
+      mySubId    = myPath.SubString(myPosition + 1, aCharIndex - 2);
       myPosition = aCharIndex;
       return;
     }
@@ -77,7 +73,7 @@ inline void XCAFPrs_DocumentIdIterator::Next()
   if (myPosition < myPath.Length())
   {
     // last item has only trailing dot
-    mySubId = myPath.SubString (myPosition + 1, myPath.Length() - 1);
+    mySubId    = myPath.SubString(myPosition + 1, myPath.Length() - 1);
     myPosition = myPath.Length();
   }
   else

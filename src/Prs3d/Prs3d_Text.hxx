@@ -17,7 +17,6 @@
 #ifndef _Prs3d_Text_HeaderFile
 #define _Prs3d_Text_HeaderFile
 
-#include <gp_Ax2.hxx>
 #include <Prs3d_Drawer.hxx>
 #include <Prs3d_Presentation.hxx>
 #include <Prs3d_TextAspect.hxx>
@@ -29,7 +28,6 @@ class gp_Pnt;
 class Prs3d_Text
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
   //! Defines the display of the text.
@@ -38,24 +36,24 @@ public:
   //! @param theText   text to draw
   //! @param theAttachmentPoint attachment point
   //! @return text to draw
-  Standard_EXPORT static Handle(Graphic3d_Text) Draw (const Handle(Graphic3d_Group)& theGroup,
-                                                      const Handle(Prs3d_TextAspect)& theAspect,
-                                                      const TCollection_ExtendedString& theText,
-                                                      const gp_Pnt& theAttachmentPoint);
+  Standard_EXPORT static Handle(Graphic3d_Text) Draw(const Handle(Graphic3d_Group)&    theGroup,
+                                                     const Handle(Prs3d_TextAspect)&   theAspect,
+                                                     const TCollection_ExtendedString& theText,
+                                                     const gp_Pnt& theAttachmentPoint);
 
   //! Draws the text label.
   //! @param theGroup       group to add primitives
   //! @param theAspect      presentation attributes
   //! @param theText        text to draw
   //! @param theOrientation location and orientation specified in the model 3D space
-  //! @param theHasOwnAnchor 
+  //! @param theHasOwnAnchor
   //! @return text to draw
-  Standard_EXPORT static Handle(Graphic3d_Text) Draw (const Handle(Graphic3d_Group)&    theGroup,
-                                                      const Handle(Prs3d_TextAspect)&   theAspect,
-                                                      const TCollection_ExtendedString& theText,
-                                                      const gp_Ax2&                     theOrientation,
-                                                      const Standard_Boolean            theHasOwnAnchor = Standard_True);
-
+  Standard_EXPORT static Handle(Graphic3d_Text) Draw(
+    const Handle(Graphic3d_Group)&    theGroup,
+    const Handle(Prs3d_TextAspect)&   theAspect,
+    const TCollection_ExtendedString& theText,
+    const gp_Ax2&                     theOrientation,
+    const Standard_Boolean            theHasOwnAnchor = Standard_True);
 };
 
 #endif // _Prs3d_Text_HeaderFile

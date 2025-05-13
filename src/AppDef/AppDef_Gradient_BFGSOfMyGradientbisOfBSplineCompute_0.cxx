@@ -23,7 +23,6 @@
 #include <AppDef_ResConstraintOfMyGradientbisOfBSplineCompute.hxx>
 #include <AppDef_ParFunctionOfMyGradientbisOfBSplineCompute.hxx>
 #include <math_MultipleVarFunctionWithGradient.hxx>
- 
 
 #define MultiLine AppDef_MultiLine
 #define MultiLine_hxx <AppDef_MultiLine.hxx>
@@ -39,5 +38,4 @@
 #define AppParCurves_Gradient_BFGS_hxx <AppDef_Gradient_BFGSOfMyGradientbisOfBSplineCompute.hxx>
 #define AppParCurves_Gradient AppDef_MyGradientbisOfBSplineCompute
 #define AppParCurves_Gradient_hxx <AppDef_MyGradientbisOfBSplineCompute.hxx>
-#include <AppParCurves_Gradient_BFGS.gxx>
-
+#include "../AppParCurves/AppParCurves_Gradient_BFGS.gxx"

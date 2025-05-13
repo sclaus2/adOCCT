@@ -15,15 +15,10 @@
 
 // Generator:	ExpToCas (EXPRESS -> CASCADE/XSTEP Translator) V1.1
 
-#include <Standard_Type.hxx>
 #include <StepRepr_NextAssemblyUsageOccurrence.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepRepr_NextAssemblyUsageOccurrence,StepRepr_AssemblyComponentUsage)
+IMPLEMENT_STANDARD_RTTIEXT(StepRepr_NextAssemblyUsageOccurrence, StepRepr_AssemblyComponentUsage)
 
-//=======================================================================
-//function : StepRepr_NextAssemblyUsageOccurrence
-//purpose  : 
-//=======================================================================
-StepRepr_NextAssemblyUsageOccurrence::StepRepr_NextAssemblyUsageOccurrence ()
-{
-}
+//=================================================================================================
+
+StepRepr_NextAssemblyUsageOccurrence::StepRepr_NextAssemblyUsageOccurrence() {}

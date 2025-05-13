@@ -17,45 +17,26 @@
 #define _StepDimTol_CoaxialityTolerance_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepDimTol_GeometricToleranceWithDatumReference.hxx>
 
-
 class StepDimTol_CoaxialityTolerance;
-DEFINE_STANDARD_HANDLE(StepDimTol_CoaxialityTolerance, StepDimTol_GeometricToleranceWithDatumReference)
+DEFINE_STANDARD_HANDLE(StepDimTol_CoaxialityTolerance,
+                       StepDimTol_GeometricToleranceWithDatumReference)
 
 //! Representation of STEP entity CoaxialityTolerance
 class StepDimTol_CoaxialityTolerance : public StepDimTol_GeometricToleranceWithDatumReference
 {
 
 public:
-
-  
   //! Empty constructor
   Standard_EXPORT StepDimTol_CoaxialityTolerance();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepDimTol_CoaxialityTolerance,StepDimTol_GeometricToleranceWithDatumReference)
+  DEFINE_STANDARD_RTTIEXT(StepDimTol_CoaxialityTolerance,
+                          StepDimTol_GeometricToleranceWithDatumReference)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepDimTol_CoaxialityTolerance_HeaderFile

@@ -17,11 +17,9 @@
 #ifndef ShapeAnalysis_HSequenceOfFreeBounds_HeaderFile
 #define ShapeAnalysis_HSequenceOfFreeBounds_HeaderFile
 
-#include <ShapeAnalysis_FreeBoundData.hxx>
 #include <ShapeAnalysis_SequenceOfFreeBounds.hxx>
 #include <NCollection_DefineHSequence.hxx>
 
 DEFINE_HSEQUENCE(ShapeAnalysis_HSequenceOfFreeBounds, ShapeAnalysis_SequenceOfFreeBounds)
-
 
 #endif

@@ -17,10 +17,8 @@
 #define _StepDimTol_LineProfileTolerance_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepDimTol_GeometricTolerance.hxx>
-
 
 class StepDimTol_LineProfileTolerance;
 DEFINE_STANDARD_HANDLE(StepDimTol_LineProfileTolerance, StepDimTol_GeometricTolerance)
@@ -30,32 +28,13 @@ class StepDimTol_LineProfileTolerance : public StepDimTol_GeometricTolerance
 {
 
 public:
-
-  
   //! Empty constructor
   Standard_EXPORT StepDimTol_LineProfileTolerance();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepDimTol_LineProfileTolerance,StepDimTol_GeometricTolerance)
+  DEFINE_STANDARD_RTTIEXT(StepDimTol_LineProfileTolerance, StepDimTol_GeometricTolerance)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepDimTol_LineProfileTolerance_HeaderFile

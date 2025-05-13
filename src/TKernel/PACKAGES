@@ -14,3 +14,5 @@ UnitsAPI
 UnitsMethods
 NCollection
 Message
+FlexLexer
+Precision

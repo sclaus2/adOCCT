@@ -18,7 +18,6 @@
 #define _TopOpeBRepDS_CurvePointInterference_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Standard_Real.hxx>
 #include <TopOpeBRepDS_Interference.hxx>
@@ -26,7 +25,6 @@
 #include <Standard_Integer.hxx>
 #include <Standard_OStream.hxx>
 class TopOpeBRepDS_Transition;
-
 
 class TopOpeBRepDS_CurvePointInterference;
 DEFINE_STANDARD_HANDLE(TopOpeBRepDS_CurvePointInterference, TopOpeBRepDS_Interference)
@@ -36,34 +34,22 @@ class TopOpeBRepDS_CurvePointInterference : public TopOpeBRepDS_Interference
 {
 
 public:
+  Standard_EXPORT TopOpeBRepDS_CurvePointInterference(const TopOpeBRepDS_Transition& T,
+                                                      const TopOpeBRepDS_Kind        ST,
+                                                      const Standard_Integer         S,
+                                                      const TopOpeBRepDS_Kind        GT,
+                                                      const Standard_Integer         G,
+                                                      const Standard_Real            P);
 
-  
-  Standard_EXPORT TopOpeBRepDS_CurvePointInterference(const TopOpeBRepDS_Transition& T, const TopOpeBRepDS_Kind ST, const Standard_Integer S, const TopOpeBRepDS_Kind GT, const Standard_Integer G, const Standard_Real P);
-  
   Standard_EXPORT Standard_Real Parameter() const;
-  
-  Standard_EXPORT void Parameter (const Standard_Real P);
-  
 
-  DEFINE_STANDARD_RTTIEXT(TopOpeBRepDS_CurvePointInterference,TopOpeBRepDS_Interference)
+  Standard_EXPORT void Parameter(const Standard_Real P);
+
+  DEFINE_STANDARD_RTTIEXT(TopOpeBRepDS_CurvePointInterference, TopOpeBRepDS_Interference)
 
 protected:
-
-
-
-
 private:
-
-
   Standard_Real myParam;
-
-
 };
-
-
-
-
-
-
 
 #endif // _TopOpeBRepDS_CurvePointInterference_HeaderFile

@@ -24,32 +24,24 @@
 
 class LocalAnalysis_SurfaceContinuity;
 class LocalAnalysis_CurveContinuity;
-class LocalAnalysis_SurfaceContinuity;
-class LocalAnalysis_CurveContinuity;
 
 //! This package gives tools to check the local continuity
 //! between two  points situated  on two curves or two surfaces.
-class LocalAnalysis 
+class LocalAnalysis
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
   //! This  class  compute s and gives tools to check the local
   //! continuity between two points situated on 2 curves.
   //!
   //! This function gives information about a variable CurveContinuity
-  Standard_EXPORT static void Dump (const LocalAnalysis_SurfaceContinuity& surfconti, Standard_OStream& o);
-  
+  Standard_EXPORT static void Dump(const LocalAnalysis_SurfaceContinuity& surfconti,
+                                   Standard_OStream&                      o);
 
   //! This function gives information about a variable SurfaceContinuity
-  Standard_EXPORT static void Dump (const LocalAnalysis_CurveContinuity& curvconti, Standard_OStream& o);
-
-private:
-
-friend class LocalAnalysis_SurfaceContinuity;
-friend class LocalAnalysis_CurveContinuity;
-
+  Standard_EXPORT static void Dump(const LocalAnalysis_CurveContinuity& curvconti,
+                                   Standard_OStream&                    o);
 };
 
 #endif // _LocalAnalysis_HeaderFile

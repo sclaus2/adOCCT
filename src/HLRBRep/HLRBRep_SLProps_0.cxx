@@ -24,7 +24,6 @@
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
 #include <gp_Dir.hxx>
- 
 
 #define Surface Standard_Address
 #define Surface_hxx <Standard_Address.hxx>
@@ -32,5 +31,4 @@
 #define Tool_hxx <HLRBRep_SLPropsATool.hxx>
 #define LProp_SLProps HLRBRep_SLProps
 #define LProp_SLProps_hxx <HLRBRep_SLProps.hxx>
-#include <LProp_SLProps.gxx>
-
+#include "../LProp/LProp_SLProps.gxx"

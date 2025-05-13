@@ -15,11 +15,8 @@
 #ifndef _Standard_OStream_HeaderFile
 #define _Standard_OStream_HeaderFile
 
-#include <Standard_TypeDef.hxx>
 #include <Standard_Stream.hxx>
 
 typedef std::ostream Standard_OStream;
 
 #endif
-
-

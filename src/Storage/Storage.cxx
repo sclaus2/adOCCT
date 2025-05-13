@@ -12,13 +12,13 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <TCollection_AsciiString.hxx>
 #include <Storage.hxx>
 
-TCollection_AsciiString Storage::Version() 
+#include <TCollection_AsciiString.hxx>
+
+TCollection_AsciiString Storage::Version()
 {
   TCollection_AsciiString v("1.3");
 
   return v;
 }
-

@@ -39,18 +39,58 @@ class Aspect_Window : public Standard_Transient
 {
   DEFINE_STANDARD_RTTIEXT(Aspect_Window, Standard_Transient)
 public:
+  //! Returns True if the window <me> is virtual
+  Standard_EXPORT Standard_Boolean IsVirtual() const;
+
+  //! Setup the virtual state
+  Standard_EXPORT void SetVirtual(const Standard_Boolean theVirtual);
+
+  //! Returns window top-left corner.
+  Graphic3d_Vec2i TopLeft() const
+  {
+    Graphic3d_Vec2i aTopLeft, aBotRight;
+    Position(aTopLeft.x(), aTopLeft.y(), aBotRight.x(), aBotRight.y());
+    return aTopLeft;
+  }
+
+  //! Returns window dimensions.
+  Graphic3d_Vec2i Dimensions() const
+  {
+    Graphic3d_Vec2i aSize;
+    Size(aSize.x(), aSize.y());
+    return aSize;
+  }
+
+  //! Returns connection to Display or NULL.
+  const Handle(Aspect_DisplayConnection)& DisplayConnection() const { return myDisplay; }
+
+  //! Returns the window background.
+  Standard_EXPORT Aspect_Background Background() const;
+
+  //! Returns the current image background fill mode.
+  Standard_EXPORT Aspect_FillMethod BackgroundFillMethod() const;
+
+  //! Returns the window gradient background.
+  Standard_EXPORT Aspect_GradientBackground GradientBackground() const;
 
   //! Modifies the window background.
-  Standard_EXPORT void SetBackground (const Aspect_Background& ABack);
+  Standard_EXPORT void SetBackground(const Aspect_Background& theBack);
 
   //! Modifies the window background.
-  Standard_EXPORT void SetBackground (const Quantity_Color& color);
+  Standard_EXPORT void SetBackground(const Quantity_Color& theColor);
 
   //! Modifies the window gradient background.
-  Standard_EXPORT void SetBackground (const Aspect_GradientBackground& ABackground);
+  Standard_EXPORT void SetBackground(const Aspect_GradientBackground& theBackground);
 
   //! Modifies the window gradient background.
-  Standard_EXPORT void SetBackground (const Quantity_Color& theFirstColor, const Quantity_Color& theSecondColor, const Aspect_GradientFillMethod theFillMethod);
+  Standard_EXPORT void SetBackground(const Quantity_Color&           theFirstColor,
+                                     const Quantity_Color&           theSecondColor,
+                                     const Aspect_GradientFillMethod theFillMethod);
+
+public:
+  //! Returns True if the window <me> is opened
+  //! and False if the window is closed.
+  Standard_EXPORT virtual Standard_Boolean IsMapped() const = 0;
 
   //! Opens the window <me>.
   Standard_EXPORT virtual void Map() const = 0;
@@ -65,34 +105,18 @@ public:
   //! and returns TRUE if the window is mapped at screen.
   Standard_EXPORT virtual Standard_Boolean DoMapping() const = 0;
 
-  //! Returns the window background.
-  Standard_EXPORT Aspect_Background Background() const;
-
-  //! Returns the current image background fill mode.
-  Standard_EXPORT Aspect_FillMethod BackgroundFillMethod() const;
-
-  //! Returns the window gradient background.
-  Standard_EXPORT Aspect_GradientBackground GradientBackground() const;
-
-  //! Returns True if the window <me> is opened
-  //! and False if the window is closed.
-  Standard_EXPORT virtual Standard_Boolean IsMapped() const = 0;
-
-  //! Returns True if the window <me> is virtual
-  Standard_EXPORT Standard_Boolean IsVirtual() const;
-
-  //! Setup the virtual state
-  Standard_EXPORT void SetVirtual (const Standard_Boolean theVirtual);
-
   //! Returns The Window RATIO equal to the physical
   //! WIDTH/HEIGHT dimensions
   Standard_EXPORT virtual Standard_Real Ratio() const = 0;
 
   //! Returns The Window POSITION in PIXEL
-  Standard_EXPORT virtual void Position (Standard_Integer& X1, Standard_Integer& Y1, Standard_Integer& X2, Standard_Integer& Y2) const = 0;
+  Standard_EXPORT virtual void Position(Standard_Integer& X1,
+                                        Standard_Integer& Y1,
+                                        Standard_Integer& X2,
+                                        Standard_Integer& Y2) const = 0;
 
   //! Returns The Window SIZE in PIXEL
-  Standard_EXPORT virtual void Size (Standard_Integer& Width, Standard_Integer& Height) const = 0;
+  Standard_EXPORT virtual void Size(Standard_Integer& Width, Standard_Integer& Height) const = 0;
 
   //! Returns native Window handle (HWND on Windows, Window with Xlib, and so on)
   Standard_EXPORT virtual Aspect_Drawable NativeHandle() const = 0;
@@ -103,11 +127,8 @@ public:
   //! Returns native Window FB config (GLXFBConfig on Xlib)
   Standard_EXPORT virtual Aspect_FBConfig NativeFBConfig() const = 0;
 
-  //! Returns connection to Display or NULL.
-  const Handle(Aspect_DisplayConnection)& DisplayConnection() const { return myDisplay; }
-
   //! Sets window title.
-  virtual void SetTitle (const TCollection_AsciiString& theTitle) { (void )theTitle; }
+  virtual void SetTitle(const TCollection_AsciiString& theTitle) { (void)theTitle; }
 
   //! Invalidate entire window content.
   //!
@@ -117,43 +138,38 @@ public:
   //! Optional display argument should be passed when called from non-GUI thread
   //! on platforms implementing thread-unsafe connections to display.
   //! NULL can be passed instead otherwise.
-  virtual void InvalidateContent (const Handle(Aspect_DisplayConnection)& theDisp) { (void )theDisp; }
+  virtual void InvalidateContent(const Handle(Aspect_DisplayConnection)& theDisp) { (void)theDisp; }
 
 public:
-
   //! Return device pixel ratio (logical to backing store scale factor).
   virtual Standard_Real DevicePixelRatio() const { return 1.0; }
 
   //! Convert point from logical units into backing store units.
-  virtual Graphic3d_Vec2d ConvertPointToBacking (const Graphic3d_Vec2d& thePnt) const
+  virtual Graphic3d_Vec2d ConvertPointToBacking(const Graphic3d_Vec2d& thePnt) const
   {
     return thePnt * DevicePixelRatio();
   }
 
   //! Convert point from backing store units to logical units.
-  virtual Graphic3d_Vec2d ConvertPointFromBacking (const Graphic3d_Vec2d& thePnt) const
+  virtual Graphic3d_Vec2d ConvertPointFromBacking(const Graphic3d_Vec2d& thePnt) const
   {
     return thePnt / DevicePixelRatio();
   }
 
 public:
-
   //! Dumps the content of me into the stream
-  Standard_EXPORT void DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
+  Standard_EXPORT void DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth = -1) const;
 
 protected:
-
   //! Initializes the data of a Window.
   Standard_EXPORT Aspect_Window();
 
 protected:
-
   Handle(Aspect_DisplayConnection) myDisplay; //!< Display connection
-  Aspect_Background MyBackground;
-  Aspect_GradientBackground MyGradientBackground;
-  Aspect_FillMethod MyBackgroundFillMethod;
-  Standard_Boolean MyIsVirtual;
-
+  Aspect_Background                MyBackground;
+  Aspect_GradientBackground        MyGradientBackground;
+  Aspect_FillMethod                MyBackgroundFillMethod;
+  Standard_Boolean                 MyIsVirtual;
 };
 
 #endif // _Aspect_Window_HeaderFile

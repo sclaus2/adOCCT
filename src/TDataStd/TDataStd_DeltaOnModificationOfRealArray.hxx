@@ -17,14 +17,12 @@
 #define _TDataStd_DeltaOnModificationOfRealArray_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TColStd_HArray1OfInteger.hxx>
 #include <TColStd_HArray1OfReal.hxx>
 #include <Standard_Integer.hxx>
 #include <TDF_DeltaOnModification.hxx>
 class TDataStd_RealArray;
-
 
 class TDataStd_DeltaOnModificationOfRealArray;
 DEFINE_STANDARD_HANDLE(TDataStd_DeltaOnModificationOfRealArray, TDF_DeltaOnModification)
@@ -35,39 +33,20 @@ class TDataStd_DeltaOnModificationOfRealArray : public TDF_DeltaOnModification
 {
 
 public:
-
-  
   //! Initializes a TDF_DeltaOnModification.
   Standard_EXPORT TDataStd_DeltaOnModificationOfRealArray(const Handle(TDataStd_RealArray)& Arr);
-  
+
   //! Applies the delta to the attribute.
   Standard_EXPORT virtual void Apply() Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(TDataStd_DeltaOnModificationOfRealArray,TDF_DeltaOnModification)
+  DEFINE_STANDARD_RTTIEXT(TDataStd_DeltaOnModificationOfRealArray, TDF_DeltaOnModification)
 
 protected:
-
-
-
-
 private:
-
-
   Handle(TColStd_HArray1OfInteger) myIndxes;
-  Handle(TColStd_HArray1OfReal) myValues;
-  Standard_Integer myUp1;
-  Standard_Integer myUp2;
-
-
+  Handle(TColStd_HArray1OfReal)    myValues;
+  Standard_Integer                 myUp1;
+  Standard_Integer                 myUp2;
 };
-
-
-
-
-
-
 
 #endif // _TDataStd_DeltaOnModificationOfRealArray_HeaderFile

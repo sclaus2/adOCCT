@@ -17,11 +17,9 @@
 #ifndef StepData_HArray1OfField_HeaderFile
 #define StepData_HArray1OfField_HeaderFile
 
-#include <StepData_Field.hxx>
 #include <StepData_Array1OfField.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepData_HArray1OfField, StepData_Array1OfField)
-
 
 #endif

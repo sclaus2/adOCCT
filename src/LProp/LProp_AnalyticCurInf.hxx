@@ -19,47 +19,26 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <GeomAbs_CurveType.hxx>
-#include <Standard_Real.hxx>
 class LProp_CurAndInf;
-
 
 //! Computes the locals extremas of curvature of a gp curve
 //! Remark : a gp curve has not inflection.
-class LProp_AnalyticCurInf 
+class LProp_AnalyticCurInf
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT LProp_AnalyticCurInf();
-  
-  Standard_EXPORT void Perform (const GeomAbs_CurveType T, const Standard_Real UFirst, const Standard_Real ULast, LProp_CurAndInf& Result);
 
-
-
+  Standard_EXPORT void Perform(const GeomAbs_CurveType T,
+                               const Standard_Real     UFirst,
+                               const Standard_Real     ULast,
+                               LProp_CurAndInf&        Result);
 
 protected:
-
-
-
-
-
 private:
-
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _LProp_AnalyticCurInf_HeaderFile

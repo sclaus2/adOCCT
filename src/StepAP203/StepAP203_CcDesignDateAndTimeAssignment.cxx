@@ -16,29 +16,22 @@
 
 // Generator:	ExpToCas (EXPRESS -> CASCADE/XSTEP Translator) V1.0
 
-#include <Standard_Type.hxx>
 #include <StepAP203_CcDesignDateAndTimeAssignment.hxx>
 #include <StepBasic_DateAndTime.hxx>
 #include <StepBasic_DateTimeRole.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepAP203_CcDesignDateAndTimeAssignment,StepBasic_DateAndTimeAssignment)
+IMPLEMENT_STANDARD_RTTIEXT(StepAP203_CcDesignDateAndTimeAssignment, StepBasic_DateAndTimeAssignment)
 
-//=======================================================================
-//function : StepAP203_CcDesignDateAndTimeAssignment
-//purpose  : 
-//=======================================================================
-StepAP203_CcDesignDateAndTimeAssignment::StepAP203_CcDesignDateAndTimeAssignment ()
-{
-}
+//=================================================================================================
 
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
+StepAP203_CcDesignDateAndTimeAssignment::StepAP203_CcDesignDateAndTimeAssignment() {}
 
-void StepAP203_CcDesignDateAndTimeAssignment::Init (const Handle(StepBasic_DateAndTime) &aDateAndTimeAssignment_AssignedDateAndTime,
-                                                    const Handle(StepBasic_DateTimeRole) &aDateAndTimeAssignment_Role,
-                                                    const Handle(StepAP203_HArray1OfDateTimeItem) &aItems)
+//=================================================================================================
+
+void StepAP203_CcDesignDateAndTimeAssignment::Init(
+  const Handle(StepBasic_DateAndTime)&           aDateAndTimeAssignment_AssignedDateAndTime,
+  const Handle(StepBasic_DateTimeRole)&          aDateAndTimeAssignment_Role,
+  const Handle(StepAP203_HArray1OfDateTimeItem)& aItems)
 {
   StepBasic_DateAndTimeAssignment::Init(aDateAndTimeAssignment_AssignedDateAndTime,
                                         aDateAndTimeAssignment_Role);
@@ -46,22 +39,17 @@ void StepAP203_CcDesignDateAndTimeAssignment::Init (const Handle(StepBasic_DateA
   theItems = aItems;
 }
 
-//=======================================================================
-//function : Items
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-Handle(StepAP203_HArray1OfDateTimeItem) StepAP203_CcDesignDateAndTimeAssignment::Items () const
+Handle(StepAP203_HArray1OfDateTimeItem) StepAP203_CcDesignDateAndTimeAssignment::Items() const
 {
   return theItems;
 }
 
-//=======================================================================
-//function : SetItems
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-void StepAP203_CcDesignDateAndTimeAssignment::SetItems (const Handle(StepAP203_HArray1OfDateTimeItem) &aItems)
+void StepAP203_CcDesignDateAndTimeAssignment::SetItems(
+  const Handle(StepAP203_HArray1OfDateTimeItem)& aItems)
 {
   theItems = aItems;
 }

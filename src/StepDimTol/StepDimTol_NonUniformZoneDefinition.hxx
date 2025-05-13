@@ -17,21 +17,20 @@
 #define _StepDimTol_NonUniformZoneDefinition_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepDimTol_ToleranceZoneDefinition.hxx>
 
 class StepDimTol_NonUniformZoneDefinition;
 DEFINE_STANDARD_HANDLE(StepDimTol_NonUniformZoneDefinition, StepDimTol_ToleranceZoneDefinition)
+
 //! Representation of STEP entity NonUniformZoneDefinition
 class StepDimTol_NonUniformZoneDefinition : public StepDimTol_ToleranceZoneDefinition
 {
 
 public:
-  
   //! Empty constructor
   Standard_EXPORT StepDimTol_NonUniformZoneDefinition();
 
-  DEFINE_STANDARD_RTTIEXT(StepDimTol_NonUniformZoneDefinition,StepDimTol_ToleranceZoneDefinition)
+  DEFINE_STANDARD_RTTIEXT(StepDimTol_NonUniformZoneDefinition, StepDimTol_ToleranceZoneDefinition)
 };
 #endif // _StepDimTol_NonUniformZoneDefinition_HeaderFile

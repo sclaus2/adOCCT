@@ -17,6 +17,7 @@
 #include <NCollection_AliasedArray.hxx>
 //#include <gp_Pnt2d.hxx>
 #include <gp_Vec2f.hxx>
+#include <Standard_Macro.hxx>
 
 typedef NCollection_Vec2<double> gp_Vec2double;
 
@@ -24,35 +25,33 @@ typedef NCollection_Vec2<double> gp_Vec2double;
 class Poly_ArrayOfUVNodes : public NCollection_AliasedArray<>
 {
 public:
-
   //! Empty constructor of double-precision array.
-  Poly_ArrayOfUVNodes() : NCollection_AliasedArray ((Standard_Integer )sizeof(gp_Vec2double))
+  Poly_ArrayOfUVNodes()
+      : NCollection_AliasedArray((Standard_Integer)sizeof(gp_Vec2double))
   {
     //
   }
 
   //! Constructor of double-precision array.
-  Poly_ArrayOfUVNodes (Standard_Integer theLength)
-  : NCollection_AliasedArray ((Standard_Integer )sizeof(gp_Vec2double), theLength)
+  Poly_ArrayOfUVNodes(Standard_Integer theLength)
+      : NCollection_AliasedArray((Standard_Integer)sizeof(gp_Vec2double), theLength)
   {
     //
   }
 
-  //! Copy constructor 
-  Standard_EXPORT Poly_ArrayOfUVNodes (const Poly_ArrayOfUVNodes& theOther);
+  //! Copy constructor
+  Standard_EXPORT Poly_ArrayOfUVNodes(const Poly_ArrayOfUVNodes& theOther);
 
   //! Constructor wrapping pre-allocated C-array of values without copying them.
-  Poly_ArrayOfUVNodes (const gp_Vec2double& theBegin,
-                       Standard_Integer theLength)
-  : NCollection_AliasedArray (theBegin, theLength)
+  Poly_ArrayOfUVNodes(const gp_Vec2double& theBegin, Standard_Integer theLength)
+      : NCollection_AliasedArray(theBegin, theLength)
   {
     //
   }
 
   //! Constructor wrapping pre-allocated C-array of values without copying them.
-  Poly_ArrayOfUVNodes (const gp_Vec2f& theBegin,
-                       Standard_Integer theLength)
-  : NCollection_AliasedArray (theBegin, theLength)
+  Poly_ArrayOfUVNodes(const gp_Vec2f& theBegin, Standard_Integer theLength)
+      : NCollection_AliasedArray(theBegin, theLength)
   {
     //
   }
@@ -61,73 +60,74 @@ public:
   Standard_EXPORT ~Poly_ArrayOfUVNodes();
 
   //! Returns TRUE if array defines nodes with double precision.
-  bool IsDoublePrecision() const { return myStride == (Standard_Integer )sizeof(gp_Vec2double); }
+  bool IsDoublePrecision() const { return myStride == (Standard_Integer)sizeof(gp_Vec2double); }
 
   //! Sets if array should define nodes with double or single precision.
   //! Raises exception if array was already allocated.
-  void SetDoublePrecision (bool theIsDouble)
+  void SetDoublePrecision(bool theIsDouble)
   {
-    if (myData != NULL) { throw Standard_ProgramError ("Poly_ArrayOfUVNodes::SetDoublePrecision() should be called before allocation"); }
+    if (myData != NULL)
+    {
+      throw Standard_ProgramError(
+        "Poly_ArrayOfUVNodes::SetDoublePrecision() should be called before allocation");
+    }
     myStride = Standard_Integer(theIsDouble ? sizeof(gp_Vec2double) : sizeof(gp_Vec2f));
   }
 
   //! Copies data of theOther array to this.
   //! The arrays should have the same length,
-  //! but may have different precision / number of components (data conversion will be applied in the latter case).
-  Standard_EXPORT Poly_ArrayOfUVNodes& Assign (const Poly_ArrayOfUVNodes& theOther);
+  //! but may have different precision / number of components (data conversion will be applied in
+  //! the latter case).
+  Standard_EXPORT Poly_ArrayOfUVNodes& Assign(const Poly_ArrayOfUVNodes& theOther);
 
   //! Move assignment.
-  Poly_ArrayOfUVNodes& Move (Poly_ArrayOfUVNodes& theOther)
+  Poly_ArrayOfUVNodes& Move(Poly_ArrayOfUVNodes& theOther)
   {
-    NCollection_AliasedArray::Move (theOther);
+    NCollection_AliasedArray::Move(theOther);
     return *this;
   }
 
   //! Assignment operator; @sa Assign()
-  Poly_ArrayOfUVNodes& operator= (const Poly_ArrayOfUVNodes& theOther) { return Assign (theOther); }
+  Poly_ArrayOfUVNodes& operator=(const Poly_ArrayOfUVNodes& theOther) { return Assign(theOther); }
 
-#ifndef OCCT_NO_RVALUE_REFERENCE
   //! Move constructor
-  Poly_ArrayOfUVNodes (Poly_ArrayOfUVNodes&& theOther)
-  : NCollection_AliasedArray (std::move (theOther))
+  Poly_ArrayOfUVNodes(Poly_ArrayOfUVNodes&& theOther) Standard_Noexcept
+      : NCollection_AliasedArray(std::move(theOther))
   {
     //
   }
 
   //! Move assignment operator; @sa Move()
-  Poly_ArrayOfUVNodes& operator= (Poly_ArrayOfUVNodes&& theOther)
+  Poly_ArrayOfUVNodes& operator=(Poly_ArrayOfUVNodes&& theOther) Standard_Noexcept
   {
-    return Move (theOther);
+    return Move(theOther);
   }
-#endif
 
 public:
-
   //! A generalized accessor to point.
-  inline gp_Vec2double Value (Standard_Integer theIndex) const;
+  inline gp_Vec2double Value(Standard_Integer theIndex) const;
 
   //! A generalized setter for point.
-  inline void SetValue (Standard_Integer theIndex, const gp_Vec2double& theValue);
+  inline void SetValue(Standard_Integer theIndex, const gp_Vec2double& theValue);
 
   //! operator[] - alias to Value
-  gp_Vec2double operator[] (Standard_Integer theIndex) const { return Value (theIndex); }
-
+  gp_Vec2double operator[](Standard_Integer theIndex) const { return Value(theIndex); }
 };
 
 // =======================================================================
 // function : Value
 // purpose  :
 // =======================================================================
-inline gp_Vec2double Poly_ArrayOfUVNodes::Value (Standard_Integer theIndex) const
+inline gp_Vec2double Poly_ArrayOfUVNodes::Value(Standard_Integer theIndex) const
 {
-  if (myStride == (Standard_Integer )sizeof(gp_Vec2double))
+  if (myStride == (Standard_Integer)sizeof(gp_Vec2double))
   {
-    return NCollection_AliasedArray::Value<gp_Vec2double> (theIndex);
+    return NCollection_AliasedArray::Value<gp_Vec2double>(theIndex);
   }
   else
   {
-    const gp_Vec2f& aVec2 = NCollection_AliasedArray::Value<gp_Vec2f> (theIndex);
-    return gp_Vec2double (aVec2.x(), aVec2.y());
+    const gp_Vec2f& aVec2 = NCollection_AliasedArray::Value<gp_Vec2f>(theIndex);
+    return gp_Vec2double(aVec2.x(), aVec2.y());
   }
 }
 
@@ -135,16 +135,16 @@ inline gp_Vec2double Poly_ArrayOfUVNodes::Value (Standard_Integer theIndex) cons
 // function : SetValue
 // purpose  :
 // =======================================================================
-inline void Poly_ArrayOfUVNodes::SetValue (Standard_Integer theIndex, const gp_Vec2double& theValue)
+inline void Poly_ArrayOfUVNodes::SetValue(Standard_Integer theIndex, const gp_Vec2double& theValue)
 {
-  if (myStride == (Standard_Integer )sizeof(gp_Vec2double))
+  if (myStride == (Standard_Integer)sizeof(gp_Vec2double))
   {
-    NCollection_AliasedArray::ChangeValue<gp_Vec2double> (theIndex) = theValue;
+    NCollection_AliasedArray::ChangeValue<gp_Vec2double>(theIndex) = theValue;
   }
   else
   {
-    gp_Vec2f& aVec2 = NCollection_AliasedArray::ChangeValue<gp_Vec2f> (theIndex);
-    aVec2.SetValues ((float )theValue.x(), (float )theValue.y());
+    gp_Vec2f& aVec2 = NCollection_AliasedArray::ChangeValue<gp_Vec2f>(theIndex);
+    aVec2.SetValues((float)theValue.x(), (float)theValue.y());
   }
 }
 

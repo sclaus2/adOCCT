@@ -18,15 +18,12 @@
 #define _IGESSolid_Shell_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <IGESSolid_HArray1OfFace.hxx>
 #include <TColStd_HArray1OfInteger.hxx>
 #include <IGESData_IGESEntity.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 class IGESSolid_Face;
-
 
 class IGESSolid_Shell;
 DEFINE_STANDARD_HANDLE(IGESSolid_Shell, IGESData_IGESEntity)
@@ -42,58 +39,40 @@ class IGESSolid_Shell : public IGESData_IGESEntity
 {
 
 public:
-
-  
   Standard_EXPORT IGESSolid_Shell();
-  
+
   //! This method is used to set the fields of the class Shell
   //! - allFaces  : the faces comprising the shell
   //! - allOrient : the orientation flags of the shell
   //! raises exception if length of allFaces & allOrient do not match
-  Standard_EXPORT void Init (const Handle(IGESSolid_HArray1OfFace)& allFaces, const Handle(TColStd_HArray1OfInteger)& allOrient);
-  
+  Standard_EXPORT void Init(const Handle(IGESSolid_HArray1OfFace)&  allFaces,
+                            const Handle(TColStd_HArray1OfInteger)& allOrient);
+
   //! Tells if a Shell is Closed, i.e. if its FormNumber is 1
   //! (this is the default)
   Standard_EXPORT Standard_Boolean IsClosed() const;
-  
+
   //! Sets or Unsets the Closed status (FormNumber = 1 else 2)
-  Standard_EXPORT void SetClosed (const Standard_Boolean closed);
-  
+  Standard_EXPORT void SetClosed(const Standard_Boolean closed);
+
   //! returns the number of the face entities in the shell
   Standard_EXPORT Standard_Integer NbFaces() const;
-  
+
   //! returns the Index'th face entity of the shell
   //! raises exception if Index <= 0 or Index > NbFaces()
-  Standard_EXPORT Handle(IGESSolid_Face) Face (const Standard_Integer Index) const;
-  
+  Standard_EXPORT Handle(IGESSolid_Face) Face(const Standard_Integer Index) const;
+
   //! returns the orientation of Index'th face w.r.t the direction of
   //! the underlying surface
   //! raises exception if Index <= 0 or Index > NbFaces()
-  Standard_EXPORT Standard_Boolean Orientation (const Standard_Integer Index) const;
+  Standard_EXPORT Standard_Boolean Orientation(const Standard_Integer Index) const;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(IGESSolid_Shell,IGESData_IGESEntity)
+  DEFINE_STANDARD_RTTIEXT(IGESSolid_Shell, IGESData_IGESEntity)
 
 protected:
-
-
-
-
 private:
-
-
-  Handle(IGESSolid_HArray1OfFace) theFaces;
+  Handle(IGESSolid_HArray1OfFace)  theFaces;
   Handle(TColStd_HArray1OfInteger) theOrientation;
-
-
 };
-
-
-
-
-
-
 
 #endif // _IGESSolid_Shell_HeaderFile

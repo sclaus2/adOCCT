@@ -15,10 +15,8 @@
 #ifndef TColStd_SequenceOfBoolean_HeaderFile
 #define TColStd_SequenceOfBoolean_HeaderFile
 
-#include <Standard_Boolean.hxx>
 #include <NCollection_Sequence.hxx>
 
 typedef NCollection_Sequence<Standard_Boolean> TColStd_SequenceOfBoolean;
-
 
 #endif

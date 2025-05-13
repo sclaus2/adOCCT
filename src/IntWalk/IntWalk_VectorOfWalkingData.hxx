@@ -17,18 +17,18 @@
 #define IntWalk_VectorOfWalkingData_HeaderFile
 
 #include <vector>
-#include <NCollection_StdAllocator.hxx>
+#include <NCollection_OccAllocator.hxx>
 
 // Defines a dynamic vector of work data.
 
 struct IntWalk_WalkingData
 {
-    Standard_Real    ustart;
-    Standard_Real    vstart;
-    Standard_Integer etat;
+  Standard_Real    ustart;
+  Standard_Real    vstart;
+  Standard_Integer etat;
 };
 
-typedef std::vector<IntWalk_WalkingData, NCollection_StdAllocator<IntWalk_WalkingData> >
-    IntWalk_VectorOfWalkingData;
+typedef std::vector<IntWalk_WalkingData, NCollection_OccAllocator<IntWalk_WalkingData>>
+  IntWalk_VectorOfWalkingData;
 
 #endif

@@ -18,13 +18,11 @@
 #define _IGESBasic_ExternalReferenceFile_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Interface_HArray1OfHAsciiString.hxx>
 #include <IGESData_IGESEntity.hxx>
 #include <Standard_Integer.hxx>
 class TCollection_HAsciiString;
-
 
 class IGESBasic_ExternalReferenceFile;
 DEFINE_STANDARD_HANDLE(IGESBasic_ExternalReferenceFile, IGESData_IGESEntity)
@@ -36,44 +34,25 @@ class IGESBasic_ExternalReferenceFile : public IGESData_IGESEntity
 {
 
 public:
-
-  
   Standard_EXPORT IGESBasic_ExternalReferenceFile();
-  
+
   //! This method is used to set the fields of the class
   //! ExternalReferenceFile
   //! - aNameArray : External Reference File Names
-  Standard_EXPORT void Init (const Handle(Interface_HArray1OfHAsciiString)& aNameArray);
-  
+  Standard_EXPORT void Init(const Handle(Interface_HArray1OfHAsciiString)& aNameArray);
+
   //! returns number of External Reference File Names
   Standard_EXPORT Standard_Integer NbListEntries() const;
-  
+
   //! returns External Reference File Name
   //! raises exception if Index <= 0 or Index > NbListEntries()
-  Standard_EXPORT Handle(TCollection_HAsciiString) Name (const Standard_Integer Index) const;
+  Standard_EXPORT Handle(TCollection_HAsciiString) Name(const Standard_Integer Index) const;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(IGESBasic_ExternalReferenceFile,IGESData_IGESEntity)
+  DEFINE_STANDARD_RTTIEXT(IGESBasic_ExternalReferenceFile, IGESData_IGESEntity)
 
 protected:
-
-
-
-
 private:
-
-
   Handle(Interface_HArray1OfHAsciiString) theNames;
-
-
 };
-
-
-
-
-
-
 
 #endif // _IGESBasic_ExternalReferenceFile_HeaderFile

@@ -19,13 +19,10 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopTools_DataMapOfShapeListOfShape.hxx>
 #include <TopTools_ListOfShape.hxx>
-#include <Standard_Boolean.hxx>
 class TopoDS_Shape;
-
 
 //! A tool to substitute subshapes by other shapes.
 //!
@@ -37,18 +34,16 @@ class TopoDS_Shape;
 //! The method Build reconstructs a new Shape with the
 //! modifications.The Shape and the new shape are
 //! registered.
-class BRepTools_Substitution 
+class BRepTools_Substitution
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT BRepTools_Substitution();
-  
+
   //! Reset all the fields.
   Standard_EXPORT void Clear();
-  
+
   //! <Oldshape> will be replaced by <NewShapes>.
   //!
   //! <NewShapes> can be empty , in this case <OldShape>
@@ -57,42 +52,24 @@ public:
   //! if an item of <NewShapes> is oriented FORWARD.
   //! it will be oriented as <OldShape> in its ancestors.
   //! else it will be reversed.
-  Standard_EXPORT void Substitute (const TopoDS_Shape& OldShape, const TopTools_ListOfShape& NewShapes);
-  
+  Standard_EXPORT void Substitute(const TopoDS_Shape&         OldShape,
+                                  const TopTools_ListOfShape& NewShapes);
+
   //! Build NewShape from <S> if its subshapes has modified.
   //!
   //! The methods <IsCopied> and <Copy> allows you to keep
   //! the resul of <Build>
-  Standard_EXPORT void Build (const TopoDS_Shape& S);
-  
+  Standard_EXPORT void Build(const TopoDS_Shape& S);
+
   //! Returns   True if <S> has   been  replaced .
-  Standard_EXPORT Standard_Boolean IsCopied (const TopoDS_Shape& S) const;
-  
+  Standard_EXPORT Standard_Boolean IsCopied(const TopoDS_Shape& S) const;
+
   //! Returns the set of shapes substituted to <S>.
-  Standard_EXPORT const TopTools_ListOfShape& Copy (const TopoDS_Shape& S) const;
-
-
-
+  Standard_EXPORT const TopTools_ListOfShape& Copy(const TopoDS_Shape& S) const;
 
 protected:
-
-
-
-
-
 private:
-
-
-
   TopTools_DataMapOfShapeListOfShape myMap;
-
-
 };
-
-
-
-
-
-
 
 #endif // _BRepTools_Substitution_HeaderFile

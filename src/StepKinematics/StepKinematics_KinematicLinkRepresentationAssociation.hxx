@@ -1,4 +1,4 @@
-// Created on : Sat May 02 12:41:15 2020 
+// Created on : Sat May 02 12:41:15 2020
 // Created by: Irina KRYLOVA
 // Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
 // Copyright (c) Open CASCADE 2020
@@ -18,23 +18,23 @@
 #define _StepKinematics_KinematicLinkRepresentationAssociation_HeaderFile_
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 #include <StepRepr_RepresentationRelationship.hxx>
 
 #include <TCollection_HAsciiString.hxx>
 #include <StepRepr_RepresentationOrRepresentationReference.hxx>
 
-DEFINE_STANDARD_HANDLE(StepKinematics_KinematicLinkRepresentationAssociation, StepRepr_RepresentationRelationship)
+DEFINE_STANDARD_HANDLE(StepKinematics_KinematicLinkRepresentationAssociation,
+                       StepRepr_RepresentationRelationship)
 
 //! Representation of STEP entity KinematicLinkRepresentationAssociation
-class StepKinematics_KinematicLinkRepresentationAssociation : public StepRepr_RepresentationRelationship
+class StepKinematics_KinematicLinkRepresentationAssociation
+    : public StepRepr_RepresentationRelationship
 {
-public :
-
+public:
   //! default constructor
   Standard_EXPORT StepKinematics_KinematicLinkRepresentationAssociation();
 
-DEFINE_STANDARD_RTTIEXT(StepKinematics_KinematicLinkRepresentationAssociation, StepRepr_RepresentationRelationship)
-
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_KinematicLinkRepresentationAssociation,
+                          StepRepr_RepresentationRelationship)
 };
 #endif // _StepKinematics_KinematicLinkRepresentationAssociation_HeaderFile_

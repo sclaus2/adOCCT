@@ -31,22 +31,6 @@ class Transfer_FinderProcess;
 class TopoDS_Shape;
 class Standard_Transient;
 class TopoDSToStep_Tool;
-class TopoDSToStep_Root;
-class TopoDSToStep_MakeManifoldSolidBrep;
-class TopoDSToStep_MakeBrepWithVoids;
-class TopoDSToStep_MakeFacetedBrep;
-class TopoDSToStep_MakeFacetedBrepAndBrepWithVoids;
-class TopoDSToStep_MakeShellBasedSurfaceModel;
-class TopoDSToStep_MakeGeometricCurveSet;
-class TopoDSToStep_Builder;
-class TopoDSToStep_WireframeBuilder;
-class TopoDSToStep_Tool;
-class TopoDSToStep_FacetedTool;
-class TopoDSToStep_MakeStepFace;
-class TopoDSToStep_MakeStepWire;
-class TopoDSToStep_MakeStepEdge;
-class TopoDSToStep_MakeStepVertex;
-
 
 //! This package implements the mapping between CAS.CAD
 //! Shape representation and AP214 Shape Representation.
@@ -62,68 +46,37 @@ class TopoDSToStep_MakeStepVertex;
 //! MakeShellBasedSurfaceModel
 //! Each of these classes call the Builder
 //! The class tool centralizes some common information.
-class TopoDSToStep 
+class TopoDSToStep
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
-  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeBuilderError (const TopoDSToStep_BuilderError E);
-  
-  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeFaceError (const TopoDSToStep_MakeFaceError E);
-  
-  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeWireError (const TopoDSToStep_MakeWireError E);
-  
-  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeEdgeError (const TopoDSToStep_MakeEdgeError E);
-  
+  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeBuilderError(
+    const TopoDSToStep_BuilderError E);
+
+  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeFaceError(
+    const TopoDSToStep_MakeFaceError E);
+
+  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeWireError(
+    const TopoDSToStep_MakeWireError E);
+
+  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeEdgeError(
+    const TopoDSToStep_MakeEdgeError E);
+
   //! Returns a new shape without undirect surfaces.
-  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeVertexError (const TopoDSToStep_MakeVertexError E);
-  
+  Standard_EXPORT static Handle(TCollection_HAsciiString) DecodeVertexError(
+    const TopoDSToStep_MakeVertexError E);
+
   //! Adds an entity into the list of results (binders) for
   //! shape stored in FinderProcess
-  Standard_EXPORT static void AddResult (const Handle(Transfer_FinderProcess)& FP, const TopoDS_Shape& Shape, const Handle(Standard_Transient)& entity);
-  
+  Standard_EXPORT static void AddResult(const Handle(Transfer_FinderProcess)& FP,
+                                        const TopoDS_Shape&                   Shape,
+                                        const Handle(Standard_Transient)&     entity);
+
   //! Adds all entities recorded in Tool into the map of results
   //! (binders) stored in FinderProcess
-  Standard_EXPORT static void AddResult (const Handle(Transfer_FinderProcess)& FP, const TopoDSToStep_Tool& Tool);
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class TopoDSToStep_Root;
-friend class TopoDSToStep_MakeManifoldSolidBrep;
-friend class TopoDSToStep_MakeBrepWithVoids;
-friend class TopoDSToStep_MakeFacetedBrep;
-friend class TopoDSToStep_MakeFacetedBrepAndBrepWithVoids;
-friend class TopoDSToStep_MakeShellBasedSurfaceModel;
-friend class TopoDSToStep_MakeGeometricCurveSet;
-friend class TopoDSToStep_Builder;
-friend class TopoDSToStep_WireframeBuilder;
-friend class TopoDSToStep_Tool;
-friend class TopoDSToStep_FacetedTool;
-friend class TopoDSToStep_MakeStepFace;
-friend class TopoDSToStep_MakeStepWire;
-friend class TopoDSToStep_MakeStepEdge;
-friend class TopoDSToStep_MakeStepVertex;
-
+  Standard_EXPORT static void AddResult(const Handle(Transfer_FinderProcess)& FP,
+                                        const TopoDSToStep_Tool&              Tool);
 };
-
-
-
-
-
-
 
 #endif // _TopoDSToStep_HeaderFile

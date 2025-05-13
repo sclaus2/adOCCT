@@ -17,7 +17,6 @@
 #define _Aspect_AspectMarkerDefinitionError_HeaderFile
 
 #include <Standard_Type.hxx>
-#include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_OutOfRange.hxx>
 
@@ -25,8 +24,9 @@ class Aspect_AspectMarkerDefinitionError;
 DEFINE_STANDARD_HANDLE(Aspect_AspectMarkerDefinitionError, Standard_OutOfRange)
 
 #if !defined No_Exception && !defined No_Aspect_AspectMarkerDefinitionError
-  #define Aspect_AspectMarkerDefinitionError_Raise_if(CONDITION, MESSAGE) \
-  if (CONDITION) throw Aspect_AspectMarkerDefinitionError(MESSAGE);
+  #define Aspect_AspectMarkerDefinitionError_Raise_if(CONDITION, MESSAGE)                          \
+    if (CONDITION)                                                                                 \
+      throw Aspect_AspectMarkerDefinitionError(MESSAGE);
 #else
   #define Aspect_AspectMarkerDefinitionError_Raise_if(CONDITION, MESSAGE)
 #endif

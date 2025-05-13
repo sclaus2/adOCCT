@@ -17,22 +17,24 @@
 #define _StepVisual_AnnotationCurveOccurrenceAndGeomReprItem_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepVisual_AnnotationCurveOccurrence.hxx>
 
 class StepVisual_AnnotationCurveOccurrenceAndGeomReprItem;
-DEFINE_STANDARD_HANDLE(StepVisual_AnnotationCurveOccurrenceAndGeomReprItem, StepVisual_AnnotationCurveOccurrence)
+DEFINE_STANDARD_HANDLE(StepVisual_AnnotationCurveOccurrenceAndGeomReprItem,
+                       StepVisual_AnnotationCurveOccurrence)
+
 //! Added for Dimensional Tolerances
-//! Complex STEP entity AnnotationCurveOccurrence & AnnotationOccurrence & GeometricRepresentationItem & RepresentationItem & StyledItem
-class StepVisual_AnnotationCurveOccurrenceAndGeomReprItem : public StepVisual_AnnotationCurveOccurrence
+//! Complex STEP entity AnnotationCurveOccurrence & AnnotationOccurrence &
+//! GeometricRepresentationItem & RepresentationItem & StyledItem
+class StepVisual_AnnotationCurveOccurrenceAndGeomReprItem
+    : public StepVisual_AnnotationCurveOccurrence
 {
 
 public:
-  
   Standard_EXPORT StepVisual_AnnotationCurveOccurrenceAndGeomReprItem();
 
-  DEFINE_STANDARD_RTTIEXT(StepVisual_AnnotationCurveOccurrenceAndGeomReprItem, StepVisual_AnnotationCurveOccurrence)
-
+  DEFINE_STANDARD_RTTIEXT(StepVisual_AnnotationCurveOccurrenceAndGeomReprItem,
+                          StepVisual_AnnotationCurveOccurrence)
 };
 #endif // _StepVisual_AnnotationCurveOccurrenceAndGeomReprItem_HeaderFile

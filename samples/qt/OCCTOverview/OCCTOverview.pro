@@ -9,7 +9,11 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 
 TARGET = OCCTOverview
 
-SAMPLESROOT = $$quote($$(CSF_OCCTSamplesPath)/qt)
+isEmpty(CSF_OCCTSamplesPath) {
+    SAMPLESROOT = $$PWD/..
+} else {
+    SAMPLESROOT = $$quote($$(CSF_OCCTSamplesPath)/qt)
+}
 
 
 HEADERS   = ./src/*.h \
@@ -75,8 +79,8 @@ win32 {
 }
 
 LIBS += -lTKernel -lTKMath -lTKService -lTKV3d -lTKOpenGl \
-        -lTKBRep -lTKIGES -lTKSTL -lTKVRML -lTKSTEP -lTKSTEPAttr -lTKSTEP209 \
-        -lTKSTEPBase -lTKGeomBase -lTKGeomAlgo -lTKG3d -lTKG2d \
+        -lTKBRep -lTKDEIGES -lTKDESTL -lTKDEVRML -lTKDESTEP \
+        -lTKGeomBase -lTKGeomAlgo -lTKG3d -lTKG2d \
         -lTKXSBase -lTKShHealing -lTKHLR -lTKTopAlgo -lTKMesh -lTKPrim \
         -lTKCDF -lTKBool -lTKBO -lTKFillet -lTKOffset -lTKLCAF -lTKCAF -lTKVCAF \
 		-lTKBin -lTKXml

@@ -18,7 +18,6 @@
 #include <GeomTools.hxx>
 #include <GeomTools_SurfaceSet.hxx>
 #include <GeomTools_CurveSet.hxx>
-#include <GeomTools_Curve2dSet.hxx>
 #include <gp_Pnt.hxx>
 #include <gp_Pnt2d.hxx>
 #include <Geom_Geometry.hxx>
@@ -28,24 +27,25 @@
 // intended for use from debugger prompt (Command Window in Visual Studio)
 
 //! Save geometric object identified by pointer to handle
-const char* DrawTrSurf_Set (const char* theNameStr, void* theHandlePtr)
+Standard_EXPORT const char* DrawTrSurf_Set(const char* theNameStr, void* theHandlePtr)
 {
   if (theNameStr == 0 || theHandlePtr == 0)
   {
     return "Error: argument is null";
   }
-  try {
+  try
+  {
     const Handle(Standard_Transient)& aHandle = *(Handle(Standard_Transient)*)theHandlePtr;
-    Handle(Geom_Geometry) aGeom3d = Handle(Geom_Geometry)::DownCast(aHandle);
+    Handle(Geom_Geometry)             aGeom3d = Handle(Geom_Geometry)::DownCast(aHandle);
     if (!aGeom3d.IsNull())
     {
-      DrawTrSurf::Set (theNameStr, aGeom3d);
+      DrawTrSurf::Set(theNameStr, aGeom3d);
       return theNameStr;
     }
     Handle(Geom2d_Curve) aGeom2d = Handle(Geom2d_Curve)::DownCast(aHandle);
     if (!aGeom2d.IsNull())
     {
-      DrawTrSurf::Set (theNameStr, aGeom2d);
+      DrawTrSurf::Set(theNameStr, aGeom2d);
       return theNameStr;
     }
 
@@ -58,17 +58,23 @@ const char* DrawTrSurf_Set (const char* theNameStr, void* theHandlePtr)
 }
 
 //! Set point to DRAW variable
-const char* DrawTrSurf_SetPnt (const char* theNameStr, void* thePntPtr)
+Standard_EXPORT const char* DrawTrSurf_SetPnt(const char* theNameStr, void* thePntPtr)
 {
   if (theNameStr == 0 || thePntPtr == 0)
   {
     return "Error: argument is null";
   }
-  try {
+  try
+  {
     const gp_Pnt& aP = *(gp_Pnt*)thePntPtr;
-    static char buff[256];
-    sprintf (buff, "Point (%.16g, %.16g, %.16g) set to DRAW variable %.80s", aP.X().getValue(), aP.Y().getValue(), aP.Z().getValue(), theNameStr);
-    DrawTrSurf::Set (theNameStr, aP);
+    static char   buff[256];
+    sprintf(buff,
+            "Point (%.16g, %.16g, %.16g) set to DRAW variable %.80s",
+            aP.X().getValue(),
+            aP.Y().getValue(),
+            aP.Z().getValue(),
+            theNameStr);
+    DrawTrSurf::Set(theNameStr, aP);
     return buff;
   }
   catch (Standard_Failure const& anException)
@@ -78,17 +84,18 @@ const char* DrawTrSurf_SetPnt (const char* theNameStr, void* thePntPtr)
 }
 
 //! Set 2d point to DRAW variable
-const char* DrawTrSurf_SetPnt2d (const char* theNameStr, void* thePnt2dPtr)
+Standard_EXPORT const char* DrawTrSurf_SetPnt2d(const char* theNameStr, void* thePnt2dPtr)
 {
   if (theNameStr == 0 || thePnt2dPtr == 0)
   {
     return "Error: argument is null";
   }
-  try {
+  try
+  {
     const gp_Pnt2d& aP = *(gp_Pnt2d*)thePnt2dPtr;
-    static char buff[256];
-    sprintf (buff, "Point (%.16g, %.16g) set to DRAW variable %.80s", aP.X().getValue(), aP.Y().getValue(), theNameStr);
-    DrawTrSurf::Set (theNameStr, aP);
+    static char     buff[256];
+    sprintf(buff, "Point (%.16g, %.16g) set to DRAW variable %.80s", aP.X().getValue(), aP.Y().getValue(), theNameStr);
+    DrawTrSurf::Set(theNameStr, aP);
     return buff;
   }
   catch (Standard_Failure const& anException)
@@ -97,25 +104,25 @@ const char* DrawTrSurf_SetPnt2d (const char* theNameStr, void* thePnt2dPtr)
   }
 }
 
-// MSVC debugger cannot deal correctly with functions whose argunments 
+// MSVC debugger cannot deal correctly with functions whose argunments
 // have non-standard types. Here we define alternative to the above functions
 // with good types with the hope that GDB on Linux or other debugger could
 // work with them (DBX could, on SUN Solaris).
 #ifndef _MSC_VER
 
-const char* DrawTrSurf_Set (const char* name, const Handle(Standard_Transient)& G)
+Standard_EXPORT const char* DrawTrSurf_Set(const char* name, const Handle(Standard_Transient)& G)
 {
-  return DrawTrSurf_Set (name, (void*)&G);
+  return DrawTrSurf_Set(name, (void*)&G);
 }
 
-const char* DrawTrSurf_Set (const char* theName, const gp_Pnt& thePnt)
+Standard_EXPORT const char* DrawTrSurf_Set(const char* theName, const gp_Pnt& thePnt)
 {
-  return DrawTrSurf_SetPnt (theName, (void*)&thePnt);
+  return DrawTrSurf_SetPnt(theName, (void*)&thePnt);
 }
 
-const char* DrawTrSurf_Set (const char* theName, const gp_Pnt2d& thePnt2d)
+Standard_EXPORT const char* DrawTrSurf_Set(const char* theName, const gp_Pnt2d& thePnt2d)
 {
-  return DrawTrSurf_SetPnt2d (theName, (void*)&thePnt2d);
+  return DrawTrSurf_SetPnt2d(theName, (void*)&thePnt2d);
 }
 
 #endif /* _MSC_VER */

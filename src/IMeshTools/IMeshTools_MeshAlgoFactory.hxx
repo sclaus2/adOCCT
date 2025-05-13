@@ -17,7 +17,6 @@
 #define _IMeshTools_MeshAlgoFactory_HeaderFile
 
 #include <Standard_Transient.hxx>
-#include <Standard_Type.hxx>
 #include <GeomAbs_SurfaceType.hxx>
 #include <IMeshTools_MeshAlgo.hxx>
 
@@ -28,11 +27,8 @@ struct IMeshTools_Parameters;
 class IMeshTools_MeshAlgoFactory : public Standard_Transient
 {
 public:
-
   //! Destructor.
-  virtual ~IMeshTools_MeshAlgoFactory()
-  {
-  }
+  virtual ~IMeshTools_MeshAlgoFactory() {}
 
   //! Creates instance of meshing algorithm for the given type of surface.
   Standard_EXPORT virtual Handle(IMeshTools_MeshAlgo) GetAlgo(
@@ -42,11 +38,8 @@ public:
   DEFINE_STANDARD_RTTIEXT(IMeshTools_MeshAlgoFactory, Standard_Transient)
 
 protected:
-
   //! Constructor.
-  IMeshTools_MeshAlgoFactory()
-  {
-  }
+  IMeshTools_MeshAlgoFactory() {}
 };
 
 #endif

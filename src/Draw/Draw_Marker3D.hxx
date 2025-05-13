@@ -18,67 +18,52 @@
 #define _Draw_Marker3D_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <gp_Pnt.hxx>
 #include <Draw_Color.hxx>
 #include <Draw_MarkerShape.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
 #include <Draw_Drawable3D.hxx>
 class Draw_Display;
 
-
 class Draw_Marker3D;
 DEFINE_STANDARD_HANDLE(Draw_Marker3D, Draw_Drawable3D)
-
 
 class Draw_Marker3D : public Draw_Drawable3D
 {
 
 public:
+  Standard_EXPORT Draw_Marker3D(const gp_Pnt&          P,
+                                const Draw_MarkerShape T,
+                                const Draw_Color&      C,
+                                const Standard_Integer ISize = 5);
 
-  
-  Standard_EXPORT Draw_Marker3D(const gp_Pnt& P, const Draw_MarkerShape T, const Draw_Color& C, const Standard_Integer ISize = 5);
-  
-  Standard_EXPORT Draw_Marker3D(const gp_Pnt& P, const Draw_MarkerShape T, const Draw_Color& C, const double RSize);
-  
+  Standard_EXPORT Draw_Marker3D(const gp_Pnt&          P,
+                                const Draw_MarkerShape T,
+                                const Draw_Color&      C,
+                                const double    RSize);
+
   //! myPos field
   Standard_EXPORT gp_Pnt& ChangePos();
-  
-  Standard_EXPORT void DrawOn (Draw_Display& dis) const Standard_OVERRIDE;
-  
+
+  Standard_EXPORT void DrawOn(Draw_Display& dis) const Standard_OVERRIDE;
+
   //! Returns always false
-  Standard_EXPORT virtual Standard_Boolean PickReject (const double X, const double Y, const double Prec) const Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Boolean PickReject(const double X,
+                                                      const double Y,
+                                                      const double Prec) const
+    Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(Draw_Marker3D,Draw_Drawable3D)
+  DEFINE_STANDARD_RTTIEXT(Draw_Marker3D, Draw_Drawable3D)
 
 protected:
-
-
-
-
 private:
-
-
-  gp_Pnt myPos;
-  Draw_Color myCol;
+  gp_Pnt           myPos;
+  Draw_Color       myCol;
   Draw_MarkerShape myTyp;
   Standard_Integer mySiz;
-  double myRSiz;
+  double    myRSiz;
   Standard_Boolean myIsRSiz;
-
-
 };
-
-
-
-
-
-
 
 #endif // _Draw_Marker3D_HeaderFile

@@ -14,18 +14,16 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
-#include <Geom_Plane.hxx>
 #include <ShapeBuild.hxx>
 
-//=======================================================================
-//function : PlaneXOY
-//purpose  : 
-//=======================================================================
+#include <Geom_Plane.hxx>
+
+//=================================================================================================
+
 Handle(Geom_Plane) ShapeBuild::PlaneXOY()
 {
   static Handle(Geom_Plane) xoy;
-  if (xoy.IsNull()) xoy = new Geom_Plane (0,0,1,0);
+  if (xoy.IsNull())
+    xoy = new Geom_Plane(0, 0, 1, 0);
   return xoy;
 }
-

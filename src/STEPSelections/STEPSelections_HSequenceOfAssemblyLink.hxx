@@ -17,11 +17,9 @@
 #ifndef STEPSelections_HSequenceOfAssemblyLink_HeaderFile
 #define STEPSelections_HSequenceOfAssemblyLink_HeaderFile
 
-#include <STEPSelections_AssemblyLink.hxx>
 #include <STEPSelections_SequenceOfAssemblyLink.hxx>
 #include <NCollection_DefineHSequence.hxx>
 
 DEFINE_HSEQUENCE(STEPSelections_HSequenceOfAssemblyLink, STEPSelections_SequenceOfAssemblyLink)
-
 
 #endif

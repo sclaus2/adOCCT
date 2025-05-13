@@ -17,11 +17,9 @@
 #ifndef StepGeom_HArray1OfCompositeCurveSegment_HeaderFile
 #define StepGeom_HArray1OfCompositeCurveSegment_HeaderFile
 
-#include <StepGeom_CompositeCurveSegment.hxx>
 #include <StepGeom_Array1OfCompositeCurveSegment.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepGeom_HArray1OfCompositeCurveSegment, StepGeom_Array1OfCompositeCurveSegment)
-
 
 #endif

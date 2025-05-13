@@ -17,16 +17,12 @@
 #define _BRepMesh_DelaunayBaseMeshAlgo_HeaderFile
 
 #include <BRepMesh_ConstrainedBaseMeshAlgo.hxx>
-#include <NCollection_Shared.hxx>
-#include <IMeshTools_Parameters.hxx>
-
 
 //! Class provides base functionality to build face triangulation using Dealunay approach.
 //! Performs generation of mesh using raw data from model.
 class BRepMesh_DelaunayBaseMeshAlgo : public BRepMesh_ConstrainedBaseMeshAlgo
 {
 public:
-
   //! Constructor.
   Standard_EXPORT BRepMesh_DelaunayBaseMeshAlgo();
 
@@ -36,9 +32,9 @@ public:
   DEFINE_STANDARD_RTTIEXT(BRepMesh_DelaunayBaseMeshAlgo, BRepMesh_ConstrainedBaseMeshAlgo)
 
 protected:
-
   //! Generates mesh for the contour stored in data structure.
-  Standard_EXPORT virtual void generateMesh (const Message_ProgressRange& theRange) Standard_OVERRIDE;
+  Standard_EXPORT virtual void generateMesh(const Message_ProgressRange& theRange)
+    Standard_OVERRIDE;
 };
 
 #endif

@@ -17,11 +17,9 @@
 #ifndef GeomFill_HArray1OfSectionLaw_HeaderFile
 #define GeomFill_HArray1OfSectionLaw_HeaderFile
 
-#include <GeomFill_SectionLaw.hxx>
 #include <GeomFill_Array1OfSectionLaw.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(GeomFill_HArray1OfSectionLaw, GeomFill_Array1OfSectionLaw)
-
 
 #endif

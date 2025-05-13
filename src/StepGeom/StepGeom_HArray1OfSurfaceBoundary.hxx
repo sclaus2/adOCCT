@@ -17,11 +17,9 @@
 #ifndef StepGeom_HArray1OfSurfaceBoundary_HeaderFile
 #define StepGeom_HArray1OfSurfaceBoundary_HeaderFile
 
-#include <StepGeom_SurfaceBoundary.hxx>
 #include <StepGeom_Array1OfSurfaceBoundary.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepGeom_HArray1OfSurfaceBoundary, StepGeom_Array1OfSurfaceBoundary)
-
 
 #endif

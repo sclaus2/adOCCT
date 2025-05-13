@@ -17,11 +17,9 @@
 #ifndef Storage_HArrayOfSchema_HeaderFile
 #define Storage_HArrayOfSchema_HeaderFile
 
-#include <Storage_Schema.hxx>
 #include <Storage_ArrayOfSchema.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(Storage_HArrayOfSchema, Storage_ArrayOfSchema)
-
 
 #endif

@@ -16,13 +16,17 @@
 #ifndef STEPCAFControl_DataMapOfShapeSDR_HeaderFile
 #define STEPCAFControl_DataMapOfShapeSDR_HeaderFile
 
-#include <TopoDS_Shape.hxx>
 #include <StepShape_ShapeDefinitionRepresentation.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TopoDS_Shape,Handle(StepShape_ShapeDefinitionRepresentation),TopTools_ShapeMapHasher> STEPCAFControl_DataMapOfShapeSDR;
-typedef NCollection_DataMap<TopoDS_Shape,Handle(StepShape_ShapeDefinitionRepresentation),TopTools_ShapeMapHasher>::Iterator STEPCAFControl_DataMapIteratorOfDataMapOfShapeSDR;
-
+typedef NCollection_DataMap<TopoDS_Shape,
+                            Handle(StepShape_ShapeDefinitionRepresentation),
+                            TopTools_ShapeMapHasher>
+  STEPCAFControl_DataMapOfShapeSDR;
+typedef NCollection_DataMap<TopoDS_Shape,
+                            Handle(StepShape_ShapeDefinitionRepresentation),
+                            TopTools_ShapeMapHasher>::Iterator
+  STEPCAFControl_DataMapIteratorOfDataMapOfShapeSDR;
 
 #endif

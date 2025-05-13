@@ -23,66 +23,42 @@
 
 #include <HLRAlgo_EdgeIterator.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
 class HLRBRep_Data;
 class TopoDS_Shape;
 class HLRAlgo_Projector;
 class BRepAdaptor_Curve;
 
-
-
-class StdPrs_HLRToolShape 
+class StdPrs_HLRToolShape
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
-  Standard_EXPORT StdPrs_HLRToolShape(const TopoDS_Shape& TheShape, const HLRAlgo_Projector& TheProjector);
-  
+  Standard_EXPORT StdPrs_HLRToolShape(const TopoDS_Shape&      TheShape,
+                                      const HLRAlgo_Projector& TheProjector);
+
   Standard_EXPORT Standard_Integer NbEdges() const;
-  
-  Standard_EXPORT void InitVisible (const Standard_Integer EdgeNumber);
-  
+
+  Standard_EXPORT void InitVisible(const Standard_Integer EdgeNumber);
+
   Standard_EXPORT Standard_Boolean MoreVisible() const;
-  
+
   Standard_EXPORT void NextVisible();
-  
-  Standard_EXPORT void Visible (BRepAdaptor_Curve& TheEdge, Standard_Real& U1, Standard_Real& U2);
-  
-  Standard_EXPORT void InitHidden (const Standard_Integer EdgeNumber);
-  
+
+  Standard_EXPORT void Visible(BRepAdaptor_Curve& TheEdge, Standard_Real& U1, Standard_Real& U2);
+
+  Standard_EXPORT void InitHidden(const Standard_Integer EdgeNumber);
+
   Standard_EXPORT Standard_Boolean MoreHidden() const;
-  
+
   Standard_EXPORT void NextHidden();
-  
-  Standard_EXPORT void Hidden (BRepAdaptor_Curve& TheEdge, Standard_Real& U1, Standard_Real& U2);
 
-
-
+  Standard_EXPORT void Hidden(BRepAdaptor_Curve& TheEdge, Standard_Real& U1, Standard_Real& U2);
 
 protected:
-
-
-
-
-
 private:
-
-
-
   Handle(HLRBRep_Data) MyData;
   HLRAlgo_EdgeIterator myEdgeIterator;
-  Standard_Integer MyCurrentEdgeNumber;
-
-
+  Standard_Integer     MyCurrentEdgeNumber;
 };
-
-
-
-
-
-
 
 #endif // _StdPrs_HLRToolShape_HeaderFile

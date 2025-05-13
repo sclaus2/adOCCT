@@ -13,9 +13,8 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <Standard_Type.hxx>
 #include <StepVisual_AnnotationCurveOccurrence.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepVisual_AnnotationCurveOccurrence,StepVisual_AnnotationOccurrence)
+IMPLEMENT_STANDARD_RTTIEXT(StepVisual_AnnotationCurveOccurrence, StepVisual_AnnotationOccurrence)
 
-StepVisual_AnnotationCurveOccurrence::StepVisual_AnnotationCurveOccurrence ()  {}
+StepVisual_AnnotationCurveOccurrence::StepVisual_AnnotationCurveOccurrence() {}

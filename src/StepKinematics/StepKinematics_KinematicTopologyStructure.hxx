@@ -1,4 +1,4 @@
-// Created on : Sat May 02 12:41:15 2020 
+// Created on : Sat May 02 12:41:15 2020
 // Created by: Irina KRYLOVA
 // Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
 // Copyright (c) Open CASCADE 2020
@@ -18,24 +18,20 @@
 #define _StepKinematics_KinematicTopologyStructure_HeaderFile_
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 #include <StepRepr_Representation.hxx>
 
 #include <TCollection_HAsciiString.hxx>
 #include <StepRepr_HArray1OfRepresentationItem.hxx>
-#include <StepRepr_RepresentationContext.hxx>
 
 DEFINE_STANDARD_HANDLE(StepKinematics_KinematicTopologyStructure, StepRepr_Representation)
 
 //! Representation of STEP entity KinematicTopologyStructure
 class StepKinematics_KinematicTopologyStructure : public StepRepr_Representation
 {
-public :
-
+public:
   //! default constructor
   Standard_EXPORT StepKinematics_KinematicTopologyStructure();
 
-DEFINE_STANDARD_RTTIEXT(StepKinematics_KinematicTopologyStructure, StepRepr_Representation)
-
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_KinematicTopologyStructure, StepRepr_Representation)
 };
 #endif // _StepKinematics_KinematicTopologyStructure_HeaderFile_

@@ -15,49 +15,35 @@
 
 // Generator:	ExpToCas (EXPRESS -> CASCADE/XSTEP Translator) V1.2
 
-#include <Standard_Type.hxx>
 #include <StepFEA_NodeSet.hxx>
 #include <TCollection_HAsciiString.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepFEA_NodeSet,StepGeom_GeometricRepresentationItem)
+IMPLEMENT_STANDARD_RTTIEXT(StepFEA_NodeSet, StepGeom_GeometricRepresentationItem)
 
-//=======================================================================
-//function : StepFEA_NodeSet
-//purpose  : 
-//=======================================================================
-StepFEA_NodeSet::StepFEA_NodeSet ()
-{
-}
+//=================================================================================================
 
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
+StepFEA_NodeSet::StepFEA_NodeSet() {}
 
-void StepFEA_NodeSet::Init (const Handle(TCollection_HAsciiString) &aRepresentationItem_Name,
-                            const Handle(StepFEA_HArray1OfNodeRepresentation) &aNodes)
+//=================================================================================================
+
+void StepFEA_NodeSet::Init(const Handle(TCollection_HAsciiString)& aRepresentationItem_Name,
+                           const Handle(StepFEA_HArray1OfNodeRepresentation)& aNodes)
 {
   StepGeom_GeometricRepresentationItem::Init(aRepresentationItem_Name);
 
   theNodes = aNodes;
 }
 
-//=======================================================================
-//function : Nodes
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-Handle(StepFEA_HArray1OfNodeRepresentation) StepFEA_NodeSet::Nodes () const
+Handle(StepFEA_HArray1OfNodeRepresentation) StepFEA_NodeSet::Nodes() const
 {
   return theNodes;
 }
 
-//=======================================================================
-//function : SetNodes
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-void StepFEA_NodeSet::SetNodes (const Handle(StepFEA_HArray1OfNodeRepresentation) &aNodes)
+void StepFEA_NodeSet::SetNodes(const Handle(StepFEA_HArray1OfNodeRepresentation)& aNodes)
 {
   theNodes = aNodes;
 }

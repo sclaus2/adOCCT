@@ -16,7 +16,6 @@
 #define _OSD_SIGILL_HeaderFile
 
 #include <Standard_Type.hxx>
-#include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <OSD_Signal.hxx>
 
@@ -24,8 +23,9 @@ class OSD_SIGILL;
 DEFINE_STANDARD_HANDLE(OSD_SIGILL, OSD_Signal)
 
 #if !defined No_Exception && !defined No_OSD_SIGILL
-  #define OSD_SIGILL_Raise_if(CONDITION, MESSAGE) \
-  if (CONDITION) throw OSD_SIGILL(MESSAGE);
+  #define OSD_SIGILL_Raise_if(CONDITION, MESSAGE)                                                  \
+    if (CONDITION)                                                                                 \
+      throw OSD_SIGILL(MESSAGE);
 #else
   #define OSD_SIGILL_Raise_if(CONDITION, MESSAGE)
 #endif

@@ -20,38 +20,31 @@
 #include <Storage_Error.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 #include <StdStorage_MapOfRoots.hxx>
 #include <StdStorage_HSequenceOfRoots.hxx>
-class Standard_NoSuchObject;
-class Storage_Schema;
 class Storage_BaseDriver;
 class StdStorage_Root;
-class TCollection_AsciiString;
-class StdObjMgt_Persistent;
 
 class StdStorage_RootData;
 DEFINE_STANDARD_HANDLE(StdStorage_RootData, Standard_Transient)
 
 //! Storage root data section contains root persistent objects
-class StdStorage_RootData
-  : public Standard_Transient
+class StdStorage_RootData : public Standard_Transient
 {
   friend class StdStorage_Data;
 
 public:
-
   DEFINE_STANDARD_RTTIEXT(StdStorage_RootData, Standard_Transient)
 
-  //! Reads the root data section from the container defined by theDriver. 
-  //! Returns Standard_True in case of success. Otherwise, one need to get 
+  //! Reads the root data section from the container defined by theDriver.
+  //! Returns Standard_True in case of success. Otherwise, one need to get
   //! an error code and description using ErrorStatus and ErrorStatusExtension
   //! functions correspondingly.
   Standard_EXPORT Standard_Boolean Read(const Handle(Storage_BaseDriver)& theDriver);
 
-  //! Writes the root data section to the container defined by theDriver. 
-  //! Returns Standard_True in case of success. Otherwise, one need to get 
+  //! Writes the root data section to the container defined by theDriver.
+  //! Returns Standard_True in case of success. Otherwise, one need to get
   //! an error code and description using ErrorStatus and ErrorStatusExtension
   //! functions correspondingly.
   Standard_EXPORT Standard_Boolean Write(const Handle(Storage_BaseDriver)& theDriver);
@@ -88,17 +81,15 @@ public:
   Standard_EXPORT void Clear();
 
 private:
-
   Standard_EXPORT StdStorage_RootData();
 
   Standard_EXPORT void SetErrorStatus(const Storage_Error anError);
 
   Standard_EXPORT void SetErrorStatusExtension(const TCollection_AsciiString& anErrorExt);
 
-  StdStorage_MapOfRoots myObjects;
-  Storage_Error myErrorStatus;
+  StdStorage_MapOfRoots   myObjects;
+  Storage_Error           myErrorStatus;
   TCollection_AsciiString myErrorStatusExt;
-
 };
 
 #endif // _StdStorage_RootData_HeaderFile

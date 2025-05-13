@@ -20,13 +20,10 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Real.hxx>
 #include <Units_Unit.hxx>
-#include <Standard_CString.hxx>
 #include <Standard_Integer.hxx>
 class Units_Quantity;
 class Units_Token;
-
 
 class Units_ShiftedUnit;
 DEFINE_STANDARD_HANDLE(Units_ShiftedUnit, Units_Unit)
@@ -40,8 +37,6 @@ class Units_ShiftedUnit : public Units_Unit
 {
 
 public:
-
-  
   //! Creates  and  returns a  shifted unit.   <aname> is the
   //! name of the unit,  <asymbol> is the usual abbreviation
   //! of the unit, <avalue> is the  value in relation to the
@@ -51,50 +46,38 @@ public:
   //! For  example Celsius   degree   of temperature  is  an
   //! instance of ShiftedUnit  with <avalue> equal to 1. and
   //! <amove> equal to 273.15.
-  Standard_EXPORT Units_ShiftedUnit(const Standard_CString aname, const Standard_CString asymbol, const double avalue, const double amove, const Handle(Units_Quantity)& aquantity);
-  
+  Standard_EXPORT Units_ShiftedUnit(const Standard_CString        aname,
+                                    const Standard_CString        asymbol,
+                                    const double           avalue,
+                                    const double           amove,
+                                    const Handle(Units_Quantity)& aquantity);
+
   //! Creates  and returns a  unit.  <aname> is  the name of
   //! the  unit, <asymbol> is the  usual abbreviation of the
   //! unit.
   Standard_EXPORT Units_ShiftedUnit(const Standard_CString aname, const Standard_CString asymbol);
-  
+
   //! Creates  and returns a  unit.  <aname> is  the name of
   //! the  unit.
   Standard_EXPORT Units_ShiftedUnit(const Standard_CString aname);
-  
+
   //! Sets the field <themove> to <amove>
-  Standard_EXPORT void Move (const double amove);
-  
+  Standard_EXPORT void Move(const double amove);
+
   //! Returns the shifted value <themove>.
   Standard_EXPORT double Move() const;
-  
+
   //! This redefined method returns a ShiftedToken object.
   Standard_EXPORT virtual Handle(Units_Token) Token() const Standard_OVERRIDE;
-  
-  Standard_EXPORT virtual void Dump (const Standard_Integer ashift, const Standard_Integer alevel) const Standard_OVERRIDE;
 
+  Standard_EXPORT virtual void Dump(const Standard_Integer ashift,
+                                    const Standard_Integer alevel) const Standard_OVERRIDE;
 
-
-
-  DEFINE_STANDARD_RTTIEXT(Units_ShiftedUnit,Units_Unit)
+  DEFINE_STANDARD_RTTIEXT(Units_ShiftedUnit, Units_Unit)
 
 protected:
-
-
-
-
 private:
-
-
   double themove;
-
-
 };
-
-
-
-
-
-
 
 #endif // _Units_ShiftedUnit_HeaderFile

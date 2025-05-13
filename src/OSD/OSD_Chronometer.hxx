@@ -31,10 +31,9 @@
 //! must occur from the same thread where Start() was called
 //! (unless chronometer is stopped); otherwise measurement will
 //! yield false values.
-class OSD_Chronometer 
+class OSD_Chronometer
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
   //! Initializes a stopped Chronometer.
@@ -42,7 +41,7 @@ public:
   //! If ThisThreadOnly is True, measured CPU time will account
   //! time of the current thread only; otherwise CPU of the
   //! process (all threads, and completed children) is measured.
-  Standard_EXPORT OSD_Chronometer (Standard_Boolean theThisThreadOnly = Standard_False);
+  Standard_EXPORT OSD_Chronometer(Standard_Boolean theThisThreadOnly = Standard_False);
 
   //! Destructor.
   Standard_EXPORT virtual ~OSD_Chronometer();
@@ -58,27 +57,27 @@ public:
 
   //! Stops the Chronometer.
   Standard_EXPORT virtual void Stop();
-  
+
   //! Starts (after Create or Reset) or restarts (after Stop)
   //! the chronometer.
   Standard_EXPORT virtual void Start();
-  
+
   //! Shows the current CPU user and system time on the
   //! standard output stream <cout>.
   //! The chronometer can be running (laps Time) or stopped.
   Standard_EXPORT virtual void Show() const;
-  
+
   //! Shows the current CPU user and system time on the output
   //! stream <os>.
   //! The chronometer can be running (laps Time) or stopped.
-  Standard_EXPORT virtual void Show (Standard_OStream& theOStream) const;
+  Standard_EXPORT virtual void Show(Standard_OStream& theOStream) const;
 
   //! Returns the current CPU user time in seconds.
   //! The chronometer can be running (laps Time) or stopped.
   double UserTimeCPU() const
   {
     double aUserTime = 0.0, aSysTime = 0.0;
-    Show (aUserTime, aSysTime);
+    Show(aUserTime, aSysTime);
     return aUserTime;
   }
 
@@ -87,41 +86,48 @@ public:
   double SystemTimeCPU() const
   {
     double aUserTime = 0.0, aSysTime = 0.0;
-    Show (aUserTime, aSysTime);
+    Show(aUserTime, aSysTime);
     return aSysTime;
   }
 
+  //! Return TRUE if current thread CPU time should be measured,
+  //! and FALSE to measure all threads CPU time; FALSE by default,
+  Standard_Boolean IsThisThreadOnly() const { return myIsThreadOnly; }
+
+  //! Set if current thread (TRUE) or all threads (FALSE) CPU time should be measured.
+  //! Will raise exception if Timer is in started state.
+  Standard_EXPORT void SetThisThreadOnly(Standard_Boolean theIsThreadOnly);
+
   //! Returns the current CPU user time in a variable.
   //! The chronometer can be running (laps Time) or stopped.
-  void Show (double& theUserSeconds) const { theUserSeconds = UserTimeCPU(); }
-  
+  void Show(double& theUserSeconds) const { theUserSeconds = UserTimeCPU(); }
+
   //! Returns the current CPU user and system time in variables.
   //! The chronometer can be running (laps Time) or stopped.
-  Standard_EXPORT void Show (double& theUserSec, double& theSystemSec) const;
+  Standard_EXPORT void Show(double& theUserSec, double& theSystemSec) const;
 
 public:
-
   //! Returns CPU time (user and system) consumed by the current
   //! process since its start, in seconds. The actual precision of
   //! the measurement depends on granularity provided by the system,
   //! and is platform-specific.
-  Standard_EXPORT static void GetProcessCPU (double& UserSeconds, double& SystemSeconds);
-  
+  Standard_EXPORT static void GetProcessCPU(double& UserSeconds,
+                                            double& SystemSeconds);
+
   //! Returns CPU time (user and system) consumed by the current
   //! thread since its start. Note that this measurement is
   //! platform-specific, as threads are implemented and managed
   //! differently on different platforms and CPUs.
-  Standard_EXPORT static void GetThreadCPU (double& UserSeconds, double& SystemSeconds);
+  Standard_EXPORT static void GetThreadCPU(double& UserSeconds,
+                                           double& SystemSeconds);
 
 protected:
-
   double    myStartCpuUser;
   double    myStartCpuSys;
   double    myCumulCpuUser;
   double    myCumulCpuSys;
   Standard_Boolean myIsStopped;
   Standard_Boolean myIsThreadOnly;
-
 };
 
 #endif // _OSD_Chronometer_HeaderFile

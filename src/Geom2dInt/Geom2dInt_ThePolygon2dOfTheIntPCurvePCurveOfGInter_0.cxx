@@ -22,7 +22,6 @@
 #include <IntRes2d_Domain.hxx>
 #include <Bnd_Box2d.hxx>
 #include <gp_Pnt2d.hxx>
- 
 
 #define TheCurve Adaptor2d_Curve2d
 #define TheCurve_hxx <Adaptor2d_Curve2d.hxx>
@@ -30,5 +29,4 @@
 #define TheCurveTool_hxx <Geom2dInt_Geom2dCurveTool.hxx>
 #define IntCurve_Polygon2dGen Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter
 #define IntCurve_Polygon2dGen_hxx <Geom2dInt_ThePolygon2dOfTheIntPCurvePCurveOfGInter.hxx>
-#include <IntCurve_Polygon2dGen.gxx>
-
+#include "../IntCurve/IntCurve_Polygon2dGen.gxx"

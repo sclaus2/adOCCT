@@ -17,11 +17,9 @@
 #ifndef StepBasic_HArray1OfApproval_HeaderFile
 #define StepBasic_HArray1OfApproval_HeaderFile
 
-#include <StepBasic_Approval.hxx>
 #include <StepBasic_Array1OfApproval.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepBasic_HArray1OfApproval, StepBasic_Array1OfApproval)
-
 
 #endif

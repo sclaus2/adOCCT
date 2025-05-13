@@ -22,7 +22,6 @@
 
 #include <IGESData_SpecificModule.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
 class IGESData_IGESEntity;
 class IGESData_IGESDumper;
 
@@ -35,38 +34,25 @@ class IGESAppli_SpecificModule : public IGESData_SpecificModule
 {
 
 public:
-
-  
   //! Creates a SpecificModule from IGESAppli & puts it into SpecificLib
   Standard_EXPORT IGESAppli_SpecificModule();
-  
+
   //! Specific Dump (own parameters) for IGESAppli
-  Standard_EXPORT void OwnDump (const Standard_Integer CN, const Handle(IGESData_IGESEntity)& ent, const IGESData_IGESDumper& dumper, Standard_OStream& S, const Standard_Integer own) const Standard_OVERRIDE;
-  
+  Standard_EXPORT void OwnDump(const Standard_Integer             CN,
+                               const Handle(IGESData_IGESEntity)& ent,
+                               const IGESData_IGESDumper&         dumper,
+                               Standard_OStream&                  S,
+                               const Standard_Integer             own) const Standard_OVERRIDE;
+
   //! ---Purpose
-  Standard_EXPORT virtual Standard_Boolean OwnCorrect (const Standard_Integer CN, const Handle(IGESData_IGESEntity)& ent) const Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Boolean OwnCorrect(const Standard_Integer             CN,
+                                                      const Handle(IGESData_IGESEntity)& ent) const
+    Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(IGESAppli_SpecificModule,IGESData_SpecificModule)
+  DEFINE_STANDARD_RTTIEXT(IGESAppli_SpecificModule, IGESData_SpecificModule)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _IGESAppli_SpecificModule_HeaderFile

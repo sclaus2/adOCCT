@@ -1,4 +1,4 @@
-// Created on : Sat May 02 12:41:15 2020 
+// Created on : Sat May 02 12:41:15 2020
 // Created by: Irina KRYLOVA
 // Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
 // Copyright (c) Open CASCADE 2020
@@ -18,25 +18,19 @@
 #define _StepKinematics_RevolutePair_HeaderFile_
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 #include <StepKinematics_LowOrderKinematicPair.hxx>
 
 #include <TCollection_HAsciiString.hxx>
-#include <StepRepr_RepresentationItem.hxx>
-#include <StepRepr_ItemDefinedTransformation.hxx>
-#include <StepKinematics_KinematicJoint.hxx>
 
 DEFINE_STANDARD_HANDLE(StepKinematics_RevolutePair, StepKinematics_LowOrderKinematicPair)
 
 //! Representation of STEP entity RevolutePair
 class StepKinematics_RevolutePair : public StepKinematics_LowOrderKinematicPair
 {
-public :
-
+public:
   //! default constructor
   Standard_EXPORT StepKinematics_RevolutePair();
 
-DEFINE_STANDARD_RTTIEXT(StepKinematics_RevolutePair, StepKinematics_LowOrderKinematicPair)
-
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_RevolutePair, StepKinematics_LowOrderKinematicPair)
 };
 #endif // _StepKinematics_RevolutePair_HeaderFile_

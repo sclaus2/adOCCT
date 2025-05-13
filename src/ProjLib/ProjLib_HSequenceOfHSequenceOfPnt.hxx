@@ -17,11 +17,9 @@
 #ifndef ProjLib_HSequenceOfHSequenceOfPnt_HeaderFile
 #define ProjLib_HSequenceOfHSequenceOfPnt_HeaderFile
 
-#include <TColgp_HSequenceOfPnt.hxx>
 #include <ProjLib_SequenceOfHSequenceOfPnt.hxx>
 #include <NCollection_DefineHSequence.hxx>
 
 DEFINE_HSEQUENCE(ProjLib_HSequenceOfHSequenceOfPnt, ProjLib_SequenceOfHSequenceOfPnt)
-
 
 #endif

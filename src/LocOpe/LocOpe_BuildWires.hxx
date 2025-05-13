@@ -21,53 +21,30 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <TopTools_ListOfShape.hxx>
-class StdFail_NotDone;
 class LocOpe_WiresOnShape;
 
-
-
-class LocOpe_BuildWires 
+class LocOpe_BuildWires
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT LocOpe_BuildWires();
-  
-  Standard_EXPORT LocOpe_BuildWires(const TopTools_ListOfShape& Ledges, const Handle(LocOpe_WiresOnShape)& PW);
-  
-  Standard_EXPORT void Perform (const TopTools_ListOfShape& Ledges, const Handle(LocOpe_WiresOnShape)& PW);
-  
+
+  Standard_EXPORT LocOpe_BuildWires(const TopTools_ListOfShape&        Ledges,
+                                    const Handle(LocOpe_WiresOnShape)& PW);
+
+  Standard_EXPORT void Perform(const TopTools_ListOfShape&        Ledges,
+                               const Handle(LocOpe_WiresOnShape)& PW);
+
   Standard_EXPORT Standard_Boolean IsDone() const;
-  
+
   Standard_EXPORT const TopTools_ListOfShape& Result() const;
 
-
-
-
 protected:
-
-
-
-
-
 private:
-
-
-
-  Standard_Boolean myDone;
+  Standard_Boolean     myDone;
   TopTools_ListOfShape myRes;
-
-
 };
-
-
-
-
-
-
 
 #endif // _LocOpe_BuildWires_HeaderFile

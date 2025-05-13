@@ -17,9 +17,7 @@
 #define _MeshVS_DummySensitiveEntity_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <Select3D_BndBox3d.hxx>
 #include <Select3D_SensitiveEntity.hxx>
 #include <SelectBasics_SelectingVolumeManager.hxx>
 
@@ -30,11 +28,11 @@
 class MeshVS_DummySensitiveEntity : public Select3D_SensitiveEntity
 {
 public:
+  Standard_EXPORT MeshVS_DummySensitiveEntity(const Handle(SelectMgr_EntityOwner)& theOwnerId);
 
-  Standard_EXPORT MeshVS_DummySensitiveEntity (const Handle(SelectMgr_EntityOwner)& theOwnerId);
-
-  Standard_EXPORT virtual Standard_Boolean Matches (SelectBasics_SelectingVolumeManager& theMgr,
-                                                    SelectBasics_PickResult& thePickResult) Standard_OVERRIDE;
+  Standard_EXPORT virtual Standard_Boolean Matches(SelectBasics_SelectingVolumeManager& theMgr,
+                                                   SelectBasics_PickResult& thePickResult)
+    Standard_OVERRIDE;
 
   Standard_EXPORT virtual Standard_Integer NbSubElements() const Standard_OVERRIDE;
 

@@ -20,7 +20,6 @@
 #include <BRepClass_Edge.hxx>
 #include <BRepClass_Intersector.hxx>
 #include <gp_Lin2d.hxx>
- 
 
 #define TheEdge BRepClass_Edge
 #define TheEdge_hxx <BRepClass_Edge.hxx>
@@ -28,5 +27,4 @@
 #define TheIntersector_hxx <BRepClass_Intersector.hxx>
 #define TopClass_Classifier2d BRepClass_FacePassiveClassifier
 #define TopClass_Classifier2d_hxx <BRepClass_FacePassiveClassifier.hxx>
-#include <TopClass_Classifier2d.gxx>
-
+#include "../TopClass/TopClass_Classifier2d.gxx"

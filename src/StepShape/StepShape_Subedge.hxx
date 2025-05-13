@@ -20,10 +20,8 @@
 #include <Standard_Type.hxx>
 
 #include <StepShape_Edge.hxx>
-class StepShape_Edge;
 class TCollection_HAsciiString;
 class StepShape_Vertex;
-
 
 class StepShape_Subedge;
 DEFINE_STANDARD_HANDLE(StepShape_Subedge, StepShape_Edge)
@@ -33,42 +31,26 @@ class StepShape_Subedge : public StepShape_Edge
 {
 
 public:
-
-  
   //! Empty constructor
   Standard_EXPORT StepShape_Subedge();
-  
+
   //! Initialize all fields (own and inherited)
-  Standard_EXPORT void Init (const Handle(TCollection_HAsciiString)& aRepresentationItem_Name, const Handle(StepShape_Vertex)& aEdge_EdgeStart, const Handle(StepShape_Vertex)& aEdge_EdgeEnd, const Handle(StepShape_Edge)& aParentEdge);
-  
+  Standard_EXPORT void Init(const Handle(TCollection_HAsciiString)& aRepresentationItem_Name,
+                            const Handle(StepShape_Vertex)&         aEdge_EdgeStart,
+                            const Handle(StepShape_Vertex)&         aEdge_EdgeEnd,
+                            const Handle(StepShape_Edge)&           aParentEdge);
+
   //! Returns field ParentEdge
   Standard_EXPORT Handle(StepShape_Edge) ParentEdge() const;
-  
+
   //! Set field ParentEdge
-  Standard_EXPORT void SetParentEdge (const Handle(StepShape_Edge)& ParentEdge);
+  Standard_EXPORT void SetParentEdge(const Handle(StepShape_Edge)& ParentEdge);
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepShape_Subedge,StepShape_Edge)
+  DEFINE_STANDARD_RTTIEXT(StepShape_Subedge, StepShape_Edge)
 
 protected:
-
-
-
-
 private:
-
-
   Handle(StepShape_Edge) theParentEdge;
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepShape_Subedge_HeaderFile

@@ -17,11 +17,9 @@
 #ifndef Bnd_HArray1OfBox2d_HeaderFile
 #define Bnd_HArray1OfBox2d_HeaderFile
 
-#include <Bnd_Box2d.hxx>
 #include <Bnd_Array1OfBox2d.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(Bnd_HArray1OfBox2d, Bnd_Array1OfBox2d)
-
 
 #endif

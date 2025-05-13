@@ -18,45 +18,23 @@
 #define _StepGeom_IntersectionCurve_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepGeom_SurfaceCurve.hxx>
 
-
 class StepGeom_IntersectionCurve;
 DEFINE_STANDARD_HANDLE(StepGeom_IntersectionCurve, StepGeom_SurfaceCurve)
-
 
 class StepGeom_IntersectionCurve : public StepGeom_SurfaceCurve
 {
 
 public:
-
-  
   //! Returns a IntersectionCurve
   Standard_EXPORT StepGeom_IntersectionCurve();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepGeom_IntersectionCurve,StepGeom_SurfaceCurve)
+  DEFINE_STANDARD_RTTIEXT(StepGeom_IntersectionCurve, StepGeom_SurfaceCurve)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepGeom_IntersectionCurve_HeaderFile

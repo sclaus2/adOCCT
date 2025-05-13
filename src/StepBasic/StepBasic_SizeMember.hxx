@@ -21,9 +21,6 @@
 #include <Standard_Type.hxx>
 
 #include <StepData_SelectReal.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_CString.hxx>
-
 
 class StepBasic_SizeMember;
 DEFINE_STANDARD_HANDLE(StepBasic_SizeMember, StepData_SelectReal)
@@ -34,37 +31,18 @@ class StepBasic_SizeMember : public StepData_SelectReal
 {
 
 public:
-
-  
   Standard_EXPORT StepBasic_SizeMember();
-  
+
   Standard_EXPORT virtual Standard_Boolean HasName() const Standard_OVERRIDE;
-  
+
   Standard_EXPORT virtual Standard_CString Name() const Standard_OVERRIDE;
-  
-  Standard_EXPORT virtual Standard_Boolean SetName (const Standard_CString name) Standard_OVERRIDE;
 
+  Standard_EXPORT virtual Standard_Boolean SetName(const Standard_CString name) Standard_OVERRIDE;
 
-
-
-  DEFINE_STANDARD_RTTIEXT(StepBasic_SizeMember,StepData_SelectReal)
+  DEFINE_STANDARD_RTTIEXT(StepBasic_SizeMember, StepData_SelectReal)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepBasic_SizeMember_HeaderFile

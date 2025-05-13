@@ -22,7 +22,6 @@
 #include <Extrema_POnCurv2d.hxx>
 #include <gp_Pnt2d.hxx>
 #include <gp_Vec2d.hxx>
- 
 
 #define Curve1 Adaptor2d_Curve2d
 #define Curve1_hxx <Adaptor2d_Curve2d.hxx>
@@ -44,5 +43,4 @@
 #define Extrema_GExtPC Extrema_ExtPC2d
 #define Extrema_GenExtCC Extrema_ECC2d
 #define Extrema_GenExtCC_hxx <Extrema_ECC2d.hxx>
-#include <Extrema_GenExtCC.gxx>
-
+#include "../Extrema/Extrema_GenExtCC.gxx"

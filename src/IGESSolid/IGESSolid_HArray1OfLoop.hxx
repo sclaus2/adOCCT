@@ -17,11 +17,9 @@
 #ifndef IGESSolid_HArray1OfLoop_HeaderFile
 #define IGESSolid_HArray1OfLoop_HeaderFile
 
-#include <IGESSolid_Loop.hxx>
 #include <IGESSolid_Array1OfLoop.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(IGESSolid_HArray1OfLoop, IGESSolid_Array1OfLoop)
-
 
 #endif

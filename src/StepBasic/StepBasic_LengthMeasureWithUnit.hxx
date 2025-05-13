@@ -18,45 +18,23 @@
 #define _StepBasic_LengthMeasureWithUnit_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepBasic_MeasureWithUnit.hxx>
 
-
 class StepBasic_LengthMeasureWithUnit;
 DEFINE_STANDARD_HANDLE(StepBasic_LengthMeasureWithUnit, StepBasic_MeasureWithUnit)
-
 
 class StepBasic_LengthMeasureWithUnit : public StepBasic_MeasureWithUnit
 {
 
 public:
-
-  
   //! Returns a LengthMeasureWithUnit
   Standard_EXPORT StepBasic_LengthMeasureWithUnit();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepBasic_LengthMeasureWithUnit,StepBasic_MeasureWithUnit)
+  DEFINE_STANDARD_RTTIEXT(StepBasic_LengthMeasureWithUnit, StepBasic_MeasureWithUnit)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepBasic_LengthMeasureWithUnit_HeaderFile

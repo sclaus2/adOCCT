@@ -20,7 +20,6 @@
 #include <Standard_DomainError.hxx>
 #include <Adaptor3d_HVertex.hxx>
 #include <Contap_ThePathPointOfTheSearch.hxx>
- 
 
 #define TheVertex Handle(Adaptor3d_HVertex)
 #define TheVertex_hxx <Adaptor3d_HVertex.hxx>
@@ -30,5 +29,4 @@
 #define ThePathPoint_hxx <Contap_ThePathPointOfTheSearch.hxx>
 #define IntStart_Segment Contap_TheSegmentOfTheSearch
 #define IntStart_Segment_hxx <Contap_TheSegmentOfTheSearch.hxx>
-#include <IntStart_Segment.gxx>
-
+#include "../IntStart/IntStart_Segment.gxx"

@@ -19,31 +19,24 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <Convert_SequenceOfArray1OfPoles2d.hxx>
 #include <TColgp_SequenceOfPnt2d.hxx>
 #include <TColStd_SequenceOfReal.hxx>
 #include <TColStd_SequenceOfInteger.hxx>
-#include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
-#include <Standard_Boolean.hxx>
 #include <TColgp_Array1OfPnt2d.hxx>
 #include <TColStd_Array1OfReal.hxx>
 #include <TColStd_Array1OfInteger.hxx>
-
 
 //! Converts a list  of connecting Bezier Curves 2d to  a
 //! BSplineCurve 2d.
 //! if possible, the continuity of the BSpline will be
 //! increased to more than C0.
-class Convert_CompBezierCurves2dToBSplineCurve2d 
+class Convert_CompBezierCurves2dToBSplineCurve2d
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Constructs a framework for converting a sequence of
   //! adjacent non-rational Bezier curves into a BSpline curve.
   //! Knots will be created on the computed BSpline curve at
@@ -59,8 +52,9 @@ public:
   //! -   Perform to compute the data needed to build the BSpline curve,
   //! -   and the available consultation functions to access the
   //! computed data. This data may be used to construct the BSpline curve.
-  Standard_EXPORT Convert_CompBezierCurves2dToBSplineCurve2d(const Standard_Real AngularTolerance = 1.0e-4);
-  
+  Standard_EXPORT Convert_CompBezierCurves2dToBSplineCurve2d(
+    const Standard_Real AngularTolerance = 1.0e-4);
+
   //! Adds the Bezier curve defined by the table of poles Poles, to
   //! the sequence (still contained in this framework) of adjacent
   //! Bezier curves to be converted into a BSpline curve.
@@ -97,8 +91,8 @@ public:
   //! must be taken with respect to the above, as this condition is
   //! not checked either when defining the sequence of Bezier
   //! curves or at the time of computation.
-  Standard_EXPORT void AddCurve (const TColgp_Array1OfPnt2d& Poles);
-  
+  Standard_EXPORT void AddCurve(const TColgp_Array1OfPnt2d& Poles);
+
   //! Computes all the data needed to build a BSpline curve
   //! equivalent to the sequence of adjacent Bezier curves still
   //! contained in this framework.
@@ -121,7 +115,7 @@ public:
   //! above as this condition is not checked, either when
   //! defining the Bezier curve sequence or at the time of computation.
   Standard_EXPORT void Perform();
-  
+
   //! Returns the degree of the BSpline curve whose data is
   //! computed in this framework.
   //! Warning
@@ -129,7 +123,7 @@ public:
   //! computation is performed (Perform function), as this
   //! condition is not checked and an error may therefore occur.
   Standard_EXPORT Standard_Integer Degree() const;
-  
+
   //! Returns the number of poles of the BSpline curve whose
   //! data is computed in this framework.
   //! Warning
@@ -137,7 +131,7 @@ public:
   //! computation is performed (Perform function), as this
   //! condition is not checked and an error may therefore occur.
   Standard_EXPORT Standard_Integer NbPoles() const;
-  
+
   //! Loads the Poles table with the poles of the BSpline curve
   //! whose data is computed in this framework.
   //! Warning
@@ -148,8 +142,8 @@ public:
   //! computed in this framework.
   //! Particular care must be taken with respect to the above, as
   //! these conditions are not checked, and an error may occur.
-  Standard_EXPORT void Poles (TColgp_Array1OfPnt2d& Poles) const;
-  
+  Standard_EXPORT void Poles(TColgp_Array1OfPnt2d& Poles) const;
+
   //! Returns the number of knots of the BSpline curve whose
   //! data is computed in this framework.
   //! Warning
@@ -157,7 +151,7 @@ public:
   //! computation is performed (Perform function), as this
   //! condition is not checked and an error may therefore occur.
   Standard_EXPORT Standard_Integer NbKnots() const;
-  
+
   //! Loads the Knots table with the knots
   //! and the Mults table with the corresponding multiplicities
   //! of the BSpline curve whose data is computed in this framework.
@@ -169,36 +163,18 @@ public:
   //! computed in this framework.
   //! Particular care must be taken with respect to the above as
   //! these conditions are not checked, and an error may occur.
-  Standard_EXPORT void KnotsAndMults (TColStd_Array1OfReal& Knots, TColStd_Array1OfInteger& Mults) const;
-
-
-
+  Standard_EXPORT void KnotsAndMults(TColStd_Array1OfReal&    Knots,
+                                     TColStd_Array1OfInteger& Mults) const;
 
 protected:
-
-
-
-
-
 private:
-
-
-
   Convert_SequenceOfArray1OfPoles2d mySequence;
-  TColgp_SequenceOfPnt2d CurvePoles;
-  TColStd_SequenceOfReal CurveKnots;
-  TColStd_SequenceOfInteger KnotsMultiplicities;
-  Standard_Integer myDegree;
-  Standard_Real myAngular;
-  Standard_Boolean myDone;
-
-
+  TColgp_SequenceOfPnt2d            CurvePoles;
+  TColStd_SequenceOfReal            CurveKnots;
+  TColStd_SequenceOfInteger         KnotsMultiplicities;
+  Standard_Integer                  myDegree;
+  Standard_Real                     myAngular;
+  Standard_Boolean                  myDone;
 };
-
-
-
-
-
-
 
 #endif // _Convert_CompBezierCurves2dToBSplineCurve2d_HeaderFile

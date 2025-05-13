@@ -18,7 +18,6 @@
 #define _TopOpeBRepDS_FaceEdgeInterference_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TopOpeBRepDS_ShapeShapeInterference.hxx>
 #include <Standard_Integer.hxx>
@@ -26,7 +25,6 @@
 #include <TopOpeBRepDS_Config.hxx>
 #include <Standard_OStream.hxx>
 class TopOpeBRepDS_Transition;
-
 
 class TopOpeBRepDS_FaceEdgeInterference;
 DEFINE_STANDARD_HANDLE(TopOpeBRepDS_FaceEdgeInterference, TopOpeBRepDS_ShapeShapeInterference)
@@ -36,31 +34,17 @@ class TopOpeBRepDS_FaceEdgeInterference : public TopOpeBRepDS_ShapeShapeInterfer
 {
 
 public:
-
-  
   //! Create an interference of EDGE <G> on FACE <S>.
-  Standard_EXPORT TopOpeBRepDS_FaceEdgeInterference(const TopOpeBRepDS_Transition& T, const Standard_Integer S, const Standard_Integer G, const Standard_Boolean GIsBound, const TopOpeBRepDS_Config C);
+  Standard_EXPORT TopOpeBRepDS_FaceEdgeInterference(const TopOpeBRepDS_Transition& T,
+                                                    const Standard_Integer         S,
+                                                    const Standard_Integer         G,
+                                                    const Standard_Boolean         GIsBound,
+                                                    const TopOpeBRepDS_Config      C);
 
-
-
-  DEFINE_STANDARD_RTTIEXT(TopOpeBRepDS_FaceEdgeInterference,TopOpeBRepDS_ShapeShapeInterference)
+  DEFINE_STANDARD_RTTIEXT(TopOpeBRepDS_FaceEdgeInterference, TopOpeBRepDS_ShapeShapeInterference)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _TopOpeBRepDS_FaceEdgeInterference_HeaderFile

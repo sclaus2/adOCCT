@@ -14,11 +14,9 @@
 #ifndef StepFEA_HArray1OfDegreeOfFreedom_HeaderFile
 #define StepFEA_HArray1OfDegreeOfFreedom_HeaderFile
 
-#include <StepFEA_DegreeOfFreedom.hxx>
 #include <StepFEA_Array1OfDegreeOfFreedom.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepFEA_HArray1OfDegreeOfFreedom, StepFEA_Array1OfDegreeOfFreedom)
-
 
 #endif

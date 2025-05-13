@@ -18,15 +18,11 @@
 #include <Standard_Type.hxx>
 
 #include <Standard_Integer.hxx>
-#include <TCollection_AsciiString.hxx>
-#include <TCollection_ExtendedString.hxx>
 #include <TColStd_SequenceOfAsciiString.hxx>
 #include <TColStd_SequenceOfExtendedString.hxx>
 #include <Storage_Error.hxx>
 #include <Standard_Transient.hxx>
 class Storage_BaseDriver;
-class TCollection_AsciiString;
-class TCollection_ExtendedString;
 
 class StdStorage_HeaderData;
 DEFINE_STANDARD_HANDLE(StdStorage_HeaderData, Standard_Transient)
@@ -34,23 +30,21 @@ DEFINE_STANDARD_HANDLE(StdStorage_HeaderData, Standard_Transient)
 //! Storage header data section that contains some
 //! auxiliary information (application name, schema version,
 //! creation date, comments and so on...)
-class StdStorage_HeaderData 
-  : public Standard_Transient
+class StdStorage_HeaderData : public Standard_Transient
 {
   friend class StdStorage_Data;
 
 public:
-
   DEFINE_STANDARD_RTTIEXT(StdStorage_HeaderData, Standard_Transient)
 
-  //! Reads the header data section from the container defined by theDriver. 
-  //! Returns Standard_True in case of success. Otherwise, one need to get 
+  //! Reads the header data section from the container defined by theDriver.
+  //! Returns Standard_True in case of success. Otherwise, one need to get
   //! an error code and description using ErrorStatus and ErrorStatusExtension
   //! functions correspondingly.
   Standard_EXPORT Standard_Boolean Read(const Handle(Storage_BaseDriver)& theDriver);
 
-  //! Writes the header data section to the container defined by theDriver. 
-  //! Returns Standard_True in case of success. Otherwise, one need to get 
+  //! Writes the header data section to the container defined by theDriver.
+  //! Returns Standard_True in case of success. Otherwise, one need to get
   //! an error code and description using ErrorStatus and ErrorStatusExtension
   //! functions correspondingly.
   Standard_EXPORT Standard_Boolean Write(const Handle(Storage_BaseDriver)& theDriver);
@@ -117,7 +111,6 @@ public:
   Standard_EXPORT void SetSchemaName(const TCollection_AsciiString& aName);
 
 private:
-
   Standard_EXPORT StdStorage_HeaderData();
 
   Standard_EXPORT void SetErrorStatus(const Storage_Error anError);
@@ -136,7 +129,6 @@ private:
   TColStd_SequenceOfExtendedString myComments;
   Storage_Error                    myErrorStatus;
   TCollection_AsciiString          myErrorStatusExt;
-
 };
 
 #endif // _StdStorage_HeaderData_HeaderFile

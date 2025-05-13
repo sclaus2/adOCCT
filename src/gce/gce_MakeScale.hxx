@@ -22,10 +22,7 @@
 #include <Standard_Handle.hxx>
 
 #include <gp_Trsf.hxx>
-#include <Standard_Real.hxx>
 class gp_Pnt;
-class gp_Trsf;
-
 
 //! Implements an elementary construction algorithm for
 //! a scaling transformation in 3D space. The result is a gp_Trsf transformation.
@@ -33,46 +30,25 @@ class gp_Trsf;
 //! -   defining the construction of the transformation,
 //! -   implementing the construction algorithm, and
 //! -   consulting the result.
-class gce_MakeScale 
+class gce_MakeScale
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Constructs a scaling transformation with
   //! -   Point as the center of the transformation, and
   //! -   Scale as the scale factor.
   Standard_EXPORT gce_MakeScale(const gp_Pnt& Point, const Standard_Real Scale);
-  
+
   //! Returns the constructed transformation.
   Standard_EXPORT const gp_Trsf& Value() const;
-  
+
   Standard_EXPORT const gp_Trsf& Operator() const;
-Standard_EXPORT operator gp_Trsf() const;
-
-
-
+  Standard_EXPORT                operator gp_Trsf() const;
 
 protected:
-
-
-
-
-
 private:
-
-
-
   gp_Trsf TheScale;
-
-
 };
-
-
-
-
-
-
 
 #endif // _gce_MakeScale_HeaderFile

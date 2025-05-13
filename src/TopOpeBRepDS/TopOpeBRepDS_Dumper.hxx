@@ -21,70 +21,39 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_OStream.hxx>
-#include <Standard_Boolean.hxx>
 #include <TopOpeBRepDS_Kind.hxx>
 #include <Standard_Integer.hxx>
-#include <TopAbs_ShapeEnum.hxx>
-#include <TopOpeBRepDS_ListOfInterference.hxx>
 #include <TCollection_AsciiString.hxx>
 #include <TopTools_ListOfShape.hxx>
 class TopOpeBRepDS_HDataStructure;
-class Geom_Curve;
-class Geom2d_Curve;
-class gp_Pnt;
-class gp_Pnt2d;
-class Geom_BSplineCurve;
-class Geom2d_BSplineCurve;
 class TCollection_AsciiString;
 class TopoDS_Shape;
-class TopOpeBRepDS_Interference;
 
-
-
-class TopOpeBRepDS_Dumper 
+class TopOpeBRepDS_Dumper
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT TopOpeBRepDS_Dumper(const Handle(TopOpeBRepDS_HDataStructure)& HDS);
 
-  Standard_EXPORT TCollection_AsciiString SDumpRefOri (const TopOpeBRepDS_Kind K, const Standard_Integer I) const;
-  
-  Standard_EXPORT TCollection_AsciiString SDumpRefOri (const TopoDS_Shape& S) const;
+  Standard_EXPORT TCollection_AsciiString SDumpRefOri(const TopOpeBRepDS_Kind K,
+                                                      const Standard_Integer  I) const;
 
-  Standard_EXPORT TCollection_AsciiString SPrintShape (const Standard_Integer I) const;
-  
-  Standard_EXPORT TCollection_AsciiString SPrintShape (const TopoDS_Shape& S) const;
-  
-  Standard_EXPORT TCollection_AsciiString SPrintShapeRefOri (const TopoDS_Shape& S, const TCollection_AsciiString& B = "") const;
-  
-  Standard_EXPORT TCollection_AsciiString SPrintShapeRefOri (const TopTools_ListOfShape& L, const TCollection_AsciiString& B = "") const;
+  Standard_EXPORT TCollection_AsciiString SDumpRefOri(const TopoDS_Shape& S) const;
 
+  Standard_EXPORT TCollection_AsciiString SPrintShape(const Standard_Integer I) const;
 
+  Standard_EXPORT TCollection_AsciiString SPrintShape(const TopoDS_Shape& S) const;
 
+  Standard_EXPORT TCollection_AsciiString
+    SPrintShapeRefOri(const TopoDS_Shape& S, const TCollection_AsciiString& B = "") const;
+
+  Standard_EXPORT TCollection_AsciiString
+    SPrintShapeRefOri(const TopTools_ListOfShape& L, const TCollection_AsciiString& B = "") const;
 
 protected:
-
-
-
-
-
 private:
-
-
-
   Handle(TopOpeBRepDS_HDataStructure) myHDS;
-
-
 };
-
-
-
-
-
-
 
 #endif // _TopOpeBRepDS_Dumper_HeaderFile

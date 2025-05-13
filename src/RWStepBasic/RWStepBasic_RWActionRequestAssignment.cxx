@@ -16,68 +16,63 @@
 
 // Generator:	ExpToCas (EXPRESS -> CASCADE/XSTEP Translator) V1.0
 
-#include <Interface_Check.hxx>
 #include <Interface_EntityIterator.hxx>
-#include <RWStepBasic_RWActionRequestAssignment.hxx>
+#include "RWStepBasic_RWActionRequestAssignment.pxx"
 #include <StepBasic_ActionRequestAssignment.hxx>
 #include <StepBasic_VersionedActionRequest.hxx>
 #include <StepData_StepReaderData.hxx>
 #include <StepData_StepWriter.hxx>
 
-//=======================================================================
-//function : RWStepBasic_RWActionRequestAssignment
-//purpose  : 
-//=======================================================================
-RWStepBasic_RWActionRequestAssignment::RWStepBasic_RWActionRequestAssignment ()
-{
-}
+//=================================================================================================
 
-//=======================================================================
-//function : ReadStep
-//purpose  : 
-//=======================================================================
+RWStepBasic_RWActionRequestAssignment::RWStepBasic_RWActionRequestAssignment() {}
 
-void RWStepBasic_RWActionRequestAssignment::ReadStep (const Handle(StepData_StepReaderData)& data,
-                                                      const Standard_Integer num,
-                                                      Handle(Interface_Check)& ach,
-                                                      const Handle(StepBasic_ActionRequestAssignment) &ent) const
+//=================================================================================================
+
+void RWStepBasic_RWActionRequestAssignment::ReadStep(
+  const Handle(StepData_StepReaderData)&           data,
+  const Standard_Integer                           num,
+  Handle(Interface_Check)&                         ach,
+  const Handle(StepBasic_ActionRequestAssignment)& ent) const
 {
   // Check number of parameters
-  if ( ! data->CheckNbParams(num,1,ach,"action_request_assignment") ) return;
+  if (!data->CheckNbParams(num, 1, ach, "action_request_assignment"))
+    return;
 
   // Own fields of ActionRequestAssignment
 
   Handle(StepBasic_VersionedActionRequest) aAssignedActionRequest;
-  data->ReadEntity (num, 1, "assigned_action_request", ach, STANDARD_TYPE(StepBasic_VersionedActionRequest), aAssignedActionRequest);
+  data->ReadEntity(num,
+                   1,
+                   "assigned_action_request",
+                   ach,
+                   STANDARD_TYPE(StepBasic_VersionedActionRequest),
+                   aAssignedActionRequest);
 
   // Initialize entity
   ent->Init(aAssignedActionRequest);
 }
 
-//=======================================================================
-//function : WriteStep
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-void RWStepBasic_RWActionRequestAssignment::WriteStep (StepData_StepWriter& SW,
-                                                       const Handle(StepBasic_ActionRequestAssignment) &ent) const
+void RWStepBasic_RWActionRequestAssignment::WriteStep(
+  StepData_StepWriter&                             SW,
+  const Handle(StepBasic_ActionRequestAssignment)& ent) const
 {
 
   // Own fields of ActionRequestAssignment
 
-  SW.Send (ent->AssignedActionRequest());
+  SW.Send(ent->AssignedActionRequest());
 }
 
-//=======================================================================
-//function : Share
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-void RWStepBasic_RWActionRequestAssignment::Share (const Handle(StepBasic_ActionRequestAssignment) &ent,
-                                                   Interface_EntityIterator& iter) const
+void RWStepBasic_RWActionRequestAssignment::Share(
+  const Handle(StepBasic_ActionRequestAssignment)& ent,
+  Interface_EntityIterator&                        iter) const
 {
 
   // Own fields of ActionRequestAssignment
 
-  iter.AddItem (ent->AssignedActionRequest());
+  iter.AddItem(ent->AssignedActionRequest());
 }

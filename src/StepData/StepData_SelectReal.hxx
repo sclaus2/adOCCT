@@ -20,10 +20,8 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Real.hxx>
 #include <StepData_SelectMember.hxx>
 #include <Standard_Integer.hxx>
-
 
 class StepData_SelectReal;
 DEFINE_STANDARD_HANDLE(StepData_SelectReal, StepData_SelectMember)
@@ -36,38 +34,19 @@ class StepData_SelectReal : public StepData_SelectMember
 {
 
 public:
-
-  
   Standard_EXPORT StepData_SelectReal();
-  
+
   Standard_EXPORT virtual Standard_Integer Kind() const Standard_OVERRIDE;
-  
+
   Standard_EXPORT virtual Standard_Real Real() const Standard_OVERRIDE;
-  
-  Standard_EXPORT virtual void SetReal (const Standard_Real val) Standard_OVERRIDE;
 
+  Standard_EXPORT virtual void SetReal(const Standard_Real val) Standard_OVERRIDE;
 
-
-
-  DEFINE_STANDARD_RTTIEXT(StepData_SelectReal,StepData_SelectMember)
+  DEFINE_STANDARD_RTTIEXT(StepData_SelectReal, StepData_SelectMember)
 
 protected:
-
-
-
-
 private:
-
-
   Standard_Real theval;
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepData_SelectReal_HeaderFile

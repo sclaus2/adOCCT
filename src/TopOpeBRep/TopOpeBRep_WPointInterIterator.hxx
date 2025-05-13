@@ -19,63 +19,37 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <TopOpeBRep_PLineInter.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
-class TopOpeBRep_LineInter;
 class TopOpeBRep_WPointInter;
 
-
-
-class TopOpeBRep_WPointInterIterator 
+class TopOpeBRep_WPointInterIterator
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT TopOpeBRep_WPointInterIterator();
-  
+
   Standard_EXPORT TopOpeBRep_WPointInterIterator(const TopOpeBRep_LineInter& LI);
-  
-  Standard_EXPORT void Init (const TopOpeBRep_LineInter& LI);
-  
+
+  Standard_EXPORT void Init(const TopOpeBRep_LineInter& LI);
+
   Standard_EXPORT void Init();
-  
+
   Standard_EXPORT Standard_Boolean More() const;
-  
+
   Standard_EXPORT void Next();
-  
+
   Standard_EXPORT const TopOpeBRep_WPointInter& CurrentWP();
-  
+
   Standard_EXPORT TopOpeBRep_PLineInter PLineInterDummy() const;
 
-
-
-
 protected:
-
-
-
-
-
 private:
-
-
-
   TopOpeBRep_PLineInter myLineInter;
-  Standard_Integer myWPointIndex;
-  Standard_Integer myWPointNb;
-
-
+  Standard_Integer      myWPointIndex;
+  Standard_Integer      myWPointNb;
 };
-
-
-
-
-
-
 
 #endif // _TopOpeBRep_WPointInterIterator_HeaderFile

@@ -20,9 +20,6 @@
 #include <Standard_OStream.hxx>
 class Standard_GUID;
 class TDF_Label;
-class TDF_Attribute;
-class TDF_RelocationTable;
-
 
 class TDataStd_Tick;
 DEFINE_STANDARD_HANDLE(TDataStd_Tick, TDataStd_GenericEmpty)
@@ -34,32 +31,22 @@ class TDataStd_Tick : public TDataStd_GenericEmpty
 {
 
 public:
-
-  
   //! Static methods
   //! ==============
   Standard_EXPORT static const Standard_GUID& GetID();
-  
+
   //! Find, or create, a Tick attribute.
   //! Tick methods
   //! ============
-  Standard_EXPORT static Handle(TDataStd_Tick) Set (const TDF_Label& label);
-  
-  Standard_EXPORT TDataStd_Tick();
-  
-  Standard_EXPORT const Standard_GUID& ID() const Standard_OVERRIDE;
-  
-  Standard_EXPORT virtual Standard_OStream& Dump (Standard_OStream& anOS) const Standard_OVERRIDE;
+  Standard_EXPORT static Handle(TDataStd_Tick) Set(const TDF_Label& label);
 
+  Standard_EXPORT TDataStd_Tick();
+
+  Standard_EXPORT const Standard_GUID& ID() const Standard_OVERRIDE;
+
+  Standard_EXPORT virtual Standard_OStream& Dump(Standard_OStream& anOS) const Standard_OVERRIDE;
 
   DEFINE_DERIVED_ATTRIBUTE(TDataStd_Tick, TDataStd_GenericEmpty)
-
 };
-
-
-
-
-
-
 
 #endif // _TDataStd_Tick_HeaderFile

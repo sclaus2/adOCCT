@@ -17,11 +17,9 @@
 #ifndef StepBasic_HArray1OfNamedUnit_HeaderFile
 #define StepBasic_HArray1OfNamedUnit_HeaderFile
 
-#include <StepBasic_NamedUnit.hxx>
 #include <StepBasic_Array1OfNamedUnit.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepBasic_HArray1OfNamedUnit, StepBasic_Array1OfNamedUnit)
-
 
 #endif

@@ -17,8 +17,6 @@
 #define _BRepMesh_DelabellaMeshAlgoFactory_HeaderFile
 
 #include <Standard_Transient.hxx>
-#include <Standard_Type.hxx>
-#include <GeomAbs_SurfaceType.hxx>
 #include <IMeshTools_MeshAlgoFactory.hxx>
 
 //! Implementation of IMeshTools_MeshAlgoFactory providing Delabella-based
@@ -26,12 +24,11 @@
 class BRepMesh_DelabellaMeshAlgoFactory : public IMeshTools_MeshAlgoFactory
 {
 public:
-
   //! Constructor.
-  Standard_EXPORT BRepMesh_DelabellaMeshAlgoFactory ();
+  Standard_EXPORT BRepMesh_DelabellaMeshAlgoFactory();
 
   //! Destructor.
-  Standard_EXPORT virtual ~BRepMesh_DelabellaMeshAlgoFactory ();
+  Standard_EXPORT virtual ~BRepMesh_DelabellaMeshAlgoFactory();
 
   //! Creates instance of meshing algorithm for the given type of surface.
   Standard_EXPORT virtual Handle(IMeshTools_MeshAlgo) GetAlgo(

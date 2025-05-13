@@ -13,17 +13,15 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-#include <Standard_Type.hxx>
 #include <StepRepr_IntegerRepresentationItem.hxx>
 #include <TCollection_HAsciiString.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepRepr_IntegerRepresentationItem,StepRepr_RepresentationItem)
+IMPLEMENT_STANDARD_RTTIEXT(StepRepr_IntegerRepresentationItem, StepRepr_RepresentationItem)
 
-StepRepr_IntegerRepresentationItem::StepRepr_IntegerRepresentationItem ()  {}
+StepRepr_IntegerRepresentationItem::StepRepr_IntegerRepresentationItem() {}
 
-void StepRepr_IntegerRepresentationItem::Init(
-  const Handle(TCollection_HAsciiString)& theName,
-  const Standard_Integer theValue)
+void StepRepr_IntegerRepresentationItem::Init(const Handle(TCollection_HAsciiString)& theName,
+                                              const Standard_Integer                  theValue)
 {
   value = theValue;
   StepRepr_RepresentationItem::Init(theName);

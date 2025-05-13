@@ -15,50 +15,38 @@
 
 // Generator:	ExpToCas (EXPRESS -> CASCADE/XSTEP Translator) V1.2
 
-#include <Standard_Type.hxx>
 #include <StepFEA_FeaLinearElasticity.hxx>
 #include <StepFEA_SymmetricTensor43d.hxx>
 #include <TCollection_HAsciiString.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepFEA_FeaLinearElasticity,StepFEA_FeaMaterialPropertyRepresentationItem)
+IMPLEMENT_STANDARD_RTTIEXT(StepFEA_FeaLinearElasticity,
+                           StepFEA_FeaMaterialPropertyRepresentationItem)
 
-//=======================================================================
-//function : StepFEA_FeaLinearElasticity
-//purpose  : 
-//=======================================================================
-StepFEA_FeaLinearElasticity::StepFEA_FeaLinearElasticity ()
-{
-}
+//=================================================================================================
 
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
+StepFEA_FeaLinearElasticity::StepFEA_FeaLinearElasticity() {}
 
-void StepFEA_FeaLinearElasticity::Init (const Handle(TCollection_HAsciiString) &aRepresentationItem_Name,
-                                        const StepFEA_SymmetricTensor43d &aFeaConstants)
+//=================================================================================================
+
+void StepFEA_FeaLinearElasticity::Init(
+  const Handle(TCollection_HAsciiString)& aRepresentationItem_Name,
+  const StepFEA_SymmetricTensor43d&       aFeaConstants)
 {
   StepFEA_FeaMaterialPropertyRepresentationItem::Init(aRepresentationItem_Name);
 
   theFeaConstants = aFeaConstants;
 }
 
-//=======================================================================
-//function : FeaConstants
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-StepFEA_SymmetricTensor43d StepFEA_FeaLinearElasticity::FeaConstants () const
+StepFEA_SymmetricTensor43d StepFEA_FeaLinearElasticity::FeaConstants() const
 {
   return theFeaConstants;
 }
 
-//=======================================================================
-//function : SetFeaConstants
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-void StepFEA_FeaLinearElasticity::SetFeaConstants (const StepFEA_SymmetricTensor43d &aFeaConstants)
+void StepFEA_FeaLinearElasticity::SetFeaConstants(const StepFEA_SymmetricTensor43d& aFeaConstants)
 {
   theFeaConstants = aFeaConstants;
 }

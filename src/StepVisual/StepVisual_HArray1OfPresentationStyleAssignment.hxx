@@ -17,11 +17,10 @@
 #ifndef StepVisual_HArray1OfPresentationStyleAssignment_HeaderFile
 #define StepVisual_HArray1OfPresentationStyleAssignment_HeaderFile
 
-#include <StepVisual_PresentationStyleAssignment.hxx>
 #include <StepVisual_Array1OfPresentationStyleAssignment.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
-DEFINE_HARRAY1(StepVisual_HArray1OfPresentationStyleAssignment, StepVisual_Array1OfPresentationStyleAssignment)
-
+DEFINE_HARRAY1(StepVisual_HArray1OfPresentationStyleAssignment,
+               StepVisual_Array1OfPresentationStyleAssignment)
 
 #endif

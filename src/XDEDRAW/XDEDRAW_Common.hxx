@@ -18,42 +18,14 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <Draw_Interpretor.hxx>
 
-
-
-class XDEDRAW_Common 
+class XDEDRAW_Common
 {
-public:
-
   DEFINE_STANDARD_ALLOC
-
-  
-  Standard_EXPORT static void InitCommands (Draw_Interpretor& theCommands);
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
+public:
+  Standard_EXPORT static void InitCommands(Draw_Interpretor& theCommands);
 };
-
-
-
-
-
-
 
 #endif // _XDEDRAW_Common_HeaderFile

@@ -21,60 +21,45 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Real.hxx>
 #include <FairCurve_BattenLaw.hxx>
 #include <FairCurve_DistributionOfEnergy.hxx>
 #include <Standard_Integer.hxx>
 #include <TColStd_HArray1OfReal.hxx>
 #include <TColgp_HArray1OfPnt2d.hxx>
-#include <Standard_Boolean.hxx>
 #include <math_Vector.hxx>
 
-
 //! Compute the Tension Distribution
-class FairCurve_DistributionOfTension  : public FairCurve_DistributionOfEnergy
+class FairCurve_DistributionOfTension : public FairCurve_DistributionOfEnergy
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
-  Standard_EXPORT FairCurve_DistributionOfTension(const Standard_Integer BSplOrder, const Handle(TColStd_HArray1OfReal)& FlatKnots, const Handle(TColgp_HArray1OfPnt2d)& Poles, const Standard_Integer DerivativeOrder, const Standard_Real LengthSliding, const FairCurve_BattenLaw& Law, const Standard_Integer NbValAux = 0, const Standard_Boolean Uniform = Standard_False);
-  
+  Standard_EXPORT FairCurve_DistributionOfTension(const Standard_Integer               BSplOrder,
+                                                  const Handle(TColStd_HArray1OfReal)& FlatKnots,
+                                                  const Handle(TColgp_HArray1OfPnt2d)& Poles,
+                                                  const Standard_Integer     DerivativeOrder,
+                                                  const Standard_Real        LengthSliding,
+                                                  const FairCurve_BattenLaw& Law,
+                                                  const Standard_Integer     NbValAux = 0,
+                                                  const Standard_Boolean Uniform = Standard_False);
+
   //! change the length sliding
-    void SetLengthSliding (const Standard_Real LengthSliding);
-  
+  void SetLengthSliding(const Standard_Real LengthSliding);
+
   //! computes the values <F> of the functions for the
   //! variable <X>.
   //! returns True if the computation was done successfully,
   //! False otherwise.
-  Standard_EXPORT virtual Standard_Boolean Value (const math_Vector& X, math_Vector& F) Standard_OVERRIDE;
-
-
-
+  Standard_EXPORT virtual Standard_Boolean Value(const math_Vector& X,
+                                                 math_Vector&       F) Standard_OVERRIDE;
 
 protected:
-
-
-
-
-
 private:
-
-
-
-  Standard_Real MyLengthSliding;
+  Standard_Real       MyLengthSliding;
   FairCurve_BattenLaw MyLaw;
-  Standard_Real MyHeight;
-
-
+  Standard_Real       MyHeight;
 };
 
-
 #include <FairCurve_DistributionOfTension.lxx>
-
-
-
-
 
 #endif // _FairCurve_DistributionOfTension_HeaderFile

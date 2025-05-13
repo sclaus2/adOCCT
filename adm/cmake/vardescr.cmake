@@ -28,6 +28,9 @@ Applies only for Debug configuration.")
 set (BUILD_SHARED_LIBRARY_NAME_POSTFIX_DESCR
 "Append the postfix to names of output libraries")
 
+set (BUILD_SOVERSION_NUMBERS_DESCR
+"Version numbers to put into SONAME: 0 - for empty, 1 - for major, 2 - for major.minor, 3 - for major.minor.maintenance")
+
 set (BUILD_RELEASE_DISABLE_EXCEPTIONS_DESCR
 "Disables exceptions like Standard_OutOfRange in Release builds.
 Defines No_Exception macros for Release builds when enabled (default).
@@ -44,6 +47,11 @@ set (BUILD_FORCE_RelWithDebInfo_DESCR
 set (BUILD_USE_PCH_DESCR
 "Use precompiled headers to accelerate the build.
 Precompiled headers are generated automatically by Cotire tool.")
+
+set (BUILD_INCLUDE_SYMLINK_DESCR
+"Include symbolic links to the source files in the build directory.
+OFF - using a reference file with direct include to the origin,
+ON - symbolic link to the origin file are created")
 
 # install variables
 set (INSTALL_DIR_DESCR 
@@ -113,6 +121,7 @@ endmacro()
 
 BUILD_MODULE_MESSAGE (BUILD_MODULE_ApplicationFramework "ApplicationFramework")
 BUILD_MODULE_MESSAGE (BUILD_MODULE_DataExchange         "DataExchange")
+BUILD_MODULE_MESSAGE (BUILD_MODULE_DETools              "DETools")
 BUILD_MODULE_MESSAGE (BUILD_MODULE_Draw                 "Draw")
 BUILD_MODULE_MESSAGE (BUILD_MODULE_FoundationClasses    "FoundationClasses")
 BUILD_MODULE_MESSAGE (BUILD_MODULE_ModelingAlgorithms   "ModelingAlgorithms")

@@ -17,12 +17,7 @@
 #ifndef _TopoDS_Edge_HeaderFile
 #define _TopoDS_Edge_HeaderFile
 
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
 #include <TopoDS_Shape.hxx>
-
 
 //! Describes an edge which
 //! - references an underlying edge with the potential to
@@ -32,38 +27,25 @@
 //! - has an orientation for the underlying edge, in terms
 //! of its geometry (as opposed to orientation in
 //! relation to other shapes).
-class TopoDS_Edge  : public TopoDS_Shape
+class TopoDS_Edge : public TopoDS_Shape
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Undefined Edge.
-    TopoDS_Edge();
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
+  TopoDS_Edge() {}
 };
 
-
-#include <TopoDS_Edge.lxx>
-
-
-
-
+namespace std
+{
+template <>
+struct hash<TopoDS_Edge>
+{
+  size_t operator()(const TopoDS_Edge& theShape) const
+  {
+    return std::hash<TopoDS_Shape>{}(theShape);
+  }
+};
+} // namespace std
 
 #endif // _TopoDS_Edge_HeaderFile

@@ -20,7 +20,6 @@
 #include <Geom2dInt_Geom2dCurveTool.hxx>
 #include <Extrema_POnCurv2d.hxx>
 #include <gp_Pnt2d.hxx>
- 
 
 #define Curve1 Adaptor2d_Curve2d
 #define Curve1_hxx <Adaptor2d_Curve2d.hxx>
@@ -36,5 +35,4 @@
 #define Pnt_hxx <gp_Pnt2d.hxx>
 #define Extrema_CurveLocator Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter
 #define Extrema_CurveLocator_hxx <Geom2dInt_TheCurveLocatorOfTheProjPCurOfGInter.hxx>
-#include <Extrema_CurveLocator.gxx>
-
+#include "../Extrema/Extrema_CurveLocator.gxx"

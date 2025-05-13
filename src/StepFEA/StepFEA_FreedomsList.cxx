@@ -15,46 +15,32 @@
 
 // Generator:	ExpToCas (EXPRESS -> CASCADE/XSTEP Translator) V1.2
 
-#include <Standard_Type.hxx>
 #include <StepFEA_FreedomsList.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepFEA_FreedomsList,Standard_Transient)
+IMPLEMENT_STANDARD_RTTIEXT(StepFEA_FreedomsList, Standard_Transient)
 
-//=======================================================================
-//function : StepFEA_FreedomsList
-//purpose  : 
-//=======================================================================
-StepFEA_FreedomsList::StepFEA_FreedomsList ()
-{
-}
+//=================================================================================================
 
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
+StepFEA_FreedomsList::StepFEA_FreedomsList() {}
 
-void StepFEA_FreedomsList::Init (const Handle(StepFEA_HArray1OfDegreeOfFreedom) &aFreedoms)
+//=================================================================================================
+
+void StepFEA_FreedomsList::Init(const Handle(StepFEA_HArray1OfDegreeOfFreedom)& aFreedoms)
 {
 
   theFreedoms = aFreedoms;
 }
 
-//=======================================================================
-//function : Freedoms
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-Handle(StepFEA_HArray1OfDegreeOfFreedom) StepFEA_FreedomsList::Freedoms () const
+Handle(StepFEA_HArray1OfDegreeOfFreedom) StepFEA_FreedomsList::Freedoms() const
 {
   return theFreedoms;
 }
 
-//=======================================================================
-//function : SetFreedoms
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-void StepFEA_FreedomsList::SetFreedoms (const Handle(StepFEA_HArray1OfDegreeOfFreedom) &aFreedoms)
+void StepFEA_FreedomsList::SetFreedoms(const Handle(StepFEA_HArray1OfDegreeOfFreedom)& aFreedoms)
 {
   theFreedoms = aFreedoms;
 }

@@ -22,53 +22,31 @@
 #include <Standard_Handle.hxx>
 
 #include <math_FunctionWithDerivative.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_Real.hxx>
 class Geom2d_Curve;
 
-
 //! Function used to find the inflections in 2d.
-class Geom2dLProp_FuncCurNul  : public math_FunctionWithDerivative
+class Geom2dLProp_FuncCurNul : public math_FunctionWithDerivative
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT Geom2dLProp_FuncCurNul(const Handle(Geom2d_Curve)& C);
-  
+
   //! Returns the value for the variable <X>.
-  Standard_EXPORT Standard_Boolean Value (const Standard_Real X, Standard_Real& F);
-  
+  Standard_EXPORT Standard_Boolean Value(const Standard_Real X, Standard_Real& F);
+
   //! Returns the derivative for the variable <X>
-  Standard_EXPORT Standard_Boolean Derivative (const Standard_Real X, Standard_Real& D);
-  
+  Standard_EXPORT Standard_Boolean Derivative(const Standard_Real X, Standard_Real& D);
+
   //! Returns the value of the function and the derivative
   //! for the variable <X>.
-  Standard_EXPORT Standard_Boolean Values (const Standard_Real X, Standard_Real& F, Standard_Real& D);
-
-
-
+  Standard_EXPORT Standard_Boolean Values(const Standard_Real X,
+                                          Standard_Real&      F,
+                                          Standard_Real&      D);
 
 protected:
-
-
-
-
-
 private:
-
-
-
   Handle(Geom2d_Curve) theCurve;
-
-
 };
-
-
-
-
-
-
 
 #endif // _Geom2dLProp_FuncCurNul_HeaderFile

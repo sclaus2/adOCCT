@@ -17,11 +17,9 @@
 #ifndef Transfer_HSequenceOfFinder_HeaderFile
 #define Transfer_HSequenceOfFinder_HeaderFile
 
-#include <Transfer_Finder.hxx>
 #include <Transfer_SequenceOfFinder.hxx>
 #include <NCollection_DefineHSequence.hxx>
 
 DEFINE_HSEQUENCE(Transfer_HSequenceOfFinder, Transfer_SequenceOfFinder)
-
 
 #endif

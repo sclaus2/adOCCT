@@ -17,11 +17,10 @@
 #ifndef StepVisual_HArray1OfBoxCharacteristicSelect_HeaderFile
 #define StepVisual_HArray1OfBoxCharacteristicSelect_HeaderFile
 
-#include <StepVisual_BoxCharacteristicSelect.hxx>
 #include <StepVisual_Array1OfBoxCharacteristicSelect.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
-DEFINE_HARRAY1(StepVisual_HArray1OfBoxCharacteristicSelect, StepVisual_Array1OfBoxCharacteristicSelect)
-
+DEFINE_HARRAY1(StepVisual_HArray1OfBoxCharacteristicSelect,
+               StepVisual_Array1OfBoxCharacteristicSelect)
 
 #endif

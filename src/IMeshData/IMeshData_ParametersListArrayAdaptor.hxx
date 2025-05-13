@@ -17,39 +17,27 @@
 #define _IMeshData_ParametersListArrayAdaptor_HeaderFile
 
 #include <Standard_Transient.hxx>
-#include <Standard_Type.hxx>
-#include <IMeshData_ParametersList.hxx>
 
-//! Auxiliary tool representing adaptor interface for child classes of 
+//! Auxiliary tool representing adaptor interface for child classes of
 //! IMeshData_ParametersList to be used in tools working on NCollection_Array structure.
-template<class ParametersListPtrType>
+template <class ParametersListPtrType>
 class IMeshData_ParametersListArrayAdaptor : public Standard_Transient
 {
 public:
-
   //! Constructor. Initializes tool by the given parameters.
-  IMeshData_ParametersListArrayAdaptor(
-    const ParametersListPtrType& theParameters)
-    : myParameters (theParameters)
+  IMeshData_ParametersListArrayAdaptor(const ParametersListPtrType& theParameters)
+      : myParameters(theParameters)
   {
   }
 
   //! Destructor.
-  virtual ~IMeshData_ParametersListArrayAdaptor()
-  {
-  }
+  virtual ~IMeshData_ParametersListArrayAdaptor() {}
 
   //! Returns lower index in parameters array.
-  Standard_Integer Lower() const
-  {
-    return 0;
-  }
+  Standard_Integer Lower() const { return 0; }
 
   //! Returns upper index in parameters array.
-  Standard_Integer Upper() const
-  {
-    return myParameters->ParametersNb() - 1;
-  }
+  Standard_Integer Upper() const { return myParameters->ParametersNb() - 1; }
 
   //! Returns value of the given index.
   Standard_Real Value(const Standard_Integer theIndex) const
@@ -58,8 +46,7 @@ public:
   }
 
 private:
-
-  IMeshData_ParametersListArrayAdaptor (
+  IMeshData_ParametersListArrayAdaptor(
     const IMeshData_ParametersListArrayAdaptor<ParametersListPtrType>& theOther);
 
   void operator=(const IMeshData_ParametersListArrayAdaptor<ParametersListPtrType>& theOther);

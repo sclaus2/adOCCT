@@ -16,7 +16,6 @@
 
 #include <StdPrs_ShapeTool.hxx>
 
-#include <Bnd_Box.hxx>
 #include <BRep_Tool.hxx>
 #include <BRepAdaptor_Curve.hxx>
 #include <BRepAdaptor_Surface.hxx>
@@ -30,73 +29,65 @@
 #include <Poly_Triangulation.hxx>
 #include <TopExp.hxx>
 #include <TopLoc_Location.hxx>
-#include <TopTools_ListIteratorOfListOfShape.hxx>
 #include <TopTools_ListOfShape.hxx>
-#include <TopTools_MapOfShape.hxx>
 
-//=======================================================================
-//function : StdPrs_ShapeTool
-//purpose  :
-//=======================================================================
-StdPrs_ShapeTool::StdPrs_ShapeTool (const TopoDS_Shape& theShape,
-                                    const Standard_Boolean theAllVertices)
-: myShape (theShape)
+//=================================================================================================
+
+StdPrs_ShapeTool::StdPrs_ShapeTool(const TopoDS_Shape&    theShape,
+                                   const Standard_Boolean theAllVertices)
+    : myShape(theShape)
 {
   myEdgeMap.Clear();
   myVertexMap.Clear();
-  TopExp::MapShapesAndAncestors (theShape,TopAbs_EDGE,TopAbs_FACE, myEdgeMap);
+  TopExp::MapShapesAndAncestors(theShape, TopAbs_EDGE, TopAbs_FACE, myEdgeMap);
 
   TopExp_Explorer anExpl;
   if (theAllVertices)
   {
-    for (anExpl.Init (theShape, TopAbs_VERTEX); anExpl.More(); anExpl.Next())
+    for (anExpl.Init(theShape, TopAbs_VERTEX); anExpl.More(); anExpl.Next())
     {
-      myVertexMap.Add (anExpl.Current());
+      myVertexMap.Add(anExpl.Current());
     }
   }
   else
   {
     // Extracting isolated vertices
-    for (anExpl.Init (theShape, TopAbs_VERTEX, TopAbs_EDGE); anExpl.More(); anExpl.Next())
+    for (anExpl.Init(theShape, TopAbs_VERTEX, TopAbs_EDGE); anExpl.More(); anExpl.Next())
     {
-      myVertexMap.Add (anExpl.Current());
+      myVertexMap.Add(anExpl.Current());
     }
 
     // Extracting internal vertices
-    for (anExpl.Init (theShape, TopAbs_EDGE); anExpl.More(); anExpl.Next())
+    for (anExpl.Init(theShape, TopAbs_EDGE); anExpl.More(); anExpl.Next())
     {
-      TopoDS_Iterator aIt (anExpl.Current(), Standard_False, Standard_True);
+      TopoDS_Iterator aIt(anExpl.Current(), Standard_False, Standard_True);
       for (; aIt.More(); aIt.Next())
       {
         const TopoDS_Shape& aV = aIt.Value();
         if (aV.Orientation() == TopAbs_INTERNAL)
         {
-          myVertexMap.Add (aV);
+          myVertexMap.Add(aV);
         }
       }
     }
   }
 }
 
-//=======================================================================
-//function : FaceBound
-//purpose  :
-//=======================================================================
-Bnd_Box StdPrs_ShapeTool::FaceBound() const 
+//=================================================================================================
+
+Bnd_Box StdPrs_ShapeTool::FaceBound() const
 {
   const TopoDS_Face& F = TopoDS::Face(myFaceExplorer.Current());
-  Bnd_Box B;
+  Bnd_Box            B;
   BRepBndLib::Add(F, B);
   return B;
 }
 
-//=======================================================================
-//function : IsPlanarFace
-//purpose  :
-//=======================================================================
-Standard_Boolean StdPrs_ShapeTool::IsPlanarFace (const TopoDS_Face& theFace)
+//=================================================================================================
+
+Standard_Boolean StdPrs_ShapeTool::IsPlanarFace(const TopoDS_Face& theFace)
 {
-  TopLoc_Location l;
+  TopLoc_Location             l;
   const Handle(Geom_Surface)& S = BRep_Tool::Surface(theFace, l);
   if (S.IsNull())
   {
@@ -105,95 +96,80 @@ Standard_Boolean StdPrs_ShapeTool::IsPlanarFace (const TopoDS_Face& theFace)
 
   Handle(Standard_Type) TheType = S->DynamicType();
 
-  if (TheType == STANDARD_TYPE(Geom_RectangularTrimmedSurface)) {
-    Handle(Geom_RectangularTrimmedSurface) 
-	RTS = Handle(Geom_RectangularTrimmedSurface)::DownCast (S);
+  if (TheType == STANDARD_TYPE(Geom_RectangularTrimmedSurface))
+  {
+    Handle(Geom_RectangularTrimmedSurface) RTS =
+      Handle(Geom_RectangularTrimmedSurface)::DownCast(S);
     TheType = RTS->BasisSurface()->DynamicType();
   }
   return (TheType == STANDARD_TYPE(Geom_Plane));
 }
 
-//=======================================================================
-//function : CurveBound
-//purpose  :
-//=======================================================================
-Bnd_Box StdPrs_ShapeTool::CurveBound() const 
+//=================================================================================================
+
+Bnd_Box StdPrs_ShapeTool::CurveBound() const
 {
   const TopoDS_Edge& E = TopoDS::Edge(myEdgeMap.FindKey(myEdge));
-  Bnd_Box B;
+  Bnd_Box            B;
   BRepBndLib::Add(E, B);
   return B;
 }
 
-//=======================================================================
-//function : Neighbours
-//purpose  :
-//=======================================================================
-Standard_Integer StdPrs_ShapeTool::Neighbours() const 
+//=================================================================================================
+
+Standard_Integer StdPrs_ShapeTool::Neighbours() const
 {
   const TopTools_ListOfShape& L = myEdgeMap.FindFromIndex(myEdge);
   return L.Extent();
 }
 
-//=======================================================================
-//function : FacesOfEdge
-//purpose  :
-//=======================================================================
-Handle(TopTools_HSequenceOfShape) StdPrs_ShapeTool::FacesOfEdge() const 
+//=================================================================================================
+
+Handle(TopTools_HSequenceOfShape) StdPrs_ShapeTool::FacesOfEdge() const
 {
   Handle(TopTools_HSequenceOfShape) H = new TopTools_HSequenceOfShape();
-  const TopTools_ListOfShape& L = myEdgeMap.FindFromIndex(myEdge);
-  for (TopTools_ListIteratorOfListOfShape LI (L); LI.More(); LI.Next())
+  const TopTools_ListOfShape&       L = myEdgeMap.FindFromIndex(myEdge);
+  for (TopTools_ListIteratorOfListOfShape LI(L); LI.More(); LI.Next())
   {
     H->Append(LI.Value());
   }
   return H;
 }
 
-//=======================================================================
-//function : HasSurface
-//purpose  :
-//=======================================================================
+//=================================================================================================
+
 Standard_Boolean StdPrs_ShapeTool::HasSurface() const
 {
-  TopLoc_Location l;
+  TopLoc_Location             l;
   const Handle(Geom_Surface)& S = BRep_Tool::Surface(GetFace(), l);
   return !S.IsNull();
 }
 
-//=======================================================================
-//function : CurrentTriangulation
-//purpose  :
-//=======================================================================
+//=================================================================================================
+
 Handle(Poly_Triangulation) StdPrs_ShapeTool::CurrentTriangulation(TopLoc_Location& l) const
 {
   return BRep_Tool::Triangulation(GetFace(), l);
 }
 
-//=======================================================================
-//function : HasCurve
-//purpose  :
-//=======================================================================
+//=================================================================================================
+
 Standard_Boolean StdPrs_ShapeTool::HasCurve() const
 {
   return BRep_Tool::IsGeometric(GetCurve());
 }
 
-//=======================================================================
-//function : PolygonOnTriangulation
-//purpose  :
-//=======================================================================
-void StdPrs_ShapeTool::PolygonOnTriangulation (Handle(Poly_PolygonOnTriangulation)& Indices,
-                                               Handle(Poly_Triangulation)& T,
-                                               TopLoc_Location& l) const
+//=================================================================================================
+
+void StdPrs_ShapeTool::PolygonOnTriangulation(Handle(Poly_PolygonOnTriangulation)& Indices,
+                                              Handle(Poly_Triangulation)&          T,
+                                              TopLoc_Location&                     l) const
 {
   BRep_Tool::PolygonOnTriangulation(GetCurve(), Indices, T, l);
 }
 
-//=======================================================================
-//function : Polygon3D
-//purpose  :
-//=======================================================================
+//=================================================================================================
+
 Handle(Poly_Polygon3D) StdPrs_ShapeTool::Polygon3D(TopLoc_Location& l) const
 {
   return BRep_Tool::Polygon3D(GetCurve(), l);

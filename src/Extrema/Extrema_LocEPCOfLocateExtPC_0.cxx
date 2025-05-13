@@ -26,7 +26,6 @@
 #include <gp_Vec.hxx>
 #include <Extrema_PCLocFOfLocEPCOfLocateExtPC.hxx>
 #include <Extrema_SequenceOfPOnCurv.hxx>
- 
 
 #define Curve Adaptor3d_Curve
 #define Curve_hxx <Adaptor3d_Curve.hxx>
@@ -46,5 +45,4 @@
 #define Extrema_SeqPCOfPCLocF_hxx <Extrema_SequenceOfPOnCurv.hxx>
 #define Extrema_GenLocateExtPC Extrema_LocEPCOfLocateExtPC
 #define Extrema_GenLocateExtPC_hxx <Extrema_LocEPCOfLocateExtPC.hxx>
-#include <Extrema_GenLocateExtPC.gxx>
-
+#include "../Extrema/Extrema_GenLocateExtPC.gxx"

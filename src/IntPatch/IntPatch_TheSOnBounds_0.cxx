@@ -28,7 +28,7 @@
 #include <IntPatch_ThePathPointOfTheSOnBounds.hxx>
 #include <IntPatch_SequenceOfPathPointOfTheSOnBounds.hxx>
 #include <IntPatch_TheSegmentOfTheSOnBounds.hxx>
-#include <IntPatch_SequenceOfSegmentOfTheSOnBounds.hxx> 
+#include <IntPatch_SequenceOfSegmentOfTheSOnBounds.hxx>
 
 #define TheVertex Handle(Adaptor3d_HVertex)
 #define TheVertex_hxx <Adaptor3d_HVertex.hxx>
@@ -53,5 +53,4 @@
 #define IntStart_SequenceOfSegment_hxx <IntPatch_SequenceOfSegmentOfTheSOnBounds.hxx>
 #define IntStart_SearchOnBoundaries IntPatch_TheSOnBounds
 #define IntStart_SearchOnBoundaries_hxx <IntPatch_TheSOnBounds.hxx>
-#include <IntStart_SearchOnBoundaries.gxx>
-
+#include "../IntStart/IntStart_SearchOnBoundaries.gxx"

@@ -21,52 +21,21 @@
 #include <Standard_Integer.hxx>
 class XmlMDF_ADriverTable;
 class Message_Messenger;
-class XmlMDataXtd_GeometryDriver;
-class XmlMDataXtd_ConstraintDriver;
-class XmlMDataXtd_PatternStdDriver;
-class XmlMDataXtd_TriangulationDriver;
 
 //! Storage and Retrieval drivers for modelling attributes.
 //! Transient attributes are defined in package TDataXtd.
-class XmlMDataXtd 
+class XmlMDataXtd
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Adds the attribute drivers to <aDriverTable>.
-  Standard_EXPORT static void AddDrivers (const Handle(XmlMDF_ADriverTable)& aDriverTable, const Handle(Message_Messenger)& anMsgDrv);
-  
-  Standard_EXPORT static void SetDocumentVersion (const Standard_Integer DocVersion);
-  
+  Standard_EXPORT static void AddDrivers(const Handle(XmlMDF_ADriverTable)& aDriverTable,
+                                         const Handle(Message_Messenger)&   anMsgDrv);
+
+  Standard_EXPORT static void SetDocumentVersion(const Standard_Integer DocVersion);
+
   Standard_EXPORT static Standard_Integer DocumentVersion();
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class XmlMDataXtd_GeometryDriver;
-friend class XmlMDataXtd_ConstraintDriver;
-friend class XmlMDataXtd_PatternStdDriver;
-friend class XmlMDataXtd_TriangulationDriver;
-
 };
-
-
-
-
-
-
 
 #endif // _XmlMDataXtd_HeaderFile

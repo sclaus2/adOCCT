@@ -1,6 +1,8 @@
 
 # standard directories for derived files in CASROOT
 /.adm
+/.cache
+/.vscode
 /lin
 /mac
 /wnt
@@ -52,4 +54,5 @@ win64
 /libtool
 /stamp*
 /build*
-/install
+/install*
+/tools/build*

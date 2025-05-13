@@ -17,11 +17,9 @@
 #ifndef HLRAlgo_HArray1OfTData_HeaderFile
 #define HLRAlgo_HArray1OfTData_HeaderFile
 
-#include <HLRAlgo_TriangleData.hxx>
 #include <HLRAlgo_Array1OfTData.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(HLRAlgo_HArray1OfTData, HLRAlgo_Array1OfTData)
-
 
 #endif

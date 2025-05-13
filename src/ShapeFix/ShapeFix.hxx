@@ -21,7 +21,6 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <Standard_Real.hxx>
 
 #include <ShapeExtend_BasicMsgRegistrator.hxx>
@@ -30,28 +29,6 @@
 class TopoDS_Shape;
 class ShapeExtend_BasicMsgRegistrator;
 class ShapeBuild_ReShape;
-class ShapeFix_Root;
-class ShapeFix_EdgeProjAux;
-class ShapeFix_Edge;
-class ShapeFix_Wire;
-class ShapeFix_Face;
-class ShapeFix_FixSmallFace;
-class ShapeFix_FixSmallSolid;
-class ShapeFix_WireVertex;
-class ShapeFix_Wireframe;
-class ShapeFix_FreeBounds;
-class ShapeFix_FaceConnect;
-class ShapeFix_Shell;
-class ShapeFix_Solid;
-class ShapeFix_ShapeTolerance;
-class ShapeFix_Shape;
-class ShapeFix_EdgeConnect;
-class ShapeFix_ComposeShell;
-class ShapeFix_SplitCommonVertex;
-class ShapeFix_WireSegment;
-class ShapeFix_IntersectionTool;
-class ShapeFix_SplitTool;
-
 
 //! This package provides algorithms for fixing
 //! problematic (violating Open CASCADE requirements) shapes.
@@ -60,13 +37,11 @@ class ShapeFix_SplitTool;
 //! criteria implemented in BRepCheck package.
 //! Each class of package ShapeFix deals with one
 //! certain type of shapes or with some family of problems.
-class ShapeFix 
+class ShapeFix
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Runs SameParameter from BRepLib with these adaptations :
   //! <enforce> forces computations, else they are made only on
   //! Edges with flag SameParameter false
@@ -77,69 +52,33 @@ public:
   //! been processed. The passed progress indicator allows user
   //! to consult the current progress stage and abort algorithm
   //! if needed.
-  Standard_EXPORT static Standard_Boolean SameParameter
-    (const TopoDS_Shape& shape, const Standard_Boolean enforce,
-     const Standard_Real preci = 0.0,
-     const Message_ProgressRange& theProgress = Message_ProgressRange(),
-     const Handle(ShapeExtend_BasicMsgRegistrator)& theMsgReg = 0);
-  
+  Standard_EXPORT static Standard_Boolean SameParameter(
+    const TopoDS_Shape&                            shape,
+    const Standard_Boolean                         enforce,
+    const Standard_Real                            preci       = 0.0,
+    const Message_ProgressRange&                   theProgress = Message_ProgressRange(),
+    const Handle(ShapeExtend_BasicMsgRegistrator)& theMsgReg   = 0);
+
   //! Runs EncodeRegularity from BRepLib taking into account
   //! shared components of assemblies, so that each component
   //! is processed only once
-  Standard_EXPORT static void EncodeRegularity (const TopoDS_Shape& shape, const Standard_Real tolang = 1.0e-10);
-  
+  Standard_EXPORT static void EncodeRegularity(const TopoDS_Shape& shape,
+                                               const Standard_Real tolang = 1.0e-10);
+
   //! Removes edges which are less than given tolerance from shape
   //! with help of ShapeFix_Wire::FixSmall()
-  Standard_EXPORT static TopoDS_Shape RemoveSmallEdges (TopoDS_Shape& shape, const Standard_Real Tolerance, Handle(ShapeBuild_ReShape)& context);
-  
+  Standard_EXPORT static TopoDS_Shape RemoveSmallEdges(TopoDS_Shape&               shape,
+                                                       const Standard_Real         Tolerance,
+                                                       Handle(ShapeBuild_ReShape)& context);
+
   //! Fix position of the vertices having tolerance more tnan specified one.;
-  Standard_EXPORT static Standard_Boolean FixVertexPosition (TopoDS_Shape& theshape, const Standard_Real theTolerance, const Handle(ShapeBuild_ReShape)& thecontext);
-  
+  Standard_EXPORT static Standard_Boolean FixVertexPosition(
+    TopoDS_Shape&                     theshape,
+    const Standard_Real               theTolerance,
+    const Handle(ShapeBuild_ReShape)& thecontext);
+
   //! Calculate size of least edge;
-  Standard_EXPORT static Standard_Real LeastEdgeSize (TopoDS_Shape& theshape);
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class ShapeFix_Root;
-friend class ShapeFix_EdgeProjAux;
-friend class ShapeFix_Edge;
-friend class ShapeFix_Wire;
-friend class ShapeFix_Face;
-friend class ShapeFix_FixSmallFace;
-friend class ShapeFix_FixSmallSolid;
-friend class ShapeFix_WireVertex;
-friend class ShapeFix_Wireframe;
-friend class ShapeFix_FreeBounds;
-friend class ShapeFix_FaceConnect;
-friend class ShapeFix_Shell;
-friend class ShapeFix_Solid;
-friend class ShapeFix_ShapeTolerance;
-friend class ShapeFix_Shape;
-friend class ShapeFix_EdgeConnect;
-friend class ShapeFix_ComposeShell;
-friend class ShapeFix_SplitCommonVertex;
-friend class ShapeFix_WireSegment;
-friend class ShapeFix_IntersectionTool;
-friend class ShapeFix_SplitTool;
-
+  Standard_EXPORT static Standard_Real LeastEdgeSize(TopoDS_Shape& theshape);
 };
-
-
-
-
-
-
 
 #endif // _ShapeFix_HeaderFile

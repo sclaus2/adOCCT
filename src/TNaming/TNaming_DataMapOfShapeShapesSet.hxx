@@ -17,13 +17,13 @@
 #ifndef TNaming_DataMapOfShapeShapesSet_HeaderFile
 #define TNaming_DataMapOfShapeShapesSet_HeaderFile
 
-#include <TopoDS_Shape.hxx>
 #include <TNaming_ShapesSet.hxx>
 #include <TopTools_ShapeMapHasher.hxx>
 #include <NCollection_DataMap.hxx>
 
-typedef NCollection_DataMap<TopoDS_Shape,TNaming_ShapesSet,TopTools_ShapeMapHasher> TNaming_DataMapOfShapeShapesSet;
-typedef NCollection_DataMap<TopoDS_Shape,TNaming_ShapesSet,TopTools_ShapeMapHasher>::Iterator TNaming_DataMapIteratorOfDataMapOfShapeShapesSet;
-
+typedef NCollection_DataMap<TopoDS_Shape, TNaming_ShapesSet, TopTools_ShapeMapHasher>
+  TNaming_DataMapOfShapeShapesSet;
+typedef NCollection_DataMap<TopoDS_Shape, TNaming_ShapesSet, TopTools_ShapeMapHasher>::Iterator
+  TNaming_DataMapIteratorOfDataMapOfShapeShapesSet;
 
 #endif

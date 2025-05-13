@@ -15,6 +15,8 @@
 
 #include <OpenGl_GlCore11.hxx>
 #include <OpenGl_StencilTest.hxx>
+#include <OpenGl_Context.hxx>
+#include <OpenGl_Workspace.hxx>
 #include <Standard_Dump.hxx>
 
 OpenGl_StencilTest::OpenGl_StencilTest()
@@ -22,58 +24,49 @@ OpenGl_StencilTest::OpenGl_StencilTest()
   //
 }
 
-// =======================================================================
-// function : Render
-// purpose  :
-// =======================================================================
-void OpenGl_StencilTest::Render (const Handle(OpenGl_Workspace)&) const
+//=================================================================================================
+
+void OpenGl_StencilTest::Render(const Handle(OpenGl_Workspace)& theWorkspace) const
 {
+  const Handle(OpenGl_Context)& aCtx = theWorkspace->GetGlContext();
   if (myIsEnabled)
   {
-    glEnable (GL_STENCIL_TEST);
-    glStencilFunc (GL_NOTEQUAL, 1, 0xFF);
+    aCtx->core11fwd->glEnable(GL_STENCIL_TEST);
+    aCtx->core11fwd->glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
   }
   else
   {
-    glDisable (GL_STENCIL_TEST);
+    aCtx->core11fwd->glDisable(GL_STENCIL_TEST);
   }
 }
 
-// =======================================================================
-// function : Release
-// purpose  :
-// =======================================================================
-void OpenGl_StencilTest::Release (OpenGl_Context*)
+//=================================================================================================
+
+void OpenGl_StencilTest::Release(OpenGl_Context*)
 {
   //
 }
 
-// =======================================================================
-// function : SetStencilTestState
-// purpose  :
-// =======================================================================
-void OpenGl_StencilTest::SetOptions (const Standard_Boolean theIsEnabled)
+//=================================================================================================
+
+void OpenGl_StencilTest::SetOptions(const Standard_Boolean theIsEnabled)
 {
   myIsEnabled = theIsEnabled;
 }
 
-// =======================================================================
-// function : ~OpenGl_StencilTest
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 OpenGl_StencilTest::~OpenGl_StencilTest()
 {
   //
 }
 
-// =======================================================================
-// function : DumpJson
-// purpose  :
-// =======================================================================
-void OpenGl_StencilTest::DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth) const
-{
-  OCCT_DUMP_CLASS_BEGIN (theOStream, OpenGl_StencilTest)
+//=================================================================================================
 
-  OCCT_DUMP_BASE_CLASS (theOStream, theDepth, OpenGl_Element)
-  OCCT_DUMP_FIELD_VALUE_NUMERICAL (theOStream, myIsEnabled)
+void OpenGl_StencilTest::DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth) const
+{
+  OCCT_DUMP_CLASS_BEGIN(theOStream, OpenGl_StencilTest)
+
+  OCCT_DUMP_BASE_CLASS(theOStream, theDepth, OpenGl_Element)
+  OCCT_DUMP_FIELD_VALUE_NUMERICAL(theOStream, myIsEnabled)
 }

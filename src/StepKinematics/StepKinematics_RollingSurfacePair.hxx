@@ -1,4 +1,4 @@
-// Created on : Sat May 02 12:41:16 2020 
+// Created on : Sat May 02 12:41:16 2020
 // Created by: Irina KRYLOVA
 // Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
 // Copyright (c) Open CASCADE 2020
@@ -18,26 +18,19 @@
 #define _StepKinematics_RollingSurfacePair_HeaderFile_
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 #include <StepKinematics_SurfacePair.hxx>
 
 #include <TCollection_HAsciiString.hxx>
-#include <StepRepr_RepresentationItem.hxx>
-#include <StepRepr_ItemDefinedTransformation.hxx>
-#include <StepKinematics_KinematicJoint.hxx>
-#include <StepGeom_Surface.hxx>
 
 DEFINE_STANDARD_HANDLE(StepKinematics_RollingSurfacePair, StepKinematics_SurfacePair)
 
 //! Representation of STEP entity RollingSurfacePair
 class StepKinematics_RollingSurfacePair : public StepKinematics_SurfacePair
 {
-public :
-
+public:
   //! default constructor
   Standard_EXPORT StepKinematics_RollingSurfacePair();
 
-DEFINE_STANDARD_RTTIEXT(StepKinematics_RollingSurfacePair, StepKinematics_SurfacePair)
-
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_RollingSurfacePair, StepKinematics_SurfacePair)
 };
 #endif // _StepKinematics_RollingSurfacePair_HeaderFile_

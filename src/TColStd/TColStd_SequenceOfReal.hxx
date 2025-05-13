@@ -15,10 +15,8 @@
 #ifndef TColStd_SequenceOfReal_HeaderFile
 #define TColStd_SequenceOfReal_HeaderFile
 
-#include <Standard_Real.hxx>
 #include <NCollection_Sequence.hxx>
 
 typedef NCollection_Sequence<Standard_Real> TColStd_SequenceOfReal;
-
 
 #endif

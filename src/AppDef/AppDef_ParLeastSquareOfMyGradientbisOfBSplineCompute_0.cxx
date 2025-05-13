@@ -25,7 +25,6 @@
 #include <AppParCurves_MultiCurve.hxx>
 #include <AppParCurves_MultiBSpCurve.hxx>
 #include <math_Matrix.hxx>
- 
 
 #define MultiLine AppDef_MultiLine
 #define MultiLine_hxx <AppDef_MultiLine.hxx>
@@ -33,5 +32,4 @@
 #define ToolLine_hxx <AppDef_MyLineTool.hxx>
 #define AppParCurves_LeastSquare AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute
 #define AppParCurves_LeastSquare_hxx <AppDef_ParLeastSquareOfMyGradientbisOfBSplineCompute.hxx>
-#include <AppParCurves_LeastSquare.gxx>
-
+#include "../AppParCurves/AppParCurves_LeastSquare.gxx"

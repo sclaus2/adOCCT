@@ -20,7 +20,6 @@
 #include <Standard_Type.hxx>
 
 #include <Standard_Transient.hxx>
-#include <Standard_Boolean.hxx>
 #include <Message_ProgressRange.hxx>
 
 class ShapeProcess_Context;
@@ -33,35 +32,16 @@ class ShapeProcess_Operator : public Standard_Transient
 {
 
 public:
-
-  
   //! Performs operation and eventually records
   //! changes in the context
-  Standard_EXPORT virtual Standard_Boolean Perform
-                   (const Handle(ShapeProcess_Context)& context,
-                    const Message_ProgressRange& theProgress = Message_ProgressRange()) = 0;
+  Standard_EXPORT virtual Standard_Boolean Perform(
+    const Handle(ShapeProcess_Context)& context,
+    const Message_ProgressRange&        theProgress = Message_ProgressRange()) = 0;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(ShapeProcess_Operator,Standard_Transient)
+  DEFINE_STANDARD_RTTIEXT(ShapeProcess_Operator, Standard_Transient)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _ShapeProcess_Operator_HeaderFile

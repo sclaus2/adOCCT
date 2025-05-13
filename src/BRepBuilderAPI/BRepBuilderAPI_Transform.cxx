@@ -14,92 +14,75 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
 #include <BRepBuilderAPI_Transform.hxx>
 #include <BRepTools_TrsfModification.hxx>
-#include <gp.hxx>
 #include <gp_Trsf.hxx>
-#include <Standard_NoSuchObject.hxx>
 #include <TopoDS_Shape.hxx>
 
-//=======================================================================
-//function : BRepBuilderAPI_Transform
-//purpose  : 
-//=======================================================================
-BRepBuilderAPI_Transform::BRepBuilderAPI_Transform (const gp_Trsf& T) :
-  myTrsf(T)
+//=================================================================================================
+
+BRepBuilderAPI_Transform::BRepBuilderAPI_Transform(const gp_Trsf& T)
+    : myTrsf(T)
 {
   myModification = new BRepTools_TrsfModification(T);
 }
 
+//=================================================================================================
 
-//=======================================================================
-//function : BRepBuilderAPI_Transform
-//purpose  : 
-//=======================================================================
-
-BRepBuilderAPI_Transform::BRepBuilderAPI_Transform (const TopoDS_Shape& S,
-				      const gp_Trsf& T,
-				      const Standard_Boolean Copy) :
-  myTrsf(T)
+BRepBuilderAPI_Transform::BRepBuilderAPI_Transform(const TopoDS_Shape&    theShape,
+                                                   const gp_Trsf&         theTrsf,
+                                                   const Standard_Boolean theCopyGeom,
+                                                   const Standard_Boolean theCopyMesh)
+    : myTrsf(theTrsf)
 {
-  myModification = new BRepTools_TrsfModification(T);
-  Perform(S,Copy);
+  myModification = new BRepTools_TrsfModification(theTrsf);
+  Perform(theShape, theCopyGeom, theCopyMesh);
 }
 
+//=================================================================================================
 
-
-//=======================================================================
-//function : Perform
-//purpose  : 
-//=======================================================================
-
-void BRepBuilderAPI_Transform::Perform(const TopoDS_Shape& S,
-				const Standard_Boolean Copy)
+void BRepBuilderAPI_Transform::Perform(const TopoDS_Shape&    theShape,
+                                       const Standard_Boolean theCopyGeom,
+                                       const Standard_Boolean theCopyMesh)
 {
-  myUseModif = Copy || myTrsf.IsNegative() || (Abs(Abs(myTrsf.ScaleFactor()) - 1.) > TopLoc_Location::ScalePrec());
-  if (myUseModif) {
-    Handle(BRepTools_TrsfModification) theModif = 
+  myUseModif = theCopyGeom || myTrsf.IsNegative()
+               || (Abs(Abs(myTrsf.ScaleFactor()) - 1.) > TopLoc_Location::ScalePrec());
+  if (myUseModif)
+  {
+    Handle(BRepTools_TrsfModification) theModif =
       Handle(BRepTools_TrsfModification)::DownCast(myModification);
-    theModif->Trsf() = myTrsf;
-    DoModif(S,myModification);
+    theModif->Trsf()       = myTrsf;
+    theModif->IsCopyMesh() = theCopyMesh;
+    DoModif(theShape, myModification);
   }
-  else {
+  else
+  {
     myLocation = myTrsf;
-    myShape = S.Moved(myLocation);
+    myShape    = theShape.Moved(myLocation);
     Done();
   }
-
 }
 
-//=======================================================================
-//function : ModifiedShape
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-TopoDS_Shape BRepBuilderAPI_Transform::ModifiedShape
-  (const TopoDS_Shape& S) const
-{  
-  if (myUseModif) {
+TopoDS_Shape BRepBuilderAPI_Transform::ModifiedShape(const TopoDS_Shape& S) const
+{
+  if (myUseModif)
+  {
     return myModifier.ModifiedShape(S);
   }
-  return S.Moved (myLocation);
+  return S.Moved(myLocation);
 }
 
+//=================================================================================================
 
-//=======================================================================
-//function : Modified
-//purpose  : 
-//=======================================================================
-
-const TopTools_ListOfShape& BRepBuilderAPI_Transform::Modified
-  (const TopoDS_Shape& F)
+const TopTools_ListOfShape& BRepBuilderAPI_Transform::Modified(const TopoDS_Shape& F)
 {
-  if (!myUseModif) {
+  if (!myUseModif)
+  {
     myGenerated.Clear();
     myGenerated.Append(F.Moved(myLocation));
     return myGenerated;
   }
   return BRepBuilderAPI_ModifyShape::Modified(F);
 }
-

@@ -21,15 +21,6 @@
 #include <MAT_TListNodeOfListOfEdge.hxx>
 #include <MAT_Edge.hxx>
 
- 
-
-
-
-
-
-
-
-
 #define Item Handle(MAT_Edge)
 #define Item_hxx <MAT_Edge.hxx>
 #define MAT_TListNode MAT_TListNodeOfListOfEdge
@@ -38,5 +29,4 @@
 #define MAT_TList MAT_ListOfEdge
 #define MAT_TList_hxx <MAT_ListOfEdge.hxx>
 #define Handle_MAT_TList Handle(MAT_ListOfEdge)
-#include <MAT_TList.gxx>
-
+#include "../MAT/MAT_TList.gxx"

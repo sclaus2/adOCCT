@@ -21,11 +21,9 @@
 #include <NCollection_Sequence.hxx>
 #include <NCollection_DefineHSequence.hxx>
 
-#include <TObj_Common.hxx>
-
 class TObj_Object;
 typedef NCollection_Sequence<Handle(TObj_Object)> TObj_SequenceOfObject;
 
-DEFINE_HSEQUENCE (TObj_HSequenceOfObject, TObj_SequenceOfObject)
+DEFINE_HSEQUENCE(TObj_HSequenceOfObject, TObj_SequenceOfObject)
 
 #endif

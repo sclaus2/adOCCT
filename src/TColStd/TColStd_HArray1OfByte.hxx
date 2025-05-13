@@ -15,11 +15,9 @@
 #ifndef TColStd_HArray1OfByte_HeaderFile
 #define TColStd_HArray1OfByte_HeaderFile
 
-#include <Standard_Byte.hxx>
 #include <TColStd_Array1OfByte.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(TColStd_HArray1OfByte, TColStd_Array1OfByte)
-
 
 #endif

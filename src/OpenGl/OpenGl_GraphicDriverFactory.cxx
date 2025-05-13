@@ -23,25 +23,22 @@
 
 IMPLEMENT_STANDARD_RTTIEXT(OpenGl_GraphicDriverFactory, Graphic3d_GraphicDriverFactory)
 
-// =======================================================================
-// function : OpenGl_GraphicDriverFactory
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 OpenGl_GraphicDriverFactory::OpenGl_GraphicDriverFactory()
-: Graphic3d_GraphicDriverFactory (OpenGl_DRIVER_NAME),
-  myDefaultCaps (new OpenGl_Caps())
+    : Graphic3d_GraphicDriverFactory(OpenGl_DRIVER_NAME),
+      myDefaultCaps(new OpenGl_Caps())
 {
   //
 }
 
-// =======================================================================
-// function : CreateDriver
-// purpose  :
-// =======================================================================
-Handle(Graphic3d_GraphicDriver) OpenGl_GraphicDriverFactory::CreateDriver (const Handle(Aspect_DisplayConnection)& theDisp)
+//=================================================================================================
+
+Handle(Graphic3d_GraphicDriver) OpenGl_GraphicDriverFactory::CreateDriver(
+  const Handle(Aspect_DisplayConnection)& theDisp)
 {
-  Handle(OpenGl_GraphicDriver) aDriver = new OpenGl_GraphicDriver (theDisp, false);
-  aDriver->ChangeOptions() = *myDefaultCaps;
+  Handle(OpenGl_GraphicDriver) aDriver = new OpenGl_GraphicDriver(theDisp, false);
+  aDriver->ChangeOptions()             = *myDefaultCaps;
   aDriver->InitContext();
   return aDriver;
 }

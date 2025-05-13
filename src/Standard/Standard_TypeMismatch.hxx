@@ -18,7 +18,6 @@
 #define _Standard_TypeMismatch_HeaderFile
 
 #include <Standard_Type.hxx>
-#include <Standard_DefineException.hxx>
 #include <Standard_SStream.hxx>
 #include <Standard_DomainError.hxx>
 
@@ -26,8 +25,9 @@ class Standard_TypeMismatch;
 DEFINE_STANDARD_HANDLE(Standard_TypeMismatch, Standard_DomainError)
 
 #if !defined No_Exception && !defined No_Standard_TypeMismatch
-  #define Standard_TypeMismatch_Raise_if(CONDITION, MESSAGE) \
-  if (CONDITION) throw Standard_TypeMismatch(MESSAGE);
+  #define Standard_TypeMismatch_Raise_if(CONDITION, MESSAGE)                                       \
+    if (CONDITION)                                                                                 \
+      throw Standard_TypeMismatch(MESSAGE);
 #else
   #define Standard_TypeMismatch_Raise_if(CONDITION, MESSAGE)
 #endif

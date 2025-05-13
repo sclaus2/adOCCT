@@ -19,50 +19,26 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <Standard_Integer.hxx>
 
-
-
-class TopOpeBRep_Bipoint 
+class TopOpeBRep_Bipoint
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT TopOpeBRep_Bipoint();
-  
+
   Standard_EXPORT TopOpeBRep_Bipoint(const Standard_Integer I1, const Standard_Integer I2);
-  
+
   Standard_EXPORT Standard_Integer I1() const;
-  
+
   Standard_EXPORT Standard_Integer I2() const;
 
-
-
-
 protected:
-
-
-
-
-
 private:
-
-
-
   Standard_Integer myI1;
   Standard_Integer myI2;
-
-
 };
-
-
-
-
-
-
 
 #endif // _TopOpeBRep_Bipoint_HeaderFile

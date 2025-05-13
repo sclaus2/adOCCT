@@ -18,34 +18,31 @@
 #ifndef XmlTObjDrivers_DocumentRetrievalDriver_HeaderFile
 #define XmlTObjDrivers_DocumentRetrievalDriver_HeaderFile
 
-#include <TObj_Common.hxx>
 #include <XmlLDrivers_DocumentRetrievalDriver.hxx>
 #include <XmlMDF_ADriverTable.hxx>
-
 
 // Retrieval driver of a TObj XML document
 //
 
-class XmlTObjDrivers_DocumentRetrievalDriver :
-  public XmlLDrivers_DocumentRetrievalDriver
+class XmlTObjDrivers_DocumentRetrievalDriver : public XmlLDrivers_DocumentRetrievalDriver
 {
- public:
+public:
   // ---------- PUBLIC METHODS ----------
 
-  Standard_EXPORT XmlTObjDrivers_DocumentRetrievalDriver ();
+  Standard_EXPORT XmlTObjDrivers_DocumentRetrievalDriver();
   // Constructor
 
-  Standard_EXPORT virtual Handle(XmlMDF_ADriverTable) AttributeDrivers
-                        (const Handle(Message_Messenger)& theMsgDriver) Standard_OVERRIDE;
+  Standard_EXPORT virtual Handle(XmlMDF_ADriverTable) AttributeDrivers(
+    const Handle(Message_Messenger)& theMsgDriver) Standard_OVERRIDE;
 
- public:
+public:
   // Declaration of CASCADE RTTI
-  DEFINE_STANDARD_RTTIEXT(XmlTObjDrivers_DocumentRetrievalDriver,XmlLDrivers_DocumentRetrievalDriver)
+  DEFINE_STANDARD_RTTIEXT(XmlTObjDrivers_DocumentRetrievalDriver,
+                          XmlLDrivers_DocumentRetrievalDriver)
 };
 
 // Definition of HANDLE object using Standard_DefineHandle.hxx
-DEFINE_STANDARD_HANDLE (XmlTObjDrivers_DocumentRetrievalDriver,
-                        XmlLDrivers_DocumentRetrievalDriver)
+DEFINE_STANDARD_HANDLE(XmlTObjDrivers_DocumentRetrievalDriver, XmlLDrivers_DocumentRetrievalDriver)
 
 #endif
 

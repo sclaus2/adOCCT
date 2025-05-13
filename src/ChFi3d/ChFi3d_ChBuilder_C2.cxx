@@ -14,27 +14,11 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
-#include <Adaptor3d_TopolTool.hxx>
-#include <BRepAdaptor_Curve2d.hxx>
-#include <BRepAdaptor_Surface.hxx>
 #include <ChFi3d_ChBuilder.hxx>
-#include <ChFiDS_ElSpine.hxx>
-#include <ChFiDS_Spine.hxx>
-#include <ChFiDS_Stripe.hxx>
-#include <ChFiDS_SurfData.hxx>
-#include <Standard_ConstructionError.hxx>
-#include <Standard_DomainError.hxx>
-#include <TopoDS_Edge.hxx>
-#include <TopoDS_Face.hxx>
-#include <TopoDS_Shape.hxx>
-#include <TopoDS_Vertex.hxx>
 
-//=======================================================================
-//function : PerformTwoCorner
-//purpose  :
-//=======================================================================
+//=================================================================================================
+
 void ChFi3d_ChBuilder::PerformTwoCorner(const Standard_Integer Index)
 {
-   PerformTwoCornerbyInter(Index);
+  PerformTwoCornerbyInter(Index);
 }

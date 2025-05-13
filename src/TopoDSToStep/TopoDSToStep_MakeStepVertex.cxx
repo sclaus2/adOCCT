@@ -14,17 +14,14 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
 #include <BRep_Tool.hxx>
 #include <GeomToStep_MakeCartesianPoint.hxx>
 #include <gp_Pnt.hxx>
-#include <Interface_Static.hxx>
 #include <StdFail_NotDone.hxx>
+#include <StepData_StepModel.hxx>
 #include <StepGeom_CartesianPoint.hxx>
-#include <StepShape_TopologicalRepresentationItem.hxx>
 #include <StepShape_VertexPoint.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <TopoDS_Vertex.hxx>
 #include <TopoDSToStep_MakeStepVertex.hxx>
 #include <TopoDSToStep_Tool.hxx>
 #include <Transfer_FinderProcess.hxx>
@@ -36,18 +33,18 @@
 // Constructors
 // ----------------------------------------------------------------------------
 TopoDSToStep_MakeStepVertex::TopoDSToStep_MakeStepVertex()
-: myError(TopoDSToStep_VertexOther)
+    : myError(TopoDSToStep_VertexOther)
 {
   done = Standard_False;
 }
 
-TopoDSToStep_MakeStepVertex::TopoDSToStep_MakeStepVertex
-(const TopoDS_Vertex& V, 
- TopoDSToStep_Tool& T,
- const Handle(Transfer_FinderProcess)& FP)
+TopoDSToStep_MakeStepVertex::TopoDSToStep_MakeStepVertex(const TopoDS_Vertex&                  V,
+                                                         TopoDSToStep_Tool&                    T,
+                                                         const Handle(Transfer_FinderProcess)& FP,
+                                                         const StepData_Factors& theLocalFactors)
 {
   done = Standard_False;
-  Init(V, T, FP);
+  Init(V, T, FP, theLocalFactors);
 }
 
 // ----------------------------------------------------------------------------
@@ -55,19 +52,23 @@ TopoDSToStep_MakeStepVertex::TopoDSToStep_MakeStepVertex
 // Purpose :
 // ----------------------------------------------------------------------------
 
-void TopoDSToStep_MakeStepVertex::Init(const TopoDS_Vertex& aVertex, 
-                                       TopoDSToStep_Tool& aTool,
-                                       const Handle(Transfer_FinderProcess)& FP)
+void TopoDSToStep_MakeStepVertex::Init(const TopoDS_Vertex&                  aVertex,
+                                       TopoDSToStep_Tool&                    aTool,
+                                       const Handle(Transfer_FinderProcess)& FP,
+                                       const StepData_Factors&               theLocalFactors)
 {
 
   aTool.SetCurrentVertex(aVertex);
 
   // [BEGIN] Processing non-manifold topology (ssv; 11.11.2010)
-  Standard_Boolean isNMMode = Interface_Static::IVal("write.step.nonmanifold") != 0;
-  if (isNMMode) {
-    Handle(StepShape_VertexPoint) aVP;
+  Standard_Boolean isNMMode =
+    Handle(StepData_StepModel)::DownCast(FP->Model())->InternalParameters.WriteNonmanifold != 0;
+  if (isNMMode)
+  {
+    Handle(StepShape_VertexPoint)    aVP;
     Handle(TransferBRep_ShapeMapper) aSTEPMapper = TransferBRep::ShapeMapper(FP, aVertex);
-    if ( FP->FindTypedTransient(aSTEPMapper, STANDARD_TYPE(StepShape_VertexPoint), aVP) ) {
+    if (FP->FindTypedTransient(aSTEPMapper, STANDARD_TYPE(StepShape_VertexPoint), aVP))
+    {
       // Non-manifold topology detected
       myError  = TopoDSToStep_VertexOther;
       myResult = aVP;
@@ -76,41 +77,39 @@ void TopoDSToStep_MakeStepVertex::Init(const TopoDS_Vertex& aVertex,
     }
   }
   // [END] Processing non-manifold topology (ssv; 11.11.2010)
-  
-  if (aTool.IsBound(aVertex)) {
+
+  if (aTool.IsBound(aVertex))
+  {
     myError  = TopoDSToStep_VertexOther;
     done     = Standard_True;
-    myResult = aTool.Find(aVertex);  
+    myResult = aTool.Find(aVertex);
     return;
-  } 
+  }
 
   gp_Pnt P;
-  
+
   P = BRep_Tool::Pnt(aVertex);
-  GeomToStep_MakeCartesianPoint MkPoint(P);
-  Handle(StepGeom_CartesianPoint) Gpms = MkPoint.Value();
-  Handle(StepShape_VertexPoint) Vpms =
-    new StepShape_VertexPoint();
-  Handle(TCollection_HAsciiString) aName = 
-    new TCollection_HAsciiString("");
+  GeomToStep_MakeCartesianPoint    MkPoint(P, theLocalFactors.LengthFactor());
+  Handle(StepGeom_CartesianPoint)  Gpms  = MkPoint.Value();
+  Handle(StepShape_VertexPoint)    Vpms  = new StepShape_VertexPoint();
+  Handle(TCollection_HAsciiString) aName = new TCollection_HAsciiString("");
 
   Vpms->Init(aName, Gpms);
 
-  aTool.Bind(aVertex,Vpms);
+  aTool.Bind(aVertex, Vpms);
   myError  = TopoDSToStep_VertexDone;
   done     = Standard_True;
   myResult = Vpms;
 }
-
 
 // ----------------------------------------------------------------------------
 // Method  : Value
 // Purpose :
 // ----------------------------------------------------------------------------
 
-const Handle(StepShape_TopologicalRepresentationItem)& TopoDSToStep_MakeStepVertex::Value() const 
+const Handle(StepShape_TopologicalRepresentationItem)& TopoDSToStep_MakeStepVertex::Value() const
 {
-  StdFail_NotDone_Raise_if (!done, "TopoDSToStep_MakeStepVertex::Value() - no result");
+  StdFail_NotDone_Raise_if(!done, "TopoDSToStep_MakeStepVertex::Value() - no result");
   return myResult;
 }
 
@@ -119,8 +118,7 @@ const Handle(StepShape_TopologicalRepresentationItem)& TopoDSToStep_MakeStepVert
 // Purpose :
 // ----------------------------------------------------------------------------
 
-TopoDSToStep_MakeVertexError TopoDSToStep_MakeStepVertex::Error() const 
+TopoDSToStep_MakeVertexError TopoDSToStep_MakeStepVertex::Error() const
 {
   return myError;
 }
-

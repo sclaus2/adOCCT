@@ -1,5 +1,5 @@
 // Created on: 1992-01-17
-// Created by: GG 
+// Created by: GG
 // Copyright (c) 1992-1999 Matra Datavision
 // Copyright (c) 1999-2014 OPEN CASCADE SAS
 //
@@ -18,9 +18,12 @@
 #define _V3d_Light_HeaderFile
 
 #include <Graphic3d_CLight.hxx>
-#include <V3d_TypeOfLight.hxx>
 
 typedef Graphic3d_CLight V3d_Light;
+#include <Standard_WarningsDisable.hxx>
+Standard_DEPRECATED("This typedef will be removed right after 7.9 release. Use Handle(T) directly "
+                    "instead.")
 typedef Handle_Graphic3d_CLight Handle_V3d_Light;
+#include <Standard_WarningsRestore.hxx>
 
 #endif // _V3d_Light_HeaderFile

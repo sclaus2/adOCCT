@@ -1,5 +1,5 @@
 // Copyright (c) 1998-1999 Matra Datavision
-// Copyright (c) 1999-2014 OPEN CASCADE SAS
+// Copyright (c) 1999-2025 OPEN CASCADE SAS
 //
 // This file is part of Open CASCADE Technology software library.
 //
@@ -12,129 +12,147 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
 #include <Standard_Type.hxx>
-#include <Standard_Mutex.hxx>
-#include <Standard_Assert.hxx>
 
 #include <NCollection_DataMap.hxx>
+#include <Standard_HashUtils.hxx>
+#include <Standard_Assert.hxx>
+#include <Standard_Mutex.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(Standard_Type,Standard_Transient)
+IMPLEMENT_STANDARD_RTTIEXT(Standard_Type, Standard_Transient)
 
-//============================================================================
-
-namespace {
-static Standard_CString copy_string (const char* theString)
-{
-  size_t aLength = strlen (theString);
-  char* aResult = static_cast<char*> (Standard::Allocate (aLength + 1));
-  strncpy (aResult, theString, aLength + 1); //including null-character
-  return aResult;
-}
-}
-
-Standard_Type::Standard_Type (const char* theSystemName,
-                              const char* theName,
-                              Standard_Size theSize,
-                              const Handle(Standard_Type)& theParent) :
-  mySystemName(copy_string (theSystemName)),
-  myName(copy_string (theName)), 
-  mySize(theSize), 
-  myParent(theParent)
+Standard_Type::Standard_Type(const char*                  theSystemName,
+                             const char*                  theName,
+                             Standard_Size                theSize,
+                             const Handle(Standard_Type)& theParent)
+    : mySystemName(theSystemName),
+      myName(theName),
+      mySize(theSize),
+      myParent(theParent)
 {
 }
 
-//============================================================================
-
-Standard_Boolean Standard_Type::SubType (const Handle(Standard_Type)& theOther) const
+Standard_Boolean Standard_Type::SubType(const Handle(Standard_Type)& theOther) const
 {
-  return ! theOther.IsNull() && (theOther == this || (! myParent.IsNull() && myParent->SubType (theOther)));
+  if (theOther.IsNull())
+  {
+    return false;
+  }
+  const Standard_Type* aTypeIter = this;
+  while (aTypeIter && theOther->mySize <= aTypeIter->mySize)
+  {
+    if (theOther.get() == aTypeIter)
+    {
+      return true;
+    }
+    aTypeIter = aTypeIter->Parent().get();
+  }
+  return false;
 }
 
-//============================================================================
-
-Standard_Boolean Standard_Type::SubType (const Standard_CString theName) const
+Standard_Boolean Standard_Type::SubType(const Standard_CString theName) const
 {
-  return theName != 0 && (IsEqual (myName, theName) || (! myParent.IsNull() && myParent->SubType (theName)));
+  if (!theName)
+  {
+    return false;
+  }
+  const Standard_Type* aTypeIter = this;
+  while (aTypeIter)
+  {
+    if (IsEqual(theName, aTypeIter->Name()))
+    {
+      return true;
+    }
+    aTypeIter = aTypeIter->Parent().get();
+  }
+  return false;
 }
 
-// ------------------------------------------------------------------
-// Print (me; s: in out OStream) returns OStream;
-// ------------------------------------------------------------------
-void Standard_Type::Print (Standard_OStream& AStream) const
+void Standard_Type::Print(Standard_OStream& AStream) const
 {
-  AStream << std::hex << (Standard_Address)this << " : " << std::dec << myName ;
+  AStream << std::hex << (Standard_Address)this << " : " << std::dec << myName;
 }
 
 //============================================================================
 // Registry of types
 //============================================================================
 
-namespace {
-  // Value-based hasher for plain C string (char*)
-  struct CStringHasher 
-  {
-    //! Computes a hash code of the given Standard_CString, in the range [1, theUpperBound]
-    //! @param theKey the key which hash code is to be computed
-    //! @param theUpperBound the upper bound of the range a computing hash code must be within
-    //! @return a computed hash code, in the range [1, theUpperBound]
-    static Standard_Integer HashCode (const Standard_CString& theKey, const Standard_Integer theUpperBound)
-    {
-      return ::HashCode (theKey, theUpperBound);
-    }
-    static bool IsEqual (const Standard_CString& theKey1, const Standard_CString& theKey2)
-    {
-      return ! strcmp (theKey1, theKey2);
-    }
-  };
+namespace
+{
 
-  // Map of string to type
-  typedef NCollection_DataMap<Standard_CString, Standard_Type*, CStringHasher> registry_type;
-
-  // Registry is made static in the function to ensure that it gets
-  // initialized by the time of first access
-  registry_type& GetRegistry() 
+struct typeNameHasher
+{
+  size_t operator()(const Standard_CString theType) const noexcept
   {
-    static registry_type theRegistry;
-    return theRegistry;
+    const int aLen = static_cast<int>(strlen(theType));
+    return opencascade::hashBytes(theType, aLen);
   }
 
-  // To initialize theRegistry map as soon as possible to be destroyed the latest
-  Handle(Standard_Type) theType = STANDARD_TYPE(Standard_Transient);
+  bool operator()(const Standard_CString theType1, const Standard_CString theType2) const noexcept
+  {
+    return strcmp(theType1, theType2) == 0;
+  }
+};
+
+using registry_type = NCollection_DataMap<Standard_CString, Standard_Type*, typeNameHasher>;
+
+// Registry is made static in the function to ensure that it gets
+// initialized by the time of first access
+registry_type& GetRegistry()
+{
+  static registry_type theRegistry(2048, NCollection_BaseAllocator::CommonBaseAllocator());
+  return theRegistry;
 }
 
-Standard_Type* Standard_Type::Register (const char* theSystemName, const char* theName,
-                                        Standard_Size theSize, const Handle(Standard_Type)& theParent)
+// To initialize theRegistry map as soon as possible to be destroyed the latest
+Handle(Standard_Type) theType = STANDARD_TYPE(Standard_Transient);
+} // namespace
+
+Standard_Type* Standard_Type::Register(const std::type_info&        theInfo,
+                                       const char*                  theName,
+                                       Standard_Size                theSize,
+                                       const Handle(Standard_Type)& theParent)
 {
   // Access to registry is protected by mutex; it should not happen often because
   // instances are cached by Standard_Type::Instance() (one per binary module)
-  static Standard_Mutex theMutex;
-  Standard_Mutex::Sentry aSentry (theMutex);
+  static Standard_Mutex  aMutex;
+  Standard_Mutex::Sentry aSentry(aMutex);
 
   // return existing descriptor if already in the registry
   registry_type& aRegistry = GetRegistry();
-  Standard_Type* aType = 0;
-  if (aRegistry.Find (theSystemName, aType))
+  Standard_Type* aType;
+  if (aRegistry.Find(theInfo.name(), aType))
+  {
     return aType;
+  }
 
-  // else create a new descriptor
-  aType = new Standard_Type (theSystemName, theName, theSize, theParent);
+  // Calculate sizes for deep copies
+  const Standard_Size anInfoNameLen = strlen(theInfo.name()) + 1;
+  const Standard_Size aNameLen      = strlen(theName) + 1;
 
-  // then add it to registry and return (the reference to the handle stored in the registry)
-  aRegistry.Bind (aType->mySystemName, aType);
+  // Allocate memory block for Standard_Type and the two strings
+  char* aMemoryBlock =
+    static_cast<char*>(Standard::AllocateOptimal(sizeof(Standard_Type) + anInfoNameLen + aNameLen));
 
-//  std::cout << "Registering " << theSystemName << ": " << aRegistry.Extent() << std::endl;
+  // Pointers to the locations for the deep copies of the strings
+  char* anInfoNameCopy = aMemoryBlock + sizeof(Standard_Type);
+  char* aNameCopy      = anInfoNameCopy + anInfoNameLen;
 
+  // Deep copy the strings using strncpy
+  strncpy(anInfoNameCopy, theInfo.name(), anInfoNameLen);
+  strncpy(aNameCopy, theName, aNameLen);
+
+  aType = new (aMemoryBlock) Standard_Type(anInfoNameCopy, aNameCopy, theSize, theParent);
+
+  // Insert the descriptor into the registry
+  aRegistry.Bind(anInfoNameCopy, aType);
   return aType;
 }
 
-Standard_Type::~Standard_Type ()
+Standard_Type::~Standard_Type()
 {
   // remove descriptor from the registry
   registry_type& aRegistry = GetRegistry();
-  Standard_ASSERT(aRegistry.UnBind (mySystemName), "Standard_Type::~Standard_Type() cannot find itself in registry",);
-
-//  std::cout << "Unregistering " << mySystemName << ": " << aRegistry.Extent() << std::endl;
-  Standard::Free (mySystemName);
-  Standard::Free (myName);
+  Standard_ASSERT(aRegistry.UnBind(mySystemName),
+                  "Standard_Type::~Standard_Type() cannot find itself in registry", );
 }

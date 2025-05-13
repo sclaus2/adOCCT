@@ -18,45 +18,24 @@
 #define _StepVisual_DraughtingAnnotationOccurrence_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepVisual_AnnotationOccurrence.hxx>
 
-
 class StepVisual_DraughtingAnnotationOccurrence;
 DEFINE_STANDARD_HANDLE(StepVisual_DraughtingAnnotationOccurrence, StepVisual_AnnotationOccurrence)
-
 
 class StepVisual_DraughtingAnnotationOccurrence : public StepVisual_AnnotationOccurrence
 {
 
 public:
-
-  
   //! Returns a DraughtingAnnotationOccurrence
   Standard_EXPORT StepVisual_DraughtingAnnotationOccurrence();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepVisual_DraughtingAnnotationOccurrence,StepVisual_AnnotationOccurrence)
+  DEFINE_STANDARD_RTTIEXT(StepVisual_DraughtingAnnotationOccurrence,
+                          StepVisual_AnnotationOccurrence)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepVisual_DraughtingAnnotationOccurrence_HeaderFile

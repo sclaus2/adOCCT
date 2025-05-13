@@ -28,18 +28,18 @@
  */
 
 //! define the constant to the size of 10 points
-#define MeshVS_BufSize 10*3
+#define MeshVS_BufSize 10 * 3
 
 template<class T>
-class MeshVS_Buffer 
+class MeshVS_Buffer
 {
 public:
   //! Constructor of the buffer of the requested size
-  MeshVS_Buffer (const Standard_Size theLength)
-    : myDynData (nullptr)
+  MeshVS_Buffer(const Standard_Size theSize)
+      : myDynData(nullptr)
   {
-    if (theLength > MeshVS_BufSize)
-      myDynData = new T[theLength];
+    if (theSize > MeshVS_BufSize)
+      myDynData = new T[theLength]; // Standard::Allocate(theSize);
   }
 
   //! Destructor
@@ -47,43 +47,41 @@ public:
   {
     if (myDynData)
     {
-      //Standard::Free (myDynData);
-      delete[] myDynData;
+      // Standard::Free(myDynData);
+      // myDynData = 0;
+      delete[] myDynData
     }
   }
 
   //! Cast the buffer to the void pointer. Commented in the AD version of OCCT, also not used
-//  operator void* ()
-//  {
-//    return myDynData ? myDynData : (void*) myAutoData;
-//  }
+  // operator void*() { return myDynData ? myDynData : (void*)myAutoData; }
 
-  //! Interpret the buffer as a reference to T
-  operator T& ()
+  //! Interpret the buffer as a reference to double
+  operator T&()
   {
-    return * (myDynData ? myDynData : myAutoData);
+    // return *(myDynData ? (Standard_Real*)myDynData : (Standard_Real*)myAutoData);
+    return *(myDynData ? myDynData : myAutoData);
   }
 
   //! Interpret the buffer as a reference to int. Commented in the AD version of OCCT, accessing adouble array with an int pointer does not make sense
-//  operator Standard_Integer& ()
-//  {
-//    return * (myDynData ? (Standard_Integer*) myDynData : (Standard_Integer*) myAutoData);
-//  }
+  /*
+  operator Standard_Integer&()
+  {
+    return *(myDynData ? (Standard_Integer*)myDynData : (Standard_Integer*)myAutoData);
+  }
+  */
 
   //! Interpret the buffer as a reference to gp_Pnt
-  operator gp_Pnt& ()
-  {
-    return * (myDynData ? (gp_Pnt*) myDynData : (gp_Pnt*) myAutoData);
-  }
+  operator gp_Pnt&() { return *(myDynData ? (gp_Pnt*)myDynData : (gp_Pnt*)myAutoData); }
 
 private:
   //! Deprecate copy constructor
   MeshVS_Buffer(const MeshVS_Buffer&) {}
 
   //! Deprecate copy operation
-  MeshVS_Buffer& operator=(const MeshVS_Buffer&) {return *this;}
+  MeshVS_Buffer& operator=(const MeshVS_Buffer&) { return *this; }
 
-  T  myAutoData[ MeshVS_BufSize ];
+  T  myAutoData[MeshVS_BufSize];
   T* myDynData;
 };
 

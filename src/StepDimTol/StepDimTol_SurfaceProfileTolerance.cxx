@@ -15,15 +15,10 @@
 
 // Generator:	ExpToCas (EXPRESS -> CASCADE/XSTEP Translator) V1.2
 
-#include <Standard_Type.hxx>
 #include <StepDimTol_SurfaceProfileTolerance.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepDimTol_SurfaceProfileTolerance,StepDimTol_GeometricTolerance)
+IMPLEMENT_STANDARD_RTTIEXT(StepDimTol_SurfaceProfileTolerance, StepDimTol_GeometricTolerance)
 
-//=======================================================================
-//function : StepDimTol_SurfaceProfileTolerance
-//purpose  : 
-//=======================================================================
-StepDimTol_SurfaceProfileTolerance::StepDimTol_SurfaceProfileTolerance ()
-{
-}
+//=================================================================================================
+
+StepDimTol_SurfaceProfileTolerance::StepDimTol_SurfaceProfileTolerance() {}

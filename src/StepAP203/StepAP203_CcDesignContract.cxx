@@ -16,49 +16,36 @@
 
 // Generator:	ExpToCas (EXPRESS -> CASCADE/XSTEP Translator) V1.0
 
-#include <Standard_Type.hxx>
 #include <StepAP203_CcDesignContract.hxx>
 #include <StepBasic_Contract.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(StepAP203_CcDesignContract,StepBasic_ContractAssignment)
+IMPLEMENT_STANDARD_RTTIEXT(StepAP203_CcDesignContract, StepBasic_ContractAssignment)
 
-//=======================================================================
-//function : StepAP203_CcDesignContract
-//purpose  : 
-//=======================================================================
-StepAP203_CcDesignContract::StepAP203_CcDesignContract ()
-{
-}
+//=================================================================================================
 
-//=======================================================================
-//function : Init
-//purpose  : 
-//=======================================================================
+StepAP203_CcDesignContract::StepAP203_CcDesignContract() {}
 
-void StepAP203_CcDesignContract::Init (const Handle(StepBasic_Contract) &aContractAssignment_AssignedContract,
-                                       const Handle(StepAP203_HArray1OfContractedItem) &aItems)
+//=================================================================================================
+
+void StepAP203_CcDesignContract::Init(
+  const Handle(StepBasic_Contract)&                aContractAssignment_AssignedContract,
+  const Handle(StepAP203_HArray1OfContractedItem)& aItems)
 {
   StepBasic_ContractAssignment::Init(aContractAssignment_AssignedContract);
 
   theItems = aItems;
 }
 
-//=======================================================================
-//function : Items
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-Handle(StepAP203_HArray1OfContractedItem) StepAP203_CcDesignContract::Items () const
+Handle(StepAP203_HArray1OfContractedItem) StepAP203_CcDesignContract::Items() const
 {
   return theItems;
 }
 
-//=======================================================================
-//function : SetItems
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-void StepAP203_CcDesignContract::SetItems (const Handle(StepAP203_HArray1OfContractedItem) &aItems)
+void StepAP203_CcDesignContract::SetItems(const Handle(StepAP203_HArray1OfContractedItem)& aItems)
 {
   theItems = aItems;
 }

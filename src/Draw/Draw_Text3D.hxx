@@ -18,61 +18,41 @@
 #define _Draw_Text3D_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <gp_Pnt.hxx>
 #include <Draw_Color.hxx>
 #include <TCollection_AsciiString.hxx>
-#include <Standard_Real.hxx>
 #include <Draw_Drawable3D.hxx>
-#include <Standard_CString.hxx>
 class Draw_Display;
-
 
 class Draw_Text3D;
 DEFINE_STANDARD_HANDLE(Draw_Text3D, Draw_Drawable3D)
-
 
 class Draw_Text3D : public Draw_Drawable3D
 {
 
 public:
-
-  
   Standard_EXPORT Draw_Text3D(const gp_Pnt& p, const Standard_CString T, const Draw_Color& col);
-  
-  Standard_EXPORT Draw_Text3D(const gp_Pnt& p, const Standard_CString T, const Draw_Color& col, const double moveX, const double moveY);
-  
-  Standard_EXPORT void SetPnt (const gp_Pnt& p);
-  
-  Standard_EXPORT void DrawOn (Draw_Display& dis) const Standard_OVERRIDE;
 
+  Standard_EXPORT Draw_Text3D(const gp_Pnt&          p,
+                              const Standard_CString T,
+                              const Draw_Color&      col,
+                              const double    moveX,
+                              const double    moveY);
 
+  Standard_EXPORT void SetPnt(const gp_Pnt& p);
 
+  Standard_EXPORT void DrawOn(Draw_Display& dis) const Standard_OVERRIDE;
 
-  DEFINE_STANDARD_RTTIEXT(Draw_Text3D,Draw_Drawable3D)
+  DEFINE_STANDARD_RTTIEXT(Draw_Text3D, Draw_Drawable3D)
 
 protected:
-
-
-
-
 private:
-
-
-  gp_Pnt myPoint;
-  Draw_Color myColor;
+  gp_Pnt                  myPoint;
+  Draw_Color              myColor;
   TCollection_AsciiString myText;
-  double mymoveX;
-  double mymoveY;
-
-
+  double           mymoveX;
+  double           mymoveY;
 };
-
-
-
-
-
-
 
 #endif // _Draw_Text3D_HeaderFile

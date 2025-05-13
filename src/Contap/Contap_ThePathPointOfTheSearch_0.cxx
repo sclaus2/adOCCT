@@ -20,7 +20,6 @@
 #include <Adaptor2d_Curve2d.hxx>
 #include <Standard_DomainError.hxx>
 #include <gp_Pnt.hxx>
- 
 
 #define TheVertex Handle(Adaptor3d_HVertex)
 #define TheVertex_hxx <Adaptor3d_HVertex.hxx>
@@ -28,5 +27,4 @@
 #define TheArc_hxx <Adaptor2d_Curve2d.hxx>
 #define IntStart_PathPoint Contap_ThePathPointOfTheSearch
 #define IntStart_PathPoint_hxx <Contap_ThePathPointOfTheSearch.hxx>
-#include <IntStart_PathPoint.gxx>
-
+#include "../IntStart/IntStart_PathPoint.gxx"

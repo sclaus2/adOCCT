@@ -142,19 +142,41 @@ proc OCCDoc_GetRelPath {thePathFrom thePathTo} {
   return $thePathTo
 }
 
-# Returns OCCT version string from file Standard_Version.hxx (if available)
+# Returns OCCT version string from version.cmake (if available)
 proc OCCDoc_DetectCasVersion {} {
-  set occt_ver 6.7.0
+  # Default version in case the file is not found or readable
+  set occt_ver "7.8.0"
   set occt_ver_add ""
-  set filename "[OCCDoc_GetSourceDir]/Standard/Standard_Version.hxx"
-  if { [file exists $filename] } {
-    set fh [open $filename "r"]
-    set fh_loaded [read $fh]
-    close $fh
-    regexp {[^/]\s*#\s*define\s+OCC_VERSION_COMPLETE\s+\"([^\s]*)\"} $fh_loaded dummy occt_ver
-    regexp {[^/]\s*#\s*define\s+OCC_VERSION_DEVELOPMENT\s+\"([^\s]*)\"} $fh_loaded dummy occt_ver_add
-    if { "$occt_ver_add" != "" } { set occt_ver ${occt_ver}.$occt_ver_add }
+  
+  # Construct path to version.cmake relative to script location
+  set filename "[file normalize [file dirname [info script]]/cmake/version.cmake]"
+  
+  if { [file exists $filename] && [file readable $filename] } {
+    if {[catch {
+      set fh [open $filename "r"]
+      set fh_loaded [read $fh]
+      close $fh
+      
+      # Use more robust regular expressions
+      regexp {OCC_VERSION_MAJOR\s+(\d+)} $fh_loaded -> major
+      regexp {OCC_VERSION_MINOR\s+(\d+)} $fh_loaded -> minor
+      regexp {OCC_VERSION_MAINTENANCE\s+(\d+)} $fh_loaded -> maint
+      regexp {OCC_VERSION_DEVELOPMENT\s+\"([^\"]+)\"} $fh_loaded -> occt_ver_add
+      
+      if {[info exists major] && [info exists minor] && [info exists maint]} {
+        puts "Info: Open CASCADE Technology version $major.$minor.$maint"
+        set occt_ver "$major.$minor.$maint"
+        if { [info exists occt_ver_add] && $occt_ver_add != "" } {
+          set occt_ver ${occt_ver}.$occt_ver_add
+        }
+      }
+    } err]} {
+      puts "Warning: Error reading version from $filename: $err"
+    }
+  } else {
+    puts "Warning: Version file $filename not found or not readable"
   }
+  
   return $occt_ver
 }
 

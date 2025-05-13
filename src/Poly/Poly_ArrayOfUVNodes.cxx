@@ -13,30 +13,24 @@
 
 #include <Poly_ArrayOfUVNodes.hxx>
 
-// =======================================================================
-// function : Poly_ArrayOfUVNodes
-// purpose  :
-// =======================================================================
-Poly_ArrayOfUVNodes::Poly_ArrayOfUVNodes (const Poly_ArrayOfUVNodes& theOther)
-: NCollection_AliasedArray (theOther)
+//=================================================================================================
+
+Poly_ArrayOfUVNodes::Poly_ArrayOfUVNodes(const Poly_ArrayOfUVNodes& theOther)
+    : NCollection_AliasedArray(theOther)
 {
   //
 }
 
-// =======================================================================
-// function : ~Poly_ArrayOfUVNodes
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 Poly_ArrayOfUVNodes::~Poly_ArrayOfUVNodes()
 {
   //
 }
 
-// =======================================================================
-// function : Assign
-// purpose  :
-// =======================================================================
-Poly_ArrayOfUVNodes& Poly_ArrayOfUVNodes::Assign (const Poly_ArrayOfUVNodes& theOther)
+//=================================================================================================
+
+Poly_ArrayOfUVNodes& Poly_ArrayOfUVNodes::Assign(const Poly_ArrayOfUVNodes& theOther)
 {
   if (&theOther == this)
   {
@@ -46,16 +40,19 @@ Poly_ArrayOfUVNodes& Poly_ArrayOfUVNodes::Assign (const Poly_ArrayOfUVNodes& the
   if (myStride == theOther.myStride)
   {
     // fast copy
-    NCollection_AliasedArray::Assign (theOther);
+    NCollection_AliasedArray::Assign(theOther);
     return *this;
   }
 
   // slow copy
-  if (mySize != theOther.mySize) { throw Standard_DimensionMismatch ("Poly_ArrayOfUVNodes::Assign(), arrays have different sizes"); }
+  if (mySize != theOther.mySize)
+  {
+    throw Standard_DimensionMismatch("Poly_ArrayOfUVNodes::Assign(), arrays have different sizes");
+  }
   for (int anIter = 0; anIter < mySize; ++anIter)
   {
-    const gp_Vec2double aPnt = theOther.Value (anIter);
-    SetValue (anIter, aPnt);
+    const gp_Vec2double aPnt = theOther.Value(anIter);
+    SetValue(anIter, aPnt);
   }
   return *this;
 }

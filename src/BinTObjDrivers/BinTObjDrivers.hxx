@@ -18,7 +18,6 @@
 #ifndef BinTObjDrivers_HeaderFile
 #define BinTObjDrivers_HeaderFile
 
-#include <TObj_Common.hxx>
 #include <Standard_GUID.hxx>
 
 class BinMDF_ADriverTable;
@@ -27,23 +26,20 @@ class TDocStd_Application;
 
 //! Class for registering storage/retrieval drivers for TObj Bin persistence
 
-class BinTObjDrivers 
+class BinTObjDrivers
 {
- public:
+public:
   // ---------- PUBLIC METHODS ----------
 
-  Standard_EXPORT static const Handle(Standard_Transient)& Factory
-                        (const Standard_GUID& aGUID);
+  Standard_EXPORT static const Handle(Standard_Transient)& Factory(const Standard_GUID& aGUID);
   // Returns a driver corresponding to <aGUID>. Used for plugin.
 
   //! Defines format "TObjBin" and registers its read and write drivers
   //! in the specified application
-  Standard_EXPORT static void DefineFormat (const Handle(TDocStd_Application)& theApp);
+  Standard_EXPORT static void DefineFormat(const Handle(TDocStd_Application)& theApp);
 
-  Standard_EXPORT static void AddDrivers
-                        (const Handle(BinMDF_ADriverTable)& aDriverTable,
-                         const Handle(Message_Messenger)&   aMsgDrv);
-
+  Standard_EXPORT static void AddDrivers(const Handle(BinMDF_ADriverTable)& aDriverTable,
+                                         const Handle(Message_Messenger)&   aMsgDrv);
 };
 
 #endif

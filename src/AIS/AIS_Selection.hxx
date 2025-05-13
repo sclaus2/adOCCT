@@ -31,30 +31,46 @@ class AIS_Selection : public Standard_Transient
 {
   DEFINE_STANDARD_RTTIEXT(AIS_Selection, Standard_Transient)
 public:
-
   //! creates a new selection.
   Standard_EXPORT AIS_Selection();
-  
+
   //! removes all the object of the selection.
   Standard_EXPORT virtual void Clear();
-  
+
   //! if the object is not yet in the selection, it will be added.
   //! if the object is already in the selection, it will be removed.
-  Standard_EXPORT virtual AIS_SelectStatus Select (const Handle(SelectMgr_EntityOwner)& theObject);
-  
+  //! @param[in] theOwner element to change selection state
+  //! @param[in] theFilter context filter
+  //! @param[in] theSelScheme selection scheme
+  //! @param[in] theIsDetected flag of object detection
+  //! @return result of selection
+  Standard_EXPORT virtual AIS_SelectStatus Select(const Handle(SelectMgr_EntityOwner)& theOwner,
+                                                  const Handle(SelectMgr_Filter)&      theFilter,
+                                                  const AIS_SelectionScheme            theSelScheme,
+                                                  const Standard_Boolean theIsDetected);
+
   //! the object is always add int the selection.
   //! faster when the number of objects selected is great.
-  Standard_EXPORT virtual AIS_SelectStatus AddSelect (const Handle(SelectMgr_EntityOwner)& theObject);
+  Standard_EXPORT virtual AIS_SelectStatus AddSelect(
+    const Handle(SelectMgr_EntityOwner)& theObject);
 
   //! clears the selection and adds the object in the selection.
-  virtual void ClearAndSelect (const Handle(SelectMgr_EntityOwner)& theObject)
+  //! @param[in] theObject element to change selection state
+  //! @param[in] theFilter context filter
+  //! @param[in] theIsDetected flag of object detection
+  virtual void ClearAndSelect(const Handle(SelectMgr_EntityOwner)& theObject,
+                              const Handle(SelectMgr_Filter)&      theFilter,
+                              const Standard_Boolean               theIsDetected)
   {
     Clear();
-    Select (theObject);
+    Select(theObject, theFilter, AIS_SelectionScheme_Add, theIsDetected);
   }
 
   //! checks if the object is in the selection.
-  Standard_Boolean IsSelected (const Handle(SelectMgr_EntityOwner)& theObject) const { return myResultMap.IsBound (theObject); }
+  Standard_Boolean IsSelected(const Handle(SelectMgr_EntityOwner)& theObject) const
+  {
+    return myResultMap.IsBound(theObject);
+  }
 
   //! Return the list of selected objects.
   const AIS_NListOfEntityOwner& Objects() const { return myresult; }
@@ -66,7 +82,6 @@ public:
   Standard_Boolean IsEmpty() const { return myresult.IsEmpty(); }
 
 public:
-
   //! Start iteration through selected objects.
   void Init() { myIterator = AIS_NListOfEntityOwner::Iterator(myresult); }
 
@@ -80,30 +95,28 @@ public:
   const Handle(SelectMgr_EntityOwner)& Value() const { return myIterator.Value(); }
 
   //! Select or deselect owners depending on the selection scheme.
-  //! @param theOwners [in] elements to change selection state
-  //! @param theSelScheme [in] selection scheme, defines how owner is selected
-  //! @param theToAllowSelOverlap [in] selection flag, if true - overlapped entities are allowed
-  //! @param theFilter [in] context filter to skip not acceptable owners
-  Standard_EXPORT virtual void SelectOwners (const AIS_NArray1OfEntityOwner& thePickedOwners,
-                                             const AIS_SelectionScheme theSelScheme,
-                                             const Standard_Boolean theToAllowSelOverlap,
-                                             const Handle(SelectMgr_Filter)& theFilter);
+  //! @param[in] thePickedOwners elements to change selection state
+  //! @param[in] theSelScheme selection scheme, defines how owner is selected
+  //! @param[in] theToAllowSelOverlap selection flag, if true - overlapped entities are allowed
+  //! @param[in] theFilter context filter to skip not acceptable owners
+  Standard_EXPORT virtual void SelectOwners(const AIS_NArray1OfEntityOwner& thePickedOwners,
+                                            const AIS_SelectionScheme       theSelScheme,
+                                            const Standard_Boolean          theToAllowSelOverlap,
+                                            const Handle(SelectMgr_Filter)& theFilter);
 
 protected:
-
   //! Append the owner into the current selection if filter is Ok.
-  //! @param theOwner [in] element to change selection state
-  //! @param theFilter [in] context filter to skip not acceptable owners
+  //! @param[in] theOwner  element to change selection state
+  //! @param[in] theFilter  context filter to skip not acceptable owners
   //! @return result of selection
-  Standard_EXPORT virtual AIS_SelectStatus appendOwner (const Handle(SelectMgr_EntityOwner)& theOwner,
-                                                        const Handle(SelectMgr_Filter)& theFilter);
+  Standard_EXPORT virtual AIS_SelectStatus appendOwner(
+    const Handle(SelectMgr_EntityOwner)& theOwner,
+    const Handle(SelectMgr_Filter)&      theFilter);
 
 protected:
-
-  AIS_NListOfEntityOwner myresult;
-  AIS_NListOfEntityOwner::Iterator myIterator;
+  AIS_NListOfEntityOwner                                                               myresult;
+  AIS_NListOfEntityOwner::Iterator                                                     myIterator;
   NCollection_DataMap<Handle(SelectMgr_EntityOwner), AIS_NListOfEntityOwner::Iterator> myResultMap;
-
 };
 
 DEFINE_STANDARD_HANDLE(AIS_Selection, Standard_Transient)

@@ -17,16 +17,13 @@
 #define _BRepMesh_MeshAlgoFactory_HeaderFile
 
 #include <Standard_Transient.hxx>
-#include <Standard_Type.hxx>
-#include <GeomAbs_SurfaceType.hxx>
 #include <IMeshTools_MeshAlgoFactory.hxx>
 
-//! Default implementation of IMeshTools_MeshAlgoFactory providing algorithms 
+//! Default implementation of IMeshTools_MeshAlgoFactory providing algorithms
 //! of different complexity depending on type of target surface.
 class BRepMesh_MeshAlgoFactory : public IMeshTools_MeshAlgoFactory
 {
 public:
-
   //! Constructor.
   Standard_EXPORT BRepMesh_MeshAlgoFactory();
 

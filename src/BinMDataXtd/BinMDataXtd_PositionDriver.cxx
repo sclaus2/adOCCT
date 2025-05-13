@@ -17,28 +17,22 @@
 
 #include <BinMDataXtd_PositionDriver.hxx>
 
-#include <gp_Pnt.hxx>
 #include <Standard_Type.hxx>
 #include <TDataXtd_Position.hxx>
 #include <TDF_Attribute.hxx>
 #include <BinObjMgt_Persistent.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(BinMDataXtd_PositionDriver,BinMDF_ADriver)
+IMPLEMENT_STANDARD_RTTIEXT(BinMDataXtd_PositionDriver, BinMDF_ADriver)
 
-//=======================================================================
-//function : BinMDataStd_PositionDriver
-//purpose  : Constructor
-//=======================================================================
-BinMDataXtd_PositionDriver::BinMDataXtd_PositionDriver
-                        (const Handle(Message_Messenger)& theMsgDriver)
-: BinMDF_ADriver (theMsgDriver, STANDARD_TYPE(TDataXtd_Position)->Name())
+//=================================================================================================
+
+BinMDataXtd_PositionDriver::BinMDataXtd_PositionDriver(
+  const Handle(Message_Messenger)& theMsgDriver)
+    : BinMDF_ADriver(theMsgDriver, STANDARD_TYPE(TDataXtd_Position)->Name())
 {
 }
 
-//=======================================================================
-//function : NewEmpty
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
 Handle(TDF_Attribute) BinMDataXtd_PositionDriver::NewEmpty() const
 {
@@ -46,28 +40,30 @@ Handle(TDF_Attribute) BinMDataXtd_PositionDriver::NewEmpty() const
 }
 
 //=======================================================================
-//function : Paste
-//purpose  : persistent -> transient (retrieve)
+// function : Paste
+// purpose  : persistent -> transient (retrieve)
 //=======================================================================
 
-Standard_Boolean BinMDataXtd_PositionDriver::Paste
-                                (const BinObjMgt_Persistent&  theSource,
-                                 const Handle(TDF_Attribute)& theTarget,
-                                 BinObjMgt_RRelocationTable&  ) const
+Standard_Boolean BinMDataXtd_PositionDriver::Paste(const BinObjMgt_Persistent&  theSource,
+                                                   const Handle(TDF_Attribute)& theTarget,
+                                                   BinObjMgt_RRelocationTable&) const
 {
   Handle(TDataXtd_Position) anAtt = Handle(TDataXtd_Position)::DownCast(theTarget);
-  double aValue;
-  Standard_Boolean ok = theSource >> aValue;
-  if (!ok) return ok;
+  double             aValue;
+  Standard_Boolean          ok = theSource >> aValue;
+  if (!ok)
+    return ok;
   gp_Pnt aPosition(0., 0., 0.);
   aPosition.SetX(aValue);
 
   ok = theSource >> aValue;
-  if (!ok) return ok;
+  if (!ok)
+    return ok;
   aPosition.SetY(aValue);
 
   ok = theSource >> aValue;
-  if (!ok) return ok;
+  if (!ok)
+    return ok;
   aPosition.SetZ(aValue);
 
   anAtt->SetPosition(aPosition);
@@ -76,16 +72,16 @@ Standard_Boolean BinMDataXtd_PositionDriver::Paste
 }
 
 //=======================================================================
-//function : Paste
-//purpose  : transient -> persistent (store)
+// function : Paste
+// purpose  : transient -> persistent (store)
 //=======================================================================
 
-void BinMDataXtd_PositionDriver::Paste (const Handle(TDF_Attribute)& theSource,
+void BinMDataXtd_PositionDriver::Paste(const Handle(TDF_Attribute)& theSource,
                                        BinObjMgt_Persistent&        theTarget,
-                                       BinObjMgt_SRelocationTable&  ) const
+                                       BinObjMgt_SRelocationTable&) const
 {
   Handle(TDataXtd_Position) anAtt = Handle(TDataXtd_Position)::DownCast(theSource);
-  
+
   theTarget << anAtt->GetPosition().X().getValue();
   theTarget << anAtt->GetPosition().Y().getValue();
   theTarget << anAtt->GetPosition().Z().getValue();

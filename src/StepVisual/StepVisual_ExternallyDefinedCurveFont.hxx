@@ -17,10 +17,8 @@
 #define _StepVisual_ExternallyDefinedCurveFont_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepBasic_ExternallyDefinedItem.hxx>
-
 
 class StepVisual_ExternallyDefinedCurveFont;
 DEFINE_STANDARD_HANDLE(StepVisual_ExternallyDefinedCurveFont, StepBasic_ExternallyDefinedItem)
@@ -30,32 +28,13 @@ class StepVisual_ExternallyDefinedCurveFont : public StepBasic_ExternallyDefined
 {
 
 public:
-
-  
   //! Empty constructor
   Standard_EXPORT StepVisual_ExternallyDefinedCurveFont();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepVisual_ExternallyDefinedCurveFont,StepBasic_ExternallyDefinedItem)
+  DEFINE_STANDARD_RTTIEXT(StepVisual_ExternallyDefinedCurveFont, StepBasic_ExternallyDefinedItem)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepVisual_ExternallyDefinedCurveFont_HeaderFile

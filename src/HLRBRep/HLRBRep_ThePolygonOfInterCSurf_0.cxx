@@ -21,7 +21,6 @@
 #include <HLRBRep_LineTool.hxx>
 #include <Bnd_Box.hxx>
 #include <gp_Pnt.hxx>
- 
 
 #define TheCurve gp_Lin
 #define TheCurve_hxx <gp_Lin.hxx>
@@ -29,5 +28,4 @@
 #define TheCurveTool_hxx <HLRBRep_LineTool.hxx>
 #define IntCurveSurface_Polygon HLRBRep_ThePolygonOfInterCSurf
 #define IntCurveSurface_Polygon_hxx <HLRBRep_ThePolygonOfInterCSurf.hxx>
-#include <IntCurveSurface_Polygon.gxx>
-
+#include "../IntCurveSurface/IntCurveSurface_Polygon.gxx"

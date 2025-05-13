@@ -22,58 +22,50 @@
 #include <Media_Frame.hxx>
 
 #ifdef HAVE_FFMPEG
-#include <Standard_WarningsDisable.hxx>
+  #include <Standard_WarningsDisable.hxx>
 extern "C"
 {
   #include <libavcodec/avcodec.h>
   #include <libavutil/imgutils.h>
 };
-#include <Standard_WarningsRestore.hxx>
+  #include <Standard_WarningsRestore.hxx>
 #endif
 
 IMPLEMENT_STANDARD_RTTIEXT(Media_BufferPool, Standard_Transient)
 
-// =======================================================================
-// function : Media_BufferPool
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 Media_BufferPool::Media_BufferPool()
-: myPool (NULL),
-  myBufferSize (0)
+    : myPool(NULL),
+      myBufferSize(0)
 {
   //
 }
 
-// =======================================================================
-// function : ~Media_BufferPool
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 Media_BufferPool::~Media_BufferPool()
 {
   Release();
 }
 
-// =======================================================================
-// function : Release
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 void Media_BufferPool::Release()
 {
   if (myPool != NULL)
   {
-  #ifdef HAVE_FFMPEG
-    av_buffer_pool_uninit (&myPool);
-  #endif
+#ifdef HAVE_FFMPEG
+    av_buffer_pool_uninit(&myPool);
+#endif
     myPool       = NULL;
     myBufferSize = 0;
   }
 }
 
-// =======================================================================
-// function : Init
-// purpose  :
-// =======================================================================
-bool Media_BufferPool::Init (int theBufferSize)
+//=================================================================================================
+
+bool Media_BufferPool::Init(int theBufferSize)
 {
   if (myBufferSize == theBufferSize)
   {
@@ -87,20 +79,18 @@ bool Media_BufferPool::Init (int theBufferSize)
   }
 
 #ifdef HAVE_FFMPEG
-  myPool = av_buffer_pool_init (theBufferSize, NULL);
+  myPool = av_buffer_pool_init(theBufferSize, NULL);
 #endif
   myBufferSize = theBufferSize;
   return myPool != NULL;
 }
 
-// =======================================================================
-// function : GetBuffer
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 AVBufferRef* Media_BufferPool::GetBuffer()
 {
 #ifdef HAVE_FFMPEG
-  return av_buffer_pool_get (myPool);
+  return av_buffer_pool_get(myPool);
 #else
   return NULL;
 #endif

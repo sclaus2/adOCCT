@@ -22,7 +22,6 @@
 #include <Standard_Handle.hxx>
 
 #include <TNaming_PtrNode.hxx>
-#include <Standard_Boolean.hxx>
 class Standard_NoMoreObject;
 class Standard_NoSuchObject;
 class TNaming_Tool;
@@ -30,51 +29,32 @@ class TopoDS_Shape;
 class TNaming_UsedShapes;
 class TDF_Label;
 
-
 //! To iterate on   all  the label which contained  a
 //! given shape.
-class TNaming_SameShapeIterator 
+class TNaming_SameShapeIterator
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT TNaming_SameShapeIterator(const TopoDS_Shape& aShape, const TDF_Label& access);
-  
-    Standard_Boolean More() const;
-  
+
+  Standard_Boolean More() const;
+
   Standard_EXPORT void Next();
-  
+
   Standard_EXPORT TDF_Label Label() const;
 
-
-friend class TNaming_Tool;
-
+  friend class TNaming_Tool;
 
 protected:
-
-
-
-
-
 private:
+  Standard_EXPORT TNaming_SameShapeIterator(const TopoDS_Shape&               aShape,
+                                            const Handle(TNaming_UsedShapes)& Shapes);
 
-  
-  Standard_EXPORT TNaming_SameShapeIterator(const TopoDS_Shape& aShape, const Handle(TNaming_UsedShapes)& Shapes);
-
-
-  TNaming_PtrNode myNode;
+  TNaming_PtrNode  myNode;
   Standard_Boolean myIsNew;
-
-
 };
 
-
 #include <TNaming_SameShapeIterator.lxx>
-
-
-
-
 
 #endif // _TNaming_SameShapeIterator_HeaderFile

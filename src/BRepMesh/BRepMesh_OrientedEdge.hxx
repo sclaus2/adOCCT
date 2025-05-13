@@ -15,52 +15,34 @@
 #define _BRepMesh_OrientedEdge_HeaderFile
 
 #include <Standard.hxx>
+#include <Standard_HashUtils.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Macro.hxx>
-#include <BRepMesh_DegreeOfFreedom.hxx>
 
 //! Light weighted structure representing simple link.
 class BRepMesh_OrientedEdge
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
   //! Default constructor.
   BRepMesh_OrientedEdge()
-    : myFirstNode(-1),
-      myLastNode(-1)
+      : myFirstNode(-1),
+        myLastNode(-1)
   {
   }
 
   //! Constructs a link between two vertices.
-  BRepMesh_OrientedEdge(
-    const Standard_Integer theFirstNode,
-    const Standard_Integer theLastNode)
-    : myFirstNode(theFirstNode),
-      myLastNode(theLastNode)
+  BRepMesh_OrientedEdge(const Standard_Integer theFirstNode, const Standard_Integer theLastNode)
+      : myFirstNode(theFirstNode),
+        myLastNode(theLastNode)
   {
   }
 
   //! Returns index of first node of the Link.
-  Standard_Integer FirstNode() const
-  {
-    return myFirstNode;
-  }
+  Standard_Integer FirstNode() const { return myFirstNode; }
 
   //! Returns index of last node of the Link.
-  Standard_Integer LastNode() const
-  {
-    return myLastNode;
-  }
-
-  //! Computes a hash code for this oriented edge, in the range [1, theUpperBound]
-  //! @param theUpperBound the upper bound of the range a computing hash code must be within
-  //! @return a computed hash code, in the range [1, theUpperBound]
-  Standard_Integer HashCode (const Standard_Integer theUpperBound) const
-  {
-    return ::HashCode (myFirstNode + myLastNode, theUpperBound);
-  }
+  Standard_Integer LastNode() const { return myLastNode; }
 
   //! Checks this and other edge for equality.
   //! @param theOther edge to be checked against this one.
@@ -71,24 +53,31 @@ public:
   }
 
   //! Alias for IsEqual.
-  Standard_Boolean operator ==(const BRepMesh_OrientedEdge& Other) const
-  {
-    return IsEqual(Other);
-  }
+  Standard_Boolean operator==(const BRepMesh_OrientedEdge& Other) const { return IsEqual(Other); }
 
 private:
-
   Standard_Integer myFirstNode;
   Standard_Integer myLastNode;
 };
 
-//! Computes a hash code for the given oriented edge, in the range [1, theUpperBound]
-//! @param theOrientedEdge the oriented edge which hash code is to be computed
-//! @param theUpperBound the upper bound of the range a computing hash code must be within
-//! @return a computed hash code, in the range [1, theUpperBound]
-inline Standard_Integer HashCode (const BRepMesh_OrientedEdge& theOrientedEdge, const Standard_Integer theUpperBound)
+namespace std
 {
-  return theOrientedEdge.HashCode (theUpperBound);
-}
+template <>
+struct hash<BRepMesh_OrientedEdge>
+{
+  size_t operator()(const BRepMesh_OrientedEdge& theOrientedEdge) const noexcept
+  {
+    union Combination {
+      unsigned short Arr[2]; // Node can be represented as a short
+      uint32_t       Hash;
+
+    } aCombination;
+
+    aCombination.Arr[0] = static_cast<unsigned short>(theOrientedEdge.FirstNode());
+    aCombination.Arr[1] = static_cast<unsigned short>(theOrientedEdge.LastNode());
+    return static_cast<size_t>(aCombination.Hash);
+  }
+};
+} // namespace std
 
 #endif

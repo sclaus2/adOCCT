@@ -20,7 +20,6 @@
 #include <gp_Pnt.hxx>
 #include <HLRBRep_ThePolygonOfInterCSurf.hxx>
 #include <Bnd_Box.hxx>
- 
 
 #define ThePoint gp_Pnt
 #define ThePoint_hxx <gp_Pnt.hxx>
@@ -30,5 +29,4 @@
 #define TheBoundingBox_hxx <Bnd_Box.hxx>
 #define IntCurveSurface_PolygonTool HLRBRep_ThePolygonToolOfInterCSurf
 #define IntCurveSurface_PolygonTool_hxx <HLRBRep_ThePolygonToolOfInterCSurf.hxx>
-#include <IntCurveSurface_PolygonTool.gxx>
-
+#include "../IntCurveSurface/IntCurveSurface_PolygonTool.gxx"

@@ -1,4 +1,4 @@
-// Created on : Fri May 08 19:02:07 2020 
+// Created on : Fri May 08 19:02:07 2020
 // Created by: Irina KRYLOVA
 // Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
 // Copyright (c) Open CASCADE 2020
@@ -18,25 +18,23 @@
 #define _StepKinematics_LinearFlexibleLinkRepresentation_HeaderFile_
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 #include <StepKinematics_KinematicLinkRepresentation.hxx>
 
 #include <TCollection_HAsciiString.hxx>
 #include <StepRepr_HArray1OfRepresentationItem.hxx>
-#include <StepRepr_RepresentationContext.hxx>
-#include <StepKinematics_KinematicLink.hxx>
 
-DEFINE_STANDARD_HANDLE(StepKinematics_LinearFlexibleLinkRepresentation, StepKinematics_KinematicLinkRepresentation)
+DEFINE_STANDARD_HANDLE(StepKinematics_LinearFlexibleLinkRepresentation,
+                       StepKinematics_KinematicLinkRepresentation)
 
 //! Representation of STEP entity LinearFlexibleLinkRepresentation
-class StepKinematics_LinearFlexibleLinkRepresentation : public StepKinematics_KinematicLinkRepresentation
+class StepKinematics_LinearFlexibleLinkRepresentation
+    : public StepKinematics_KinematicLinkRepresentation
 {
-public :
-
+public:
   //! default constructor
   Standard_EXPORT StepKinematics_LinearFlexibleLinkRepresentation();
 
-DEFINE_STANDARD_RTTIEXT(StepKinematics_LinearFlexibleLinkRepresentation, StepKinematics_KinematicLinkRepresentation)
-
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_LinearFlexibleLinkRepresentation,
+                          StepKinematics_KinematicLinkRepresentation)
 };
 #endif // _StepKinematics_LinearFlexibleLinkRepresentation_HeaderFile_

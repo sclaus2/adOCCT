@@ -18,15 +18,11 @@
 #define _NLPlate_HPG0Constraint_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <gp_XYZ.hxx>
-#include <Standard_Boolean.hxx>
 #include <NLPlate_HGPPConstraint.hxx>
 #include <Standard_Integer.hxx>
 class gp_XY;
-class gp_XYZ;
-
 
 class NLPlate_HPG0Constraint;
 DEFINE_STANDARD_HANDLE(NLPlate_HPG0Constraint, NLPlate_HGPPConstraint)
@@ -37,48 +33,30 @@ class NLPlate_HPG0Constraint : public NLPlate_HGPPConstraint
 {
 
 public:
-
-  
   Standard_EXPORT NLPlate_HPG0Constraint(const gp_XY& UV, const gp_XYZ& Value);
-  
-  Standard_EXPORT virtual void SetUVFreeSliding (const Standard_Boolean UVFree) Standard_OVERRIDE;
-  
-  Standard_EXPORT virtual void SetIncrementalLoadAllowed (const Standard_Boolean ILA) Standard_OVERRIDE;
-  
+
+  Standard_EXPORT virtual void SetUVFreeSliding(const Standard_Boolean UVFree) Standard_OVERRIDE;
+
+  Standard_EXPORT virtual void SetIncrementalLoadAllowed(const Standard_Boolean ILA)
+    Standard_OVERRIDE;
+
   Standard_EXPORT virtual Standard_Boolean UVFreeSliding() const Standard_OVERRIDE;
-  
+
   Standard_EXPORT virtual Standard_Boolean IncrementalLoadAllowed() const Standard_OVERRIDE;
-  
+
   Standard_EXPORT virtual Standard_Integer ActiveOrder() const Standard_OVERRIDE;
-  
+
   Standard_EXPORT virtual Standard_Boolean IsG0() const Standard_OVERRIDE;
-  
+
   Standard_EXPORT virtual const gp_XYZ& G0Target() const Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(NLPlate_HPG0Constraint,NLPlate_HGPPConstraint)
+  DEFINE_STANDARD_RTTIEXT(NLPlate_HPG0Constraint, NLPlate_HGPPConstraint)
 
 protected:
-
-
-
-
 private:
-
-
-  gp_XYZ myXYZTarget;
+  gp_XYZ           myXYZTarget;
   Standard_Boolean UVIsFree;
   Standard_Boolean IncrementalLoadingAllowed;
-
-
 };
-
-
-
-
-
-
 
 #endif // _NLPlate_HPG0Constraint_HeaderFile

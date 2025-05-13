@@ -17,11 +17,9 @@
 #ifndef Interface_HSequenceOfCheck_HeaderFile
 #define Interface_HSequenceOfCheck_HeaderFile
 
-#include <Interface_Check.hxx>
 #include <Interface_SequenceOfCheck.hxx>
 #include <NCollection_DefineHSequence.hxx>
 
 DEFINE_HSEQUENCE(Interface_HSequenceOfCheck, Interface_SequenceOfCheck)
-
 
 #endif

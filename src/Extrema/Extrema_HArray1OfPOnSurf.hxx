@@ -17,11 +17,9 @@
 #ifndef Extrema_HArray1OfPOnSurf_HeaderFile
 #define Extrema_HArray1OfPOnSurf_HeaderFile
 
-#include <Extrema_POnSurf.hxx>
 #include <Extrema_Array1OfPOnSurf.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(Extrema_HArray1OfPOnSurf, Extrema_Array1OfPOnSurf)
-
 
 #endif

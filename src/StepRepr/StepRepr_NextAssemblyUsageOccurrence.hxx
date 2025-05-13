@@ -17,10 +17,8 @@
 #define _StepRepr_NextAssemblyUsageOccurrence_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepRepr_AssemblyComponentUsage.hxx>
-
 
 class StepRepr_NextAssemblyUsageOccurrence;
 DEFINE_STANDARD_HANDLE(StepRepr_NextAssemblyUsageOccurrence, StepRepr_AssemblyComponentUsage)
@@ -30,32 +28,13 @@ class StepRepr_NextAssemblyUsageOccurrence : public StepRepr_AssemblyComponentUs
 {
 
 public:
-
-  
   //! Empty constructor
   Standard_EXPORT StepRepr_NextAssemblyUsageOccurrence();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_NextAssemblyUsageOccurrence,StepRepr_AssemblyComponentUsage)
+  DEFINE_STANDARD_RTTIEXT(StepRepr_NextAssemblyUsageOccurrence, StepRepr_AssemblyComponentUsage)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepRepr_NextAssemblyUsageOccurrence_HeaderFile

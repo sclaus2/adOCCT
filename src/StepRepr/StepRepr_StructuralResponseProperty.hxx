@@ -17,10 +17,8 @@
 #define _StepRepr_StructuralResponseProperty_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepRepr_PropertyDefinition.hxx>
-
 
 class StepRepr_StructuralResponseProperty;
 DEFINE_STANDARD_HANDLE(StepRepr_StructuralResponseProperty, StepRepr_PropertyDefinition)
@@ -30,32 +28,13 @@ class StepRepr_StructuralResponseProperty : public StepRepr_PropertyDefinition
 {
 
 public:
-
-  
   //! Empty constructor
   Standard_EXPORT StepRepr_StructuralResponseProperty();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_StructuralResponseProperty,StepRepr_PropertyDefinition)
+  DEFINE_STANDARD_RTTIEXT(StepRepr_StructuralResponseProperty, StepRepr_PropertyDefinition)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepRepr_StructuralResponseProperty_HeaderFile

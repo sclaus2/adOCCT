@@ -17,7 +17,6 @@
 #define _STEPCAFControl_ExternFile_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <IFSelect_ReturnStatus.hxx>
 #include <Standard_Boolean.hxx>
@@ -25,8 +24,6 @@
 #include <Standard_Transient.hxx>
 class XSControl_WorkSession;
 class TCollection_HAsciiString;
-class TDF_Label;
-
 
 class STEPCAFControl_ExternFile;
 DEFINE_STANDARD_HANDLE(STEPCAFControl_ExternFile, Standard_Transient)
@@ -37,63 +34,45 @@ class STEPCAFControl_ExternFile : public Standard_Transient
 {
 
 public:
-
-  
   //! Creates an empty structure
   Standard_EXPORT STEPCAFControl_ExternFile();
-  
-    void SetWS (const Handle(XSControl_WorkSession)& WS);
-  
-    Handle(XSControl_WorkSession) GetWS() const;
-  
-    void SetLoadStatus (const IFSelect_ReturnStatus stat);
-  
-    IFSelect_ReturnStatus GetLoadStatus() const;
-  
-    void SetTransferStatus (const Standard_Boolean isok);
-  
-    Standard_Boolean GetTransferStatus() const;
-  
-    void SetWriteStatus (const IFSelect_ReturnStatus stat);
-  
-    IFSelect_ReturnStatus GetWriteStatus() const;
-  
-    void SetName (const Handle(TCollection_HAsciiString)& name);
-  
-    Handle(TCollection_HAsciiString) GetName() const;
-  
-    void SetLabel (const TDF_Label& L);
-  
-    TDF_Label GetLabel() const;
 
+  void SetWS(const Handle(XSControl_WorkSession)& WS);
 
+  Handle(XSControl_WorkSession) GetWS() const;
 
+  void SetLoadStatus(const IFSelect_ReturnStatus stat);
 
-  DEFINE_STANDARD_RTTIEXT(STEPCAFControl_ExternFile,Standard_Transient)
+  IFSelect_ReturnStatus GetLoadStatus() const;
+
+  void SetTransferStatus(const Standard_Boolean isok);
+
+  Standard_Boolean GetTransferStatus() const;
+
+  void SetWriteStatus(const IFSelect_ReturnStatus stat);
+
+  IFSelect_ReturnStatus GetWriteStatus() const;
+
+  void SetName(const Handle(TCollection_HAsciiString)& name);
+
+  Handle(TCollection_HAsciiString) GetName() const;
+
+  void SetLabel(const TDF_Label& L);
+
+  TDF_Label GetLabel() const;
+
+  DEFINE_STANDARD_RTTIEXT(STEPCAFControl_ExternFile, Standard_Transient)
 
 protected:
-
-
-
-
 private:
-
-
-  Handle(XSControl_WorkSession) myWS;
-  IFSelect_ReturnStatus myLoadStatus;
-  Standard_Boolean myTransferStatus;
-  IFSelect_ReturnStatus myWriteStatus;
+  Handle(XSControl_WorkSession)    myWS;
+  IFSelect_ReturnStatus            myLoadStatus;
+  Standard_Boolean                 myTransferStatus;
+  IFSelect_ReturnStatus            myWriteStatus;
   Handle(TCollection_HAsciiString) myName;
-  TDF_Label myLabel;
-
-
+  TDF_Label                        myLabel;
 };
 
-
 #include <STEPCAFControl_ExternFile.lxx>
-
-
-
-
 
 #endif // _STEPCAFControl_ExternFile_HeaderFile

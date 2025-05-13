@@ -379,7 +379,7 @@ void IntCurveSurface_Inter::Perform(const TheCurve&   curve,
 {
   // Protection from double type overflow.
   // This may happen inside square magnitude computation based on normal,
-  // which was computed on bound parameteres (bug26525).
+  // which was computed on bound parameters (bug26525).
   Standard_Real UU1 = U1, UU2 = U2, VV1 = V1, VV2 = V2;
   if (U1 < -1.0e50)
     UU1 = -1.0e50;
@@ -956,7 +956,7 @@ void IntCurveSurface_Inter::PerformConicSurf(const gp_Lin&   Line,
     }
   case GeomAbs_Cone:
     {
-      const Standard_Real correction = 1.E+5*Precision::Angular();
+      constexpr Standard_Real correction = 1.E+5*Precision::Angular();
       gp_Cone cn = TheSurfaceTool::Cone(surface);
       if(Abs(cn.SemiAngle()) < M_PI/2.0 - correction) {
         IntAna_IntConicQuad LinCone(Line, cn);
@@ -1790,7 +1790,7 @@ void EstLimForInfRevl(const gp_Lin&   Line,
   Handle(Adaptor3d_Curve) aBasisCurve = TheSurfaceTool::BasisCurve(surface);
   gp_Ax1 aRevAx = TheSurfaceTool::AxeOfRevolution(surface);
   gp_Vec aXVec = aRevAx.Direction();
-  Standard_Real aTolAng = Precision::Angular();
+  constexpr Standard_Real aTolAng = Precision::Angular();
 
   // make plane to project a basis curve
   gp_Pnt O = aRevAx.Location();
@@ -1842,7 +1842,7 @@ void EstLimForInfRevl(const gp_Lin&   Line,
   gp_Pln aPlnPrp = aPln.Rotated (gp_Ax1 (O,aXVec), M_PI/2.);
   
   // project Line and it's X-axe symmetric one to plane and intersect
-  // resulting curve with projection of Basic Curev
+  // resulting curve with projection of Basic Curve
   Standard_Real aVmin = RealLast(), aVmax = -aVmin;
   Standard_Boolean aNoInt1 = Standard_False, aNoInt2 = Standard_False;
   ProjectIntersectAndEstLim (Line, aPln,    aBasCurvProj, aVmin, aVmax, aNoInt1);

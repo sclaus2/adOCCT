@@ -22,7 +22,6 @@
 
 #include <IFSelect_SelectExtract.hxx>
 #include <Standard_Type.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
 class Standard_Transient;
 class Interface_InterfaceModel;
@@ -37,17 +36,18 @@ class IFSelect_SelectAnyType : public IFSelect_SelectExtract
 {
 
 public:
-
   //! Returns the Type which has to be matched for select
   Standard_EXPORT virtual Handle(Standard_Type) TypeForMatch() const = 0;
 
   //! Returns True for an Entity (model->Value(num)) which is kind
   //! of the chosen type, given by the method TypeForMatch.
   //! Criterium is IsKind.
-  Standard_EXPORT Standard_Boolean Sort (const Standard_Integer rank, const Handle(Standard_Transient)& ent, const Handle(Interface_InterfaceModel)& model) const Standard_OVERRIDE;
+  Standard_EXPORT Standard_Boolean
+    Sort(const Standard_Integer                  rank,
+         const Handle(Standard_Transient)&       ent,
+         const Handle(Interface_InterfaceModel)& model) const Standard_OVERRIDE;
 
-  DEFINE_STANDARD_RTTIEXT(IFSelect_SelectAnyType,IFSelect_SelectExtract)
-
+  DEFINE_STANDARD_RTTIEXT(IFSelect_SelectAnyType, IFSelect_SelectExtract)
 };
 
 #endif // _IFSelect_SelectAnyType_HeaderFile

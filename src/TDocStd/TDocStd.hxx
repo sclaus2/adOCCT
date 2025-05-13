@@ -22,20 +22,6 @@
 #include <Standard_Handle.hxx>
 
 #include <TDF_IDList.hxx>
-class TDocStd_Application;
-class TDocStd_Document;
-class TDocStd_Context;
-class TDocStd_XLink;
-class TDocStd_XLinkIterator;
-class TDocStd_XLinkTool;
-class TDocStd_Owner;
-class TDocStd_Modified;
-class TDocStd_XLinkRoot;
-class TDocStd_PathParser;
-class TDocStd_CompoundDelta;
-class TDocStd_ApplicationDelta;
-class TDocStd_MultiTransactionManager;
-
 
 //! This package define  CAF main classes.
 //!
@@ -67,54 +53,17 @@ class TDocStd_MultiTransactionManager;
 //! For information on the relations between this
 //! component of OCAF and the others, refer to the
 //! OCAF User's Guide.
-class TDocStd 
+class TDocStd
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! specific GUID of this package
   //! =============================
   //! Appends to <anIDList> the list of the attributes
   //! IDs of this package. CAUTION: <anIDList> is NOT
   //! cleared before use.
-  Standard_EXPORT static void IDList (TDF_IDList& anIDList);
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-friend class TDocStd_Application;
-friend class TDocStd_Document;
-friend class TDocStd_Context;
-friend class TDocStd_XLink;
-friend class TDocStd_XLinkIterator;
-friend class TDocStd_XLinkTool;
-friend class TDocStd_Owner;
-friend class TDocStd_Modified;
-friend class TDocStd_XLinkRoot;
-friend class TDocStd_PathParser;
-friend class TDocStd_CompoundDelta;
-friend class TDocStd_ApplicationDelta;
-friend class TDocStd_MultiTransactionManager;
-
+  Standard_EXPORT static void IDList(TDF_IDList& anIDList);
 };
-
-
-
-
-
-
 
 #endif // _TDocStd_HeaderFile

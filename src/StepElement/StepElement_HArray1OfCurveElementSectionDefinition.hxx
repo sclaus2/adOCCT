@@ -14,11 +14,10 @@
 #ifndef StepElement_HArray1OfCurveElementSectionDefinition_HeaderFile
 #define StepElement_HArray1OfCurveElementSectionDefinition_HeaderFile
 
-#include <StepElement_CurveElementSectionDefinition.hxx>
 #include <StepElement_Array1OfCurveElementSectionDefinition.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
-DEFINE_HARRAY1(StepElement_HArray1OfCurveElementSectionDefinition, StepElement_Array1OfCurveElementSectionDefinition)
-
+DEFINE_HARRAY1(StepElement_HArray1OfCurveElementSectionDefinition,
+               StepElement_Array1OfCurveElementSectionDefinition)
 
 #endif

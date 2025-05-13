@@ -22,9 +22,6 @@
 
 #include <Standard_Integer.hxx>
 #include <StepData_SelectReal.hxx>
-#include <Standard_Boolean.hxx>
-#include <Standard_CString.hxx>
-
 
 class StepBasic_MeasureValueMember;
 DEFINE_STANDARD_HANDLE(StepBasic_MeasureValueMember, StepData_SelectReal)
@@ -39,38 +36,19 @@ class StepBasic_MeasureValueMember : public StepData_SelectReal
 {
 
 public:
-
-  
   Standard_EXPORT StepBasic_MeasureValueMember();
-  
+
   Standard_EXPORT virtual Standard_Boolean HasName() const Standard_OVERRIDE;
-  
+
   Standard_EXPORT virtual Standard_CString Name() const Standard_OVERRIDE;
-  
-  Standard_EXPORT virtual Standard_Boolean SetName (const Standard_CString name) Standard_OVERRIDE;
 
+  Standard_EXPORT virtual Standard_Boolean SetName(const Standard_CString name) Standard_OVERRIDE;
 
-
-
-  DEFINE_STANDARD_RTTIEXT(StepBasic_MeasureValueMember,StepData_SelectReal)
+  DEFINE_STANDARD_RTTIEXT(StepBasic_MeasureValueMember, StepData_SelectReal)
 
 protected:
-
-
-
-
 private:
-
-
   Standard_Integer thecase;
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepBasic_MeasureValueMember_HeaderFile

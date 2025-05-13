@@ -18,21 +18,10 @@
 
 #include <Standard_Type.hxx>
 
-
- 
-
-
-
-
-
-
-
-
 #define Handle_TheKey Handle(IGESData_HArray1OfIGESEntity)
 #define TheKey IGESData_HArray1OfIGESEntity
 #define TheKey_hxx <IGESData_HArray1OfIGESEntity.hxx>
 #define Interface_JaggedArray IGESBasic_HArray1OfHArray1OfIGESEntity
 #define Interface_JaggedArray_hxx <IGESBasic_HArray1OfHArray1OfIGESEntity.hxx>
 #define Handle_Interface_JaggedArray Handle(IGESBasic_HArray1OfHArray1OfIGESEntity)
-#include <Interface_JaggedArray.gxx>
-
+#include "../Interface/Interface_JaggedArray.gxx"

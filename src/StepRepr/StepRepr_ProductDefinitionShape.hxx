@@ -17,10 +17,8 @@
 #define _StepRepr_ProductDefinitionShape_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <StepRepr_PropertyDefinition.hxx>
-
 
 class StepRepr_ProductDefinitionShape;
 DEFINE_STANDARD_HANDLE(StepRepr_ProductDefinitionShape, StepRepr_PropertyDefinition)
@@ -30,32 +28,13 @@ class StepRepr_ProductDefinitionShape : public StepRepr_PropertyDefinition
 {
 
 public:
-
-  
   //! Empty constructor
   Standard_EXPORT StepRepr_ProductDefinitionShape();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(StepRepr_ProductDefinitionShape,StepRepr_PropertyDefinition)
+  DEFINE_STANDARD_RTTIEXT(StepRepr_ProductDefinitionShape, StepRepr_PropertyDefinition)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _StepRepr_ProductDefinitionShape_HeaderFile

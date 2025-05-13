@@ -18,7 +18,6 @@
 
 #include <BRepApprox_ApproxLine.hxx>
 #include <ApproxInt_SvSurfaces.hxx>
- 
 
 #define Handle_TheLine Handle(BRepApprox_ApproxLine)
 #define TheLine BRepApprox_ApproxLine
@@ -27,5 +26,4 @@
 #define TheSvSurfaces_hxx <ApproxInt_SvSurfaces.hxx>
 #define ApproxInt_MultiLine BRepApprox_TheMultiLineOfApprox
 #define ApproxInt_MultiLine_hxx <BRepApprox_TheMultiLineOfApprox.hxx>
-#include <ApproxInt_MultiLine.gxx>
-
+#include "../ApproxInt/ApproxInt_MultiLine.gxx"

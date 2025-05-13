@@ -13,20 +13,18 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#include <XmlMFunction.hxx>
 
 #include <Message_Messenger.hxx>
 #include <XmlMDF_ADriverTable.hxx>
-#include <XmlMFunction.hxx>
 #include <XmlMFunction_FunctionDriver.hxx>
 #include <XmlMFunction_GraphNodeDriver.hxx>
 #include <XmlMFunction_ScopeDriver.hxx>
 
-//=======================================================================
-//function : AddDrivers
-//purpose  : 
-//=======================================================================
-void XmlMFunction::AddDrivers (const Handle(XmlMDF_ADriverTable)& aDriverTable,
-                               const Handle(Message_Messenger)&   aMessageDriver)
+//=================================================================================================
+
+void XmlMFunction::AddDrivers(const Handle(XmlMDF_ADriverTable)& aDriverTable,
+                              const Handle(Message_Messenger)&   aMessageDriver)
 {
   aDriverTable->AddDriver(new XmlMFunction_FunctionDriver(aMessageDriver));
   aDriverTable->AddDriver(new XmlMFunction_ScopeDriver(aMessageDriver));

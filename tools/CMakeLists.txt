@@ -1,4 +1,10 @@
-cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
+# Caution! Be careful, when increase minimal cmake version:
+# using of newer version may leads (by default) to applying
+# of some new policies. It may break compilation.
+# For canceling of applying new policies use:
+# cmake_policy(PUSH) before `cmake_minimum_required`
+# and cmake_policy(POP) after.
+cmake_minimum_required (VERSION 3.1 FATAL_ERROR)
 
 set (ADDITIONAL_INLCUDE_DIR_DESCR "Additional directory to be added in the projects include section")
 if (NOT DEFINED ADDITIONAL_INLCUDE_DIR)
@@ -331,17 +337,19 @@ endif()
 # include the patched or original list of tools
 # list <TOOLNAME>_TOOLKITS is created foreach tool and contains its toolkits
 # list <OCCT_TOOLS> will contain all tools
-#if (BUILD_Inspector)
-  OCCT_MODULES_AND_TOOLKITS (TOOLS "TOOL_TOOLKITS" OCCT_TOOLS)
-  foreach (OCCT_TOOL ${OCCT_TOOLS})
-    list (APPEND BUILD_TOOL_TOOLKITS ${${OCCT_TOOL}_TOOL_TOOLKITS})
-  endforeach()
+OCCT_MODULES_AND_TOOLKITS (TOOLS "TOOL_TOOLKITS" OCCT_TOOLS)
+foreach (OCCT_TOOL ${OCCT_TOOLS})
+  list (APPEND BUILD_TOOL_TOOLKITS ${${OCCT_TOOL}_TOOL_TOOLKITS})
+endforeach()
 
-  # collect all the headers to <binary dir>/inc/inspector folder
-  string(TIMESTAMP CURRENT_TIME "%H:%M:%S")
-  message (STATUS "\nInfo: \(${CURRENT_TIME}\) Start collecting all OCCT tool header files into ${CMAKE_BINARY_DIR}/inc/inspector ...")
-  COLLECT_AND_INSTALL_OCCT_HEADER_FILES ("${CMAKE_BINARY_DIR}" "${BUILD_TOOL_TOOLKITS}" "${CMAKE_SOURCE_DIR}/tools" "${INSTALL_DIR_INCLUDE}/inspector")
-#endif()
+# collect all the headers to <binary dir>/inc/inspector folder
+
+# Ensure the include directory exists
+file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/${INSTALL_DIR_INCLUDE}/inspector")
+
+string(TIMESTAMP CURRENT_TIME "%H:%M:%S")
+message (STATUS "\nInfo: \(${CURRENT_TIME}\) Start collecting all OCCT tool header files into ${CMAKE_BINARY_DIR}/inc/inspector ...")
+COLLECT_AND_INSTALL_OCCT_HEADER_FILES ("${CMAKE_BINARY_DIR}" "${BUILD_TOOL_TOOLKITS}" "tools" "${INSTALL_DIR_INCLUDE}/inspector")
 
 # include <cmake binary folder>/inc
 include_directories (${CMAKE_BINARY_DIR}/${INSTALL_DIR_INCLUDE})

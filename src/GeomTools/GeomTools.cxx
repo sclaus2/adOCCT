@@ -14,11 +14,10 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
+#include <GeomTools.hxx>
 
 #include <Geom2d_Curve.hxx>
-#include <Geom_Curve.hxx>
 #include <Geom_Surface.hxx>
-#include <GeomTools.hxx>
 #include <GeomTools_Curve2dSet.hxx>
 #include <GeomTools_CurveSet.hxx>
 #include <GeomTools_SurfaceSet.hxx>
@@ -26,14 +25,14 @@
 
 static Handle(GeomTools_UndefinedTypeHandler) theActiveHandler = new GeomTools_UndefinedTypeHandler;
 
-void  GeomTools::Dump(const Handle(Geom_Surface)& S, Standard_OStream& OS)
+void GeomTools::Dump(const Handle(Geom_Surface)& S, Standard_OStream& OS)
 {
-  GeomTools_SurfaceSet::PrintSurface(S,OS);
+  GeomTools_SurfaceSet::PrintSurface(S, OS);
 }
 
-void  GeomTools::Write(const Handle(Geom_Surface)& S, Standard_OStream& OS)
+void GeomTools::Write(const Handle(Geom_Surface)& S, Standard_OStream& OS)
 {
-  GeomTools_SurfaceSet::PrintSurface(S,OS,Standard_True);
+  GeomTools_SurfaceSet::PrintSurface(S, OS, Standard_True);
 }
 
 void GeomTools::Read(Handle(Geom_Surface)& S, Standard_IStream& IS)
@@ -41,14 +40,14 @@ void GeomTools::Read(Handle(Geom_Surface)& S, Standard_IStream& IS)
   S = GeomTools_SurfaceSet::ReadSurface(IS);
 }
 
-void  GeomTools::Dump(const Handle(Geom_Curve)& C, Standard_OStream& OS)
+void GeomTools::Dump(const Handle(Geom_Curve)& C, Standard_OStream& OS)
 {
-  GeomTools_CurveSet::PrintCurve(C,OS);
+  GeomTools_CurveSet::PrintCurve(C, OS);
 }
 
-void  GeomTools::Write(const Handle(Geom_Curve)& C, Standard_OStream& OS)
+void GeomTools::Write(const Handle(Geom_Curve)& C, Standard_OStream& OS)
 {
-  GeomTools_CurveSet::PrintCurve(C,OS,Standard_True);
+  GeomTools_CurveSet::PrintCurve(C, OS, Standard_True);
 }
 
 void GeomTools::Read(Handle(Geom_Curve)& C, Standard_IStream& IS)
@@ -56,57 +55,53 @@ void GeomTools::Read(Handle(Geom_Curve)& C, Standard_IStream& IS)
   C = GeomTools_CurveSet::ReadCurve(IS);
 }
 
-void  GeomTools::Dump(const Handle(Geom2d_Curve)& C, Standard_OStream& OS)
+void GeomTools::Dump(const Handle(Geom2d_Curve)& C, Standard_OStream& OS)
 {
-  GeomTools_Curve2dSet::PrintCurve2d(C,OS);
+  GeomTools_Curve2dSet::PrintCurve2d(C, OS);
 }
 
-void  GeomTools::Write(const Handle(Geom2d_Curve)& C, Standard_OStream& OS)
+void GeomTools::Write(const Handle(Geom2d_Curve)& C, Standard_OStream& OS)
 {
-  GeomTools_Curve2dSet::PrintCurve2d(C,OS,Standard_True);
+  GeomTools_Curve2dSet::PrintCurve2d(C, OS, Standard_True);
 }
 
-void  GeomTools::Read(Handle(Geom2d_Curve)& C, Standard_IStream& IS)
+void GeomTools::Read(Handle(Geom2d_Curve)& C, Standard_IStream& IS)
 {
   C = GeomTools_Curve2dSet::ReadCurve2d(IS);
 }
 
-//=======================================================================
-//function : SetUndefinedTypeHandler
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
 void GeomTools::SetUndefinedTypeHandler(const Handle(GeomTools_UndefinedTypeHandler)& aHandler)
 {
-  if(!aHandler.IsNull())
+  if (!aHandler.IsNull())
     theActiveHandler = aHandler;
 }
 
-//=======================================================================
-//function : GetUndefinedTypeHandler
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
 Handle(GeomTools_UndefinedTypeHandler) GeomTools::GetUndefinedTypeHandler()
 {
   return theActiveHandler;
 }
 
-//=======================================================================
-//function : GetReal
-//purpose  : 
-//=======================================================================
+//=================================================================================================
 
-void GeomTools::GetReal(Standard_IStream& IS,Standard_Real& theValue)
+void GeomTools::GetReal(Standard_IStream& IS, Standard_Real& theValue)
 {
   theValue = 0.;
-  if (IS.eof()) 
+  if (IS.eof())
+  {
     return;
+  }
+  // According IEEE-754 Specification and standard stream parameters
+  // the most optimal buffer length not less then 25
+  constexpr size_t THE_BUFFER_SIZE = 32;
+  char             aBuffer[THE_BUFFER_SIZE];
 
-  char buffer[256];
-  buffer[0] = '\0';
-  std::streamsize anOldWide = IS.width(256);
-  IS >> buffer;
+  aBuffer[0]                = '\0';
+  std::streamsize anOldWide = IS.width(THE_BUFFER_SIZE - 1);
+  IS >> aBuffer;
   IS.width(anOldWide);
-  theValue = Strtod(buffer, NULL);
+  theValue = Strtod(aBuffer, nullptr);
 }

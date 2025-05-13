@@ -25,7 +25,6 @@
 #include <AppDef_Gradient_BFGSOfMyGradientOfCompute.hxx>
 #include <AppParCurves_MultiCurve.hxx>
 #include <AppParCurves_MultiBSpCurve.hxx>
- 
 
 #define MultiLine AppDef_MultiLine
 #define MultiLine_hxx <AppDef_MultiLine.hxx>
@@ -51,5 +50,4 @@
 #define Approx_Gradient_BFGSOfMyGradient_hxx <AppDef_Gradient_BFGSOfMyGradientOfCompute.hxx>
 #define Approx_ComputeLine AppDef_Compute
 #define Approx_ComputeLine_hxx <AppDef_Compute.hxx>
-#include <Approx_ComputeLine.gxx>
-
+#include "../Approx/Approx_ComputeLine.gxx"

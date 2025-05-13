@@ -18,11 +18,9 @@
 #define _TopoDS_TEdge_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
-#include <TopoDS_TShape.hxx>
 #include <TopAbs_ShapeEnum.hxx>
-
+#include <TopoDS_TShape.hxx>
 
 class TopoDS_TEdge;
 DEFINE_STANDARD_HANDLE(TopoDS_TEdge, TopoDS_TShape)
@@ -31,38 +29,18 @@ DEFINE_STANDARD_HANDLE(TopoDS_TEdge, TopoDS_TShape)
 //! boundary    is   a   set  of oriented    Vertices.
 class TopoDS_TEdge : public TopoDS_TShape
 {
-
 public:
-
-  
   //! Returns  EDGE.
   Standard_EXPORT TopAbs_ShapeEnum ShapeType() const Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(TopoDS_TEdge,TopoDS_TShape)
+  DEFINE_STANDARD_RTTIEXT(TopoDS_TEdge, TopoDS_TShape)
 
 protected:
-
-  
   //! Construct an edge.
-    TopoDS_TEdge();
-
-
-
-private:
-
-
-
-
+  TopoDS_TEdge()
+      : TopoDS_TShape()
+  {
+  }
 };
-
-
-#include <TopoDS_TEdge.lxx>
-
-
-
-
 
 #endif // _TopoDS_TEdge_HeaderFile

@@ -17,41 +17,44 @@
 
 IMPLEMENT_STANDARD_RTTIEXT(RWMesh_TriangulationSource, Poly_Triangulation)
 
-// =======================================================================
-// function : RWMesh_TriangulationSource
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 RWMesh_TriangulationSource::RWMesh_TriangulationSource()
-: myNbDefNodes(0),
-  myNbDefTriangles(0),
-  myStatisticOfDegeneratedTriNb(0)
+    : myNbDefNodes(0),
+      myNbDefTriangles(0),
+      myStatisticOfDegeneratedTriNb(0)
 {
 }
 
-// =======================================================================
-// function : ~RWMesh_TriangulationSource
-// purpose  :
-// =======================================================================
+//=================================================================================================
+
 RWMesh_TriangulationSource::~RWMesh_TriangulationSource()
 {
   //
 }
 
-// =======================================================================
-// function : loadDeferredData
-// purpose  :
-// =======================================================================
-Standard_Boolean RWMesh_TriangulationSource::loadDeferredData (const Handle(OSD_FileSystem)& theFileSystem,
-                                                               const Handle(Poly_Triangulation)& theDestTriangulation) const
+//=================================================================================================
+
+Standard_Boolean RWMesh_TriangulationSource::loadDeferredData(
+  const Handle(OSD_FileSystem)&     theFileSystem,
+  const Handle(Poly_Triangulation)& theDestTriangulation) const
 {
   myStatisticOfDegeneratedTriNb = 0;
   if (myReader.IsNull())
   {
     return false;
   }
-  if (myReader->Load (this, theDestTriangulation, theFileSystem))
+  if (myReader->Load(this, theDestTriangulation, theFileSystem))
   {
     return true;
   }
   return false;
+}
+
+//=================================================================================================
+
+void RWMesh_TriangulationSource::ResizeEdges(Standard_Integer theNbEdges,
+                                             Standard_Boolean theToCopyOld)
+{
+  myEdges.Resize(1, theNbEdges, theToCopyOld);
 }

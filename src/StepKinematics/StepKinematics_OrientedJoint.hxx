@@ -1,4 +1,4 @@
-// Created on : Sat May 02 12:41:15 2020 
+// Created on : Sat May 02 12:41:15 2020
 // Created by: Irina KRYLOVA
 // Generator:	Express (EXPRESS -> CASCADE/XSTEP Translator) V3.0
 // Copyright (c) Open CASCADE 2020
@@ -18,24 +18,19 @@
 #define _StepKinematics_OrientedJoint_HeaderFile_
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 #include <StepShape_OrientedEdge.hxx>
 
 #include <TCollection_HAsciiString.hxx>
-#include <StepShape_Vertex.hxx>
-#include <StepShape_Edge.hxx>
 
 DEFINE_STANDARD_HANDLE(StepKinematics_OrientedJoint, StepShape_OrientedEdge)
 
 //! Representation of STEP entity OrientedJoint
 class StepKinematics_OrientedJoint : public StepShape_OrientedEdge
 {
-public :
-
+public:
   //! default constructor
   Standard_EXPORT StepKinematics_OrientedJoint();
 
-DEFINE_STANDARD_RTTIEXT(StepKinematics_OrientedJoint, StepShape_OrientedEdge)
-
+  DEFINE_STANDARD_RTTIEXT(StepKinematics_OrientedJoint, StepShape_OrientedEdge)
 };
 #endif // _StepKinematics_OrientedJoint_HeaderFile_

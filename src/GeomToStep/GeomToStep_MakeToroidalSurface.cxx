@@ -14,46 +14,44 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
 #include <Geom_ToroidalSurface.hxx>
 #include <GeomToStep_MakeAxis2Placement3d.hxx>
 #include <GeomToStep_MakeToroidalSurface.hxx>
 #include <StdFail_NotDone.hxx>
+#include <StepData_Factors.hxx>
 #include <StepGeom_ToroidalSurface.hxx>
 #include <TCollection_HAsciiString.hxx>
-#include <StepData_GlobalFactors.hxx>
 
 //=============================================================================
 // Creation d' une toroidal_surface de prostep a partir d' une ToroidalSurface
 // de Geom
 //=============================================================================
-GeomToStep_MakeToroidalSurface::GeomToStep_MakeToroidalSurface
-  ( const Handle(Geom_ToroidalSurface)& S )
-	
+GeomToStep_MakeToroidalSurface::GeomToStep_MakeToroidalSurface(
+  const Handle(Geom_ToroidalSurface)& S,
+  const StepData_Factors&             theLocalFactors)
 {
-  Handle(StepGeom_ToroidalSurface) Surf;
+  Handle(StepGeom_ToroidalSurface)  Surf;
   Handle(StepGeom_Axis2Placement3d) aPosition;
-  Standard_Real aMajorRadius, aMinorRadius;
-  
-  GeomToStep_MakeAxis2Placement3d MkAxis2(S->Position());
-  aPosition = MkAxis2.Value();
-  aMajorRadius = S->MajorRadius();
-  aMinorRadius = S->MinorRadius();
-  Surf = new StepGeom_ToroidalSurface;
+  Standard_Real                     aMajorRadius, aMinorRadius;
+
+  GeomToStep_MakeAxis2Placement3d MkAxis2(S->Position(), theLocalFactors);
+  aPosition                             = MkAxis2.Value();
+  aMajorRadius                          = S->MajorRadius();
+  aMinorRadius                          = S->MinorRadius();
+  Surf                                  = new StepGeom_ToroidalSurface;
   Handle(TCollection_HAsciiString) name = new TCollection_HAsciiString("");
-  Standard_Real fact = StepData_GlobalFactors::Intance().LengthFactor();
-  Surf->Init(name, aPosition, aMajorRadius/fact, aMinorRadius/fact);
+  Standard_Real                    fact = theLocalFactors.LengthFactor();
+  Surf->Init(name, aPosition, aMajorRadius / fact, aMinorRadius / fact);
   theToroidalSurface = Surf;
-  done = Standard_True;
+  done               = Standard_True;
 }
 
 //=============================================================================
 // renvoi des valeurs
 //=============================================================================
 
-const Handle(StepGeom_ToroidalSurface) &
-      GeomToStep_MakeToroidalSurface::Value() const
+const Handle(StepGeom_ToroidalSurface)& GeomToStep_MakeToroidalSurface::Value() const
 {
-  StdFail_NotDone_Raise_if (!done, "GeomToStep_MakeToroidalSurface::Value() - no result");
+  StdFail_NotDone_Raise_if(!done, "GeomToStep_MakeToroidalSurface::Value() - no result");
   return theToroidalSurface;
 }

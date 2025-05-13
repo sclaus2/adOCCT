@@ -13,28 +13,25 @@
 
 #include <StdObjMgt_Persistent.hxx>
 #include <Standard_ErrorHandler.hxx>
-#include <Standard_NoSuchObject.hxx>
 #include <StdStorage_RootData.hxx>
 #include <StdStorage_Root.hxx>
 #include <Storage_BaseDriver.hxx>
 #include <Storage_StreamTypeMismatchError.hxx>
-#include <Storage_DataMapIteratorOfMapOfPers.hxx>
 #include <TCollection_AsciiString.hxx>
 
 IMPLEMENT_STANDARD_RTTIEXT(StdStorage_RootData, Standard_Transient)
 
-StdStorage_RootData::StdStorage_RootData() 
-  : myErrorStatus(Storage_VSOk)
+StdStorage_RootData::StdStorage_RootData()
+    : myErrorStatus(Storage_VSOk)
 {
 }
 
 Standard_Boolean StdStorage_RootData::Read(const Handle(Storage_BaseDriver)& theDriver)
 {
   // Check driver open mode
-  if (theDriver->OpenMode() != Storage_VSRead
-    && theDriver->OpenMode() != Storage_VSReadWrite)
+  if (theDriver->OpenMode() != Storage_VSRead && theDriver->OpenMode() != Storage_VSReadWrite)
   {
-    myErrorStatus = Storage_VSModeError;
+    myErrorStatus    = Storage_VSModeError;
     myErrorStatusExt = "OpenMode";
     return Standard_False;
   }
@@ -48,7 +45,7 @@ Standard_Boolean StdStorage_RootData::Read(const Handle(Storage_BaseDriver)& the
   }
 
   TCollection_AsciiString aRootName, aTypeName;
-  Standard_Integer aRef;
+  Standard_Integer        aRef;
 
   Standard_Integer len = theDriver->RootSectionSize();
   for (Standard_Integer i = 1; i <= len; i++)
@@ -60,7 +57,7 @@ Standard_Boolean StdStorage_RootData::Read(const Handle(Storage_BaseDriver)& the
     }
     catch (Storage_StreamTypeMismatchError const&)
     {
-      myErrorStatus = Storage_VSTypeMismatch;
+      myErrorStatus    = Storage_VSTypeMismatch;
       myErrorStatusExt = "ReadRoot";
       return Standard_False;
     }
@@ -82,10 +79,9 @@ Standard_Boolean StdStorage_RootData::Read(const Handle(Storage_BaseDriver)& the
 Standard_Boolean StdStorage_RootData::Write(const Handle(Storage_BaseDriver)& theDriver)
 {
   // Check driver open mode
-  if (theDriver->OpenMode() != Storage_VSWrite
-    && theDriver->OpenMode() != Storage_VSReadWrite)
+  if (theDriver->OpenMode() != Storage_VSWrite && theDriver->OpenMode() != Storage_VSReadWrite)
   {
-    myErrorStatus = Storage_VSModeError;
+    myErrorStatus    = Storage_VSModeError;
     myErrorStatusExt = "OpenMode";
     return Standard_False;
   }
@@ -109,7 +105,7 @@ Standard_Boolean StdStorage_RootData::Write(const Handle(Storage_BaseDriver)& th
     }
     catch (Storage_StreamTypeMismatchError const&)
     {
-      myErrorStatus = Storage_VSTypeMismatch;
+      myErrorStatus    = Storage_VSTypeMismatch;
       myErrorStatusExt = "ReadRoot";
       return Standard_False;
     }
@@ -141,7 +137,8 @@ Handle(StdStorage_HSequenceOfRoots) StdStorage_RootData::Roots() const
   Handle(StdStorage_HSequenceOfRoots)    anObjectsSeq = new StdStorage_HSequenceOfRoots;
   StdStorage_DataMapIteratorOfMapOfRoots it(myObjects);
 
-  for (; it.More(); it.Next()) {
+  for (; it.More(); it.Next())
+  {
     anObjectsSeq->Append(it.Value());
   }
 
@@ -151,7 +148,8 @@ Handle(StdStorage_HSequenceOfRoots) StdStorage_RootData::Roots() const
 Handle(StdStorage_Root) StdStorage_RootData::Find(const TCollection_AsciiString& aName) const
 {
   Handle(StdStorage_Root) p;
-  if (myObjects.Contains(aName)) {
+  if (myObjects.Contains(aName))
+  {
     p = myObjects.FindFromKey(aName);
   }
 
@@ -165,7 +163,8 @@ Standard_Boolean StdStorage_RootData::IsRoot(const TCollection_AsciiString& aNam
 
 void StdStorage_RootData::RemoveRoot(const TCollection_AsciiString& aName)
 {
-  if (myObjects.Contains(aName)) {
+  if (myObjects.Contains(aName))
+  {
     myObjects.ChangeFromKey(aName)->myRef = 0;
     myObjects.RemoveKey(aName);
     Standard_Integer aRef = 1;
@@ -182,7 +181,7 @@ void StdStorage_RootData::Clear()
   myObjects.Clear();
 }
 
-Storage_Error  StdStorage_RootData::ErrorStatus() const
+Storage_Error StdStorage_RootData::ErrorStatus() const
 {
   return myErrorStatus;
 }

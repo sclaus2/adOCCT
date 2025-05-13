@@ -18,10 +18,8 @@
 #define _IGESBasic_OrderedGroup_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <IGESBasic_Group.hxx>
-
 
 class IGESBasic_OrderedGroup;
 DEFINE_STANDARD_HANDLE(IGESBasic_OrderedGroup, IGESBasic_Group)
@@ -37,31 +35,12 @@ class IGESBasic_OrderedGroup : public IGESBasic_Group
 {
 
 public:
-
-  
   Standard_EXPORT IGESBasic_OrderedGroup();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(IGESBasic_OrderedGroup,IGESBasic_Group)
+  DEFINE_STANDARD_RTTIEXT(IGESBasic_OrderedGroup, IGESBasic_Group)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _IGESBasic_OrderedGroup_HeaderFile

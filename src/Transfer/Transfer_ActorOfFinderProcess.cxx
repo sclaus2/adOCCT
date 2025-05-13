@@ -11,9 +11,7 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-
 #include <Standard_Transient.hxx>
-#include <Standard_Type.hxx>
 #include <Transfer_ActorOfFinderProcess.hxx>
 #include <Transfer_Binder.hxx>
 #include <Transfer_Finder.hxx>
@@ -21,39 +19,93 @@
 #include <Transfer_ProcessForFinder.hxx>
 #include <Transfer_SimpleBinderOfTransient.hxx>
 #include <Transfer_TransientMapper.hxx>
+#include <XSAlgo_ShapeProcessor.hxx>
 
-IMPLEMENT_STANDARD_RTTIEXT(Transfer_ActorOfFinderProcess,Transfer_ActorOfProcessForFinder)
+IMPLEMENT_STANDARD_RTTIEXT(Transfer_ActorOfFinderProcess, Transfer_ActorOfProcessForFinder)
 
-Transfer_ActorOfFinderProcess::Transfer_ActorOfFinderProcess ()    {  themodetrans = 0;  }
+//=============================================================================
 
-Standard_Integer& Transfer_ActorOfFinderProcess::ModeTrans ()
-{  return themodetrans;  }
-
-Handle(Transfer_Binder)  Transfer_ActorOfFinderProcess::Transfer
-  (const Handle(Transfer_Finder)& fnd,
-   const Handle(Transfer_FinderProcess)& FP,
-   const Message_ProgressRange& theProgress)
+Transfer_ActorOfFinderProcess::Transfer_ActorOfFinderProcess()
 {
-  Handle(Transfer_TransientMapper) tm = Handle(Transfer_TransientMapper)::DownCast (fnd);
-  if (tm.IsNull()) return NullResult();
-  Handle(Standard_Transient) res = TransferTransient (tm->Value(),FP, theProgress);
-  if (res.IsNull()) return NullResult();
-  return TransientResult (res);
+  themodetrans = 0;
 }
 
-Handle(Transfer_Binder)  Transfer_ActorOfFinderProcess::Transferring
-  (const Handle(Transfer_Finder)& ent,
-   const Handle(Transfer_ProcessForFinder)& TP,
-   const Message_ProgressRange& theProgress)
+//=============================================================================
+
+Standard_Integer& Transfer_ActorOfFinderProcess::ModeTrans()
 {
-  return Transfer(ent,Handle(Transfer_FinderProcess)::DownCast(TP), theProgress);
+  return themodetrans;
 }
 
-Handle(Standard_Transient)  Transfer_ActorOfFinderProcess::TransferTransient
-  (const Handle(Standard_Transient)& /*ent*/,
-   const Handle(Transfer_FinderProcess)&,
-   const Message_ProgressRange& )
+//=============================================================================
+
+Handle(Transfer_Binder) Transfer_ActorOfFinderProcess::Transfer(
+  const Handle(Transfer_Finder)&        fnd,
+  const Handle(Transfer_FinderProcess)& FP,
+  const Message_ProgressRange&          theProgress)
+{
+  Handle(Transfer_TransientMapper) tm = Handle(Transfer_TransientMapper)::DownCast(fnd);
+  if (tm.IsNull())
+    return NullResult();
+  Handle(Standard_Transient) res = TransferTransient(tm->Value(), FP, theProgress);
+  if (res.IsNull())
+    return NullResult();
+  return TransientResult(res);
+}
+
+//=============================================================================
+
+Handle(Transfer_Binder) Transfer_ActorOfFinderProcess::Transferring(
+  const Handle(Transfer_Finder)&           ent,
+  const Handle(Transfer_ProcessForFinder)& TP,
+  const Message_ProgressRange&             theProgress)
+{
+  return Transfer(ent, Handle(Transfer_FinderProcess)::DownCast(TP), theProgress);
+}
+
+//=============================================================================
+
+Handle(Standard_Transient) Transfer_ActorOfFinderProcess::TransferTransient(
+  const Handle(Standard_Transient)& /*ent*/,
+  const Handle(Transfer_FinderProcess)&,
+  const Message_ProgressRange&)
 {
   Handle(Standard_Transient) nulres;
   return nulres;
+}
+
+//=============================================================================
+
+void Transfer_ActorOfFinderProcess::SetShapeFixParameters(
+  const XSAlgo_ShapeProcessor::ParameterMap& theParameters)
+{
+  myShapeProcParams = theParameters;
+}
+
+//=============================================================================
+
+void Transfer_ActorOfFinderProcess::SetShapeFixParameters(
+  XSAlgo_ShapeProcessor::ParameterMap&& theParameters)
+{
+  myShapeProcParams = std::move(theParameters);
+}
+
+//=============================================================================
+
+void Transfer_ActorOfFinderProcess::SetShapeFixParameters(
+  const DE_ShapeFixParameters&               theParameters,
+  const XSAlgo_ShapeProcessor::ParameterMap& theAdditionalParameters)
+{
+  XSAlgo_ShapeProcessor::SetShapeFixParameters(theParameters,
+                                               theAdditionalParameters,
+                                               myShapeProcParams);
+}
+
+//=============================================================================
+
+void Transfer_ActorOfFinderProcess::SetShapeProcessFlags(
+  const ShapeProcess::OperationsFlags& theFlags)
+{
+  myShapeProcFlags.first  = theFlags;
+  myShapeProcFlags.second = true;
 }

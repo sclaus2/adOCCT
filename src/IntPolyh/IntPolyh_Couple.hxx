@@ -23,6 +23,7 @@
 
 #include <Standard_Integer.hxx>
 #include <Standard_Real.hxx>
+#include <Standard_HashUtils.hxx>
 
 //! The class represents the couple of indices with additional
 //! characteristics such as analyzed flag and an angle.<br>
@@ -31,88 +32,90 @@
 class IntPolyh_Couple
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
   //! Constructor
-  IntPolyh_Couple() :
-    myIndex1(-1),myIndex2(-1),myAnalyzed(0),myAngle(-2.0)
-  {}
+  IntPolyh_Couple()
+      : myIndex1(-1),
+        myIndex2(-1),
+        myAnalyzed(0),
+        myAngle(-2.0)
+  {
+  }
+
   //! Constructor
   IntPolyh_Couple(const Standard_Integer theTriangle1,
                   const Standard_Integer theTriangle2,
-                  const Standard_Real theAngle = -2.0)
-  :
-    myIndex1(theTriangle1),
-    myIndex2(theTriangle2),
-    myAnalyzed(Standard_False),
-    myAngle(theAngle)
-  {}
+                  const Standard_Real    theAngle = -2.0)
+      : myIndex1(theTriangle1),
+        myIndex2(theTriangle2),
+        myAnalyzed(Standard_False),
+        myAngle(theAngle)
+  {
+  }
 
   //! Returns the first index
-  Standard_Integer FirstValue() const
-  {
-    return myIndex1;
-  }
+  Standard_Integer FirstValue() const { return myIndex1; }
+
   //! Returns the second index
-  Standard_Integer SecondValue() const
-  {
-    return myIndex2;
-  }
+  Standard_Integer SecondValue() const { return myIndex2; }
+
   //! Returns TRUE if the couple has been analyzed
-  Standard_Boolean IsAnalyzed() const
-  {
-    return myAnalyzed;
-  }
+  Standard_Boolean IsAnalyzed() const { return myAnalyzed; }
+
   //! Returns the angle
-  Standard_Real Angle() const
-  {
-    return myAngle;
-  }
+  Standard_Real Angle() const { return myAngle; }
+
   //! Sets the triangles
-  void SetCoupleValue(const Standard_Integer theInd1,
-                      const Standard_Integer theInd2)
+  void SetCoupleValue(const Standard_Integer theInd1, const Standard_Integer theInd2)
   {
     myIndex1 = theInd1;
     myIndex2 = theInd2;
   }
+
   //! Sets the analyzed flag
-  void SetAnalyzed(const Standard_Boolean theAnalyzed)
-  {
-    myAnalyzed = theAnalyzed;
-  }
+  void SetAnalyzed(const Standard_Boolean theAnalyzed) { myAnalyzed = theAnalyzed; }
+
   //! Sets the angle
-  void SetAngle(const Standard_Real theAngle)
-  {
-    myAngle = theAngle;
-  }
+  void SetAngle(const Standard_Real theAngle) { myAngle = theAngle; }
+
   //! Returns true if the Couple is equal to <theOther>
-  Standard_Boolean IsEqual (const IntPolyh_Couple& theOther) const
+  Standard_Boolean IsEqual(const IntPolyh_Couple& theOther) const
   {
-    return (myIndex1 == theOther.myIndex1 && myIndex2 == theOther.myIndex2) ||
-           (myIndex1 == theOther.myIndex2 && myIndex2 == theOther.myIndex1);
+    return (myIndex1 == theOther.myIndex1 && myIndex2 == theOther.myIndex2)
+           || (myIndex1 == theOther.myIndex2 && myIndex2 == theOther.myIndex1);
   }
 
-  //! Computes a hash code for this couple, in the range [1, theUpperBound]
-  //! @param theUpperBound the upper bound of the range a computing hash code must be within
-  //! @return a computed hash code, in the range [1, theUpperBound]
-  Standard_Integer HashCode (const Standard_Integer theUpperBound) const
-  {
-    return ::HashCode (myIndex1 + myIndex2, theUpperBound);
-  }
+  //! Returns true if the Couple is equal to <theOther>
+  bool operator==(const IntPolyh_Couple& theOther) const { return IsEqual(theOther); }
 
   // Dump
-  Standard_EXPORT void Dump (const Standard_Integer v) const;
+  Standard_EXPORT void Dump(const Standard_Integer v) const;
 
 protected:
-
 private:
-
   Standard_Integer myIndex1;
   Standard_Integer myIndex2;
   Standard_Boolean myAnalyzed;
-  Standard_Real myAngle;
-
+  Standard_Real    myAngle;
 };
+
+namespace std
+{
+template <>
+struct hash<IntPolyh_Couple>
+{
+  size_t operator()(const IntPolyh_Couple& theCouple) const noexcept
+  {
+    // Combine two int values into a single hash value.
+    int aCombination[2]{theCouple.FirstValue(), theCouple.SecondValue()};
+    if (aCombination[0] > aCombination[1])
+    {
+      std::swap(aCombination[0], aCombination[1]);
+    }
+    return opencascade::hashBytes(aCombination, sizeof(aCombination));
+  }
+};
+} // namespace std
 
 #endif // _IntPolyh_Couple_HeaderFile

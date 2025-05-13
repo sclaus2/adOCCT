@@ -17,11 +17,9 @@
 #ifndef Transfer_HSequenceOfBinder_HeaderFile
 #define Transfer_HSequenceOfBinder_HeaderFile
 
-#include <Transfer_Binder.hxx>
 #include <Transfer_SequenceOfBinder.hxx>
 #include <NCollection_DefineHSequence.hxx>
 
 DEFINE_HSEQUENCE(Transfer_HSequenceOfBinder, Transfer_SequenceOfBinder)
-
 
 #endif

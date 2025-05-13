@@ -22,56 +22,43 @@
 #include <Standard_Handle.hxx>
 
 #include <GeomToStep_Root.hxx>
+
 class StepGeom_Vector;
 class gp_Vec;
 class gp_Vec2d;
 class Geom_Vector;
 class Geom2d_Vector;
 
-
 //! This class implements the mapping between classes
 //! Vector from Geom, Geom2d and Vec, Vec2d from gp, and the class
 //! Vector from StepGeom which describes a Vector from
 //! Prostep.
-class GeomToStep_MakeVector  : public GeomToStep_Root
+class GeomToStep_MakeVector : public GeomToStep_Root
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
-  Standard_EXPORT GeomToStep_MakeVector(const gp_Vec& V);
-  
-  Standard_EXPORT GeomToStep_MakeVector(const gp_Vec2d& V);
-  
-  Standard_EXPORT GeomToStep_MakeVector(const Handle(Geom_Vector)& V);
-  
-  Standard_EXPORT GeomToStep_MakeVector(const Handle(Geom2d_Vector)& V);
-  
+  Standard_EXPORT GeomToStep_MakeVector(
+    const gp_Vec&           V,
+    const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeVector(
+    const gp_Vec2d&         V,
+    const StepData_Factors& theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeVector(
+    const Handle(Geom_Vector)& V,
+    const StepData_Factors&    theLocalFactors = StepData_Factors());
+
+  Standard_EXPORT GeomToStep_MakeVector(
+    const Handle(Geom2d_Vector)& V,
+    const StepData_Factors&      theLocalFactors = StepData_Factors());
+
   Standard_EXPORT const Handle(StepGeom_Vector)& Value() const;
 
-
-
-
 protected:
-
-
-
-
-
 private:
-
-
-
   Handle(StepGeom_Vector) theVector;
-
-
 };
-
-
-
-
-
-
 
 #endif // _GeomToStep_MakeVector_HeaderFile

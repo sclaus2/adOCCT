@@ -23,53 +23,30 @@
 
 #include <Expr_MapOfNamedUnknown.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Boolean.hxx>
 class Expr_GeneralExpression;
 class Expr_NamedUnknown;
 
-
 //! Describes an iterator on NamedUnknowns contained
 //! in any GeneralExpression.
-class Expr_UnknownIterator 
+class Expr_UnknownIterator
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   Standard_EXPORT Expr_UnknownIterator(const Handle(Expr_GeneralExpression)& exp);
-  
+
   Standard_EXPORT Standard_Boolean More() const;
-  
+
   Standard_EXPORT void Next();
-  
+
   Standard_EXPORT Handle(Expr_NamedUnknown) Value() const;
 
-
-
-
 protected:
-
-
-
-
-
 private:
-
-  
-  Standard_EXPORT void Perform (const Handle(Expr_GeneralExpression)& exp);
-
+  Standard_EXPORT void Perform(const Handle(Expr_GeneralExpression)& exp);
 
   Expr_MapOfNamedUnknown myMap;
-  Standard_Integer myCurrent;
-
-
+  Standard_Integer       myCurrent;
 };
-
-
-
-
-
-
 
 #endif // _Expr_UnknownIterator_HeaderFile

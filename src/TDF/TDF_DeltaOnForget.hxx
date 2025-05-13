@@ -17,11 +17,9 @@
 #define _TDF_DeltaOnForget_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <TDF_AttributeDelta.hxx>
 class TDF_Attribute;
-
 
 class TDF_DeltaOnForget;
 DEFINE_STANDARD_HANDLE(TDF_DeltaOnForget, TDF_AttributeDelta)
@@ -35,35 +33,16 @@ class TDF_DeltaOnForget : public TDF_AttributeDelta
 {
 
 public:
-
-  
   //! Creates a TDF_DeltaOnForget.
   Standard_EXPORT TDF_DeltaOnForget(const Handle(TDF_Attribute)& anAtt);
-  
+
   //! Applies the delta to the attribute.
   Standard_EXPORT void Apply() Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(TDF_DeltaOnForget,TDF_AttributeDelta)
+  DEFINE_STANDARD_RTTIEXT(TDF_DeltaOnForget, TDF_AttributeDelta)
 
 protected:
-
-
-
-
 private:
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _TDF_DeltaOnForget_HeaderFile

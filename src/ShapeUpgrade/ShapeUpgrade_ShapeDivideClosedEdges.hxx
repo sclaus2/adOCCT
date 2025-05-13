@@ -18,49 +18,25 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 #include <ShapeUpgrade_ShapeDivide.hxx>
 #include <Standard_Integer.hxx>
 class TopoDS_Shape;
 
-
-
-class ShapeUpgrade_ShapeDivideClosedEdges  : public ShapeUpgrade_ShapeDivide
+class ShapeUpgrade_ShapeDivideClosedEdges : public ShapeUpgrade_ShapeDivide
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Initialises tool with shape and default parameter.
   Standard_EXPORT ShapeUpgrade_ShapeDivideClosedEdges(const TopoDS_Shape& S);
-  
+
   //! Sets the number of cuts applied to divide closed edges.
   //! The number of resulting faces will be num+1.
-  Standard_EXPORT void SetNbSplitPoints (const Standard_Integer num);
-
-
-
+  Standard_EXPORT void SetNbSplitPoints(const Standard_Integer num);
 
 protected:
-
-
-
-
-
 private:
-
-
-
-
-
 };
-
-
-
-
-
-
 
 #endif // _ShapeUpgrade_ShapeDivideClosedEdges_HeaderFile

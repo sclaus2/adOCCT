@@ -18,7 +18,6 @@
 #define _NLPlate_HPG0G2Constraint_HeaderFile
 
 #include <Standard.hxx>
-#include <Standard_Type.hxx>
 
 #include <Plate_D2.hxx>
 #include <NLPlate_HPG0G1Constraint.hxx>
@@ -26,8 +25,6 @@
 class gp_XY;
 class gp_XYZ;
 class Plate_D1;
-class Plate_D2;
-
 
 class NLPlate_HPG0G2Constraint;
 DEFINE_STANDARD_HANDLE(NLPlate_HPG0G2Constraint, NLPlate_HPG0G1Constraint)
@@ -38,36 +35,20 @@ class NLPlate_HPG0G2Constraint : public NLPlate_HPG0G1Constraint
 {
 
 public:
+  Standard_EXPORT NLPlate_HPG0G2Constraint(const gp_XY&    UV,
+                                           const gp_XYZ&   Value,
+                                           const Plate_D1& D1T,
+                                           const Plate_D2& D2T);
 
-  
-  Standard_EXPORT NLPlate_HPG0G2Constraint(const gp_XY& UV, const gp_XYZ& Value, const Plate_D1& D1T, const Plate_D2& D2T);
-  
   Standard_EXPORT virtual Standard_Integer ActiveOrder() const Standard_OVERRIDE;
-  
+
   Standard_EXPORT virtual const Plate_D2& G2Target() const Standard_OVERRIDE;
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(NLPlate_HPG0G2Constraint,NLPlate_HPG0G1Constraint)
+  DEFINE_STANDARD_RTTIEXT(NLPlate_HPG0G2Constraint, NLPlate_HPG0G1Constraint)
 
 protected:
-
-
-
-
 private:
-
-
   Plate_D2 myG2Target;
-
-
 };
-
-
-
-
-
-
 
 #endif // _NLPlate_HPG0G2Constraint_HeaderFile

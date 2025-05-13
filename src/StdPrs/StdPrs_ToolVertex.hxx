@@ -19,18 +19,18 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
 class TopoDS_Vertex;
 
-class StdPrs_ToolVertex 
+class StdPrs_ToolVertex
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  Standard_EXPORT static void Coord (const TopoDS_Vertex& aPoint, Standard_Real& X, Standard_Real& Y, Standard_Real& Z);
-
+  Standard_EXPORT static void Coord(const TopoDS_Vertex& aPoint,
+                                    Standard_Real&       X,
+                                    Standard_Real&       Y,
+                                    Standard_Real&       Z);
 };
 
 #endif // _StdPrs_ToolVertex_HeaderFile

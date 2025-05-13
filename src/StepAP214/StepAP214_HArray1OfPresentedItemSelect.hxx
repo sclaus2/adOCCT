@@ -17,11 +17,9 @@
 #ifndef StepAP214_HArray1OfPresentedItemSelect_HeaderFile
 #define StepAP214_HArray1OfPresentedItemSelect_HeaderFile
 
-#include <StepAP214_PresentedItemSelect.hxx>
 #include <StepAP214_Array1OfPresentedItemSelect.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(StepAP214_HArray1OfPresentedItemSelect, StepAP214_Array1OfPresentedItemSelect)
-
 
 #endif

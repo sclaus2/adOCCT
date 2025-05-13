@@ -17,11 +17,9 @@
 #ifndef Poly_HArray1OfTriangle_HeaderFile
 #define Poly_HArray1OfTriangle_HeaderFile
 
-#include <Poly_Triangle.hxx>
 #include <Poly_Array1OfTriangle.hxx>
 #include <NCollection_DefineHArray1.hxx>
 
 DEFINE_HARRAY1(Poly_HArray1OfTriangle, Poly_Array1OfTriangle)
-
 
 #endif

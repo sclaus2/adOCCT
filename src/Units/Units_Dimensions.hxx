@@ -20,12 +20,8 @@
 #include <Standard.hxx>
 #include <Standard_Type.hxx>
 
-#include <Standard_Real.hxx>
 #include <Standard_Transient.hxx>
-#include <Standard_CString.hxx>
-#include <Standard_Boolean.hxx>
 #include <Standard_Integer.hxx>
-
 
 class Units_Dimensions;
 DEFINE_STANDARD_HANDLE(Units_Dimensions, Standard_Transient)
@@ -37,8 +33,6 @@ class Units_Dimensions : public Standard_Transient
 {
 
 public:
-
-  
   //! Returns  a  Dimensions  object  which  represents  the
   //! dimension  of  a  physical  quantity.    Each  of  the
   //! <amass>,  <alength>,   <atime>,   <anelectriccurrent>,
@@ -47,102 +41,103 @@ public:
   //! the powers for  the 7  fundamental  units of  physical
   //! quantity and  the 2  secondary  fundamental  units  of
   //! physical quantity.
-  Standard_EXPORT Units_Dimensions(const double amass, const double alength, const double atime, const double anelectriccurrent, const double athermodynamictemperature, const double anamountofsubstance, const double aluminousintensity, const double aplaneangle, const double asolidangle);
-  
+  Standard_EXPORT Units_Dimensions(const double amass,
+                                   const double alength,
+                                   const double atime,
+                                   const double anelectriccurrent,
+                                   const double athermodynamictemperature,
+                                   const double anamountofsubstance,
+                                   const double aluminousintensity,
+                                   const double aplaneangle,
+                                   const double asolidangle);
+
   //! Returns the power of mass stored in the dimensions.
-    double Mass() const;
-  
+  double Mass() const;
+
   //! Returns the power of length stored in the dimensions.
-    double Length() const;
-  
+  double Length() const;
+
   //! Returns the power of time stored in the dimensions.
-    double Time() const;
-  
+  double Time() const;
+
   //! Returns the  power of  electrical  intensity (current)
   //! stored in the dimensions.
-    double ElectricCurrent() const;
-  
+  double ElectricCurrent() const;
+
   //! Returns  the  power  of   temperature stored  in   the
   //! dimensions.
-    double ThermodynamicTemperature() const;
-  
+  double ThermodynamicTemperature() const;
+
   //! Returns  the power   of quantity   of  material (mole)
   //! stored in the dimensions.
-    double AmountOfSubstance() const;
-  
+  double AmountOfSubstance() const;
+
   //! Returns the  power of light   intensity stored  in the
   //! dimensions.
-    double LuminousIntensity() const;
-  
+  double LuminousIntensity() const;
+
   //! Returns  the power   of plane   angle  stored  in  the
   //! dimensions.
-    double PlaneAngle() const;
-  
+  double PlaneAngle() const;
+
   //! Returns the   power   of  solid angle stored   in  the
   //! dimensions.
-    double SolidAngle() const;
-  
+  double SolidAngle() const;
+
   //! Returns the quantity string of the dimension
   Standard_EXPORT Standard_CString Quantity() const;
-  
+
   //! Creates and returns  a new Dimensions  object which is
   //! the   result   of the  multiplication    of  <me>  and
   //! <adimensions>.
-  Standard_EXPORT Handle(Units_Dimensions) Multiply (const Handle(Units_Dimensions)& adimensions) const;
-  
+  Standard_EXPORT Handle(Units_Dimensions) Multiply(
+    const Handle(Units_Dimensions)& adimensions) const;
+
   //! Creates and returns a new  Dimensions object which  is
   //! the result of the division of <me> by <adimensions>.
-  Standard_EXPORT Handle(Units_Dimensions) Divide (const Handle(Units_Dimensions)& adimensions) const;
-  
+  Standard_EXPORT Handle(Units_Dimensions) Divide(
+    const Handle(Units_Dimensions)& adimensions) const;
+
   //! Creates  and returns a new  Dimensions object which is
   //! the result of the power of <me> and <anexponent>.
-  Standard_EXPORT Handle(Units_Dimensions) Power (const double anexponent) const;
-  
+  Standard_EXPORT Handle(Units_Dimensions) Power(const double anexponent) const;
+
   //! Returns true if  <me>  and <adimensions> have the same
   //! dimensions, false otherwise.
-  Standard_EXPORT Standard_Boolean IsEqual (const Handle(Units_Dimensions)& adimensions) const;
-  
+  Standard_EXPORT Standard_Boolean IsEqual(const Handle(Units_Dimensions)& adimensions) const;
+
   //! Returns false if <me> and  <adimensions> have the same
   //! dimensions, true otherwise.
-  Standard_EXPORT Standard_Boolean IsNotEqual (const Handle(Units_Dimensions)& adimensions) const;
-  
+  Standard_EXPORT Standard_Boolean IsNotEqual(const Handle(Units_Dimensions)& adimensions) const;
+
   //! Useful for degugging.
-  Standard_EXPORT void Dump (const Standard_Integer ashift) const;
-  
+  Standard_EXPORT void Dump(const Standard_Integer ashift) const;
+
   Standard_EXPORT static Handle(Units_Dimensions) ALess();
-  
+
   Standard_EXPORT static Handle(Units_Dimensions) AMass();
-  
+
   Standard_EXPORT static Handle(Units_Dimensions) ALength();
-  
+
   Standard_EXPORT static Handle(Units_Dimensions) ATime();
-  
+
   Standard_EXPORT static Handle(Units_Dimensions) AElectricCurrent();
-  
+
   Standard_EXPORT static Handle(Units_Dimensions) AThermodynamicTemperature();
-  
+
   Standard_EXPORT static Handle(Units_Dimensions) AAmountOfSubstance();
-  
+
   Standard_EXPORT static Handle(Units_Dimensions) ALuminousIntensity();
-  
+
   Standard_EXPORT static Handle(Units_Dimensions) APlaneAngle();
-  
+
   //! Returns the basic dimensions.
   Standard_EXPORT static Handle(Units_Dimensions) ASolidAngle();
 
-
-
-
-  DEFINE_STANDARD_RTTIEXT(Units_Dimensions,Standard_Transient)
+  DEFINE_STANDARD_RTTIEXT(Units_Dimensions, Standard_Transient)
 
 protected:
-
-
-
-
 private:
-
-
   double themass;
   double thelength;
   double thetime;
@@ -152,15 +147,8 @@ private:
   double theluminousintensity;
   double theplaneangle;
   double thesolidangle;
-
-
 };
 
-
 #include <Units_Dimensions.lxx>
-
-
-
-
 
 #endif // _Units_Dimensions_HeaderFile

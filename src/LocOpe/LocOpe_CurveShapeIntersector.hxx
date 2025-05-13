@@ -19,61 +19,53 @@
 
 #include <Standard.hxx>
 #include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
 
-#include <Standard_Boolean.hxx>
 #include <LocOpe_SequenceOfPntFace.hxx>
 #include <Standard_Integer.hxx>
-#include <Standard_Real.hxx>
 #include <TopAbs_Orientation.hxx>
-class StdFail_NotDone;
-class Standard_OutOfRange;
 class gp_Ax1;
 class TopoDS_Shape;
 class gp_Circ;
 class LocOpe_PntFace;
 
-
 //! This  class  provides  the intersection between an
 //! axis  or  a circle and  the  faces of a shape. The
 //! intersection   points  are   sorted in  increasing
 //! parameter along the axis.
-class LocOpe_CurveShapeIntersector 
+class LocOpe_CurveShapeIntersector
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Empty constructor.
-    LocOpe_CurveShapeIntersector();
-  
-  //! Creates  and performs the intersection     betwwen
+  LocOpe_CurveShapeIntersector();
+
+  //! Creates  and performs the intersection     between
   //! <Ax1> and <S>.
-    LocOpe_CurveShapeIntersector(const gp_Ax1& Axis, const TopoDS_Shape& S);
-  
-  //! Creates  and performs yte intersection     betwwen
+  LocOpe_CurveShapeIntersector(const gp_Ax1& Axis, const TopoDS_Shape& S);
+
+  //! Creates  and performs yte intersection     between
   //! <C> and <S>.
-    LocOpe_CurveShapeIntersector(const gp_Circ& C, const TopoDS_Shape& S);
-  
+  LocOpe_CurveShapeIntersector(const gp_Circ& C, const TopoDS_Shape& S);
+
   //! Performs the intersection between <Ax1 and <S>.
-  Standard_EXPORT void Init (const gp_Ax1& Axis, const TopoDS_Shape& S);
-  
+  Standard_EXPORT void Init(const gp_Ax1& Axis, const TopoDS_Shape& S);
+
   //! Performs the intersection between <Ax1 and <S>.
-  Standard_EXPORT void Init (const gp_Circ& C, const TopoDS_Shape& S);
-  
+  Standard_EXPORT void Init(const gp_Circ& C, const TopoDS_Shape& S);
+
   //! Returns <Standard_True>  if the  intersection  has
   //! been done.
-    Standard_Boolean IsDone() const;
-  
+  Standard_Boolean IsDone() const;
+
   //! Returns the number of intersection point.
-    Standard_Integer NbPoints() const;
-  
+  Standard_Integer NbPoints() const;
+
   //! Returns the intersection  point  of range <Index>.
   //! The points  are   sorted in increasing  order   of
   //! parameter along the axis.
-    const LocOpe_PntFace& Point (const Standard_Integer Index) const;
-  
+  const LocOpe_PntFace& Point(const Standard_Integer Index) const;
+
   //! Searches the   first intersection  point   located
   //! after the parameter  <From>, which  orientation is
   //! not       TopAbs_EXTERNAL.      If found,  returns
@@ -84,8 +76,11 @@ public:
   //! IndTo).
   //!
   //! Otherwise, returns <Standard_False>.
-  Standard_EXPORT Standard_Boolean LocalizeAfter (const Standard_Real From, TopAbs_Orientation& Or, Standard_Integer& IndFrom, Standard_Integer& IndTo) const;
-  
+  Standard_EXPORT Standard_Boolean LocalizeAfter(const Standard_Real From,
+                                                 TopAbs_Orientation& Or,
+                                                 Standard_Integer&   IndFrom,
+                                                 Standard_Integer&   IndTo) const;
+
   //! Searches  the first intersection point     located
   //! before  the parameter <From>, which orientation is
   //! not      TopAbs_EXTERNAL.      If  found,  returns
@@ -96,8 +91,11 @@ public:
   //! IndTo).
   //!
   //! Otherwise, returns <Standard_False>.
-  Standard_EXPORT Standard_Boolean LocalizeBefore (const Standard_Real From, TopAbs_Orientation& Or, Standard_Integer& IndFrom, Standard_Integer& IndTo) const;
-  
+  Standard_EXPORT Standard_Boolean LocalizeBefore(const Standard_Real From,
+                                                  TopAbs_Orientation& Or,
+                                                  Standard_Integer&   IndFrom,
+                                                  Standard_Integer&   IndTo) const;
+
   //! Searches  the first intersection point     located
   //! after the index <FromInd> ( >= FromInd + 1), which
   //! orientation   is   not TopAbs_EXTERNAL.   If found,
@@ -108,8 +106,11 @@ public:
   //! point. (IndFrom <= IndTo).
   //!
   //! Otherwise, returns <Standard_False>.
-  Standard_EXPORT Standard_Boolean LocalizeAfter (const Standard_Integer FromInd, TopAbs_Orientation& Or, Standard_Integer& IndFrom, Standard_Integer& IndTo) const;
-  
+  Standard_EXPORT Standard_Boolean LocalizeAfter(const Standard_Integer FromInd,
+                                                 TopAbs_Orientation&    Or,
+                                                 Standard_Integer&      IndFrom,
+                                                 Standard_Integer&      IndTo) const;
+
   //! Searches the  first  intersection   point  located
   //! before the index <FromInd> ( <= FromInd -1), which
   //! orientation is   not TopAbs_EXTERNAL.   If   found,
@@ -120,32 +121,17 @@ public:
   //! (IndFrom <= IndTo).
   //!
   //! Otherwise, returns <Standard_False>.
-  Standard_EXPORT Standard_Boolean LocalizeBefore (const Standard_Integer FromInd, TopAbs_Orientation& Or, Standard_Integer& IndFrom, Standard_Integer& IndTo) const;
-
-
-
+  Standard_EXPORT Standard_Boolean LocalizeBefore(const Standard_Integer FromInd,
+                                                  TopAbs_Orientation&    Or,
+                                                  Standard_Integer&      IndFrom,
+                                                  Standard_Integer&      IndTo) const;
 
 protected:
-
-
-
-
-
 private:
-
-
-
-  Standard_Boolean myDone;
+  Standard_Boolean         myDone;
   LocOpe_SequenceOfPntFace myPoints;
-
-
 };
 
-
 #include <LocOpe_CurveShapeIntersector.lxx>
-
-
-
-
 
 #endif // _LocOpe_CurveShapeIntersector_HeaderFile

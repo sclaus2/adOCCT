@@ -13,10 +13,10 @@
 // Alternatively, this file may be used under the terms of Open CASCADE
 // commercial license or contractual agreement.
 
-//-Version	
+//-Version
 //-Design	Declaration des variables specifiques aux fonds d'ecran.
 //-Warning	Un fond d'ecran est defini par une couleur.
-//-References	
+//-References
 //-Language	C++ 2.0
 //-Declarations
 // for the class
@@ -32,39 +32,37 @@
 //-Constructors
 //-Destructors
 //-Methods, in order
-Aspect_Background::Aspect_Background () {
-
-Quantity_Color MatraGray (Quantity_NOC_MATRAGRAY);
-
-	MyColor	= MatraGray;
-
-}
-
-Aspect_Background::Aspect_Background (const Quantity_Color& AColor) {
-
-	MyColor	= AColor;
-
-}
-
-void Aspect_Background::SetColor (const Quantity_Color& AColor) {
-
-	MyColor	= AColor;
-
-}
-
-Quantity_Color Aspect_Background::Color () const {
-
-	return (MyColor);
-
-}
-
-// =======================================================================
-// function : DumpJson
-// purpose  :
-// =======================================================================
-void Aspect_Background::DumpJson (Standard_OStream& theOStream, Standard_Integer theDepth) const
+Aspect_Background::Aspect_Background()
 {
-  OCCT_DUMP_CLASS_BEGIN (theOStream, Aspect_Background)
 
-  OCCT_DUMP_FIELD_VALUES_DUMPED (theOStream, theDepth, &MyColor)
+  Quantity_Color MatraGray(Quantity_NOC_MATRAGRAY);
+
+  MyColor = MatraGray;
+}
+
+Aspect_Background::Aspect_Background(const Quantity_Color& AColor)
+{
+
+  MyColor = AColor;
+}
+
+void Aspect_Background::SetColor(const Quantity_Color& AColor)
+{
+
+  MyColor = AColor;
+}
+
+Quantity_Color Aspect_Background::Color() const
+{
+
+  return (MyColor);
+}
+
+//=================================================================================================
+
+void Aspect_Background::DumpJson(Standard_OStream& theOStream, Standard_Integer theDepth) const
+{
+  OCCT_DUMP_CLASS_BEGIN(theOStream, Aspect_Background)
+
+  OCCT_DUMP_FIELD_VALUES_DUMPED(theOStream, theDepth, &MyColor)
 }

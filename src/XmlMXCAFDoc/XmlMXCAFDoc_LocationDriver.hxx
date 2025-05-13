@@ -21,7 +21,6 @@
 
 #include <TopTools_LocationSetPtr.hxx>
 #include <XmlMDF_ADriver.hxx>
-#include <Standard_Boolean.hxx>
 #include <XmlObjMgt_RRelocationTable.hxx>
 #include <XmlObjMgt_SRelocationTable.hxx>
 #include <XmlObjMgt_Element.hxx>
@@ -29,7 +28,6 @@ class Message_Messenger;
 class TDF_Attribute;
 class XmlObjMgt_Persistent;
 class TopLoc_Location;
-
 
 class XmlMXCAFDoc_LocationDriver;
 DEFINE_STANDARD_HANDLE(XmlMXCAFDoc_LocationDriver, XmlMDF_ADriver)
@@ -39,47 +37,38 @@ class XmlMXCAFDoc_LocationDriver : public XmlMDF_ADriver
 {
 
 public:
-
-  
   Standard_EXPORT XmlMXCAFDoc_LocationDriver(const Handle(Message_Messenger)& theMessageDriver);
-  
+
   Standard_EXPORT Handle(TDF_Attribute) NewEmpty() const Standard_OVERRIDE;
-  
-  Standard_EXPORT Standard_Boolean Paste (const XmlObjMgt_Persistent& Source, const Handle(TDF_Attribute)& Target, XmlObjMgt_RRelocationTable& RelocTable) const Standard_OVERRIDE;
-  
-  Standard_EXPORT void Paste (const Handle(TDF_Attribute)& Source, XmlObjMgt_Persistent& Target, XmlObjMgt_SRelocationTable& RelocTable) const Standard_OVERRIDE;
-  
+
+  Standard_EXPORT Standard_Boolean
+    Paste(const XmlObjMgt_Persistent&  Source,
+          const Handle(TDF_Attribute)& Target,
+          XmlObjMgt_RRelocationTable&  RelocTable) const Standard_OVERRIDE;
+
+  Standard_EXPORT void Paste(const Handle(TDF_Attribute)& Source,
+                             XmlObjMgt_Persistent&        Target,
+                             XmlObjMgt_SRelocationTable&  RelocTable) const Standard_OVERRIDE;
+
   //! Translate a non storable Location to a storable Location.
-  Standard_EXPORT void Translate (const TopLoc_Location& theLoc, XmlObjMgt_Element& theParent, XmlObjMgt_SRelocationTable& theMap) const;
-  
+  Standard_EXPORT void Translate(const TopLoc_Location&      theLoc,
+                                 XmlObjMgt_Element&          theParent,
+                                 XmlObjMgt_SRelocationTable& theMap) const;
+
   //! Translate a storable Location to a non storable Location.
-  Standard_EXPORT Standard_Boolean Translate (const XmlObjMgt_Element& theParent, TopLoc_Location& theLoc, XmlObjMgt_RRelocationTable& theMap) const;
-  
-    void SetSharedLocations (const TopTools_LocationSetPtr& theLocations);
+  Standard_EXPORT Standard_Boolean Translate(const XmlObjMgt_Element&    theParent,
+                                             TopLoc_Location&            theLoc,
+                                             XmlObjMgt_RRelocationTable& theMap) const;
 
+  void SetSharedLocations(const TopTools_LocationSetPtr& theLocations);
 
-
-
-  DEFINE_STANDARD_RTTIEXT(XmlMXCAFDoc_LocationDriver,XmlMDF_ADriver)
+  DEFINE_STANDARD_RTTIEXT(XmlMXCAFDoc_LocationDriver, XmlMDF_ADriver)
 
 protected:
-
-
-
-
 private:
-
-
   TopTools_LocationSetPtr myLocations;
-
-
 };
 
-
 #include <XmlMXCAFDoc_LocationDriver.lxx>
-
-
-
-
 
 #endif // _XmlMXCAFDoc_LocationDriver_HeaderFile

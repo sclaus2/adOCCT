@@ -24,7 +24,6 @@
 #include <Contap_HContTool.hxx>
 #include <Contap_SurfFunction.hxx>
 #include <IntSurf_InteriorPoint.hxx>
- 
 
 #define ThePSurface Handle(Adaptor3d_Surface)
 #define ThePSurface_hxx <Adaptor3d_Surface.hxx>
@@ -39,5 +38,4 @@
 #define TheFunction_hxx <Contap_SurfFunction.hxx>
 #define IntStart_SearchInside Contap_TheSearchInside
 #define IntStart_SearchInside_hxx <Contap_TheSearchInside.hxx>
-#include <IntStart_SearchInside.gxx>
-
+#include "../IntStart/IntStart_SearchInside.gxx"

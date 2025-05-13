@@ -25,15 +25,6 @@
 #include <IGESData_SpecificLib.hxx>
 #include <IGESData_NodeOfSpecificLib.hxx>
 
- 
-
-
-
-
-
-
-
-
 #define TheObject Handle(IGESData_IGESEntity)
 #define TheObject_hxx <IGESData_IGESEntity.hxx>
 #define Handle_TheModule Handle(IGESData_SpecificModule)
@@ -50,5 +41,4 @@
 #define Handle_LibCtl_Node Handle(IGESData_NodeOfSpecificLib)
 #define LibCtl_Library IGESData_SpecificLib
 #define LibCtl_Library_hxx <IGESData_SpecificLib.hxx>
-#include <LibCtl_GlobalNode.gxx>
-
+#include "../LibCtl/LibCtl_GlobalNode.gxx"

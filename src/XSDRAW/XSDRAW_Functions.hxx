@@ -17,8 +17,6 @@
 #ifndef _XSDRAW_Functions_HeaderFile
 #define _XSDRAW_Functions_HeaderFile
 
-#include <Standard.hxx>
-
 //! Defines additional commands for XSDRAW to :
 //! - control of initialisation (xinit, xnorm, newmodel)
 //! - analyse of the result of a transfer (recorded in a
@@ -29,10 +27,9 @@
 //!
 //! This appendix of XSDRAW is compiled separately to distinguish
 //! basic features from user callable forms
-class XSDRAW_Functions 
+class XSDRAW_Functions
 {
- public:
-  
+public:
   //! Defines and loads all basic functions for XSDRAW (as ActFunc)
   Standard_EXPORT static void Init();
 };

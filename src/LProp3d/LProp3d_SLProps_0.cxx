@@ -24,7 +24,6 @@
 #include <gp_Pnt.hxx>
 #include <gp_Vec.hxx>
 #include <gp_Dir.hxx>
- 
 
 #define Surface Handle(Adaptor3d_Surface)
 #define Surface_hxx <Adaptor3d_Surface.hxx>
@@ -32,5 +31,4 @@
 #define Tool_hxx <LProp3d_SurfaceTool.hxx>
 #define LProp_SLProps LProp3d_SLProps
 #define LProp_SLProps_hxx <LProp3d_SLProps.hxx>
-#include <LProp_SLProps.gxx>
-
+#include "../LProp/LProp_SLProps.gxx"

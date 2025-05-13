@@ -24,7 +24,6 @@
 #include <gp_Vec.hxx>
 #include <Extrema_SequenceOfPOnCurv.hxx>
 #include <math_Matrix.hxx>
- 
 
 #define Curve1 Adaptor3d_Curve
 #define Curve1_hxx <Adaptor3d_Curve.hxx>
@@ -44,5 +43,4 @@
 #define Extrema_SeqPOnC_hxx <Extrema_SequenceOfPOnCurv.hxx>
 #define Extrema_FuncExtCC Extrema_CCLocFOfLocECC
 #define Extrema_FuncExtCC_hxx <Extrema_CCLocFOfLocECC.hxx>
-#include <Extrema_FuncExtCC.gxx>
-
+#include "../Extrema/Extrema_FuncExtCC.gxx"

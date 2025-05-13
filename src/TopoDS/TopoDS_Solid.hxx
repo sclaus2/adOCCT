@@ -17,12 +17,7 @@
 #ifndef _TopoDS_Solid_HeaderFile
 #define _TopoDS_Solid_HeaderFile
 
-#include <Standard.hxx>
-#include <Standard_DefineAlloc.hxx>
-#include <Standard_Handle.hxx>
-
 #include <TopoDS_Shape.hxx>
-
 
 //! Describes a solid shape which
 //! - references an underlying solid shape with the
@@ -32,38 +27,25 @@
 //! - has an orientation for the underlying shape, in
 //! terms of its geometry (as opposed to orientation in
 //! relation to other shapes).
-class TopoDS_Solid  : public TopoDS_Shape
+class TopoDS_Solid : public TopoDS_Shape
 {
 public:
-
   DEFINE_STANDARD_ALLOC
 
-  
   //! Constructs an Undefined Solid.
-    TopoDS_Solid();
-
-
-
-
-protected:
-
-
-
-
-
-private:
-
-
-
-
-
+  TopoDS_Solid() {}
 };
 
-
-#include <TopoDS_Solid.lxx>
-
-
-
-
+namespace std
+{
+template <>
+struct hash<TopoDS_Solid>
+{
+  size_t operator()(const TopoDS_Solid& theShape) const
+  {
+    return std::hash<TopoDS_Shape>{}(theShape);
+  }
+};
+} // namespace std
 
 #endif // _TopoDS_Solid_HeaderFile
