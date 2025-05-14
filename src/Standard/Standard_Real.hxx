@@ -28,16 +28,6 @@
 
 #include <Standard_TypeDef.hxx>
 
-namespace std {
-    template<> class numeric_limits<Standard_Adouble>{
-    public:
-        static Standard_Adouble min() {return Standard_Adouble(std::numeric_limits<double>::min());};
-        static Standard_Adouble max() {return Standard_Adouble(std::numeric_limits<double>::max());};
-        static Standard_Adouble epsilon() {return Standard_Adouble(std::numeric_limits<double>::epsilon());};
-        static constexpr bool is_specialized { true };
-    };
-}
-
 // ===============================================
 // Methods from Standard_Entity class which are redefined:
 //    - Hascode
@@ -48,32 +38,32 @@ namespace std {
 // Methods implemented in Standard_Real.cxx
 // ==================================
 
-Standard_EXPORT Standard_Real ACos(const Standard_Real);
+Standard_EXPORT Standard_Real ACos(const Standard_Real&);
 Standard_EXPORT double ACos(const double);
-Standard_EXPORT Standard_Real ACosApprox(const Standard_Real);
+Standard_EXPORT Standard_Real ACosApprox(const Standard_Real&);
 Standard_EXPORT double ACosApprox(const double);
-Standard_EXPORT Standard_Real ASin(const Standard_Real);
+Standard_EXPORT Standard_Real ASin(const Standard_Real&);
 Standard_EXPORT double ASin(const double);
-Standard_EXPORT Standard_Real ATan2(const Standard_Real, const Standard_Real);
+Standard_EXPORT Standard_Real ATan2(const Standard_Real&, const Standard_Real&);
 Standard_EXPORT double ATan2(const double, const double);
-Standard_EXPORT Standard_Real NextAfter(const Standard_Real, const Standard_Real);
+Standard_EXPORT Standard_Real NextAfter(const Standard_Real&, const Standard_Real&);
 Standard_EXPORT double NextAfter(const double, const double);
 
 //! Returns |a| if b >= 0; -|a| if b < 0.
-Standard_EXPORT Standard_Real Sign(const Standard_Real a, const Standard_Real b);
+Standard_EXPORT Standard_Real Sign(const Standard_Real& a, const Standard_Real& b);
 Standard_EXPORT double Sign(const double a, const double b);
 
-Standard_EXPORT Standard_Real ATanh(const Standard_Real);
+Standard_EXPORT Standard_Real ATanh(const Standard_Real&);
 Standard_EXPORT double ATanh(const double);
-Standard_EXPORT Standard_Real ACosh(const Standard_Real);
+Standard_EXPORT Standard_Real ACosh(const Standard_Real&);
 Standard_EXPORT double ACosh(const double);
-Standard_EXPORT Standard_Real Sinh(const Standard_Real);
+Standard_EXPORT Standard_Real Sinh(const Standard_Real&);
 Standard_EXPORT double Sinh(const double);
-Standard_EXPORT Standard_Real Cosh(const Standard_Real);
+Standard_EXPORT Standard_Real Cosh(const Standard_Real&);
 Standard_EXPORT double Cosh(const double);
-Standard_EXPORT Standard_Real Log(const Standard_Real);
+Standard_EXPORT Standard_Real Log(const Standard_Real&);
 Standard_EXPORT double Log(const double);
-Standard_EXPORT Standard_Real Sqrt(const Standard_Real);
+Standard_EXPORT Standard_Real Sqrt(const Standard_Real&);
 Standard_EXPORT double Sqrt(const double);
 
 //-------------------------------------------------------------------
@@ -87,7 +77,7 @@ constexpr double RealSmall()
 //-------------------------------------------------------------------
 // Abs : Returns the absolute value of a real
 //-------------------------------------------------------------------
-inline Standard_Real Abs(const Standard_Real Value)
+inline Standard_Real Abs(const Standard_Real& Value)
 {
   return adtl::fabs(Value);
 }
@@ -99,7 +89,7 @@ inline double Abs(const double Value)
 //-------------------------------------------------------------------
 // IsEqual : Returns Standard_True if two reals are equal
 //-------------------------------------------------------------------
-inline Standard_Boolean IsEqual(const Standard_Real Value1, const Standard_Real Value2)
+inline Standard_Boolean IsEqual(const Standard_Real& Value1, const Standard_Real& Value2)
 {
   return Abs((Value1 - Value2)) < RealSmall();
 }
@@ -206,7 +196,7 @@ inline double IntToReal(const Standard_Integer Value)
 //-------------------------------------------------------------------
 // ATan : Returns the value of the arc tangent of a real
 //-------------------------------------------------------------------
-inline Standard_Real ATan(const Standard_Real Value)
+inline Standard_Real ATan(const Standard_Real& Value)
 {
   return adtl::atan(Value);
 }
@@ -218,7 +208,7 @@ inline double ATan(const double Value)
 //-------------------------------------------------------------------
 // Ceiling : Returns the smallest integer not less than a real
 //-------------------------------------------------------------------
-inline Standard_Real Ceiling(const Standard_Real Value)
+inline Standard_Real Ceiling(const Standard_Real& Value)
 {
   return adtl::ceil(Value);
 }
@@ -230,7 +220,7 @@ inline double Ceiling(const double Value)
 //-------------------------------------------------------------------
 // Cos : Returns the cosine of a real
 //-------------------------------------------------------------------
-inline Standard_Real Cos(const Standard_Real Value)
+inline Standard_Real Cos(const Standard_Real& Value)
 {
   return adtl::cos(Value);
 }
@@ -248,7 +238,7 @@ inline double Cos(const double Value)
 //           If 'Value' is 0 then returns minimal positive value
 //           of Standard_Real type.
 //-------------------------------------------------------------------
-inline Standard_Real Epsilon(const Standard_Real Value)
+inline Standard_Real Epsilon(const Standard_Real& Value)
 {
   return Value >= 0.0 ? (NextAfter(Value, RealLast()) - Value)
                       : (Value - NextAfter(Value, RealFirst()));
@@ -262,7 +252,7 @@ inline double Epsilon(const double Value)
 //-------------------------------------------------------------------
 // Exp : Returns the exponential function of a real
 //-------------------------------------------------------------------
-inline Standard_Real Exp(const Standard_Real Value)
+inline Standard_Real Exp(const Standard_Real& Value)
 {
   return adtl::exp(Value);
 }
@@ -274,7 +264,7 @@ inline double Exp(const double Value)
 //-------------------------------------------------------------------
 // Floor : Return the largest integer not greater than a real
 //-------------------------------------------------------------------
-inline Standard_Real Floor(const Standard_Real Value)
+inline Standard_Real Floor(const Standard_Real& Value)
 {
   return adtl::floor(Value);
 }
@@ -286,7 +276,7 @@ inline double Floor(const double Value)
 //-------------------------------------------------------------------
 // IntegerPart : Returns the integer part of a real
 //-------------------------------------------------------------------
-inline Standard_Real IntegerPart(const Standard_Real Value)
+inline Standard_Real IntegerPart(const Standard_Real& Value)
 {
   return ((Value > 0) ? adtl::floor(Value) : adtl::ceil(Value));
 }
@@ -298,7 +288,7 @@ inline double IntegerPart(const double Value)
 //-------------------------------------------------------------------
 // Log10 : Returns the base-10 logarithm of a real
 //-------------------------------------------------------------------
-inline Standard_Real Log10(const Standard_Real Value)
+inline Standard_Real Log10(const Standard_Real& Value)
 {
   return adtl::log10(Value);
 }
@@ -310,7 +300,7 @@ inline double Log10(const double Value)
 //-------------------------------------------------------------------
 // Max : Returns the maximum value of two reals
 //-------------------------------------------------------------------
-constexpr Standard_Real Max(const Standard_Real Val1, const Standard_Real Val2)
+inline Standard_Real Max(const Standard_Real& Val1, const Standard_Real& Val2)
 {
   return Val1 >= Val2 ? Val1 : Val2;
 }
@@ -322,7 +312,7 @@ constexpr double Max(const double Val1, const double Val2)
 //-------------------------------------------------------------------
 // Min : Returns the minimum value of two reals
 //-------------------------------------------------------------------
-constexpr Standard_Real Min(const Standard_Real Val1, const Standard_Real Val2)
+inline Standard_Real Min(const Standard_Real& Val1, const Standard_Real& Val2)
 {
   return Val1 <= Val2 ? Val1 : Val2;
 }
@@ -338,7 +328,7 @@ inline double Pow(const double Value, const double P)
 {
   return pow(Value, P);
 }
-inline Standard_Real Pow(const Standard_Real Value, const double P)
+inline Standard_Real Pow(const Standard_Real& Value, const double P)
 {
   return adtl::pow(Value, P);
 }
@@ -346,7 +336,7 @@ inline Standard_Real Pow(const double Value, const Standard_Real P)
 {
   return adtl::pow(Value, P);
 }
-inline Standard_Real Pow(const Standard_Real Value, const Standard_Real P)
+inline Standard_Real Pow(const Standard_Real& Value, const Standard_Real P)
 {
   return adtl::pow(Value, P);
 }
@@ -354,7 +344,7 @@ inline Standard_Real Pow(const Standard_Real Value, const Standard_Real P)
 //-------------------------------------------------------------------
 // RealPart : Returns the fractional part of a real.
 //-------------------------------------------------------------------
-inline Standard_Real RealPart(const Standard_Real Value)
+inline Standard_Real RealPart(const Standard_Real& Value)
 {
   return adtl::fabs(IntegerPart(Value) - Value);
 }
@@ -368,7 +358,7 @@ inline double RealPart(const double Value)
 //             If input value is out of valid range for integers,
 //             minimal or maximal possible integer is returned.
 //-------------------------------------------------------------------
-constexpr Standard_Integer RealToInt(const Standard_Real theValue)
+inline Standard_Integer RealToInt(const Standard_Real& theValue)
 {
   // Note that on WNT under MS VC++ 8.0 conversion of double value less
   // than INT_MIN or greater than INT_MAX to integer will cause signal
@@ -398,7 +388,7 @@ constexpr Standard_Integer RealToInt(const double theValue)
 //            for Standard_ShortReal, minimal or maximal
 //            Standard_ShortReal is returned.
 // =======================================================================
-constexpr Standard_ShortReal RealToShortReal(const Standard_Real theVal)
+inline Standard_ShortReal RealToShortReal(const Standard_Real& theVal)
 {
   return theVal < -FLT_MAX ? -FLT_MAX : theVal > FLT_MAX ? FLT_MAX : (Standard_ShortReal)theVal;
 }
@@ -410,7 +400,7 @@ constexpr Standard_ShortReal RealToShortReal(const double theVal)
 //-------------------------------------------------------------------
 // Round : Returns the nearest integer of a real
 //-------------------------------------------------------------------
-inline Standard_Real Round(const Standard_Real Value)
+inline Standard_Real Round(const Standard_Real& Value)
 {
   return IntegerPart(Value + (Value > 0 ? (Standard_Real)0.5 : (Standard_Real)-0.5));
 }
@@ -422,7 +412,7 @@ inline double Round(const double Value)
 //-------------------------------------------------------------------
 // Sin : Returns the sine of a real
 //-------------------------------------------------------------------
-inline Standard_Real Sin(const Standard_Real Value)
+inline Standard_Real Sin(const Standard_Real& Value)
 {
   return adtl::sin(Value);
 }
@@ -434,7 +424,7 @@ inline double Sin(const double Value)
 //-------------------------------------------------------------------
 // ASinh : Returns the hyperbolic arc sine of a real
 //-------------------------------------------------------------------
-inline Standard_Real ASinh(const Standard_Real Value)
+inline Standard_Real ASinh(const Standard_Real& Value)
 #if defined(__QNX__)
 {
   return std::asinh(Value);
@@ -458,7 +448,7 @@ inline double ASinh(const double Value)
 //-------------------------------------------------------------------
 // Square : Returns a real to the power 2
 //-------------------------------------------------------------------
-constexpr Standard_Real Square(const Standard_Real Value)
+inline Standard_Real Square(const Standard_Real& Value)
 {
   return Value * Value;
 }
@@ -470,7 +460,7 @@ constexpr double Square(const double Value)
 //-------------------------------------------------------------------
 // Tan : Returns the tangent of a real
 //-------------------------------------------------------------------
-inline Standard_Real Tan(const Standard_Real Value)
+inline Standard_Real Tan(const Standard_Real& Value)
 {
   return adtl::tan(Value);
 }
@@ -482,7 +472,7 @@ inline double Tan(const double Value)
 //-------------------------------------------------------------------
 // Tanh : Returns the hyperbolic tangent of a real
 //-------------------------------------------------------------------
-inline Standard_Real Tanh(const Standard_Real Value)
+inline Standard_Real Tanh(const Standard_Real& Value)
 {
   return adtl::tanh(Value);
 }

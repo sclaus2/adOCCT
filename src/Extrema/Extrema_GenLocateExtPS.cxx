@@ -29,7 +29,7 @@
 static void CorrectTol(const Standard_Real theU0, const Standard_Real theV0, math_Vector& theTol)
 {
   // Correct tolerance for large values of UV parameters
-  constexpr Standard_Real aTolRef  = Precision::PConfusion();
+  const Standard_Real aTolRef  = Precision::PConfusion();
   Standard_Real           anEpsRef = Epsilon(1.);
   Standard_Real           epsu     = Epsilon(theU0);
   const Standard_Real     tolog10  = 0.43429;

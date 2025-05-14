@@ -435,7 +435,7 @@ static Handle(IntPatch_WLine) DeleteByTube(const Handle(IntPatch_WLine)&    theW
   Standard_Real aPrevStep = aBase3dVec.SquareMagnitude();
 
   // Choose base tolerance and scale it to pipe algorithm.
-  constexpr Standard_Real aBaseTolerance = Precision::Approximation();
+  const Standard_Real aBaseTolerance = Precision::Approximation();
   Standard_Real           aResS1Tol =
     Min(theS1->UResolution(aBaseTolerance), theS1->VResolution(aBaseTolerance));
   Standard_Real aResS2Tol =
@@ -1738,7 +1738,7 @@ static Standard_Boolean IsNeedSkipWL(const Handle(IntPatch_WLine)& theWL,
     aLastp  = theWL->Vertex(i + 1).ParameterOnLine();
 
     Standard_Real          aU1, aV1, aU2, aV2;
-    const Standard_Integer pmid  = (Standard_Integer)((aFirstp + aLastp) / 2);
+    const Standard_Integer pmid  = (Standard_Integer)Standard_Real((aFirstp + aLastp) / 2);
     const IntSurf_PntOn2S& aPmid = theWL->Point(pmid);
     aPmid.Parameters(aU1, aV1, aU2, aV2);
 

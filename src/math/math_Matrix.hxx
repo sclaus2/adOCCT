@@ -29,7 +29,7 @@
   #undef Opposite
 #endif
 
-template <typename T = double>
+template <typename T = Standard_Real>
 class math_VectorBase;
 
 //! This class implements the real matrix abstract data type.
@@ -74,7 +74,7 @@ class math_VectorBase;
 class math_Matrix
 {
 public:
-  // DEFINE_STANDARD_ALLOC
+  DEFINE_STANDARD_ALLOC
 
   friend class math_VectorBase<>;
 

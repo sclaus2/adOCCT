@@ -80,7 +80,7 @@ GeomAbs_Shape LocalContinuity(Standard_Integer         Degree,
   Standard_Real    newFirst, newLast;
   BSplCLib::LocateParameter(Degree, TK, TM, PFirst, IsPeriodic, 1, Nb, Index1, newFirst);
   BSplCLib::LocateParameter(Degree, TK, TM, PLast, IsPeriodic, 1, Nb, Index2, newLast);
-  constexpr Standard_Real EpsKnot = Precision::PConfusion();
+  const Standard_Real EpsKnot = Precision::PConfusion();
   if (Abs(newFirst - TK(Index1 + 1)) < EpsKnot)
     Index1++;
   if (Abs(newLast - TK(Index2)) < EpsKnot)

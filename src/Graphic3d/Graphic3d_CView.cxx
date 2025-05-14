@@ -262,8 +262,8 @@ void Graphic3d_CView::SubviewResized(const Handle(Aspect_NeutralWindow)& theWind
     aViewSize.y() = (int)mySubviewSize.y();
   }
 
-  Graphic3d_Vec2i anOffset(getSubViewOffset(mySubviewOffset.x(), aWinSize.x()),
-                           getSubViewOffset(mySubviewOffset.y(), aWinSize.y()));
+  Graphic3d_Vec2i anOffset(getSubViewOffset(mySubviewOffset.x().getValue(), aWinSize.x()),
+                           getSubViewOffset(mySubviewOffset.y().getValue(), aWinSize.y()));
   mySubviewTopLeft = (aWinSize - aViewSize) / 2; // Aspect_TOTP_CENTER
   if ((mySubviewCorner & Aspect_TOTP_LEFT) != 0)
   {

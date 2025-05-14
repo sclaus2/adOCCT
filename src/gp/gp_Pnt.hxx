@@ -222,11 +222,15 @@ struct hash<gp_Pnt>
   size_t operator()(const gp_Pnt& thePnt) const noexcept
   {
     union {
-      Standard_Real    R[3];
+      double    R[3];
       Standard_Integer I[6];
     } U;
 
-    thePnt.Coord(U.R[0], U.R[1], U.R[2]);
+    Standard_Real X, Y, Z;
+    thePnt.Coord(X, Y, Z);
+    U.R[0] = X.getValue();
+    U.R[1] = Y.getValue();
+    U.R[2] = Z.getValue();
 
     return std::hash<double>{}(U.I[0] / 23 + U.I[1] / 19 + U.I[2] / 17 + U.I[3] / 13 + U.I[4] / 11
                                + U.I[5] / 7);

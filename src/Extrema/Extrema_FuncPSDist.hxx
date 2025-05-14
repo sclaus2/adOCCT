@@ -27,7 +27,7 @@
 
 template <typename T>
 class math_VectorBase;
-using math_Vector = math_VectorBase<double>;
+using math_Vector = math_VectorBase<Standard_Real>;
 
 //! Functional for search of extremum of the square Euclidean distance between point P and
 //! surface S, starting from approximate solution (u0, v0).

@@ -127,7 +127,7 @@ Standard_Boolean BRepClass_FaceExplorer::OtherSegment(const gp_Pnt2d& P,
   Standard_Real           aFPar;
   Standard_Real           aLPar;
   Handle(Geom2d_Curve)    aC2d;
-  constexpr Standard_Real aTolParConf2 = Precision::PConfusion() * Precision::PConfusion();
+  const Standard_Real aTolParConf2 = Precision::PConfusion() * Precision::PConfusion();
   gp_Pnt2d                aPOnC;
   Standard_Real           aParamIn;
 

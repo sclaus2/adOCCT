@@ -133,7 +133,7 @@ Standard_Boolean ChFiKPart_MakeFillet(TopOpeBRepDS_DataStructure&    DStr,
 
   Standard_Real UOnCyl, VOnCyl, UOnPln, VOnPln;
   ElSLib::Parameters(Cyl, OrFillet, UOnCyl, VOnCyl);
-  constexpr Standard_Real tesp = Precision::Confusion();
+  const Standard_Real tesp = Precision::Confusion();
   if (UOnCyl < fu - tesp || UOnCyl > lu + tesp)
     UOnCyl = ElCLib::InPeriod(UOnCyl, fu, fu + 2 * M_PI);
   ElSLib::Parameters(Pln, OrFillet, UOnPln, VOnPln);

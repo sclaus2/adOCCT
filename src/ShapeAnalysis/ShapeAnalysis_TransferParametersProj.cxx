@@ -114,7 +114,7 @@ Handle(TColStd_HSequenceOfReal) ShapeAnalysis_TransferParametersProj::Perform(
   Handle(TColStd_HSequenceOfReal) resKnots = new TColStd_HSequenceOfReal;
 
   Standard_Integer        len   = Knots->Length();
-  constexpr Standard_Real preci = 2 * Precision::PConfusion();
+  const Standard_Real preci = 2 * Precision::PConfusion();
 
   Standard_Real first   = (To2d ? myAC3d.FirstParameter() : myFirst);
   Standard_Real last    = (To2d ? myAC3d.LastParameter() : myLast);
@@ -268,7 +268,7 @@ void ShapeAnalysis_TransferParametersProj::TransferRange(TopoDS_Edge&           
   gp_Pnt                  p1;
   gp_Pnt                  p2;
   Standard_Real           alpha = 0, beta = 1;
-  constexpr Standard_Real preci = Precision::PConfusion();
+  const Standard_Real preci = Precision::PConfusion();
   Standard_Real           firstPar, lastPar;
   if (prevPar < currPar)
   {

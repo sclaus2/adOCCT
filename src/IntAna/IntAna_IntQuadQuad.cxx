@@ -138,7 +138,7 @@ public:
   Standard_Boolean IsARoot(Standard_Real u)
   {
     Standard_Integer        i;
-    constexpr Standard_Real aEps  = RealEpsilon();
+    const Standard_Real aEps  = RealEpsilon();
     Standard_Real           PIpPI = M_PI + M_PI;
     //
     for (i = 0; i < NbRoots; ++i)

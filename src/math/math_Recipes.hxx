@@ -22,7 +22,7 @@
 template <typename T>
 class math_VectorBase;
 using math_IntegerVector = math_VectorBase<int>;
-using math_Vector        = math_VectorBase<double>;
+using math_Vector        = math_VectorBase<Standard_Real>;
 class math_Matrix;
 
 const Standard_Integer math_Status_UserAborted    = -1;

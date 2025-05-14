@@ -101,7 +101,7 @@ GccAna_Lin2dTanPer::GccAna_Lin2dTanPer(const gp_Pnt2d& ThePnt, const gp_Circ2d& 
   {
     if (!Intp.IsEmpty())
     {
-      constexpr Standard_Real maxdist = RealLast();
+      const Standard_Real maxdist = RealLast();
       for (Standard_Integer i = 1; i <= Intp.NbPoints(); i++)
       {
         if (Intp.Point(i).Value().Distance(ThePnt) < maxdist)
@@ -262,7 +262,7 @@ GccAna_Lin2dTanPer::GccAna_Lin2dTanPer(const GccEnt_QualifiedCirc& Qualified1,
     {
       if (!Intp.IsEmpty())
       {
-        constexpr Standard_Real maxdist = RealLast();
+        const Standard_Real maxdist = RealLast();
         for (Standard_Integer i = 1; i <= Intp.NbPoints(); i++)
         {
           if (Intp.Point(i).Value().Distance(pnttg1sol(NbrSol)) < maxdist)

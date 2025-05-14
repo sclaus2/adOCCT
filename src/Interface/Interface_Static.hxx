@@ -198,7 +198,7 @@ public:
   //! Returns the value of a static
   //! translation parameter identified by the string name.
   //! Returns the value 0.0 if the parameter does not exist.
-  Standard_EXPORT static Standard_Real RVal(const Standard_CString name);
+  Standard_EXPORT static double RVal(const Standard_CString name);
 
   //! Modifies the value of the
   //! parameter identified by name. The modification is specified
@@ -226,7 +226,7 @@ public:
   //! parameter does not exist. The modification is specified
   //! by the real number value val.
   Standard_EXPORT static Standard_Boolean SetRVal(const Standard_CString name,
-                                                  const Standard_Real    val);
+                                                  const double    val);
 
   //! Sets a Static to be "uptodate"
   //! Returns False if <name> is not present
@@ -279,8 +279,8 @@ private:
   Standard_Integer                                               thelims;
   Standard_Integer                                               theintlow;
   Standard_Integer                                               theintup;
-  Standard_Real                                                  therealow;
-  Standard_Real                                                  therealup;
+  double                                                  therealow;
+  double                                                  therealup;
   TCollection_AsciiString                                        theunidef;
   Handle(TColStd_HArray1OfAsciiString)                           theenums;
   NCollection_DataMap<TCollection_AsciiString, Standard_Integer> theeadds;

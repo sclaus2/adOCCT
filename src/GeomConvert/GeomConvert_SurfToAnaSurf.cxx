@@ -285,7 +285,7 @@ Standard_Boolean GeomConvert_SurfToAnaSurf::GetCylByLS(const Handle(TColgp_HArra
   aLBnd(4) = aStartPoint(4) + aDR;
 
   //
-  constexpr Standard_Real        aTol = Precision::Confusion();
+  const Standard_Real        aTol = Precision::Confusion();
   math_MultipleVarFunction*      aPFunc;
   GeomConvert_FuncCylinderLSDist aFuncCyl(thePoints, thePos.Direction());
   aPFunc = (math_MultipleVarFunction*)&aFuncCyl;
@@ -817,7 +817,7 @@ Handle(Geom_Surface) GeomConvert_SurfToAnaSurf::ConvertToAnalytical(
   Standard_Real U1, U2, V1, V2;
   mySurf->Bounds(U1, U2, V1, V2);
   Standard_Boolean        aDoSegment = Standard_False;
-  constexpr Standard_Real aTolBnd    = Precision::PConfusion();
+  const Standard_Real aTolBnd    = Precision::PConfusion();
   Standard_Integer        isurf      = 0;
   if (Umin < U1 || Umax > U2 || Vmin < V1 || Vmax > V2)
   {

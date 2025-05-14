@@ -81,8 +81,8 @@ void LocOpe_CSIntersector::Perform(const LocOpe_SequenceOfLin& Slin)
   }
   myPoints = (LocOpe_SequenceOfPntFace*)new LocOpe_SequenceOfPntFace[myNbelem];
 
-  constexpr Standard_Real binf = RealFirst();
-  constexpr Standard_Real bsup = RealLast();
+  const Standard_Real binf = RealFirst();
+  const Standard_Real bsup = RealLast();
   TopExp_Explorer         exp(myShape, TopAbs_FACE);
   for (; exp.More(); exp.Next())
   {

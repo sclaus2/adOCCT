@@ -66,7 +66,7 @@ void GeomAPI_ExtremaCurveCurve::Init(const Handle(Geom_Curve)& C1, const Handle(
 
   myTotalExt = Standard_False;
 
-  constexpr Standard_Real Tol = Precision::PConfusion();
+  const Standard_Real Tol = Precision::PConfusion();
   myC1.Load(C1);
   myC2.Load(C2);
 
@@ -106,7 +106,7 @@ void GeomAPI_ExtremaCurveCurve::Init(const Handle(Geom_Curve)& C1,
 
   myTotalExt = Standard_False;
 
-  constexpr Standard_Real Tol = Precision::PConfusion();
+  const Standard_Real Tol = Precision::PConfusion();
   myC1.Load(C1);
   myC2.Load(C2);
 

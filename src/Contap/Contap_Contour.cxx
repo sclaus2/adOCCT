@@ -286,7 +286,7 @@ static void LineConstructor(Contap_TheSequenceOfLine&          slin,
 
   //-- ------------------------------------------------------------
   //-- on decoupe la ligne en portions  entre 2 vertex
-  constexpr Standard_Real Tol  = Precision::PConfusion();
+  const Standard_Real Tol  = Precision::PConfusion();
   Contap_IType            typl = L.TypeContour();
   //-- std::cout<<"\n ----------- Ligne Constructor "<<std::endl;
   if (typl == Contap_Walking)

@@ -2108,7 +2108,7 @@ Standard_Boolean IntPatch_Intersection::CheckSingularPoints(
   }
   //
   const Standard_Integer  aNbBndPnts = 5;
-  constexpr Standard_Real aTol       = Precision::Confusion();
+  const Standard_Real aTol       = Precision::Confusion();
   Standard_Integer        i;
   theD1->Init();
   Standard_Boolean isU = Standard_True;
@@ -2154,7 +2154,7 @@ Standard_Boolean IntPatch_Intersection::CheckSingularPoints(
       // Singular point aPP1;
       aPmid /= aNb;
       aPP1.SetXYZ(aPmid);
-      constexpr Standard_Real aTolU = Precision::PConfusion(), aTolV = Precision::PConfusion();
+      const Standard_Real aTolU = Precision::PConfusion(), aTolV = Precision::PConfusion();
       Extrema_ExtPS           aProj(aPP1, *theS2.get(), aTolU, aTolV, Extrema_ExtFlag_MIN);
 
       if (aProj.IsDone())
@@ -2186,7 +2186,7 @@ Standard_Real IntPatch_Intersection::DefineUVMaxStep(const Handle(Adaptor3d_Surf
   Standard_Real           anUVMaxStep  = 0.001;
   Standard_Real           aDistToSing1 = Precision::Infinite();
   Standard_Real           aDistToSing2 = Precision::Infinite();
-  constexpr Standard_Real aTolMin = Precision::Confusion(), aTolMax = 1.e-5;
+  const Standard_Real aTolMin = Precision::Confusion(), aTolMax = 1.e-5;
   if (theS1 != theS2)
   {
     Standard_Boolean isSing1 = CheckSingularPoints(theS1, theD1, theS2, aDistToSing1);

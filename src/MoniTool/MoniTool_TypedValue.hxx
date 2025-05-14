@@ -133,12 +133,12 @@ public:
 
   //! Sets a Real limit (included) to <val>, the upper limit
   //! if <max> is True, the lower limit if <max> is False
-  Standard_EXPORT void SetRealLimit(const Standard_Boolean max, const Standard_Real val);
+  Standard_EXPORT void SetRealLimit(const Standard_Boolean max, const double val);
 
   //! Gives an Real Limit (upper if <max> True, lower if <max>
   //! False). Returns True if this limit is defined, False else
   //! (in that case, gives the natural limit for Real)
-  Standard_EXPORT Standard_Boolean RealLimit(const Standard_Boolean max, Standard_Real& val) const;
+  Standard_EXPORT Standard_Boolean RealLimit(const Standard_Boolean max, double& val) const;
 
   //! Sets (Clears if <def> empty) a unit definition, as an equation
   //! of dimensions. TypedValue just records this definition, does
@@ -276,10 +276,10 @@ public:
 
   //! Returns the value as real,  for a Real type TypedValue
   //! Else, returns 0.
-  Standard_EXPORT Standard_Real RealValue() const;
+  Standard_EXPORT double RealValue() const;
 
   //! Changes the value as a real, only for Real
-  Standard_EXPORT virtual Standard_Boolean SetRealValue(const Standard_Real rval);
+  Standard_EXPORT virtual Standard_Boolean SetRealValue(const double rval);
 
   //! Returns the value as Transient Object, only for Object/Entity
   //! Remark that the "HString value" is IGNORED here
@@ -347,8 +347,8 @@ private:
   Standard_Integer                                               themaxlen;
   Standard_Integer                                               theintlow;
   Standard_Integer                                               theintup;
-  Standard_Real                                                  therealow;
-  Standard_Real                                                  therealup;
+  double                                                  therealow;
+  double                                                  therealup;
   TCollection_AsciiString                                        theunidef;
   Handle(TColStd_HArray1OfAsciiString)                           theenums;
   NCollection_DataMap<TCollection_AsciiString, Standard_Integer> theeadds;

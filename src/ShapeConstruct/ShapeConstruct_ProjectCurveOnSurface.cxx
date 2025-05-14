@@ -2218,7 +2218,7 @@ Standard_Boolean ShapeConstruct_ProjectCurveOnSurface::IsAnIsoparametric(
   { // RAJOUT
     OCC_CATCH_SIGNALS
 
-    constexpr Standard_Real prec = Precision::Confusion(); // myPreci;
+    const Standard_Real prec = Precision::Confusion(); // myPreci;
 
     Standard_Boolean isoParam = Standard_False;
     isoPar2d3d                = Standard_False;

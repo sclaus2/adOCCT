@@ -351,7 +351,7 @@ Handle(Geom_Curve) IGESToBRep_BasicCurve::TransferConicArc(const Handle(IGESGeom
     // The dimensions should be also obliged:
     //[a]=[b]=[c]=L^-2
     // if ( (Abs(a-c) <= GetEpsGeom()) && (Abs(b) < GetEpsCoeff()))
-    constexpr Standard_Real eps2 = Precision::PConfusion() * Precision::PConfusion();
+    const Standard_Real eps2 = Precision::PConfusion() * Precision::PConfusion();
     if ((Abs(a - c) <= eps2) && (Abs(b) < eps2))
     {
 
@@ -531,7 +531,7 @@ Handle(Geom2d_Curve) IGESToBRep_BasicCurve::Transfer2dConicArc(const Handle(IGES
 
     // #60 rln 29.12.98 PRO17015
     // if ( (Abs(a-c) <= GetEpsGeom()) && (Abs(b) < GetEpsCoeff()))
-    constexpr Standard_Real eps2 = Precision::PConfusion() * Precision::PConfusion();
+    const Standard_Real eps2 = Precision::PConfusion() * Precision::PConfusion();
     if ((Abs(a - c) <= eps2) && (Abs(b) < eps2))
     {
 

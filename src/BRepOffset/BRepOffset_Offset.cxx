@@ -1266,7 +1266,7 @@ void BRepOffset_Offset::Init(const TopoDS_Edge&     Path,
   if (IsClosed)
     Edge4 = Edge3;
 
-  constexpr Standard_Real TolApp = Precision::Approximation();
+  const Standard_Real TolApp = Precision::Approximation();
 
   Handle(Geom2d_Line) L1, L2;
   if (IsClosed)

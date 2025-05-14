@@ -66,7 +66,7 @@ void HLRAlgo_PolyAlgo::Update()
   Standard_Real           xTrianMax, yTrianMax, zTrianMax;
   Standard_Real           xSegmnMin, ySegmnMin, zSegmnMin;
   Standard_Real           xSegmnMax, ySegmnMax, zSegmnMax;
-  constexpr Standard_Real Big = Precision::Infinite();
+  const Standard_Real Big = Precision::Infinite();
   HLRAlgo_PolyData::Box   aBox(Big, Big, Big, -Big, -Big, -Big);
 
   myNbrShell = myHShell.Size();
@@ -235,12 +235,12 @@ void HLRAlgo_PolyAlgo::Update()
               zTrianMin = Z3;
             else if (zTrianMax < Z3)
               zTrianMax = Z3;
-            nxMin = (Standard_Integer)((DecaX + xTrianMin) * SurDX);
-            nyMin = (Standard_Integer)((DecaY + yTrianMin) * SurDY);
-            nzMin = (Standard_Integer)((DecaZ + zTrianMin) * SurDZ);
-            nxMax = (Standard_Integer)((DecaX + xTrianMax) * SurDX);
-            nyMax = (Standard_Integer)((DecaY + yTrianMax) * SurDY);
-            nzMax = (Standard_Integer)((DecaZ + zTrianMax) * SurDZ);
+            nxMin = (Standard_Integer)Standard_Real((DecaX + xTrianMin) * SurDX);
+            nyMin = (Standard_Integer)Standard_Real((DecaY + yTrianMin) * SurDY);
+            nzMin = (Standard_Integer)Standard_Real((DecaZ + zTrianMin) * SurDZ);
+            nxMax = (Standard_Integer)Standard_Real((DecaX + xTrianMax) * SurDX);
+            nyMax = (Standard_Integer)Standard_Real((DecaY + yTrianMax) * SurDY);
+            nzMax = (Standard_Integer)Standard_Real((DecaZ + zTrianMax) * SurDZ);
             Standard_Integer MinTrian, MaxTrian;
             MinTrian = nyMin + (nxMin << 11);
             MinTrian <<= 10;

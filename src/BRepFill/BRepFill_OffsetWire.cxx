@@ -1974,8 +1974,8 @@ void CutCurve(const Handle(Geom2d_TrimmedCurve)& C,
   Standard_Real               UF, UL, UC;
   Standard_Real               Step;
   gp_Pnt2d                    PF, PL, PC;
-  constexpr Standard_Real     PTol  = Precision::PConfusion() * 10;
-  constexpr Standard_Real     Tol   = Precision::Confusion() * 10;
+  const Standard_Real     PTol  = Precision::PConfusion() * 10;
+  const Standard_Real     Tol   = Precision::Confusion() * 10;
   Standard_Boolean            YaCut = Standard_False;
 
   UF = C->FirstParameter();
@@ -2200,7 +2200,7 @@ Standard_Boolean VertexFromNode(const Handle(MAT_Node)&      aNode,
                                 TopoDS_Vertex&               VN)
 {
   Standard_Boolean        Status;
-  constexpr Standard_Real Tol = Precision::Confusion();
+  const Standard_Real Tol = Precision::Confusion();
   BRep_Builder            B;
 
   if (!aNode->Infinite() && Abs(aNode->Distance() - Offset) < Tol)
@@ -2305,7 +2305,7 @@ void TrimEdge(const TopoDS_Edge&                   E,
   //----------------------------------------------------------
   if (!BRep_Tool::Degenerated(E))
   {
-    constexpr Standard_Real aParTol = 2.0 * Precision::PConfusion();
+    const Standard_Real aParTol = 2.0 * Precision::PConfusion();
     for (Standard_Integer k = 1; k < TheVer.Length(); k++)
     {
       if (TheVer.Value(k).IsSame(TheVer.Value(k + 1))
@@ -2556,7 +2556,7 @@ static void CheckBadEdges(const TopoDS_Face&              Spine,
 {
 
   TopoDS_Face             F       = TopoDS::Face(Spine.Oriented(TopAbs_FORWARD));
-  constexpr Standard_Real eps     = Precision::Confusion();
+  const Standard_Real eps     = Precision::Confusion();
   Standard_Real           LimCurv = 1. / Offset;
 
   TopTools_MapOfShape aMap;

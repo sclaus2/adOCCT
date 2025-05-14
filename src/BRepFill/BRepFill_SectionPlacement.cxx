@@ -128,7 +128,7 @@ void BRepFill_SectionPlacement::Perform(const Standard_Boolean WithContact,
     if (Ex.More())
     {
       Standard_Real                       tolrac, epsV;
-      constexpr Standard_Real             tol = Precision::Confusion();
+      const Standard_Real             tol = Precision::Confusion();
       GeomConvert_CompCurveToBSplineCurve Conv(TC);
       for (; Ex.More(); Ex.Next())
       {
@@ -297,7 +297,7 @@ void BRepFill_SectionPlacement::Perform(const Standard_Boolean WithContact,
   Place.Perform(adpPath, Precision::Confusion());
 
   Standard_Real           theParam = Place.ParameterOnPath();
-  constexpr Standard_Real eps      = Precision::PConfusion();
+  const Standard_Real eps      = Precision::PConfusion();
 
 #ifdef OCCT_DEBUG
   if (myDebug)

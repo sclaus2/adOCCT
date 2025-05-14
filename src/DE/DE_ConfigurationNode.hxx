@@ -145,8 +145,8 @@ public:
   struct DE_SectionGlobal
   {
     // clang-format off
-    Standard_Real LengthUnit = 1.0; //!< Target Unit (scaling based on MM) for the transfer process, default 1.0 (MM)
-    Standard_Real SystemUnit = 1.0; //!< System Unit (scaling based on MM) to be used when initial
+    double LengthUnit = 1.0; //!< Target Unit (scaling based on MM) for the transfer process, default 1.0 (MM)
+    double SystemUnit = 1.0; //!< System Unit (scaling based on MM) to be used when initial
                                     //!< unit is unknown, default 1.0 (MM)
   } GlobalParameters;
 

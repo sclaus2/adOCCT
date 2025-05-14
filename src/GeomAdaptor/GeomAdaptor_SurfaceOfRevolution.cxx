@@ -264,7 +264,7 @@ Handle(Adaptor3d_Surface) GeomAdaptor_SurfaceOfRevolution::UTrim(const Standard_
                                                                  const Standard_Real Last,
                                                                  const Standard_Real Tol) const
 {
-  constexpr Standard_Real Eps = Precision::PConfusion();
+  const Standard_Real Eps = Precision::PConfusion();
   (void)Eps;
   (void)First;
   (void)Last;
@@ -349,9 +349,9 @@ Standard_Real GeomAdaptor_SurfaceOfRevolution::VResolution(const Standard_Real R
 
 GeomAbs_SurfaceType GeomAdaptor_SurfaceOfRevolution::GetType() const
 {
-  constexpr Standard_Real TolConf        = Precision::Confusion();
-  constexpr Standard_Real TolAng         = Precision::Angular();
-  constexpr Standard_Real TolConeSemiAng = Precision::Confusion();
+  const Standard_Real TolConf        = Precision::Confusion();
+  const Standard_Real TolAng         = Precision::Angular();
+  const Standard_Real TolConeSemiAng = Precision::Confusion();
 
   switch (myBasisCurve->GetType())
   {

@@ -2191,8 +2191,8 @@ static Standard_Integer OCC27466(Draw_Interpretor& theDI,
     return 1;
   BRepAdaptor_Surface aSurf(aFace);
 
-  constexpr Standard_Real aTolU = Precision::PConfusion();
-  constexpr Standard_Real aTolV = Precision::PConfusion();
+  const Standard_Real aTolU = Precision::PConfusion();
+  const Standard_Real aTolV = Precision::PConfusion();
 
   Extrema_GenLocateExtPS anExtrema(aSurf, aTolU, aTolV);
   anExtrema.Perform(aPnt, aUV.X(), aUV.Y(), Standard_True);
@@ -3787,7 +3787,7 @@ static Standard_Integer OCC29745(Draw_Interpretor& theDI,
   theDI << "NbIntervals: " << aNbInts << "; ";
   for (i = anInters.Lower(); i <= anInters.Upper(); ++i)
   {
-    theDI << anInters(i) << " ";
+    theDI << anInters(i).getValue() << " ";
   }
   return 0;
 }
@@ -4271,10 +4271,10 @@ static Standard_Integer OCC30869(Draw_Interpretor& theDI,
   if (aVLast.SquareMagnitude() > gp::Resolution())
     aVLast.Normalize();
 
-  theDI << aFirst << ": point " << aPFirst.X().getValue() << " " << aPFirst.Y().getValue() << " " << aPFirst.Z().getValue()
+  theDI << aFirst.getValue() << ": point " << aPFirst.X().getValue() << " " << aPFirst.Y().getValue() << " " << aPFirst.Z().getValue()
         << ", tangent " << aVFirst.X().getValue() << " " << aVFirst.Y().getValue() << " " << aVFirst.Z().getValue() << "\n";
 
-  theDI << aLast << ": point " << aPLast.X().getValue() << " " << aPLast.Y().getValue() << " " << aPLast.Z().getValue()
+  theDI << aLast.getValue() << ": point " << aPLast.X().getValue() << " " << aPLast.Y().getValue() << " " << aPLast.Z().getValue()
         << ", tangent " << aVLast.X().getValue() << " " << aVLast.Y().getValue() << " " << aVLast.Z().getValue() << "\n";
 
   return 0;
@@ -5120,7 +5120,7 @@ static Standard_Integer QACheckBends(Draw_Interpretor& theDI,
   Standard_Real U1 = aCurve->FirstParameter(), U2 = aCurve->LastParameter();
   if (Precision::IsInfinite(U1) || Precision::IsInfinite(U2))
   {
-    theDI << "Infinite interval  : " << U1 << "  " << U2 << "\n";
+    theDI << "Infinite interval  : " << U1.getValue() << "  " << U2.getValue() << "\n";
     return 0;
   }
 
@@ -5139,7 +5139,7 @@ static Standard_Integer QACheckBends(Draw_Interpretor& theDI,
     if (aCos < aCosMaxAngle)
     {
       theDI << "Error: The curve " << theArgVal[1] << " is possible to have a bend at parameter "
-            << p << ". Please check carefully \n";
+            << p.getValue() << ". Please check carefully \n";
     }
 
     aD1 = aD2;
@@ -5252,12 +5252,12 @@ static Standard_Integer OCC26441(Draw_Interpretor& theDi,
 
   if (aMaxE > anEps)
   {
-    theDi << " Maximal difference for edges : " << aMaxE << "\n";
+    theDi << " Maximal difference for edges : " << aMaxE.getValue() << "\n";
     DBRep::Set("BadEdges", aBadEdges);
   }
   if (aMaxV > anEps)
   {
-    theDi << " Maximal difference for vertices : " << aMaxV << "\n";
+    theDi << " Maximal difference for vertices : " << aMaxV.getValue() << "\n";
     DBRep::Set("BadVerts", aBadVerts);
   }
 

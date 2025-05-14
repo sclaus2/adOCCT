@@ -1751,7 +1751,7 @@ void IntPatch_PrmPrmIntersection::Perform(const Handle(Adaptor3d_Surface)&   Sur
   IntSurf_ListIteratorOfListOfPntOn2S IterLOP1(LOfPnts);
   if (Surf1->IsUClosed() || Surf1->IsVClosed() || Surf2->IsUClosed() || Surf2->IsVClosed())
   {
-    constexpr Standard_Real TolPar = Precision::PConfusion();
+    const Standard_Real TolPar = Precision::PConfusion();
     IntSurf_ListOfPntOn2S   AdditionalPnts;
     Standard_Real           NewU1, NewV1, NewU2, NewV2;
     for (; IterLOP1.More(); IterLOP1.Next())

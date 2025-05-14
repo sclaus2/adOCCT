@@ -750,7 +750,7 @@ template <int dim>
 inline void eval_poly0(Standard_Real* aRes, Standard_Real* aCoeffs, int Degree, Standard_Real Par)
 {
   Standard_Real* aRes0 = aRes;
-  memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * dim);
+  for(int i = 0; i < dim; ++i) aRes0[i] = aCoeffs[i]; // memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * dim);
 
   for (Standard_Integer aDeg = 0; aDeg < Degree; aDeg++)
   {

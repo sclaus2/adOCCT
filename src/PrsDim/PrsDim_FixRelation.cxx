@@ -262,7 +262,7 @@ gp_Pnt PrsDim_FixRelation::ComputePosition(const Handle(Geom_Curve)& curv1,
     if (!vec1.IsParallel(vec2, Precision::Angular()))
     {
       gp_Dir                  dir;
-      constexpr Standard_Real conf = Precision::Confusion();
+      const Standard_Real conf = Precision::Confusion();
       if (lastp1.IsEqual(firstp2, conf) || firstp1.IsEqual(lastp2, conf))
         dir.SetXYZ(vec1.XYZ() - vec2.XYZ());
       else

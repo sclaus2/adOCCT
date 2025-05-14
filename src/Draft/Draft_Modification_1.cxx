@@ -1689,7 +1689,7 @@ void Draft_Modification::Perform()
       {
         // pf >= pl
         Standard_Real FirstPar = theCurve->FirstParameter(), LastPar = theCurve->LastParameter();
-        constexpr Standard_Real pconf = Precision::PConfusion();
+        const Standard_Real pconf = Precision::PConfusion();
         if (Abs(pf - LastPar) <= pconf)
           pf = FirstPar;
         else if (Abs(pl - FirstPar) <= pconf)
@@ -2213,7 +2213,7 @@ static Standard_Real SmartParameter(Draft_EdgeInfo&             Einf,
                                     const Handle(Geom_Surface)& S2)
 {
   Handle(Geom2d_Curve)    NewC2d;
-  constexpr Standard_Real Tol  = Precision::Confusion();
+  const Standard_Real Tol  = Precision::Confusion();
   Standard_Real           Etol = EdgeTol;
 
   Handle(Geom2d_Curve) pcu1 = Einf.FirstPC();

@@ -482,7 +482,7 @@ void PrsDim_MidPointRelation::ComputePointsOnCirc(const gp_Circ&         aCirc,
 
   // Case of confusion between the current position and the center
   // of the circle -> we move the current position
-  constexpr Standard_Real confusion(Precision::Confusion());
+  const Standard_Real confusion(Precision::Confusion());
   gp_Pnt                  aCenter = aCirc.Location();
   if (aCenter.Distance(curpos) <= confusion)
   {
@@ -608,7 +608,7 @@ void PrsDim_MidPointRelation::ComputePointsOnElips(const gp_Elips&        anEll,
 
   // Case of confusion between the current position and the center
   // of the circle -> we move the current position
-  constexpr Standard_Real confusion(Precision::Confusion());
+  const Standard_Real confusion(Precision::Confusion());
   gp_Pnt                  aCenter = anEll.Location();
   if (aCenter.Distance(curpos) <= confusion)
   {

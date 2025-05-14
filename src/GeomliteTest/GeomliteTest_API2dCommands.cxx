@@ -670,11 +670,11 @@ static Standard_Integer deviation(Draw_Interpretor& theDI,
     theDI << "Error: Cannot compute a deviation!\n";
     return 0;
   }
-  theDI << "Computed value is: " << aDefl << "\n";
+  theDI << "Computed value is: " << aDefl.getValue() << "\n";
   TCollection_AsciiString anArgString = theArgv[1];
   TCollection_AsciiString aPntString  = anArgString + "_pnt";
   DrawTrSurf::Set(aPntString.ToCString(), aPtOnCurv);
-  theDI << "From point " << aPntString << " (with parameter " << aRetCurvParam << ") to ";
+  theDI << "From point " << aPntString << " (with parameter " << aRetCurvParam.getValue() << ") to ";
 
   Handle(Geom2d_Curve)    aLine      = new Geom2d_Line(aLinSegm);
   TCollection_AsciiString aLinString = anArgString + "_lin";

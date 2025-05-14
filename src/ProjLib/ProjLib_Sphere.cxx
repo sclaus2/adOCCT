@@ -119,7 +119,7 @@ void ProjLib_Sphere::Project(const gp_Circ& C)
   Zs = mySphere.Position().Direction();
 
   Standard_Boolean        isIsoU, isIsoV;
-  constexpr Standard_Real Tol = Precision::Confusion();
+  const Standard_Real Tol = Precision::Confusion();
 
   isIsoU = Zc.IsNormal(Zs, Tol) && O.IsEqual(C.Location(), Tol);
   isIsoV = Xc.IsNormal(Zs, Tol) && Yc.IsNormal(Zs, Tol);

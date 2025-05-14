@@ -1500,7 +1500,7 @@ void GeomLib::ExtendSurfByLength(Handle(Geom_BoundedSurface)& Surface,
   if (BS.IsNull())
   {
     // BS = GeomConvert::SurfaceToBSplineSurface(Surface);
-    constexpr Standard_Real     Tol   = Precision::Confusion(); // 1.e-4;
+    const Standard_Real     Tol   = Precision::Confusion(); // 1.e-4;
     GeomAbs_Shape               UCont = GeomAbs_C1, VCont = GeomAbs_C1;
     Standard_Integer            degU = 14, degV = 14;
     Standard_Integer            nmax    = 16;
@@ -1529,7 +1529,7 @@ void GeomLib::ExtendSurfByLength(Handle(Geom_BoundedSurface)& Surface,
   //   Standard_Boolean rational = ( InU && BS->IsURational() )
   //                                   || ( !InU && BS->IsVRational() ) ;
   Standard_Boolean        rational = (BS->IsURational() || BS->IsVRational());
-  constexpr Standard_Real EpsW     = 10 * Precision::PConfusion();
+  const Standard_Real EpsW     = 10 * Precision::PConfusion();
   Standard_Integer        gap      = 3;
   if (rational)
     gap++;

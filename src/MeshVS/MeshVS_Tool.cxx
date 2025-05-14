@@ -249,7 +249,7 @@ Standard_Boolean MeshVS_Tool::GetNormal(const TColStd_Array1OfReal& Nodes, gp_Ve
   Standard_Boolean res = Standard_True;
 
   Standard_Real           normal[3], first_vec[3], cur_vec[3], xx, yy, zz;
-  constexpr Standard_Real conf = Precision::Confusion();
+  const Standard_Real conf = Precision::Confusion();
 
   for (i = 0; i < 3; i++)
   {
@@ -314,7 +314,7 @@ Standard_Boolean MeshVS_Tool::GetAverageNormal(const TColStd_Array1OfReal& Nodes
   Standard_Boolean res = Standard_True;
 
   Standard_Real           normal[3], first_vec[3], cur_vec[3], xx, yy, zz;
-  constexpr Standard_Real conf = Precision::Confusion();
+  const Standard_Real conf = Precision::Confusion();
 
   for (i = 0; i < 3; i++)
   {

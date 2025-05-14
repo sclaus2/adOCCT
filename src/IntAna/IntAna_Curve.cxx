@@ -439,7 +439,7 @@ void IntAna_Curve::FindParameter(const gp_Pnt& theP, TColStd_ListOfReal& thePara
                       InternalPrecision =
                         1.e-8; // precision of internal algorithm of values computation
   // clang-format off
-  constexpr Standard_Real aSqTolPrecision = Precision::SquareConfusion(); //for boundary points to check their coincidence with others
+  const Standard_Real aSqTolPrecision = Precision::SquareConfusion(); //for boundary points to check their coincidence with others
   // clang-format on
 
   Standard_Real aTheta = 0.0;

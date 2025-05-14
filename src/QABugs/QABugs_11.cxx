@@ -2406,7 +2406,7 @@ static Standard_Integer OCC6143(Draw_Interpretor& di, Standard_Integer argc, con
       di << "(Real) Overflow...";
       // std::cout.flush();
       di << "\n";
-      constexpr Standard_Real r   = RealLast();
+      const Standard_Real r   = RealLast();
       Standard_Real           res = r * r;
 
       (void)sin(1.); // this function tests FPU flags and raises signal (tested on LINUX).
@@ -2442,7 +2442,7 @@ static Standard_Integer OCC6143(Draw_Interpretor& di, Standard_Integer argc, con
       di << "(Real) Underflow";
       // std::cout.flush();
       di << "\n";
-      constexpr Standard_Real r   = RealSmall();
+      const Standard_Real r   = RealSmall();
       Standard_Real           res = r * r;
       // res = res + 1.;
       //++++ std::cout<<"-- "<<res<<"="<<r<<"*"<<r<<"   Does not Caught... KO"<<std::endl;
@@ -2870,7 +2870,7 @@ static Standard_Integer OCC8169(Draw_Interpretor& di, Standard_Integer argc, con
 
   Handle(Geom_Surface) thePlane = BRep_Tool::Surface(theFace);
 
-  constexpr Standard_Real aConfusion = Precision::Confusion();
+  const Standard_Real aConfusion = Precision::Confusion();
   Standard_Real           aP1first, aP1last, aP2first, aP2last;
 
   Handle(Geom_Curve)   aCurve1   = BRep_Tool::Curve(theEdge1, aP1first, aP1last);
@@ -4815,7 +4815,7 @@ Standard_Integer OCC17424(Draw_Interpretor& di, Standard_Integer argc, const cha
   gp_Dir dir(X_Dir, Y_Dir, Z_Dir);
   gp_Lin ray(origin, dir);
 
-  constexpr Standard_Real PSup = RealLast();
+  const Standard_Real PSup = RealLast();
   intersector.PerformNearest(ray, PInf, PSup);
   if (intersector.NbPnt() != 0)
   {
@@ -4955,7 +4955,7 @@ Standard_Integer OCC22736(Draw_Interpretor& di, Standard_Integer argc, const cha
   gp_Trsf2d Tcomp;
   Tcomp = M2.Multiplied(M1);
 
-  constexpr Standard_Real aTol    = Precision::Confusion();
+  const Standard_Real aTol    = Precision::Confusion();
   Standard_Integer        aStatus = 0;
 
   // After applying two times the same mirror the point is located on the same location OK

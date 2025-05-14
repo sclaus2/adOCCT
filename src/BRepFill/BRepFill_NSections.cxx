@@ -540,7 +540,7 @@ void BRepFill_NSections::Init(const TColStd_SequenceOfReal& P, const Standard_Bo
 
   myLaws = new (GeomFill_HArray1OfSectionLaw)(1, NbEdge);
 
-  constexpr Standard_Real tol = Precision::Confusion();
+  const Standard_Real tol = Precision::Confusion();
   mySurface                   = totalsurf(myEdges->Array2(),
                         myShapes.Length(),
                         NbEdge,

@@ -1393,7 +1393,7 @@ static Standard_Integer getanasurf(Draw_Interpretor& di, Standard_Integer n, con
   if (!aRes.IsNull())
   {
     DrawTrSurf::Set(a[1], aRes);
-    di << "Gap = " << aCanonRec.GetGap() << "\n";
+    di << "Gap = " << aCanonRec.GetGap().getValue() << "\n";
   }
   else
   {
@@ -1468,7 +1468,7 @@ Standard_Integer getanacurve(Draw_Interpretor& di, Standard_Integer n, const cha
   if (!aRes.IsNull())
   {
     DrawTrSurf::Set(a[1], aRes);
-    di << "Gap = " << aCanonRec.GetGap() << "\n";
+    di << "Gap = " << aCanonRec.GetGap().getValue() << "\n";
   }
   else
   {

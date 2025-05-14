@@ -276,7 +276,7 @@ static int ShapeProximity(Draw_Interpretor& theDI, Standard_Integer theNbArgs, c
 
   if (isValue)
   {
-    theDI << "Proximity value: " << aTool.Proximity() << "\n";
+    theDI << "Proximity value: " << aTool.Proximity().getValue() << "\n";
 
     // proximity points
     TopoDS_Vertex aProxVtx1 = BRepLib_MakeVertex(aTool.ProximityPoint1());

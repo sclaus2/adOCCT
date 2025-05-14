@@ -1268,7 +1268,7 @@ static Standard_Integer XGetProperties(Draw_Interpretor& theDI,
              anSubIter.Next())
         {
           aMessage += " ";
-          aMessage += anSubIter.Value();
+          aMessage += anSubIter.Value().getValue();
         }
         theDI << aMessage << "\n";
       }

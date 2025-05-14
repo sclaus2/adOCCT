@@ -87,7 +87,7 @@ Standard_Integer CountNormals(const Handle(Poly_Triangulation)& theTriangulation
 
   // Function to compare normal coordinates values.
   auto isEqual = [](const Standard_Real theVal1, const Standard_Real theVal2) {
-    return std::abs(theVal1 - theVal2) < Precision::Confusion();
+    return Abs(theVal1 - theVal2) < Precision::Confusion();
   };
   // Checking if all normals are equal.
   const gp_Dir aReferenceNormal = theTriangulation->Normal(1);

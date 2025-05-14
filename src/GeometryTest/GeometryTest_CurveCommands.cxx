@@ -1106,7 +1106,7 @@ static Standard_Integer uniformAbscissa(Draw_Interpretor& di, Standard_Integer n
 
     GeomAdaptor_Curve GAC(ellip);
     di << "Type Of curve: " << GAC.GetType() << "\n";
-    constexpr Standard_Real Tol = Precision::Confusion();
+    const Standard_Real Tol = Precision::Confusion();
     Standard_Real           L;
 
     L = GCPnts_AbscissaPoint::Length(GAC, GAC.FirstParameter(), GAC.LastParameter(), Tol);
@@ -1184,7 +1184,7 @@ static Standard_Integer EllipsUniformAbscissa(Draw_Interpretor& di,
 
     GeomAdaptor_Curve GAC(ellip);
     di << "Type Of curve: " << GAC.GetType() << "\n";
-    constexpr Standard_Real Tol = Precision::Confusion();
+    const Standard_Real Tol = Precision::Confusion();
     Standard_Real           L;
 
     L = GCPnts_AbscissaPoint::Length(GAC, GAC.FirstParameter(), GAC.LastParameter(), Tol);

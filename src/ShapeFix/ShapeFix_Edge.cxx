@@ -381,7 +381,7 @@ static void TempSameRange(const TopoDS_Edge& AnEdge, const Standard_Real Toleran
             if (Curve2dPtr->IsKind(STANDARD_TYPE(Geom2d_BezierCurve)))
             {
 
-              constexpr Standard_Real preci = Precision::PConfusion();
+              const Standard_Real preci = Precision::PConfusion();
               if (Abs(oldFirst) > preci || Abs(oldLast - 1) > preci)
               {
                 Handle(Geom2d_BezierCurve) bezier =
@@ -410,7 +410,7 @@ static void TempSameRange(const TopoDS_Edge& AnEdge, const Standard_Real Toleran
             if (Curve2dPtr2->IsKind(STANDARD_TYPE(Geom2d_BezierCurve)))
             {
 
-              constexpr Standard_Real preci = Precision::PConfusion();
+              const Standard_Real preci = Precision::PConfusion();
               if (Abs(oldFirst) > preci || Abs(oldLast - 1) > preci)
               {
                 Handle(Geom2d_BezierCurve) bezier =

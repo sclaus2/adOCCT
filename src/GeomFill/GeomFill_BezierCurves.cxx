@@ -46,7 +46,7 @@ static void SetSameWeights(TColStd_Array1OfReal& W1,
                            TColStd_Array1OfReal& W3,
                            TColStd_Array1OfReal& W4)
 {
-  constexpr Standard_Real Eps = Precision::Confusion();
+  const Standard_Real Eps = Precision::Confusion();
 
   Standard_Integer NU = W1.Length();
   Standard_Integer NV = W2.Length();
@@ -199,7 +199,7 @@ void GeomFill_BezierCurves::Init(const Handle(Geom_BezierCurve)& C1,
   // On ordonne les courbes
   Handle(Geom_BezierCurve) CC1, CC2, CC3, CC4;
 
-  constexpr Standard_Real Tol = Precision::Confusion();
+  const Standard_Real Tol = Precision::Confusion();
 #ifndef No_Exception
   Standard_Boolean IsOK =
 #endif
@@ -416,7 +416,7 @@ void GeomFill_BezierCurves::Init(const Handle(Geom_BezierCurve)& C1,
     TColgp_Array1OfPnt P1(1, Deg1 + 1);
     TColgp_Array1OfPnt P2(1, Deg2 + 1);
 
-    constexpr Standard_Real Eps  = Precision::Confusion();
+    const Standard_Real Eps  = Precision::Confusion();
     Standard_Boolean        IsOK = Standard_False;
     if (CC1->StartPoint().IsEqual(CC2->StartPoint(), Eps))
     {

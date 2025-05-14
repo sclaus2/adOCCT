@@ -204,7 +204,7 @@ void BRepTools::AddUVBounds(const TopoDS_Face& aF, const TopoDS_Edge& aE, Bnd_Bo
     // points.
     if (aS->DynamicType() == STANDARD_TYPE(Geom_BSplineSurface) && (aXmin < aUmin || aXmax > aUmax))
     {
-      constexpr Standard_Real aTol2 = 100 * Precision::Confusion() * Precision::Confusion();
+      const Standard_Real aTol2 = 100 * Precision::Confusion() * Precision::Confusion();
       isUPeriodic                   = Standard_True;
       gp_Pnt P1, P2;
       // 1. Verify that the surface is U-closed
@@ -285,7 +285,7 @@ void BRepTools::AddUVBounds(const TopoDS_Face& aF, const TopoDS_Edge& aE, Bnd_Bo
     // points.
     if (aS->DynamicType() == STANDARD_TYPE(Geom_BSplineSurface) && (aYmin < aVmin || aYmax > aVmax))
     {
-      constexpr Standard_Real aTol2 = 100 * Precision::Confusion() * Precision::Confusion();
+      const Standard_Real aTol2 = 100 * Precision::Confusion() * Precision::Confusion();
       isVPeriodic                   = Standard_True;
       gp_Pnt P1, P2;
       // 1. Verify that the surface is V-closed

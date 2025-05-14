@@ -185,7 +185,7 @@ void MoniTool_CaseData::AddCPU(const Standard_Real    lastCPU,
                                const Standard_Real    curCPU,
                                const Standard_CString name)
 {
-  double cpu = curCPU;
+  double cpu = curCPU.getValue();
   if (cpu == 0.)
   {
     double    sec;
@@ -213,7 +213,7 @@ Standard_Boolean MoniTool_CaseData::LargeCPU(const Standard_Real maxCPU,
                                              const Standard_Real lastCPU,
                                              const Standard_Real curCPU) const
 {
-  double cpu = curCPU;
+  double cpu = curCPU.getValue();
   if (cpu == 0.)
   {
     double    sec;

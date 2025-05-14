@@ -56,7 +56,7 @@ void ShapeUpgrade_ConvertCurve2dToBezier::Compute()
 {
   mySegments->Clear();
   mySplitParams->Clear();
-  constexpr Standard_Real precision = Precision::PConfusion();
+  const Standard_Real precision = Precision::PConfusion();
   Standard_Real           First     = mySplitValues->Value(1);
   Standard_Real           Last      = mySplitValues->Value(mySplitValues->Length());
 
@@ -253,7 +253,7 @@ void ShapeUpgrade_ConvertCurve2dToBezier::Compute()
 
 void ShapeUpgrade_ConvertCurve2dToBezier::Build(const Standard_Boolean /*Segment*/)
 {
-  constexpr Standard_Real prec = Precision::PConfusion();
+  const Standard_Real prec = Precision::PConfusion();
   Standard_Integer        nb   = mySplitValues->Length();
   myResultingCurves            = new TColGeom2d_HArray1OfCurve(1, nb - 1);
   Standard_Real    prevPar     = 0.;

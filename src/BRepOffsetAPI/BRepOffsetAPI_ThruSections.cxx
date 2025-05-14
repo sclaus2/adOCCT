@@ -99,7 +99,7 @@
 static Standard_Real PreciseUpar(const Standard_Real                anUpar,
                                  const Handle(Geom_BSplineSurface)& aSurface)
 {
-  constexpr Standard_Real Tol = Precision::PConfusion();
+  const Standard_Real Tol = Precision::PConfusion();
   Standard_Integer        i1, i2;
 
   aSurface->LocateU(anUpar, Tol, i1, i2);

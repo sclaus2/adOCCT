@@ -137,7 +137,7 @@ Method:
   Standard_Real Usol[2];
   Usol[0] = C.XAxis().Direction().AngleWithRef(OPp, Axe); // -M_PI<U1<M_PI
 
-  constexpr Standard_Real aAngTol = Precision::Angular();
+  const Standard_Real aAngTol = Precision::Angular();
   if (Usol[0] + M_PI < aAngTol)
     Usol[0] = -M_PI;
   else if (Usol[0] - M_PI > -aAngTol)

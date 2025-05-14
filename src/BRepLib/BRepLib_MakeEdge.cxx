@@ -615,7 +615,7 @@ void BRepLib_MakeEdge::Init(const Handle(Geom_Curve)& CC,
   Standard_Real           p2       = pp2;
   Standard_Real           cf       = C->FirstParameter();
   Standard_Real           cl       = C->LastParameter();
-  constexpr Standard_Real epsilon  = Precision::PConfusion();
+  const Standard_Real epsilon  = Precision::PConfusion();
   Standard_Boolean        periodic = C->IsPeriodic();
   GeomAdaptor_Curve       aCA(C);
 
@@ -896,7 +896,7 @@ void BRepLib_MakeEdge::Init(const Handle(Geom2d_Curve)& CC,
   Standard_Real           p2       = pp2;
   Standard_Real           cf       = C->FirstParameter();
   Standard_Real           cl       = C->LastParameter();
-  constexpr Standard_Real epsilon  = Precision::PConfusion();
+  const Standard_Real epsilon  = Precision::PConfusion();
   Standard_Boolean        periodic = C->IsPeriodic();
 
   TopoDS_Vertex    V1, V2;

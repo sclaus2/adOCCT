@@ -137,7 +137,7 @@ void Extrema_GlobOptFuncCQuadric::LoadQuad(const Adaptor3d_Surface* S,
   //
   if (myS->IsUPeriodic())
   {
-    constexpr Standard_Real aTMax = 2. * M_PI + Precision::PConfusion();
+    const Standard_Real aTMax = 2. * M_PI + Precision::PConfusion();
     if (myUf > aTMax || myUf < -Precision::PConfusion() || Abs(myUl - myUf) > aTMax)
     {
       ElCLib::AdjustPeriodic(0.,
@@ -149,7 +149,7 @@ void Extrema_GlobOptFuncCQuadric::LoadQuad(const Adaptor3d_Surface* S,
   }
   if (myS->IsVPeriodic())
   {
-    constexpr Standard_Real aTMax = 2. * M_PI + Precision::PConfusion();
+    const Standard_Real aTMax = 2. * M_PI + Precision::PConfusion();
     if (myVf > aTMax || myVf < -Precision::PConfusion() || Abs(myVl - myVf) > aTMax)
     {
       ElCLib::AdjustPeriodic(0.,

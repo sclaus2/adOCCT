@@ -55,8 +55,8 @@ void LocOpe_FindEdgesInFace::Set(const TopoDS_Shape& Sh, const TopoDS_Face& F)
   gp_Pln                pl;
   gp_Cylinder           cy;
 
-  constexpr Standard_Real Tol    = Precision::Confusion();
-  constexpr Standard_Real TolAng = Precision::Angular();
+  const Standard_Real Tol    = Precision::Confusion();
+  const Standard_Real TolAng = Precision::Angular();
 
   S  = BRep_Tool::Surface(F);
   Ts = S->DynamicType();

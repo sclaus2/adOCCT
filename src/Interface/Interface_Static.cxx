@@ -60,7 +60,7 @@ Interface_Static::Interface_Static(const Standard_CString          family,
     }
     break;
     case Interface_ParamReal: {
-      Standard_Real lim;
+      double lim;
       if (other->RealLimit(Standard_True, lim))
         SetRealLimit(Standard_True, lim);
       if (other->RealLimit(Standard_False, lim))
@@ -289,10 +289,10 @@ Standard_CString Interface_Static::CDef(const Standard_CString name, const Stand
   }
   if (part[0] == 'r')
   {
-    Standard_Real rlim;
+    double rlim;
     if (!stat->RealLimit((part[2] == 'a'), rlim))
       return "";
-    Sprintf(defmess, "%f", rlim.getValue());
+    Sprintf(defmess, "%f", rlim);
     return defmess;
   }
   if (part[0] == 'u')
@@ -376,7 +376,7 @@ Standard_Integer Interface_Static::IVal(const Standard_CString name)
   return item->IntegerValue();
 }
 
-Standard_Real Interface_Static::RVal(const Standard_CString name)
+double Interface_Static::RVal(const Standard_CString name)
 {
   Handle(Interface_Static) item = Interface_Static::Static(name);
   if (item.IsNull())
@@ -407,7 +407,7 @@ Standard_Boolean Interface_Static::SetIVal(const Standard_CString name, const St
   return Standard_True;
 }
 
-Standard_Boolean Interface_Static::SetRVal(const Standard_CString name, const Standard_Real val)
+Standard_Boolean Interface_Static::SetRVal(const Standard_CString name, const double val)
 {
   Handle(Interface_Static) item = Interface_Static::Static(name);
   if (item.IsNull())

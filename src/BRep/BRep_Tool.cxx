@@ -134,7 +134,7 @@ Standard_Real BRep_Tool::Tolerance(const TopoDS_Face& F)
 {
   const BRep_TFace*       TF   = static_cast<const BRep_TFace*>(F.TShape().get());
   Standard_Real           p    = TF->Tolerance();
-  constexpr Standard_Real pMin = Precision::Confusion();
+  const Standard_Real pMin = Precision::Confusion();
   if (p > pMin)
     return p;
   else
@@ -820,7 +820,7 @@ Standard_Real BRep_Tool::Tolerance(const TopoDS_Edge& E)
 {
   const BRep_TEdge*       TE   = static_cast<const BRep_TEdge*>(E.TShape().get());
   Standard_Real           p    = TE->Tolerance();
-  constexpr Standard_Real pMin = Precision::Confusion();
+  const Standard_Real pMin = Precision::Confusion();
   if (p > pMin)
     return p;
   else
@@ -1262,7 +1262,7 @@ Standard_Real BRep_Tool::Tolerance(const TopoDS_Vertex& V)
   }
 
   Standard_Real           p    = aTVert->Tolerance();
-  constexpr Standard_Real pMin = Precision::Confusion();
+  const Standard_Real pMin = Precision::Confusion();
   if (p > pMin)
     return p;
   else

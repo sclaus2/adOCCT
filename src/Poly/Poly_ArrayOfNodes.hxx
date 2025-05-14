@@ -144,7 +144,7 @@ inline void Poly_ArrayOfNodes::SetValue(Standard_Integer theIndex, const gp_Vec3
   else
   {
     gp_Vec3f& aVec3 = NCollection_AliasedArray::ChangeValue<gp_Vec3f>(theIndex);
-    aVec3.SetValues((float)theValue.X(), (float)theValue.Y(), (float)theValue.Z());
+    aVec3.SetValues((float)theValue.x(), (float)theValue.y(), (float)theValue.z());
   }
 }
 

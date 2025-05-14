@@ -234,11 +234,11 @@ Standard_Boolean DE_ConfigurationContext::IsParamSet(const TCollection_AsciiStri
 
 //=================================================================================================
 
-Standard_Real DE_ConfigurationContext::RealVal(const TCollection_AsciiString& theParam,
-                                               const Standard_Real            theDefValue,
+double DE_ConfigurationContext::RealVal(const TCollection_AsciiString& theParam,
+                                               const double            theDefValue,
                                                const TCollection_AsciiString& theScope) const
 {
-  Standard_Real aVal = 0.;
+  double aVal = 0.;
   return GetReal(theParam, aVal, theScope) ? aVal : theDefValue;
 }
 
@@ -276,7 +276,7 @@ TCollection_AsciiString DE_ConfigurationContext::StringVal(
 //=================================================================================================
 
 Standard_Boolean DE_ConfigurationContext::GetReal(const TCollection_AsciiString& theParam,
-                                                  Standard_Real&                 theValue,
+                                                  double&                 theValue,
                                                   const TCollection_AsciiString& theScope) const
 {
   TCollection_AsciiString aStr;

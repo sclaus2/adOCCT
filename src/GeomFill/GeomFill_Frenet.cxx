@@ -139,10 +139,10 @@ void GeomFill_Frenet::Init()
 {
   Standard_Integer        i, j;
   GeomFill_SnglrFunc      Func(myCurve);
-  constexpr Standard_Real TolF = 1.0e-10;
-  constexpr Standard_Real Tol  = 10 * TolF;
-  constexpr Standard_Real Tol2 = Tol * Tol;
-  constexpr Standard_Real PTol = Precision::PConfusion();
+  const Standard_Real TolF = 1.0e-10;
+  const Standard_Real Tol  = 10 * TolF;
+  const Standard_Real Tol2 = Tol * Tol;
+  const Standard_Real PTol = Precision::PConfusion();
 
   // We want to determine if the curve has linear segments
   Standard_Integer                 NbIntC2  = myCurve->NbIntervals(GeomAbs_C2);

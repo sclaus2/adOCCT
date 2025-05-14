@@ -149,7 +149,7 @@ void GeomAPI_ProjectPointOnSurf::Init(const gp_Pnt&               P,
                                       const Standard_Real         Vsup,
                                       const Extrema_ExtAlgo       theProjAlgo)
 {
-  constexpr Standard_Real Tolerance = Precision::PConfusion();
+  const Standard_Real Tolerance = Precision::PConfusion();
   // modified by NIZNHY-PKV Thu Apr  4 10:38:23 2002 f
   // GeomAdaptor_Surface TheSurface (Surface,Umin,Usup,Vmin,Vsup);
   // myExtPS = Extrema_ExtPS (P, TheSurface, Tol, Tol);
@@ -196,7 +196,7 @@ void GeomAPI_ProjectPointOnSurf::Init(const Handle(Geom_Surface)& Surface,
                                       const Standard_Real         Vsup,
                                       const Extrema_ExtAlgo       theProjAlgo)
 {
-  constexpr Standard_Real Tolerance = Precision::PConfusion();
+  const Standard_Real Tolerance = Precision::PConfusion();
   // modified by NIZNHY-PKV Thu Apr  4 10:41:50 2002 f
   // GeomAdaptor_Surface TheSurface (Surface,Umin,Usup,Vmin,Vsup);
   myGeomAdaptor.Load(Surface, Umin, Usup, Vmin, Vsup);

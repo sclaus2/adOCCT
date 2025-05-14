@@ -358,7 +358,7 @@ Standard_Boolean GeomFill_NSections::D1(const Standard_Real   V,
   }
 
   Standard_Real           ww;
-  constexpr Standard_Real EpsW       = 10 * Precision::PConfusion();
+  const Standard_Real EpsW       = 10 * Precision::PConfusion();
   Standard_Boolean        NullWeight = Standard_False;
   if (!rational)
     DWeights.Init(0.);
@@ -466,7 +466,7 @@ Standard_Boolean GeomFill_NSections::D2(const Standard_Real   V,
   }
 
   Standard_Real           ww;
-  constexpr Standard_Real EpsW       = 10 * Precision::PConfusion();
+  const Standard_Real EpsW       = 10 * Precision::PConfusion();
   Standard_Boolean        NullWeight = Standard_False;
   if (!rational)
     D2Weights.Init(0.);

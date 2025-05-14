@@ -197,15 +197,15 @@ TCollection_AsciiString MoniTool_TypedValue::Definition() const
     break;
     case MoniTool_ValueReal: {
       def.AssignCat("Real");
-      Standard_Real rlim;
+      double rlim;
       if (RealLimit(Standard_False, rlim))
       {
-        Sprintf(mess, "  >= %f", rlim.getValue());
+        Sprintf(mess, "  >= %f", rlim);
         def.AssignCat(mess);
       }
       if (RealLimit(Standard_True, rlim))
       {
-        Sprintf(mess, "  <= %f", rlim.getValue());
+        Sprintf(mess, "  <= %f", rlim);
         def.AssignCat(mess);
       }
       if (theunidef.Length() > 0)
@@ -413,7 +413,7 @@ Standard_Boolean MoniTool_TypedValue::IntegerLimit(const Standard_Boolean max,
   return res;
 }
 
-void MoniTool_TypedValue::SetRealLimit(const Standard_Boolean max, const Standard_Real val)
+void MoniTool_TypedValue::SetRealLimit(const Standard_Boolean max, const double val)
 {
   if (thetype != MoniTool_ValueReal)
     throw Standard_ConstructionError("MoniTool_TypedValue : SetRealLimit, not a Real");
@@ -431,7 +431,7 @@ void MoniTool_TypedValue::SetRealLimit(const Standard_Boolean max, const Standar
 }
 
 Standard_Boolean MoniTool_TypedValue::RealLimit(const Standard_Boolean max,
-                                                Standard_Real&         val) const
+                                                double&         val) const
 {
   Standard_Boolean res = Standard_False;
   if (max)
@@ -756,7 +756,7 @@ Standard_Boolean MoniTool_TypedValue::Satisfies(const Handle(TCollection_HAsciiS
     case MoniTool_ValueReal: {
       if (!val->IsRealValue())
         return Standard_False;
-      Standard_Real rval, rlim;
+      double rval, rlim;
       rval = val->RealValue();
       if (RealLimit(Standard_False, rlim))
         if (rlim > rval)
@@ -869,7 +869,7 @@ Standard_Boolean MoniTool_TypedValue::SetIntegerValue(const Standard_Integer iva
   return Standard_True;
 }
 
-Standard_Real MoniTool_TypedValue::RealValue() const
+double MoniTool_TypedValue::RealValue() const
 {
   if (thehval->Length() == 0)
     return 0.0;
@@ -878,9 +878,9 @@ Standard_Real MoniTool_TypedValue::RealValue() const
   return thehval->RealValue();
 }
 
-Standard_Boolean MoniTool_TypedValue::SetRealValue(const Standard_Real rval)
+Standard_Boolean MoniTool_TypedValue::SetRealValue(const double rval)
 {
-  Handle(TCollection_HAsciiString) hval = new TCollection_HAsciiString(rval.getValue());
+  Handle(TCollection_HAsciiString) hval = new TCollection_HAsciiString(rval);
   if (hval->IsSameString(thehval))
     return Standard_True;
   if (!Satisfies(hval))

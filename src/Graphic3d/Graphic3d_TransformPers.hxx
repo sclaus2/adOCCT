@@ -436,9 +436,9 @@ public:
         }
       }
       Graphic3d_TransformUtils::Scale(aWorldView,
-                                      1.0 / theCamera->AxialScale().X(),
-                                      1.0 / theCamera->AxialScale().Y(),
-                                      1.0 / theCamera->AxialScale().Z());
+                                      Standard_Real(1.0 / theCamera->AxialScale().X()),
+                                      Standard_Real(1.0 / theCamera->AxialScale().Y()),
+                                      Standard_Real(1.0 / theCamera->AxialScale().Z()));
       Graphic3d_TransformUtils::Translate(aWorldView, aCenter.X(), aCenter.Y(), aCenter.Z());
       Graphic3d_TransformUtils::Scale(aWorldView, aScale, aScale, aScale);
     }
@@ -495,9 +495,9 @@ public:
       else
       {
         Graphic3d_TransformUtils::Translate(aWorldView,
-                                            myParams.Params3d.PntX,
-                                            myParams.Params3d.PntY,
-                                            myParams.Params3d.PntZ);
+                                            Standard_Real(myParams.Params3d.PntX),
+                                            Standard_Real(myParams.Params3d.PntY),
+                                            Standard_Real(myParams.Params3d.PntZ));
       }
 
       if ((myMode & Graphic3d_TMF_RotatePers) != 0)
@@ -520,9 +520,9 @@ public:
       if (IsAxial())
       {
         Graphic3d_TransformUtils::Scale(aWorldView,
-                                        1.0 / theCamera->AxialScale().X(),
-                                        1.0 / theCamera->AxialScale().Y(),
-                                        1.0 / theCamera->AxialScale().Z());
+                                        Standard_Real(1.0 / theCamera->AxialScale().X()),
+                                        Standard_Real(1.0 / theCamera->AxialScale().Y()),
+                                        Standard_Real(1.0 / theCamera->AxialScale().Z()));
       }
       if ((myMode & Graphic3d_TMF_ZoomPers) != 0)
       {

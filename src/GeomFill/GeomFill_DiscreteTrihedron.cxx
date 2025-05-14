@@ -177,7 +177,7 @@ Standard_Boolean GeomFill_DiscreteTrihedron::D0(const Standard_Real Param,
   {
     // Locate <Param> in the sequence <myKnots>
     Standard_Integer        Index  = -1;
-    constexpr Standard_Real TolPar = Precision::PConfusion();
+    const Standard_Real TolPar = Precision::PConfusion();
     // Standard_Real TolConf = Precision::Confusion();
     Standard_Integer NbSamples = 10;
     gp_Pnt           Origin(0., 0., 0.);

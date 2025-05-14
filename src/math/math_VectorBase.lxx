@@ -554,3 +554,7 @@ void math_VectorBase<TheItemType>::Dump(Standard_OStream& theO) const
     theO << "math_Vector(" << Index << ") = " << Array(Index) << "\n";
   }
 }
+
+// Specialization for Standard_Real type, implemented in the math_VectorBase.cxx file
+template<>
+math_VectorBase<Standard_Real>& math_VectorBase<Standard_Real>::Initialized(const math_VectorBase<Standard_Real>& theOther);

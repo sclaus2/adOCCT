@@ -64,7 +64,7 @@ public:
   //! @param[in] theScope base parameter name
   //! @return Standard_False if parameter is not defined or has a wrong type
   Standard_EXPORT Standard_Boolean GetReal(const TCollection_AsciiString& theParam,
-                                           Standard_Real&                 theValue,
+                                           double&                 theValue,
                                            const TCollection_AsciiString& theScope = "") const;
 
   //! Gets value of parameter as being of specific type
@@ -108,8 +108,8 @@ public:
   //! @param[in] theDefValue value by default if param is not found or has wrong type
   //! @param[in] theScope base parameter name
   //! @return specific type value
-  Standard_EXPORT Standard_Real RealVal(const TCollection_AsciiString& theParam,
-                                        const Standard_Real            theDefValue,
+  Standard_EXPORT double RealVal(const TCollection_AsciiString& theParam,
+                                        const double            theDefValue,
                                         const TCollection_AsciiString& theScope = "") const;
 
   //! Gets value of parameter as being of specific type

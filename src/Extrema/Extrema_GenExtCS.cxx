@@ -371,7 +371,7 @@ void Extrema_GenExtCS::Perform(const Adaptor3d_Curve& C,
     aSqDists.Clear();
     aPntsOnCrv.Clear();
     aPntsOnSurf.Clear();
-    constexpr Standard_Real aTol = Precision::SquareConfusion();
+    const Standard_Real aTol = Precision::SquareConfusion();
     for (i = 1; i <= aSqDists1.Length(); ++i)
     {
       Standard_Real aDist = aSqDists1(i);

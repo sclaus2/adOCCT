@@ -746,7 +746,7 @@ static Standard_Boolean IsSegmentOut(Standard_Real x1,
                                      Standard_Real xs2,
                                      Standard_Real ys2)
 {
-  constexpr Standard_Real eps   = RealSmall();
+  const Standard_Real eps   = RealSmall();
   Standard_Real           xsmin = Min(xs1, xs2);
   Standard_Real           xsmax = Max(xs1, xs2);
   Standard_Real           ysmin = Min(ys1, ys2);
@@ -793,7 +793,7 @@ Standard_Boolean Bnd_Box::IsOut(const gp_Pnt& P1, const gp_Pnt& P2, const gp_Dir
   else if (IsVoid())
     return Standard_True;
 
-  constexpr Standard_Real eps = RealSmall();
+  const Standard_Real eps = RealSmall();
   Standard_Real           myXmin, myYmin, myZmin, myXmax, myYmax, myZmax;
   Get(myXmin, myYmin, myZmin, myXmax, myYmax, myZmax);
 

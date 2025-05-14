@@ -349,9 +349,9 @@ static Standard_Integer setcolor(Draw_Interpretor& theDI,
     Handle(MeshVS_Mesh) aMesh = getMesh(theArgVec[1], theDI);
     if (!aMesh.IsNull())
     {
-      Standard_Real aRed   = Draw::Atof(theArgVec[2]);
-      Standard_Real aGreen = Draw::Atof(theArgVec[3]);
-      Standard_Real aBlue  = Draw::Atof(theArgVec[4]);
+      double aRed   = Draw::Atof(theArgVec[2]);
+      double aGreen = Draw::Atof(theArgVec[3]);
+      double aBlue  = Draw::Atof(theArgVec[4]);
       aMesh->GetDrawer()->SetColor((MeshVS_DrawerAttribute)theParam,
                                    Quantity_Color(aRed, aGreen, aBlue, Quantity_TOC_RGB));
 

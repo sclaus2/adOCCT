@@ -7721,7 +7721,7 @@ static Standard_Integer VAnimation(Draw_Interpretor& theDI,
 
   if (toPrintElapsedTime)
   {
-    theDI << "Elapsed Time: " << anAnimation->ElapsedTime() << " s\n";
+    theDI << "Elapsed Time: " << anAnimation->ElapsedTime().getValue() << " s\n";
   }
 
   if (!toPlay && aRecFile.IsEmpty())

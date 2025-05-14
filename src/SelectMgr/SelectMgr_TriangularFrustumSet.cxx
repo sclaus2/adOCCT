@@ -834,9 +834,9 @@ Standard_Boolean SelectMgr_TriangularFrustumSet::segmentSegmentIntersection(
     return false;
   }
 
-  double aValue1 =
+  Standard_Real aValue1 =
     aVec21.Crossed(aVec2).Dot(aVec1.Crossed(aVec2)) / aVec1.Crossed(aVec2).SquareModulus();
-  double aValue2 =
+  Standard_Real aValue2 =
     aVec12.Crossed(aVec1).Dot(aVec2.Crossed(aVec1)) / aVec2.Crossed(aVec1).SquareModulus();
   if (aValue1 < 0.0 || aValue1 > 1.0 || aValue2 < 0.0 || aValue2 > 1.0)
   {

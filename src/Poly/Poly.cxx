@@ -620,7 +620,7 @@ Standard_Boolean Poly::Intersect(const Handle(Poly_Triangulation)& theTri,
 }
 
 //! Calculate the minor of the given matrix, defined by the columns specified by values c1, c2, c3.
-static double Determinant(const Standard_Real a[3][4], const int c1, const int c2, const int c3)
+static Standard_Real Determinant(const Standard_Real a[3][4], const int c1, const int c2, const int c3)
 {
   return a[0][c1] * a[1][c2] * a[2][c3] + a[0][c2] * a[1][c3] * a[2][c1]
          + a[0][c3] * a[1][c1] * a[2][c2] - a[0][c3] * a[1][c2] * a[2][c1]

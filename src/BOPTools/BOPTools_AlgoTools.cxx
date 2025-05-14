@@ -1007,7 +1007,7 @@ Standard_Boolean BOPTools_AlgoTools::GetFaceOff(const TopoDS_Edge&              
   //
   // The difference between faces should be obvious enough
   // to guarantee the correctness of the classification
-  constexpr Standard_Real anAngleCriteria = Precision::Confusion();
+  const Standard_Real anAngleCriteria = Precision::Confusion();
 
   bRet = Standard_True;
   aIt.Initialize(theLCSOff);
@@ -2241,7 +2241,7 @@ Standard_Real MinStep3D(const TopoDS_Edge&                  theE1,
     //
     if (aR > 100.)
     {
-      constexpr Standard_Real d = 10 * Precision::PConfusion();
+      const Standard_Real d = 10 * Precision::PConfusion();
       aDtMin                    = Max(aDtMin, sqrt(d * d + 2 * d * aR));
     }
   }

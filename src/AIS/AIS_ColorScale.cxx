@@ -281,7 +281,7 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors(Standard_Integer theNbC
 
   // adjust range to be within (0, 360], with sign according to theHueFrom and theHueTo
   Standard_Real           aHueRange = std::fmod((theHueTo - theHueFrom).getValue(), 360.);
-  constexpr Standard_Real aHueEps   = Precision::Angular() * 180. / M_PI;
+  const Standard_Real aHueEps   = Precision::Angular() * 180. / M_PI;
   if (Abs(aHueRange) <= aHueEps)
   {
     aHueRange = (aHueRange < 0 ? -360. : 360.);

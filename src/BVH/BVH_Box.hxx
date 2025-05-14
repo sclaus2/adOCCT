@@ -427,11 +427,11 @@ struct SurfaceCalculator<T, 2>
 {
   static T Area(const typename BVH_Box<T, 2>::BVH_VecNt& theSize)
   {
-    const T anArea = std::abs(theSize.x() * theSize.y());
+    const T anArea = Abs(theSize.x() * theSize.y());
 
     if (anArea < std::numeric_limits<T>::epsilon())
     {
-      return std::abs(theSize.x()) + std::abs(theSize.y());
+      return Abs(theSize.x()) + Abs(theSize.y());
     }
 
     return anArea;
@@ -443,13 +443,13 @@ struct SurfaceCalculator<T, 3>
 {
   static T Area(const typename BVH_Box<T, 3>::BVH_VecNt& theSize)
   {
-    const T anArea = (std::abs(theSize.x() * theSize.y()) + std::abs(theSize.x() * theSize.z())
-                      + std::abs(theSize.z() * theSize.y()))
+    const T anArea = (Abs(theSize.x() * theSize.y()) + Abs(theSize.x() * theSize.z())
+                      + Abs(theSize.z() * theSize.y()))
                      * static_cast<T>(2.0);
 
     if (anArea < std::numeric_limits<T>::epsilon())
     {
-      return std::abs(theSize.x()) + std::abs(theSize.y()) + std::abs(theSize.z());
+      return Abs(theSize.x()) + Abs(theSize.y()) + Abs(theSize.z());
     }
 
     return anArea;
@@ -461,13 +461,13 @@ struct SurfaceCalculator<T, 4>
 {
   static T Area(const typename BVH_Box<T, 4>::BVH_VecNt& theSize)
   {
-    const T anArea = (std::abs(theSize.x() * theSize.y()) + std::abs(theSize.x() * theSize.z())
-                      + std::abs(theSize.z() * theSize.y()))
+    const T anArea = (Abs(theSize.x() * theSize.y()) + Abs(theSize.x() * theSize.z())
+                      + Abs(theSize.z() * theSize.y()))
                      * static_cast<T>(2.0);
 
     if (anArea < std::numeric_limits<T>::epsilon())
     {
-      return std::abs(theSize.x()) + std::abs(theSize.y()) + std::abs(theSize.z());
+      return Abs(theSize.x()) + Abs(theSize.y()) + Abs(theSize.z());
     }
 
     return anArea;

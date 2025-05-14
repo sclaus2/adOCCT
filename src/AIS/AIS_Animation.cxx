@@ -233,7 +233,7 @@ void AIS_Animation::Stop()
   {
     const Standard_Real anElapsedTime = ElapsedTime();
     myTimer->Stop();
-    myTimer->Seek(Min(Duration(), anElapsedTime));
+    myTimer->Seek(Min(Duration(), anElapsedTime).getValue());
   }
 
   for (NCollection_Sequence<Handle(AIS_Animation)>::Iterator anIter(myAnimations); anIter.More();

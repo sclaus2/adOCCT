@@ -732,7 +732,7 @@ Standard_Boolean ShapeFix_Wireframe::MergeSmallEdges(
                     Vec1.Reverse();
                   if (edge2.Orientation() == TopAbs_REVERSED)
                     Vec2.Reverse();
-                  constexpr Standard_Real tol2 = Precision::SquareConfusion();
+                  const Standard_Real tol2 = Precision::SquareConfusion();
                   if (Vec1.SquareMagnitude() < tol2 || Vec2.SquareMagnitude() < tol2)
                     Ang1 = M_PI / 2.;
                   else
@@ -1216,7 +1216,7 @@ Standard_Boolean ShapeFix_Wireframe::MergeSmallEdges(
               Vec1.Reverse();
             if (edge2.Orientation() == TopAbs_REVERSED)
               Vec2.Reverse();
-            constexpr Standard_Real tol2 = Precision::SquareConfusion();
+            const Standard_Real tol2 = Precision::SquareConfusion();
             if (Vec1.SquareMagnitude() < tol2 || Vec2.SquareMagnitude() < tol2)
               Ang1 = M_PI / 2.;
             else

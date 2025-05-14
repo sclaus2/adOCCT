@@ -834,7 +834,7 @@ static Standard_Boolean SameSurf(const Handle(Geom_Surface)& theS1,
   Standard_Real uf1, ul1, vf1, vl1, uf2, ul2, vf2, vl2;
   theS1->Bounds(uf1, ul1, vf1, vl1);
   theS2->Bounds(uf2, ul2, vf2, vl2);
-  constexpr Standard_Real aPTol = Precision::PConfusion();
+  const Standard_Real aPTol = Precision::PConfusion();
   if (Precision::IsNegativeInfinite(uf1))
   {
     if (!Precision::IsNegativeInfinite(uf2))
@@ -3984,7 +3984,7 @@ void ShapeUpgrade_UnifySameDomain::UnifyEdges()
   }
 
   // fix changed faces and replace them in the local context
-  constexpr Standard_Real aPrec = Precision::Confusion();
+  const Standard_Real aPrec = Precision::Confusion();
   for (Standard_Integer i = 1; i <= aChangedFaces.Extent(); i++)
   {
     TopoDS_Face aFace = TopoDS::Face(myContext->Apply(aChangedFaces.FindKey(i)));

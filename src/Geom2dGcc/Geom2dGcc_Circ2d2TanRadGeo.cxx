@@ -949,7 +949,7 @@ Geom2dGcc_Circ2d2TanRadGeo::Geom2dGcc_Circ2d2TanRadGeo(const Geom2dGcc_QCurve& Q
         {
           if (!Intp.IsEmpty())
           {
-            constexpr Standard_Real aSQApproxTol =
+            const Standard_Real aSQApproxTol =
               Precision::Approximation() * Precision::Approximation();
             for (Standard_Integer i = 1; i <= Intp.NbPoints() && NbrSol < aNbSolMAX; i++)
             {

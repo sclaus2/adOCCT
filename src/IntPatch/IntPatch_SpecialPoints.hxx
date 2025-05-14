@@ -31,7 +31,7 @@ class IntSurf_PntOn2S;
 
 template <typename T>
 class math_VectorBase;
-using math_Vector = math_VectorBase<double>;
+using math_Vector = math_VectorBase<Standard_Real>;
 
 class IntPatch_SpecialPoints
 {

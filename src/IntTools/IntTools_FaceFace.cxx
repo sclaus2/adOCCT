@@ -1001,7 +1001,7 @@ reapprox:;
         fprm = aSeqFprm(i);
         lprm = aSeqLprm(i);
         //
-        constexpr Standard_Real aRealEpsilon = RealEpsilon();
+        const Standard_Real aRealEpsilon = RealEpsilon();
         if (Abs(fprm) > aRealEpsilon || Abs(lprm - 2. * M_PI) > aRealEpsilon)
         {
           //==============================================

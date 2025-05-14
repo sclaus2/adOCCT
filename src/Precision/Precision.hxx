@@ -212,7 +212,7 @@ public:
   //! length of the tangent of the curve or the surface.
   //!
   //! Value is P / T
-  static constexpr Standard_Real Parametric(const Standard_Real P, const Standard_Real T)
+  static inline Standard_Real Parametric(const Standard_Real& P, const Standard_Real& T)
   {
     return P / T;
   }
@@ -261,14 +261,14 @@ public:
   //! 2.Pi without impacting on the resulting point.
   //! Therefore, take great care when adjusting a parametric
   //! tolerance to your own algorithm.
-  static constexpr Standard_Real PConfusion(const Standard_Real T)
+  static inline Standard_Real PConfusion(const Standard_Real& T)
   {
     return Parametric(Confusion(), T);
   }
 
   //! Returns square of PConfusion.
   //! Created for speed and convenience.
-  static constexpr Standard_Real SquarePConfusion() { return PConfusion() * PConfusion(); }
+  static inline Standard_Real SquarePConfusion() { return PConfusion() * PConfusion(); }
 
   //! Returns a precision value in parametric space, which
   //! may be used by intersection algorithms, to decide that
@@ -283,7 +283,7 @@ public:
   //! segment whose length is equal to 100. (default value), or T.
   //! The parametric tolerance of intersection is equal to :
   //! -   Precision::Intersection() / 100., or Precision::Intersection() / T.
-  static constexpr Standard_Real PIntersection(const Standard_Real T)
+  static inline Standard_Real PIntersection(const Standard_Real& T)
   {
     return Parametric(Intersection(), T);
   }
@@ -301,7 +301,7 @@ public:
   //! segment whose length is equal to 100. (default value), or T.
   //! The parametric tolerance of intersection is equal to :
   //! -   Precision::Approximation() / 100., or Precision::Approximation() / T.
-  static constexpr Standard_Real PApproximation(const Standard_Real T)
+  static inline Standard_Real PApproximation(const Standard_Real& T)
   {
     return Parametric(Approximation(), T);
   }
@@ -310,43 +310,43 @@ public:
   //! space precision on a default curve.
   //!
   //! Value is Parametric(P,1.e+2)
-  static constexpr Standard_Real Parametric(const Standard_Real P) { return P * 0.01; }
+  static inline Standard_Real Parametric(const Standard_Real& P) { return P * 0.01; }
 
   //! Used  to test distances  in parametric  space on a
   //! default curve.
   //!
   //! This is Precision::Parametric(Precision::Confusion())
-  static constexpr Standard_Real PConfusion() { return Confusion() * 0.01; }
+  static inline Standard_Real PConfusion() { return Confusion() * 0.01; }
 
   //! Used for Intersections  in parametric  space  on a
   //! default curve.
   //!
   //! This is Precision::Parametric(Precision::Intersection())
-  static constexpr Standard_Real PIntersection() { return Intersection() * 0.01; }
+  static inline Standard_Real PIntersection() { return Intersection() * 0.01; }
 
   //! Used for  Approximations  in parametric space on a
   //! default curve.
   //!
   //! This is Precision::Parametric(Precision::Approximation())
-  static constexpr Standard_Real PApproximation() { return Approximation() * 0.01; }
+  static inline Standard_Real PApproximation() { return Approximation() * 0.01; }
 
   //! Returns True if R may be considered as an infinite
   //! number. Currently Abs(R) > 1e100
-  static inline Standard_Boolean IsInfinite(const Standard_Real R)
+  static inline Standard_Boolean IsInfinite(const Standard_Real& R)
   {
     return Abs(R) >= (0.5 * Precision::Infinite());
   }
 
   //! Returns True if R may be considered as  a positive
   //! infinite number. Currently R > 1e100
-  static constexpr Standard_Boolean IsPositiveInfinite(const Standard_Real R)
+  static inline Standard_Boolean IsPositiveInfinite(const Standard_Real& R)
   {
     return R >= (0.5 * Precision::Infinite());
   }
 
   //! Returns True if R may  be considered as a negative
   //! infinite number. Currently R < -1e100
-  static constexpr Standard_Boolean IsNegativeInfinite(const Standard_Real R)
+  static inline Standard_Boolean IsNegativeInfinite(const Standard_Real& R)
   {
     return R <= -(0.5 * Precision::Infinite());
   }

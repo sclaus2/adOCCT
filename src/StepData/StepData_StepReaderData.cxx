@@ -1586,7 +1586,7 @@ Standard_Boolean StepData_StepReaderData::ReadInteger(const Standard_Integer   n
     else if (FP.ParamType() == Interface_ParamReal)
     {
       val =
-        static_cast<Standard_Integer>(std::round(Interface_FileReaderData::Fastof(FP.CValue())));
+        static_cast<Standard_Integer>(std::round(Interface_FileReaderData::Fastof(FP.CValue()).getValue()));
       if (acceptvoid)
         warn = Standard_True;
       errmess = new String("Parameter n0.%d (%s) was rounded");

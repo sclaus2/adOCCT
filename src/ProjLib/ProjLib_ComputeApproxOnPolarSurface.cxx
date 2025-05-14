@@ -690,7 +690,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::Perform(
 {
   // OCC217
   Standard_Real           Tol3d    = myTolerance;
-  constexpr Standard_Real ParamTol = Precision::PApproximation();
+  const Standard_Real ParamTol = Precision::PApproximation();
 
   Handle(Adaptor2d_Curve2d) AHC2d = InitialCurve2d;
   Handle(Adaptor3d_Curve)   AHC   = Curve;

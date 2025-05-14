@@ -63,7 +63,7 @@ void GeomAPI_ExtremaCurveSurface::Init(const Handle(Geom_Curve)&   Curve,
   GeomAdaptor_Curve   TheCurve(Curve);
   GeomAdaptor_Surface TheSurface(Surface);
 
-  constexpr Standard_Real Tol = Precision::PConfusion();
+  const Standard_Real Tol = Precision::PConfusion();
   myExtCS.Initialize(TheSurface, Tol, Tol);
   myExtCS.Perform(TheCurve, TheCurve.FirstParameter(), TheCurve.LastParameter());
   myIsDone = myExtCS.IsDone() && (myExtCS.IsParallel() || myExtCS.NbExt() > 0);
@@ -102,7 +102,7 @@ void GeomAPI_ExtremaCurveSurface::Init(const Handle(Geom_Curve)&   Curve,
   GeomAdaptor_Curve   TheCurve(Curve, Wmin, Wmax);
   GeomAdaptor_Surface TheSurface(Surface, Umin, Umax, Vmin, Vmax);
 
-  constexpr Standard_Real Tol = Precision::PConfusion();
+  const Standard_Real Tol = Precision::PConfusion();
   myExtCS.Initialize(TheSurface, Umin, Umax, Vmin, Vmax, Tol, Tol);
   myExtCS.Perform(TheCurve, Wmin, Wmax);
   myIsDone = myExtCS.IsDone() && (myExtCS.IsParallel() || myExtCS.NbExt() > 0);

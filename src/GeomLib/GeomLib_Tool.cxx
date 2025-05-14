@@ -333,7 +333,7 @@ Standard_Real GeomLib_Tool::ComputeDeviation(const Geom2dAdaptor_Curve& theCurve
 
   aFunc.GetLine(theLine);
 
-  constexpr Standard_Real aTolDefl = Precision::PConfusion();
+  const Standard_Real aTolDefl = Precision::PConfusion();
 
   Standard_Real aD1   = 0.0;
   Standard_Real aD2   = 0.0;

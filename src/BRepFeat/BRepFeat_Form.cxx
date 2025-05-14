@@ -901,7 +901,7 @@ void BRepFeat_Form::GlobalPerform()
       // intersects Shapes From and Until
       //       case of several intersections (keep PartsOfTool according to the selection)
       //       position of the face of intersection in PartsOfTool (before or after)
-      constexpr Standard_Real delta = Precision::Confusion();
+      const Standard_Real delta = Precision::Confusion();
 
       if (myPerfSelection != BRepFeat_NoSelection)
       {

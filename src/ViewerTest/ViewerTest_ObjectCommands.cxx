@@ -2959,7 +2959,7 @@ Handle(Poly_Triangulation) CalculationOfSphere(double X, double Y, double Z, int
   Poly_Connect pc(polyTriangulation);
 
   Standard_Integer        index[3];
-  constexpr Standard_Real Tol = Precision::Confusion();
+  const Standard_Real Tol = Precision::Confusion();
 
   gp_Dir Nor;
   for (i = 1; i <= polyTriangulation->NbNodes(); i++)
@@ -6410,8 +6410,8 @@ static Standard_Integer VPointCloud(Draw_Interpretor& theDI,
         }
         if (myPoints->HasVertexColors())
         {
-          Quantity_Color aColor(360.0 * Standard_Real(aPntIndex)
-                                  / Standard_Real(myPoints->VertexNumberAllocated()),
+          Quantity_Color aColor(360.0 * double(aPntIndex)
+                                  / double(myPoints->VertexNumberAllocated()),
                                 1.0,
                                 0.5,
                                 Quantity_TOC_HLS);
@@ -6448,7 +6448,7 @@ static Standard_Integer VPointCloud(Draw_Interpretor& theDI,
     std::mt19937                     aRandomGenerator(0);
     std::uniform_real_distribution<> anAlphaDistrib(0.0, 2.0 * M_PI);
     std::uniform_real_distribution<> aBetaDistrib(0.0, 2.0 * M_PI);
-    std::uniform_real_distribution<> aRadiusDistrib(0.0, aDistRadius);
+    std::uniform_real_distribution<> aRadiusDistrib(0.0, aDistRadius.getValue());
     for (Standard_Integer aPntIt = 0; aPntIt < aDistNbPoints; ++aPntIt)
     {
       Standard_Real anAlpha   = anAlphaDistrib(aRandomGenerator);

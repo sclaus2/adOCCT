@@ -300,7 +300,7 @@ Standard_Boolean IGESSelect_EditHeader::Load(const Handle(IFSelect_EditForm)& fo
   form->LoadValue(20, GS.Date());
   form->LoadValue(21, new TCollection_HAsciiString(GS.Resolution().getValue()));
   if (GS.HasMaxCoord())
-    form->LoadValue(22, new TCollection_HAsciiString(GS.MaxCoord()));
+    form->LoadValue(22, new TCollection_HAsciiString(GS.MaxCoord().getValue()));
 
   form->LoadValue(23, GS.AuthorName());
   form->LoadValue(24, GS.CompanyName());

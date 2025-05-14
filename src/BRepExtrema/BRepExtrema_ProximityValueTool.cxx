@@ -248,7 +248,7 @@ Standard_Boolean BRepExtrema_ProximityValueTool::getEdgeAdditionalVertices(
   }
 
   Standard_Real    aLen            = GCPnts_AbscissaPoint::Length(aBAC);
-  Standard_Integer aNbSamplePoints = (Standard_Integer)(aLen / theStep) + 1;
+  Standard_Integer aNbSamplePoints = (Standard_Integer)Standard_Real(aLen / theStep) + 1;
 
   GCPnts_QuasiUniformAbscissa aGCPnts(aBAC, Max(3, aNbSamplePoints));
 
@@ -413,7 +413,7 @@ Standard_Boolean BRepExtrema_ProximityValueTool::getFaceAdditionalVertices(
   BVH_Array3d&                        theAddVertices,
   NCollection_Vector<ProxPnt_Status>& theAddStatuses)
 {
-  constexpr Standard_Real aTol = Precision::Confusion();
+  const Standard_Real aTol = Precision::Confusion();
 
   TopLoc_Location            aLocation;
   Handle(Poly_Triangulation) aTr = BRep_Tool::Triangulation(theFace, aLocation);

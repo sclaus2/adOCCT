@@ -57,7 +57,7 @@ static void AdjustUPeriodic(const Handle(Geom_Surface)& aS, const Handle(Geom2d_
   if (aC2D.IsNull() || !aS->IsUPeriodic())
     return;
   //
-  constexpr Standard_Real aEps     = Precision::PConfusion(); // 1.e-9
+  const Standard_Real aEps     = Precision::PConfusion(); // 1.e-9
   const Standard_Real     aEpsilon = Epsilon(10.);            // 1.77e-15
   //
   Standard_Real umin, umax, vmin, vmax;
@@ -234,7 +234,7 @@ static Standard_Boolean isDegenerated(const Handle(GeomAdaptor_Surface)& theGAHS
                                       const Standard_Real                theFirstPar,
                                       const Standard_Real                theLastPar)
 {
-  constexpr Standard_Real aSqTol = Precision::Confusion() * Precision::Confusion();
+  const Standard_Real aSqTol = Precision::Confusion() * Precision::Confusion();
   gp_Pnt2d                aP2d;
   gp_Pnt                  aP1, aP2;
 
@@ -1390,7 +1390,7 @@ void GeomInt_IntSS::TrimILineOnSurfBoundaries(const Handle(Geom2d_Curve)& theC2d
     }
   }
 
-  constexpr Standard_Real anIntTol = 10.0 * Precision::Confusion();
+  const Standard_Real anIntTol = 10.0 * Precision::Confusion();
 
   IntersectCurveAndBoundary(theC2d1, aCurS1Bounds, aNumberOfCurves, anIntTol, theArrayOfParameters);
 

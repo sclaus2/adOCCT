@@ -601,7 +601,7 @@ Standard_Real Bisector_BisecPC::SearchBound(const Standard_Real U1, const Standa
 {
   Standard_Real           Dist1, DistMid, U11, U22;
   Standard_Real           UMid     = 0.;
-  constexpr Standard_Real Tol      = Precision::PConfusion();
+  const Standard_Real Tol      = Precision::PConfusion();
   Standard_Real           DistMax2 = distMax * distMax;
   U11                              = U1;
   U22                              = U2;
@@ -754,7 +754,7 @@ Standard_Boolean Bisector_BisecPC::IsEmpty() const
 
 Standard_Real Bisector_BisecPC::Parameter(const gp_Pnt2d& P) const
 {
-  constexpr Standard_Real Tol = Precision::Confusion();
+  const Standard_Real Tol = Precision::Confusion();
 
   if (P.IsEqual(pointStartBis, Tol))
   {

@@ -321,7 +321,7 @@ void OpenGl_FrameStatsPrs::updateChart(const Handle(OpenGl_Workspace)& theWorksp
     const OpenGl_Vec3Vec4ub aLines[4] = {
       {Graphic3d_Vec3((float)anOffset.x(), (float)anOffset.y(), 0.0f), aWhite},
       {Graphic3d_Vec3(float(anOffset.x() + aCharSize.x()), (float)anOffset.y(), 0.0f), aWhite},
-      {Graphic3d_Vec3((float)anOffset.x(), float(anOffset.y() - aBinSize.y()), 0.0f), aWhite},
+      {Graphic3d_Vec3((float)anOffset.x(), float(Standard_Real(anOffset.y() - aBinSize.y())), 0.0f), aWhite},
       {Graphic3d_Vec3(float(Standard_Real(anOffset.x() + aCharSize.x())),
                       float(Standard_Real(anOffset.y() - aBinSize.y())),
                       +0.0f),

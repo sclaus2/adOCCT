@@ -48,7 +48,7 @@ void ShapeUpgrade_ConvertCurve3dToBezier::Compute()
 {
   mySegments->Clear();
   mySplitParams->Clear();
-  constexpr Standard_Real precision = Precision::PConfusion();
+  const Standard_Real precision = Precision::PConfusion();
   Standard_Real           First     = mySplitValues->Value(1);
   Standard_Real           Last      = mySplitValues->Value(mySplitValues->Length());
   if (myCurve->IsKind(STANDARD_TYPE(Geom_TrimmedCurve)))
@@ -207,7 +207,7 @@ void ShapeUpgrade_ConvertCurve3dToBezier::Compute()
 
 void ShapeUpgrade_ConvertCurve3dToBezier::Build(const Standard_Boolean /*Segment*/)
 {
-  constexpr Standard_Real prec = Precision::PConfusion();
+  const Standard_Real prec = Precision::PConfusion();
   Standard_Integer        nb   = mySplitValues->Length();
   myResultingCurves            = new TColGeom_HArray1OfCurve(1, nb - 1);
   Standard_Real    prevPar     = 0.;

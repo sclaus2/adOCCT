@@ -70,7 +70,7 @@ void ProjectPointOnSurf::Init(const Handle(Geom_Surface)& Surface,
                               const Standard_Real         Vmin,
                               const Standard_Real         Vsup)
 {
-  constexpr Standard_Real Tolerance = Precision::PConfusion();
+  const Standard_Real Tolerance = Precision::PConfusion();
   //
   myGeomAdaptor.Load(Surface, Umin, Usup, Vmin, Vsup);
   myExtPS.Initialize(myGeomAdaptor, Umin, Usup, Vmin, Vsup, Tolerance, Tolerance);

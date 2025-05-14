@@ -65,7 +65,7 @@ Standard_Integer BRepLib_PointCloudShape::NbPointsByDensity(const Standard_Real 
   {
     Standard_Real anArea = faceArea(aExpF.Current());
 
-    Standard_Integer aNbPnts = Max((Standard_Integer)std::ceil(anArea / theDensity), 1);
+    Standard_Integer aNbPnts = Max((Standard_Integer)Ceiling(anArea / theDensity), 1);
     myFacePoints.Bind(aExpF.Current(), aNbPnts);
     aNbPoints += aNbPnts;
   }
@@ -198,8 +198,8 @@ Standard_Boolean BRepLib_PointCloudShape::addDensityPoints(const TopoDS_Shape& t
   }
 
   std::mt19937                     aRandomGenerator(0);
-  std::uniform_real_distribution<> anUDistrib(anUMin, anUMax);
-  std::uniform_real_distribution<> aVDistrib(aVMin, aVMax);
+  std::uniform_real_distribution<> anUDistrib(anUMin.getValue(), anUMax.getValue());
+  std::uniform_real_distribution<> aVDistrib(aVMin.getValue(), aVMax.getValue());
   for (Standard_Integer nbCurPnts = 1; nbCurPnts <= aNbPnts;)
   {
     const Standard_Real aU = anUDistrib(aRandomGenerator);
@@ -229,7 +229,7 @@ Standard_Boolean BRepLib_PointCloudShape::addDensityPoints(const TopoDS_Shape& t
     }
     if (myDist > Precision::Confusion())
     {
-      std::uniform_real_distribution<> aDistanceDistrib(0.0, myDist);
+      std::uniform_real_distribution<> aDistanceDistrib(0.0, myDist.getValue());
       gp_XYZ aDeflPoint = aP1.XYZ() + aNorm.XYZ() * aDistanceDistrib(aRandomGenerator);
       aP1.SetXYZ(aDeflPoint);
     }

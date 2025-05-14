@@ -19,7 +19,7 @@
 
 template <typename T>
 class math_VectorBase;
-using math_Vector = math_VectorBase<double>;
+using math_Vector = math_VectorBase<Standard_Real>;
 
 //! Class performs computing of the global inertia properties
 //! of geometric object in 3D space by adaptive and non-adaptive

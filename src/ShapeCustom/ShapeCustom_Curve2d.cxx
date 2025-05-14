@@ -71,7 +71,7 @@ Standard_Boolean ShapeCustom_Curve2d::IsLinear(const TColgp_Array1OfPnt2d& thePo
       }
     }
 
-  constexpr Standard_Real dPreci = Precision::PConfusion() * Precision::PConfusion();
+  const Standard_Real dPreci = Precision::PConfusion() * Precision::PConfusion();
   if (dMax < dPreci)
     return Standard_False;
 

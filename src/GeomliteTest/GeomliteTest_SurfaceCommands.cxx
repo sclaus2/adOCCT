@@ -634,7 +634,7 @@ static Standard_Integer tocanon(Draw_Interpretor& di, Standard_Integer n, const 
       {
         DrawTrSurf::Set(a[1], anAnaSurf);
         Standard_Real aGap = aSurfToAna.Gap();
-        di << "Gap = " << aGap << "\n";
+        di << "Gap = " << aGap.getValue() << "\n";
       }
       else
         di << "Conversion failed" << "\n";
@@ -655,7 +655,7 @@ static Standard_Integer tocanon(Draw_Interpretor& di, Standard_Integer n, const 
       anAnaCurv = new Geom_TrimmedCurve(anAnaCurv, ntf, ntl);
       DrawTrSurf::Set(a[1], anAnaCurv);
       Standard_Real aGap = aCurvToAna.Gap();
-      di << "Gap = " << aGap << "\n";
+      di << "Gap = " << aGap.getValue() << "\n";
     }
     else
       di << "Conversion failed" << "\n";
@@ -1118,9 +1118,9 @@ static Standard_Integer derivative(Draw_Interpretor&,
 
   gp_Vec aDeriv = aSurf->DN(aU, aV, aNu, aNv);
 
-  Draw::Set(theArgv[6], aDeriv.X());
-  Draw::Set(theArgv[7], aDeriv.Y());
-  Draw::Set(theArgv[8], aDeriv.Z());
+  Draw::Set(theArgv[6], aDeriv.X().getValue());
+  Draw::Set(theArgv[7], aDeriv.Y().getValue());
+  Draw::Set(theArgv[8], aDeriv.Z().getValue());
 
   return 0;
 }

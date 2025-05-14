@@ -1520,8 +1520,8 @@ static Standard_Boolean IsEqual(const TopLoc_Location& theLoc1, const TopLoc_Loc
   const Handle(TopLoc_Datum3D)& aDatum2 = theLoc2.FirstDatum();
   if (aDatum1 && aDatum2)
   {
-    NCollection_Mat4<double> aMat41;
-    NCollection_Mat4<double> aMat42;
+    NCollection_Mat4<Standard_Real> aMat41;
+    NCollection_Mat4<Standard_Real> aMat42;
     theLoc1.FirstDatum()->Transformation().GetMat4(aMat41);
     theLoc2.FirstDatum()->Transformation().GetMat4(aMat42);
     if (!aMat41.IsEqual(aMat42))

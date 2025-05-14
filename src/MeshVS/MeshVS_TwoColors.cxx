@@ -58,7 +58,7 @@ Quantity_Color ExtractColor(MeshVS_TwoColors& theTwoColors, const Standard_Integ
 
 void ExtractColors(MeshVS_TwoColors& theTwoColors, Quantity_Color& theCol1, Quantity_Color& theCol2)
 {
-  Standard_Real max = 255.0;
+  double max = 255.0;
   theCol1.SetValues(double(theTwoColors.r1) / max,
                     double(theTwoColors.g1) / max,
                     double(theTwoColors.b1) / max,

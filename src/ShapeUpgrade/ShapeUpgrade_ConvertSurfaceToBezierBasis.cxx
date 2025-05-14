@@ -74,7 +74,7 @@ void ShapeUpgrade_ConvertSurfaceToBezierBasis::Compute(const Standard_Boolean Se
   Standard_Real           ULast     = myUSplitValues->Value(myUSplitValues->Length());
   Standard_Real           VFirst    = myVSplitValues->Value(1);
   Standard_Real           VLast     = myVSplitValues->Value(myVSplitValues->Length());
-  constexpr Standard_Real precision = Precision::PConfusion();
+  const Standard_Real precision = Precision::PConfusion();
 
   if (mySurface->IsKind(STANDARD_TYPE(Geom_RectangularTrimmedSurface)))
   {
@@ -478,7 +478,7 @@ static Handle(Geom_Surface) GetSegment(const Handle(Geom_Surface)& surf,
   if (surf->IsKind(STANDARD_TYPE(Geom_BezierSurface)))
   {
     Handle(Geom_BezierSurface) bezier = Handle(Geom_BezierSurface)::DownCast(surf->Copy());
-    constexpr Standard_Real    prec   = Precision::PConfusion();
+    const Standard_Real    prec   = Precision::PConfusion();
     if (U1 < prec && U2 > 1 - prec && V1 < prec && V2 > 1 - prec)
       return bezier;
     // pdn K4L+ (work around)
@@ -571,7 +571,7 @@ void ShapeUpgrade_ConvertSurfaceToBezierBasis::Build(const Standard_Boolean /*Se
     offsetValue                       = offSur->Offset();
   }
 
-  constexpr Standard_Real       prec           = Precision::PConfusion();
+  const Standard_Real       prec           = Precision::PConfusion();
   Handle(TColStd_HArray1OfReal) myUSplitParams = mySegments->UJointValues();
   Handle(TColStd_HArray1OfReal) myVSplitParams = mySegments->VJointValues();
   Standard_Integer              nbU            = myUSplitValues->Length();

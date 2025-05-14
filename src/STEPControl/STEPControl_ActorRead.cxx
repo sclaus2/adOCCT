@@ -1001,8 +1001,8 @@ Handle(TransferBRep_ShapeBinder) STEPControl_ActorRead::TransferEntity(
     // These parameters are calculated inside STEPControl_ActorRead::Transfer() and cannot be set
     // from outside.
     XSAlgo_ShapeProcessor::ParameterMap aParameters = GetShapeFixParameters();
-    XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d", myPrecision, true, aParameters);
-    XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d", myMaxTol, true, aParameters);
+    XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d", myPrecision.getValue(), true, aParameters);
+    XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d", myMaxTol.getValue(), true, aParameters);
     XSAlgo_ShapeProcessor::SetParameter("FixShape.NonManifold", "1", true, aParameters);
     XSAlgo_ShapeProcessor aShapeProcessor(aParameters);
     TopoDS_Shape          fixedResult =
@@ -1696,8 +1696,8 @@ Handle(TransferBRep_ShapeBinder) STEPControl_ActorRead::TransferEntity(
       // These parameters are calculated inside STEPControl_ActorRead::Transfer() and cannot be set
       // from outside.
       XSAlgo_ShapeProcessor::ParameterMap aParameters = GetShapeFixParameters();
-      XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d", myPrecision, true, aParameters);
-      XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d", myMaxTol, true, aParameters);
+      XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d", myPrecision.getValue(), true, aParameters);
+      XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d", myMaxTol.getValue(), true, aParameters);
       XSAlgo_ShapeProcessor aShapeProcessor(aParameters);
       mappedShape =
         aShapeProcessor.ProcessShape(mappedShape, GetProcessingFlags().first, aPS.Next());
@@ -1883,8 +1883,8 @@ Handle(TransferBRep_ShapeBinder) STEPControl_ActorRead::TransferEntity(
       TopoDS_Shape S = sb->Result();
 
       XSAlgo_ShapeProcessor::ParameterMap aParameters = GetShapeFixParameters();
-      XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d", myPrecision, true, aParameters);
-      XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d", myMaxTol, true, aParameters);
+      XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d", myPrecision.getValue(), true, aParameters);
+      XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d", myMaxTol.getValue(), true, aParameters);
       XSAlgo_ShapeProcessor aShapeProcessor(aParameters);
       TopoDS_Shape shape = aShapeProcessor.ProcessShape(S, GetProcessingFlags().first, theProgress);
       aShapeProcessor.MergeTransferInfo(TP, nbTPitems);

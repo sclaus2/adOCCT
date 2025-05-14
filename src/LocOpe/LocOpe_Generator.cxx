@@ -637,7 +637,7 @@ void LocOpe_Generator::Perform(const Handle(LocOpe_GeneratedShape)& G)
                     // Tentative de recalage dans la facette
                     pf                            = C2d->Value(f);
                     pl                            = C2d->Value(l);
-                    constexpr Standard_Real tttol = Precision::Angular();
+                    const Standard_Real tttol = Precision::Angular();
                     while (Min(pf.X(), pl.X()) >= Umaxc - tttol)
                     {
                       C2d->Translate(gp_Vec2d(-2. * M_PI, 0));
@@ -1020,7 +1020,7 @@ void LocOpe_Generator::Perform(const Handle(LocOpe_GeneratedShape)& G)
                   // Tentative de recalage dans la facette
                   pf                            = C2d->Value(f);
                   pl                            = C2d->Value(l);
-                  constexpr Standard_Real tttol = Precision::Angular();
+                  const Standard_Real tttol = Precision::Angular();
                   while (Min(pf.X(), pl.X()) >= Umaxc - tttol)
                   {
                     C2d->Translate(gp_Vec2d(-2. * M_PI, 0));
@@ -1222,8 +1222,8 @@ Standard_Boolean ToFuse(const TopoDS_Face& F1, const TopoDS_Face& F2)
   Handle(Geom_Surface)    S1, S2;
   TopLoc_Location         loc1, loc2;
   Handle(Standard_Type)   typS1, typS2;
-  constexpr Standard_Real tollin = Precision::Confusion();
-  constexpr Standard_Real tolang = Precision::Angular();
+  const Standard_Real tollin = Precision::Confusion();
+  const Standard_Real tolang = Precision::Angular();
 
   S1 = BRep_Tool::Surface(F1, loc1);
   S2 = BRep_Tool::Surface(F2, loc2);
@@ -1280,8 +1280,8 @@ Standard_Boolean ToFuse(const TopoDS_Edge& E1, const TopoDS_Edge& E2)
   Handle(Geom_Curve)      C1, C2;
   TopLoc_Location         loc1, loc2;
   Handle(Standard_Type)   typC1, typC2;
-  constexpr Standard_Real tollin = Precision::Confusion();
-  constexpr Standard_Real tolang = Precision::Angular();
+  const Standard_Real tollin = Precision::Confusion();
+  const Standard_Real tolang = Precision::Angular();
   Standard_Real           f, l;
 
   C1 = BRep_Tool::Curve(E1, loc1, f, l);

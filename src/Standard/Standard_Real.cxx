@@ -23,7 +23,7 @@ static const Standard_Real ACosLimit = 1. + Epsilon(1.);
 //-------------------------------------------------------------------
 // ACos : Returns the value of the arc cosine of a real
 //-------------------------------------------------------------------
-Standard_Real ACos(const Standard_Real Value)
+Standard_Real ACos(const Standard_Real& Value)
 {
   if ((Value < -ACosLimit) || (Value > ACosLimit))
   {
@@ -60,7 +60,7 @@ double ACos (const double Value)
 //              The max error is about 1 degree near Value=0.
 //-------------------------------------------------------------------
 
-inline Standard_Real apx_for_ACosApprox(const Standard_Real x)
+inline Standard_Real apx_for_ACosApprox(const Standard_Real& x)
 {
   return (-0.000007239283986332
           + x
@@ -82,7 +82,7 @@ inline double apx_for_ACosApprox (const double x)
                                0.015098965761299077 * x))))) / sqrt(2*x);
 }
 
-Standard_Real ACosApprox(const Standard_Real Value)
+Standard_Real ACosApprox(const Standard_Real& Value)
 {
   Standard_Real XX;
   if (Value < 0.) {
@@ -133,7 +133,7 @@ double ACosApprox (const double Value)
 //-------------------------------------------------------------------
 // ASin : Returns the value of the arc sine of a real
 //-------------------------------------------------------------------
-Standard_Real ASin(const Standard_Real Value)
+Standard_Real ASin(const Standard_Real& Value)
 {
   if ((Value < -ACosLimit) || (Value > ACosLimit))
   {
@@ -169,7 +169,7 @@ double ASin(const double Value)
 //-------------------------------------------------------------------
 // ATan2 : Returns the arc tangent of a real divide by an another real
 //-------------------------------------------------------------------
-Standard_Real ATan2(const Standard_Real Value, const Standard_Real Other)
+Standard_Real ATan2(const Standard_Real& Value, const Standard_Real& Other)
 {
   if (Value == 0. && Other == 0.)
   {
@@ -189,7 +189,7 @@ double ATan2(const double Value, const double Other)
 //-------------------------------------------------------------------
 // Sign : Returns |a| if B >= 0; -|a| if b < 0.
 //-------------------------------------------------------------------
-Standard_Real Sign(const Standard_Real a, const Standard_Real b)
+Standard_Real Sign(const Standard_Real& a, const Standard_Real& b)
 {
   if (b >= 0.0)
   {
@@ -270,7 +270,7 @@ static int HardwareLowBitsOfDouble()
 static const int HighBitsOfDouble = HardwareHighBitsOfDouble();
 static const int LowBitsOfDouble  = HardwareLowBitsOfDouble();
 
-Standard_Real NextAfter(const Standard_Real x, const Standard_Real y)
+Standard_Real NextAfter(const Standard_Real& x, const Standard_Real& y)
 {
   RealMap res{};
 
@@ -399,7 +399,7 @@ double NextAfter(const double x, const double y)
 //-------------------------------------------------------------------
 // ATanh : Returns the value of the hyperbolic arc tangent of a real
 //-------------------------------------------------------------------
-Standard_Real ATanh(const Standard_Real Value)
+Standard_Real ATanh(const Standard_Real& Value)
 {
   if ((Value <= -1.) || (Value >= 1.))
   {
@@ -433,7 +433,7 @@ double ATanh(const double Value)
 //-------------------------------------------------------------------
 // ACosh : Returns the hyperbolic Arc cosine of a real
 //-------------------------------------------------------------------
-Standard_Real ACosh(const Standard_Real Value)
+Standard_Real ACosh(const Standard_Real& Value)
 {
   if (Value < 1.)
   {
@@ -467,7 +467,7 @@ double ACosh(const double Value)
 //-------------------------------------------------------------------
 // Cosh : Returns the hyperbolic cosine of a real
 //-------------------------------------------------------------------
-Standard_Real Cosh(const Standard_Real Value)
+Standard_Real Cosh(const Standard_Real& Value)
 {
   if (Abs(Value) > 0.71047586007394394e+03)
   {
@@ -493,7 +493,7 @@ double Cosh(const double Value)
 //-------------------------------------------------------------------
 // Sinh : Returns the hyperbolicsine of a real
 //-------------------------------------------------------------------
-Standard_Real Sinh(const Standard_Real Value)
+Standard_Real Sinh(const Standard_Real& Value)
 {
   if (Abs(Value) > 0.71047586007394394e+03)
   {
@@ -519,7 +519,7 @@ double Sinh(const double Value)
 //-------------------------------------------------------------------
 // Log : Returns the naturaOPl logarithm of a real
 //-------------------------------------------------------------------
-Standard_Real Log(const Standard_Real Value)
+Standard_Real Log(const Standard_Real& Value)
 {
   if (Value <= 0.)
   {
@@ -545,7 +545,7 @@ double Log(const double Value)
 //-------------------------------------------------------------------
 // Sqrt : Returns the square root of a real
 //-------------------------------------------------------------------
-Standard_Real Sqrt(const Standard_Real Value)
+Standard_Real Sqrt(const Standard_Real& Value)
 {
   if (Value < 0.)
   {

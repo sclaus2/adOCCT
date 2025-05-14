@@ -79,8 +79,8 @@ void BRepMesh_Classifier::RegisterWire(const NCollection_Sequence<const gp_Pnt2d
   aPClass(1) = *p1;
   aPClass(2) = *p2;
 
-  constexpr Standard_Real aAngTol      = Precision::Angular();
-  constexpr Standard_Real aSqConfusion = Precision::PConfusion() * Precision::PConfusion();
+  const Standard_Real aAngTol      = Precision::Angular();
+  const Standard_Real aSqConfusion = Precision::PConfusion() * Precision::PConfusion();
 
   for (Standard_Integer i = 1; i <= aNbPnts; i++)
   {

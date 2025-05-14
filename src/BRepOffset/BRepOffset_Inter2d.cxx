@@ -1097,7 +1097,7 @@ static Standard_Boolean ExtendPCurve(const Handle(Geom2d_Curve)& aPCurve,
   Handle(Geom2d_Line)                   aLin;
   Handle(Geom2d_TrimmedCurve)           aSegment;
   Geom2dConvert_CompCurveToBSplineCurve aCompCurve(aTrCurve, Convert_RationalC1);
-  constexpr Standard_Real               aTol   = Precision::Confusion();
+  const Standard_Real               aTol   = Precision::Confusion();
   Standard_Real                         aDelta = Max(a2Offset, 1.);
 
   if (FirstPar > anEf - a2Offset)
@@ -1517,7 +1517,7 @@ Standard_Boolean BRepOffset_Inter2d::ExtentEdge(const TopoDS_Edge&  E,
       Handle(Geom_Line)                   aLin;
       Handle(Geom_TrimmedCurve)           aSegment;
       GeomConvert_CompCurveToBSplineCurve aCompCurve(aTrCurve, Convert_RationalC1);
-      constexpr Standard_Real             aTol   = Precision::Confusion();
+      const Standard_Real             aTol   = Precision::Confusion();
       Standard_Real                       aDelta = Max(a2Offset, 1.);
 
       if (FirstPar > anEf - a2Offset)
@@ -1579,7 +1579,7 @@ static Standard_Boolean UpdateVertex(const TopoDS_Vertex& V,
   Standard_Real           Nf     = NC.FirstParameter();
   Standard_Real           Nl     = NC.LastParameter();
   Standard_Real           U      = 0.;
-  constexpr Standard_Real ParTol = Precision::PConfusion();
+  const Standard_Real ParTol = Precision::PConfusion();
   gp_Pnt                  P      = BRep_Tool::Pnt(V);
   Standard_Boolean        OK     = Standard_False;
 

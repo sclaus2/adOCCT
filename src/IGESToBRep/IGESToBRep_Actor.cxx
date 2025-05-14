@@ -200,9 +200,9 @@ Handle(Transfer_Binder) IGESToBRep_Actor::Transfer(const Handle(Standard_Transie
     // These parameters are calculated inside IGESToBRep_Actor::Transfer() and cannot be set from
     // outside.
     XSAlgo_ShapeProcessor::ParameterMap aParameters = GetShapeFixParameters();
-    XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d", theeps, true, aParameters);
+    XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d", theeps.getValue(), true, aParameters);
     XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d",
-                                        CAS.GetMaxTol(),
+                                        CAS.GetMaxTol().getValue(),
                                         true,
                                         aParameters);
 

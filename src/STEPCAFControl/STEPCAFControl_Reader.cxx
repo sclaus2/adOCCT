@@ -1119,7 +1119,7 @@ static void SetAssemblyComponentStyle(
     if (!aRenderCol.IsNull())
     {
       theStyles.DecodeColor(aRenderCol, aRCol);
-      aFullSCol = Quantity_ColorRGBA(aRCol, static_cast<float>(1.0f - aRenderTransp));
+      aFullSCol = Quantity_ColorRGBA(aRCol, static_cast<float>(1.0f - aRenderTransp.getValue()));
     }
 
     if (!aSurfCol.IsNull() || !aRenderCol.IsNull())

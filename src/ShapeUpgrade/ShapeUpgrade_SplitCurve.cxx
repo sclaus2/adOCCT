@@ -53,7 +53,7 @@ void ShapeUpgrade_SplitCurve::Init(const Standard_Real First, const Standard_Rea
 
 void ShapeUpgrade_SplitCurve::SetSplitValues(const Handle(TColStd_HSequenceOfReal)& SplitValues)
 {
-  constexpr Standard_Real precision = Precision::PConfusion();
+  const Standard_Real precision = Precision::PConfusion();
   if (SplitValues.IsNull())
     return;
   if (SplitValues->Length() == 0)

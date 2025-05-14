@@ -594,7 +594,7 @@ void IntPatch_WLine::ComputeVertexParameters(const Standard_Real RTol)
 
   //----------------------------------------------------
   //-- On detecte les points confondus dans la LineOn2S
-  constexpr Standard_Real dmini = Precision::SquareConfusion();
+  const Standard_Real dmini = Precision::SquareConfusion();
   for (i = 2; (i <= nbponline) && (nbponline > 2); i++)
   {
     const IntSurf_PntOn2S& aPnt1 = curv->Value(i - 1);

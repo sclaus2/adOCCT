@@ -459,7 +459,7 @@ Standard_Boolean Draft_Modification::NewParameter(const TopoDS_Vertex& V,
 
     // Patch
     Standard_Real           FirstPar = GC->FirstParameter(), LastPar = GC->LastParameter();
-    constexpr Standard_Real pconf = Precision::PConfusion();
+    const Standard_Real pconf = Precision::PConfusion();
     if (Abs(paramf - LastPar) <= pconf)
     {
       paramf = FirstPar;

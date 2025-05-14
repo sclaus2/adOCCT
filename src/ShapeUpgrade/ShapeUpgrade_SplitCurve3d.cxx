@@ -51,7 +51,7 @@ void ShapeUpgrade_SplitCurve3d::Init(const Handle(Geom_Curve)& C,
   //  if (ShapeUpgrade::Debug()) std::cout << "SplitCurve3d::Init"<<std::endl;
   Handle(Geom_Curve) CopyOfC        = Handle(Geom_Curve)::DownCast(C->Copy());
   myCurve                           = CopyOfC;
-  constexpr Standard_Real precision = Precision::PConfusion();
+  const Standard_Real precision = Precision::PConfusion();
   Standard_Real           firstPar  = First;
   Standard_Real           lastPar   = Last;
   Handle(Geom_Curve)      aCurve    = myCurve;
@@ -150,7 +150,7 @@ void ShapeUpgrade_SplitCurve3d::Build(const Standard_Boolean Segment)
   if (!ShapeAnalysis_Curve::IsPeriodic(myCurve))
   {
     // pdn exceptons only on non periodic curves
-    constexpr Standard_Real precision = Precision::PConfusion();
+    const Standard_Real precision = Precision::PConfusion();
     Standard_Real           firstPar  = myCurve->FirstParameter();
     Standard_Real           lastPar   = myCurve->LastParameter();
     if (Abs(First - firstPar) < precision)

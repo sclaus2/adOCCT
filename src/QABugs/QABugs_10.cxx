@@ -251,7 +251,7 @@ static Standard_Integer OCC486(Draw_Interpretor& di, Standard_Integer argc, cons
     }
     gp_Pnt P3D(Draw::Atof(argv[2]), Draw::Atof(argv[3]), Draw::Atof(argv[4]));
 
-    constexpr Standard_Real Tol = Precision::PConfusion();
+    const Standard_Real Tol = Precision::PConfusion();
     Extrema_ExtPS           myExtPS;
     if (argc > 5)
       du = Draw::Atof(argv[5]);

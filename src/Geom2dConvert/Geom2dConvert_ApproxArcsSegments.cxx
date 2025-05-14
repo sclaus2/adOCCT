@@ -243,12 +243,12 @@ Handle(Geom2d_TrimmedCurve) Geom2dConvert_ApproxArcsSegments::makeLine(
     if (theFirst != myExt[0])
     {
       const Standard_Real anAng = aDirLine.Angle(theFirst.D1());
-      absAngle[0]               = (anAng > 0. ? anAng : -anAng);
+      absAngle[0]               = (anAng > 0. ? anAng : Standard_Real(-anAng));
     }
     if (theLast != myExt[1])
     {
       const Standard_Real anAng = aDirLine.Angle(theLast.D1());
-      absAngle[1]               = (anAng > 0. ? anAng : -anAng);
+      absAngle[1]               = (anAng > 0. ? anAng : Standard_Real(-anAng));
     }
 
     // if the derivatives in the end points differ from the derivative line

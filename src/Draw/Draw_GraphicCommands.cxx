@@ -236,7 +236,7 @@ static Standard_Integer wzoom(Draw_Interpretor& di, Standard_Integer argc, const
     Y1 = Y2;
   X1 = (Standard_Integer)Standard_Real(X1 * zx);
   Y1 = (Standard_Integer)Standard_Real(Y1 * zx);
-  dout.SetZoom(id, zx * dout.Zoom(id));
+  dout.SetZoom(id, zx.getValue() * dout.Zoom(id));
   dout.SetPan(id, -X1, -Y1);
   dout.RepaintView(id);
   SetTitle(id);

@@ -6403,7 +6403,7 @@ static void CriticalPointsComputing(const ComputationMethods::stCoeffsValue& the
       continue;
     }
 
-    theU1crit[i] = fmod(theU1crit[i], thePeriod);
+    theU1crit[i] = fmod(theU1crit[i].getValue(), thePeriod.getValue());
     if (theU1crit[i] < 0.0)
       theU1crit[i] += thePeriod;
   }
@@ -6600,7 +6600,7 @@ static IntPatch_ImpImpIntersection::IntStatus CyCyNoGeometric(
     {
       Standard_Real anAngle = 1.0e0 - aDeflection;
       anAngle               = 2.0e0 * ACos(anAngle);
-      aNbP                  = (Standard_Integer)(2. * M_PI / anAngle) + 1;
+      aNbP                  = (Standard_Integer)Standard_Real(2. * M_PI / anAngle) + 1;
     }
     anOptdu = 2. * M_PI_2 / (Standard_Real)(aNbP - 1);
     break;
@@ -7592,7 +7592,7 @@ static IntPatch_ImpImpIntersection::IntStatus CyCyNoGeometric(
         if (!ComputationMethods::CylCylComputeParameters(anUmid, i, anEquationCoeffs, anU2t))
           continue;
 
-        Standard_Real aDU2 = fmod(Abs(anU2t - aCurU2), aPeriod);
+        Standard_Real aDU2 = fmod(Abs(anU2t - aCurU2).getValue(), aPeriod.getValue());
         aDU2               = Min(aDU2, Abs(aDU2 - aPeriod));
         if (aDU2 < aDelta)
         {
