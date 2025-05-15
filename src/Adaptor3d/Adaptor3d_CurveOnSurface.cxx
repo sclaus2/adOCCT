@@ -162,7 +162,7 @@ static void Hunt(const TColStd_Array1OfReal& Arr, const Standard_Real Coord, Sta
 { // Warning: Hunt is used to find number of knot which equals coordinate component,
   //        when coordinate component definitely equals a knot only.
   const Standard_Real Tol = Precision::PConfusion() / 10;
-  Standard_Integer        i   = 1;
+  Standard_Integer    i   = 1;
   while ((i <= Arr.Upper()) && (Abs(Coord - Arr(i)) > Tol))
   {
     i++;
@@ -223,7 +223,7 @@ static void FindBounds(const TColStd_Array1OfReal& Arr,
                        Standard_Boolean&           DerNull)
 
 {
-  Standard_Integer        N   = 0;
+  Standard_Integer    N   = 0;
   const Standard_Real Tol = Precision::PConfusion() / 10;
   Hunt(Arr, Coord, N);
   DerNull = Standard_False;
@@ -285,11 +285,11 @@ static void Locate1Coord(const Standard_Integer           Index,
                          gp_Pnt2d&                        LeftBot,
                          gp_Pnt2d&                        RightTop)
 {
-  Standard_Real           Comp1 = 0, DComp1 = 0, cur, f = 0.0, l = 0.0;
-  const Standard_Real Tol     = Precision::PConfusion() / 10;
-  Standard_Integer        i       = 1, Bnd1, Bnd2;
-  Standard_Boolean        DIsNull = Standard_False;
-  TColStd_Array1OfReal    Arr(1, BSplC->NbKnots());
+  Standard_Real        Comp1 = 0, DComp1 = 0, cur, f = 0.0, l = 0.0;
+  const Standard_Real  Tol     = Precision::PConfusion() / 10;
+  Standard_Integer     i       = 1, Bnd1, Bnd2;
+  Standard_Boolean     DIsNull = Standard_False;
+  TColStd_Array1OfReal Arr(1, BSplC->NbKnots());
   BSplC->Knots(Arr);
 
   if (Index == 1)
@@ -457,10 +457,10 @@ static void Locate1Coord(const Standard_Integer             Index,
                          gp_Pnt2d&                          LeftBot,
                          gp_Pnt2d&                          RightTop)
 {
-  Standard_Real           Comp1 = 0, DComp1 = 0;
+  Standard_Real       Comp1 = 0, DComp1 = 0;
   const Standard_Real Tol = Precision::PConfusion() / 10;
-  Standard_Integer        i = 1, Up = 0, Up1, Up2, Down = 0, Down1, Down2;
-  Standard_Real           cur = 0.;
+  Standard_Integer    i = 1, Up = 0, Up1, Up2, Down = 0, Down1, Down2;
+  Standard_Real       cur = 0.;
 
   DIsNull = Standard_False;
 
@@ -674,7 +674,7 @@ static void Locate2Coord(const Standard_Integer Index,
                          gp_Pnt2d&              RightTop)
 {
   const Standard_Real Tol   = Precision::PConfusion() / 10;
-  Standard_Real           Comp1 = 0, DComp1 = 0;
+  Standard_Real       Comp1 = 0, DComp1 = 0;
   if (Index == 1)
   {
     Comp1  = UV.X();
@@ -782,9 +782,9 @@ static void Locate2Coord(const Standard_Integer             Index,
                          gp_Pnt2d&                          LeftBot,
                          gp_Pnt2d&                          RightTop)
 {
-  Standard_Real           Comp = 0, DComp = 0, Tmp1 = 0.0, Tmp2 = 0.0;
+  Standard_Real       Comp = 0, DComp = 0, Tmp1 = 0.0, Tmp2 = 0.0;
   const Standard_Real Tol = Precision::PConfusion() / 10;
-  Standard_Integer        N = 0, NUp = 0, NLo = 0;
+  Standard_Integer    N = 0, NUp = 0, NLo = 0;
   if (Index == 1)
   {
     Comp  = UV.X();
@@ -1281,9 +1281,9 @@ void Adaptor3d_CurveOnSurface::D3(const Standard_Real U,
 {
 
   const Standard_Real Tol = Precision::PConfusion() / 10;
-  gp_Pnt2d                UV;
-  gp_Vec2d                DW, D2W, D3W;
-  gp_Vec                  D1U, D1V, D2U, D2V, D2UV, D3U, D3V, D3UUV, D3UVV;
+  gp_Pnt2d            UV;
+  gp_Vec2d            DW, D2W, D3W;
+  gp_Vec              D1U, D1V, D2U, D2V, D2UV, D3U, D3V, D3UUV, D3UVV;
 
   Standard_Real FP = myCurve->FirstParameter();
   Standard_Real LP = myCurve->LastParameter();
@@ -1725,11 +1725,11 @@ void Adaptor3d_CurveOnSurface::EvalKPart()
 
 void Adaptor3d_CurveOnSurface::EvalFirstLastSurf()
 {
-  Standard_Real           FirstPar, LastPar;
-  gp_Pnt2d                UV, LeftBot, RightTop;
-  gp_Vec2d                DUV;
+  Standard_Real       FirstPar, LastPar;
+  gp_Pnt2d            UV, LeftBot, RightTop;
+  gp_Vec2d            DUV;
   const Standard_Real Tol = Precision::PConfusion() / 10;
-  Standard_Boolean        Ok  = Standard_True;
+  Standard_Boolean    Ok  = Standard_True;
 
   FirstPar = myCurve->FirstParameter();
   myCurve->D1(FirstPar, UV, DUV);

@@ -122,14 +122,14 @@ Standard_Boolean BRepClass_FaceExplorer::OtherSegment(const gp_Pnt2d& P,
                                                       gp_Lin2d&       L,
                                                       Standard_Real&  Par)
 {
-  TopExp_Explorer         anExpF(myFace, TopAbs_EDGE);
-  Standard_Integer        i;
-  Standard_Real           aFPar;
-  Standard_Real           aLPar;
-  Handle(Geom2d_Curve)    aC2d;
-  const Standard_Real aTolParConf2 = Precision::PConfusion() * Precision::PConfusion();
-  gp_Pnt2d                aPOnC;
-  Standard_Real           aParamIn;
+  TopExp_Explorer      anExpF(myFace, TopAbs_EDGE);
+  Standard_Integer     i;
+  Standard_Real        aFPar;
+  Standard_Real        aLPar;
+  Handle(Geom2d_Curve) aC2d;
+  const Standard_Real  aTolParConf2 = Precision::PConfusion() * Precision::PConfusion();
+  gp_Pnt2d             aPOnC;
+  Standard_Real        aParamIn;
 
   for (i = 1; anExpF.More(); anExpF.Next(), i++)
   {

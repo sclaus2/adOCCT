@@ -629,7 +629,7 @@ const BinObjMgt_Persistent& BinObjMgt_Persistent::GetReal(double& theValue) cons
   {
     // the value fits in the current piece => get it quickly
     double* aData = (double*)((char*)myData(myIndex) + myOffset);
-    theValue             = *aData;
+    theValue      = *aData;
     ((BinObjMgt_Persistent*)this)->myOffset += BP_REALSIZE;
   }
 #ifdef DO_INVERSE
@@ -1081,7 +1081,7 @@ void BinObjMgt_Persistent::inverseRealData(const Standard_Integer theIndex,
   Standard_Integer aLen     = theSize;
 
   union {
-    double*    aRealData;
+    double*           aRealData;
     Standard_Integer* aIntData;
   } aWrapUnion;
 

@@ -2209,7 +2209,7 @@ Standard_Boolean ShapeUpgrade_UnifySameDomain::MergeSubSeq(
 
   if (IsUnionOfCirclesPossible)
   {
-    Standard_Real             f, l;
+    Standard_Real      f, l;
     TopoDS_Edge        FE  = TopoDS::Edge(theChain.First());
     Handle(Geom_Curve) c3d = BRep_Tool::Curve(FE, f, l);
 
@@ -2244,7 +2244,7 @@ Standard_Boolean ShapeUpgrade_UnifySameDomain::MergeSubSeq(
       // closed chain
       BRepAdaptor_Curve   adef(FE);
       Handle(Geom_Circle) Cir1;
-      Standard_Real              FP, LP;
+      Standard_Real       FP, LP;
       if (FE.Orientation() == TopAbs_FORWARD)
       {
         FP = adef.FirstParameter();
@@ -2377,8 +2377,8 @@ Standard_Boolean ShapeUpgrade_UnifySameDomain::MergeSubSeq(
 
 static Standard_Boolean IsMergingPossible(const TopoDS_Edge&         edge1,
                                           const TopoDS_Edge&         edge2,
-                                          Standard_Real                     theAngTol,
-                                          Standard_Real                     theLinTol,
+                                          Standard_Real              theAngTol,
+                                          Standard_Real              theLinTol,
                                           const TopTools_MapOfShape& AvoidEdgeVrt,
                                           const bool                 theLineDirectionOk,
                                           const gp_Pnt&              theFirstPoint,
@@ -2488,7 +2488,7 @@ static Standard_Boolean GetLineEdgePoints(const TopoDS_Edge& theInpEdge,
                                           gp_Pnt&            theFirstPoint,
                                           gp_Vec&            theDirectionVec)
 {
-  Standard_Real             f, l;
+  Standard_Real      f, l;
   Handle(Geom_Curve) aCur = BRep_Tool::Curve(theInpEdge, f, l);
   if (aCur.IsNull())
     return Standard_False;
@@ -2525,8 +2525,8 @@ void ShapeUpgrade_UnifySameDomain::generateSubSeq(
   const TopTools_SequenceOfShape&                  anInpEdgeSeq,
   NCollection_Sequence<SubSequenceOfEdges>&        SeqOfSubSeqOfEdges,
   Standard_Boolean                                 IsClosed,
-  Standard_Real                                           theAngTol,
-  Standard_Real                                           theLinTol,
+  Standard_Real                                    theAngTol,
+  Standard_Real                                    theLinTol,
   const TopTools_MapOfShape&                       AvoidEdgeVrt,
   const TopTools_IndexedDataMapOfShapeListOfShape& theVFmap)
 {

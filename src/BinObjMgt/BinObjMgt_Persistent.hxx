@@ -181,10 +181,7 @@ public:
 
   Standard_EXPORT const BinObjMgt_Persistent& GetReal(double& theValue) const;
 
-  const BinObjMgt_Persistent& operator>>(double& theValue) const
-  {
-    return GetReal(theValue);
-  }
+  const BinObjMgt_Persistent& operator>>(double& theValue) const { return GetReal(theValue); }
 
   Standard_EXPORT const BinObjMgt_Persistent& GetShortReal(Standard_ShortReal& theValue) const;
 

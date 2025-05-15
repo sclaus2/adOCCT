@@ -172,9 +172,12 @@ Standard_Integer props(Draw_Interpretor& di, Standard_Integer n, const char** a)
     di << "Z = " << P.Z().getValue() << "\n\n";
 
     di << "Matrix of Inertia :\n";
-    di << I(1, 1).getValue() << "    " << I(1, 2).getValue() << "    " << I(1, 3).getValue() << "\n";
-    di << I(2, 1).getValue() << "    " << I(2, 2).getValue() << "    " << I(2, 3).getValue() << "\n";
-    di << I(3, 1).getValue() << "    " << I(3, 2).getValue() << "    " << I(3, 3).getValue() << "\n\n";
+    di << I(1, 1).getValue() << "    " << I(1, 2).getValue() << "    " << I(1, 3).getValue()
+       << "\n";
+    di << I(2, 1).getValue() << "    " << I(2, 2).getValue() << "    " << I(2, 3).getValue()
+       << "\n";
+    di << I(3, 1).getValue() << "    " << I(3, 2).getValue() << "    " << I(3, 3).getValue()
+       << "\n\n";
 
     di << "Moments :\n";
     di << "IX = " << Ix.getValue() << "\n";

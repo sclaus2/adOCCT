@@ -1132,7 +1132,7 @@ Standard_Boolean ShapeFix_Wire::FixGap2d(const Standard_Integer num, const Stand
 
       Standard_Real ipar1 = clast1, ipar2 = cfirst2;
 
-      Geom2dInt_GInter        Inter;
+      Geom2dInt_GInter    Inter;
       const Standard_Real tolint = ::Precision::PConfusion();
 
       Geom2dAdaptor_Curve AC1(pc1), AC2(pc2);

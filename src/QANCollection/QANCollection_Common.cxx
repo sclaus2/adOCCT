@@ -20,7 +20,10 @@
 
 void PrintItem(const gp_Pnt& thePnt)
 {
-  printf("   (%5.1f %5.1f %5.1f)\n", thePnt.X().getValue(), thePnt.Y().getValue(), thePnt.Z().getValue());
+  printf("   (%5.1f %5.1f %5.1f)\n",
+         thePnt.X().getValue(),
+         thePnt.Y().getValue(),
+         thePnt.Z().getValue());
 }
 
 void PrintItem(const Standard_Real theDbl)

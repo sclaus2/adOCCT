@@ -253,9 +253,17 @@ static Standard_Integer BUC60792(Draw_Interpretor& di, Standard_Integer /*argc*/
       Standard_Real ParSol1, ParSol2, ParArg1, ParArg2;
       gp_Pnt2d      PntSol1, PntSol2;
       cirtanrad.Tangency1(i, ParSol1, ParArg1, PntSol1);
-      printf("%f\t%f\t\t%f\t%f\n", ParSol1.getValue(), ParArg1.getValue(), PntSol1.X().getValue(), PntSol1.Y().getValue());
+      printf("%f\t%f\t\t%f\t%f\n",
+             ParSol1.getValue(),
+             ParArg1.getValue(),
+             PntSol1.X().getValue(),
+             PntSol1.Y().getValue());
       cirtanrad.Tangency2(i, ParSol2, ParArg2, PntSol2);
-      printf("%f\t%f\t\t%f\t%f\n", ParSol2.getValue(), ParArg2.getValue(), PntSol2.X().getValue(), PntSol2.Y().getValue());
+      printf("%f\t%f\t\t%f\t%f\n",
+             ParSol2.getValue(),
+             ParArg2.getValue(),
+             PntSol2.X().getValue(),
+             PntSol2.Y().getValue());
     }
   }
   aContext->UpdateCurrentViewer();

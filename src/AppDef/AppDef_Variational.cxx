@@ -2361,9 +2361,9 @@ void AppDef_Variational::InitCriterionEstimations(const Standard_Real Length,
 void AppDef_Variational::EstTangent(const Standard_Integer ipnt, math_Vector& VTang) const
 
 {
-  Standard_Integer        i;
+  Standard_Integer    i;
   const Standard_Real Eps1    = Precision::Confusion() * .01;
-  const Standard_Real     EpsNorm = 1.e-9;
+  const Standard_Real EpsNorm = 1.e-9;
 
   Standard_Real Wpnt = 1.;
 

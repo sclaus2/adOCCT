@@ -611,13 +611,13 @@ void BRepLib_MakeEdge::Init(const Handle(Geom_Curve)& CC,
   }
 
   // check parameters
-  Standard_Real           p1       = pp1;
-  Standard_Real           p2       = pp2;
-  Standard_Real           cf       = C->FirstParameter();
-  Standard_Real           cl       = C->LastParameter();
+  Standard_Real       p1       = pp1;
+  Standard_Real       p2       = pp2;
+  Standard_Real       cf       = C->FirstParameter();
+  Standard_Real       cl       = C->LastParameter();
   const Standard_Real epsilon  = Precision::PConfusion();
-  Standard_Boolean        periodic = C->IsPeriodic();
-  GeomAdaptor_Curve       aCA(C);
+  Standard_Boolean    periodic = C->IsPeriodic();
+  GeomAdaptor_Curve   aCA(C);
 
   TopoDS_Vertex V1, V2;
   if (periodic)
@@ -892,12 +892,12 @@ void BRepLib_MakeEdge::Init(const Handle(Geom2d_Curve)& CC,
   }
 
   // check parameters
-  Standard_Real           p1       = pp1;
-  Standard_Real           p2       = pp2;
-  Standard_Real           cf       = C->FirstParameter();
-  Standard_Real           cl       = C->LastParameter();
+  Standard_Real       p1       = pp1;
+  Standard_Real       p2       = pp2;
+  Standard_Real       cf       = C->FirstParameter();
+  Standard_Real       cl       = C->LastParameter();
   const Standard_Real epsilon  = Precision::PConfusion();
-  Standard_Boolean        periodic = C->IsPeriodic();
+  Standard_Boolean    periodic = C->IsPeriodic();
 
   TopoDS_Vertex    V1, V2;
   Standard_Boolean reverse = Standard_False;

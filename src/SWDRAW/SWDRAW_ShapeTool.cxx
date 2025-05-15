@@ -253,12 +253,12 @@ static Standard_Integer samerange(Draw_Interpretor& di, Standard_Integer argc, c
       return 1;
     }
 
-    Standard_Real           oldFirst      = Draw::Atof(argv[3]);
-    Standard_Real           oldLast       = Draw::Atof(argv[4]);
-    Standard_Real           current_first = Draw::Atof(argv[5]);
-    Standard_Real           current_last  = Draw::Atof(argv[6]);
-    const Standard_Real Tol           = Precision::PConfusion();
-    Handle(Geom2d_Curve)    NewC2d;
+    Standard_Real        oldFirst      = Draw::Atof(argv[3]);
+    Standard_Real        oldLast       = Draw::Atof(argv[4]);
+    Standard_Real        current_first = Draw::Atof(argv[5]);
+    Standard_Real        current_last  = Draw::Atof(argv[6]);
+    const Standard_Real  Tol           = Precision::PConfusion();
+    Handle(Geom2d_Curve) NewC2d;
     GeomLib::SameRange(Tol, C, oldFirst, oldLast, current_first, current_last, NewC2d);
     DrawTrSurf::Set(argv[1], NewC2d);
   }

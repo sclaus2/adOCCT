@@ -26,7 +26,9 @@ void math_DoubleTab::Allocate()
   Standard_Integer ColNumber = UppC - LowC + 1;
 
   if (isAllocated)
-    Addr = new Standard_Real[RowNumber * ColNumber]; // Addr = (Standard_Real*)Standard::Allocate(RowNumber * ColNumber * sizeof(Standard_Real));
+    Addr = new Standard_Real[RowNumber
+                             * ColNumber]; // Addr = (Standard_Real*)Standard::Allocate(RowNumber *
+                                           // ColNumber * sizeof(Standard_Real));
 }
 
 math_DoubleTab::math_DoubleTab(const Standard_Integer LowerRow,
@@ -76,8 +78,9 @@ math_DoubleTab::math_DoubleTab(const math_DoubleTab& Other)
       UppC(Other.UppC)
 {
   Allocate();
-  // memmove(Addr, Other.Addr, (int)((UppR - LowR + 1) * (UppC - LowC + 1) * sizeof(Standard_Real)));
-  for(int i = 0; i < (UppR - LowR + 1) * (UppC - LowC + 1); ++i)
+  // memmove(Addr, Other.Addr, (int)((UppR - LowR + 1) * (UppC - LowC + 1) *
+  // sizeof(Standard_Real)));
+  for (int i = 0; i < (UppR - LowR + 1) * (UppC - LowC + 1); ++i)
   {
     Addr[i] = Other.Addr[i];
   }

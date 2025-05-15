@@ -506,8 +506,10 @@ static Standard_Integer OCC544(Draw_Interpretor& di, Standard_Integer argc, cons
 
   di << "SpineCurve->FirstParameter() is " << SpineCurve->FirstParameter().getValue() << "\n";
   di << "SpineCurve->LastParameter() is " << SpineCurve->LastParameter().getValue() << "\n";
-  di << "Law1 Value at FirstParameter() is " << myLaw->Value(SpineCurve->FirstParameter()).getValue() << "\n";
-  di << "Law1 Value at LastParameter() is " << myLaw->Value(SpineCurve->LastParameter()).getValue() << "\n";
+  di << "Law1 Value at FirstParameter() is "
+     << myLaw->Value(SpineCurve->FirstParameter()).getValue() << "\n";
+  di << "Law1 Value at LastParameter() is " << myLaw->Value(SpineCurve->LastParameter()).getValue()
+     << "\n";
   di << "radius_r / radius_l is " << radius_r / radius_l << "\n";
 
   BRepBuilderAPI_MakeEdge mkEdge;
@@ -797,7 +799,7 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
   }
 
   const Standard_Real delt      = 5.0 * Precision::Confusion();
-  Standard_Real           mesh_delt = Draw::Atof(argv[2]);
+  Standard_Real       mesh_delt = Draw::Atof(argv[2]);
   if (mesh_delt <= 0.0)
   {
     di << "Error: mesh_delta must be positive value\n";
@@ -862,8 +864,8 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
   Xmax += delt;
   Ymax += delt;
   Zmax += delt;
-  di << "Info: Bounds\n  (" << Xmin.getValue() << "," << Ymin.getValue() << "," << Zmin.getValue() << ")\n  (" << Xmax.getValue() << "," << Ymax.getValue()
-     << "," << Zmax.getValue() << ")\n";
+  di << "Info: Bounds\n  (" << Xmin.getValue() << "," << Ymin.getValue() << "," << Zmin.getValue()
+     << ")\n  (" << Xmax.getValue() << "," << Ymax.getValue() << "," << Zmax.getValue() << ")\n";
 
   // grid the bounding box
   Standard_Integer NumXsubvolumes = (Standard_Integer)Standard_Real((Xmax - Xmin) / mesh_delt);
@@ -904,8 +906,9 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
         P.SetY(y);
         P.SetZ(z);
         TopoDS_Shape aSubvolume = BRepPrimAPI_MakeBox(P, StepX, StepY, StepZ).Solid();
-        di << "Info: box b_" << l << " " << P.X().getValue() << " " << P.Y().getValue() << " " << P.Z().getValue() << " " << StepX.getValue()
-           << " " << StepY.getValue() << " " << StepZ.getValue() << "\n";
+        di << "Info: box b_" << l << " " << P.X().getValue() << " " << P.Y().getValue() << " "
+           << P.Z().getValue() << " " << StepX.getValue() << " " << StepY.getValue() << " "
+           << StepZ.getValue() << "\n";
         if (aSubvolume.IsNull())
         {
           di << "Error: could not construct subvolume " << l << "\n";

@@ -315,7 +315,7 @@ void GCPnts_TangentialDeflection::EvaluateDu(const TheCurve&     theC,
 {
   gp_Vec T, N;
   D2(theC, theU, theP, T, N);
-  Standard_Real           Lt   = T.Magnitude();
+  Standard_Real       Lt   = T.Magnitude();
   const Standard_Real LTol = Precision::Confusion();
   if (Lt > LTol && N.Magnitude() > LTol)
   {
@@ -459,9 +459,9 @@ Standard_Integer GCPnts_TangentialDeflection::AddPoint(const gp_Pnt&          th
                                                        const Standard_Real    theParam,
                                                        const Standard_Boolean theIsReplace)
 {
-  const Standard_Real tol   = Precision::PConfusion();
-  Standard_Integer        index = -1;
-  const Standard_Integer  nb    = myParameters.Length();
+  const Standard_Real    tol   = Precision::PConfusion();
+  Standard_Integer       index = -1;
+  const Standard_Integer nb    = myParameters.Length();
   for (Standard_Integer i = 1; index == -1 && i <= nb; i++)
   {
     Standard_Real dist = myParameters.Value(i) - theParam;
@@ -525,9 +525,9 @@ void GCPnts_TangentialDeflection::PerformCurve(const TheCurve& theC)
   gp_Pnt           MiddlePoint, CurrentPoint, LastPoint;
   Standard_Real    Du, Dusave, MiddleU, L1, L2;
 
-  Standard_Real           U1   = myFirstu;
+  Standard_Real       U1   = myFirstu;
   const Standard_Real LTol = Precision::Confusion(); // protection longueur nulle
-  Standard_Real           ATol = 1.e-2 * myAngularDeflection;
+  Standard_Real       ATol = 1.e-2 * myAngularDeflection;
   if (ATol > 1.e-2)
   {
     ATol = 1.e-2;

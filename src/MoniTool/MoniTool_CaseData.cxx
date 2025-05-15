@@ -188,7 +188,7 @@ void MoniTool_CaseData::AddCPU(const Standard_Real    lastCPU,
   double cpu = curCPU.getValue();
   if (cpu == 0.)
   {
-    double    sec;
+    double           sec;
     Standard_Integer i1, i2;
     chrono().Show(sec, i1, i2, cpu);
   }
@@ -203,7 +203,7 @@ Standard_Real MoniTool_CaseData::GetCPU() const
     chrono().Start();
     stachr = Standard_True;
   }
-  double    sec, cpu;
+  double           sec, cpu;
   Standard_Integer i1, i2;
   chrono().Show(sec, i1, i2, cpu);
   return cpu;
@@ -216,7 +216,7 @@ Standard_Boolean MoniTool_CaseData::LargeCPU(const Standard_Real maxCPU,
   double cpu = curCPU.getValue();
   if (cpu == 0.)
   {
-    double    sec;
+    double           sec;
     Standard_Integer i1, i2;
     chrono().Show(sec, i1, i2, cpu);
   }

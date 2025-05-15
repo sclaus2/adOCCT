@@ -739,7 +739,7 @@ void BRepExtrema_DistanceSS::Perform(const TopoDS_Vertex&       theS1,
     Dstmin = sqrt(Dstmin);
     if ((Dstmin < myDstRef - myEps) || (fabs(Dstmin - myDstRef) < myEps))
     {
-      gp_Pnt                  Pt, P1 = BRep_Tool::Pnt(theS1);
+      gp_Pnt              Pt, P1 = BRep_Tool::Pnt(theS1);
       const Standard_Real epsP = Precision::PConfusion();
 
       for (i = 1; i <= NbExtrema; i++)
@@ -856,7 +856,7 @@ void BRepExtrema_DistanceSS::Perform(const TopoDS_Edge&         theS1,
     Dstmin = sqrt(Dstmin);
     if ((Dstmin < myDstRef - myEps) || (fabs(Dstmin - myDstRef) < myEps))
     {
-      gp_Pnt                  Pt1, Pt2;
+      gp_Pnt              Pt1, Pt2;
       const Standard_Real epsP = Precision::PConfusion();
 
       for (i = 1; i <= NbExtrema; i++)
@@ -949,7 +949,7 @@ void BRepExtrema_DistanceSS::Perform(const TopoDS_Edge&         theS1,
       Standard_Real       U, V;
       const Standard_Real tol = BRep_Tool::Tolerance(theS2);
 
-      gp_Pnt                  Pt1, Pt2;
+      gp_Pnt              Pt1, Pt2;
       const Standard_Real epsP = Precision::PConfusion();
 
       for (i = 1; i <= NbExtrema; i++)

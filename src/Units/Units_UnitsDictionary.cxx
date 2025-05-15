@@ -95,7 +95,7 @@ void Units_UnitsDictionary::Creates()
 {
   Standard_Boolean            ismove;
   Standard_Integer            i, j, k, charnumber, unitscomputed;
-  double               matrix[50][50], coeff = 0, move = 0;
+  double                      matrix[50][50], coeff = 0, move = 0;
   Handle(Units_Token)         token;
   Handle(Units_UnitsSequence) theunitssequence;
   Handle(Units_Unit)          unit;

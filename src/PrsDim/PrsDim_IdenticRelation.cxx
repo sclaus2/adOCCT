@@ -187,7 +187,7 @@ static Standard_Boolean ComputeAttach(const gp_Circ& thecirc,
   // Case of confusion between the current position and the center
   // of the circle -> we move the current position
   const Standard_Real confusion(Precision::Confusion());
-  gp_Pnt                  aCenter = thecirc.Location();
+  gp_Pnt              aCenter = thecirc.Location();
   if (aCenter.Distance(curpos) <= confusion)
   {
     gp_Vec vprec(aCenter, aFAttach);
@@ -255,7 +255,7 @@ static Standard_Boolean ComputeAttach(const gp_Elips& theEll,
   // Case of confusion between the current position and the center
   // of the circle -> we move the current position
   const Standard_Real confusion(Precision::Confusion());
-  gp_Pnt                  aCenter = theEll.Location();
+  gp_Pnt              aCenter = theEll.Location();
   if (aCenter.Distance(curpos) <= confusion)
   {
     gp_Vec vprec(aCenter, aFAttach);
@@ -387,7 +387,7 @@ void PrsDim_IdenticRelation::ComputeSelection(const Handle(SelectMgr_Selection)&
 
   Handle(Select3D_SensitiveSegment) seg;
   // attachment point of the segment linking position to the curve
-  gp_Pnt                  attach;
+  gp_Pnt              attach;
   const Standard_Real confusion(Precision::Confusion());
 
   if (myFAttach.IsEqual(mySAttach, confusion))
@@ -714,11 +714,11 @@ void PrsDim_IdenticRelation::ComputeTwoLinesPresentation(const Handle(Prs3d_Pres
     else
     {
 
-      curpos                          = myPosition;
-      Standard_Real           pcurpos = ElCLib::Parameter(thelin->Lin(), curpos);
-      Standard_Real           dist    = thelin->Lin().Distance(curpos);
-      gp_Pnt                  proj    = ElCLib::Value(pcurpos, thelin->Lin());
-      gp_Vec                  trans;
+      curpos                      = myPosition;
+      Standard_Real       pcurpos = ElCLib::Parameter(thelin->Lin(), curpos);
+      Standard_Real       dist    = thelin->Lin().Distance(curpos);
+      gp_Pnt              proj    = ElCLib::Value(pcurpos, thelin->Lin());
+      gp_Vec              trans;
       const Standard_Real confusion(Precision::Confusion());
       if (dist >= confusion)
       {

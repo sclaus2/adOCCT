@@ -58,94 +58,84 @@ public:
   //! Converts the current unit value to the local system units value.
   //! Example: CurrentToLS(1.,"LENGTH") returns 1000. if the current length unit
   //! is meter and LocalSystem is MDTV.
-  Standard_EXPORT static double CurrentToLS(const double    aData,
-                                                   const Standard_CString aQuantity);
+  Standard_EXPORT static double CurrentToLS(const double aData, const Standard_CString aQuantity);
 
   //! Converts the current unit value to the SI system units value.
   //! Example: CurrentToSI(1.,"LENGTH") returns 0.001 if current length unit
   //! is millimeter.
-  Standard_EXPORT static double CurrentToSI(const double    aData,
-                                                   const Standard_CString aQuantity);
+  Standard_EXPORT static double CurrentToSI(const double aData, const Standard_CString aQuantity);
 
   //! Converts the local system units value to the current unit value.
   //! Example: CurrentFromLS(1000.,"LENGTH") returns 1. if current length unit
   //! is meter and LocalSystem is MDTV.
-  Standard_EXPORT static double CurrentFromLS(const double    aData,
-                                                     const Standard_CString aQuantity);
+  Standard_EXPORT static double CurrentFromLS(const double aData, const Standard_CString aQuantity);
 
   //! Converts the SI system units value to the current unit value.
   //! Example: CurrentFromSI(0.001,"LENGTH") returns 1 if current length unit
   //! is millimeter.
-  Standard_EXPORT static double CurrentFromSI(const double    aData,
-                                                     const Standard_CString aQuantity);
+  Standard_EXPORT static double CurrentFromSI(const double aData, const Standard_CString aQuantity);
 
   //! Converts the local unit value to the local system units value.
   //! Example: AnyToLS(1.,"in.") returns 25.4 if the LocalSystem is MDTV.
-  Standard_EXPORT static double AnyToLS(const double    aData,
-                                               const Standard_CString aUnit);
+  Standard_EXPORT static double AnyToLS(const double aData, const Standard_CString aUnit);
 
   //! Converts the local unit value to the local system units value.
   //! and gives the associated dimension of the unit
-  Standard_EXPORT static double AnyToLS(const double       aData,
-                                               const Standard_CString    aUnit,
-                                               Handle(Units_Dimensions)& aDim);
+  Standard_EXPORT static double AnyToLS(const double              aData,
+                                        const Standard_CString    aUnit,
+                                        Handle(Units_Dimensions)& aDim);
 
   //! Converts the local unit value to the SI system units value.
   //! Example: AnyToSI(1.,"in.") returns 0.0254
-  Standard_EXPORT static double AnyToSI(const double    aData,
-                                               const Standard_CString aUnit);
+  Standard_EXPORT static double AnyToSI(const double aData, const Standard_CString aUnit);
 
   //! Converts the local unit value to the SI system units value.
   //! and gives the associated dimension of the unit
-  Standard_EXPORT static double AnyToSI(const double       aData,
-                                               const Standard_CString    aUnit,
-                                               Handle(Units_Dimensions)& aDim);
+  Standard_EXPORT static double AnyToSI(const double              aData,
+                                        const Standard_CString    aUnit,
+                                        Handle(Units_Dimensions)& aDim);
 
   //! Converts the local system units value to the local unit value.
   //! Example: AnyFromLS(25.4,"in.") returns 1. if the LocalSystem is MDTV.
   //! Note: aUnit is also used to identify the type of physical quantity to convert.
-  Standard_EXPORT static double AnyFromLS(const double    aData,
-                                                 const Standard_CString aUnit);
+  Standard_EXPORT static double AnyFromLS(const double aData, const Standard_CString aUnit);
 
   //! Converts the SI system units value to the local unit value.
   //! Example: AnyFromSI(0.0254,"in.") returns 0.001
   //! Note: aUnit is also used to identify the type of physical quantity to convert.
-  Standard_EXPORT static double AnyFromSI(const double    aData,
-                                                 const Standard_CString aUnit);
+  Standard_EXPORT static double AnyFromSI(const double aData, const Standard_CString aUnit);
 
   //! Converts the aData value expressed in the
   //! current unit for the working environment, as
   //! defined for the physical quantity aQuantity by the
   //! last call to the SetCurrentUnit function, into the unit aUnit.
-  Standard_EXPORT static double CurrentToAny(const double    aData,
-                                                    const Standard_CString aQuantity,
-                                                    const Standard_CString aUnit);
+  Standard_EXPORT static double CurrentToAny(const double           aData,
+                                             const Standard_CString aQuantity,
+                                             const Standard_CString aUnit);
 
   //! Converts the aData value expressed in the unit
   //! aUnit, into the current unit for the working
   //! environment, as defined for the physical quantity
   //! aQuantity by the last call to the SetCurrentUnit function.
-  Standard_EXPORT static double CurrentFromAny(const double    aData,
-                                                      const Standard_CString aQuantity,
-                                                      const Standard_CString aUnit);
+  Standard_EXPORT static double CurrentFromAny(const double           aData,
+                                               const Standard_CString aQuantity,
+                                               const Standard_CString aUnit);
 
   //! Converts the local unit value to another local unit value.
   //! Example: AnyToAny(0.0254,"in.","millimeter") returns 1. ;
-  Standard_EXPORT static double AnyToAny(const double    aData,
-                                                const Standard_CString aUnit1,
-                                                const Standard_CString aUnit2);
+  Standard_EXPORT static double AnyToAny(const double           aData,
+                                         const Standard_CString aUnit1,
+                                         const Standard_CString aUnit2);
 
   //! Converts the local system units value to the SI system unit value.
   //! Example: LSToSI(1.,"LENGTH") returns 0.001 if the local system
   //! length unit is millimeter.
-  Standard_EXPORT static double LSToSI(const double    aData,
-                                              const Standard_CString aQuantity);
+  Standard_EXPORT static double LSToSI(const double aData, const Standard_CString aQuantity);
 
   //! Converts the SI system unit value to the local system units value.
   //! Example: SIToLS(1.,"LENGTH") returns 1000. if the local system
   //! length unit is millimeter.
-  Standard_EXPORT static double SIToLS(const double    aData,
-                                              const Standard_CString aQuantity);
+  Standard_EXPORT static double SIToLS(const double aData, const Standard_CString aQuantity);
 
   //! Sets the local system units.
   //! Example: SetLocalSystem(UnitsAPI_MDTV)

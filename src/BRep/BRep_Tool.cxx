@@ -132,8 +132,8 @@ const Poly_ListOfTriangulation& BRep_Tool::Triangulations(const TopoDS_Face& the
 
 Standard_Real BRep_Tool::Tolerance(const TopoDS_Face& F)
 {
-  const BRep_TFace*       TF   = static_cast<const BRep_TFace*>(F.TShape().get());
-  Standard_Real           p    = TF->Tolerance();
+  const BRep_TFace*   TF   = static_cast<const BRep_TFace*>(F.TShape().get());
+  Standard_Real       p    = TF->Tolerance();
   const Standard_Real pMin = Precision::Confusion();
   if (p > pMin)
     return p;
@@ -818,8 +818,8 @@ Standard_Boolean BRep_Tool::IsClosed(const TopoDS_Edge&                E,
 
 Standard_Real BRep_Tool::Tolerance(const TopoDS_Edge& E)
 {
-  const BRep_TEdge*       TE   = static_cast<const BRep_TEdge*>(E.TShape().get());
-  Standard_Real           p    = TE->Tolerance();
+  const BRep_TEdge*   TE   = static_cast<const BRep_TEdge*>(E.TShape().get());
+  Standard_Real       p    = TE->Tolerance();
   const Standard_Real pMin = Precision::Confusion();
   if (p > pMin)
     return p;
@@ -1261,7 +1261,7 @@ Standard_Real BRep_Tool::Tolerance(const TopoDS_Vertex& V)
     throw Standard_NullObject("BRep_Tool:: TopoDS_Vertex hasn't gp_Pnt");
   }
 
-  Standard_Real           p    = aTVert->Tolerance();
+  Standard_Real       p    = aTVert->Tolerance();
   const Standard_Real pMin = Precision::Confusion();
   if (p > pMin)
     return p;

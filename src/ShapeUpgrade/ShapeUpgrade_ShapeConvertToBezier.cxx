@@ -121,9 +121,9 @@ Standard_Boolean ShapeUpgrade_ShapeConvertToBezier::Perform(const Standard_Boole
   //  2. Changing rande of edge to [0,1]
   if (myLevel == 1)
   {
-    BRep_Builder            B;
-    ShapeAnalysis_Edge      sae;
-    ShapeBuild_Edge         sbe;
+    BRep_Builder        B;
+    ShapeAnalysis_Edge  sae;
+    ShapeBuild_Edge     sbe;
     const Standard_Real preci = Precision::PConfusion();
     for (TopExp_Explorer exp(myResult, TopAbs_FACE); exp.More(); exp.Next())
     {

@@ -578,10 +578,7 @@ public:
   //! @param[out] theR node red   color component value within [0, 1] range
   //! @param[out] theG node green color component value within [0, 1] range
   //! @param[out] theB node blue  color component value within [0, 1] range
-  void VertexColor(const Standard_Integer theRank,
-                   double&         theR,
-                   double&         theG,
-                   double&         theB) const
+  void VertexColor(const Standard_Integer theRank, double& theR, double& theG, double& theB) const
   {
     theR = theG = theB = 0.0;
     Standard_OutOfRange_Raise_if(theRank < 1 || theRank > myAttribs->NbElements,
@@ -864,7 +861,10 @@ public: //! @name optional array of Bounds/Subgroups within primitive array (e.g
   {
     Standard_Real anRGB[3] = {0.0, 0.0, 0.0};
     BoundColor(theRank, anRGB[0], anRGB[1], anRGB[2]);
-    return Quantity_Color(anRGB[0].getValue(), anRGB[1].getValue(), anRGB[2].getValue(), Quantity_TOC_RGB);
+    return Quantity_Color(anRGB[0].getValue(),
+                          anRGB[1].getValue(),
+                          anRGB[2].getValue(),
+                          Quantity_TOC_RGB);
   }
 
   //! Returns the bound color values at rank theRank from the bound table if defined.

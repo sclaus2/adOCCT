@@ -637,7 +637,7 @@ void PrsDim_EqualDistanceRelation::ComputeTwoVerticesLength(
   PrsDim::ComputeGeometry(SecondVertex, SecondAttach, Plane, isOnPlane2);
 
   const Standard_Real confusion(Precision::Confusion());
-  Standard_Boolean        samePoint(FirstAttach.IsEqual(SecondAttach, confusion));
+  Standard_Boolean    samePoint(FirstAttach.IsEqual(SecondAttach, confusion));
 
   if (TypeDist == PrsDim_TypeOfDist_Vertical)
     DirAttach = Plane->Pln().XAxis().Direction();

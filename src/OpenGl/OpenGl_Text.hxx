@@ -163,11 +163,11 @@ protected:
   mutable Font_Rect myBndBox;
 
 protected:
-  mutable OpenGl_Mat4d myProjMatrix;
-  mutable OpenGl_Mat4d myModelMatrix;
-  mutable OpenGl_Mat4d myOrientationMatrix;
-  mutable OpenGl_Vec3d myWinXYZ;
-  mutable Standard_Real     myScaleHeight;
+  mutable OpenGl_Mat4d  myProjMatrix;
+  mutable OpenGl_Mat4d  myModelMatrix;
+  mutable OpenGl_Mat4d  myOrientationMatrix;
+  mutable OpenGl_Vec3d  myWinXYZ;
+  mutable Standard_Real myScaleHeight;
 
 protected:
   Standard_Boolean myIs2d;

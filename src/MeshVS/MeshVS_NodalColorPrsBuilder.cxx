@@ -123,10 +123,10 @@ void MeshVS_NodalColorPrsBuilder::Build(const Handle(Prs3d_Presentation)& Prs,
   if (!aDrawer->GetInteger(MeshVS_DA_MaxFaceNodes, aMaxFaceNodes) || aMaxFaceNodes <= 0)
     return;
 
-  MeshVS_Buffer<Standard_Real>        aCoordsBuf(3 * aMaxFaceNodes);
-  TColStd_Array1OfReal aCoords(aCoordsBuf, 1, 3 * aMaxFaceNodes);
-  Standard_Integer     NbNodes;
-  MeshVS_EntityType    aType;
+  MeshVS_Buffer<Standard_Real> aCoordsBuf(3 * aMaxFaceNodes);
+  TColStd_Array1OfReal         aCoords(aCoordsBuf, 1, 3 * aMaxFaceNodes);
+  Standard_Integer             NbNodes;
+  MeshVS_EntityType            aType;
 
   if (!(DisplayMode & GetFlags()) || !IsElement)
     return;

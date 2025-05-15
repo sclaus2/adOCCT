@@ -153,7 +153,8 @@ Standard_Integer Image_Diff::Compare()
     case Image_Format_Gray:
     case Image_Format_Alpha: {
       // Tolerance of comparison operation for color
-      const Standard_Integer aDiffThreshold = Standard_Integer(Standard_Real(255.0 * myColorTolerance));
+      const Standard_Integer aDiffThreshold =
+        Standard_Integer(Standard_Real(255.0 * myColorTolerance));
       for (Standard_Size aRow = 0; aRow < myImageRef->SizeY(); ++aRow)
       {
         for (Standard_Size aCol = 0; aCol < myImageRef->SizeX(); ++aCol)
@@ -178,7 +179,8 @@ Standard_Integer Image_Diff::Compare()
     case Image_Format_BGRA: {
       // Tolerance of comparison operation for color
       // Maximum difference between colors (white - black) = 100%
-      const Standard_Integer aDiffThreshold = Standard_Integer(Standard_Real(255.0 * myColorTolerance));
+      const Standard_Integer aDiffThreshold =
+        Standard_Integer(Standard_Real(255.0 * myColorTolerance));
 
       // we don't care about RGB/BGR/RGBA/BGRA/RGB32/BGR32 differences
       // because we just compute summ of r g b components

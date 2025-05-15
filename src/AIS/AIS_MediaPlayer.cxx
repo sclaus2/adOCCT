@@ -189,7 +189,7 @@ void AIS_MediaPlayer::PlayPause()
   }
 
   double aProgress = 0.0, aDuration = 0.0;
-  bool          isPaused = false;
+  bool   isPaused = false;
   myFramePair->PlayerContext()->PlayPause(isPaused, aProgress, aDuration);
 }
 

@@ -184,7 +184,8 @@ static Standard_Integer appro(Draw_Interpretor& di, Standard_Integer n, const ch
         nc = 3;
         for (i = 1; i <= Nb; i++)
         {
-          Points(i).SetCoord((Standard_Real)Draw::Atof(a[nc]), (Standard_Real)Draw::Atof(a[nc + 1]));
+          Points(i).SetCoord((Standard_Real)Draw::Atof(a[nc]),
+                             (Standard_Real)Draw::Atof(a[nc + 1]));
           nc += 2;
         }
       }
@@ -409,7 +410,8 @@ static Standard_Integer intersect(Draw_Interpretor& di, Standard_Integer n, cons
   {
     // API simplified result
     gp_Pnt2d P = Intersector.Point(i);
-    di << "Intersection point " << i << " : " << P.X().getValue() << " " << P.Y().getValue() << "\n";
+    di << "Intersection point " << i << " : " << P.X().getValue() << " " << P.Y().getValue()
+       << "\n";
     // Intersection extended results from intersection tool
     const IntRes2d_IntersectionPoint& aPInt = anIntTool.Point(i);
     di << "parameter on the fist: " << aPInt.ParamOnFirst().getValue();
@@ -465,7 +467,8 @@ static Standard_Integer intersect_ana(Draw_Interpretor& di, Standard_Integer n, 
   for (Standard_Integer i = 1; i <= Intersector.NbPoints(); i++)
   {
     gp_Pnt2d P = Intersector.Point(i).Value();
-    di << "Intersection point " << i << " : " << P.X().getValue() << " " << P.Y().getValue() << "\n";
+    di << "Intersection point " << i << " : " << P.X().getValue() << " " << P.Y().getValue()
+       << "\n";
     di << "parameter on the fist: " << Intersector.Point(i).ParamOnFirst().getValue();
     di << " parameter on the second: " << Intersector.Point(i).ParamOnSecond().getValue() << "\n";
     Handle(Draw_Marker2D) mark = new Draw_Marker2D(P, Draw_X, Draw_vert);
@@ -556,7 +559,8 @@ static Standard_Integer intconcon(Draw_Interpretor& di, Standard_Integer n, cons
   for (Standard_Integer i = 1; i <= Intersector.NbPoints(); i++)
   {
     gp_Pnt2d P = Intersector.Point(i).Value();
-    di << "Intersection point " << i << " : " << P.X().getValue() << " " << P.Y().getValue() << "\n";
+    di << "Intersection point " << i << " : " << P.X().getValue() << " " << P.Y().getValue()
+       << "\n";
     di << "parameter on the fist: " << Intersector.Point(i).ParamOnFirst().getValue();
     if (!Intersector.Point(i).SecondIsImplicit())
     {
@@ -674,7 +678,8 @@ static Standard_Integer deviation(Draw_Interpretor& theDI,
   TCollection_AsciiString anArgString = theArgv[1];
   TCollection_AsciiString aPntString  = anArgString + "_pnt";
   DrawTrSurf::Set(aPntString.ToCString(), aPtOnCurv);
-  theDI << "From point " << aPntString << " (with parameter " << aRetCurvParam.getValue() << ") to ";
+  theDI << "From point " << aPntString << " (with parameter " << aRetCurvParam.getValue()
+        << ") to ";
 
   Handle(Geom2d_Curve)    aLine      = new Geom2d_Line(aLinSegm);
   TCollection_AsciiString aLinString = anArgString + "_lin";

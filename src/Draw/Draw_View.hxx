@@ -102,8 +102,8 @@ protected:
   char             myType[5];
   Standard_Boolean myIsPers;
   Standard_Boolean myIs2D;
-  double    myFocalDistance;
-  double    myZoom;
+  double           myFocalDistance;
+  double           myZoom;
   gp_Trsf          myMatrix;
   Standard_Integer myDx;
   Standard_Integer myDy;

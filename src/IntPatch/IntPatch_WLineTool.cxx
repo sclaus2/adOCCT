@@ -436,7 +436,7 @@ static Handle(IntPatch_WLine) DeleteByTube(const Handle(IntPatch_WLine)&    theW
 
   // Choose base tolerance and scale it to pipe algorithm.
   const Standard_Real aBaseTolerance = Precision::Approximation();
-  Standard_Real           aResS1Tol =
+  Standard_Real       aResS1Tol =
     Min(theS1->UResolution(aBaseTolerance), theS1->VResolution(aBaseTolerance));
   Standard_Real aResS2Tol =
     Min(theS2->UResolution(aBaseTolerance), theS2->VResolution(aBaseTolerance));

@@ -31,7 +31,7 @@ IMPLEMENT_STANDARD_RTTIEXT(Draw_ProgressIndicator, Message_ProgressIndicator)
 //=================================================================================================
 
 Draw_ProgressIndicator::Draw_ProgressIndicator(const Draw_Interpretor& di,
-                                               double           theUpdateThreshold)
+                                               double                  theUpdateThreshold)
     : myTclMode(DefaultTclMode()),
       myConsoleMode(DefaultConsoleMode()),
       myGraphMode(DefaultGraphMode()),

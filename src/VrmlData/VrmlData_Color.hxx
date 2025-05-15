@@ -53,7 +53,10 @@ public:
    */
   inline const Quantity_Color Color(const Standard_Integer i) const
   {
-    return Quantity_Color(Value(i).X().getValue(), Value(i).Y().getValue(), Value(i).Z().getValue(), Quantity_TOC_sRGB);
+    return Quantity_Color(Value(i).X().getValue(),
+                          Value(i).Y().getValue(),
+                          Value(i).Z().getValue(),
+                          Quantity_TOC_sRGB);
   }
 
   /**

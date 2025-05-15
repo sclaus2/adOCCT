@@ -42,7 +42,7 @@ static TCollection_AsciiString  unitsfile;
 static TCollection_AsciiString  lexiconfile;
 static TCollection_AsciiString  lastunit;
 static Handle(Units_Dimensions) lastdimension;
-static double            lastvalue, lastmove;
+static double                   lastvalue, lastmove;
 
 //=================================================================================================
 
@@ -184,9 +184,9 @@ Handle(Units_Dimensions) Units::NullDimensions()
 
 //=================================================================================================
 
-double Units::Convert(const double    avalue,
-                             const Standard_CString afirstunit,
-                             const Standard_CString asecondunit)
+double Units::Convert(const double           avalue,
+                      const Standard_CString afirstunit,
+                      const Standard_CString asecondunit)
 {
   Units_Measurement measurement(avalue, afirstunit);
   measurement.Convert(asecondunit);
@@ -204,9 +204,7 @@ double Units::ToSI(const double aData, const Standard_CString aUnit)
 
 //=================================================================================================
 
-double Units::ToSI(const double       aData,
-                          const Standard_CString    aUnit,
-                          Handle(Units_Dimensions)& dim)
+double Units::ToSI(const double aData, const Standard_CString aUnit, Handle(Units_Dimensions)& dim)
 {
   if (lastunit != aUnit)
   {
@@ -243,9 +241,9 @@ double Units::FromSI(const double aData, const Standard_CString aUnit)
 
 //=================================================================================================
 
-double Units::FromSI(const double       aData,
-                            const Standard_CString    aUnit,
-                            Handle(Units_Dimensions)& dim)
+double Units::FromSI(const double              aData,
+                     const Standard_CString    aUnit,
+                     Handle(Units_Dimensions)& dim)
 {
   if (lastunit != aUnit)
   {

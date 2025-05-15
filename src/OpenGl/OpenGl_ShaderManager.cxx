@@ -535,9 +535,12 @@ void OpenGl_ShaderManager::pushLightSourceState(
         }
         else
         {
-          aLightParams.Position.x() = static_cast<float>(Standard_Real(aLight.Position().X() - myLocalOrigin.X()));
-          aLightParams.Position.y() = static_cast<float>(Standard_Real(aLight.Position().Y() - myLocalOrigin.Y()));
-          aLightParams.Position.z() = static_cast<float>(Standard_Real(aLight.Position().Z() - myLocalOrigin.Z()));
+          aLightParams.Position.x() =
+            static_cast<float>(Standard_Real(aLight.Position().X() - myLocalOrigin.X()));
+          aLightParams.Position.y() =
+            static_cast<float>(Standard_Real(aLight.Position().Y() - myLocalOrigin.Y()));
+          aLightParams.Position.z() =
+            static_cast<float>(Standard_Real(aLight.Position().Z() - myLocalOrigin.Z()));
           aLightParams.Position.w() = 0.0f;
         }
         aLightParams.Direction.w() = aLight.Range();

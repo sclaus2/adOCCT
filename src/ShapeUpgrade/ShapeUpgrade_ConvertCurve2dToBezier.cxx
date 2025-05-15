@@ -57,8 +57,8 @@ void ShapeUpgrade_ConvertCurve2dToBezier::Compute()
   mySegments->Clear();
   mySplitParams->Clear();
   const Standard_Real precision = Precision::PConfusion();
-  Standard_Real           First     = mySplitValues->Value(1);
-  Standard_Real           Last      = mySplitValues->Value(mySplitValues->Length());
+  Standard_Real       First     = mySplitValues->Value(1);
+  Standard_Real       Last      = mySplitValues->Value(mySplitValues->Length());
 
   // PTV Try to create line2d from myCurve
   if (myCurve->IsKind(STANDARD_TYPE(Geom2d_BSplineCurve))
@@ -254,10 +254,10 @@ void ShapeUpgrade_ConvertCurve2dToBezier::Compute()
 void ShapeUpgrade_ConvertCurve2dToBezier::Build(const Standard_Boolean /*Segment*/)
 {
   const Standard_Real prec = Precision::PConfusion();
-  Standard_Integer        nb   = mySplitValues->Length();
-  myResultingCurves            = new TColGeom2d_HArray1OfCurve(1, nb - 1);
-  Standard_Real    prevPar     = 0.;
-  Standard_Integer j           = 2;
+  Standard_Integer    nb   = mySplitValues->Length();
+  myResultingCurves        = new TColGeom2d_HArray1OfCurve(1, nb - 1);
+  Standard_Real    prevPar = 0.;
+  Standard_Integer j       = 2;
   for (Standard_Integer i = 2; i <= nb; i++)
   {
     Standard_Real par = mySplitValues->Value(i);

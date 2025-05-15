@@ -124,7 +124,7 @@ public:
 
 protected:
 private:
-  double       themeasurement;
+  double              themeasurement;
   Handle(Units_Token) thetoken;
   Standard_Boolean    myHasToken;
 };

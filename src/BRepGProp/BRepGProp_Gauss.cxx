@@ -145,15 +145,15 @@ void BRepGProp_Gauss::Inertia::Reset()
 {
   // memset(reinterpret_cast<void*>(this), 0, sizeof(BRepGProp_Gauss::Inertia));
   this->Mass = 0.;
-  this->Ix = 0.;
-  this->Iy = 0.;
-  this->Iz = 0.;
-  this->Ixx = 0.;
-  this->Iyy = 0.;
-  this->Izz = 0.;
-  this->Ixy = 0.;
-  this->Ixz = 0.;
-  this->Iyz = 0.;
+  this->Ix   = 0.;
+  this->Iy   = 0.;
+  this->Iz   = 0.;
+  this->Ixx  = 0.;
+  this->Iyy  = 0.;
+  this->Izz  = 0.;
+  this->Ixy  = 0.;
+  this->Ixz  = 0.;
+  this->Iyz  = 0.;
 }
 
 //=================================================================================================

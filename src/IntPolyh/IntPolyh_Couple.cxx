@@ -21,5 +21,10 @@
 
 void IntPolyh_Couple::Dump(const Standard_Integer i) const
 {
-  printf("\nCouple(%3d) : %5d %5d %3d %5f\n", i, myIndex1, myIndex2, myAnalyzed, myAngle.getValue());
+  printf("\nCouple(%3d) : %5d %5d %3d %5f\n",
+         i,
+         myIndex1,
+         myIndex2,
+         myAnalyzed,
+         myAngle.getValue());
 }

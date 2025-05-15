@@ -96,7 +96,7 @@ static Standard_Integer box(Draw_Interpretor&, Standard_Integer n, const char** 
     }
     else if (anArgIter + 5 < n || anArgIter + 2 < n)
     {
-      double    aValue     = 0.0;
+      double           aValue     = 0.0;
       Standard_Integer aCountReal = 0;
       Standard_Integer anIter     = anArgIter;
       while (anIter < n && Draw::ParseReal(a[anIter], aValue))

@@ -54,7 +54,7 @@ CREATE(void)
   inquadric = Standard_False;
   nbpts     = 0;
   // memset(paramonc, 0, sizeof(paramonc));
-  for(int i = 0; i < 4; ++i)
+  for (int i = 0; i < 4; ++i)
   {
     paramonc[i] = 0.;
   }

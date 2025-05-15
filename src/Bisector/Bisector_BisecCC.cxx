@@ -109,12 +109,12 @@ void Bisector_BisecCC::Perform(const Handle(Geom2d_Curve)& Cu1,
   isConvex1 = Bisector::IsConvex(curve1, sign1);
   isConvex2 = Bisector::IsConvex(curve2, sign2);
 
-  Standard_Real           U, UC1, UC2, Dist, dU, USol;
-  gp_Pnt2d                P;
-  Standard_Integer        NbPnts    = 21;
+  Standard_Real       U, UC1, UC2, Dist, dU, USol;
+  gp_Pnt2d            P;
+  Standard_Integer    NbPnts    = 21;
   const Standard_Real EpsMin    = 10 * Precision::Confusion();
-  Standard_Boolean        YaPoly    = Standard_True;
-  Standard_Boolean        OriInPoly = Standard_False;
+  Standard_Boolean    YaPoly    = Standard_True;
+  Standard_Boolean    OriInPoly = Standard_False;
   //---------------------------------------------
   // Calculate first point of the polygon.
   //---------------------------------------------
@@ -1687,15 +1687,15 @@ void Bisector_BisecCC::LastParameter(const Standard_Real U)
 
 Standard_Real Bisector_BisecCC::SearchBound(const Standard_Real U1, const Standard_Real U2) const
 {
-  Standard_Real           UMid, Dist1, Dist2, DistMid, U11, U22;
-  Standard_Real           UC1, UC2;
-  gp_Pnt2d                PBis, PBisPrec;
+  Standard_Real       UMid, Dist1, Dist2, DistMid, U11, U22;
+  Standard_Real       UC1, UC2;
+  gp_Pnt2d            PBis, PBisPrec;
   const Standard_Real TolPnt = Precision::Confusion();
   const Standard_Real TolPar = Precision::PConfusion();
-  U11                            = U1;
-  U22                            = U2;
-  PBisPrec                       = ValueByInt(U11, UC1, UC2, Dist1);
-  PBis                           = ValueByInt(U22, UC1, UC2, Dist2);
+  U11                        = U1;
+  U22                        = U2;
+  PBisPrec                   = ValueByInt(U11, UC1, UC2, Dist1);
+  PBis                       = ValueByInt(U22, UC1, UC2, Dist2);
 
   while ((U22 - U11) > TolPar
          || ((Dist1 < Precision::Infinite() && Dist2 < Precision::Infinite()

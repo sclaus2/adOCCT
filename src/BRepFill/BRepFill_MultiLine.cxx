@@ -630,7 +630,7 @@ static gp_Pnt2d ValueOnFace(const Standard_Real        U,
   }
 
   const Standard_Real Tol = Precision::Confusion();
-  Standard_Real           VV;
+  Standard_Real       VV;
 
   gp_Pnt2d PF = TheV.Value(TheV.FirstParameter());
   gp_Pnt2d PL = TheV.Value(TheV.LastParameter());

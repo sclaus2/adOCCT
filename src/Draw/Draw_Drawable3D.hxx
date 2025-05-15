@@ -91,10 +91,7 @@ public:
     myYmax = theYMax;
   }
 
-  void Bounds(double& theXMin,
-              double& theXMax,
-              double& theYMin,
-              double& theYMax) const
+  void Bounds(double& theXMin, double& theXMax, double& theYMin, double& theYMax) const
   {
     theXMin = myXmin;
     theXMax = myXmax;
@@ -118,10 +115,10 @@ protected:
   Standard_EXPORT Draw_Drawable3D();
 
 private:
-  double    myXmin;
-  double    myXmax;
-  double    myYmin;
-  double    myYmax;
+  double           myXmin;
+  double           myXmax;
+  double           myYmin;
+  double           myYmax;
   Standard_CString myName;
   Standard_Boolean isVisible;
   Standard_Boolean isProtected;

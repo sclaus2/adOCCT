@@ -45,7 +45,7 @@
   #include <Draw_ColorKind.hxx>
   #include <Draw_MarkerShape.hxx>
 static Standard_Boolean dodraw  = 0;
-static double    drawfac = 0.1;
+static double           drawfac = 0.1;
 #endif
 #ifdef OCCT_DEBUG
 Standard_IMPORT void Law_draw1dcurve(const TColStd_Array1OfReal&    pol,
@@ -362,7 +362,7 @@ GeomFill_ConstrainedFilling::GeomFill_ConstrainedFilling(const Standard_Integer 
   memset(degree, 0, sizeof(degree));
   memset(ibound, 0, sizeof(ibound));
   // memset(mig, 0, sizeof(mig));
-  for(int i = 0; i < 4; ++i)
+  for (int i = 0; i < 4; ++i)
   {
     mig[i] = 0;
   }

@@ -80,7 +80,7 @@ void BRepLib_MakeShell::Init(const Handle(Geom_Surface)& S,
       Handle(Geom_RectangularTrimmedSurface)::DownCast(S);
     BS = RTS->BasisSurface();
   }
-  myError                     = BRepLib_EmptyShell;
+  myError                 = BRepLib_EmptyShell;
   const Standard_Real tol = Precision::Confusion();
 
   // Make a shell from a surface
@@ -380,11 +380,11 @@ void BRepLib_MakeShell::Init(const Handle(Geom_Surface)& S,
   myShape.Closed(BRep_Tool::IsClosed(myShape));
 
   // Additional checking for degenerated edges
-  Standard_Boolean        isDegenerated;
-  Standard_Real           aFirst, aLast;
+  Standard_Boolean    isDegenerated;
+  Standard_Real       aFirst, aLast;
   const Standard_Real aTol = Precision::Confusion();
-  Standard_Real           anActTol;
-  TopExp_Explorer         anExp(myShape, TopAbs_EDGE);
+  Standard_Real       anActTol;
+  TopExp_Explorer     anExp(myShape, TopAbs_EDGE);
   for (; anExp.More(); anExp.Next())
   {
     const TopoDS_Edge& anEdge = TopoDS::Edge(anExp.Current());

@@ -1182,7 +1182,8 @@ Standard_Integer xdistef(Draw_Interpretor& di, Standard_Integer n, const char** 
     return 1;
   }
   //
-  di << "Max Distance = " << aMaxDist.getValue() << "; Parameter on curve = " << aMaxPar.getValue() << "\n";
+  di << "Max Distance = " << aMaxDist.getValue() << "; Parameter on curve = " << aMaxPar.getValue()
+     << "\n";
   //
   return 0;
 }

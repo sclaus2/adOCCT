@@ -39,9 +39,9 @@ Standard_Boolean AdvApprox_PrefAndRec::Value(const Standard_Real a,
 {
   //  longueur minimum d'un intervalle parametrique : 10*PConfusion()
   const Standard_Real lgmin = 10 * Precision::PConfusion();
-  Standard_Integer        i;
-  Standard_Real           cut, mil = (a + b) / 2, dist;
-  Standard_Boolean        isfound = Standard_False;
+  Standard_Integer    i;
+  Standard_Real       cut, mil = (a + b) / 2, dist;
+  Standard_Boolean    isfound = Standard_False;
 
   cut = mil;
 

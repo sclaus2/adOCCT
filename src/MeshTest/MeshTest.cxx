@@ -349,7 +349,7 @@ static Standard_Integer tessellate(Draw_Interpretor& /*di*/,
   }
 
   Handle(Geom_Surface) aSurf = DrawTrSurf::GetSurface(aSrcName);
-  Standard_Real               aUMin, aUMax, aVMin, aVMax;
+  Standard_Real        aUMin, aUMax, aVMin, aVMax;
   if (!aSurf.IsNull())
   {
     aSurf->Bounds(aUMin, aUMax, aVMin, aVMax);
@@ -395,15 +395,15 @@ static Standard_Integer tessellate(Draw_Interpretor& /*di*/,
 
   // fill nodes
   GeomAdaptor_Surface anAdSurf(aSurf);
-  Standard_Real              aDU = (aUMax - aUMin) / aNbU;
-  Standard_Real              aDV = (aVMax - aVMin) / aNbV;
+  Standard_Real       aDU = (aUMax - aUMin) / aNbU;
+  Standard_Real       aDV = (aVMax - aVMin) / aNbV;
   for (int iU = 0, iShift = 1; iU <= aNbU; iU++, iShift += aNbV + 1)
   {
     Standard_Real aU = aUMin + iU * aDU;
     for (int iV = 0; iV <= aNbV; iV++)
     {
       Standard_Real aV = aVMin + iV * aDV;
-      gp_Pnt aP = anAdSurf.Value(aU, aV);
+      gp_Pnt        aP = anAdSurf.Value(aU, aV);
       aTriangulation->SetNode(iShift + iV, aP);
     }
   }
@@ -1198,16 +1198,16 @@ static Standard_Integer veriftriangles(Draw_Interpretor& di, Standard_Integer n,
 
             if (defle > defstock)
             {
-              di << "face " << nbface << " deflection = " << defle.getValue() << " pour " << defstock.getValue()
-                 << " stockee.\n";
+              di << "face " << nbface << " deflection = " << defle.getValue() << " pour "
+                 << defstock.getValue() << " stockee.\n";
             }
           }
         }
       }
       if (!quiet)
       {
-        di << "face " << nbface << ", deflemin = " << deflemin.getValue() << ", deflemax = " << deflemax.getValue()
-           << "\n";
+        di << "face " << nbface << ", deflemin = " << deflemin.getValue()
+           << ", deflemax = " << deflemax.getValue() << "\n";
       }
     }
   }
@@ -1403,7 +1403,12 @@ static Standard_Integer wavefront(Draw_Interpretor&, Standard_Integer nbarg, con
           if (F.Orientation() == TopAbs_REVERSED)
             Nor.Reverse();
 
-          fprintf(outfile, "%s      %f  %f  %f\n", "vn", Nor.X().getValue(), Nor.Y().getValue(), Nor.Z().getValue());
+          fprintf(outfile,
+                  "%s      %f  %f  %f\n",
+                  "vn",
+                  Nor.X().getValue(),
+                  Nor.Y().getValue(),
+                  Nor.Z().getValue());
         }
 
         fprintf(outfile, "\n%s    %d\n\n", "# number of vertex normals", nbNodes);
@@ -1529,7 +1534,7 @@ static Standard_Integer TrMergeNodes(Draw_Interpretor& theDI,
     return 1;
   }
 
-  double           aMergeAngle = M_PI / 4.0, aMergeToler = 0.0;
+  double                  aMergeAngle = M_PI / 4.0, aMergeToler = 0.0;
   bool                    toForce = false;
   TCollection_AsciiString aResFace;
   for (Standard_Integer anArgIter = 2; anArgIter < theNbArgs; ++anArgIter)

@@ -94,7 +94,11 @@ Standard_EXPORT const char* DrawTrSurf_SetPnt2d(const char* theNameStr, void* th
   {
     const gp_Pnt2d& aP = *(gp_Pnt2d*)thePnt2dPtr;
     static char     buff[256];
-    sprintf(buff, "Point (%.16g, %.16g) set to DRAW variable %.80s", aP.X().getValue(), aP.Y().getValue(), theNameStr);
+    sprintf(buff,
+            "Point (%.16g, %.16g) set to DRAW variable %.80s",
+            aP.X().getValue(),
+            aP.Y().getValue(),
+            theNameStr);
     DrawTrSurf::Set(theNameStr, aP);
     return buff;
   }

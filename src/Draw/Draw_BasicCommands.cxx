@@ -148,7 +148,7 @@ static Standard_Integer dchronom(Draw_Interpretor& theDI,
     }
     else if (anIter + 1 < theNbArgs && (anArg == "-counter" || anArg == "counter"))
     {
-      double    aSeconds = 0.0, aCPUtime = 0.0;
+      double           aSeconds = 0.0, aCPUtime = 0.0;
       Standard_Integer aMinutes = 0, aHours = 0;
       aChronom->Timer().Show(aSeconds, aMinutes, aHours, aCPUtime);
       if (toShowCout)

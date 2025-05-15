@@ -43,7 +43,7 @@ public:
   //! International System of Units.
   Standard_EXPORT Units_Unit(const Standard_CString        aname,
                              const Standard_CString        asymbol,
-                             const double           avalue,
+                             const double                  avalue,
                              const Handle(Units_Quantity)& aquantity);
 
   //! Creates  and returns a  unit.  <aname> is  the name of
@@ -93,7 +93,7 @@ public:
 
 protected:
   Handle(TColStd_HSequenceOfHAsciiString) thesymbolssequence;
-  double                           thevalue;
+  double                                  thevalue;
 
 private:
   Handle(TCollection_HAsciiString) thename;

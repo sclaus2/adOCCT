@@ -60,7 +60,7 @@ Standard_Boolean BinMDataStd_RealArrayDriver::Paste(const BinObjMgt_Persistent& 
   NCollection_Array1<double> aTargetArrayDouble(aFirstInd, aLastInd);
   if (!theSource.GetRealArray(&aTargetArrayDouble(aFirstInd), aLength))
     return Standard_False;
-  for(int i = aTargetArrayDouble.Lower(); i <= aTargetArrayDouble.Upper(); ++i)
+  for (int i = aTargetArrayDouble.Lower(); i <= aTargetArrayDouble.Upper(); ++i)
   {
     anAtt->SetValue(i, (Standard_Real)aTargetArrayDouble.Value(i));
   }
@@ -94,14 +94,14 @@ void BinMDataStd_RealArrayDriver::Paste(const Handle(TDF_Attribute)& theSource,
 {
   Handle(TDataStd_RealArray)  anAtt        = Handle(TDataStd_RealArray)::DownCast(theSource);
   const TColStd_Array1OfReal& aSourceArray = anAtt->Array()->Array1();
-  NCollection_Array1<double> aSourceArrayDouble(aSourceArray.Lower(), aSourceArray.Upper());
-  for(int i = aSourceArray.Lower(); i <= aSourceArray.Upper(); ++i)
+  NCollection_Array1<double>  aSourceArrayDouble(aSourceArray.Lower(), aSourceArray.Upper());
+  for (int i = aSourceArray.Lower(); i <= aSourceArray.Upper(); ++i)
   {
     aSourceArrayDouble.SetValue(i, aSourceArray.Value(i).getValue());
   }
-  const Standard_Integer      aFirstInd    = aSourceArray.Lower();
-  const Standard_Integer      aLastInd     = aSourceArray.Upper();
-  const Standard_Integer      aLength      = aLastInd - aFirstInd + 1;
+  const Standard_Integer aFirstInd = aSourceArray.Lower();
+  const Standard_Integer aLastInd  = aSourceArray.Upper();
+  const Standard_Integer aLength   = aLastInd - aFirstInd + 1;
   theTarget << aFirstInd << aLastInd;
   double* aPtr = (double*)&aSourceArrayDouble(aFirstInd);
   theTarget.PutRealArray(aPtr, aLength);

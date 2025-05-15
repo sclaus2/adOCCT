@@ -39,18 +39,20 @@ Standard_Real ACos(const Standard_Real& Value)
   }
   return adtl::acos(Value);
 }
-double ACos (const double Value)
+
+double ACos(const double Value)
 {
-  if ((Value < -ACosLimit) || (Value > ACosLimit)){
+  if ((Value < -ACosLimit) || (Value > ACosLimit))
+  {
     throw Standard_RangeError();
   }
   else if (Value > 1.)
   {
-    return 0.; //acos(1.)
+    return 0.; // acos(1.)
   }
   else if (Value < -1.)
   {
-    return M_PI; //acos(-1.)
+    return M_PI; // acos(-1.)
   }
   return acos(Value);
 }
@@ -72,40 +74,46 @@ inline Standard_Real apx_for_ACosApprox(const Standard_Real& x)
                                - x * (0.005516443930088506 + 0.015098965761299077 * x)))))
          / adtl::sqrt(2 * x);
 }
-inline double apx_for_ACosApprox (const double x)
+
+inline double apx_for_ACosApprox(const double x)
 {
-  return  (-0.000007239283986332 +
-           x * (2.000291665285952400 +
-                x * (0.163910606547823220 +
-                     x * (0.047654245891495528 -
-                          x * (0.005516443930088506 +
-                               0.015098965761299077 * x))))) / sqrt(2*x);
+  return (-0.000007239283986332
+          + x
+              * (2.000291665285952400
+                 + x
+                     * (0.163910606547823220
+                        + x
+                            * (0.047654245891495528
+                               - x * (0.005516443930088506 + 0.015098965761299077 * x)))))
+         / sqrt(2 * x);
 }
 
 Standard_Real ACosApprox(const Standard_Real& Value)
 {
   Standard_Real XX;
-  if (Value < 0.) {
-    XX = 1.+Value;
+  if (Value < 0.)
+  {
+    XX = 1. + Value;
     if (XX < RealSmall())
       return 0.;
     return M_PI - apx_for_ACosApprox(XX);
   }
-  XX = 1.-Value;
+  XX = 1. - Value;
   if (XX < RealSmall())
     return 0.;
   return apx_for_ACosApprox(XX);
 
-// The code above is the same but includes 2 comparisons instead of 3
-//   Standard_Real xn = 1.+Value;
-//   Standard_Real xp = 1.-Value;
-//   if (xp < RealSmall() || xn < RealSmall())
-//     return 0.;
-//   if (Value < 0.)
-//     return M_PI - apx_for_ACosApprox (xn);
-//   return apx_for_ACosApprox (xp);
+  // The code above is the same but includes 2 comparisons instead of 3
+  //   Standard_Real xn = 1.+Value;
+  //   Standard_Real xp = 1.-Value;
+  //   if (xp < RealSmall() || xn < RealSmall())
+  //     return 0.;
+  //   if (Value < 0.)
+  //     return M_PI - apx_for_ACosApprox (xn);
+  //   return apx_for_ACosApprox (xp);
 }
-double ACosApprox (const double Value)
+
+double ACosApprox(const double Value)
 {
   double XX;
   if (Value < 0.)
@@ -149,6 +157,7 @@ Standard_Real ASin(const Standard_Real& Value)
   }
   return adtl::asin(Value);
 }
+
 double ASin(const double Value)
 {
   if ((Value < -ACosLimit) || (Value > ACosLimit))
@@ -177,6 +186,7 @@ Standard_Real ATan2(const Standard_Real& Value, const Standard_Real& Other)
   }
   return adtl::atan2(Value, Other);
 }
+
 double ATan2(const double Value, const double Other)
 {
   if (Value == 0. && Other == 0.)
@@ -200,11 +210,15 @@ Standard_Real Sign(const Standard_Real& a, const Standard_Real& b)
     return (-1.0 * Abs(a));
   }
 }
+
 double Sign(const double a, const double b)
 {
-  if (b >= 0.0) {
+  if (b >= 0.0)
+  {
     return Abs(a);
-  } else {
+  }
+  else
+  {
     return (-1.0 * Abs(a));
   }
 }
@@ -414,6 +428,7 @@ Standard_Real ATanh(const Standard_Real& Value)
   return adtl::atanh(Value);
 #endif
 }
+
 double ATanh(const double Value)
 {
   if ((Value <= -1.) || (Value >= 1.))
@@ -448,6 +463,7 @@ Standard_Real ACosh(const Standard_Real& Value)
   return adtl::acosh(Value);
 #endif
 }
+
 double ACosh(const double Value)
 {
   if (Value < 1.)
@@ -478,6 +494,7 @@ Standard_Real Cosh(const Standard_Real& Value)
   }
   return adtl::cosh(Value);
 }
+
 double Cosh(const double Value)
 {
   if (Abs(Value) > 0.71047586007394394e+03)
@@ -504,6 +521,7 @@ Standard_Real Sinh(const Standard_Real& Value)
   }
   return adtl::sinh(Value);
 }
+
 double Sinh(const double Value)
 {
   if (Abs(Value) > 0.71047586007394394e+03)
@@ -530,6 +548,7 @@ Standard_Real Log(const Standard_Real& Value)
   }
   return adtl::log(Value);
 }
+
 double Log(const double Value)
 {
   if (Value <= 0.)
@@ -556,6 +575,7 @@ Standard_Real Sqrt(const Standard_Real& Value)
   }
   return adtl::sqrt(Value);
 }
+
 double Sqrt(const double Value)
 {
   if (Value < 0.)

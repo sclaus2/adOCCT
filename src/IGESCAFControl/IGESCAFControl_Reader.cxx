@@ -248,7 +248,10 @@ Standard_Boolean IGESCAFControl_Reader::Transfer(const Handle(TDocStd_Document)&
             checkColorRange(r);
             checkColorRange(g);
             checkColorRange(b);
-            col.SetValues(0.01 * r.getValue(), 0.01 * g.getValue(), 0.01 * b.getValue(), Quantity_TOC_sRGB);
+            col.SetValues(0.01 * r.getValue(),
+                          0.01 * g.getValue(),
+                          0.01 * b.getValue(),
+                          Quantity_TOC_sRGB);
           }
         }
       }

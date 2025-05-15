@@ -81,11 +81,12 @@ void ShapeUpgrade_SplitSurfaceAngle::Compute(const Standard_Boolean /*Segment*/)
       || S->IsKind(STANDARD_TYPE(Geom_SphericalSurface)))
   {
 
-    Standard_Real    UFirst     = myUSplitValues->Sequence().First();
-    Standard_Real    ULast      = myUSplitValues->Sequence().Last();
-    Standard_Real    maxAngle   = myMaxAngle; // maximal u length of segment
-    Standard_Real    uLength    = ULast - UFirst;
-    Standard_Integer nbSegments = Standard_Integer(Standard_Real((uLength - Precision::Angular()) / maxAngle)) + 1;
+    Standard_Real    UFirst   = myUSplitValues->Sequence().First();
+    Standard_Real    ULast    = myUSplitValues->Sequence().Last();
+    Standard_Real    maxAngle = myMaxAngle; // maximal u length of segment
+    Standard_Real    uLength  = ULast - UFirst;
+    Standard_Integer nbSegments =
+      Standard_Integer(Standard_Real((uLength - Precision::Angular()) / maxAngle)) + 1;
     if (nbSegments == 1)
       if (!isRect || !(uLength < maxAngle) || !((U2 - U1) < maxAngle))
         myStatus = ShapeExtend::EncodeStatus(ShapeExtend_DONE2);

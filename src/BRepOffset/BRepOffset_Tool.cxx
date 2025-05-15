@@ -602,10 +602,10 @@ Standard_Boolean BRepOffset_Tool::FindCommonShapes(const TopoDS_Shape&    theS1,
 static Standard_Boolean ToSmall(const Handle(Geom_Curve)& C)
 {
   const Standard_Real Tol = 10 * Precision::Confusion();
-  Standard_Real           m   = (C->FirstParameter() * 0.668 + C->LastParameter() * 0.332);
-  gp_Pnt                  P1  = C->Value(C->FirstParameter());
-  gp_Pnt                  P2  = C->Value(C->LastParameter());
-  gp_Pnt                  P3  = C->Value(m);
+  Standard_Real       m   = (C->FirstParameter() * 0.668 + C->LastParameter() * 0.332);
+  gp_Pnt              P1  = C->Value(C->FirstParameter());
+  gp_Pnt              P2  = C->Value(C->LastParameter());
+  gp_Pnt              P3  = C->Value(m);
   if (P1.Distance(P2) > Tol)
     return Standard_False;
   if (P2.Distance(P3) > Tol)
@@ -1547,7 +1547,7 @@ void BRepOffset_Tool::Inter3D(const TopoDS_Face&    F1,
   }
 
   const Standard_Real aSameParTol = Precision::Confusion();
-  Standard_Boolean        isEl1 = Standard_False, isEl2 = Standard_False;
+  Standard_Boolean    isEl1 = Standard_False, isEl2 = Standard_False;
 
   Handle(Geom_Surface) aSurf = BRep_Tool::Surface(F1);
   if (aSurf->IsInstance(STANDARD_TYPE(Geom_RectangularTrimmedSurface)))
@@ -2581,7 +2581,7 @@ static void MakeFace(const Handle(Geom_Surface)& S,
   }
 
   // compute vertices
-  BRep_Builder            B;
+  BRep_Builder        B;
   const Standard_Real tol = Precision::Confusion();
 
   TopoDS_Vertex V00, V10, V11, V01;
@@ -3911,10 +3911,10 @@ void BRepOffset_Tool::ExtentFace(const TopoDS_Face&            F,
       }
     }
 
-    TopoDS_Wire             NW;
-    TopoDS_Vertex           NV1, NV2;
-    TopAbs_Orientation      Or;
-    Standard_Real           U1, U2;
+    TopoDS_Wire         NW;
+    TopoDS_Vertex       NV1, NV2;
+    TopAbs_Orientation  Or;
+    Standard_Real       U1, U2;
     const Standard_Real eps = Precision::Confusion();
 
 #ifdef OCCT_DEBUG
@@ -4190,7 +4190,7 @@ static Standard_Boolean IsInOut(BRepTopAdaptor_FClass2d&   FC,
                                 const Geom2dAdaptor_Curve& AC,
                                 const TopAbs_State&        S)
 {
-  const Standard_Real       Def = 100 * Precision::Confusion();
+  const Standard_Real           Def = 100 * Precision::Confusion();
   GCPnts_QuasiUniformDeflection QU(AC, Def);
 
   for (Standard_Integer i = 1; i <= QU.NbPoints(); i++)

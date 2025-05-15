@@ -209,7 +209,7 @@ void Geom_OffsetSurface::SetBasisSurface(const Handle(Geom_Surface)& S,
     // et aussi pour les singularite. Pour les surfaces osculatrices, on l'utilise pour
     // detecter si une iso est degeneree.
     const Standard_Real Tol = Precision::Confusion(); // 0.0001;
-    myOscSurf                   = new Geom_OsculatingSurface(aCheckingSurf, Tol);
+    myOscSurf               = new Geom_OsculatingSurface(aCheckingSurf, Tol);
   }
 
   // Surface value calculator
@@ -784,8 +784,8 @@ Handle(Geom_Surface) Geom_OffsetSurface::Surface() const
   if (offsetValue == 0.0)
     return basisSurf; // Cas direct
 
-  const Standard_Real Tol = Precision::Confusion();
-  Handle(Geom_Surface)    Result, Base;
+  const Standard_Real  Tol = Precision::Confusion();
+  Handle(Geom_Surface) Result, Base;
   Result.Nullify();
   Handle(Standard_Type) TheType = basisSurf->DynamicType();
   Standard_Boolean      IsTrimmed;

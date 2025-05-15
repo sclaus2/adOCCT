@@ -92,9 +92,9 @@ public:
                                                   bool theIsEmulated) Standard_OVERRIDE;
 
   //! Release key.
-  Standard_EXPORT virtual void KeyDown(Aspect_VKey theKey,
-                                       Standard_Real      theTime,
-                                       Standard_Real      thePressure = 1.0) Standard_OVERRIDE;
+  Standard_EXPORT virtual void KeyDown(Aspect_VKey   theKey,
+                                       Standard_Real theTime,
+                                       Standard_Real thePressure = 1.0) Standard_OVERRIDE;
 
   //! Release key.
   Standard_EXPORT virtual void KeyUp(Aspect_VKey theKey, Standard_Real theTime) Standard_OVERRIDE;

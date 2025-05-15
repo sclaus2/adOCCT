@@ -72,10 +72,10 @@ void Aspect_VKeySet::KeyUp(Aspect_VKey theKey, Standard_Real theTime)
 
 //=================================================================================================
 
-void Aspect_VKeySet::KeyFromAxis(Aspect_VKey theNegative,
-                                 Aspect_VKey thePositive,
-                                 Standard_Real      theTime,
-                                 Standard_Real      thePressure)
+void Aspect_VKeySet::KeyFromAxis(Aspect_VKey   theNegative,
+                                 Aspect_VKey   thePositive,
+                                 Standard_Real theTime,
+                                 Standard_Real thePressure)
 {
   Standard_Mutex::Sentry aLock(myLock);
   if (thePressure != 0)
@@ -104,10 +104,10 @@ void Aspect_VKeySet::KeyFromAxis(Aspect_VKey theNegative,
 
 //=================================================================================================
 
-bool Aspect_VKeySet::HoldDuration(Aspect_VKey theKey,
-                                  Standard_Real      theTime,
-                                  Standard_Real&     theDuration,
-                                  Standard_Real&     thePressure)
+bool Aspect_VKeySet::HoldDuration(Aspect_VKey    theKey,
+                                  Standard_Real  theTime,
+                                  Standard_Real& theDuration,
+                                  Standard_Real& thePressure)
 {
   Standard_Mutex::Sentry aLock(myLock);
   switch (myKeys[theKey].KStatus)

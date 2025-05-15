@@ -474,11 +474,11 @@ TopoDS_Edge MakeEdge(const Handle(Geom2d_Curve)& theCurve,
                      const TopoDS_Vertex&        theVFirst,
                      const TopoDS_Vertex&        theVLast)
 {
-  TopoDS_Edge             aNewEdge;
-  BRep_Builder            aBuilder;
+  TopoDS_Edge         aNewEdge;
+  BRep_Builder        aBuilder;
   const Standard_Real aTol  = Precision::Confusion();
-  Standard_Real           aFPar = theCurve->FirstParameter();
-  Standard_Real           aLPar = theCurve->LastParameter();
+  Standard_Real       aFPar = theCurve->FirstParameter();
+  Standard_Real       aLPar = theCurve->LastParameter();
 
   aBuilder.MakeEdge(aNewEdge);
   aBuilder.UpdateEdge(aNewEdge, theCurve, theFace, aTol);

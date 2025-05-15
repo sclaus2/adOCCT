@@ -303,8 +303,9 @@ static Standard_Integer OCC862(Draw_Interpretor& di, Standard_Integer argc, cons
       const Standard_Real D = Ex.LowerDistance();
       // IMPORTANT: minimal distance here means accuracy reached in intersection
       di << "Info: Minimal distance is " << D.getValue() << "\n";
-      di << "Info: Minimal points are (" << P1.X().getValue() << "," << P1.Y().getValue() << "," << P1.Z().getValue() << "), ("
-         << P2.X().getValue() << "," << P2.Y().getValue() << "," << P2.Z().getValue() << ")\n";
+      di << "Info: Minimal points are (" << P1.X().getValue() << "," << P1.Y().getValue() << ","
+         << P1.Z().getValue() << "), (" << P2.X().getValue() << "," << P2.Y().getValue() << ","
+         << P2.Z().getValue() << ")\n";
       di << "Info: Minimal parameters are (" << U1.getValue() << "), (" << U2.getValue() << ")\n";
     }
     else

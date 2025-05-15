@@ -744,7 +744,8 @@ public:
   GeomConvert_reparameterise_evaluator(const Standard_Real thePolynomialCoefficient[3])
   {
     // memcpy(myPolynomialCoefficient, thePolynomialCoefficient, sizeof(myPolynomialCoefficient));
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 3; ++i)
+    {
       myPolynomialCoefficient[i] = thePolynomialCoefficient[i];
     }
   }

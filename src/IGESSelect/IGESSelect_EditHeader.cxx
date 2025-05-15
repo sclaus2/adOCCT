@@ -333,7 +333,9 @@ Standard_Boolean IGESSelect_EditHeader::Update(const Handle(IFSelect_EditForm)& 
     if (unitname[0] == '\0')
       return Standard_False;
     form->Touch(16, new TCollection_HAsciiString(unitname));
-    form->Touch(17, new TCollection_HAsciiString(IGESData_BasicEditor::UnitFlagValue(unitflag).getValue()));
+    form->Touch(
+      17,
+      new TCollection_HAsciiString(IGESData_BasicEditor::UnitFlagValue(unitflag).getValue()));
   }
   if (num == 16)
   {
@@ -344,7 +346,9 @@ Standard_Boolean IGESSelect_EditHeader::Update(const Handle(IFSelect_EditForm)& 
     if (unitflag == 0)
       return Standard_False; // pas bon
     form->Touch(15, new TCollection_HAsciiString(unitflag));
-    form->Touch(17, new TCollection_HAsciiString(IGESData_BasicEditor::UnitFlagValue(unitflag).getValue()));
+    form->Touch(
+      17,
+      new TCollection_HAsciiString(IGESData_BasicEditor::UnitFlagValue(unitflag).getValue()));
   }
 
   if (num == 25)

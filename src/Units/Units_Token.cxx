@@ -64,7 +64,7 @@ Units_Token::Units_Token(const Standard_CString aword, const Standard_CString am
 
 Units_Token::Units_Token(const Standard_CString aword,
                          const Standard_CString amean,
-                         const double    avalue)
+                         const double           avalue)
 {
   theword       = aword;
   themean       = amean;
@@ -76,7 +76,7 @@ Units_Token::Units_Token(const Standard_CString aword,
 
 Units_Token::Units_Token(const Standard_CString          aword,
                          const Standard_CString          amean,
-                         const double             avalue,
+                         const double                    avalue,
                          const Handle(Units_Dimensions)& adimensions)
 {
   theword  = aword;

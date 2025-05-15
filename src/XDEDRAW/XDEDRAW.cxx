@@ -1394,10 +1394,10 @@ static Standard_Integer XShowFaceBoundary(Draw_Interpretor& di,
   const Handle(Prs3d_Drawer)& aDrawer = anInteractive->Attributes();
 
   // default attributes
-  double     aRed      = 0.0;
-  double     aGreen    = 0.0;
-  double     aBlue     = 0.0;
-  double     aWidth    = 1.0;
+  double            aRed      = 0.0;
+  double            aGreen    = 0.0;
+  double            aBlue     = 0.0;
+  double            aWidth    = 1.0;
   Aspect_TypeOfLine aLineType = Aspect_TOL_SOLID;
 
   // turn boundaries on/off

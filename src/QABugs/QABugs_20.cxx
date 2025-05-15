@@ -2109,7 +2109,8 @@ static Standard_Integer OCC27235(Draw_Interpretor& theDI, Standard_Integer n, co
   GProp_GProps aG;
   BRepGProp::LinearProperties(aPresentations, aG);
   gp_Pnt aPnt = aG.CentreOfMass();
-  theDI << "Centre of mass: " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
+  theDI << "Centre of mass: " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " "
+        << aPnt.Z().getValue() << "\n";
   theDI << "Mass: " << aG.Mass().getValue() << "\n";
 
   return 0;
@@ -2265,7 +2266,8 @@ static void OCC26747_CheckParabola(Draw_Interpretor&      theDI,
 
   Standard_Real aF[6] = {RealLast(), RealLast(), RealLast(), RealLast(), RealLast(), RealLast()};
   aPrb.Value()->Parab2d().Coefficients(aF[0], aF[1], aF[2], aF[3], aF[4], aF[5]);
-  theDI << "A = " << aF[0].getValue() << ", B = " << aF[1].getValue() << ", C = " << aF[2].getValue() << ", D = " << aF[3].getValue()
+  theDI << "A = " << aF[0].getValue() << ", B = " << aF[1].getValue()
+        << ", C = " << aF[2].getValue() << ", D = " << aF[3].getValue()
         << ", E = " << aF[4].getValue() << ", F = " << aF[5].getValue() << "\n";
 
   if (Abs(aPrb.Value()->Parab2d().Focal() - Parab2d_Bug26747::FocalLength) > aCompareTol)
@@ -2512,9 +2514,9 @@ static Standard_Integer OCC27357(Draw_Interpretor& theDI, Standard_Integer, cons
     try
     {
       Geom2dAPI_ProjectPointOnCurve projPc1(aP1, aCurve1);
-      Standard_Real                        g1 = projPc1.LowerDistanceParameter();
+      Standard_Real                 g1 = projPc1.LowerDistanceParameter();
       Geom2dAPI_ProjectPointOnCurve projPc3(aP1, normalLine);
-      Standard_Real                        g3 = projPc3.LowerDistanceParameter();
+      Standard_Real                 g3 = projPc3.LowerDistanceParameter();
       Geom2dGcc_Circ2d2TanOn
         aCircleBuilder(qualifiedC1, qualifiedC2, Geom2dAdaptor_Curve(normalLine), 1e-9, g1, g1, g3);
       aDuumyList.Append(aCircleBuilder.NbSolutions());
@@ -4271,11 +4273,14 @@ static Standard_Integer OCC30869(Draw_Interpretor& theDI,
   if (aVLast.SquareMagnitude() > gp::Resolution())
     aVLast.Normalize();
 
-  theDI << aFirst.getValue() << ": point " << aPFirst.X().getValue() << " " << aPFirst.Y().getValue() << " " << aPFirst.Z().getValue()
-        << ", tangent " << aVFirst.X().getValue() << " " << aVFirst.Y().getValue() << " " << aVFirst.Z().getValue() << "\n";
+  theDI << aFirst.getValue() << ": point " << aPFirst.X().getValue() << " "
+        << aPFirst.Y().getValue() << " " << aPFirst.Z().getValue() << ", tangent "
+        << aVFirst.X().getValue() << " " << aVFirst.Y().getValue() << " " << aVFirst.Z().getValue()
+        << "\n";
 
-  theDI << aLast.getValue() << ": point " << aPLast.X().getValue() << " " << aPLast.Y().getValue() << " " << aPLast.Z().getValue()
-        << ", tangent " << aVLast.X().getValue() << " " << aVLast.Y().getValue() << " " << aVLast.Z().getValue() << "\n";
+  theDI << aLast.getValue() << ": point " << aPLast.X().getValue() << " " << aPLast.Y().getValue()
+        << " " << aPLast.Z().getValue() << ", tangent " << aVLast.X().getValue() << " "
+        << aVLast.Y().getValue() << " " << aVLast.Z().getValue() << "\n";
 
   return 0;
 }
@@ -4323,7 +4328,8 @@ static Standard_Integer OCC30880(Draw_Interpretor& theDI,
 
   if (anExtCF.IsParallel())
   {
-    theDI << "Infinite number of solutions, distance - " << Sqrt(anExtCF.SquareDistance(1)).getValue() << "\n";
+    theDI << "Infinite number of solutions, distance - "
+          << Sqrt(anExtCF.SquareDistance(1)).getValue() << "\n";
     return 0;
   }
 

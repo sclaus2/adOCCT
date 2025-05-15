@@ -174,12 +174,12 @@ void MeshVS_TextPrsBuilder::Build(const Handle(Prs3d_Presentation)& Prs,
   aTextAspect->SetTextFontAspect(AFontAspectType);
   aTextGroup->SetGroupPrimitivesAspect(aTextAspect);
 
-  MeshVS_Buffer<Standard_Real>              aCoordsBuf(3 * aMaxFaceNodes);
-  TColStd_Array1OfReal       aCoords(aCoordsBuf, 1, 3 * aMaxFaceNodes);
-  Standard_Integer           NbNodes;
-  TCollection_AsciiString    aStr;
-  MeshVS_EntityType          aType;
-  TColStd_PackedMapOfInteger aCustomElements;
+  MeshVS_Buffer<Standard_Real> aCoordsBuf(3 * aMaxFaceNodes);
+  TColStd_Array1OfReal         aCoords(aCoordsBuf, 1, 3 * aMaxFaceNodes);
+  Standard_Integer             NbNodes;
+  TCollection_AsciiString      aStr;
+  MeshVS_EntityType            aType;
+  TColStd_PackedMapOfInteger   aCustomElements;
 
   Standard_Real X, Y, Z;
 

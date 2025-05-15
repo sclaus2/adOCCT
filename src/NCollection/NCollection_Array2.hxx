@@ -22,7 +22,7 @@
 #include <Standard_OutOfRange.hxx>
 #include <NCollection_Array1.hxx>
 
-//#include <NCollection_DefineAlloc.hxx>
+// #include <NCollection_DefineAlloc.hxx>
 
 // *********************************************** Template for Array2 class
 /**

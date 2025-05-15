@@ -2270,9 +2270,9 @@ Standard_Boolean IntWalk_PWalking::DistanceMinimizeByGradient(
   TColStd_Array1OfReal&            theInit,
   const Standard_Real*             theStep0)
 {
-  const Standard_Integer  aNbIterMAX = 60;
-  const Standard_Real     aTol       = 1.0e-14;
-  const Standard_Real aTolNul    = 1.0 / Precision::Infinite();
+  const Standard_Integer aNbIterMAX = 60;
+  const Standard_Real    aTol       = 1.0e-14;
+  const Standard_Real    aTolNul    = 1.0 / Precision::Infinite();
 
   // I.e. if theU1 = 0.0 then Epsilon(theU1) = DBL_MIN (~1.0e-308).
   // Work with this number is impossible: there is a dangerous to

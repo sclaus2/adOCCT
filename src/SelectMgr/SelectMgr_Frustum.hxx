@@ -56,11 +56,13 @@ public:
     // memset(myMinOrthoVertsProjections, 0, sizeof(myMinOrthoVertsProjections));
     // memset(myMaxVertsProjections, 0, sizeof(myMaxVertsProjections));
     // memset(myMinVertsProjections, 0, sizeof(myMinVertsProjections));
-    for(int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 3; ++i)
+    {
       myMaxOrthoVertsProjections[i] = 0.;
       myMinOrthoVertsProjections[i] = 0.;
     }
-    for(int i = 0; i < (N+2); ++i) {
+    for (int i = 0; i < (N + 2); ++i)
+    {
       myMaxVertsProjections[i] = 0.;
       myMinVertsProjections[i] = 0.;
     }

@@ -60,7 +60,7 @@ Standard_Boolean BinMXCAFDoc_DimTolDriver::Paste(
     NCollection_Array1<double> aTargetArrayDouble(aFirstInd, aLastInd);
     if (!theSource.GetRealArray(&aTargetArrayDouble(aFirstInd), aLength))
       return Standard_False;
-    for(int i = aTargetArrayDouble.Lower(); i <= aTargetArrayDouble.Upper(); ++i)
+    for (int i = aTargetArrayDouble.Lower(); i <= aTargetArrayDouble.Upper(); ++i)
     {
       aHArr->SetValue(i, (Standard_Real)aTargetArrayDouble.Value(i));
     }
@@ -101,12 +101,12 @@ void BinMXCAFDoc_DimTolDriver::Paste(const Handle(TDF_Attribute)& theSource,
   {
     const Standard_Integer      aLength = aLastInd - aFirstInd + 1;
     const TColStd_Array1OfReal& anArr   = aHArr->Array1();
-    NCollection_Array1<double> anArrDouble(anArr.Lower(), anArr.Upper());
-    for(int i = anArr.Lower(); i <= anArr.Upper(); ++i)
+    NCollection_Array1<double>  anArrDouble(anArr.Lower(), anArr.Upper());
+    for (int i = anArr.Lower(); i <= anArr.Upper(); ++i)
     {
       anArrDouble.SetValue(i, anArr.Value(i).getValue());
     }
-    double*              aPtr    = (double*)&anArrDouble(aFirstInd);
+    double* aPtr = (double*)&anArrDouble(aFirstInd);
     theTarget.PutRealArray(aPtr, aLength);
   }
 }

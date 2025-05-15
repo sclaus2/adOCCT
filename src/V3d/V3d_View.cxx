@@ -1348,7 +1348,8 @@ void V3d_View::SetSize(const Standard_Real theSize)
 
   Handle(Graphic3d_Camera) aCamera = Camera();
 
-  aCamera->SetScale(aCamera->Aspect() >= 1.0 ? Standard_Real(theSize / aCamera->Aspect()) : theSize);
+  aCamera->SetScale(aCamera->Aspect() >= 1.0 ? Standard_Real(theSize / aCamera->Aspect())
+                                             : theSize);
 
   ImmediateUpdate();
 }
@@ -1914,8 +1915,8 @@ void V3d_View::BackgroundColor(const Quantity_TypeOfColor Type,
                                Standard_Real&             V3) const
 {
   Quantity_Color C = BackgroundColor();
-  double V1Helper, V2Helper, V3Helper;
-  C.Values(V1Helper,V2Helper,V3Helper,Type);
+  double         V1Helper, V2Helper, V3Helper;
+  C.Values(V1Helper, V2Helper, V3Helper, Type);
   V1 = V1Helper;
   V2 = V2Helper;
   V3 = V3Helper;

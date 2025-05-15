@@ -750,7 +750,7 @@ void PutPCurve(const TopoDS_Edge& Edg, const TopoDS_Face& Fac)
   if (!V2.IsNull())
     TolLast = BRep_Tool::Tolerance(V2);
 
-  const Standard_Real              tol2d = Precision::Confusion();
+  const Standard_Real                  tol2d = Precision::Confusion();
   Handle(Geom2d_Curve)                 C2d;
   ShapeConstruct_ProjectCurveOnSurface aToolProj;
   aToolProj.Init(S, tol2d);
@@ -800,11 +800,11 @@ void PutPCurve(const TopoDS_Edge& Edg, const TopoDS_Face& Fac)
 
   if (S->IsUPeriodic())
   {
-    Standard_Real           up      = S->UPeriod();
+    Standard_Real       up      = S->UPeriod();
     const Standard_Real tolu    = Precision::PConfusion(); // Epsilon(up);
-    Standard_Integer        nbtra   = 0;
-    Standard_Real           theUmin = Min(pf.X(), pl.X());
-    Standard_Real           theUmax = Max(pf.X(), pl.X());
+    Standard_Integer    nbtra   = 0;
+    Standard_Real       theUmin = Min(pf.X(), pl.X());
+    Standard_Real       theUmax = Max(pf.X(), pl.X());
 
     if (theUmin < Umin - tolu)
     {
@@ -831,11 +831,11 @@ void PutPCurve(const TopoDS_Edge& Edg, const TopoDS_Face& Fac)
 
   if (S->IsVPeriodic())
   {
-    Standard_Real           vp      = S->VPeriod();
+    Standard_Real       vp      = S->VPeriod();
     const Standard_Real tolv    = Precision::PConfusion(); // Epsilon(vp);
-    Standard_Integer        nbtra   = 0;
-    Standard_Real           theVmin = Min(pf.Y(), pl.Y());
-    Standard_Real           theVmax = Max(pf.Y(), pl.Y());
+    Standard_Integer    nbtra   = 0;
+    Standard_Real       theVmin = Min(pf.Y(), pl.Y());
+    Standard_Real       theVmax = Max(pf.Y(), pl.Y());
 
     if (theVmin < Vmin - tolv)
     {
@@ -960,11 +960,11 @@ void PutPCurves(const TopoDS_Edge& Efrom, const TopoDS_Edge& Eto, const TopoDS_S
 
       if (S->IsUPeriodic())
       {
-        Standard_Real           up      = S->UPeriod();
+        Standard_Real       up      = S->UPeriod();
         const Standard_Real tolu    = Precision::PConfusion(); // Epsilon(up);
-        Standard_Integer        nbtra   = 0;
-        Standard_Real           theUmin = Min(pf.X(), pl.X());
-        Standard_Real           theUmax = Max(pf.X(), pl.X());
+        Standard_Integer    nbtra   = 0;
+        Standard_Real       theUmin = Min(pf.X(), pl.X());
+        Standard_Real       theUmax = Max(pf.X(), pl.X());
 
         if (theUmin < Umin - tolu)
         {
@@ -1006,11 +1006,11 @@ void PutPCurves(const TopoDS_Edge& Efrom, const TopoDS_Edge& Eto, const TopoDS_S
 
       if (S->IsVPeriodic())
       {
-        Standard_Real           vp      = S->VPeriod();
+        Standard_Real       vp      = S->VPeriod();
         const Standard_Real tolv    = Precision::PConfusion(); // Epsilon(vp);
-        Standard_Integer        nbtra   = 0;
-        Standard_Real           theVmin = Min(pf.Y(), pl.Y());
-        Standard_Real           theVmax = Max(pf.Y(), pl.Y());
+        Standard_Integer    nbtra   = 0;
+        Standard_Real       theVmin = Min(pf.Y(), pl.Y());
+        Standard_Real       theVmax = Max(pf.Y(), pl.Y());
 
         if (theVmin < Vmin - tolv)
         {
@@ -1259,7 +1259,7 @@ void FindInternalIntersections(const TopoDS_Edge&                         theEdg
                                Standard_Boolean&                          isOverlapped)
 {
   const Standard_Real TolExt = Precision::PConfusion();
-  Standard_Integer        i, j;
+  Standard_Integer    i, j;
 
   BRepAdaptor_Surface    anAdSurf(theFace, Standard_False);
   TColStd_SequenceOfReal SplitPars;

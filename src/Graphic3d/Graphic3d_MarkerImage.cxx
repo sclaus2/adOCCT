@@ -495,9 +495,19 @@ Handle(Graphic3d_MarkerImage) Graphic3d_MarkerImage::StandardMarker(
       const Standard_ShortReal aDelta = 0.1f;
       while (aScale >= 1.0f)
       {
-        Quantity_Color::RgbHls(aColor.r().getValue(), aColor.g().getValue(), aColor.b().getValue(), aHLS[0], aHLS[1], aHLS[2]);
+        Quantity_Color::RgbHls(aColor.r().getValue(),
+                               aColor.g().getValue(),
+                               aColor.b().getValue(),
+                               aHLS[0],
+                               aHLS[1],
+                               aHLS[2]);
         aHLS[2] *= 0.95; // 5% saturation change
-        Quantity_Color::HlsRgb(aHLS[0].getValue(), aHLS[1].getValue(), aHLS[2].getValue(), aColor.r(), aColor.g(), aColor.b());
+        Quantity_Color::HlsRgb(aHLS[0].getValue(),
+                               aHLS[1].getValue(),
+                               aHLS[2].getValue(),
+                               aColor.r(),
+                               aColor.g(),
+                               aColor.b());
         aColor32.r() = Standard_Byte(255.0 * aColor.r().getValue());
         aColor32.g() = Standard_Byte(255.0 * aColor.g().getValue());
         aColor32.b() = Standard_Byte(255.0 * aColor.b().getValue());

@@ -49,7 +49,7 @@ Standard_Boolean BinMDataXtd_PositionDriver::Paste(const BinObjMgt_Persistent&  
                                                    BinObjMgt_RRelocationTable&) const
 {
   Handle(TDataXtd_Position) anAtt = Handle(TDataXtd_Position)::DownCast(theTarget);
-  double             aValue;
+  double                    aValue;
   Standard_Boolean          ok = theSource >> aValue;
   if (!ok)
     return ok;

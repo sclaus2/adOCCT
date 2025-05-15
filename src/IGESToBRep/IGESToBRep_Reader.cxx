@@ -217,7 +217,7 @@ Standard_Integer IGESToBRep_Reader::LoadFile(const Standard_CString filename)
   // Message fin de loading iGES file (elapsed time %s)
   char t[20];
   t[0] = '\0';
-  double    second, cpu;
+  double           second, cpu;
   Standard_Integer minute, hour;
   c.Show(second, minute, hour, cpu);
   if (hour > 0)
@@ -412,7 +412,7 @@ void IGESToBRep_Reader::TransferRoots(const Standard_Boolean       onlyvisible,
   }
   char t[20];
   t[0] = '\0';
-  double    second, cpu;
+  double           second, cpu;
   Standard_Integer minute, hour;
   c.Show(second, minute, hour, cpu);
   if (hour > 0)
@@ -555,7 +555,7 @@ Standard_Boolean IGESToBRep_Reader::Transfer(const Standard_Integer       num,
 
   char t[20];
   t[0] = '\0';
-  double    second, cpu;
+  double           second, cpu;
   Standard_Integer minute, hour;
   c.Show(second, minute, hour, cpu);
   if (hour > 0)

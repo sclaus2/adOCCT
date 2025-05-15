@@ -263,9 +263,9 @@ public: //! @name keyboard input
   //! Default implementation updates internal cache.
   //! @param theKey key pressed
   //! @param theTime event timestamp
-  Standard_EXPORT virtual void KeyDown(Aspect_VKey theKey,
-                                       Standard_Real      theTime,
-                                       Standard_Real      thePressure = 1.0) Standard_OVERRIDE;
+  Standard_EXPORT virtual void KeyDown(Aspect_VKey   theKey,
+                                       Standard_Real theTime,
+                                       Standard_Real thePressure = 1.0) Standard_OVERRIDE;
 
   //! Release key.
   //! Default implementation updates internal cache.
@@ -275,10 +275,10 @@ public: //! @name keyboard input
 
   //! Simulate key up/down events from axis value.
   //! Default implementation updates internal cache.
-  Standard_EXPORT virtual void KeyFromAxis(Aspect_VKey theNegative,
-                                           Aspect_VKey thePositive,
-                                           Standard_Real      theTime,
-                                           Standard_Real      thePressure) Standard_OVERRIDE;
+  Standard_EXPORT virtual void KeyFromAxis(Aspect_VKey   theNegative,
+                                           Aspect_VKey   thePositive,
+                                           Standard_Real theTime,
+                                           Standard_Real thePressure) Standard_OVERRIDE;
 
   //! Fetch active navigation actions.
   Standard_EXPORT AIS_WalkDelta FetchNavigationKeys(Standard_Real theCrouchRatio,
@@ -631,9 +631,9 @@ public:
   //! @param theRoll       roll value
   //! @param theToRestartOnIncrement flag indicating flight mode
   Standard_EXPORT virtual void handleViewRotation(const Handle(V3d_View)& theView,
-                                                  Standard_Real                  theYawExtra,
-                                                  Standard_Real                  thePitchExtra,
-                                                  Standard_Real                  theRoll,
+                                                  Standard_Real           theYawExtra,
+                                                  Standard_Real           thePitchExtra,
+                                                  Standard_Real           theRoll,
                                                   bool                    theToRestartOnIncrement);
 
   //! Handle view redraw.

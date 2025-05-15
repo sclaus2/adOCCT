@@ -771,7 +771,8 @@ static Standard_Integer projponf(Draw_Interpretor& di, Standard_Integer n, const
     // print the projection values
     di << "proj dist = " << aDist.getValue() << "\n";
     di << "uvproj = " << U.getValue() << " " << V.getValue() << "\n";
-    di << "pproj = " << aPProj.X().getValue() << " " << aPProj.Y().getValue() << " " << aPProj.Z().getValue() << "\n";
+    di << "pproj = " << aPProj.X().getValue() << " " << aPProj.Y().getValue() << " "
+       << aPProj.Z().getValue() << "\n";
   }
   else
   {

@@ -62,8 +62,8 @@ Standard_Boolean MeshVS_DeformedDataSource::GetGeom(const Standard_Integer ID,
   }
   else
   {
-    MeshVS_Buffer<Standard_Integer>           aNodesBuf(NbNodes);
-    TColStd_Array1OfInteger aNodes(aNodesBuf, 1, NbNodes);
+    MeshVS_Buffer<Standard_Integer> aNodesBuf(NbNodes);
+    TColStd_Array1OfInteger         aNodes(aNodesBuf, 1, NbNodes);
     if (!myNonDeformedDataSource->GetNodesByElement(ID, aNodes, NbNodes))
       return Standard_False;
     for (int i = 1; i <= NbNodes; i++)

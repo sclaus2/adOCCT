@@ -117,7 +117,11 @@ void XmlMDataXtd_PositionDriver::Paste(const Handle(TDF_Attribute)& theSource,
   {
     gp_Pnt aPos = aTPos->GetPosition();
     char   buf[75]; // (24 + 1) * 3
-    Sprintf(buf, "%.17g %.17g %.17g", aPos.X().getValue(), aPos.Y().getValue(), aPos.Z().getValue());
+    Sprintf(buf,
+            "%.17g %.17g %.17g",
+            aPos.X().getValue(),
+            aPos.Y().getValue(),
+            aPos.Z().getValue());
     XmlObjMgt::SetStringValue(theTarget.Element(), buf);
   }
 }

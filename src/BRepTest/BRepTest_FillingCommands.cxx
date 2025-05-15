@@ -148,7 +148,8 @@ static Standard_Integer plate(Draw_Interpretor& di, Standard_Integer n, const ch
 
   Standard_Real ErrG0 = 1.1 * Henri.G0Error();
   // std::cout<<" dist. max = "<<Henri.G0Error()<<" ; angle max = "<<Henri.G1Error()<<std::endl;
-  di << " dist. max = " << Henri.G0Error().getValue() << " ; angle max = " << Henri.G1Error().getValue() << "\n";
+  di << " dist. max = " << Henri.G0Error().getValue()
+     << " ; angle max = " << Henri.G1Error().getValue() << "\n";
 
   BRepBuilderAPI_MakeWire MW;
   for (i = 1; i <= NbCurFront; i++)
@@ -581,8 +582,8 @@ static Standard_Integer filling(Draw_Interpretor& di, Standard_Integer n, const 
 
   Standard_Real dmax = MakeFilling.G0Error(), angmax = MakeFilling.G1Error(),
                 curvmax = MakeFilling.G2Error();
-  di << " dist. max = " << dmax.getValue() << " ; angle max = " << angmax.getValue() << " ; diffcurv max = " << curvmax.getValue()
-     << "\n";
+  di << " dist. max = " << dmax.getValue() << " ; angle max = " << angmax.getValue()
+     << " ; diffcurv max = " << curvmax.getValue() << "\n";
 
   TopoDS_Face ResFace = TopoDS::Face(MakeFilling.Shape());
   DBRep::Set(a[1], ResFace);

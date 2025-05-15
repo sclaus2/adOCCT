@@ -841,7 +841,7 @@ Standard_Boolean ShapeAnalysis_CanonicalRecognition::GetSurfaceByLS(
   FillSolverData(theTarget, thePos, theParams, aStartPoint, aFBnd, aLBnd, aRelDev);
 
   //
-  const Standard_Real        aTol = Precision::Confusion();
+  const Standard_Real            aTol = Precision::Confusion();
   math_MultipleVarFunction*      aPFunc;
   GeomConvert_FuncSphereLSDist   aFuncSph(aPoints);
   GeomConvert_FuncCylinderLSDist aFuncCyl(aPoints, thePos.Direction());

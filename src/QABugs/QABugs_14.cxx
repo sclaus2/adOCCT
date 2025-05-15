@@ -92,8 +92,8 @@ static Standard_Integer BUC60897(Draw_Interpretor& di,
   for (Standard_Integer i = 1; i <= aGccCirc2d.NbSolutions(); i++)
   {
     gp_Circ2d aCirc2d = aGccCirc2d.ThisSolution(i);
-    di << "circle : X " << aCirc2d.Location().X().getValue() << " Y " << aCirc2d.Location().Y().getValue() << " R "
-       << aCirc2d.Radius().getValue();
+    di << "circle : X " << aCirc2d.Location().X().getValue() << " Y "
+       << aCirc2d.Location().Y().getValue() << " R " << aCirc2d.Radius().getValue();
     Standard_Real aTmpR1, aTmpR2;
     gp_Pnt2d      aPnt2d1, aPnt2d2;
     aGccCirc2d.Tangency1(i, aTmpR1, aTmpR2, aPnt2d1);
@@ -407,9 +407,10 @@ static Standard_Integer BUC60902(Draw_Interpretor& di,
   gp_Vec                    aFirstTang, aLastTang;
   aCur->D1(aCur->FirstParameter(), aP, aFirstTang);
   aCur->D1(aCur->LastParameter(), aP, aLastTang);
-  di << " Used Tang1 = " << aFirstTang.X().getValue() << " " << aFirstTang.Y().getValue() << " " << aFirstTang.Z().getValue()
-     << "\n";
-  di << " Used Tang2 = " << aLastTang.X().getValue() << " " << aLastTang.Y().getValue() << " " << aLastTang.Z().getValue() << "\n";
+  di << " Used Tang1 = " << aFirstTang.X().getValue() << " " << aFirstTang.Y().getValue() << " "
+     << aFirstTang.Z().getValue() << "\n";
+  di << " Used Tang2 = " << aLastTang.X().getValue() << " " << aLastTang.Y().getValue() << " "
+     << aLastTang.Z().getValue() << "\n";
   GeomAPI_Interpolate anInterpolater1(aPnts, Standard_False, Precision::Confusion());
   anInterpolater1.Load(aFirstTang, aLastTang, Standard_False);
   anInterpolater1.Perform();
@@ -422,10 +423,10 @@ static Standard_Integer BUC60902(Draw_Interpretor& di,
   gp_Vec aFirstTang1, aLastTang1;
   aCur->D1(aCur->FirstParameter(), aP, aFirstTang1);
   aCur->D1(aCur->LastParameter(), aP, aLastTang1);
-  di << " Tang1 after compute = " << aFirstTang1.X().getValue() << " " << aFirstTang1.Y().getValue() << " "
-     << aFirstTang1.Z().getValue() << "\n";
-  di << " Tang2 after compute = " << aLastTang1.X().getValue() << " " << aLastTang1.Y().getValue() << " "
-     << aLastTang1.Z().getValue() << "\n";
+  di << " Tang1 after compute = " << aFirstTang1.X().getValue() << " " << aFirstTang1.Y().getValue()
+     << " " << aFirstTang1.Z().getValue() << "\n";
+  di << " Tang2 after compute = " << aLastTang1.X().getValue() << " " << aLastTang1.Y().getValue()
+     << " " << aLastTang1.Z().getValue() << "\n";
   if (aFirstTang.IsEqual(aFirstTang1, Precision::Confusion(), Precision::Angular()))
   {
     di << "First tangent is OK\n";
@@ -1190,8 +1191,8 @@ static Standard_Integer OCC16485(Draw_Interpretor& di, Standard_Integer argc, co
   // std::cout.precision(16);
   // std::cout << "Resulting dimensions: Xmin = " << xmin << " , Xmax = " << xmax << " , Tolerance =
   // " << tol << std::endl;
-  di << "Resulting dimensions: Xmin = " << xmin.getValue() << " , Xmax = " << xmax.getValue() << " , Tolerance = " << tol.getValue()
-     << "\n";
+  di << "Resulting dimensions: Xmin = " << xmin.getValue() << " , Xmax = " << xmax.getValue()
+     << " , Tolerance = " << tol.getValue() << "\n";
   if (Abs(xmin + tol) > 1e-10)
     di << "TEST FAILED: Xmin must be equal to -1e3!\n";
   else

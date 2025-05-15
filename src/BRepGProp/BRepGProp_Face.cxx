@@ -569,10 +569,10 @@ static void GetRealKnots(const Standard_Real                  theMin,
                          const Handle(TColStd_HArray1OfReal)& theKnots,
                          Handle(TColStd_HArray1OfReal)&       theRealKnots)
 {
-  Standard_Integer        i       = theKnots->Lower() - 1;
-  Standard_Integer        iU      = theKnots->Upper();
-  Standard_Integer        aStartI = 0;
-  Standard_Integer        aEndI   = 0;
+  Standard_Integer    i       = theKnots->Lower() - 1;
+  Standard_Integer    iU      = theKnots->Upper();
+  Standard_Integer    aStartI = 0;
+  Standard_Integer    aEndI   = 0;
   const Standard_Real aTol    = Precision::Confusion();
 
   while (++i < iU)

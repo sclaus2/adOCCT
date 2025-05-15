@@ -346,7 +346,7 @@ static Standard_Integer fit(Draw_Interpretor&, Standard_Integer n, const char** 
   Standard_Boolean f2d = !strcasecmp(a[0], "2dfit");
   if (n == 1)
   {
-    double    zoom = RealLast();
+    double           zoom = RealLast();
     Standard_Integer id;
     for (id = 0; id < MAXVIEW; id++)
     {
@@ -505,8 +505,8 @@ static Standard_Integer rotate(Draw_Interpretor&, Standard_Integer n, const char
     start = end = anid;
   }
 
-  gp_Dir2d      D;
-  double ang = 0;
+  gp_Dir2d D;
+  double   ang = 0;
   if (!strcasecmp(a[0], "u"))
   {
     D.SetCoord((Standard_Real)1., (Standard_Real)0.);
@@ -592,7 +592,7 @@ static Standard_Integer panning(Draw_Interpretor&, Standard_Integer n, const cha
 
 static Standard_Integer ptv(Draw_Interpretor&, Standard_Integer n, const char** a)
 {
-  double    X, Y, Z;
+  double           X, Y, Z;
   Standard_Integer start = 0;
   Standard_Integer end   = MAXVIEW - 1;
   if (n < 4)
@@ -633,7 +633,7 @@ static Standard_Integer ptv(Draw_Interpretor&, Standard_Integer n, const char** 
 
 static Standard_Integer dptv(Draw_Interpretor&, Standard_Integer n, const char** a)
 {
-  double    DX, DY, DZ;
+  double           DX, DY, DZ;
   Standard_Integer start = 0;
   Standard_Integer end   = MAXVIEW - 1;
   if (n < 4)
@@ -787,10 +787,10 @@ static Standard_Integer hardcopy(Draw_Interpretor&, Standard_Integer n, const ch
     double kx = (double)(pxmax - pxmin) / (vxmax - vxmin);
     double ky = (double)(pymax - pymin) / (vymax - vymin);
     double k  = Min(Abs(kx), Abs(ky));
-    kx               = (kx > 0) ? k : -k;
-    ky               = (ky > 0) ? k : -k;
-    pxmax            = (Standard_Integer)(pxmin + kx * (vxmax - vxmin));
-    pymax            = (Standard_Integer)(pymin + ky * (vymax - vymin));
+    kx        = (kx > 0) ? k : -k;
+    ky        = (ky > 0) ? k : -k;
+    pxmax     = (Standard_Integer)(pxmin + kx * (vxmax - vxmin));
+    pymax     = (Standard_Integer)(pymin + ky * (vymax - vymin));
 
     // si on veut choisir l'orientation : 90 rotate
 

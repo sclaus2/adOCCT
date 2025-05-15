@@ -917,7 +917,7 @@ void TCollection_AsciiString::Prepend(const TCollection_AsciiString& what)
 // ----------------------------------------------------------------------------
 double TCollection_AsciiString::RealValue() const
 {
-  char*         ptr;
+  char*  ptr;
   double value = Strtod(mystring, &ptr);
   if (ptr != mystring)
     return value;

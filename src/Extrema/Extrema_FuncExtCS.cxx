@@ -176,7 +176,7 @@ Standard_Integer Extrema_FuncExtCS::GetStateNumber()
 #endif
   // comparison of solution with previous solutions
   const Standard_Real tol2d = Precision::SquarePConfusion();
-  Standard_Integer        i = 1, nbSol = mySqDist.Length();
+  Standard_Integer    i = 1, nbSol = mySqDist.Length();
   for (; i <= nbSol; i++)
   {
     Standard_Real aT = myPoint1(i).Parameter();

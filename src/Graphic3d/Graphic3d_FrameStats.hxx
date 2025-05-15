@@ -88,10 +88,7 @@ public:
 
   //! Returns value of specified timer for modification, should be called between ::FrameStart() and
   //! ::FrameEnd() calls. Should NOT be called between ::FrameStart() and ::FrameEnd() calls.
-  double TimerValue(Graphic3d_FrameStatsTimer theTimer) const
-  {
-    return LastDataFrame()[theTimer];
-  }
+  double TimerValue(Graphic3d_FrameStatsTimer theTimer) const { return LastDataFrame()[theTimer]; }
 
   //! Returns TRUE if some Layers have been culled.
   Standard_Boolean HasCulledLayers() const
@@ -133,10 +130,7 @@ public:
 
   //! Returns value of specified timer for modification, should be called between ::FrameStart() and
   //! ::FrameEnd() calls.
-  double& ChangeTimer(Graphic3d_FrameStatsTimer theTimer)
-  {
-    return ActiveDataFrame()[theTimer];
-  }
+  double& ChangeTimer(Graphic3d_FrameStatsTimer theTimer) { return ActiveDataFrame()[theTimer]; }
 
   //! Returns currently filling data frame for modification, should be called between ::FrameStart()
   //! and ::FrameEnd() calls.
@@ -148,10 +142,10 @@ protected:
                                 bool                           theIsImmediateOnly) = 0;
 
 protected:
-  OSD_Timer     myFpsTimer;       //!< timer for FPS measurements
-  double myFrameStartTime; //!< time at the beginning of frame redraw
-  double myFrameDuration;  //!< frame duration
-  double myUpdateInterval; //!< interval to update meters
+  OSD_Timer myFpsTimer;       //!< timer for FPS measurements
+  double    myFrameStartTime; //!< time at the beginning of frame redraw
+  double    myFrameDuration;  //!< frame duration
+  double    myUpdateInterval; //!< interval to update meters
   // clang-format off
   Standard_Size    myFpsFrameCount;           //!< FPS counter (within short measurement time slice)
   NCollection_Array1<Graphic3d_FrameStatsData> myCounters; //!< data frames history

@@ -117,12 +117,12 @@ static Standard_Boolean pidef  = Standard_False;
 static Standard_Boolean lfdef  = Standard_False;
 static Standard_Boolean rfdef  = Standard_False;
 
-static double             tesp       = 1.0e-4;
-static double             t3d        = 1.e-4;
-static double             t2d        = 1.e-5;
-static double             ta         = 1.e-2;
-static double             fl         = 1.e-3;
-static double             tapp_angle = 1.e-2;
+static double                    tesp       = 1.0e-4;
+static double                    t3d        = 1.e-4;
+static double                    t2d        = 1.e-5;
+static double                    ta         = 1.e-2;
+static double                    fl         = 1.e-3;
+static double                    tapp_angle = 1.e-2;
 static GeomAbs_Shape             blend_cont = GeomAbs_C1;
 static BRepFilletAPI_MakeFillet* Rakk       = 0;
 

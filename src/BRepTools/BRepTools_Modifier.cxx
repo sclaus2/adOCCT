@@ -617,9 +617,9 @@ Standard_Boolean BRepTools_Modifier::Rebuild(const TopoDS_Shape&                
 void BRepTools_Modifier::CreateNewVertices(const TopTools_IndexedDataMapOfShapeListOfShape& theMVE,
                                            const Handle(BRepTools_Modification)&            M)
 {
-  Standard_Real       aToler;
-  BRep_Builder aBB;
-  gp_Pnt       aPnt;
+  Standard_Real aToler;
+  BRep_Builder  aBB;
+  gp_Pnt        aPnt;
   for (int i = 1; i <= theMVE.Extent(); i++)
   {
     // fill MyMap only with vertices with NewPoint == true
@@ -644,7 +644,7 @@ void BRepTools_Modifier::FillNewCurveInfo(const TopTools_IndexedDataMapOfShapeLi
   Handle(Geom_Curve)               aCurve;
   TopLoc_Location                  aLocation;
   BRepTools_Modifier::NewCurveInfo aNCinfo;
-  Standard_Real                           aToler;
+  Standard_Real                    aToler;
   for (int i = 1; i <= theMEF.Extent(); i++)
   {
     const TopoDS_Edge& anE      = TopoDS::Edge(theMEF.FindKey(i));
@@ -672,7 +672,7 @@ void BRepTools_Modifier::FillNewSurfaceInfo(const Handle(BRepTools_Modification)
     Standard_Boolean     RevWires;
     Handle(Geom_Surface) aSurface;
     TopLoc_Location      aLocation;
-    Standard_Real               aToler1;
+    Standard_Real        aToler1;
     Standard_Boolean IsNewSur = M->NewSurface(aF, aSurface, aLocation, aToler1, RevWires, RevFace);
     if (IsNewSur)
     {

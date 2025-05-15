@@ -341,7 +341,8 @@ Standard_Integer brepintcs(Draw_Interpretor& di, Standard_Integer n, const char*
       aB.MakeVertex(aV, curp, 0);
       aB.Add(aComp, aV);
       nbpi++;
-      di << "Point " << nbpi << " : " << curp.X().getValue() << " " << curp.Y().getValue() << " " << curp.Z().getValue() << "\n";
+      di << "Point " << nbpi << " : " << curp.X().getValue() << " " << curp.Y().getValue() << " "
+         << curp.Z().getValue() << "\n";
       char  name[64];
       char* temp = name; // pour portage WNT
       Sprintf(temp, "%s_%d", "brics", nbpi);
@@ -364,7 +365,8 @@ Standard_Integer brepintcs(Draw_Interpretor& di, Standard_Integer n, const char*
           TopoDS_Vertex aV;
           aB.MakeVertex(aV, curp, 0);
           aB.Add(aComp, aV);
-          di << "Point " << nbpi << " : " << curp.X().getValue() << " " << curp.Y().getValue() << " " << curp.Z().getValue() << "\n";
+          di << "Point " << nbpi << " : " << curp.X().getValue() << " " << curp.Y().getValue()
+             << " " << curp.Z().getValue() << "\n";
           char  name[64];
           char* temp = name; // pour portage WNT
           Sprintf(temp, "%s_%d", "brics", nbpi);
@@ -580,8 +582,8 @@ TopoDS_Face NextFaceForPrism(const TopoDS_Shape& shape,
 
     if (ASI.IsDone())
     {
-      Standard_Integer        no = 1, IndFrom, IndTo;
-      TopAbs_Orientation      theOr;
+      Standard_Integer    no = 1, IndFrom, IndTo;
+      TopAbs_Orientation  theOr;
       const Standard_Real min = 1.e-04, Tol = -Precision::Confusion();
       if (ASI.LocalizeAfter(no, min, Tol, theOr, IndFrom, IndTo))
       {

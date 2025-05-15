@@ -177,10 +177,10 @@ void MeshVS_VectorPrsBuilder::Build(const Handle(Prs3d_Presentation)& Prs,
       || !aDrawer->GetDouble(MeshVS_DA_VectorArrowPart, anArrowPart) || anArrowPart <= 0)
     return;
 
-  MeshVS_Buffer<Standard_Real>        aCoordsBuf(3 * aMaxFaceNodes);
-  TColStd_Array1OfReal aCoords(aCoordsBuf, 1, 3 * aMaxFaceNodes);
-  Standard_Integer     NbNodes;
-  MeshVS_EntityType    aType;
+  MeshVS_Buffer<Standard_Real> aCoordsBuf(3 * aMaxFaceNodes);
+  TColStd_Array1OfReal         aCoords(aCoordsBuf, 1, 3 * aMaxFaceNodes);
+  Standard_Integer             NbNodes;
+  MeshVS_EntityType            aType;
 
   // DECLARE ARRAYS OF PRIMITIVES
   const MeshVS_DataMapOfIntegerVector& aMap       = GetVectors(IsElement);

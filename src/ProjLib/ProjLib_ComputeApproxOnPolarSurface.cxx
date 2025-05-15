@@ -78,7 +78,7 @@ struct aFuncStruct
         myTolV(0.0)
   {
     // memset(myPeriod, 0, sizeof(myPeriod));
-    for(int i = 0; i < 2; ++i)
+    for (int i = 0; i < 2; ++i)
     {
       myPeriod[i] = 0.;
     }
@@ -689,7 +689,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::Perform(
   const Handle(Adaptor3d_Surface)& S)
 {
   // OCC217
-  Standard_Real           Tol3d    = myTolerance;
+  Standard_Real       Tol3d    = myTolerance;
   const Standard_Real ParamTol = Precision::PApproximation();
 
   Handle(Adaptor2d_Curve2d) AHC2d = InitialCurve2d;

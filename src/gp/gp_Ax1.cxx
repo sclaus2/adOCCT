@@ -83,8 +83,17 @@ gp_Ax1 gp_Ax1::Mirrored(const gp_Ax2& A2) const
 }
 
 void gp_Ax1::DumpJson(Standard_OStream& theOStream, Standard_Integer) const {
-  OCCT_DUMP_VECTOR_CLASS(theOStream, "Location", 3, loc.X().getValue(), loc.Y().getValue(), loc.Z().getValue())
-    OCCT_DUMP_VECTOR_CLASS(theOStream, "Direction", 3, vdir.X().getValue(), vdir.Y().getValue(), vdir.Z().getValue())}
+  OCCT_DUMP_VECTOR_CLASS(theOStream,
+                         "Location",
+                         3,
+                         loc.X().getValue(),
+                         loc.Y().getValue(),
+                         loc.Z().getValue()) OCCT_DUMP_VECTOR_CLASS(theOStream,
+                                                                    "Direction",
+                                                                    3,
+                                                                    vdir.X().getValue(),
+                                                                    vdir.Y().getValue(),
+                                                                    vdir.Z().getValue())}
 
 Standard_Boolean gp_Ax1::InitFromJson(const Standard_SStream& theSStream,
                                       Standard_Integer&       theStreamPos)

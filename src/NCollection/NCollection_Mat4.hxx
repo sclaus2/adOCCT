@@ -205,7 +205,8 @@ public:
   }
 
   //! Initialize the zero matrix.
-  void InitZero() {
+  void InitZero()
+  {
     // std::memcpy(this, MyZeroArray, sizeof(NCollection_Mat4));
     for (int i = 0; i < 16; ++i)
     {
@@ -214,18 +215,20 @@ public:
   }
 
   //! Checks the matrix for zero (without tolerance).
-  bool IsZero() const {
+  bool IsZero() const
+  {
     // return std::memcmp(this, MyZeroArray, sizeof(NCollection_Mat4)) == 0;
     for (int i = 0; i < 16; ++i)
     {
-      if(myMat[i] != MyZeroArray[i])
+      if (myMat[i] != MyZeroArray[i])
         return false;
     }
     return true;
   }
 
   //! Initialize the identity matrix.
-  void InitIdentity() {
+  void InitIdentity()
+  {
     // std::memcpy(this, MyIdentityArray, sizeof(NCollection_Mat4));
     for (int i = 0; i < 16; ++i)
     {
@@ -239,7 +242,7 @@ public:
     // return std::memcmp(this, MyIdentityArray, sizeof(NCollection_Mat4)) == 0;
     for (int i = 0; i < 16; ++i)
     {
-      if(myMat[i] != MyIdentityArray[i])
+      if (myMat[i] != MyIdentityArray[i])
         return false;
     }
     return true;
@@ -251,7 +254,7 @@ public:
     // return std::memcmp(this, &theOther, sizeof(NCollection_Mat4)) == 0;
     for (int i = 0; i < 16; ++i)
     {
-      if(myMat[i] != theOther.myMat[i])
+      if (myMat[i] != theOther.myMat[i])
         return false;
     }
     return true;

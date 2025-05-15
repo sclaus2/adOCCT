@@ -223,9 +223,9 @@ double UnitsAPI::CurrentFromSI(const double aData, const Standard_CString aQuant
 
 //=================================================================================================
 
-double UnitsAPI::CurrentToAny(const double    aData,
-                                     const Standard_CString aQuantity,
-                                     const Standard_CString aUnit)
+double UnitsAPI::CurrentToAny(const double           aData,
+                              const Standard_CString aQuantity,
+                              const Standard_CString aUnit)
 {
   double aValue = aData;
   CheckLoading(UnitsAPI_DEFAULT);
@@ -247,9 +247,9 @@ double UnitsAPI::CurrentToAny(const double    aData,
 
 //=================================================================================================
 
-double UnitsAPI::CurrentFromAny(const double    aData,
-                                       const Standard_CString aQuantity,
-                                       const Standard_CString aUnit)
+double UnitsAPI::CurrentFromAny(const double           aData,
+                                const Standard_CString aQuantity,
+                                const Standard_CString aUnit)
 {
   double aValue = aData;
   CheckLoading(UnitsAPI_DEFAULT);
@@ -294,9 +294,9 @@ double UnitsAPI::AnyToLS(const double aData, const Standard_CString aUnit)
 
 //=================================================================================================
 
-double UnitsAPI::AnyToLS(const double       aData,
-                                const Standard_CString    aUnit,
-                                Handle(Units_Dimensions)& aDim)
+double UnitsAPI::AnyToLS(const double              aData,
+                         const Standard_CString    aUnit,
+                         Handle(Units_Dimensions)& aDim)
 {
   double aValue = aData;
   CheckLoading(localSystem);
@@ -328,9 +328,9 @@ double UnitsAPI::AnyToSI(const double aData, const Standard_CString aUnit)
 
 //=================================================================================================
 
-double UnitsAPI::AnyToSI(const double       aData,
-                                const Standard_CString    aUnit,
-                                Handle(Units_Dimensions)& aDim)
+double UnitsAPI::AnyToSI(const double              aData,
+                         const Standard_CString    aUnit,
+                         Handle(Units_Dimensions)& aDim)
 {
   double aValue;
   CheckLoading(UnitsAPI_DEFAULT);
@@ -372,9 +372,9 @@ double UnitsAPI::AnyFromSI(const double aData, const Standard_CString aUnit)
 
 //=================================================================================================
 
-double UnitsAPI::AnyToAny(const double    aData,
-                                 const Standard_CString aUnit1,
-                                 const Standard_CString aUnit2)
+double UnitsAPI::AnyToAny(const double           aData,
+                          const Standard_CString aUnit1,
+                          const Standard_CString aUnit2)
 {
   double aValue = aData;
   CheckLoading(UnitsAPI_DEFAULT);

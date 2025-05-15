@@ -109,8 +109,8 @@ BinTools_OStream& BinTools_OStream::operator<<(const Standard_Byte& theValue)
 BinTools_OStream& BinTools_OStream::operator<<(const Standard_Real& theValue)
 {
 #if DO_INVERSE
-  const Standard_Real aRValue = FSD_BinaryFile::InverseReal(theValue);
-  double aValueHelper = aRValue.getValue();
+  const Standard_Real aRValue      = FSD_BinaryFile::InverseReal(theValue);
+  double              aValueHelper = aRValue.getValue();
   myStream->write((char*)&aValueHelper, sizeof(double));
 #else
   double aValueHelper = theValue.getValue();

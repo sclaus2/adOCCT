@@ -150,10 +150,10 @@ void Graphic3d_FrameStatsDataTmp::FlushTimers(Standard_Size theNbFrames, bool th
 {
   for (size_t aTimerIter = 0; aTimerIter < myTimers.size(); ++aTimerIter)
   {
-    const double aFrameTime = myTimers[aTimerIter] - myTimersPrev[aTimerIter];
-    myTimersMax[aTimerIter]        = Max(myTimersMax[aTimerIter], aFrameTime);
-    myTimersMin[aTimerIter]        = Min(myTimersMin[aTimerIter], aFrameTime);
-    myTimersPrev[aTimerIter]       = myTimers[aTimerIter];
+    const double aFrameTime  = myTimers[aTimerIter] - myTimersPrev[aTimerIter];
+    myTimersMax[aTimerIter]  = Max(myTimersMax[aTimerIter], aFrameTime);
+    myTimersMin[aTimerIter]  = Min(myTimersMin[aTimerIter], aFrameTime);
+    myTimersPrev[aTimerIter] = myTimers[aTimerIter];
   }
 
   if (theIsFinal)

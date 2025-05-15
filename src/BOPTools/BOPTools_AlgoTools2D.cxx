@@ -692,7 +692,7 @@ void BOPTools_AlgoTools2D::IsEdgeIsoline(const TopoDS_Edge& theE,
 
   // sin(da) ~ da, when da->0.
   const Standard_Real aTol = Precision::Angular();
-  const gp_Vec2d          aRefVDir(0.0, 1.0), aRefUDir(1.0, 0.0);
+  const gp_Vec2d      aRefVDir(0.0, 1.0), aRefUDir(1.0, 0.0);
 
   const Standard_Real aDPv = aT.CrossMagnitude(aRefVDir), aDPu = aT.CrossMagnitude(aRefUDir);
 

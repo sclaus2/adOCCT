@@ -1455,7 +1455,7 @@ static void computeDegeneratedTorus(const gp_Torus&     theTorus,
   Standard_Real aPhi = ACos(-aRa / aRi);
 
   const Standard_Real anUper = 2. * M_PI - Precision::PConfusion();
-  Standard_Real           aVper  = 2. * aPhi - Precision::PConfusion();
+  Standard_Real       aVper  = 2. * aPhi - Precision::PConfusion();
   if (theUMax - theUMin >= anUper && theVMax - theVMin >= aVper)
   {
     // a whole torus

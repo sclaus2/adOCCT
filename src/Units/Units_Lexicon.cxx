@@ -122,7 +122,7 @@ void Units_Lexicon::Creates()
 
 void Units_Lexicon::AddToken(const Standard_CString aword,
                              const Standard_CString amean,
-                             const double    avalue)
+                             const double           avalue)
 {
   Handle(Units_Token) token;
   Handle(Units_Token) referencetoken;

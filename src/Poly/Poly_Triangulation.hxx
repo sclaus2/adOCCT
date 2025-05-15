@@ -139,8 +139,9 @@ public:
   //! Returns a node at the given index.
   //! @param[in] theIndex node index within [1, NbNodes()] range
   //! @return 3D point coordinates
-  gp_Pnt Node(Standard_Integer theIndex) const {
-    gp_Vec3double aVal = myNodes.Value (theIndex - 1);
+  gp_Pnt Node(Standard_Integer theIndex) const
+  {
+    gp_Vec3double aVal = myNodes.Value(theIndex - 1);
     return gp_Pnt(aVal.x(), aVal.y(), aVal.z());
   }
 
@@ -149,14 +150,17 @@ public:
   //! @param[in] thePnt   3D point coordinates
   void SetNode(Standard_Integer theIndex, const gp_Pnt& thePnt)
   {
-    myNodes.SetValue (theIndex - 1, gp_Vec3double(thePnt.X().getValue(), thePnt.Y().getValue(), thePnt.Z().getValue()));
+    myNodes.SetValue(
+      theIndex - 1,
+      gp_Vec3double(thePnt.X().getValue(), thePnt.Y().getValue(), thePnt.Z().getValue()));
   }
 
   //! Returns UV-node at the given index.
   //! @param[in] theIndex node index within [1, NbNodes()] range
   //! @return 2D point defining UV coordinates
-  gp_Pnt2d UVNode(Standard_Integer theIndex) const {
-    gp_Vec2double aVal = myUVNodes.Value (theIndex - 1);
+  gp_Pnt2d UVNode(Standard_Integer theIndex) const
+  {
+    gp_Vec2double aVal = myUVNodes.Value(theIndex - 1);
     return gp_Pnt2d((Standard_Real)aVal.x(), (Standard_Real)aVal.y());
   }
 
@@ -165,7 +169,7 @@ public:
   //! @param[in] thePnt   UV coordinates
   void SetUVNode(Standard_Integer theIndex, const gp_Pnt2d& thePnt)
   {
-    myUVNodes.SetValue (theIndex - 1, gp_Vec2double(thePnt.X().getValue(), thePnt.Y().getValue()));
+    myUVNodes.SetValue(theIndex - 1, gp_Vec2double(thePnt.X().getValue(), thePnt.Y().getValue()));
   }
 
   //! Returns triangle at the given index.

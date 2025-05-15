@@ -241,10 +241,10 @@ static void Function_SetUVBounds(Standard_Real&                   myU1,
   {
 
     case GeomAbs_Cone: {
-      Standard_Real           tol  = Epsilon(1.);
+      Standard_Real       tol  = Epsilon(1.);
       const Standard_Real ptol = Precision::PConfusion();
-      gp_Cone                 Cone = mySurface->Cone();
-      VCouture                     = Standard_False;
+      gp_Cone             Cone = mySurface->Cone();
+      VCouture                 = Standard_False;
       // Calculation of cone parameters for P == ConeApex often produces wrong
       // values of U
       gp_Pnt ConeApex = Cone.Apex();
@@ -1393,10 +1393,10 @@ void ProjLib_ComputeApprox::Perform(const Handle(Adaptor3d_Curve)&   C,
     }
     if (F.UCouture || (F.VCouture && SType == GeomAbs_Sphere))
     {
-      double aNbPer;
-      gp_Pnt2d      P2d = F.Value(Umid);
-      du                = u - P2d.X();
-      du = (du < 0) ? (du - Precision::PConfusion()) : (du + Precision::PConfusion());
+      double   aNbPer;
+      gp_Pnt2d P2d = F.Value(Umid);
+      du           = u - P2d.X();
+      du           = (du < 0) ? (du - Precision::PConfusion()) : (du + Precision::PConfusion());
       modf((du / M_PI).getValue(), &aNbPer);
       number = (Standard_Integer)aNbPer;
       du     = number * M_PI;

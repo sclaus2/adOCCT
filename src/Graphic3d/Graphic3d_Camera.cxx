@@ -886,13 +886,15 @@ void Graphic3d_Camera::stereoProjection(NCollection_Mat4<Elem_t>& theProjL,
   NCollection_Mat4<Elem_t> aDummy;
   computeProjection(aDummy, theProjL, theProjR, false);
 
-  const Standard_Real aIOD = myIODType == IODType_Relative ? Standard_Real(myIOD * Distance()) : myIOD;
+  const Standard_Real aIOD =
+    myIODType == IODType_Relative ? Standard_Real(myIOD * Distance()) : myIOD;
   if (aIOD != 0.0)
   {
     // X translation to cancel parallax
     theHeadToEyeL.InitIdentity();
-    theHeadToEyeL.SetColumn(3,
-                            NCollection_Vec3<Elem_t>(Elem_t(Standard_Real(0.5 * aIOD)), Elem_t(0.0), Elem_t(0.0)));
+    theHeadToEyeL.SetColumn(
+      3,
+      NCollection_Vec3<Elem_t>(Elem_t(Standard_Real(0.5 * aIOD)), Elem_t(0.0), Elem_t(0.0)));
     theHeadToEyeR.InitIdentity();
     theHeadToEyeR.SetColumn(
       3,
@@ -980,11 +982,13 @@ void Graphic3d_Camera::computeProjection(NCollection_Mat4<Elem_t>& theProjM,
   anLRBT.Bottom = -aDYHalf;
   anLRBT.Top    = aDYHalf;
 
-  Elem_t aIOD = myIODType == IODType_Relative ? static_cast<Elem_t>(Standard_Real(myIOD * Distance()))
-                                              : static_cast<Elem_t>(myIOD);
+  Elem_t aIOD = myIODType == IODType_Relative
+                  ? static_cast<Elem_t>(Standard_Real(myIOD * Distance()))
+                  : static_cast<Elem_t>(myIOD);
 
-  Elem_t aFocus = myZFocusType == FocusType_Relative ? static_cast<Elem_t>(Standard_Real(myZFocus * Distance()))
-                                                     : static_cast<Elem_t>(myZFocus);
+  Elem_t aFocus = myZFocusType == FocusType_Relative
+                    ? static_cast<Elem_t>(Standard_Real(myZFocus * Distance()))
+                    : static_cast<Elem_t>(myZFocus);
 
   if (myTile.IsValid())
   {

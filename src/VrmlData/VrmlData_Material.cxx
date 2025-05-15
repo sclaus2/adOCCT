@@ -232,10 +232,22 @@ VrmlData_ErrorStatus VrmlData_Material::Read(VrmlData_InBuffer& theBuffer)
     myAmbientIntensity = anIntensity[0];
     myShininess        = anIntensity[1];
     myTransparency     = anIntensity[2];
-    myAmbientColor.SetValues(aColor[0].X().getValue(), aColor[0].Y().getValue(), aColor[0].Z().getValue(), Quantity_TOC_sRGB);
-    myDiffuseColor.SetValues(aColor[1].X().getValue(), aColor[1].Y().getValue(), aColor[1].Z().getValue(), Quantity_TOC_sRGB);
-    myEmissiveColor.SetValues(aColor[2].X().getValue(), aColor[2].Y().getValue(), aColor[2].Z().getValue(), Quantity_TOC_sRGB);
-    mySpecularColor.SetValues(aColor[3].X().getValue(), aColor[3].Y().getValue(), aColor[3].Z().getValue(), Quantity_TOC_sRGB);
+    myAmbientColor.SetValues(aColor[0].X().getValue(),
+                             aColor[0].Y().getValue(),
+                             aColor[0].Z().getValue(),
+                             Quantity_TOC_sRGB);
+    myDiffuseColor.SetValues(aColor[1].X().getValue(),
+                             aColor[1].Y().getValue(),
+                             aColor[1].Z().getValue(),
+                             Quantity_TOC_sRGB);
+    myEmissiveColor.SetValues(aColor[2].X().getValue(),
+                              aColor[2].Y().getValue(),
+                              aColor[2].Z().getValue(),
+                              Quantity_TOC_sRGB);
+    mySpecularColor.SetValues(aColor[3].X().getValue(),
+                              aColor[3].Y().getValue(),
+                              aColor[3].Z().getValue(),
+                              Quantity_TOC_sRGB);
   }
   return aStatus;
 }
@@ -251,9 +263,9 @@ VrmlData_ErrorStatus VrmlData_Material::Write(const char* thePrefix) const
       && OK(aStatus, aScene.WriteLine(thePrefix, header, GlobalIndent())))
   {
     char                       buf[128];
-    double              val[3];
+    double                     val[3];
     const Quantity_TypeOfColor bidType = Quantity_TOC_sRGB;
-    const Standard_Real    aConf(0.001 * Precision::Confusion());
+    const Standard_Real        aConf(0.001 * Precision::Confusion());
 
     if (OK(aStatus) && fabs(myAmbientIntensity - 0.2) > aConf)
     {
@@ -310,11 +322,11 @@ VrmlData_ErrorStatus VrmlData_Material::Write(const char* thePrefix) const
 Standard_Boolean VrmlData_Material::IsDefault() const
 {
   const Standard_Real aConf(0.001 * Precision::Confusion());
-  Standard_Boolean        aResult(Standard_False);
+  Standard_Boolean    aResult(Standard_False);
   if (fabs(myAmbientIntensity - 0.2) < aConf && fabs(myShininess - 0.2) < aConf
       && myTransparency < aConf)
   {
-    double              val[3][3];
+    double                     val[3][3];
     const Quantity_TypeOfColor bidType = Quantity_TOC_sRGB;
     myDiffuseColor.Values(val[0][0], val[0][1], val[0][2], bidType);
     myEmissiveColor.Values(val[1][0], val[1][1], val[1][2], bidType);

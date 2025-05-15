@@ -42,7 +42,7 @@ typedef double PERF_TIME;
 
 #define PICK_TIME(_utime)                                                                          \
   {                                                                                                \
-    double ktime;                                                                           \
+    double ktime;                                                                                  \
     OSD_Chronometer::GetThreadCPU(_utime, ktime);                                                  \
   }
 

@@ -15,7 +15,7 @@
 #define _Poly_ArrayOfUVNodes_HeaderFile
 
 #include <NCollection_AliasedArray.hxx>
-//#include <gp_Pnt2d.hxx>
+// #include <gp_Pnt2d.hxx>
 #include <gp_Vec2f.hxx>
 #include <Standard_Macro.hxx>
 

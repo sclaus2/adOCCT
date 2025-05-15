@@ -203,7 +203,7 @@ static Standard_Boolean ArePolesPlanar(const TColgp_Array1OfPnt& Poles, gp_XYZ& 
     Normal += Poles(i).XYZ() ^ Poles(i + 1).XYZ();
 
   const Standard_Real tol = Precision::Confusion();
-  Standard_Real           nrm = Normal.Modulus();
+  Standard_Real       nrm = Normal.Modulus();
   if (nrm < tol)
   {
     Normal.SetCoord(0, 0, 1);
@@ -601,7 +601,8 @@ Handle(IGESData_IGESEntity) GeomToIGES_GeomCurve::TransferCurve(const Handle(Geo
     // Trimmed ellipse. To avoid huge weights in B-Spline first rotate it and then convert
     Handle(Geom_Ellipse) copystart = Handle(Geom_Ellipse)::DownCast(start->Copy());
     gp_Ax2               pos       = copystart->Position();
-    copystart->SetPosition(pos.Rotated(pos.Axis(), gp_Ax3(pos).Direct() ? Udeb : Standard_Real(2 * M_PI - Udeb)));
+    copystart->SetPosition(
+      pos.Rotated(pos.Axis(), gp_Ax3(pos).Direct() ? Udeb : Standard_Real(2 * M_PI - Udeb)));
     Handle(Geom_BSplineCurve) Bspline;
     //: q3 abv 17 Mar 99: use GeomConvert_ApproxCurve for precise conversion
     const Handle(Geom_Curve)& aCopy = copystart; // to avoid ambiguity

@@ -542,7 +542,7 @@ void GeomFill_BSplineCurves::Init(const Handle(Geom_BSplineCurve)& C1,
   else
   {
     const Standard_Real Eps  = Precision::Confusion();
-    Standard_Boolean        IsOK = Standard_False;
+    Standard_Boolean    IsOK = Standard_False;
     if (CC1->StartPoint().IsEqual(CC2->StartPoint(), Eps))
     {
       IsOK = Standard_True;

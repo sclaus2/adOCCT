@@ -130,15 +130,25 @@ void gp_Ax2::DumpJson(Standard_OStream& theOStream, Standard_Integer) const {
                          3,
                          axis.Location().X().getValue(),
                          axis.Location().Y().getValue(),
-                         axis.Location().Z().getValue()) OCCT_DUMP_VECTOR_CLASS(theOStream,
-                                                                     "Direction",
-                                                                     3,
-                                                                     axis.Direction().X().getValue(),
-                                                                     axis.Direction().Y().getValue(),
-                                                                     axis.Direction().Z().getValue())
+                         axis.Location().Z().getValue())
+    OCCT_DUMP_VECTOR_CLASS(theOStream,
+                           "Direction",
+                           3,
+                           axis.Direction().X().getValue(),
+                           axis.Direction().Y().getValue(),
+                           axis.Direction().Z().getValue())
 
-    OCCT_DUMP_VECTOR_CLASS(theOStream, "XDirection", 3, vxdir.X().getValue(), vxdir.Y().getValue(), vxdir.Z().getValue())
-      OCCT_DUMP_VECTOR_CLASS(theOStream, "YDirection", 3, vydir.X().getValue(), vydir.Y().getValue(), vydir.Z().getValue())}
+      OCCT_DUMP_VECTOR_CLASS(theOStream,
+                             "XDirection",
+                             3,
+                             vxdir.X().getValue(),
+                             vxdir.Y().getValue(),
+                             vxdir.Z().getValue()) OCCT_DUMP_VECTOR_CLASS(theOStream,
+                                                                          "YDirection",
+                                                                          3,
+                                                                          vydir.X().getValue(),
+                                                                          vydir.Y().getValue(),
+                                                                          vydir.Z().getValue())}
 
 Standard_Boolean gp_Ax2::InitFromJson(const Standard_SStream& theSStream,
                                       Standard_Integer&       theStreamPos)

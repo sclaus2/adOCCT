@@ -98,8 +98,8 @@ public: //! @name argument parsing tools
   //! @return true if parsing was successful, or false otherwise
   Standard_EXPORT static bool ParseReal(const Standard_CString theExpressionString,
                                         Standard_Real&         theParsedRealValue);
-  Standard_EXPORT static bool ParseReal (const Standard_CString theExpressionString,
-                                          double& theParsedRealValue);
+  Standard_EXPORT static bool ParseReal(const Standard_CString theExpressionString,
+                                        double&                theParsedRealValue);
 
   //! Converts numeric expression, that can involve DRAW
   //! variables, to integer value.

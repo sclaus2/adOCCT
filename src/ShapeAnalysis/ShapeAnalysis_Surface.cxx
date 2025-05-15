@@ -82,7 +82,10 @@ inline void RestrictBounds(Standard_Real& theFirst, Standard_Real& theLast)
   }
 }
 
-inline void RestrictBounds(Standard_Real& theUf, Standard_Real& theUl, Standard_Real& theVf, Standard_Real& theVl)
+inline void RestrictBounds(Standard_Real& theUf,
+                           Standard_Real& theUl,
+                           Standard_Real& theVf,
+                           Standard_Real& theVl)
 {
   RestrictBounds(theUf, theUl);
   RestrictBounds(theVf, theVl);
@@ -1006,8 +1009,8 @@ Standard_Integer ShapeAnalysis_Surface::SurfaceNewton(const gp_Pnt2d&     p2dPre
   // Standard_Integer fail = 0;
   const Standard_Real Tol  = Precision::Confusion();
   const Standard_Real Tol2 = Tol * Tol; //, rs2p=1e10;
-  Standard_Real           U = p2dPrev.X(), V = p2dPrev.Y();
-  gp_Vec                  rsfirst = P3D.XYZ() - Value(U, V).XYZ(); // pdn
+  Standard_Real       U = p2dPrev.X(), V = p2dPrev.Y();
+  gp_Vec              rsfirst = P3D.XYZ() - Value(U, V).XYZ(); // pdn
   for (Standard_Integer i = 0; i < 25; i++)
   {
     gp_Vec ru, rv, ruu, rvv, ruv;
@@ -1310,8 +1313,8 @@ gp_Pnt2d ShapeAnalysis_Surface::ValueOfUV(const gp_Pnt& P3D, const Standard_Real
                 if (mySurf->Continuity() != GeomAbs_C0)
                 {
                   const Standard_Real Tol = Precision::Confusion();
-                  gp_Vec                  D1U, D1V;
-                  gp_Pnt                  pnt;
+                  gp_Vec              D1U, D1V;
+                  gp_Pnt              pnt;
                   SurfAdapt.D1(UU, VV, pnt, D1U, D1V);
                   gp_Vec        b = D1U.Crossed(D1V);
                   gp_Vec        a(pnt, P3D);

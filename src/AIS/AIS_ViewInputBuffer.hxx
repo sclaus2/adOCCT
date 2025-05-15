@@ -150,7 +150,7 @@ public:
   struct _zrotateParams
   {
     Graphic3d_Vec2i Point;    //!< Z rotation start point
-    Standard_Real          Angle;    //!< Z rotation angle
+    Standard_Real   Angle;    //!< Z rotation angle
     bool            ToRotate; //!< start Z rotation
 
     _zrotateParams()

@@ -37,8 +37,8 @@ Draw_Text3D::Draw_Text3D(const gp_Pnt& p, const Standard_CString T, const Draw_C
 Draw_Text3D::Draw_Text3D(const gp_Pnt&          p,
                          const Standard_CString T,
                          const Draw_Color&      col,
-                         const double    moveX,
-                         const double    moveY)
+                         const double           moveX,
+                         const double           moveY)
     : myPoint(p),
       myColor(col),
       myText(T),

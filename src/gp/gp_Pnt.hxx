@@ -222,7 +222,7 @@ struct hash<gp_Pnt>
   size_t operator()(const gp_Pnt& thePnt) const noexcept
   {
     union {
-      double    R[3];
+      double           R[3];
       Standard_Integer I[6];
     } U;
 

@@ -43,10 +43,10 @@ void Draw_Display::DrawMarker(const gp_Pnt2d&        pt,
 {
   Draw_Bounds = Standard_False;
 
-  gp_Pnt2d      p1 = pt;
-  gp_Pnt2d      p2 = p1;
-  gp_Circ2d     C;
-  double Size = ((double)ISize) / Zoom();
+  gp_Pnt2d  p1 = pt;
+  gp_Pnt2d  p2 = p1;
+  gp_Circ2d C;
+  double    Size = ((double)ISize) / Zoom();
 
   switch (S)
   {

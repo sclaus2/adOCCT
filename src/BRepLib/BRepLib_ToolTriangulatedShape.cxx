@@ -44,8 +44,8 @@ void BRepLib_ToolTriangulatedShape::ComputeNormals(const TopoDS_Face&           
   }
 
   const Standard_Real aTol = Precision::Confusion();
-  Standard_Integer        aTri[3];
-  gp_Dir                  aNorm;
+  Standard_Integer    aTri[3];
+  gp_Dir              aNorm;
   theTris->AddNormals();
   for (Standard_Integer aNodeIter = 1; aNodeIter <= theTris->NbNodes(); ++aNodeIter)
   {

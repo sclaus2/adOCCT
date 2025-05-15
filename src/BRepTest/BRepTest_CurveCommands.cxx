@@ -1875,7 +1875,7 @@ Standard_Integer edgeintersector(Draw_Interpretor& di, Standard_Integer n, const
 
   BRep_Builder B;
 
-  Standard_Integer        NbV = 0;
+  Standard_Integer    NbV = 0;
   const Standard_Real Tol = Precision::PConfusion();
 
   Standard_Boolean rejectreducedsegmentpoints = Standard_True;

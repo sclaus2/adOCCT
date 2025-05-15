@@ -73,9 +73,9 @@ public:
   }
 
   //! Return projection matrix.
-  virtual NCollection_Mat4<Standard_Real> ProjectionMatrix(Aspect_Eye theEye,
-                                                    Standard_Real     theZNear,
-                                                    Standard_Real     theZFar) const = 0;
+  virtual NCollection_Mat4<Standard_Real> ProjectionMatrix(Aspect_Eye    theEye,
+                                                           Standard_Real theZNear,
+                                                           Standard_Real theZFar) const = 0;
 
   //! Return FALSE if projection frustums are unsupported and general 4x4 projection matrix should
   //! be fetched instead

@@ -635,8 +635,8 @@ void LocOpe_Generator::Perform(const Handle(LocOpe_GeneratedShape)& G)
                     Handle(Geom2d_Curve) C2d = GeomProjLib::Curve2d(C, f, l, S, tol);
 
                     // Tentative de recalage dans la facette
-                    pf                            = C2d->Value(f);
-                    pl                            = C2d->Value(l);
+                    pf                        = C2d->Value(f);
+                    pl                        = C2d->Value(l);
                     const Standard_Real tttol = Precision::Angular();
                     while (Min(pf.X(), pl.X()) >= Umaxc - tttol)
                     {
@@ -1018,8 +1018,8 @@ void LocOpe_Generator::Perform(const Handle(LocOpe_GeneratedShape)& G)
                   C2d = GeomProjLib::Curve2d(C, f, l, S, tol);
 
                   // Tentative de recalage dans la facette
-                  pf                            = C2d->Value(f);
-                  pl                            = C2d->Value(l);
+                  pf                        = C2d->Value(f);
+                  pl                        = C2d->Value(l);
                   const Standard_Real tttol = Precision::Angular();
                   while (Min(pf.X(), pl.X()) >= Umaxc - tttol)
                   {
@@ -1219,11 +1219,11 @@ Standard_Boolean ToFuse(const TopoDS_Face& F1, const TopoDS_Face& F2)
     return Standard_False;
   }
 
-  Handle(Geom_Surface)    S1, S2;
-  TopLoc_Location         loc1, loc2;
-  Handle(Standard_Type)   typS1, typS2;
-  const Standard_Real tollin = Precision::Confusion();
-  const Standard_Real tolang = Precision::Angular();
+  Handle(Geom_Surface)  S1, S2;
+  TopLoc_Location       loc1, loc2;
+  Handle(Standard_Type) typS1, typS2;
+  const Standard_Real   tollin = Precision::Confusion();
+  const Standard_Real   tolang = Precision::Angular();
 
   S1 = BRep_Tool::Surface(F1, loc1);
   S2 = BRep_Tool::Surface(F2, loc2);
@@ -1277,12 +1277,12 @@ Standard_Boolean ToFuse(const TopoDS_Edge& E1, const TopoDS_Edge& E2)
     return Standard_False;
   }
 
-  Handle(Geom_Curve)      C1, C2;
-  TopLoc_Location         loc1, loc2;
-  Handle(Standard_Type)   typC1, typC2;
-  const Standard_Real tollin = Precision::Confusion();
-  const Standard_Real tolang = Precision::Angular();
-  Standard_Real           f, l;
+  Handle(Geom_Curve)    C1, C2;
+  TopLoc_Location       loc1, loc2;
+  Handle(Standard_Type) typC1, typC2;
+  const Standard_Real   tollin = Precision::Confusion();
+  const Standard_Real   tolang = Precision::Angular();
+  Standard_Real         f, l;
 
   C1 = BRep_Tool::Curve(E1, loc1, f, l);
   if (!loc1.IsIdentity())

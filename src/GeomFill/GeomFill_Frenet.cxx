@@ -137,8 +137,8 @@ Standard_Boolean GeomFill_Frenet::SetCurve(const Handle(Adaptor3d_Curve)& C)
 
 void GeomFill_Frenet::Init()
 {
-  Standard_Integer        i, j;
-  GeomFill_SnglrFunc      Func(myCurve);
+  Standard_Integer    i, j;
+  GeomFill_SnglrFunc  Func(myCurve);
   const Standard_Real TolF = 1.0e-10;
   const Standard_Real Tol  = 10 * TolF;
   const Standard_Real Tol2 = Tol * Tol;

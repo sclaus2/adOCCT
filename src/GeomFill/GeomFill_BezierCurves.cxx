@@ -417,7 +417,7 @@ void GeomFill_BezierCurves::Init(const Handle(Geom_BezierCurve)& C1,
     TColgp_Array1OfPnt P2(1, Deg2 + 1);
 
     const Standard_Real Eps  = Precision::Confusion();
-    Standard_Boolean        IsOK = Standard_False;
+    Standard_Boolean    IsOK = Standard_False;
     if (CC1->StartPoint().IsEqual(CC2->StartPoint(), Eps))
     {
       IsOK = Standard_True;

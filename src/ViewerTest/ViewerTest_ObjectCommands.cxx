@@ -2958,7 +2958,7 @@ Handle(Poly_Triangulation) CalculationOfSphere(double X, double Y, double Z, int
 
   Poly_Connect pc(polyTriangulation);
 
-  Standard_Integer        index[3];
+  Standard_Integer    index[3];
   const Standard_Real Tol = Precision::Confusion();
 
   gp_Dir Nor;
@@ -3028,10 +3028,13 @@ static int VDrawSphere(Draw_Interpretor& /*di*/, Standard_Integer argc, const ch
 
   if (toPrintInfo)
     std::cout << "Compute Triangulation...\n";
-  Handle(AIS_Triangulation) aShape =
-    new AIS_Triangulation(CalculationOfSphere(aCenterX.getValue(), aCenterY.getValue(), aCenterZ.getValue(), aResolution, aRadius.getValue()));
-  const Standard_Integer aNumberPoints    = aShape->GetTriangulation()->NbNodes();
-  const Standard_Integer aNumberTriangles = aShape->GetTriangulation()->NbTriangles();
+  Handle(AIS_Triangulation) aShape = new AIS_Triangulation(CalculationOfSphere(aCenterX.getValue(),
+                                                                               aCenterY.getValue(),
+                                                                               aCenterZ.getValue(),
+                                                                               aResolution,
+                                                                               aRadius.getValue()));
+  const Standard_Integer    aNumberPoints    = aShape->GetTriangulation()->NbNodes();
+  const Standard_Integer    aNumberTriangles = aShape->GetTriangulation()->NbTriangles();
 
   // stupid initialization of Green color in RGBA space as integer
   // probably wrong for big-endian CPUs
@@ -4220,7 +4223,12 @@ static Standard_Integer VSetLocation(Draw_Interpretor& theDI,
 
       char                aText[1024];
       const gp_Quaternion aQuat = anObj->LocalTransformation().GetRotation();
-      Sprintf(aText, "%g %g %g %g ", aQuat.X().getValue(), aQuat.Y().getValue(), aQuat.Z().getValue(), aQuat.W().getValue());
+      Sprintf(aText,
+              "%g %g %g %g ",
+              aQuat.X().getValue(),
+              aQuat.Y().getValue(),
+              aQuat.Z().getValue(),
+              aQuat.W().getValue());
       theDI << aText;
     }
     else if (anArg == "-setlocation" || anArg == "-location")

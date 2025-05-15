@@ -135,7 +135,7 @@ Units_Sentence::Units_Sentence(const Handle(Units_Lexicon)& alexicon,
 void Units_Sentence::SetConstants()
 {
   Standard_Integer        index;
-  double           value;
+  double                  value;
   Handle(Units_Token)     token;
   TCollection_AsciiString string;
 

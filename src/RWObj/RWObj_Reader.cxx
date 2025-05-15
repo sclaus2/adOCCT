@@ -51,8 +51,8 @@ static const size_t THE_BUFFER_SIZE = 4 * 1024;
 static bool isClockwisePolygon(const Handle(BRepMesh_DataStructureOfDelaun)& theMesh,
                                const IMeshData::VectorOfInteger&             theIndexes)
 {
-  Standard_Real    aPtSum       = 0;
-  const int aNbElemNodes = theIndexes.Size();
+  Standard_Real aPtSum       = 0;
+  const int     aNbElemNodes = theIndexes.Size();
   for (int aNodeIter = theIndexes.Lower(); aNodeIter <= theIndexes.Upper(); ++aNodeIter)
   {
     int                    aNodeNext = theIndexes.Lower() + ((aNodeIter + 1) % aNbElemNodes);
@@ -533,14 +533,16 @@ Standard_Integer RWObj_Reader::triangulatePolygon(
   // map polygon onto plane
   gp_XYZ aXDir;
   {
-    const Standard_Real aAbsXYZ[] = {Abs(aPolygonNorm.X()), Abs(aPolygonNorm.Y()), Abs(aPolygonNorm.Z())};
-    Standard_Integer aMinI = (aAbsXYZ[0] < aAbsXYZ[1]) ? 0 : 1;
-    aMinI                  = (aAbsXYZ[aMinI] < aAbsXYZ[2]) ? aMinI : 2;
-    const Standard_Integer aI1   = (aMinI + 1) % 3 + 1;
-    const Standard_Integer aI2   = (aMinI + 2) % 3 + 1;
-    aXDir.ChangeCoord(aMinI + 1) = 0;
-    aXDir.ChangeCoord(aI1)       = aPolygonNorm.Coord(aI2);
-    aXDir.ChangeCoord(aI2)       = -aPolygonNorm.Coord(aI1);
+    const Standard_Real aAbsXYZ[] = {Abs(aPolygonNorm.X()),
+                                     Abs(aPolygonNorm.Y()),
+                                     Abs(aPolygonNorm.Z())};
+    Standard_Integer    aMinI     = (aAbsXYZ[0] < aAbsXYZ[1]) ? 0 : 1;
+    aMinI                         = (aAbsXYZ[aMinI] < aAbsXYZ[2]) ? aMinI : 2;
+    const Standard_Integer aI1    = (aMinI + 1) % 3 + 1;
+    const Standard_Integer aI2    = (aMinI + 2) % 3 + 1;
+    aXDir.ChangeCoord(aMinI + 1)  = 0;
+    aXDir.ChangeCoord(aI1)        = aPolygonNorm.Coord(aI2);
+    aXDir.ChangeCoord(aI2)        = -aPolygonNorm.Coord(aI1);
   }
   const gp_XYZ aYDir = aPolygonNorm ^ aXDir;
 

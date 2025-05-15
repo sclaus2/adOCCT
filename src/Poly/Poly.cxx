@@ -620,7 +620,10 @@ Standard_Boolean Poly::Intersect(const Handle(Poly_Triangulation)& theTri,
 }
 
 //! Calculate the minor of the given matrix, defined by the columns specified by values c1, c2, c3.
-static Standard_Real Determinant(const Standard_Real a[3][4], const int c1, const int c2, const int c3)
+static Standard_Real Determinant(const Standard_Real a[3][4],
+                                 const int           c1,
+                                 const int           c2,
+                                 const int           c3)
 {
   return a[0][c1] * a[1][c2] * a[2][c3] + a[0][c2] * a[1][c3] * a[2][c1]
          + a[0][c3] * a[1][c1] * a[2][c2] - a[0][c3] * a[1][c2] * a[2][c1]
@@ -638,7 +641,7 @@ Standard_Integer Poly::IntersectTriLine(const gp_XYZ&  theStart,
                                         const gp_XYZ&  theV2,
                                         Standard_Real& theParam)
 {
-  int          aRes  = 0;
+  int                 aRes  = 0;
   const Standard_Real aConf = 1E-15;
 
   const Standard_Real aMat34[3][4] = {
@@ -654,7 +657,7 @@ Standard_Integer Poly::IntersectTriLine(const gp_XYZ&  theStart,
     if (aDa > -aConf)
     {
       const Standard_Real aDb = Determinant(aMat34, 0, 1, 3);
-      aRes             = ((aDb > -aConf) && (aDa + aDb <= aD + aConf));
+      aRes                    = ((aDb > -aConf) && (aDa + aDb <= aD + aConf));
     }
   }
   else if (aD < -aConf)
@@ -663,7 +666,7 @@ Standard_Integer Poly::IntersectTriLine(const gp_XYZ&  theStart,
     if (aDa < aConf)
     {
       const Standard_Real aDb = Determinant(aMat34, 0, 1, 3);
-      aRes             = ((aDb < aConf) && (aDa + aDb >= aD - aConf));
+      aRes                    = ((aDb < aConf) && (aDa + aDb >= aD - aConf));
     }
   }
   if (aRes != 0)

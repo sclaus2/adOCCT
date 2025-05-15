@@ -79,10 +79,10 @@ void MeshVS_ElementalColorPrsBuilder::Build(const Handle(Prs3d_Presentation)& Pr
   MeshVS_DataMapOfColorMapOfInteger     aColorsOfElements;
   MeshVS_DataMapOfTwoColorsMapOfInteger aTwoColorsOfElements;
 
-  MeshVS_Buffer<Standard_Real>        aCoordsBuf(3 * aMaxFaceNodes);
-  TColStd_Array1OfReal aCoords(aCoordsBuf, 1, 3 * aMaxFaceNodes);
-  Standard_Integer     NbNodes;
-  MeshVS_EntityType    aType;
+  MeshVS_Buffer<Standard_Real> aCoordsBuf(3 * aMaxFaceNodes);
+  TColStd_Array1OfReal         aCoords(aCoordsBuf, 1, 3 * aMaxFaceNodes);
+  Standard_Integer             NbNodes;
+  MeshVS_EntityType            aType;
 
   if (!(DisplayMode & GetFlags()) || !IsElement
       || (myElemColorMap1.IsEmpty() && myElemColorMap2.IsEmpty()))

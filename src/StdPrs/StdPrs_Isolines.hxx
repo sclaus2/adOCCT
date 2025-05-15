@@ -181,7 +181,7 @@ public:
   //! Auxiliary structure defining 3D point on isoline.
   struct PntOnIso
   {
-    gp_Pnt Pnt;   //!< 3D point
+    gp_Pnt        Pnt;   //!< 3D point
     Standard_Real Param; //!< parameter along the line (for sorting)
   };
 

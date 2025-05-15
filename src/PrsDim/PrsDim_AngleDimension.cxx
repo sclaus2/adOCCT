@@ -55,9 +55,9 @@ IMPLEMENT_STANDARD_RTTIEXT(PrsDim_AngleDimension, PrsDim_Dimension)
 namespace
 {
 static const TCollection_ExtendedString THE_EMPTY_LABEL_STRING;
-static const double              THE_EMPTY_LABEL_WIDTH = 0.0;
+static const double                     THE_EMPTY_LABEL_WIDTH = 0.0;
 static const Standard_ExtCharacter      THE_DEGREE_SYMBOL(0x00B0);
-static const double              THE_3D_TEXT_MARGIN = 0.1;
+static const double                     THE_3D_TEXT_MARGIN = 0.1;
 
 //! Returns true if the given points lie on a same line.
 static Standard_Boolean isSameLine(const gp_Pnt& theFirstPoint,

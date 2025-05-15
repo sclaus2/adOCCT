@@ -750,7 +750,8 @@ template <int dim>
 inline void eval_poly0(Standard_Real* aRes, Standard_Real* aCoeffs, int Degree, Standard_Real Par)
 {
   Standard_Real* aRes0 = aRes;
-  for(int i = 0; i < dim; ++i) aRes0[i] = aCoeffs[i]; // memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * dim);
+  for (int i = 0; i < dim; ++i)
+    aRes0[i] = aCoeffs[i]; // memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * dim);
 
   for (Standard_Integer aDeg = 0; aDeg < Degree; aDeg++)
   {
@@ -767,8 +768,10 @@ inline void eval_poly1(Standard_Real* aRes, Standard_Real* aCoeffs, int Degree, 
   Standard_Real* aRes0 = aRes;
   Standard_Real* aRes1 = aRes + dim;
 
-  for(int i = 0; i < dim; ++i) aRes0[i] = aCoeffs[i]; // memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * dim);
-  for(int i = 0; i < dim; ++i) aRes1[i] = 0; // memset(aRes1, 0, sizeof(Standard_Real) * dim);
+  for (int i = 0; i < dim; ++i)
+    aRes0[i] = aCoeffs[i]; // memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * dim);
+  for (int i = 0; i < dim; ++i)
+    aRes1[i] = 0; // memset(aRes1, 0, sizeof(Standard_Real) * dim);
 
   for (Standard_Integer aDeg = 0; aDeg < Degree; aDeg++)
   {
@@ -788,9 +791,12 @@ inline void eval_poly2(Standard_Real* aRes, Standard_Real* aCoeffs, int Degree, 
   Standard_Real* aRes1 = aRes + dim;
   Standard_Real* aRes2 = aRes + 2 * dim;
 
-  for(int i = 0; i < dim; ++i) aRes0[i] = aCoeffs[i]; // memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * dim);
-  for(int i = 0; i < dim; ++i) aRes1[i] = 0; // memset(aRes1, 0, sizeof(Standard_Real) * dim);
-  for(int i = 0; i < dim; ++i) aRes2[i] = 0; // memset(aRes2, 0, sizeof(Standard_Real) * dim);
+  for (int i = 0; i < dim; ++i)
+    aRes0[i] = aCoeffs[i]; // memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * dim);
+  for (int i = 0; i < dim; ++i)
+    aRes1[i] = 0; // memset(aRes1, 0, sizeof(Standard_Real) * dim);
+  for (int i = 0; i < dim; ++i)
+    aRes2[i] = 0; // memset(aRes2, 0, sizeof(Standard_Real) * dim);
 
   for (Standard_Integer aDeg = 0; aDeg < Degree; aDeg++)
   {
@@ -892,8 +898,10 @@ void PLib::EvalPolynomial(const Standard_Real    Par,
           Standard_Real* aRes0 = aRes;
           Standard_Real* aRes1 = aRes + Dimension;
 
-          for(int i = 0; i < Dimension; ++i) aRes0[i] = aCoeffs[i]; // memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * Dimension);
-          for(int i = 0; i < Dimension; ++i) aRes1[i] = 0; // memset(aRes1, 0, sizeof(Standard_Real) * Dimension);
+          for (int i = 0; i < Dimension; ++i)
+            aRes0[i] = aCoeffs[i]; // memcpy(aRes0, aCoeffs, sizeof(Standard_Real) * Dimension);
+          for (int i = 0; i < Dimension; ++i)
+            aRes1[i] = 0; // memset(aRes1, 0, sizeof(Standard_Real) * Dimension);
 
           for (Standard_Integer aDeg = 0; aDeg < Degree; aDeg++)
           {
@@ -964,8 +972,10 @@ void PLib::EvalPolynomial(const Standard_Real    Par,
 
           // Nullify the results
           Standard_Integer aSize = 2 * Dimension;
-          for(int i = 0; i < Dimension; ++i) aRes[i] = aCoeffs[i]; // memcpy(aRes, aCoeffs, sizeof(Standard_Real) * Dimension);
-          for(int i = 0; i < aSize; ++i) aRes1[i] = 0; // memset(aRes1, 0, sizeof(Standard_Real) * aSize);
+          for (int i = 0; i < Dimension; ++i)
+            aRes[i] = aCoeffs[i]; // memcpy(aRes, aCoeffs, sizeof(Standard_Real) * Dimension);
+          for (int i = 0; i < aSize; ++i)
+            aRes1[i] = 0; // memset(aRes1, 0, sizeof(Standard_Real) * aSize);
 
           for (Standard_Integer aDeg = 0; aDeg < Degree; aDeg++)
           {
@@ -987,7 +997,8 @@ void PLib::EvalPolynomial(const Standard_Real    Par,
     default: {
       // Nullify the results
       Standard_Integer aResSize = (1 + DerivativeRequest) * Dimension;
-      for(int i = 0; i < aResSize; ++i) aRes[i] = 0; // memset(aRes, 0, sizeof(Standard_Real) * aResSize);
+      for (int i = 0; i < aResSize; ++i)
+        aRes[i] = 0; // memset(aRes, 0, sizeof(Standard_Real) * aResSize);
 
       for (Standard_Integer aDeg = 0; aDeg <= Degree; aDeg++)
       {
@@ -1069,7 +1080,8 @@ void PLib::NoDerivativeEvalPolynomial(const Standard_Real    Par,
       eval_poly0<15>(aRes, aCoeffs, Degree, Par);
       break;
     default: {
-      for(int i = 0; i < Dimension; ++i) aRes[i] = aCoeffs[i]; // memcpy(aRes, aCoeffs, sizeof(Standard_Real) * Dimension);
+      for (int i = 0; i < Dimension; ++i)
+        aRes[i] = aCoeffs[i]; // memcpy(aRes, aCoeffs, sizeof(Standard_Real) * Dimension);
       for (Standard_Integer aDeg = 0; aDeg < Degree; aDeg++)
       {
         aCoeffs -= Dimension;

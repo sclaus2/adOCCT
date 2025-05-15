@@ -416,13 +416,14 @@ Storage_BaseDriver& FSD_BinaryFile::GetBoolean(Standard_Boolean& aValue)
 
 Storage_BaseDriver& FSD_BinaryFile::GetReal(double& aValue)
 {
-  if (!fread(&aValue,sizeof(double),1,myStream))
+  if (!fread(&aValue, sizeof(double), 1, myStream))
     throw Storage_StreamTypeMismatchError();
 #if OCCT_BINARY_FILE_DO_INVERSE
-  aValue = InverseReal (aValue);
+  aValue = InverseReal(aValue);
 #endif
   return *this;
 }
+
 Storage_BaseDriver& FSD_BinaryFile::GetReal(Standard_Real& aValue)
 {
   double helper;
@@ -1688,7 +1689,7 @@ double FSD_BinaryFile::InverseReal(const double theValue)
 
   union {
     Standard_Integer i[2];
-    double    aValue;
+    double           aValue;
   } aWrapUnion{};
 
   aWrapUnion.aValue = theValue;

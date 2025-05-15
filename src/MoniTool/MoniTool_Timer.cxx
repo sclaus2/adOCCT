@@ -26,7 +26,7 @@ IMPLEMENT_STANDARD_RTTIEXT(MoniTool_Timer, Standard_Transient)
 void MoniTool_Timer::Dump(Standard_OStream& ostr)
 {
   Standard_Integer hours, minutes;
-  double    seconds, CPUtime, user, system;
+  double           seconds, CPUtime, user, system;
 
   myTimer.Show(seconds, minutes, hours, CPUtime);
   myTimer.OSD_Chronometer::Show(user, system);

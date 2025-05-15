@@ -44,8 +44,8 @@ Standard_OStream& BinTools::PutInteger(Standard_OStream& OS, const Standard_Inte
 Standard_OStream& BinTools::PutReal(Standard_OStream& theOS, const Standard_Real& theValue)
 {
 #ifdef DO_INVERSE
-  const Standard_Real aRValue = InverseReal(theValue);
-  double aValueHelper = aRValue.getValue();
+  const Standard_Real aRValue      = InverseReal(theValue);
+  double              aValueHelper = aRValue.getValue();
   theOS.write((char*)&aValueHelper, sizeof(double));
 #else
   double aValueHelper = theValue.getValue();

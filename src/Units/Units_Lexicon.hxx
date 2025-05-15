@@ -54,7 +54,7 @@ public:
   //! existing token is updated.
   Standard_EXPORT void AddToken(const Standard_CString aword,
                                 const Standard_CString amean,
-                                const double    avalue);
+                                const double           avalue);
 
   //! Useful for debugging.
   virtual void Dump() const;

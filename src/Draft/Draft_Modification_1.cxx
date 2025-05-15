@@ -2212,9 +2212,9 @@ static Standard_Real SmartParameter(Draft_EdgeInfo&             Einf,
                                     const Handle(Geom_Surface)& S1,
                                     const Handle(Geom_Surface)& S2)
 {
-  Handle(Geom2d_Curve)    NewC2d;
-  const Standard_Real Tol  = Precision::Confusion();
-  Standard_Real           Etol = EdgeTol;
+  Handle(Geom2d_Curve) NewC2d;
+  const Standard_Real  Tol  = Precision::Confusion();
+  Standard_Real        Etol = EdgeTol;
 
   Handle(Geom2d_Curve) pcu1 = Einf.FirstPC();
   Handle(Geom2d_Curve) pcu2 = Einf.SecondPC();

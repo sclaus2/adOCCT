@@ -108,15 +108,23 @@ static Standard_Integer OCC527(Draw_Interpretor& di, Standard_Integer argc, cons
             {
               TopoDS_Vertex aV    = TopoDS::Vertex(aExp2.Current());
               Standard_Real toler = BRep_Tool::Tolerance(aV);
-              Standard_Real        dist  = pl.Distance(BRep_Tool::Pnt(aV));
+              Standard_Real dist  = pl.Distance(BRep_Tool::Pnt(aV));
               if (dist > lmaxdist)
                 lmaxdist = dist.getValue();
               // If section was built check distance between vertexes and plane of the one
               str[0] = 0;
               if (dist > toler)
-                Sprintf(str, "Dist=%f, Toler=%f, Param=%f FAULTY\n", dist.getValue(), toler.getValue(), gzmax.getValue());
+                Sprintf(str,
+                        "Dist=%f, Toler=%f, Param=%f FAULTY\n",
+                        dist.getValue(),
+                        toler.getValue(),
+                        gzmax.getValue());
               else
-                Sprintf(str, "Dist=%f, Toler=%f, Param=%f\n", dist.getValue(), toler.getValue(), gzmax.getValue());
+                Sprintf(str,
+                        "Dist=%f, Toler=%f, Param=%f\n",
+                        dist.getValue(),
+                        toler.getValue(),
+                        gzmax.getValue());
               di << str;
             }
             if (lmaxdist > gmaxdist)

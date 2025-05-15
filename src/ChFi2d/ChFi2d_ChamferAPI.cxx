@@ -128,10 +128,12 @@ TopoDS_Edge ChFi2d_ChamferAPI::Result(TopoDS_Edge&        theEdge1,
   if (Abs(myEnd2 - myStart2) < theLength2)
     return aResult;
 
-  Standard_Real aCommon1 = (myCommonStart1 ? myStart1 : myEnd1)
-                           + (((myStart1 > myEnd1) ^ myCommonStart1) ? theLength1 : Standard_Real(-theLength1));
-  Standard_Real aCommon2 = (myCommonStart2 ? myStart2 : myEnd2)
-                           + (((myStart2 > myEnd2) ^ myCommonStart2) ? theLength2 : Standard_Real(-theLength2));
+  Standard_Real aCommon1 =
+    (myCommonStart1 ? myStart1 : myEnd1)
+    + (((myStart1 > myEnd1) ^ myCommonStart1) ? theLength1 : Standard_Real(-theLength1));
+  Standard_Real aCommon2 =
+    (myCommonStart2 ? myStart2 : myEnd2)
+    + (((myStart2 > myEnd2) ^ myCommonStart2) ? theLength2 : Standard_Real(-theLength2));
 
   // make chamfer edge
   GC_MakeLine             aML(myCurve1->Value(aCommon1), myCurve2->Value(aCommon2));

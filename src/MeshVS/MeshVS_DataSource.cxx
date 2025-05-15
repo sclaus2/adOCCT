@@ -47,10 +47,10 @@ Standard_Boolean MeshVS_DataSource::GetNormal(const Standard_Integer Id,
   if (Max <= 0)
     return Standard_False;
 
-  MeshVS_Buffer<Standard_Real>        aCoordsBuf(3 * Max);
-  TColStd_Array1OfReal Coords(aCoordsBuf, 1, 3 * Max);
-  Standard_Integer     nbNodes;
-  MeshVS_EntityType    Type;
+  MeshVS_Buffer<Standard_Real> aCoordsBuf(3 * Max);
+  TColStd_Array1OfReal         Coords(aCoordsBuf, 1, 3 * Max);
+  Standard_Integer             nbNodes;
+  MeshVS_EntityType            Type;
 
   Standard_Boolean res = Standard_False;
 
@@ -106,10 +106,10 @@ Standard_Boolean MeshVS_DataSource::GetNormalsByElement(
   const Standard_Integer         MaxNodes,
   Handle(TColStd_HArray1OfReal)& Normals) const
 {
-  MeshVS_Buffer<Standard_Real>        aCoordsBuf(3 * MaxNodes);
-  TColStd_Array1OfReal Coords(aCoordsBuf, 1, 3 * MaxNodes);
-  Standard_Integer     NbNodes;
-  MeshVS_EntityType    Type;
+  MeshVS_Buffer<Standard_Real> aCoordsBuf(3 * MaxNodes);
+  TColStd_Array1OfReal         Coords(aCoordsBuf, 1, 3 * MaxNodes);
+  Standard_Integer             NbNodes;
+  MeshVS_EntityType            Type;
 
   Standard_Boolean res = Standard_False;
   if (MaxNodes <= 0)
@@ -173,8 +173,8 @@ Standard_Boolean MeshVS_DataSource::GetNormalsByElement(
           Standard_Integer                 m    = aSeq.Length(), ind;
 
           norm.SetCoord(0, 0, 0);
-          MeshVS_Buffer<Standard_Real>        PolyNodesBuf(3 * m);
-          TColStd_Array1OfReal PolyNodes(PolyNodesBuf, 0, 3 * m);
+          MeshVS_Buffer<Standard_Real> PolyNodesBuf(3 * m);
+          TColStd_Array1OfReal         PolyNodes(PolyNodesBuf, 0, 3 * m);
           PolyNodes.SetValue(0, m);
           for (Standard_Integer j = 1; j <= m; j++)
           {

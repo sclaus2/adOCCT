@@ -1293,7 +1293,8 @@ static void SetStyle(const Handle(XSControl_WorkSession)&        theWS,
         if (!aRenderCol.IsNull())
         {
           theStyles.DecodeColor(aRenderCol, aRCol);
-          aFullSCol = Quantity_ColorRGBA(aRCol, static_cast<float>(1.0f - aRenderTransp.getValue()));
+          aFullSCol =
+            Quantity_ColorRGBA(aRCol, static_cast<float>(1.0f - aRenderTransp.getValue()));
         }
         if (isFound)
         {

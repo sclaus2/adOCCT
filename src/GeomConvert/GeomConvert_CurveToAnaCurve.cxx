@@ -509,7 +509,7 @@ Handle(Geom_Curve) GeomConvert_CurveToAnaCurve::ComputeEllipse(const Handle(Geom
     return anElips;
   }
 
-  Handle(Geom_Curve)      res;
+  Handle(Geom_Curve)  res;
   const Standard_Real prec = Precision::PConfusion();
 
   Standard_Real    AF, BF, CF, DF, EF, Q1, Q2, Q3, c2n;

@@ -37,7 +37,7 @@ public:
   //! updates of the indicator (non-forced updates of the progress bar will be
   //! disabled until that progress is reached since last update).
   Standard_EXPORT Draw_ProgressIndicator(const Draw_Interpretor& di,
-                                         double           theUpdateThreshold = 1.);
+                                         double                  theUpdateThreshold = 1.);
 
   //! Destructor; calls Reset()
   Standard_EXPORT ~Draw_ProgressIndicator();
@@ -94,8 +94,8 @@ private:
   Draw_Interpretor* myDraw;
   Standard_Boolean  myShown;
   Standard_Boolean  myBreak;
-  double     myUpdateThreshold;
-  double     myLastPosition;
+  double            myUpdateThreshold;
+  double            myLastPosition;
   Standard_Size     myStartTime;
   Standard_ThreadId myGuiThreadId;
 };

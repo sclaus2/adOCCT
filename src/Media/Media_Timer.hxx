@@ -56,9 +56,9 @@ public:
   Standard_EXPORT void Seek(const double theTime);
 
 protected:
-  OSD_Timer     myTimer;
-  double myTimerFrom;
-  double myTimerSpeed;
+  OSD_Timer myTimer;
+  double    myTimerFrom;
+  double    myTimerSpeed;
 };
 
 DEFINE_STANDARD_HANDLE(Media_Timer, Standard_Transient)

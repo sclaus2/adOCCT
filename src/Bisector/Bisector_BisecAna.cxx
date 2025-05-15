@@ -231,11 +231,11 @@ void Bisector_BisecAna::Perform(const Handle(Geom2d_Curve)& afirstcurve,
                                 const Standard_Boolean      oncurve)
 {
 
-  Standard_Boolean        ok;
-  Standard_Real           distanceptsol, parameter, firstparameter = 0.;
-  Standard_Boolean        thesense = Standard_False, sense;
-  Standard_Real           distancemini;
-  Standard_Integer        nbsolution;
+  Standard_Boolean    ok;
+  Standard_Real       distanceptsol, parameter, firstparameter = 0.;
+  Standard_Boolean    thesense = Standard_False, sense;
+  Standard_Real       distancemini;
+  Standard_Integer    nbsolution;
   const Standard_Real PreConf = Precision::Confusion();
 
   Handle(Standard_Type) type1 = afirstcurve->DynamicType();

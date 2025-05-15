@@ -823,9 +823,9 @@ NCollection_Mat4<Standard_Real> Aspect_OpenVRSession::EyeToHeadTransform(Aspect_
 
 //=================================================================================================
 
-NCollection_Mat4<Standard_Real> Aspect_OpenVRSession::ProjectionMatrix(Aspect_Eye theEye,
-                                                                Standard_Real     theZNear,
-                                                                Standard_Real     theZFar) const
+NCollection_Mat4<Standard_Real> Aspect_OpenVRSession::ProjectionMatrix(Aspect_Eye    theEye,
+                                                                       Standard_Real theZNear,
+                                                                       Standard_Real theZFar) const
 {
 #ifdef HAVE_OPENVR
   if (myContext->System != NULL)

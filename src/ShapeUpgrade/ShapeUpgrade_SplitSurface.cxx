@@ -173,10 +173,10 @@ void ShapeUpgrade_SplitSurface::SetUSplitValues(const Handle(TColStd_HSequenceOf
   if (UValues.IsNull())
     return;
   const Standard_Real precision = Precision::PConfusion();
-  Standard_Real           UFirst    = myUSplitValues->Value(1),
-                ULast               = myUSplitValues->Value(myUSplitValues->Length());
-  Standard_Integer i                = 1;
-  Standard_Integer len              = UValues->Length();
+  Standard_Real       UFirst    = myUSplitValues->Value(1),
+                ULast           = myUSplitValues->Value(myUSplitValues->Length());
+  Standard_Integer i            = 1;
+  Standard_Integer len          = UValues->Length();
 
   for (Standard_Integer ku = 2; ku <= myUSplitValues->Length(); ku++)
   {
@@ -200,10 +200,10 @@ void ShapeUpgrade_SplitSurface::SetVSplitValues(const Handle(TColStd_HSequenceOf
   if (VValues.IsNull())
     return;
   const Standard_Real precision = Precision::PConfusion();
-  Standard_Real           VFirst    = myVSplitValues->Value(1),
-                VLast               = myVSplitValues->Value(myVSplitValues->Length());
-  Standard_Integer i                = 1;
-  Standard_Integer len              = VValues->Length();
+  Standard_Real       VFirst    = myVSplitValues->Value(1),
+                VLast           = myVSplitValues->Value(myVSplitValues->Length());
+  Standard_Integer i            = 1;
+  Standard_Integer len          = VValues->Length();
   for (Standard_Integer kv = 2; kv <= myVSplitValues->Length(); kv++)
   {
     VLast = myVSplitValues->Value(kv);

@@ -280,7 +280,7 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors(Standard_Integer theNbC
   Aspect_SequenceOfColor aResult;
 
   // adjust range to be within (0, 360], with sign according to theHueFrom and theHueTo
-  Standard_Real           aHueRange = std::fmod((theHueTo - theHueFrom).getValue(), 360.);
+  Standard_Real       aHueRange = std::fmod((theHueTo - theHueFrom).getValue(), 360.);
   const Standard_Real aHueEps   = Precision::Angular() * 180. / M_PI;
   if (Abs(aHueRange) <= aHueEps)
   {
@@ -641,7 +641,8 @@ void AIS_ColorScale::drawColorBar(const Handle(Prs3d_Presentation)& thePrs,
     {
       aColor1 = aColors.Value(aColorIter + 1);
       aColor2 = aColors.Value(aColorIter + 2);
-      aSizeY  = anYBottom + Standard_Integer(Standard_Real((aColorIter + 1) * aStepY)) - anYBottomIter;
+      aSizeY =
+        anYBottom + Standard_Integer(Standard_Real((aColorIter + 1) * aStepY)) - anYBottomIter;
       addColoredQuad(aTriangles, anXLeft, anYBottomIter, theColorBreadth, aSizeY, aColor1, aColor2);
       anYBottomIter += aSizeY;
     }
@@ -757,7 +758,7 @@ void AIS_ColorScale::drawLabels(const Handle(Graphic3d_Group)&          theGroup
     }
 
     const Standard_Real aVal    = Standard_Real(aNbLabels) * myTextHeight / aSpc;
-    double       anIPart = 0.0;
+    double              anIPart = 0.0;
     Standard_Real       anFPart = std::modf(aVal.getValue(), &anIPart);
     aFilter                     = (Standard_Integer)anIPart + (anFPart != 0 ? 1 : 0);
   }

@@ -357,9 +357,9 @@ Standard_Boolean GeomFill_NSections::D1(const Standard_Real   V,
     ResultEval(mySurface, V, derivative_request, Result);
   }
 
-  Standard_Real           ww;
+  Standard_Real       ww;
   const Standard_Real EpsW       = 10 * Precision::PConfusion();
-  Standard_Boolean        NullWeight = Standard_False;
+  Standard_Boolean    NullWeight = Standard_False;
   if (!rational)
     DWeights.Init(0.);
   Standard_Integer indice = 1, ii;
@@ -465,9 +465,9 @@ Standard_Boolean GeomFill_NSections::D2(const Standard_Real   V,
     ResultEval(mySurface, V, derivative_request, Result);
   }
 
-  Standard_Real           ww;
+  Standard_Real       ww;
   const Standard_Real EpsW       = 10 * Precision::PConfusion();
-  Standard_Boolean        NullWeight = Standard_False;
+  Standard_Boolean    NullWeight = Standard_False;
   if (!rational)
     D2Weights.Init(0.);
   Standard_Integer indice = 1, ii;

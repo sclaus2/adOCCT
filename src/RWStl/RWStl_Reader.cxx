@@ -259,7 +259,10 @@ static inline bool str_starts_with(const char* theStr, const char* theWord, int 
   return !strncasecmp(theStr, theWord, theN);
 }
 
-static bool ReadVertex(const char* theStr, Standard_Real& theX, Standard_Real& theY, Standard_Real& theZ)
+static bool ReadVertex(const char*    theStr,
+                       Standard_Real& theX,
+                       Standard_Real& theY,
+                       Standard_Real& theZ)
 {
   const char* aStr = theStr;
 

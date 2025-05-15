@@ -219,7 +219,7 @@ static void KPartCurve3d(const TopoDS_Edge&   Edge,
   // try to find the particular case
   // if not found call BRepLib::BuildCurve3d
 
-  TopLoc_Location         Loc;
+  TopLoc_Location     Loc;
   const Standard_Real Tol = Precision::Confusion();
 
   // Search only isos on analytical surfaces.
@@ -416,11 +416,11 @@ Handle(Geom_Curve) MakeCurve(const BiTgte_CurveOnEdge& HC)
   { // the approximation is done
     MakeCurve_Function F(HC);
     Standard_Integer   Deg1, Deg2;
-    Deg1 = Deg2                 = 8;
+    Deg1 = Deg2             = 8;
     const Standard_Real Tol = Precision::Approximation();
-    Approx_FitAndDivide     Fit(F, Deg1, Deg2, Tol, Tol, Standard_True);
-    Standard_Integer        i;
-    Standard_Integer        NbCurves = Fit.NbMultiCurves();
+    Approx_FitAndDivide Fit(F, Deg1, Deg2, Tol, Tol, Standard_True);
+    Standard_Integer    i;
+    Standard_Integer    NbCurves = Fit.NbMultiCurves();
     // it is attempted to make the curve at least C1
     Convert_CompBezierCurvesToBSplineCurve Conv;
 
@@ -532,7 +532,7 @@ static TopoDS_Vertex FindVertex(const gp_Pnt&              P,
 
 static TopoDS_Edge MakeDegeneratedEdge(const Handle(Geom_Curve)& CC, const TopoDS_Vertex& VfOnE)
 {
-  BRep_Builder            B;
+  BRep_Builder        B;
   const Standard_Real Tol = Precision::Confusion();
   // kill trimmed curves
   Handle(Geom_Curve)        C  = CC;

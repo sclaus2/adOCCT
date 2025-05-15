@@ -480,12 +480,12 @@ void BRepLib_MakeEdge2d::Init(const Handle(Geom2d_Curve)& CC,
   }
 
   // check parameters
-  Standard_Real           p1       = pp1;
-  Standard_Real           p2       = pp2;
-  Standard_Real           cf       = C->FirstParameter();
-  Standard_Real           cl       = C->LastParameter();
+  Standard_Real       p1       = pp1;
+  Standard_Real       p2       = pp2;
+  Standard_Real       cf       = C->FirstParameter();
+  Standard_Real       cl       = C->LastParameter();
   const Standard_Real epsilon  = Precision::Confusion();
-  Standard_Boolean        periodic = C->IsPeriodic();
+  Standard_Boolean    periodic = C->IsPeriodic();
 
   TopoDS_Vertex V1, V2;
   if (periodic)
@@ -530,7 +530,7 @@ void BRepLib_MakeEdge2d::Init(const Handle(Geom2d_Curve)& CC,
     P2 = C->Value(p2);
 
   const Standard_Real preci = Precision::Confusion();
-  BRep_Builder            B;
+  BRep_Builder        B;
 
   // check for closed curve
   Standard_Boolean closed = Standard_False;

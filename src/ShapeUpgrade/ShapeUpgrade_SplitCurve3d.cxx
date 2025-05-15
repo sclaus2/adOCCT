@@ -49,12 +49,12 @@ void ShapeUpgrade_SplitCurve3d::Init(const Handle(Geom_Curve)& C,
                                      const Standard_Real       Last)
 {
   //  if (ShapeUpgrade::Debug()) std::cout << "SplitCurve3d::Init"<<std::endl;
-  Handle(Geom_Curve) CopyOfC        = Handle(Geom_Curve)::DownCast(C->Copy());
-  myCurve                           = CopyOfC;
+  Handle(Geom_Curve) CopyOfC    = Handle(Geom_Curve)::DownCast(C->Copy());
+  myCurve                       = CopyOfC;
   const Standard_Real precision = Precision::PConfusion();
-  Standard_Real           firstPar  = First;
-  Standard_Real           lastPar   = Last;
-  Handle(Geom_Curve)      aCurve    = myCurve;
+  Standard_Real       firstPar  = First;
+  Standard_Real       lastPar   = Last;
+  Handle(Geom_Curve)  aCurve    = myCurve;
   if (aCurve->IsKind(STANDARD_TYPE(Geom_TrimmedCurve)))
     aCurve = Handle(Geom_TrimmedCurve)::DownCast(aCurve)->BasisCurve();
   // 15.11.2002 PTV OCC966
@@ -151,8 +151,8 @@ void ShapeUpgrade_SplitCurve3d::Build(const Standard_Boolean Segment)
   {
     // pdn exceptons only on non periodic curves
     const Standard_Real precision = Precision::PConfusion();
-    Standard_Real           firstPar  = myCurve->FirstParameter();
-    Standard_Real           lastPar   = myCurve->LastParameter();
+    Standard_Real       firstPar  = myCurve->FirstParameter();
+    Standard_Real       lastPar   = myCurve->LastParameter();
     if (Abs(First - firstPar) < precision)
       First = firstPar;
     if (Abs(Last - lastPar) < precision)

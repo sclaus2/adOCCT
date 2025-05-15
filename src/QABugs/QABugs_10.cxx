@@ -252,7 +252,7 @@ static Standard_Integer OCC486(Draw_Interpretor& di, Standard_Integer argc, cons
     gp_Pnt P3D(Draw::Atof(argv[2]), Draw::Atof(argv[3]), Draw::Atof(argv[4]));
 
     const Standard_Real Tol = Precision::PConfusion();
-    Extrema_ExtPS           myExtPS;
+    Extrema_ExtPS       myExtPS;
     if (argc > 5)
       du = Draw::Atof(argv[5]);
     if (argc > 6)
@@ -287,8 +287,8 @@ static Standard_Integer OCC486(Draw_Interpretor& di, Standard_Integer argc, cons
       gp_Pnt        aCheckPnt  = aSurf.Value(S, T);
       Standard_Real aCheckDist = P3D.Distance(aCheckPnt);
       di << "Solution is : U = " << S.getValue() << "\t V = " << T.getValue() << "\n";
-      di << "Solution is : X = " << aCheckPnt.X().getValue() << "\t Y = " << aCheckPnt.Y().getValue()
-         << "\t Z = " << aCheckPnt.Z().getValue() << "\n";
+      di << "Solution is : X = " << aCheckPnt.X().getValue()
+         << "\t Y = " << aCheckPnt.Y().getValue() << "\t Z = " << aCheckPnt.Z().getValue() << "\n";
       di << "ExtremaDistance = " << distMin.getValue() << "\n";
       di << "CheckDistance = " << aCheckDist.getValue() << "\n";
 

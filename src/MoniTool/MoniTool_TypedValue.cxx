@@ -430,8 +430,7 @@ void MoniTool_TypedValue::SetRealLimit(const Standard_Boolean max, const double 
   }
 }
 
-Standard_Boolean MoniTool_TypedValue::RealLimit(const Standard_Boolean max,
-                                                double&         val) const
+Standard_Boolean MoniTool_TypedValue::RealLimit(const Standard_Boolean max, double& val) const
 {
   Standard_Boolean res = Standard_False;
   if (max)

@@ -73,23 +73,21 @@ public:
   Standard_EXPORT static Handle(Units_Dimensions) NullDimensions();
 
   //! Converts <avalue> expressed in <afirstunit> into the <asecondunit>.
-  Standard_EXPORT static double Convert(const double    avalue,
-                                               const Standard_CString afirstunit,
-                                               const Standard_CString asecondunit);
+  Standard_EXPORT static double Convert(const double           avalue,
+                                        const Standard_CString afirstunit,
+                                        const Standard_CString asecondunit);
 
-  Standard_EXPORT static double ToSI(const double    aData,
-                                            const Standard_CString aUnit);
+  Standard_EXPORT static double ToSI(const double aData, const Standard_CString aUnit);
 
-  Standard_EXPORT static double ToSI(const double       aData,
-                                            const Standard_CString    aUnit,
-                                            Handle(Units_Dimensions)& aDim);
+  Standard_EXPORT static double ToSI(const double              aData,
+                                     const Standard_CString    aUnit,
+                                     Handle(Units_Dimensions)& aDim);
 
-  Standard_EXPORT static double FromSI(const double    aData,
-                                              const Standard_CString aUnit);
+  Standard_EXPORT static double FromSI(const double aData, const Standard_CString aUnit);
 
-  Standard_EXPORT static double FromSI(const double       aData,
-                                              const Standard_CString    aUnit,
-                                              Handle(Units_Dimensions)& aDim);
+  Standard_EXPORT static double FromSI(const double              aData,
+                                       const Standard_CString    aUnit,
+                                       Handle(Units_Dimensions)& aDim);
 
   //! return the dimension associated to the Type
   Standard_EXPORT static Handle(Units_Dimensions) Dimensions(const Standard_CString aType);

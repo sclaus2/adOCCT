@@ -636,8 +636,8 @@ static Standard_Integer extrema(Draw_Interpretor& di, Standard_Integer n, const 
 
     if (aP1.Distance(aP2) < 1.e-16)
     {
-      di << "Extrema " << aJ << " is point : " << aP1.X().getValue() << " " << aP1.Y().getValue() << " " << aP1.Z().getValue()
-         << "\n";
+      di << "Extrema " << aJ << " is point : " << aP1.X().getValue() << " " << aP1.Y().getValue()
+         << " " << aP1.Z().getValue() << "\n";
       continue;
     }
 
@@ -718,7 +718,8 @@ static Standard_Integer totalextcc(Draw_Interpretor& di, Standard_Integer n, con
   {
     if (P1.Distance(P2) < 1.e-16)
     {
-      di << "Extrema is point : " << P1.X().getValue() << " " << P1.Y().getValue() << " " << P1.Z().getValue() << "\n";
+      di << "Extrema is point : " << P1.X().getValue() << " " << P1.Y().getValue() << " "
+         << P1.Z().getValue() << "\n";
     }
     else
     {

@@ -53,26 +53,26 @@ public:
                                 HWND                   win,
                                 const Standard_Boolean useBuffer = Standard_False);
 #endif
-  Standard_EXPORT void  MakeView(const Standard_Integer id, const char* typ, const char* window);
-  Standard_EXPORT void  SetTitle(const Standard_Integer id, const char* name);
-  Standard_EXPORT void  ResetView(const Standard_Integer id);
-  Standard_EXPORT void  SetZoom(const Standard_Integer id, const double z);
-  Standard_EXPORT void  RotateView(const Standard_Integer id, const gp_Dir2d&, const double);
-  Standard_EXPORT void  RotateView(const Standard_Integer id,
-                                   const gp_Pnt&,
-                                   const gp_Dir&,
-                                   const double);
-  Standard_EXPORT void  SetFocal(const Standard_Integer id, const double FocalDist);
-  Standard_EXPORT char* GetType(const Standard_Integer id) const;
-  Standard_EXPORT double    Zoom(const Standard_Integer id) const;
-  Standard_EXPORT double    Focal(const Standard_Integer id) const;
-  Standard_EXPORT void             SetTrsf(const Standard_Integer id, gp_Trsf& T);
-  Standard_EXPORT void             GetTrsf(const Standard_Integer id, gp_Trsf& T) const;
-  Standard_EXPORT void             GetPosSize(const Standard_Integer id,
-                                              Standard_Integer&      X,
-                                              Standard_Integer&      Y,
-                                              Standard_Integer&      W,
-                                              Standard_Integer&      H);
+  Standard_EXPORT void   MakeView(const Standard_Integer id, const char* typ, const char* window);
+  Standard_EXPORT void   SetTitle(const Standard_Integer id, const char* name);
+  Standard_EXPORT void   ResetView(const Standard_Integer id);
+  Standard_EXPORT void   SetZoom(const Standard_Integer id, const double z);
+  Standard_EXPORT void   RotateView(const Standard_Integer id, const gp_Dir2d&, const double);
+  Standard_EXPORT void   RotateView(const Standard_Integer id,
+                                    const gp_Pnt&,
+                                    const gp_Dir&,
+                                    const double);
+  Standard_EXPORT void   SetFocal(const Standard_Integer id, const double FocalDist);
+  Standard_EXPORT char*  GetType(const Standard_Integer id) const;
+  Standard_EXPORT double Zoom(const Standard_Integer id) const;
+  Standard_EXPORT double Focal(const Standard_Integer id) const;
+  Standard_EXPORT void   SetTrsf(const Standard_Integer id, gp_Trsf& T);
+  Standard_EXPORT void   GetTrsf(const Standard_Integer id, gp_Trsf& T) const;
+  Standard_EXPORT void   GetPosSize(const Standard_Integer id,
+                                    Standard_Integer&      X,
+                                    Standard_Integer&      Y,
+                                    Standard_Integer&      W,
+                                    Standard_Integer&      H);
   Standard_EXPORT Standard_Boolean Is3D(const Standard_Integer id) const;
   Standard_EXPORT void             GetFrame(const Standard_Integer id,
                                             Standard_Integer&      xmin,
@@ -113,7 +113,7 @@ public:
                                                   std::ostream&          sortie) const;
   Standard_EXPORT void             PostColor(const Standard_Integer icol,
                                              const Standard_Integer width,
-                                             const double    gray);
+                                             const double           gray);
   Standard_EXPORT Standard_Boolean SaveView(const Standard_Integer id, const char* filename);
   Standard_EXPORT void             RepaintAll() const;
   Standard_EXPORT void             Repaint2D() const;

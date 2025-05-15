@@ -347,8 +347,8 @@ private:
   Standard_Integer                                               themaxlen;
   Standard_Integer                                               theintlow;
   Standard_Integer                                               theintup;
-  double                                                  therealow;
-  double                                                  therealup;
+  double                                                         therealow;
+  double                                                         therealup;
   TCollection_AsciiString                                        theunidef;
   Handle(TColStd_HArray1OfAsciiString)                           theenums;
   NCollection_DataMap<TCollection_AsciiString, Standard_Integer> theeadds;

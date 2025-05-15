@@ -29,7 +29,12 @@ XmlObjMgt_DOMString XmlObjMgt_GP::Translate(const gp_Trsf& aTrsf)
 {
   char                buf[256];
   XmlObjMgt_DOMString S1(Translate(aTrsf.HVectorialPart())), S2(Translate(aTrsf.TranslationPart()));
-  Sprintf(buf, "%.17g %d %s %s", aTrsf.ScaleFactor().getValue(), aTrsf.Form(), S1.GetString(), S2.GetString());
+  Sprintf(buf,
+          "%.17g %d %s %s",
+          aTrsf.ScaleFactor().getValue(),
+          aTrsf.Form(),
+          S1.GetString(),
+          S2.GetString());
 
   return XmlObjMgt_DOMString(buf);
 }
@@ -50,7 +55,11 @@ XmlObjMgt_DOMString XmlObjMgt_GP::Translate(const gp_Mat& aMat)
 XmlObjMgt_DOMString XmlObjMgt_GP::Translate(const gp_XYZ& anXYZ)
 {
   char buf[75]; // (24 + 1) * 3
-  Sprintf(buf, "%.17g %.17g %.17g", anXYZ.X().getValue(), anXYZ.Y().getValue(), anXYZ.Z().getValue());
+  Sprintf(buf,
+          "%.17g %.17g %.17g",
+          anXYZ.X().getValue(),
+          anXYZ.Y().getValue(),
+          anXYZ.Z().getValue());
   return XmlObjMgt_DOMString(buf);
 }
 

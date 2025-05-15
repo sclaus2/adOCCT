@@ -83,7 +83,7 @@ void LocOpe_CSIntersector::Perform(const LocOpe_SequenceOfLin& Slin)
 
   const Standard_Real binf = RealFirst();
   const Standard_Real bsup = RealLast();
-  TopExp_Explorer         exp(myShape, TopAbs_FACE);
+  TopExp_Explorer     exp(myShape, TopAbs_FACE);
   for (; exp.More(); exp.Next())
   {
     const TopoDS_Face&        theface = TopoDS::Face(exp.Current());

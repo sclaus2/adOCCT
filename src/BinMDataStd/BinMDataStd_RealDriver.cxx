@@ -46,7 +46,7 @@ Standard_Boolean BinMDataStd_RealDriver::Paste(const BinObjMgt_Persistent&  theS
                                                BinObjMgt_RRelocationTable&  theRelocTable) const
 {
   Handle(TDataStd_Real) anAtt = Handle(TDataStd_Real)::DownCast(theTarget);
-  double         aValue;
+  double                aValue;
   Standard_Boolean      ok = theSource >> aValue;
   if (ok)
     anAtt->Set(aValue);

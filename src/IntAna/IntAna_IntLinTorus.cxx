@@ -33,9 +33,9 @@ IntAna_IntLinTorus::IntAna_IntLinTorus()
   // memset(theFi, 0, sizeof(theFi));
   // memset(theParam, 0, sizeof(theParam));
   // memset(theTheta, 0, sizeof(theTheta));
-  for(int i = 0; i < 4; ++i)
+  for (int i = 0; i < 4; ++i)
   {
-    theFi[i] = 0.;
+    theFi[i]    = 0.;
     theParam[i] = 0.;
     theTheta[i] = 0.;
   }

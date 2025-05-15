@@ -199,7 +199,7 @@ void MeshVS_Mesh::Compute(const Handle(PrsMgr_PresentationManager)& thePrsMgr,
 
   if (toShowComputeTime)
   {
-    double    aSec, aCpu;
+    double           aSec, aCpu;
     Standard_Integer aMin, anHour;
     aTimer.Show(aSec, aMin, anHour, aCpu);
     std::cout << "DisplayMode : " << theMode << "\n";
@@ -215,10 +215,10 @@ void MeshVS_Mesh::scanFacesForSharedNodes(const TColStd_PackedMapOfInteger& theA
                                           TColStd_PackedMapOfInteger&       theSharedNodes) const
 {
   theSharedNodes.Clear();
-  MeshVS_EntityType    aType;
-  Standard_Integer     aNbNodes;
-  MeshVS_Buffer<Standard_Real>        aCoordsBuf(3 * theNbMaxFaceNodes);
-  TColStd_Array1OfReal aCoords(aCoordsBuf, 1, 3 * theNbMaxFaceNodes);
+  MeshVS_EntityType            aType;
+  Standard_Integer             aNbNodes;
+  MeshVS_Buffer<Standard_Real> aCoordsBuf(3 * theNbMaxFaceNodes);
+  TColStd_Array1OfReal         aCoords(aCoordsBuf, 1, 3 * theNbMaxFaceNodes);
   for (TColStd_MapIteratorOfPackedMapOfInteger aFaceIter(theAllElements); aFaceIter.More();
        aFaceIter.Next())
   {
@@ -231,13 +231,13 @@ void MeshVS_Mesh::scanFacesForSharedNodes(const TColStd_PackedMapOfInteger& theA
       if (aNbNodes == 0)
         continue;
 
-      MeshVS_Buffer<Standard_Integer>           aNodesBuf(aNbNodes);
-      TColStd_Array1OfInteger aElemNodes(aNodesBuf, 1, aNbNodes);
+      MeshVS_Buffer<Standard_Integer> aNodesBuf(aNbNodes);
+      TColStd_Array1OfInteger         aElemNodes(aNodesBuf, 1, aNbNodes);
       if (!myDataSource->GetNodesByElement(aFaceIdx, aElemNodes, aNbNodes))
         continue;
 
-      MeshVS_Buffer<Standard_Real>      aFacePntsBuf(aNbNodes * 3);
-      TColgp_Array1OfPnt aFacePnts(aFacePntsBuf, 1, aNbNodes);
+      MeshVS_Buffer<Standard_Real> aFacePntsBuf(aNbNodes * 3);
+      TColgp_Array1OfPnt           aFacePnts(aFacePntsBuf, 1, aNbNodes);
       for (Standard_Integer aNodeIdx = 1; aNodeIdx <= aNbNodes; ++aNodeIdx)
       {
         theSharedNodes.Add(aElemNodes(aNodeIdx));
@@ -277,9 +277,9 @@ void MeshVS_Mesh::ComputeSelection(const Handle(SelectMgr_Selection)& theSelecti
   // Make two array aliases pointing to the same memory:
   // - TColStd_Array1OfReal for getting values from MeshVS_DataSource interface
   // - array of gp_Pnt for convenient work with array of points
-  MeshVS_Buffer<Standard_Real>              aCoordsBuf(3 * aMaxFaceNodes);
-  NCollection_Array1<gp_Pnt> aPntArray(aCoordsBuf, 1, aMaxFaceNodes);
-  TColStd_Array1OfReal       aPntArrayAsCoordArray(aCoordsBuf, 1, 3 * aMaxFaceNodes);
+  MeshVS_Buffer<Standard_Real> aCoordsBuf(3 * aMaxFaceNodes);
+  NCollection_Array1<gp_Pnt>   aPntArray(aCoordsBuf, 1, aMaxFaceNodes);
+  TColStd_Array1OfReal         aPntArrayAsCoordArray(aCoordsBuf, 1, 3 * aMaxFaceNodes);
 
   const TColStd_PackedMapOfInteger& anAllNodesMap    = aSource->GetAllNodes();
   const TColStd_PackedMapOfInteger& anAllElementsMap = aSource->GetAllElements();
@@ -399,16 +399,16 @@ void MeshVS_Mesh::ComputeSelection(const Handle(SelectMgr_Selection)& theSelecti
                   continue;
                 }
 
-                MeshVS_Buffer<Standard_Integer>           aNodesBuf(aNbNodes);
-                TColStd_Array1OfInteger aElemNodes(aNodesBuf, 1, aNbNodes);
+                MeshVS_Buffer<Standard_Integer> aNodesBuf(aNbNodes);
+                TColStd_Array1OfInteger         aElemNodes(aNodesBuf, 1, aNbNodes);
                 if (!myDataSource->GetNodesByElement(anElemIdx, aElemNodes, aNbNodes))
                 {
                   continue;
                 }
 
-                MeshVS_Buffer<Standard_Real>      aPntsBuf(aNbNodes * 3);
-                TColgp_Array1OfPnt aLinkPnts(aPntsBuf, 1, aNbNodes);
-                Standard_Boolean   isVertsShared = Standard_True;
+                MeshVS_Buffer<Standard_Real> aPntsBuf(aNbNodes * 3);
+                TColgp_Array1OfPnt           aLinkPnts(aPntsBuf, 1, aNbNodes);
+                Standard_Boolean             isVertsShared = Standard_True;
                 for (Standard_Integer aPntIdx = 1; aPntIdx <= aNbNodes; ++aPntIdx)
                 {
                   aLinkPnts(aPntIdx) = aPntArray.Value(aPntIdx);
@@ -680,7 +680,7 @@ void MeshVS_Mesh::ComputeSelection(const Handle(SelectMgr_Selection)& theSelecti
 
   if (toShowComputeSelectionTime)
   {
-    double    sec, cpu;
+    double           sec, cpu;
     Standard_Integer min, hour;
     gTimer.Show(sec, min, hour, cpu);
     std::cout << "SelectionMode : " << theMode << "\n";
@@ -1316,9 +1316,9 @@ void MeshVS_Mesh::UpdateSelectableNodes()
     if (IsHiddenElem(aKey))
       continue;
 
-    MeshVS_Buffer<Standard_Integer>           aNodesBuf(aMaxFaceNodes);
-    TColStd_Array1OfInteger aNodes(aNodesBuf, 1, aMaxFaceNodes);
-    Standard_Integer        NbNodes;
+    MeshVS_Buffer<Standard_Integer> aNodesBuf(aMaxFaceNodes);
+    TColStd_Array1OfInteger         aNodes(aNodesBuf, 1, aMaxFaceNodes);
+    Standard_Integer                NbNodes;
     if (!aSource->GetNodesByElement(aKey, aNodes, NbNodes))
       continue;
     for (Standard_Integer i = 1; i <= NbNodes; i++)

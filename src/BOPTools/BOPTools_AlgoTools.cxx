@@ -2242,7 +2242,7 @@ Standard_Real MinStep3D(const TopoDS_Edge&                  theE1,
     if (aR > 100.)
     {
       const Standard_Real d = 10 * Precision::PConfusion();
-      aDtMin                    = Max(aDtMin, sqrt(d * d + 2 * d * aR));
+      aDtMin                = Max(aDtMin, sqrt(d * d + 2 * d * aR));
     }
   }
   //

@@ -107,7 +107,11 @@ TCollection_AsciiString StepSelect_FloatFormat::Label() const
   if (theformrange.Length() > 0)
   {
     char mess[30];
-    Sprintf(mess, ", in range %f %f %s", therangemin.getValue(), therangemax.getValue(), theformrange.ToCString());
+    Sprintf(mess,
+            ", in range %f %f %s",
+            therangemin.getValue(),
+            therangemax.getValue(),
+            theformrange.ToCString());
     lab.AssignCat(mess);
   }
   return lab;

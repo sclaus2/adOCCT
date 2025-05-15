@@ -232,7 +232,9 @@ const TCollection_AsciiString& PrsDim_Dimension::GetModelUnits() const
 
 Standard_Real PrsDim_Dimension::ValueToDisplayUnits() const
 {
-  return UnitsAPI::AnyToAny(GetValue().getValue(), GetModelUnits().ToCString(), GetDisplayUnits().ToCString());
+  return UnitsAPI::AnyToAny(GetValue().getValue(),
+                            GetModelUnits().ToCString(),
+                            GetDisplayUnits().ToCString());
 }
 
 //=================================================================================================

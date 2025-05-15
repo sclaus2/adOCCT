@@ -1057,11 +1057,11 @@ void GeomFill_Pipe::ApproxSurf(const Standard_Boolean WithParameters)
   }
 #endif
 
-  Handle(GeomFill_Line)   Line = new GeomFill_Line(Section.NbSections());
-  Standard_Integer        NbIt = 0;
-  const Standard_Real T3d  = Precision::Approximation();
-  const Standard_Real T2d  = Precision::PApproximation();
-  GeomFill_AppSweep       App(4, 8, T3d, T2d, NbIt, WithParameters);
+  Handle(GeomFill_Line) Line = new GeomFill_Line(Section.NbSections());
+  Standard_Integer      NbIt = 0;
+  const Standard_Real   T3d  = Precision::Approximation();
+  const Standard_Real   T2d  = Precision::PApproximation();
+  GeomFill_AppSweep     App(4, 8, T3d, T2d, NbIt, WithParameters);
 
   App.Perform(Line, Section, 30);
 

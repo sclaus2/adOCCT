@@ -338,15 +338,16 @@ static Standard_Integer gproject(Draw_Interpretor& di, Standard_Integer n, const
         DrawTrSurf::Set(newname1.ToCString(), Projector.GetResult2dC(k));
 
         di << newname1 << " is pcurve\n";
-        di << " Tolerance reached in 2d is " << Projector.GetResult2dUApproxError(k).getValue() << ";  "
-           << Projector.GetResult2dVApproxError(k).getValue() << "\n";
+        di << " Tolerance reached in 2d is " << Projector.GetResult2dUApproxError(k).getValue()
+           << ";  " << Projector.GetResult2dVApproxError(k).getValue() << "\n";
       }
       if (Projector.GetProj3d())
       {
         DrawTrSurf::Set(newname.ToCString(), Projector.GetResult3dC(k));
 
         di << newname << " is 3d projected curve\n";
-        di << " Tolerance reached in 3d is " << Projector.GetResult3dApproxError(k).getValue() << "\n";
+        di << " Tolerance reached in 3d is " << Projector.GetResult3dApproxError(k).getValue()
+           << "\n";
       }
     }
   }
@@ -989,7 +990,8 @@ static Standard_Integer crvpoints(Draw_Interpretor& di, Standard_Integer /*n*/, 
 
   // check deviation
   ComputeDeviation(*aHCurve, aPnts, dmax, ufmax, ulmax, imax);
-  di << "Max defl: " << dmax.getValue() << " " << ufmax.getValue() << " " << ulmax.getValue() << " " << imax << "\n";
+  di << "Max defl: " << dmax.getValue() << " " << ufmax.getValue() << " " << ulmax.getValue() << " "
+     << imax << "\n";
 
   return 0;
 }
@@ -1062,7 +1064,8 @@ static Standard_Integer crvtpoints(Draw_Interpretor& di, Standard_Integer n, con
   // check deviation
   ComputeDeviation(*aHCurve, aPnts, dmax, ufmax, ulmax, imax);
   //
-  di << "Max defl: " << dmax.getValue() << " " << ufmax.getValue() << " " << ulmax.getValue() << " " << imax << "\n";
+  di << "Max defl: " << dmax.getValue() << " " << ufmax.getValue() << " " << ulmax.getValue() << " "
+     << imax << "\n";
 
   return 0;
 }
@@ -1107,7 +1110,7 @@ static Standard_Integer uniformAbscissa(Draw_Interpretor& di, Standard_Integer n
     GeomAdaptor_Curve GAC(ellip);
     di << "Type Of curve: " << GAC.GetType() << "\n";
     const Standard_Real Tol = Precision::Confusion();
-    Standard_Real           L;
+    Standard_Real       L;
 
     L = GCPnts_AbscissaPoint::Length(GAC, GAC.FirstParameter(), GAC.LastParameter(), Tol);
     di << "Ellipse length = " << L.getValue() << "\n";
@@ -1185,7 +1188,7 @@ static Standard_Integer EllipsUniformAbscissa(Draw_Interpretor& di,
     GeomAdaptor_Curve GAC(ellip);
     di << "Type Of curve: " << GAC.GetType() << "\n";
     const Standard_Real Tol = Precision::Confusion();
-    Standard_Real           L;
+    Standard_Real       L;
 
     L = GCPnts_AbscissaPoint::Length(GAC, GAC.FirstParameter(), GAC.LastParameter(), Tol);
     di << "Ellipse length = " << L.getValue() << "\n";
@@ -1438,7 +1441,8 @@ static Standard_Integer mypoints(Draw_Interpretor& di, Standard_Integer /*n*/, c
   Standard_Integer imax = 0;
 
   ComputeDeviation(GeomAdaptor_Curve(C), aPnts, dmax, ufmax, ulmax, imax);
-  di << "Max defl: " << dmax.getValue() << " " << ufmax.getValue() << " " << ulmax.getValue() << " " << imax << "\n";
+  di << "Max defl: " << dmax.getValue() << " " << ufmax.getValue() << " " << ulmax.getValue() << " "
+     << imax << "\n";
 
   return 0;
 }

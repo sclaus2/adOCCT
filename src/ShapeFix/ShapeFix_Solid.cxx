@@ -595,7 +595,7 @@ TopoDS_Solid ShapeFix_Solid::SolidFromShell(const TopoDS_Shell& shell)
   {
     OCC_CATCH_SIGNALS
     BRepClass3d_SolidClassifier bsc3d(solid);
-    const Standard_Real     t = Precision::Confusion(); // tolerance moyenne
+    const Standard_Real         t = Precision::Confusion(); // tolerance moyenne
     bsc3d.PerformInfinitePoint(t);
 
     if (bsc3d.State() == TopAbs_IN)

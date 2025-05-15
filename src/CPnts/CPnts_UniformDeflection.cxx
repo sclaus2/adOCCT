@@ -274,7 +274,7 @@ CPnts_UniformDeflection::CPnts_UniformDeflection()
       myDu(0.0)
 {
   // memset(myParams, 0, sizeof(myParams));
-  for(int i = 0; i < 3; ++i)
+  for (int i = 0; i < 3; ++i)
   {
     myParams[i] = 0.;
   }

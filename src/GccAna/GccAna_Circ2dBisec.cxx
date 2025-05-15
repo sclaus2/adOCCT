@@ -49,7 +49,7 @@ GccAna_Circ2dBisec::GccAna_Circ2dBisec(const gp_Circ2d& Circ1, const gp_Circ2d& 
   //            - WellDone (Boolean showing success or failure of the algo) +
   //=========================================================================
 
-  WellDone                    = Standard_False;
+  WellDone                = Standard_False;
   const Standard_Real Tol = Precision::Confusion();
 
   Standard_Real R1 = Circ1.Radius();

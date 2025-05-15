@@ -112,7 +112,11 @@ VrmlData_ErrorStatus VrmlData_Box::Write(const char* thePrefix) const
   if (OK(aStatus, Scene().WriteLine(thePrefix, header, GlobalIndent())))
   {
     char buf[128];
-    Sprintf(buf, "size %.12g %.12g %.12g", mySize.X().getValue(), mySize.Y().getValue(), mySize.Z().getValue());
+    Sprintf(buf,
+            "size %.12g %.12g %.12g",
+            mySize.X().getValue(),
+            mySize.Y().getValue(),
+            mySize.Z().getValue());
     Scene().WriteLine(buf);
     aStatus = WriteClosing();
   }

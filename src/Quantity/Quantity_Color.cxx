@@ -236,9 +236,9 @@ bool Quantity_Color::ColorFromHex(const Standard_CString theHexColorString,
 
 //=================================================================================================
 
-Quantity_Color::Quantity_Color(const double        theC1,
-                               const double        theC2,
-                               const double        theC3,
+Quantity_Color::Quantity_Color(const double               theC1,
+                               const double               theC2,
+                               const double               theC3,
                                const Quantity_TypeOfColor theType)
 {
   SetValues(theC1, theC2, theC3, theType);
@@ -278,9 +278,9 @@ void Quantity_Color::ChangeIntensity(const double theDelta)
 
 //=================================================================================================
 
-void Quantity_Color::SetValues(const double        theC1,
-                               const double        theC2,
-                               const double        theC3,
+void Quantity_Color::SetValues(const double               theC1,
+                               const double               theC2,
+                               const double               theC3,
                                const Quantity_TypeOfColor theType)
 {
   switch (theType)
@@ -320,9 +320,7 @@ void Quantity_Color::SetValues(const double        theC1,
 
 //=================================================================================================
 
-void Quantity_Color::Delta(const Quantity_Color& theColor,
-                           double&        theDC,
-                           double&        theDI) const
+void Quantity_Color::Delta(const Quantity_Color& theColor, double& theDC, double& theDI) const
 {
   const NCollection_Vec3<float> aHls1 = Convert_LinearRGB_To_HLS(myRgb);
   const NCollection_Vec3<float> aHls2 = Convert_LinearRGB_To_HLS(theColor.myRgb);
@@ -346,17 +344,17 @@ double Quantity_Color::DeltaE2000(const Quantity_Color& theOther) const
   double aLx_mean = 0.5 * (aL1 + aL2);
 
   // mean C
-  double       aC1          = Sqrt(aa1 * aa1 + ab1 * ab1);
-  double       aC2          = Sqrt(aa2 * aa2 + ab2 * ab2);
-  double       aC_mean      = 0.5 * (aC1 + aC2);
-  double       aC_mean_pow7 = Pow(aC_mean, 7);
+  double              aC1          = Sqrt(aa1 * aa1 + ab1 * ab1);
+  double              aC2          = Sqrt(aa2 * aa2 + ab2 * ab2);
+  double              aC_mean      = 0.5 * (aC1 + aC2);
+  double              aC_mean_pow7 = Pow(aC_mean, 7);
   static const double a25_pow7     = Pow(25., 7);
-  double       aG           = 0.5 * (1. - Sqrt(aC_mean_pow7 / (aC_mean_pow7 + a25_pow7)));
-  double       aa1x         = aa1 * (1. + aG);
-  double       aa2x         = aa2 * (1. + aG);
-  double       aC1x         = Sqrt(aa1x * aa1x + ab1 * ab1);
-  double       aC2x         = Sqrt(aa2x * aa2x + ab2 * ab2);
-  double       aCx_mean     = 0.5 * (aC1x + aC2x);
+  double              aG           = 0.5 * (1. - Sqrt(aC_mean_pow7 / (aC_mean_pow7 + a25_pow7)));
+  double              aa1x         = aa1 * (1. + aG);
+  double              aa2x         = aa2 * (1. + aG);
+  double              aC1x         = Sqrt(aa1x * aa1x + ab1 * ab1);
+  double              aC2x         = Sqrt(aa2x * aa2x + ab2 * ab2);
+  double              aCx_mean     = 0.5 * (aC1x + aC2x);
 
   // mean H
   double ah1x = (aC1x > TheEpsilon ? ATan2(ab1, aa1x) * 180. / M_PI : 270.);
@@ -380,9 +378,9 @@ double Quantity_Color::DeltaE2000(const Quantity_Color& theOther) const
 
   // factors
   double aT = 1. - 0.17 * Cos((aHx_mean - 30.) * M_PI / 180.)
-                     + 0.24 * Cos((2. * aHx_mean) * M_PI / 180.)
-                     + 0.32 * Cos((3. * aHx_mean + 6.) * M_PI / 180.)
-                     - 0.20 * Cos((4. * aHx_mean - 63.) * M_PI / 180.);
+              + 0.24 * Cos((2. * aHx_mean) * M_PI / 180.)
+              + 0.32 * Cos((3. * aHx_mean + 6.) * M_PI / 180.)
+              - 0.20 * Cos((4. * aHx_mean - 63.) * M_PI / 180.);
 
   double aLx_mean50_2 = (aLx_mean - 50.) * (aLx_mean - 50.);
   double aS_L         = 1. + 0.015 * aLx_mean50_2 / Sqrt(20. + aLx_mean50_2);
@@ -431,9 +429,9 @@ Quantity_NameOfColor Quantity_Color::Name() const
 
 //=================================================================================================
 
-void Quantity_Color::Values(double&             theR1,
-                            double&             theR2,
-                            double&             theR3,
+void Quantity_Color::Values(double&                    theR1,
+                            double&                    theR2,
+                            double&                    theR3,
                             const Quantity_TypeOfColor theType) const
 {
   switch (theType)
@@ -713,7 +711,7 @@ Standard_Boolean Quantity_Color::InitFromJson(const Standard_SStream& theSStream
                                               Standard_Integer&       theStreamPos)
 {
   Standard_Integer aPos = theStreamPos;
-  double    aRed, aGreen, aBlue;
+  double           aRed, aGreen, aBlue;
   OCCT_INIT_VECTOR_CLASS(Standard_Dump::Text(theSStream), "RGB", aPos, 3, &aRed, &aGreen, &aBlue)
 
   SetValues((Standard_ShortReal)aRed,

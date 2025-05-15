@@ -86,10 +86,10 @@ void ShapeUpgrade_SplitSurfaceContinuity::Compute(const Standard_Boolean Segment
       myVSplitValues->SetValue(myVSplitValues->Length(), VL);
   }
 
-  Standard_Real           UFirst    = myUSplitValues->Value(1);
-  Standard_Real           ULast     = myUSplitValues->Value(myUSplitValues->Length());
-  Standard_Real           VFirst    = myVSplitValues->Value(1);
-  Standard_Real           VLast     = myVSplitValues->Value(myVSplitValues->Length());
+  Standard_Real       UFirst    = myUSplitValues->Value(1);
+  Standard_Real       ULast     = myUSplitValues->Value(myUSplitValues->Length());
+  Standard_Real       VFirst    = myVSplitValues->Value(1);
+  Standard_Real       VLast     = myVSplitValues->Value(myVSplitValues->Length());
   const Standard_Real precision = Precision::Confusion();
   //  if (ShapeUpgrade::Debug()) std::cout << "SplitSurfaceContinuity::Build" << std::endl;
   if (mySurface->Continuity() < myCriterion)

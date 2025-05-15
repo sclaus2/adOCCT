@@ -58,9 +58,10 @@ public:
   static int Length() { return 3; }
 
   //! Empty constructor. Construct the zero vector.
-  NCollection_Vec3() {
+  NCollection_Vec3()
+  {
     // std::memset(this, 0, sizeof(NCollection_Vec3));
-    for(int i = 0; i < 3; ++i)
+    for (int i = 0; i < 3; ++i)
       v[i] = 0.;
   }
 
@@ -275,10 +276,7 @@ public:
   }
 
   //! Compute component-wise modulus of the vector.
-  NCollection_Vec3 cwiseAbs() const
-  {
-    return NCollection_Vec3(Abs(v[0]), Abs(v[1]), Abs(v[2]));
-  }
+  NCollection_Vec3 cwiseAbs() const { return NCollection_Vec3(Abs(v[0]), Abs(v[1]), Abs(v[2])); }
 
   //! Compute maximum component of the vector.
   Element_t maxComp() const

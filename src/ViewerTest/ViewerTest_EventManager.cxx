@@ -369,13 +369,16 @@ bool ViewerTest_EventManager::navigationKeyModifierSwitch(unsigned int theModifO
 
 //=================================================================================================
 
-void ViewerTest_EventManager::KeyDown(Aspect_VKey theKey, Standard_Real theTime, Standard_Real thePressure)
+void ViewerTest_EventManager::KeyDown(Aspect_VKey   theKey,
+                                      Standard_Real theTime,
+                                      Standard_Real thePressure)
 {
   const unsigned int aModifOld = myKeys.Modifiers();
   AIS_ViewController::KeyDown(theKey, theTime, thePressure);
 
   const unsigned int aModifNew = myKeys.Modifiers();
-  if (aModifNew != aModifOld && navigationKeyModifierSwitch(aModifOld, aModifNew, theTime.getValue()))
+  if (aModifNew != aModifOld
+      && navigationKeyModifierSwitch(aModifOld, aModifNew, theTime.getValue()))
   {
     // modifier key just pressed
   }
@@ -402,7 +405,8 @@ void ViewerTest_EventManager::KeyUp(Aspect_VKey theKey, Standard_Real theTime)
   }
 
   const unsigned int aModifNew = myKeys.Modifiers();
-  if (aModifNew != aModifOld && navigationKeyModifierSwitch(aModifOld, aModifNew, theTime.getValue()))
+  if (aModifNew != aModifOld
+      && navigationKeyModifierSwitch(aModifOld, aModifNew, theTime.getValue()))
   {
     // modifier key released
   }

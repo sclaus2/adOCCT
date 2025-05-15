@@ -536,7 +536,8 @@ static Standard_Integer OCC566(Draw_Interpretor& di, Standard_Integer n, const c
   BRepBndLib::AddClose(S, B);
   Standard_Real axmin, aymin, azmin, axmax, aymax, azmax;
   B.Get(axmin, aymin, azmin, axmax, aymax, azmax);
-  di << axmin.getValue() << " " << aymin.getValue() << " " << azmin.getValue() << " " << axmax.getValue() << " " << aymax.getValue() << " " << azmax.getValue();
+  di << axmin.getValue() << " " << aymin.getValue() << " " << azmin.getValue() << " "
+     << axmax.getValue() << " " << aymax.getValue() << " " << azmax.getValue();
   if (n >= 8)
   {
     Draw::Set(a[2], axmin.getValue());
@@ -617,12 +618,12 @@ static Standard_Integer OCC570(Draw_Interpretor& di, Standard_Integer argc, cons
 
 #include <Law_Interpol.hxx>
 
-static double tesp       = 1.e-4;
-static double t3d        = 1.e-4;
-static double t2d        = 1.e-5;
-static double ta         = 1.e-2;
-static double fl         = 1.e-3;
-static double tapp_angle = 1.e-2;
+static double        tesp       = 1.e-4;
+static double        t3d        = 1.e-4;
+static double        t2d        = 1.e-5;
+static double        ta         = 1.e-2;
+static double        fl         = 1.e-3;
+static double        tapp_angle = 1.e-2;
 static GeomAbs_Shape blend_cont = GeomAbs_C1;
 
 static BRepFilletAPI_MakeFillet* Rake = 0;
@@ -1016,7 +1017,8 @@ static Standard_Integer OCC884(Draw_Interpretor& di, Standard_Integer argc, cons
   for (i = 1; i <= num; ++i)
   {
     gp_Pnt pt = points3d(i);
-    di << "Info: Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", " << pt.Z().getValue() << ")\n";
+    di << "Info: Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", "
+       << pt.Z().getValue() << ")\n";
     Sprintf(str, "p_%d", i);
     DrawTrSurf::Set(aName, pt);
   }
@@ -1295,7 +1297,8 @@ static Standard_Integer OCC1642(Draw_Interpretor& di, Standard_Integer argc, con
     for (int i = 1; i <= num; ++i)
     {
       gp_Pnt pt = points3d(i);
-      di << "\n Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", " << pt.Z().getValue() << ")";
+      di << "\n Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", "
+         << pt.Z().getValue() << ")";
     }
   }
 
@@ -1419,7 +1422,8 @@ static Standard_Integer OCC1642(Draw_Interpretor& di, Standard_Integer argc, con
     for (int i = 1; i <= num; ++i)
     {
       gp_Pnt pt = points3d(i);
-      di << "\n Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", " << pt.Z().getValue() << ")";
+      di << "\n Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", "
+         << pt.Z().getValue() << ")";
     }
   }
 

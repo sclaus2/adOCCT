@@ -135,7 +135,12 @@ void IntPolyh_Point::Cross(const IntPolyh_Point& a, const IntPolyh_Point& b)
 
 void IntPolyh_Point::Dump() const
 {
-  printf("\nPoint : x=%+8.3eg y=%+8.3eg z=%+8.3eg u=%+8.3eg v=%+8.3eg\n", myX.getValue(), myY.getValue(), myZ.getValue(), myU.getValue(), myV.getValue());
+  printf("\nPoint : x=%+8.3eg y=%+8.3eg z=%+8.3eg u=%+8.3eg v=%+8.3eg\n",
+         myX.getValue(),
+         myY.getValue(),
+         myZ.getValue(),
+         myU.getValue(),
+         myV.getValue());
 }
 
 //=================================================================================================

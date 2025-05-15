@@ -53,9 +53,9 @@ public:
 
   //! Creates a color according to the definition system theType.
   //! Throws exception if values are out of range.
-  Standard_EXPORT Quantity_Color(const double        theC1,
-                                 const double        theC2,
-                                 const double        theC3,
+  Standard_EXPORT Quantity_Color(const double               theC1,
+                                 const double               theC2,
+                                 const double               theC3,
                                  const Quantity_TypeOfColor theType);
 
   //! Define color from linear RGB values.
@@ -78,16 +78,16 @@ public:
 
   //! Returns in theC1, theC2 and theC3 the components of this color
   //! according to the color system definition theType.
-  Standard_EXPORT void Values(double&             theC1,
-                              double&             theC2,
-                              double&             theC3,
+  Standard_EXPORT void Values(double&                    theC1,
+                              double&                    theC2,
+                              double&                    theC3,
                               const Quantity_TypeOfColor theType) const;
 
   //! Updates a color according to the mode specified by theType.
   //! Throws exception if values are out of range.
-  Standard_EXPORT void SetValues(const double        theC1,
-                                 const double        theC2,
-                                 const double        theC3,
+  Standard_EXPORT void SetValues(const double               theC1,
+                                 const double               theC2,
+                                 const double               theC3,
                                  const Quantity_TypeOfColor theType);
 
   //! Returns the Red component (quantity of red) of the color within range [0.0; 1.0].
@@ -146,16 +146,13 @@ public:
   //! black/white distance).
   double Distance(const Quantity_Color& theColor) const
   {
-    return (NCollection_Vec3<double>(myRgb)
-            - NCollection_Vec3<double>(theColor.myRgb))
-      .Modulus();
+    return (NCollection_Vec3<double>(myRgb) - NCollection_Vec3<double>(theColor.myRgb)).Modulus();
   }
 
   //! Returns the square of distance between two colors.
   double SquareDistance(const Quantity_Color& theColor) const
   {
-    return (NCollection_Vec3<double>(myRgb)
-            - NCollection_Vec3<double>(theColor.myRgb))
+    return (NCollection_Vec3<double>(myRgb) - NCollection_Vec3<double>(theColor.myRgb))
       .SquareModulus();
   }
 
@@ -164,9 +161,7 @@ public:
   //! The calculation is with respect to this color.
   //! If <DC> is positive then <me> is more contrasty.
   //! If <DI> is positive then <me> is more intense.
-  Standard_EXPORT void Delta(const Quantity_Color& theColor,
-                             double&        DC,
-                             double&        DI) const;
+  Standard_EXPORT void Delta(const Quantity_Color& theColor, double& DC, double& DI) const;
 
   //! Returns the value of the perceptual difference between this color
   //! and @p theOther, computed using the CIEDE2000 formula.
@@ -177,9 +172,7 @@ public:
 
 public:
   //! Returns the color from Quantity_NameOfColor enumeration nearest to specified RGB values.
-  static Quantity_NameOfColor Name(const double theR,
-                                   const double theG,
-                                   const double theB)
+  static Quantity_NameOfColor Name(const double theR, const double theG, const double theB)
   {
     const Quantity_Color aColor(theR, theG, theB, Quantity_TOC_RGB);
     return aColor.Name();
@@ -295,10 +288,9 @@ public:
   //! as would be usually expected to preserve higher (for human eye) color precision in 4 bytes.
   static void Argb2color(const Standard_Integer theARGB, Quantity_Color& theColor)
   {
-    const NCollection_Vec3<double> aColor(
-      static_cast<double>((theARGB & 0xff0000) >> 16),
-      static_cast<double>((theARGB & 0x00ff00) >> 8),
-      static_cast<double>((theARGB & 0x0000ff)));
+    const NCollection_Vec3<double> aColor(static_cast<double>((theARGB & 0xff0000) >> 16),
+                                          static_cast<double>((theARGB & 0x00ff00) >> 8),
+                                          static_cast<double>((theARGB & 0x0000ff)));
     theColor.SetValues(aColor.r() / 255.0,
                        aColor.g() / 255.0,
                        aColor.b() / 255.0,
@@ -386,12 +378,12 @@ public:
   }
 
   //! Converts HLS components into sRGB ones.
-  static void HlsRgb(const double theH,
-                     const double theL,
-                     const double theS,
-                     Standard_Real&      theR,
-                     Standard_Real&      theG,
-                     Standard_Real&      theB)
+  static void HlsRgb(const double   theH,
+                     const double   theL,
+                     const double   theS,
+                     Standard_Real& theR,
+                     Standard_Real& theG,
+                     Standard_Real& theB)
   {
     const NCollection_Vec3<float> anRgb =
       Convert_HLS_To_sRGB(NCollection_Vec3<float>((float)theH, (float)theL, (float)theS));
@@ -401,12 +393,12 @@ public:
   }
 
   //! Converts sRGB components into HLS ones.
-  static void RgbHls(const double theR,
-                     const double theG,
-                     const double theB,
-                     Standard_Real&      theH,
-                     Standard_Real&      theL,
-                     Standard_Real&      theS)
+  static void RgbHls(const double   theR,
+                     const double   theG,
+                     const double   theB,
+                     Standard_Real& theH,
+                     Standard_Real& theL,
+                     Standard_Real& theS)
   {
     const NCollection_Vec3<float> aHls =
       Convert_sRGB_To_HLS(NCollection_Vec3<float>((float)theR, (float)theG, (float)theB));

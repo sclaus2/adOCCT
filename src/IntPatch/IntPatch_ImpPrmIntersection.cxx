@@ -229,10 +229,10 @@ void ComputeTangency(const IntPatch_TheSOnBounds&       solrst,
   gp_Pnt2d                            p2d;
   gp_Vec2d                            d2d;
   //
-  Standard_Real      aX[2], aF[1], aD[1][2];
-  math_Vector X(aX, 1, 2);
-  math_Vector F(aF, 1, 1);
-  math_Matrix D(aD, 1, 1, 1, 2);
+  Standard_Real aX[2], aF[1], aD[1][2];
+  math_Vector   X(aX, 1, 2);
+  math_Vector   F(aF, 1, 1);
+  math_Matrix   D(aD, 1, 1, 1, 2);
   //
   seqlength = 0;
   NbPoints  = solrst.NbPoints();
@@ -2935,9 +2935,9 @@ static Standard_Boolean DecomposeResult(const Handle(IntPatch_PointLine)&  theLi
     }
   }
 
-  const Standard_Real     aDeltaUmax = M_PI_2;
+  const Standard_Real aDeltaUmax = M_PI_2;
   const Standard_Real aTOL3D = 1.e-10, aTOL2D = Precision::PConfusion(),
-                          aTOL2DS = Precision::PConfusion();
+                      aTOL2DS = Precision::PConfusion();
 
   const Handle(IntSurf_LineOn2S)& aSLine = theLine->Curve();
 
@@ -3075,7 +3075,7 @@ static Standard_Boolean DecomposeResult(const Handle(IntPatch_PointLine)&  theLi
         const IntSurf_PntOn2S& aRefPt = aSSLine->Value(aBindex - 1);
 
         const Standard_Real aCompareTol3D = Precision::Confusion();
-        Standard_Real           aCompareTol2D = Precision::PConfusion();
+        Standard_Real       aCompareTol2D = Precision::PConfusion();
 
         IntSurf_PntOn2S      aNewPoint = aRefPt;
         IntPatch_SpecPntType aLastType = IntPatch_SPntNone;

@@ -424,11 +424,11 @@ void Extrema_ExtElCS::Perform(const gp_Circ& C, const gp_Cylinder& S)
   }
   else
   {
-    Standard_Integer        aNbExt = anExtC.NbExt();
-    Standard_Integer        i;
-    Standard_Integer        aCurI    = 1;
+    Standard_Integer    aNbExt = anExtC.NbExt();
+    Standard_Integer    i;
+    Standard_Integer    aCurI    = 1;
     const Standard_Real aTolConf = Precision::Confusion();
-    Standard_Real           aCylRad  = S.Radius();
+    Standard_Real       aCylRad  = S.Radius();
 
     // Check whether two objects have intersection points
     IntAna_Quadric      aCylQuad(S);

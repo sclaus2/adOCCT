@@ -80,8 +80,8 @@ void ShapeUpgrade_SplitCurve2dContinuity::Compute()
   if (mySplitValues->Length() > 2)
     myStatus = ShapeExtend::EncodeStatus(ShapeExtend_DONE1);
   const Standard_Real precision = Precision::PConfusion();
-  Standard_Real           First     = mySplitValues->Value(1);
-  Standard_Real           Last      = mySplitValues->Value(mySplitValues->Length());
+  Standard_Real       First     = mySplitValues->Value(1);
+  Standard_Real       Last      = mySplitValues->Value(mySplitValues->Length());
   if (myCurve->IsKind(STANDARD_TYPE(Geom2d_TrimmedCurve)))
   {
     Handle(Geom2d_TrimmedCurve)         tmp      = Handle(Geom2d_TrimmedCurve)::DownCast(myCurve);

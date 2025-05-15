@@ -3182,9 +3182,9 @@ void CutEdgeProf(const TopoDS_Edge&            E,
   //  modified by NIZHNY-EAP Wed Feb  2 16:33:05 2000 ___END___
 
   // On calcule les intersection avec Oy.
-  Geom2dAdaptor_Curve     ALine(Line);
+  Geom2dAdaptor_Curve ALine(Line);
   const Standard_Real Tol  = Precision::Intersection();
-  Standard_Real           TolC = 0.;
+  Standard_Real       TolC = 0.;
 
   Geom2dInt_GInter Intersector(ALine, AC2d, TolC, Tol);
   Standard_Integer i, Nb = Intersector.NbPoints();

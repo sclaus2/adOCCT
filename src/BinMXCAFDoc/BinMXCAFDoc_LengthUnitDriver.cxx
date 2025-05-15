@@ -45,7 +45,7 @@ Standard_Boolean BinMXCAFDoc_LengthUnitDriver::Paste(
   (void)theRelocTable;
   Handle(XCAFDoc_LengthUnit) anAtt = Handle(XCAFDoc_LengthUnit)::DownCast(theTarget);
   TCollection_AsciiString    aName;
-  double              aScaleFactor = 1.;
+  double                     aScaleFactor = 1.;
   Standard_Boolean           isOk         = theSource >> aName >> aScaleFactor;
   if (isOk)
   {

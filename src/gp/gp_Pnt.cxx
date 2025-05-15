@@ -95,8 +95,13 @@ gp_Pnt gp_Pnt::Mirrored(const gp_Ax2& A2) const
   return P;
 }
 
-void gp_Pnt::DumpJson(Standard_OStream& theOStream, Standard_Integer) const {
-  OCCT_DUMP_VECTOR_CLASS(theOStream, "gp_Pnt", 3, coord.X().getValue(), coord.Y().getValue(), coord.Z().getValue())}
+void gp_Pnt::DumpJson(Standard_OStream& theOStream,
+                      Standard_Integer) const {OCCT_DUMP_VECTOR_CLASS(theOStream,
+                                                                      "gp_Pnt",
+                                                                      3,
+                                                                      coord.X().getValue(),
+                                                                      coord.Y().getValue(),
+                                                                      coord.Z().getValue())}
 
 Standard_Boolean gp_Pnt::InitFromJson(const Standard_SStream& theSStream,
                                       Standard_Integer&       theStreamPos)

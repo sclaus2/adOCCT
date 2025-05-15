@@ -31,9 +31,10 @@ public:
   static int Length() { return 4; }
 
   //! Empty constructor. Construct the zero vector.
-  NCollection_Vec4() {
+  NCollection_Vec4()
+  {
     // std::memset(this, 0, sizeof(NCollection_Vec4));
-    for(int i = 0; i < 4; ++i)
+    for (int i = 0; i < 4; ++i)
       v[i] = 0.;
   }
 
@@ -65,7 +66,7 @@ public:
                             const Element_t                    theW = Element_t(0))
   {
     // std::memcpy(this, &theVec3, sizeof(NCollection_Vec3<Element_t>));
-    for(int i = 0; i < 3; ++i)
+    for (int i = 0; i < 3; ++i)
       v[i] = theVec3[i];
     v[3] = theW;
   }

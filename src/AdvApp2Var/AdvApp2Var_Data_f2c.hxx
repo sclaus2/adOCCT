@@ -18,15 +18,15 @@
 #include <Standard_TypeDef.hxx>
 
 #ifndef F2CTYPE_DEFINED
-typedef int    integer;
+typedef int              integer;
 typedef Standard_Adouble doublereal;
   #define F2CTYPE_DEFINED
 #endif
 
-typedef unsigned long uinteger;
-typedef char*         address;
-typedef short int     shortint;
-typedef Standard_Adouble         real;
+typedef unsigned long    uinteger;
+typedef char*            address;
+typedef short int        shortint;
+typedef Standard_Adouble real;
 
 typedef struct
 {

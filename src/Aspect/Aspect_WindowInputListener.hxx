@@ -59,9 +59,9 @@ public: //! @name keyboard input
   //! Default implementation updates internal cache.
   //! @param theKey key pressed
   //! @param theTime event timestamp
-  Standard_EXPORT virtual void KeyDown(Aspect_VKey theKey,
-                                       Standard_Real      theTime,
-                                       Standard_Real      thePressure = 1.0) = 0;
+  Standard_EXPORT virtual void KeyDown(Aspect_VKey   theKey,
+                                       Standard_Real theTime,
+                                       Standard_Real thePressure = 1.0) = 0;
 
   //! Release key.
   //! Default implementation updates internal cache.
@@ -71,10 +71,10 @@ public: //! @name keyboard input
 
   //! Simulate key up/down events from axis value.
   //! Default implementation updates internal cache.
-  Standard_EXPORT virtual void KeyFromAxis(Aspect_VKey theNegative,
-                                           Aspect_VKey thePositive,
-                                           Standard_Real      theTime,
-                                           Standard_Real      thePressure) = 0;
+  Standard_EXPORT virtual void KeyFromAxis(Aspect_VKey   theNegative,
+                                           Aspect_VKey   thePositive,
+                                           Standard_Real theTime,
+                                           Standard_Real thePressure) = 0;
 
 public: //! @name mouse input
   //! Update mouse scroll event.

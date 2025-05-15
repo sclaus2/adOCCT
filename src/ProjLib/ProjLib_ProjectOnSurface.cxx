@@ -85,12 +85,12 @@ public:
   ProjLib_OnSurface(const Handle(Adaptor3d_Curve)& C, const Handle(Adaptor3d_Surface)& S)
       : myCurve(C)
   {
-    myNbPnt                     = 1;
-    myNbPnt2d                   = 0;
-    Standard_Real           U   = myCurve->FirstParameter();
-    gp_Pnt                  P   = myCurve->Value(U);
+    myNbPnt                 = 1;
+    myNbPnt2d               = 0;
+    Standard_Real       U   = myCurve->FirstParameter();
+    gp_Pnt              P   = myCurve->Value(U);
     const Standard_Real Tol = Precision::PConfusion();
-    myExtPS                     = new Extrema_ExtPS(P, *S, Tol, Tol);
+    myExtPS                 = new Extrema_ExtPS(P, *S, Tol, Tol);
   }
 
   ~ProjLib_OnSurface() { delete myExtPS; }

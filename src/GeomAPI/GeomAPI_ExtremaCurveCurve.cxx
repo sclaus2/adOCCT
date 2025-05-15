@@ -33,7 +33,7 @@ GeomAPI_ExtremaCurveCurve::GeomAPI_ExtremaCurveCurve()
       myTotalDist(0.0)
 {
   // memset(myTotalPars, 0, sizeof(myTotalPars));
-  for(int i = 0; i < 2; ++i)
+  for (int i = 0; i < 2; ++i)
   {
     myTotalPars[i] = 0.;
   }

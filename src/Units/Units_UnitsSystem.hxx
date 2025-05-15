@@ -78,20 +78,20 @@ public:
   //! belonging to the physical dimensions <aquantity> to
   //! the corresponding unit of the user system.
   Standard_EXPORT double ConvertValueToUserSystem(const Standard_CString aquantity,
-                                                         const double    avalue,
-                                                         const Standard_CString aunit) const;
+                                                  const double           avalue,
+                                                  const Standard_CString aunit) const;
 
   //! Converts the real value <avalue> from the S.I. system
   //! of units to the user system of units. <aquantity> is
   //! the physical dimensions of the measurement.
   Standard_EXPORT double ConvertSIValueToUserSystem(const Standard_CString aquantity,
-                                                           const double    avalue) const;
+                                                    const double           avalue) const;
 
   //! Converts the real value <avalue> from the user system
   //! of units to the S.I. system of units. <aquantity> is
   //! the physical dimensions of the measurement.
   Standard_EXPORT double ConvertUserSystemValueToSI(const Standard_CString aquantity,
-                                                           const double    avalue) const;
+                                                    const double           avalue) const;
 
   Standard_EXPORT void Dump() const;
 

@@ -520,7 +520,8 @@ static Standard_Integer getcoords(Draw_Interpretor& di, Standard_Integer n, cons
       const TopoDS_Vertex& aVertex = TopoDS::Vertex(aShape);
       gp_Pnt               aPnt    = BRep_Tool::Pnt(aVertex);
 
-      di << a[i] << " (x,y,z) : " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
+      di << a[i] << " (x,y,z) : " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " "
+         << aPnt.Z().getValue() << "\n";
     }
   }
 
@@ -679,11 +680,14 @@ static Standard_Integer BoundBox(Draw_Interpretor& theDI,
       const gp_XYZ &aXDir = anOBB.XDirection(), &aYDir = anOBB.YDirection(),
                    &aZDir = anOBB.ZDirection();
       theDI << "Oriented bounding box\n";
-      theDI << "Center: " << aBaryCenter.X().getValue() << " " << aBaryCenter.Y().getValue() << " " << aBaryCenter.Z().getValue()
-            << "\n";
-      theDI << "X-axis: " << aXDir.X().getValue() << " " << aXDir.Y().getValue() << " " << aXDir.Z().getValue() << "\n";
-      theDI << "Y-axis: " << aYDir.X().getValue() << " " << aYDir.Y().getValue() << " " << aYDir.Z().getValue() << "\n";
-      theDI << "Z-axis: " << aZDir.X().getValue() << " " << aZDir.Y().getValue() << " " << aZDir.Z().getValue() << "\n";
+      theDI << "Center: " << aBaryCenter.X().getValue() << " " << aBaryCenter.Y().getValue() << " "
+            << aBaryCenter.Z().getValue() << "\n";
+      theDI << "X-axis: " << aXDir.X().getValue() << " " << aXDir.Y().getValue() << " "
+            << aXDir.Z().getValue() << "\n";
+      theDI << "Y-axis: " << aYDir.X().getValue() << " " << aYDir.Y().getValue() << " "
+            << aYDir.Z().getValue() << "\n";
+      theDI << "Z-axis: " << aZDir.X().getValue() << " " << aZDir.Y().getValue() << " "
+            << aZDir.Z().getValue() << "\n";
       theDI << "Half X: " << anOBB.XHSize().getValue() << "\n"
             << "Half Y: " << anOBB.YHSize().getValue() << "\n"
             << "Half Z: " << anOBB.ZHSize().getValue() << "\n";
@@ -741,8 +745,9 @@ static Standard_Integer BoundBox(Draw_Interpretor& theDI,
       {
         if (useOldSyntax)
         {
-          theDI << aMin.X().getValue() << " " << aMin.Y().getValue() << " " << aMin.Z().getValue() << " " << aMax.X().getValue() << " "
-                << aMax.Y().getValue() << " " << aMax.Z().getValue() << "\n";
+          theDI << aMin.X().getValue() << " " << aMin.Y().getValue() << " " << aMin.Z().getValue()
+                << " " << aMax.X().getValue() << " " << aMax.Y().getValue() << " "
+                << aMax.Z().getValue() << "\n";
         }
         else
         {
@@ -939,7 +944,8 @@ static Standard_Integer gbounding(Draw_Interpretor& di, Standard_Integer n, cons
       B.Get(axmin, aymin, azmin, axmax, aymax, azmax);
       DB = new Draw_Box(B, Draw_vert);
       dout << DB;
-      di << axmin.getValue() << " " << aymin.getValue() << " " << azmin.getValue() << " " << axmax.getValue() << " " << aymax.getValue() << " " << azmax.getValue();
+      di << axmin.getValue() << " " << aymin.getValue() << " " << azmin.getValue() << " "
+         << axmax.getValue() << " " << aymax.getValue() << " " << azmax.getValue();
     }
     else
     {
@@ -953,7 +959,8 @@ static Standard_Integer gbounding(Draw_Interpretor& di, Standard_Integer n, cons
       Draw_Segment2D* S3 = new Draw_Segment2D(p3, p4, Draw_vert);
       Draw_Segment2D* S4 = new Draw_Segment2D(p4, p1, Draw_vert);
       dout << S1 << S2 << S3 << S4;
-      di << axmin.getValue() << " " << aymin.getValue() << " " << axmax.getValue() << " " << aymax.getValue();
+      di << axmin.getValue() << " " << aymin.getValue() << " " << axmax.getValue() << " "
+         << aymax.getValue();
     }
   }
   return 0;
@@ -1251,8 +1258,8 @@ static Standard_Integer vecdc(Draw_Interpretor& di, Standard_Integer, const char
   dout << d;
   dout.Flush();
   // std::cout<<"\nttran   "<<PP1.X()-P1.X()<<" "<<PP1.Y()-P1.Y()<<" "<<PP1.Z()-P1.Z()<<std::endl;
-  di << "\nttran   " << (PP1.X() - P1.X()).getValue() << " " << (PP1.Y() - P1.Y()).getValue() << " " << (PP1.Z() - P1.Z()).getValue()
-     << "\n";
+  di << "\nttran   " << (PP1.X() - P1.X()).getValue() << " " << (PP1.Y() - P1.Y()).getValue() << " "
+     << (PP1.Z() - P1.Z()).getValue() << "\n";
 
   static Standard_Integer nboxvecdp = 0;
   // std::cout<<"\nbox  b"<<++nboxvecdp<<" "<<Min(P1.X(),PP1.X())<<" "<<Min(P1.Y(),PP1.Y())<<"
@@ -1263,14 +1270,15 @@ static Standard_Integer vecdc(Draw_Interpretor& di, Standard_Integer, const char
   //		     +(PP1.Y()-P1.Y())*(PP1.Y()-P1.Y())
   //		     +(PP1.Z()-P1.Z())*(PP1.Z()-P1.Z()))<<std::endl;
 
-  di << "\nbox  b" << ++nboxvecdp << " " << Min(P1.X(), PP1.X()).getValue() << " " << Min(P1.Y(), PP1.Y()).getValue()
-     << " " << Min(PP1.Z(), P1.Z()).getValue();
+  di << "\nbox  b" << ++nboxvecdp << " " << Min(P1.X(), PP1.X()).getValue() << " "
+     << Min(P1.Y(), PP1.Y()).getValue() << " " << Min(PP1.Z(), P1.Z()).getValue();
   di << "  " << Abs(PP1.X() - P1.X()).getValue() << " " << Abs(PP1.Y() - P1.Y()).getValue() << " "
      << Abs(PP1.Z() - P1.Z()).getValue() << "\n";
 
   di << "\nDistance :"
      << Sqrt((PP1.X() - P1.X()) * (PP1.X() - P1.X()) + (PP1.Y() - P1.Y()) * (PP1.Y() - P1.Y())
-             + (PP1.Z() - P1.Z()) * (PP1.Z() - P1.Z())).getValue()
+             + (PP1.Z() - P1.Z()) * (PP1.Z() - P1.Z()))
+          .getValue()
      << "\n";
   return (0);
 }

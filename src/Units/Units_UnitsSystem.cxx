@@ -263,8 +263,8 @@ TCollection_AsciiString Units_UnitsSystem::ActiveUnit(const Standard_CString aqu
 //=================================================================================================
 
 double Units_UnitsSystem::ConvertValueToUserSystem(const Standard_CString aquantity,
-                                                          const double    avalue,
-                                                          const Standard_CString aunit) const
+                                                   const double           avalue,
+                                                   const Standard_CString aunit) const
 {
   Units_UnitSentence unitsentence(aunit);
   if (!unitsentence.IsDone())
@@ -279,7 +279,7 @@ double Units_UnitsSystem::ConvertValueToUserSystem(const Standard_CString aquant
 //=================================================================================================
 
 double Units_UnitsSystem::ConvertSIValueToUserSystem(const Standard_CString aquantity,
-                                                            const double    avalue) const
+                                                     const double           avalue) const
 {
   Standard_Integer                 index, activeunit;
   Handle(Units_UnitsSequence)      unitssequence;
@@ -287,7 +287,7 @@ double Units_UnitsSystem::ConvertSIValueToUserSystem(const Standard_CString aqua
   Handle(Units_QuantitiesSequence) quantitiessequence;
   Handle(Units_Unit)               unit;
   Handle(Units_ShiftedUnit)        sunit;
-  double                    uvalue, umove;
+  double                           uvalue, umove;
 
   for (index = 1; index <= thequantitiessequence->Length(); index++)
   {
@@ -329,7 +329,7 @@ double Units_UnitsSystem::ConvertSIValueToUserSystem(const Standard_CString aqua
 //=================================================================================================
 
 double Units_UnitsSystem::ConvertUserSystemValueToSI(const Standard_CString aquantity,
-                                                            const double    avalue) const
+                                                     const double           avalue) const
 {
   Standard_Integer                 index, activeunit;
   Handle(Units_UnitsSequence)      unitssequence;
@@ -337,7 +337,7 @@ double Units_UnitsSystem::ConvertUserSystemValueToSI(const Standard_CString aqua
   Handle(Units_QuantitiesSequence) quantitiessequence;
   Handle(Units_Unit)               unit;
   Handle(Units_ShiftedUnit)        sunit;
-  double                    uvalue, umove;
+  double                           uvalue, umove;
 
   for (index = 1; index <= thequantitiessequence->Length(); index++)
   {

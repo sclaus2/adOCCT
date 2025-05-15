@@ -98,8 +98,8 @@ protected:
   CallbackOnUpdate_t              myCallbackFunction; //!< callback function
   void*                           myCallbackUserPtr;  //!< callback data
   Graphic3d_Vec2i                 myFrameSize;        //!< front frame size
-  double                   myProgress;         //!< playback progress in seconds
-  double                   myDuration;         //!< stream duration
+  double                          myProgress;         //!< playback progress in seconds
+  double                          myDuration;         //!< stream duration
   Standard_Integer                myFront;            //!< index of front texture
   Standard_Boolean                myToPresentFrame;   //!< flag
   // clang-format off

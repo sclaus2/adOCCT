@@ -26,8 +26,9 @@ inline Standard_Real& math_DoubleTab::Value(const Standard_Integer RowIndex,
 
 inline void math_DoubleTab::Copy(math_DoubleTab& Other) const
 {
-  // memmove(Other.Addr, Addr, (int)((UppR - LowR + 1) * (UppC - LowC + 1) * sizeof(Standard_Real)));
-  for(int i = 0; i < (UppR - LowR + 1) * (UppC - LowC + 1); ++i)
+  // memmove(Other.Addr, Addr, (int)((UppR - LowR + 1) * (UppC - LowC + 1) *
+  // sizeof(Standard_Real)));
+  for (int i = 0; i < (UppR - LowR + 1) * (UppC - LowC + 1); ++i)
   {
     Other.Addr[i] = Addr[i];
   }

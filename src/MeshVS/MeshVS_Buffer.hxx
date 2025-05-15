@@ -30,7 +30,7 @@
 //! define the constant to the size of 10 points
 #define MeshVS_BufSize 10 * 3
 
-template<class T>
+template <class T>
 class MeshVS_Buffer
 {
 public:
@@ -63,7 +63,8 @@ public:
     return *(myDynData ? myDynData : myAutoData);
   }
 
-  //! Interpret the buffer as a reference to int. Commented in the AD version of OCCT, accessing adouble array with an int pointer does not make sense
+  //! Interpret the buffer as a reference to int. Commented in the AD version of OCCT, accessing
+  //! adouble array with an int pointer does not make sense
   /*
   operator Standard_Integer&()
   {

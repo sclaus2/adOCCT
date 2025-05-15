@@ -237,8 +237,8 @@ static Standard_Integer hlr(Draw_Interpretor& di, Standard_Integer n, const char
     nFirst = 3;
     if (n == 3)
     {
-      double ang = Draw::Atof(a[2]);
-      aParams.HLRAngle  = ang * M_PI / 180;
+      double ang       = Draw::Atof(a[2]);
+      aParams.HLRAngle = ang * M_PI / 180;
       if (aParams.HLRAngle < aParams.HAngMin)
       {
         aParams.HLRAngle = aParams.HAngMin;
@@ -305,7 +305,7 @@ static Standard_Integer hlr(Draw_Interpretor& di, Standard_Integer n, const char
     else if (!strcasecmp(a[1], "ang"))
     {
       double ang = Draw::Atof(a[2]);
-      localAng          = ang * M_PI / 180;
+      localAng   = ang * M_PI / 180;
     }
     else
     {
@@ -1297,7 +1297,7 @@ static Standard_Integer normals(Draw_Interpretor& theDI,
   }
 
   Standard_Boolean toUseMesh = Standard_False;
-  double    aLength   = 10.0;
+  double           aLength   = 10.0;
   Standard_Integer aNbAlongU = 1, aNbAlongV = 1;
   Standard_Boolean bPrint = Standard_False;
   for (Standard_Integer anArgIter = 2; anArgIter < theArgNum; ++anArgIter)
@@ -1407,7 +1407,8 @@ static Standard_Integer normals(Draw_Interpretor& theDI,
           aV.Reverse();
 
         // Print values of the vector avoiding printing "-0" values
-        theDI << "(" << (aV.X() == 0 ? 0 : aV.X().getValue()) << ", " << (aV.Y() == 0 ? 0 : aV.Y().getValue()) << ", "
+        theDI << "(" << (aV.X() == 0 ? 0 : aV.X().getValue()) << ", "
+              << (aV.Y() == 0 ? 0 : aV.Y().getValue()) << ", "
               << (aV.Z() == 0 ? 0 : aV.Z().getValue()) << ")\n";
       }
     }

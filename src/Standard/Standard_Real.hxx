@@ -39,32 +39,32 @@
 // ==================================
 
 Standard_EXPORT Standard_Real ACos(const Standard_Real&);
-Standard_EXPORT double ACos(const double);
+Standard_EXPORT double        ACos(const double);
 Standard_EXPORT Standard_Real ACosApprox(const Standard_Real&);
-Standard_EXPORT double ACosApprox(const double);
+Standard_EXPORT double        ACosApprox(const double);
 Standard_EXPORT Standard_Real ASin(const Standard_Real&);
-Standard_EXPORT double ASin(const double);
+Standard_EXPORT double        ASin(const double);
 Standard_EXPORT Standard_Real ATan2(const Standard_Real&, const Standard_Real&);
-Standard_EXPORT double ATan2(const double, const double);
+Standard_EXPORT double        ATan2(const double, const double);
 Standard_EXPORT Standard_Real NextAfter(const Standard_Real&, const Standard_Real&);
-Standard_EXPORT double NextAfter(const double, const double);
+Standard_EXPORT double        NextAfter(const double, const double);
 
 //! Returns |a| if b >= 0; -|a| if b < 0.
 Standard_EXPORT Standard_Real Sign(const Standard_Real& a, const Standard_Real& b);
-Standard_EXPORT double Sign(const double a, const double b);
+Standard_EXPORT double        Sign(const double a, const double b);
 
 Standard_EXPORT Standard_Real ATanh(const Standard_Real&);
-Standard_EXPORT double ATanh(const double);
+Standard_EXPORT double        ATanh(const double);
 Standard_EXPORT Standard_Real ACosh(const Standard_Real&);
-Standard_EXPORT double ACosh(const double);
+Standard_EXPORT double        ACosh(const double);
 Standard_EXPORT Standard_Real Sinh(const Standard_Real&);
-Standard_EXPORT double Sinh(const double);
+Standard_EXPORT double        Sinh(const double);
 Standard_EXPORT Standard_Real Cosh(const Standard_Real&);
-Standard_EXPORT double Cosh(const double);
+Standard_EXPORT double        Cosh(const double);
 Standard_EXPORT Standard_Real Log(const Standard_Real&);
-Standard_EXPORT double Log(const double);
+Standard_EXPORT double        Log(const double);
 Standard_EXPORT Standard_Real Sqrt(const Standard_Real&);
-Standard_EXPORT double Sqrt(const double);
+Standard_EXPORT double        Sqrt(const double);
 
 //-------------------------------------------------------------------
 // RealSmall : Returns the smallest positive real
@@ -81,6 +81,7 @@ inline Standard_Real Abs(const Standard_Real& Value)
 {
   return adtl::fabs(Value);
 }
+
 inline double Abs(const double Value)
 {
   return fabs(Value);
@@ -93,6 +94,7 @@ inline Standard_Boolean IsEqual(const Standard_Real& Value1, const Standard_Real
 {
   return Abs((Value1 - Value2)) < RealSmall();
 }
+
 inline Standard_Boolean IsEqual(const double Value1, const double Value2)
 {
   return Abs((Value1 - Value2)) < RealSmall();
@@ -200,6 +202,7 @@ inline Standard_Real ATan(const Standard_Real& Value)
 {
   return adtl::atan(Value);
 }
+
 inline double ATan(const double Value)
 {
   return atan(Value);
@@ -212,6 +215,7 @@ inline Standard_Real Ceiling(const Standard_Real& Value)
 {
   return adtl::ceil(Value);
 }
+
 inline double Ceiling(const double Value)
 {
   return ceil(Value);
@@ -224,6 +228,7 @@ inline Standard_Real Cos(const Standard_Real& Value)
 {
   return adtl::cos(Value);
 }
+
 inline double Cos(const double Value)
 {
   return cos(Value);
@@ -243,6 +248,7 @@ inline Standard_Real Epsilon(const Standard_Real& Value)
   return Value >= 0.0 ? (NextAfter(Value, RealLast()) - Value)
                       : (Value - NextAfter(Value, RealFirst()));
 }
+
 inline double Epsilon(const double Value)
 {
   return Value >= 0.0 ? (NextAfter(Value, RealLast()) - Value)
@@ -256,6 +262,7 @@ inline Standard_Real Exp(const Standard_Real& Value)
 {
   return adtl::exp(Value);
 }
+
 inline double Exp(const double Value)
 {
   return exp(Value);
@@ -268,6 +275,7 @@ inline Standard_Real Floor(const Standard_Real& Value)
 {
   return adtl::floor(Value);
 }
+
 inline double Floor(const double Value)
 {
   return floor(Value);
@@ -280,6 +288,7 @@ inline Standard_Real IntegerPart(const Standard_Real& Value)
 {
   return ((Value > 0) ? adtl::floor(Value) : adtl::ceil(Value));
 }
+
 inline double IntegerPart(const double Value)
 {
   return ((Value > 0) ? floor(Value) : ceil(Value));
@@ -292,6 +301,7 @@ inline Standard_Real Log10(const Standard_Real& Value)
 {
   return adtl::log10(Value);
 }
+
 inline double Log10(const double Value)
 {
   return log10(Value);
@@ -304,6 +314,7 @@ inline Standard_Real Max(const Standard_Real& Val1, const Standard_Real& Val2)
 {
   return Val1 >= Val2 ? Val1 : Val2;
 }
+
 constexpr double Max(const double Val1, const double Val2)
 {
   return Val1 >= Val2 ? Val1 : Val2;
@@ -316,6 +327,7 @@ inline Standard_Real Min(const Standard_Real& Val1, const Standard_Real& Val2)
 {
   return Val1 <= Val2 ? Val1 : Val2;
 }
+
 constexpr double Min(const double Val1, const double Val2)
 {
   return Val1 <= Val2 ? Val1 : Val2;
@@ -328,14 +340,17 @@ inline double Pow(const double Value, const double P)
 {
   return pow(Value, P);
 }
+
 inline Standard_Real Pow(const Standard_Real& Value, const double P)
 {
   return adtl::pow(Value, P);
 }
+
 inline Standard_Real Pow(const double Value, const Standard_Real P)
 {
   return adtl::pow(Value, P);
 }
+
 inline Standard_Real Pow(const Standard_Real& Value, const Standard_Real P)
 {
   return adtl::pow(Value, P);
@@ -348,6 +363,7 @@ inline Standard_Real RealPart(const Standard_Real& Value)
 {
   return adtl::fabs(IntegerPart(Value) - Value);
 }
+
 inline double RealPart(const double Value)
 {
   return fabs(IntegerPart(Value) - Value);
@@ -365,10 +381,10 @@ inline Standard_Integer RealToInt(const Standard_Real& theValue)
   // "Floating point multiple trap" (OCC17861)
   return theValue < static_cast<double>(INT_MIN)
            ? static_cast<Standard_Integer>(INT_MIN)
-           : (theValue > static_cast<double>(INT_MAX)
-                ? static_cast<Standard_Integer>(INT_MAX)
-                : static_cast<Standard_Integer>(theValue));
+           : (theValue > static_cast<double>(INT_MAX) ? static_cast<Standard_Integer>(INT_MAX)
+                                                      : static_cast<Standard_Integer>(theValue));
 }
+
 constexpr Standard_Integer RealToInt(const double theValue)
 {
   // Note that on WNT under MS VC++ 8.0 conversion of double value less
@@ -376,9 +392,8 @@ constexpr Standard_Integer RealToInt(const double theValue)
   // "Floating point multiple trap" (OCC17861)
   return theValue < static_cast<double>(INT_MIN)
            ? static_cast<Standard_Integer>(INT_MIN)
-           : (theValue > static_cast<double>(INT_MAX)
-                ? static_cast<Standard_Integer>(INT_MAX)
-                : static_cast<Standard_Integer>(theValue));
+           : (theValue > static_cast<double>(INT_MAX) ? static_cast<Standard_Integer>(INT_MAX)
+                                                      : static_cast<Standard_Integer>(theValue));
 }
 
 // =======================================================================
@@ -392,6 +407,7 @@ inline Standard_ShortReal RealToShortReal(const Standard_Real& theVal)
 {
   return theVal < -FLT_MAX ? -FLT_MAX : theVal > FLT_MAX ? FLT_MAX : (Standard_ShortReal)theVal;
 }
+
 constexpr Standard_ShortReal RealToShortReal(const double theVal)
 {
   return theVal < -FLT_MAX ? -FLT_MAX : theVal > FLT_MAX ? FLT_MAX : (Standard_ShortReal)theVal;
@@ -404,6 +420,7 @@ inline Standard_Real Round(const Standard_Real& Value)
 {
   return IntegerPart(Value + (Value > 0 ? (Standard_Real)0.5 : (Standard_Real)-0.5));
 }
+
 inline double Round(const double Value)
 {
   return IntegerPart(Value + (Value > 0 ? 0.5 : -0.5));
@@ -416,6 +433,7 @@ inline Standard_Real Sin(const Standard_Real& Value)
 {
   return adtl::sin(Value);
 }
+
 inline double Sin(const double Value)
 {
   return sin(Value);
@@ -452,6 +470,7 @@ inline Standard_Real Square(const Standard_Real& Value)
 {
   return Value * Value;
 }
+
 constexpr double Square(const double Value)
 {
   return Value * Value;
@@ -464,6 +483,7 @@ inline Standard_Real Tan(const Standard_Real& Value)
 {
   return adtl::tan(Value);
 }
+
 inline double Tan(const double Value)
 {
   return tan(Value);
@@ -476,6 +496,7 @@ inline Standard_Real Tanh(const Standard_Real& Value)
 {
   return adtl::tanh(Value);
 }
+
 inline double Tanh(const double Value)
 {
   return tanh(Value);

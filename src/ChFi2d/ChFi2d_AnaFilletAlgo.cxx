@@ -52,7 +52,7 @@ static Standard_Boolean isCW(const BRepAdaptor_Curve& AC)
   circle->D0(0.5 * (f + l), m);
 
   // Compare angles between vectors to middle point and to the end point.
-  gp_Vec startv(center, start), endv(center, end), middlev(center, m);
+  gp_Vec        startv(center, start), endv(center, end), middlev(center, m);
   Standard_Real middlea = startv.AngleWithRef(middlev, plane.Direction());
   while (middlea < 0.0)
     middlea += 2.0 * M_PI;

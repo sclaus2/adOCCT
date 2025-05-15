@@ -167,7 +167,8 @@ static Standard_Integer DumpDGTs(Draw_Interpretor& di, Standard_Integer argc, co
           {
             gp_Dir aD;
             aDimTolObj->GetDirection(aD);
-            di << ", D (" << aD.X().getValue() << ", " << aD.Y().getValue() << ", " << aD.Z().getValue() << ")";
+            di << ", D (" << aD.X().getValue() << ", " << aD.Y().getValue() << ", "
+               << aD.Z().getValue() << ")";
           }
           XCAFDimTolObjects_DimensionModifiersSequence aModif = aDimTolObj->GetModifiers();
           if (!aModif.IsEmpty())
@@ -218,10 +219,11 @@ static Standard_Integer DumpDGTs(Draw_Interpretor& di, Standard_Integer argc, co
           if (aDimTolObj->HasAxis())
           {
             gp_Ax2 anAx = aDimTolObj->GetAxis();
-            di << ", A ( L (" << anAx.Location().X().getValue() << anAx.Location().Y().getValue() << anAx.Location().Z().getValue()
-               << "), XD (" << anAx.XDirection().X().getValue() << anAx.XDirection().Y().getValue()
-               << anAx.XDirection().Z().getValue() << "), RD (" << anAx.YDirection().X().getValue()
-               << anAx.YDirection().Y().getValue() << anAx.YDirection().Z().getValue() << "))";
+            di << ", A ( L (" << anAx.Location().X().getValue() << anAx.Location().Y().getValue()
+               << anAx.Location().Z().getValue() << "), XD (" << anAx.XDirection().X().getValue()
+               << anAx.XDirection().Y().getValue() << anAx.XDirection().Z().getValue() << "), RD ("
+               << anAx.YDirection().X().getValue() << anAx.YDirection().Y().getValue()
+               << anAx.YDirection().Z().getValue() << "))";
           }
           XCAFDimTolObjects_GeomToleranceModifiersSequence aModif = aDimTolObj->GetModifiers();
           if (!aModif.IsEmpty())
@@ -329,9 +331,10 @@ static Standard_Integer DumpDGTs(Draw_Interpretor& di, Standard_Integer argc, co
             if (aDatumObj->GetDatumTargetType() != XCAFDimTolObjects_DatumTargetType_Area)
             {
               gp_Ax2 anAx = aDatumObj->GetDatumTargetAxis();
-              di << ", A ( L (" << anAx.Location().X().getValue() << anAx.Location().Y().getValue() << anAx.Location().Z().getValue()
-                 << "), XD (" << anAx.XDirection().X().getValue() << anAx.XDirection().Y().getValue()
-                 << anAx.XDirection().Z().getValue() << "), RD (" << anAx.YDirection().X().getValue()
+              di << ", A ( L (" << anAx.Location().X().getValue() << anAx.Location().Y().getValue()
+                 << anAx.Location().Z().getValue() << "), XD (" << anAx.XDirection().X().getValue()
+                 << anAx.XDirection().Y().getValue() << anAx.XDirection().Z().getValue()
+                 << "), RD (" << anAx.YDirection().X().getValue()
                  << anAx.YDirection().Y().getValue() << anAx.YDirection().Z().getValue() << "))";
               if (aDatumObj->GetDatumTargetType() != XCAFDimTolObjects_DatumTargetType_Point)
               {
@@ -2898,8 +2901,8 @@ static Standard_Integer getDimPoints(Draw_Interpretor& di, Standard_Integer argc
     Handle(XCAFDimTolObjects_DimensionObject) anObj = aDimension->GetObject();
     if (anObj->HasPoint())
     {
-      di << anObj->GetPoint().X().getValue() << ";" << anObj->GetPoint().Y().getValue() << ";" << anObj->GetPoint().Z().getValue()
-         << " ";
+      di << anObj->GetPoint().X().getValue() << ";" << anObj->GetPoint().Y().getValue() << ";"
+         << anObj->GetPoint().Z().getValue() << " ";
     }
     if (anObj->HasPoint2())
     {
@@ -3166,9 +3169,12 @@ static Standard_Integer getGDTPosition(Draw_Interpretor& di,
     aDir                                        = anObj->GetPlane().XDirection();
   }
 
-  di << "position: " << aPoint.X().getValue() << " " << aPoint.Y().getValue() << " " << aPoint.Z().getValue() << "\n";
-  di << "normal: " << aNormal.X().getValue() << " " << aNormal.Y().getValue() << " " << aNormal.Z().getValue() << "\n";
-  di << "x_direction: " << aDir.X().getValue() << " " << aDir.Y().getValue() << " " << aDir.Z().getValue() << "\n";
+  di << "position: " << aPoint.X().getValue() << " " << aPoint.Y().getValue() << " "
+     << aPoint.Z().getValue() << "\n";
+  di << "normal: " << aNormal.X().getValue() << " " << aNormal.Y().getValue() << " "
+     << aNormal.Z().getValue() << "\n";
+  di << "x_direction: " << aDir.X().getValue() << " " << aDir.Y().getValue() << " "
+     << aDir.Z().getValue() << "\n";
   return 0;
 }
 

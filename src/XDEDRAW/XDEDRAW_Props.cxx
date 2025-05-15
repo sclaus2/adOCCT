@@ -61,9 +61,9 @@
 static Standard_Real TetraVol(gp_Pnt RefPoint, gp_Pnt Som1, gp_Pnt Som2, gp_Pnt Som3)
 {
   Standard_Real curVolume = 0;
-  gp_Dir Line12;
-  gp_Pln Plane123;
-  gp_Vec N;
+  gp_Dir        Line12;
+  gp_Pln        Plane123;
+  gp_Vec        N;
 
   {
     try
@@ -243,8 +243,9 @@ static Standard_Integer SetProps(Draw_Interpretor& di, Standard_Integer argc, co
       aLabel.AddAttribute(aArea);
     aArea->Set(Ares);
 
-    di << argv[2] << ": Volume = " << Vres.getValue() << ", Area = " << Ares.getValue() << ", Centroid is (" << aPoint.X().getValue()
-       << ", " << aPoint.Y().getValue() << ", " << aPoint.Z().getValue() << ")";
+    di << argv[2] << ": Volume = " << Vres.getValue() << ", Area = " << Ares.getValue()
+       << ", Centroid is (" << aPoint.X().getValue() << ", " << aPoint.Y().getValue() << ", "
+       << aPoint.Z().getValue() << ")";
   }
   return 0;
 }
@@ -619,9 +620,8 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
                 "%s%9.1f (%3d%%)%s",
                 (wholeDoc ? "" : "  Area defect:   "),
                 (aArea->Get() - G.Mass()).getValue(),
-                (Standard_Integer)Standard_Real(Abs(G.Mass()) > 1e-10
-                                     ? 100. * (aArea->Get() - G.Mass()) / G.Mass()
-                                     : 999.),
+                (Standard_Integer)Standard_Real(
+                  Abs(G.Mass()) > 1e-10 ? 100. * (aArea->Get() - G.Mass()) / G.Mass() : 999.),
                 (wholeDoc ? "" : "\n"));
         di << string2;
       }
@@ -678,9 +678,9 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
                   "%s%9.1f (%3d%%)%s",
                   (wholeDoc ? "" : "  Volume defect: "),
                   (aVolume->Get() - localVolume).getValue(),
-                  (Standard_Integer)Standard_Real(Abs(localVolume) > 1e-10
-                                       ? 100. * (aVolume->Get() - localVolume) / localVolume
-                                       : 999.),
+                  (Standard_Integer)Standard_Real(
+                    Abs(localVolume) > 1e-10 ? 100. * (aVolume->Get() - localVolume) / localVolume
+                                             : 999.),
                   (wholeDoc ? "" : "\n"));
           di << string5;
         }
@@ -957,8 +957,9 @@ static Standard_Integer ShapeMassProps(Draw_Interpretor& di,
     {
       di << "Shape from label : " << str.ToCString() << "\n";
       di << "Mass = " << aMassVal.getValue() << "\n";
-      di << "CenterOfGravity X = " << aCenterGravity.X().getValue() << ",Y = " << aCenterGravity.Y().getValue()
-         << ",Z = " << aCenterGravity.Z().getValue() << "\n";
+      di << "CenterOfGravity X = " << aCenterGravity.X().getValue()
+         << ",Y = " << aCenterGravity.Y().getValue() << ",Z = " << aCenterGravity.Z().getValue()
+         << "\n";
       di << "\n";
     }
     else
@@ -1084,7 +1085,8 @@ static Standard_Integer GetValidationProps(Draw_Interpretor& di,
 
       if (!Precision::IsInfinite(aP.X()))
       {
-        di << "; Centroid -  " << aP.X().getValue() << " " << aP.Y().getValue() << " " << aP.Z().getValue();
+        di << "; Centroid -  " << aP.X().getValue() << " " << aP.Y().getValue() << " "
+           << aP.Z().getValue();
         nbProps[Centroid]++;
       }
       di << "\n";

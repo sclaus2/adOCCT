@@ -86,8 +86,8 @@ void PLib_JacobiPolynomial::Weights(const Standard_Integer NbGaussPoints,
                                     TColStd_Array2OfReal&  TabWeights) const
 {
 
-  Standard_Integer     i, j;
-  double const* pdb = NULL; // the current pointer to WeightsDB
+  Standard_Integer i, j;
+  double const*    pdb = NULL; // the current pointer to WeightsDB
   switch (myNivConstr)
   {
     case 0:
@@ -301,7 +301,7 @@ void PLib_JacobiPolynomial::ToCoefficients(const Standard_Integer      Dimension
 {
   const Standard_Integer MAXM = 31;
   Standard_Integer       i, iptt, j, idim, ii, jj;
-  double const*   pTr = NULL; // the pointer to TransMatrix
+  double const*          pTr = NULL; // the pointer to TransMatrix
   Standard_Real          Bid;
   Standard_Integer       ibegJC = JacCoeff.Lower(), ibegC = Coefficients.Lower();
 

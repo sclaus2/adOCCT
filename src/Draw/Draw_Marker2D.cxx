@@ -64,9 +64,7 @@ gp_Pnt2d& Draw_Marker2D::ChangePos()
 
 //=================================================================================================
 
-Standard_Boolean Draw_Marker2D::PickReject(const double,
-                                           const double,
-                                           const double) const
+Standard_Boolean Draw_Marker2D::PickReject(const double, const double, const double) const
 {
   return Standard_False;
 }

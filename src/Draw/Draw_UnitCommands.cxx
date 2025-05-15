@@ -85,7 +85,7 @@ static Standard_Integer converttoSI(Draw_Interpretor& di, Standard_Integer argc,
     return 1;
   }
 
-  double    aData = Draw::Atof(argv[1]);
+  double           aData = Draw::Atof(argv[1]);
   Standard_CString aUnit = argv[2];
 
   double res = UnitsAPI::AnyToSI(aData, aUnit);
@@ -106,7 +106,7 @@ static Standard_Integer converttoMDTV(Draw_Interpretor& di,
     return 1;
   }
 
-  double    aData = Draw::Atof(argv[1]);
+  double           aData = Draw::Atof(argv[1]);
   Standard_CString aUnit = argv[2];
 
   UnitsAPI::SetLocalSystem(UnitsAPI_MDTV);

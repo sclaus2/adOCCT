@@ -42,9 +42,9 @@ IntPatch_InterferencePolyhedron::IntPatch_InterferencePolyhedron()
   // memset(dpOeT, 0, sizeof(dpOeT));
   // memset(dpOpT, 0, sizeof(dpOpT));
   // memset(deOpT, 0, sizeof(deOpT));
-  for(int i = 0; i < 3; ++i)
+  for (int i = 0; i < 3; ++i)
   {
-    for(int j = 0; j < 3; ++j)
+    for (int j = 0; j < 3; ++j)
     {
       dpOeT[i][j] = 0.;
       dpOpT[i][j] = 0.;
@@ -66,8 +66,10 @@ IntPatch_InterferencePolyhedron::IntPatch_InterferencePolyhedron(
   // memset(dpOeT, 0, sizeof(dpOeT));
   // memset(dpOpT, 0, sizeof(dpOpT));
   // memset(deOpT, 0, sizeof(deOpT));
-  for(int i = 0; i < 3; ++i) {
-    for (int j = 0; j < 3; ++j) {
+  for (int i = 0; i < 3; ++i)
+  {
+    for (int j = 0; j < 3; ++j)
+    {
       dpOeT[i][j] = 0.;
       dpOpT[i][j] = 0.;
       deOpT[i][j] = 0.;
@@ -95,8 +97,10 @@ IntPatch_InterferencePolyhedron::IntPatch_InterferencePolyhedron(const IntPatch_
   // memset(dpOeT, 0, sizeof(dpOeT));
   // memset(dpOpT, 0, sizeof(dpOpT));
   // memset(deOpT, 0, sizeof(deOpT));
-  for(int i = 0; i < 3; ++i) {
-    for (int j = 0; j < 3; ++j) {
+  for (int i = 0; i < 3; ++i)
+  {
+    for (int j = 0; j < 3; ++j)
+    {
       dpOeT[i][j] = 0.;
       dpOpT[i][j] = 0.;
       deOpT[i][j] = 0.;

@@ -125,7 +125,7 @@ static const double THE_SECOND_IN_MINUTE  = 1.0 / THE_SECONDS_IN_MINUTE;
 static std::ostream& formatTime(std::ostream&    theStream,
                                 Standard_Integer theWidth,
                                 const char*      thePrefix,
-                                double    theSeconds,
+                                double           theSeconds,
                                 const char*      thePostfix = NULL)
 {
   if (thePrefix != NULL)
@@ -133,8 +133,8 @@ static std::ostream& formatTime(std::ostream&    theStream,
     theStream << thePrefix;
   }
 
-  double aSecIn = theSeconds;
-  unsigned int  aHours = (unsigned int)(aSecIn * THE_SECOND_IN_HOUR);
+  double       aSecIn = theSeconds;
+  unsigned int aHours = (unsigned int)(aSecIn * THE_SECOND_IN_HOUR);
   aSecIn -= double(aHours) * THE_SECONDS_IN_HOUR;
   unsigned int aMinutes = (unsigned int)(aSecIn * THE_SECOND_IN_MINUTE);
   aSecIn -= double(aMinutes) * THE_SECONDS_IN_MINUTE;
@@ -183,7 +183,7 @@ static void addInfo(TColStd_IndexedDataMapOfStringString& theDict,
 //! Add key-value pair to the dictionary.
 static void addInfo(TColStd_IndexedDataMapOfStringString& theDict,
                     const TCollection_AsciiString&        theKey,
-                    const double                   theValue)
+                    const double                          theValue)
 {
   char aTmp[50];
   Sprintf(aTmp, "%.1g", theValue);
@@ -203,10 +203,10 @@ static void addInfo(TColStd_IndexedDataMapOfStringString& theDict,
 //! Format time.
 static void addTimeInfo(TColStd_IndexedDataMapOfStringString& theDict,
                         const TCollection_AsciiString&        theKey,
-                        double                         theSeconds)
+                        double                                theSeconds)
 {
-  double aSecIn = theSeconds;
-  unsigned int  aHours = (unsigned int)(aSecIn * THE_SECOND_IN_HOUR);
+  double       aSecIn = theSeconds;
+  unsigned int aHours = (unsigned int)(aSecIn * THE_SECOND_IN_HOUR);
   aSecIn -= double(aHours) * THE_SECONDS_IN_HOUR;
   unsigned int aMinutes = (unsigned int)(aSecIn * THE_SECOND_IN_MINUTE);
   aSecIn -= double(aMinutes) * THE_SECONDS_IN_MINUTE;

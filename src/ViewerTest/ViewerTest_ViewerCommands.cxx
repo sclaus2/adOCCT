@@ -4495,8 +4495,8 @@ inline void printZLayerInfo(Draw_Interpretor& theDI, const Graphic3d_ZLayerSetti
   {
     theDI << "  Immediate: TRUE\n";
   }
-  theDI << "  Origin: " << theLayer.Origin().X().getValue() << " " << theLayer.Origin().Y().getValue() << " "
-        << theLayer.Origin().Z().getValue() << "\n";
+  theDI << "  Origin: " << theLayer.Origin().X().getValue() << " "
+        << theLayer.Origin().Y().getValue() << " " << theLayer.Origin().Z().getValue() << "\n";
   theDI << "  Culling distance: " << theLayer.CullingDistance().getValue() << "\n";
   theDI << "  Culling size: " << theLayer.CullingSize().getValue() << "\n";
   theDI << "  Depth test:   " << (theLayer.ToEnableDepthTest() ? "enabled" : "disabled") << "\n";
@@ -5259,9 +5259,12 @@ static int VPriviledgedPlane(Draw_Interpretor& theDI,
     const gp_Pnt& anOrig            = aPriviledgedPlane.Location();
     const gp_Dir& aNorm             = aPriviledgedPlane.Direction();
     const gp_Dir& aXDir             = aPriviledgedPlane.XDirection();
-    theDI << "Origin: " << anOrig.X().getValue() << " " << anOrig.Y().getValue() << " " << anOrig.Z().getValue() << " "
-          << "Normal: " << aNorm.X().getValue() << " " << aNorm.Y().getValue() << " " << aNorm.Z().getValue() << " "
-          << "X-dir: " << aXDir.X().getValue() << " " << aXDir.Y().getValue() << " " << aXDir.Z().getValue() << "\n";
+    theDI << "Origin: " << anOrig.X().getValue() << " " << anOrig.Y().getValue() << " "
+          << anOrig.Z().getValue() << " "
+          << "Normal: " << aNorm.X().getValue() << " " << aNorm.Y().getValue() << " "
+          << aNorm.Z().getValue() << " "
+          << "X-dir: " << aXDir.X().getValue() << " " << aXDir.Y().getValue() << " "
+          << aXDir.Z().getValue() << "\n";
     return 0;
   }
 
@@ -5398,7 +5401,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
                        aXYZ[0],
                        aXYZ[1],
                        aXYZ[2]);
-        theDI << "Model X,Y,Z: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << " " << aXYZ[2].getValue() << "\n";
+        theDI << "Model X,Y,Z: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << " "
+              << aXYZ[2].getValue() << "\n";
         return 0;
 
       case View:
@@ -5418,7 +5422,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
                        aXYZ[1],
                        aXYZ[2]);
         aView->ConvertToGrid(aXYZ[0], aXYZ[1], aXYZ[2], aXYZ[3], aXYZ[4], aXYZ[5]);
-        theDI << "Model X,Y,Z: " << aXYZ[3].getValue() << " " << aXYZ[4].getValue() << " " << aXYZ[5].getValue() << "\n";
+        theDI << "Model X,Y,Z: " << aXYZ[3].getValue() << " " << aXYZ[4].getValue() << " "
+              << aXYZ[5].getValue() << "\n";
         return 0;
 
       case Ray:
@@ -5430,7 +5435,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
                                aXYZ[3],
                                aXYZ[4],
                                aXYZ[5]);
-        theDI << "Model DX,DY,DZ: " << aXYZ[3].getValue() << " " << aXYZ[4].getValue() << " " << aXYZ[5].getValue() << "\n";
+        theDI << "Model DX,DY,DZ: " << aXYZ[3].getValue() << " " << aXYZ[4].getValue() << " "
+              << aXYZ[5].getValue() << "\n";
         return 0;
 
       default:
@@ -5452,7 +5458,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
 
       case Grid:
         aView->ConvertToGrid(aCoord(1), aCoord(2), aCoord(3), aXYZ[0], aXYZ[1], aXYZ[2]);
-        theDI << "Model X,Y,Z: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << " " << aXYZ[2].getValue() << "\n";
+        theDI << "Model X,Y,Z: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << " "
+              << aXYZ[2].getValue() << "\n";
         return 0;
 
       default:
@@ -5526,7 +5533,7 @@ static int VFps(Draw_Interpretor& theDI, Standard_Integer theArgNb, const char**
     }
   }
   aTimer.Stop();
-  double       aCpu;
+  double              aCpu;
   const Standard_Real aTime = aTimer.ElapsedTime();
   aTimer.OSD_Chronometer::Show(aCpu);
 
@@ -6550,7 +6557,8 @@ static Standard_Integer VSelectByAxis(Draw_Interpretor& theDI,
        anIter.Next(), anIndex++)
   {
     const gp_Pnt& aPnt = anIter.Value();
-    theDI << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
+    theDI << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue()
+          << "\n";
   }
   return 0;
 }
@@ -6586,7 +6594,9 @@ protected:
     replace(aCmd, "%localpts", TCollection_AsciiString(theProgress.LocalPts.getValue()));
     replace(aCmd, "%ptslocal", TCollection_AsciiString(theProgress.LocalPts.getValue()));
     replace(aCmd, "%normalized", TCollection_AsciiString(theProgress.LocalNormalized.getValue()));
-    replace(aCmd, "%localnormalized", TCollection_AsciiString(theProgress.LocalNormalized.getValue()));
+    replace(aCmd,
+            "%localnormalized",
+            TCollection_AsciiString(theProgress.LocalNormalized.getValue()));
     myDrawInter->Eval(aCmd.ToCString());
   }
 
@@ -6995,19 +7005,23 @@ static int VViewParams(Draw_Interpretor& theDi, Standard_Integer theArgsNb, cons
 
       if (anArg == "-eye")
       {
-        theDi << "Eye:  " << aViewEye.X().getValue() << " " << aViewEye.Y().getValue() << " " << aViewEye.Z().getValue() << "\n";
+        theDi << "Eye:  " << aViewEye.X().getValue() << " " << aViewEye.Y().getValue() << " "
+              << aViewEye.Z().getValue() << "\n";
       }
       else if (anArg == "-at")
       {
-        theDi << "At:   " << aViewAt.X().getValue() << " " << aViewAt.Y().getValue() << " " << aViewAt.Z().getValue() << "\n";
+        theDi << "At:   " << aViewAt.X().getValue() << " " << aViewAt.Y().getValue() << " "
+              << aViewAt.Z().getValue() << "\n";
       }
       else if (anArg == "-up")
       {
-        theDi << "Up:   " << aViewUp.X().getValue() << " " << aViewUp.Y().getValue() << " " << aViewUp.Z().getValue() << "\n";
+        theDi << "Up:   " << aViewUp.X().getValue() << " " << aViewUp.Y().getValue() << " "
+              << aViewUp.Z().getValue() << "\n";
       }
       else if (anArg == "-proj")
       {
-        theDi << "Proj: " << aViewProj.X().getValue() << " " << aViewProj.Y().getValue() << " " << aViewProj.Z().getValue() << "\n";
+        theDi << "Proj: " << aViewProj.X().getValue() << " " << aViewProj.Y().getValue() << " "
+              << aViewProj.Z().getValue() << "\n";
       }
     }
     else if (anArg == "-center")
@@ -7225,7 +7239,8 @@ static Standard_Integer VAnimation(Draw_Interpretor& theDI,
          anAnimIter.More();
          anAnimIter.Next())
     {
-      theDI << anAnimIter.Value()->Name() << " " << anAnimIter.Value()->Duration().getValue() << " sec\n";
+      theDI << anAnimIter.Value()->Name() << " " << anAnimIter.Value()->Duration().getValue()
+            << " sec\n";
     }
     return 0;
   }
@@ -9545,7 +9560,8 @@ static int VDefaults(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const 
       theDi << "DeflType:           absolute\n"
             << "AbsoluteDeflection: " << aDefParams->MaximalChordialDeviation().getValue() << "\n";
     }
-    theDi << "AngularDeflection:  " << (180.0 * aDefParams->DeviationAngle() / M_PI).getValue() << "\n";
+    theDi << "AngularDeflection:  " << (180.0 * aDefParams->DeviationAngle() / M_PI).getValue()
+          << "\n";
     theDi << "AutoTriangulation:  " << (aDefParams->IsAutoTriangulation() ? "on" : "off") << "\n";
     return 0;
   }
@@ -9714,8 +9730,9 @@ static int VLight(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const cha
                 << "  Headlight:  " << (aLight->Headlight() ? "TRUE" : "FALSE") << "\n"
                 << "  CastShadows:" << (aLight->ToCastShadows() ? "TRUE" : "FALSE") << "\n"
                 << "  Smoothness: " << aLight->Smoothness() << "\n"
-                << "  Position:   " << aLight->Position().X().getValue() << " " << aLight->Position().Y().getValue()
-                << " " << aLight->Position().Z().getValue() << "\n"
+                << "  Position:   " << aLight->Position().X().getValue() << " "
+                << aLight->Position().Y().getValue() << " " << aLight->Position().Z().getValue()
+                << "\n"
                 << "  Atten.:     " << aLight->ConstAttenuation() << " "
                 << aLight->LinearAttenuation() << "\n"
                 << "  Range:      " << aLight->Range() << "\n";
@@ -9726,8 +9743,9 @@ static int VLight(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const cha
                 << "  Intensity:  " << aLight->Intensity() << "\n"
                 << "  Headlight:  " << (aLight->Headlight() ? "TRUE" : "FALSE") << "\n"
                 << "  CastShadows:" << (aLight->ToCastShadows() ? "TRUE" : "FALSE") << "\n"
-                << "  Position:   " << aLight->Position().X().getValue() << " " << aLight->Position().Y().getValue()
-                << " " << aLight->Position().Z().getValue() << "\n"
+                << "  Position:   " << aLight->Position().X().getValue() << " "
+                << aLight->Position().Y().getValue() << " " << aLight->Position().Z().getValue()
+                << "\n"
                 << "  Direction:  " << aLight->PackedDirection().x() << " "
                 << aLight->PackedDirection().y() << " " << aLight->PackedDirection().z() << "\n"
                 << "  Atten.:     " << aLight->ConstAttenuation() << " "

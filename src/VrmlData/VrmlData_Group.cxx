@@ -594,7 +594,11 @@ VrmlData_ErrorStatus VrmlData_Group::Write(const char* thePrefix) const
         const Standard_Real aScaleFactor = myTrsf.ScaleFactor();
         if ((aScaleFactor - 1.) * (aScaleFactor - 1.) > 0.0001 * Precision::Confusion())
         {
-          Sprintf(buf, "scale       %.12g %.12g %.12g", aScaleFactor.getValue(), aScaleFactor.getValue(), aScaleFactor.getValue());
+          Sprintf(buf,
+                  "scale       %.12g %.12g %.12g",
+                  aScaleFactor.getValue(),
+                  aScaleFactor.getValue(),
+                  aScaleFactor.getValue());
           aStatus = aScene.WriteLine(buf);
         }
 
@@ -602,7 +606,11 @@ VrmlData_ErrorStatus VrmlData_Group::Write(const char* thePrefix) const
         const gp_XYZ& aTrans = myTrsf.TranslationPart();
         if (aTrans.SquareModulus() > 0.0001 * Precision::Confusion())
         {
-          Sprintf(buf, "translation %.12g %.12g %.12g", aTrans.X().getValue(), aTrans.Y().getValue(), aTrans.Z().getValue());
+          Sprintf(buf,
+                  "translation %.12g %.12g %.12g",
+                  aTrans.X().getValue(),
+                  aTrans.Y().getValue(),
+                  aTrans.Z().getValue());
           aStatus = aScene.WriteLine(buf);
         }
 

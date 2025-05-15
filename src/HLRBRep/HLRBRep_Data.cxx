@@ -266,7 +266,8 @@ public:
       //-- std::cout<<" \n alloc nbUV["<<i0<<"]="<<nbUV[i0];
 
       Standard_Real* NvLigneUV =
-        new Standard_Real[nbUV[i0]+SIZEUV]; // (Standard_Real*)malloc((nbUV[i0] + SIZEUV) * sizeof(Standard_Real));
+        new Standard_Real[nbUV[i0] + SIZEUV]; // (Standard_Real*)malloc((nbUV[i0] + SIZEUV) *
+                                              // sizeof(Standard_Real));
       Standard_Integer* NvLigneInd =
         (Standard_Integer*)malloc((nbUV[i0] + SIZEUV) * sizeof(Standard_Integer));
       //--
@@ -2089,7 +2090,11 @@ q1,(q2>32768)? (32768-q2) : q2,q&0x80008000);
   if (aff)
   {
     static Standard_Integer nump1 = 0;
-    printf("\npoint PNR%d  %g %g %g", ++nump1, PLim.X().getValue(), PLim.Y().getValue(), PLim.Z().getValue());
+    printf("\npoint PNR%d  %g %g %g",
+           ++nump1,
+           PLim.X().getValue(),
+           PLim.Y().getValue(),
+           PLim.Z().getValue());
   }
 
   gp_Lin        L    = myProj.Shoot(Psta.X(), Psta.Y());

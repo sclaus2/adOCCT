@@ -304,7 +304,7 @@ void MeshVS_MeshPrsBuilder::BuildElements(const Handle(Prs3d_Presentation)& Prs,
 
   showEdges = IsWireFrame || showEdges;
 
-  Standard_Integer* aNodesBuf  = (Standard_Integer*)alloca(maxnodes * sizeof(Standard_Integer));
+  Standard_Integer* aNodesBuf = (Standard_Integer*)alloca(maxnodes * sizeof(Standard_Integer));
   // Standard_Real*    aCoordsBuf = (Standard_Real*)alloca(3 * maxnodes * sizeof(Standard_Real));
 
   TColStd_Array1OfInteger aNodes(*aNodesBuf, 1, maxnodes);
@@ -608,8 +608,8 @@ void MeshVS_MeshPrsBuilder::BuildHilightPrs(const Handle(Prs3d_Presentation)& Pr
   if (aDrawer.IsNull() || !aDrawer->GetInteger(MeshVS_DA_MaxFaceNodes, maxnodes) || maxnodes <= 0)
     return;
 
-  MeshVS_Buffer<Standard_Real>        aCoordsBuf(3 * maxnodes);
-  TColStd_Array1OfReal aCoords(aCoordsBuf, 1, 3 * maxnodes);
+  MeshVS_Buffer<Standard_Real> aCoordsBuf(3 * maxnodes);
+  TColStd_Array1OfReal         aCoords(aCoordsBuf, 1, 3 * maxnodes);
 
   Graphic3d_MaterialAspect AMat;
   aDrawer->GetMaterial(MeshVS_DA_FrontMaterial, AMat);

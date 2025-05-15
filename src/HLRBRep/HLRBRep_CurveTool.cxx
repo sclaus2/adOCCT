@@ -20,9 +20,9 @@
 
 Standard_Integer HLRBRep_CurveTool::NbSamples(const Standard_Address C)
 {
-  GeomAbs_CurveType    typC     = ((HLRBRep_Curve*)C)->GetType();
-  static double nbsOther = 10.0;
-  Standard_Real        nbs      = nbsOther;
+  GeomAbs_CurveType typC     = ((HLRBRep_Curve*)C)->GetType();
+  static double     nbsOther = 10.0;
+  Standard_Real     nbs      = nbsOther;
 
   if (typC == GeomAbs_Line)
     nbs = 2;
@@ -46,9 +46,9 @@ Standard_Integer HLRBRep_CurveTool::NbSamples(const Standard_Address C,
                                               const Standard_Real    u1,
                                               const Standard_Real    u2)
 {
-  GeomAbs_CurveType    typC     = ((HLRBRep_Curve*)C)->GetType();
-  static double nbsOther = 10.0;
-  Standard_Real        nbs      = nbsOther;
+  GeomAbs_CurveType typC     = ((HLRBRep_Curve*)C)->GetType();
+  static double     nbsOther = 10.0;
+  Standard_Real     nbs      = nbsOther;
 
   if (typC == GeomAbs_Line)
     nbs = 2;

@@ -96,19 +96,23 @@ static Standard_Integer tolerance(Draw_Interpretor& di, Standard_Integer argc, c
   {
     sat.InitTolerance();
     sat.AddTolerance(Shape);
-    di << "Tolerance MAX=" << sat.GlobalTolerance(1).getValue() << " AVG=" << sat.GlobalTolerance(0).getValue()
+    di << "Tolerance MAX=" << sat.GlobalTolerance(1).getValue()
+       << " AVG=" << sat.GlobalTolerance(0).getValue()
        << " MIN=" << sat.GlobalTolerance(-1).getValue() << "\n";
     sat.InitTolerance();
     sat.AddTolerance(Shape, TopAbs_FACE);
-    di << "FACE    : MAX=" << sat.GlobalTolerance(1).getValue() << " AVG=" << sat.GlobalTolerance(0).getValue()
+    di << "FACE    : MAX=" << sat.GlobalTolerance(1).getValue()
+       << " AVG=" << sat.GlobalTolerance(0).getValue()
        << " MIN=" << sat.GlobalTolerance(-1).getValue() << "\n";
     sat.InitTolerance();
     sat.AddTolerance(Shape, TopAbs_EDGE);
-    di << "EDGE    : MAX=" << sat.GlobalTolerance(1).getValue() << " AVG=" << sat.GlobalTolerance(0).getValue()
+    di << "EDGE    : MAX=" << sat.GlobalTolerance(1).getValue()
+       << " AVG=" << sat.GlobalTolerance(0).getValue()
        << " MIN=" << sat.GlobalTolerance(-1).getValue() << "\n";
     sat.InitTolerance();
     sat.AddTolerance(Shape, TopAbs_VERTEX);
-    di << "VERTEX  : MAX=" << sat.GlobalTolerance(1).getValue() << " AVG=" << sat.GlobalTolerance(0).getValue()
+    di << "VERTEX  : MAX=" << sat.GlobalTolerance(1).getValue()
+       << " AVG=" << sat.GlobalTolerance(0).getValue()
        << " MIN=" << sat.GlobalTolerance(-1).getValue() << "\n";
   }
   else
@@ -218,7 +222,8 @@ static Standard_Integer projface(Draw_Interpretor& di, Standard_Integer argc, co
   {
     Z = Draw::Atof(argv[4]);
     gp_Pnt P3D(X, Y, Z);
-    di << " Point 3D X = " << X.getValue() << "  Y = " << Y.getValue() << "  Z = " << Z.getValue() << "\n";
+    di << " Point 3D X = " << X.getValue() << "  Y = " << Y.getValue() << "  Z = " << Z.getValue()
+       << "\n";
     Standard_Real uf, ul, vf, vl;
     thesurf->Bounds(uf, ul, vf, vl);
 
@@ -258,7 +263,8 @@ static Standard_Integer projface(Draw_Interpretor& di, Standard_Integer argc, co
 
       //  reprojection
       P3D = thesurf->Value(U, V);
-      di << "  => reproj  X = " << P3D.X().getValue() << "  Y = " << P3D.Y().getValue() << "  Z = " << P3D.Z().getValue() << "\n";
+      di << "  => reproj  X = " << P3D.X().getValue() << "  Y = " << P3D.Y().getValue()
+         << "  Z = " << P3D.Z().getValue() << "\n";
     }
     di << " Found " << anIndSol << " Points\n";
 
@@ -266,9 +272,11 @@ static Standard_Integer projface(Draw_Interpretor& di, Standard_Integer argc, co
     {
       di << "** Minimal distance to face = " << aMinDist.getValue() << "\n";
       proj.Parameters(anIndMin, U, V);
-      di << "**  Solution of minimal distance:  U = " << U.getValue() << "  V = " << V.getValue() << "\n";
+      di << "**  Solution of minimal distance:  U = " << U.getValue() << "  V = " << V.getValue()
+         << "\n";
       P3D = thesurf->Value(U, V);
-      di << "  => reproj  X = " << P3D.X().getValue() << "  Y = " << P3D.Y().getValue() << "  Z = " << P3D.Z().getValue() << "\n";
+      di << "  => reproj  X = " << P3D.X().getValue() << "  Y = " << P3D.Y().getValue()
+         << "  Z = " << P3D.Z().getValue() << "\n";
     }
   }
   else // Check 2D point
@@ -280,7 +288,8 @@ static Standard_Integer projface(Draw_Interpretor& di, Standard_Integer argc, co
     else
     {
       gp_Pnt P3D = thesurf->Value(U, V);
-      di << " => proj  X = " << P3D.X().getValue() << "  Y = " << P3D.Y().getValue() << "  Z = " << P3D.Z().getValue() << "\n";
+      di << " => proj  X = " << P3D.X().getValue() << "  Y = " << P3D.Y().getValue()
+         << "  Z = " << P3D.Z().getValue() << "\n";
     }
   }
   return 0;
@@ -331,15 +340,16 @@ static Standard_Integer projcurve(Draw_Interpretor& di, Standard_Integer argc, c
       cl = Draw::Atof(argv[3]);
       i0 = 2;
     }
-    di << "Curve 3D " << arg1 << " Params from " << cf.getValue() << " to " << cl.getValue() << "\n";
+    di << "Curve 3D " << arg1 << " Params from " << cf.getValue() << " to " << cl.getValue()
+       << "\n";
   }
 
   Standard_Real X, Y, Z;
   X = Draw::Atof(argv[2 + i0]);
   Y = Draw::Atof(argv[3 + i0]);
   Z = Draw::Atof(argv[4 + i0]);
-  di << "Precision (BRepBuilderAPI) : " << BRepBuilderAPI::Precision().getValue() << "  Projection : " << X.getValue()
-     << "  " << Y.getValue() << "  " << Z.getValue() << "\n";
+  di << "Precision (BRepBuilderAPI) : " << BRepBuilderAPI::Precision().getValue()
+     << "  Projection : " << X.getValue() << "  " << Y.getValue() << "  " << Z.getValue() << "\n";
 
   gp_Pnt        P3D(X, Y, Z);
   gp_Pnt        res;
@@ -347,8 +357,8 @@ static Standard_Integer projcurve(Draw_Interpretor& di, Standard_Integer argc, c
 
   dist = ShapeAnalysis_Curve().Project(C, P3D, BRepBuilderAPI::Precision(), res, param, cf, cl);
   res.Coord(X, Y, Z);
-  di << "Result : " << X.getValue() << "  " << Y.getValue() << "  " << Z.getValue() << "\nParam = " << param.getValue() << "  Gap = " << dist.getValue()
-     << "\n";
+  di << "Result : " << X.getValue() << "  " << Y.getValue() << "  " << Z.getValue()
+     << "\nParam = " << param.getValue() << "  Gap = " << dist.getValue() << "\n";
   return 0;
 }
 
@@ -407,7 +417,8 @@ static Standard_Integer projpcurve(Draw_Interpretor& di, Standard_Integer argc, 
     aDist = aTool.Project(aCOnS, aP3D, aTol, aPnt, aParam, Standard_False);
   }
 
-  di << "Point:" << "\n" << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
+  di << "Point:" << "\n"
+     << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
   di << "Param: " << aParam.getValue() << "\n";
   di << "Dist: " << aDist.getValue() << "\n";
   return 0;
@@ -588,12 +599,16 @@ static Standard_Integer anaface(Draw_Interpretor& di, Standard_Integer argc, con
       fin   = lxyz;
       finuv = luv;
 
-      di << "-- Deb : VTX=" << fp.X().getValue() << " , " << fp.Y().getValue() << " , " << fp.Z().getValue()
-         << "\n         XYZ=" << fxyz.X().getValue() << " , " << fxyz.Y().getValue() << " , " << fxyz.Z().getValue()
-         << "\n         UV=" << fuv.X().getValue() << " , " << fuv.Y().getValue() << "  -- D.UV/3D=" << df3d.getValue() << "\n";
-      di << "-- Fin : VTX=" << lp.X().getValue() << " , " << lp.Y().getValue() << " , " << lp.Z().getValue()
-         << "\n         XYZ=" << lxyz.X().getValue() << " , " << lxyz.Y().getValue() << " , " << lxyz.Z().getValue()
-         << "\n         UV=" << luv.X().getValue() << " , " << luv.Y().getValue() << "  -- D.UV/3D=" << dl3d.getValue() << "\n";
+      di << "-- Deb : VTX=" << fp.X().getValue() << " , " << fp.Y().getValue() << " , "
+         << fp.Z().getValue() << "\n         XYZ=" << fxyz.X().getValue() << " , "
+         << fxyz.Y().getValue() << " , " << fxyz.Z().getValue()
+         << "\n         UV=" << fuv.X().getValue() << " , " << fuv.Y().getValue()
+         << "  -- D.UV/3D=" << df3d.getValue() << "\n";
+      di << "-- Fin : VTX=" << lp.X().getValue() << " , " << lp.Y().getValue() << " , "
+         << lp.Z().getValue() << "\n         XYZ=" << lxyz.X().getValue() << " , "
+         << lxyz.Y().getValue() << " , " << lxyz.Z().getValue()
+         << "\n         UV=" << luv.X().getValue() << " , " << luv.Y().getValue()
+         << "  -- D.UV/3D=" << dl3d.getValue() << "\n";
     }
     dvtx   = fin.Distance(debut);
     maxvtx = Max(maxvtx, dvtx);
@@ -615,8 +630,8 @@ static Standard_Integer anaface(Draw_Interpretor& di, Standard_Integer argc, con
     if (iaw2d)
     {
       di << "TotCross=" << totcross.getValue();
-      di << "  UMin-Max:" << umin.getValue() << " , " << umax.getValue() << "  VMin-Max:" << vmin.getValue() << " , " << vmax.getValue()
-         << "\n";
+      di << "  UMin-Max:" << umin.getValue() << " , " << umax.getValue()
+         << "  VMin-Max:" << vmin.getValue() << " , " << vmax.getValue() << "\n";
       Standard_Real difu = umax - umin, difv = vmax - vmin;
       GProp_GProps  G;
       BRepGProp::SurfaceProperties(Face, G);
@@ -924,7 +939,8 @@ static Standard_Integer XSHAPE_comptoledge(Draw_Interpretor& di,
      << max.getValue() << " AVG=" << (ave / num).getValue() << " MIN=" << min.getValue() << "\n";
   di << "Relation real tolerance / tolerance set in edge\n"
         "MAX="
-     << relmax.getValue() << " AVG=" << (relave / num).getValue() << " MIN=" << relmin.getValue() << "\n";
+     << relmax.getValue() << " AVG=" << (relave / num).getValue() << " MIN=" << relmin.getValue()
+     << "\n";
   if (prefix && prefix[0])
   {
     char name[21];
@@ -1022,7 +1038,14 @@ static void PrintProps(Standard_Integer                           i,
   Standard_Real    ratio     = fbd->Ratio();
   Standard_Real    width     = fbd->Width();
   Standard_Integer notch     = fbd->NbNotches();
-  Sprintf(str, " %d\t%12.5f\t%12.5f\t%12.5f\t%12.5f\t%d", i, area.getValue(), perimeter.getValue(), ratio.getValue(), width.getValue(), notch);
+  Sprintf(str,
+          " %d\t%12.5f\t%12.5f\t%12.5f\t%12.5f\t%d",
+          i,
+          area.getValue(),
+          perimeter.getValue(),
+          ratio.getValue(),
+          width.getValue(),
+          notch);
   di << str << "\n";
 }
 

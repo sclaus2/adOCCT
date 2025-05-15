@@ -53,8 +53,8 @@ public:
   //! <aword>.
   Standard_EXPORT Units_ShiftedToken(const Standard_CString          aword,
                                      const Standard_CString          amean,
-                                     const double             avalue,
-                                     const double             amove,
+                                     const double                    avalue,
+                                     const double                    amove,
                                      const Handle(Units_Dimensions)& adimensions);
 
   //! Creates and returns a  token, which is a ShiftedToken.
@@ -66,8 +66,7 @@ public:
   //! This  virtual   method  is  called  by the Measurement
   //! methods,  to   compute  the   measurement    during  a
   //! conversion.
-  Standard_EXPORT virtual double Multiplied(const double avalue) const
-    Standard_OVERRIDE;
+  Standard_EXPORT virtual double Multiplied(const double avalue) const Standard_OVERRIDE;
 
   //! This   virtual  method is  called  by  the Measurement
   //! methods,   to   compute   the   measurement   during a

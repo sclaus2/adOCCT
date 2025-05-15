@@ -163,7 +163,7 @@ static void EvalParameters(const Geom2dAdaptor_Curve& Bis,
                            const Geom2dAdaptor_Curve& AC,
                            TColgp_SequenceOfPnt&      Params)
 {
-  Geom2dInt_GInter        Intersector;
+  Geom2dInt_GInter    Intersector;
   const Standard_Real Tol = Precision::Confusion();
   //  Standard_Real TolC = 1.e-9;
 
@@ -517,10 +517,10 @@ void BRepFill_TrimEdgeTool::IntersectWith(const TopoDS_Edge&     Edge1,
   // on the bissectrice.).
   // The tolerance can be eventually changed.
 
-  gp_Pnt                  P1, P2;
+  gp_Pnt              P1, P2;
   const Standard_Real Tol      = 4 * 100 * Precision::PConfusion();
-  Standard_Integer        i        = 1;
-  Standard_Integer        NbPoints = Params.Length();
+  Standard_Integer    i        = 1;
+  Standard_Integer    NbPoints = Params.Length();
 
   if (NbPoints == 1 && Points2.Length() == 1)
   {
@@ -662,8 +662,8 @@ void BRepFill_TrimEdgeTool::AddOrConfuse(const Standard_Boolean Start,
                                          const TopoDS_Edge&     Edge2,
                                          TColgp_SequenceOfPnt&  Params) const
 {
-  Standard_Boolean        ToProj = Standard_True;
-  gp_Pnt2d                PBis;
+  Standard_Boolean    ToProj = Standard_True;
+  gp_Pnt2d            PBis;
   const Standard_Real Tol = 10 * Precision::Confusion();
 
   // return curves associated to edges.

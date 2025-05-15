@@ -27,8 +27,8 @@ IMPLEMENT_STANDARD_RTTIEXT(Units_ShiftedUnit, Units_Unit)
 
 Units_ShiftedUnit::Units_ShiftedUnit(const Standard_CString        aname,
                                      const Standard_CString        asymbol,
-                                     const double           avalue,
-                                     const double           amove,
+                                     const double                  avalue,
+                                     const double                  amove,
                                      const Handle(Units_Quantity)& aquantity)
     : Units_Unit(aname, asymbol, avalue, aquantity)
 {

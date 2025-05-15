@@ -67,13 +67,13 @@ public:
 
   //! Return playback state.
   Standard_EXPORT void PlaybackState(Standard_Boolean& theIsPaused,
-                                     double&    theProgress,
-                                     double&    theDuration);
+                                     double&           theProgress,
+                                     double&           theDuration);
 
   //! Pause/Pause playback depending on the current state.
   Standard_EXPORT void PlayPause(Standard_Boolean& theIsPaused,
-                                 double&    theProgress,
-                                 double&    theDuration);
+                                 double&           theProgress,
+                                 double&           theDuration);
 
   //! Seek to specified position.
   Standard_EXPORT void Seek(double thePosSec);
@@ -145,7 +145,7 @@ private:
 
   volatile bool              myToShutDown; //!< flag to terminate working thread
   TCollection_AsciiString    myInputPath;  //!< new input to open
-  volatile double     mySeekTo;     //!< new seeking position
+  volatile double            mySeekTo;     //!< new seeking position
   volatile Media_PlayerEvent myPlayEvent;  //!< playback event
 };
 

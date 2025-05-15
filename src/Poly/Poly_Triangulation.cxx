@@ -66,16 +66,16 @@ Poly_Triangulation::Poly_Triangulation(const TColgp_Array1OfPnt&    theNodes,
       myTriangles(1, theTriangles.Length()),
       myPurpose(Poly_MeshPurpose_NONE)
 {
-  //prepare points
+  // prepare points
   NCollection_Array1<gp_Vec3double> array1(theNodes.Lower(), theNodes.Upper());
-  for(Standard_Integer i = theNodes.Lower(); i <= theNodes.Upper(); ++i)
+  for (Standard_Integer i = theNodes.Lower(); i <= theNodes.Upper(); ++i)
   {
     //    array1.SetValue(i, gp_Vec3double(theNodes.Value(i).X().getValue(),
     //                                                      theNodes.Value(i).Y().getValue(),
     //                                                      theNodes.Value(i).Z().getValue()));
     array1.ChangeValue(i).SetValues(theNodes.Value(i).X().getValue(),
-                                            theNodes.Value(i).Y().getValue(),
-                                            theNodes.Value(i).Z().getValue());
+                                    theNodes.Value(i).Y().getValue(),
+                                    theNodes.Value(i).Z().getValue());
   }
   const Poly_ArrayOfNodes aNodeWrapper(array1.First(), array1.Length());
   myNodes     = aNodeWrapper;
@@ -94,26 +94,26 @@ Poly_Triangulation::Poly_Triangulation(const TColgp_Array1OfPnt&    theNodes,
       myUVNodes(theNodes.Length()),
       myPurpose(Poly_MeshPurpose_NONE)
 {
-  //prepare points
+  // prepare points
   NCollection_Array1<gp_Vec3double> array1(theNodes.Lower(), theNodes.Upper());
-  for(Standard_Integer i = theNodes.Lower(); i <= theNodes.Upper(); ++i)
+  for (Standard_Integer i = theNodes.Lower(); i <= theNodes.Upper(); ++i)
   {
     //    array1.SetValue(i, gp_Vec3d(theNodes.Value(i).X().getValue(),
     //                                theNodes.Value(i).Y().getValue(),
     //                                theNodes.Value(i).Z().getValue()));
     array1.ChangeValue(i).SetValues(theNodes.Value(i).X().getValue(),
-                                              theNodes.Value(i).Y().getValue(),
-                                              theNodes.Value(i).Z().getValue());
+                                    theNodes.Value(i).Y().getValue(),
+                                    theNodes.Value(i).Z().getValue());
   }
   const Poly_ArrayOfNodes aNodeWrapper(array1.First(), array1.Length());
   myNodes     = aNodeWrapper;
   myTriangles = theTriangles;
-  //prepare points
+  // prepare points
   NCollection_Array1<gp_Vec2double> array2(theUVNodes.Lower(), theUVNodes.Upper());
-  for(Standard_Integer i = theUVNodes.Lower(); i <= theUVNodes.Upper(); ++i)
+  for (Standard_Integer i = theUVNodes.Lower(); i <= theUVNodes.Upper(); ++i)
   {
     array2.ChangeValue(i).SetValues(theUVNodes.Value(i).X().getValue(),
-                                              theUVNodes.Value(i).Y().getValue());
+                                    theUVNodes.Value(i).Y().getValue());
   }
   const Poly_ArrayOfUVNodes aUVNodeWrapper(array2.First(), array2.Length());
   myUVNodes = aUVNodeWrapper;
@@ -198,7 +198,8 @@ Handle(TColgp_HArray1OfPnt) Poly_Triangulation::MapNodeArray() const
     return Handle(TColgp_HArray1OfPnt)();
   }
 
-  //deep copy (below) will be always executed, since we cannot cast double pointer to adouble pointer
+  // deep copy (below) will be always executed, since we cannot cast double pointer to adouble
+  // pointer
   /*
   if (myNodes.IsDoublePrecision())
   {
@@ -245,7 +246,8 @@ Handle(TColgp_HArray1OfPnt2d) Poly_Triangulation::MapUVNodeArray() const
     return Handle(TColgp_HArray1OfPnt2d)();
   }
 
-  //deep copy (below) will be always executed, since we cannot cast double pointer to adouble pointer
+  // deep copy (below) will be always executed, since we cannot cast double pointer to adouble
+  // pointer
   /*
   if (myUVNodes.IsDoublePrecision())
   {
@@ -473,12 +475,12 @@ void Poly_Triangulation::ComputeNormals()
   for (Poly_Array1OfTriangle::Iterator aTriIter(myTriangles); aTriIter.More(); aTriIter.Next())
   {
     aTriIter.Value().Get(anElem[0], anElem[1], anElem[2]);
-    const gp_Vec3double aNodeHelper0 = myNodes.Value (anElem[0] - 1);
-    const gp_Vec3double aNodeHelper1 = myNodes.Value (anElem[1] - 1);
-    const gp_Vec3double aNodeHelper2 = myNodes.Value (anElem[2] - 1);
-    const gp_Pnt aNode0(aNodeHelper0.x(), aNodeHelper0.y(), aNodeHelper0.z());
-    const gp_Pnt aNode1(aNodeHelper1.x(), aNodeHelper1.y(), aNodeHelper1.z());
-    const gp_Pnt aNode2(aNodeHelper2.x(), aNodeHelper2.y(), aNodeHelper2.z());
+    const gp_Vec3double aNodeHelper0 = myNodes.Value(anElem[0] - 1);
+    const gp_Vec3double aNodeHelper1 = myNodes.Value(anElem[1] - 1);
+    const gp_Vec3double aNodeHelper2 = myNodes.Value(anElem[2] - 1);
+    const gp_Pnt        aNode0(aNodeHelper0.x(), aNodeHelper0.y(), aNodeHelper0.z());
+    const gp_Pnt        aNode1(aNodeHelper1.x(), aNodeHelper1.y(), aNodeHelper1.z());
+    const gp_Pnt        aNode2(aNodeHelper2.x(), aNodeHelper2.y(), aNodeHelper2.z());
 
     const gp_XYZ   aVec01   = aNode1.XYZ() - aNode0.XYZ();
     const gp_XYZ   aVec02   = aNode2.XYZ() - aNode0.XYZ();

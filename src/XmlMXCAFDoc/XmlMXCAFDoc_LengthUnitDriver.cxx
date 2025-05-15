@@ -86,7 +86,8 @@ void XmlMXCAFDoc_LengthUnitDriver::Paste(const Handle(TDF_Attribute)& theSource,
 {
   Handle(XCAFDoc_LengthUnit) anAtt     = Handle(XCAFDoc_LengthUnit)::DownCast(theSource);
   XmlObjMgt_DOMString        aNameUnit = anAtt->GetUnitName().ToCString();
-  XmlObjMgt_DOMString aValueUnit       = TCollection_AsciiString(anAtt->GetUnitValue().getValue()).ToCString();
+  XmlObjMgt_DOMString        aValueUnit =
+    TCollection_AsciiString(anAtt->GetUnitValue().getValue()).ToCString();
   XmlObjMgt::SetStringValue(theTarget, aNameUnit);
   theTarget.Element().setAttribute(::UnitScaleValue(), aValueUnit);
 }

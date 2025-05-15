@@ -1186,18 +1186,21 @@ static Standard_Integer dump(Draw_Interpretor& di, Standard_Integer argc, const 
   }
 
   gp_Pnt aPnt = aView->GetObject()->ProjectionPoint();
-  di << "Projection point: " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
+  di << "Projection point: " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " "
+     << aPnt.Z().getValue() << "\n";
 
   gp_Dir aDir = aView->GetObject()->ViewDirection();
-  di << "View Direction: " << aDir.X().getValue() << " " << aDir.Y().getValue() << " " << aDir.Z().getValue() << "\n";
+  di << "View Direction: " << aDir.X().getValue() << " " << aDir.Y().getValue() << " "
+     << aDir.Z().getValue() << "\n";
 
   aDir = aView->GetObject()->UpDirection();
-  di << "Up Direction: " << aDir.X().getValue() << " " << aDir.Y().getValue() << " " << aDir.Z().getValue() << "\n";
+  di << "Up Direction: " << aDir.X().getValue() << " " << aDir.Y().getValue() << " "
+     << aDir.Z().getValue() << "\n";
 
   di << "Zoom factor: " << aView->GetObject()->ZoomFactor().getValue() << "\n";
 
-  di << "Window Size: width " << aView->GetObject()->WindowHorizontalSize().getValue() << ", " << " height "
-     << aView->GetObject()->WindowVerticalSize().getValue() << "\n";
+  di << "Window Size: width " << aView->GetObject()->WindowHorizontalSize().getValue() << ", "
+     << " height " << aView->GetObject()->WindowVerticalSize().getValue() << "\n";
 
   if (aView->GetObject()->HasFrontPlaneClipping())
     di << "Front Plane Distance: " << aView->GetObject()->FrontPlaneDistance().getValue() << "\n";

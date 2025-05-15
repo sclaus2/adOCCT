@@ -25,8 +25,8 @@ IMPLEMENT_STANDARD_RTTIEXT(Units_ShiftedToken, Units_Token)
 
 Units_ShiftedToken::Units_ShiftedToken(const Standard_CString          aword,
                                        const Standard_CString          amean,
-                                       const double             avalue,
-                                       const double             amove,
+                                       const double                    avalue,
+                                       const double                    amove,
                                        const Handle(Units_Dimensions)& adimensions)
     : Units_Token(aword, amean, avalue, adimensions)
 {

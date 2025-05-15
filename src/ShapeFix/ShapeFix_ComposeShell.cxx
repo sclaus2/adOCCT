@@ -2970,11 +2970,11 @@ void ShapeFix_ComposeShell::DispatchWires(TopTools_SequenceOfShape&       faces,
           Handle(Geom2d_Curve) c21   = BRep_Tool::CurveOnSurface(E, myFace, f1, l1);
           TopoDS_Shape         dummy = E.Reversed();
           Handle(Geom2d_Curve) c22 = BRep_Tool::CurveOnSurface(TopoDS::Edge(dummy), myFace, f2, l2);
-          const Standard_Real dPreci = ::Precision::PConfusion() * Precision::PConfusion();
-          gp_Pnt2d                pf1    = c21->Value(f1);
-          gp_Pnt2d                pl1    = c21->Value(l1);
-          gp_Pnt2d                pf2    = c22->Value(f2);
-          gp_Pnt2d                pl2    = c22->Value(l2);
+          const Standard_Real  dPreci = ::Precision::PConfusion() * Precision::PConfusion();
+          gp_Pnt2d             pf1    = c21->Value(f1);
+          gp_Pnt2d             pl1    = c21->Value(l1);
+          gp_Pnt2d             pf2    = c22->Value(f2);
+          gp_Pnt2d             pl2    = c22->Value(l2);
           if (c21 == c22 || pf1.SquareDistance(pf2) < dPreci || pl1.SquareDistance(pl2) < dPreci)
           {
             gp_Vec2d shift(0., 0.);

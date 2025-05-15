@@ -77,7 +77,8 @@ void DsgPrs_AnglePresentation::Add(const Handle(Prs3d_Presentation)& aPresentati
 
   TCollection_ExtendedString txt(aText);
 
-  const Standard_Real myArrowSize = (aArrowSize == 0.0) ? Standard_Real(0.1 * aCircle.Radius()) : aArrowSize;
+  const Standard_Real myArrowSize =
+    (aArrowSize == 0.0) ? Standard_Real(0.1 * aCircle.Radius()) : aArrowSize;
 
   aDimensionAspect->ArrowAspect()->SetLength(myArrowSize);
   aDrawer->ArrowAspect()->SetLength(myArrowSize);
@@ -459,9 +460,10 @@ void DsgPrs_AnglePresentation::Add(const Handle(Prs3d_Presentation)& aPresentati
     else
     {
       // Creating the arc from AttachmentPoint2 to its projection
-      const Standard_Real    Alpha      = Abs(LastParAttachCirc - FirstParAttachCirc);
-      const Standard_Integer NodeNumber = Max(4, Standard_Integer(Standard_Real(50. * Alpha / M_PI)));
-      const Standard_Real    delta      = Alpha / (Standard_Real)(NodeNumber - 1);
+      const Standard_Real    Alpha = Abs(LastParAttachCirc - FirstParAttachCirc);
+      const Standard_Integer NodeNumber =
+        Max(4, Standard_Integer(Standard_Real(50. * Alpha / M_PI)));
+      const Standard_Real delta = Alpha / (Standard_Real)(NodeNumber - 1);
 
       aPrims = new Graphic3d_ArrayOfPolylines(NodeNumber);
       for (Standard_Integer i = 0; i < NodeNumber; i++, FirstParAttachCirc += delta)

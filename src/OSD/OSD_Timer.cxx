@@ -29,10 +29,10 @@ namespace
 //! @param theHours   [out] clamped elapsed hours
 //! @param theMinutes [out] clamped elapsed minutes within range [0, 59]
 //! @param theSeconds [out] clamped elapsed seconds within range [0, 60)
-static void timeToHoursMinutesSeconds(double     theTimeSec,
+static void timeToHoursMinutesSeconds(double            theTimeSec,
                                       Standard_Integer& theHours,
                                       Standard_Integer& theMinutes,
-                                      double&    theSeconds)
+                                      double&           theSeconds)
 {
   Standard_Integer aSec = (Standard_Integer)theTimeSec;
   theHours              = aSec / 3600;
@@ -135,10 +135,10 @@ double OSD_Timer::ElapsedTime() const
 
 //=================================================================================================
 
-void OSD_Timer::Show(double&    theSeconds,
+void OSD_Timer::Show(double&           theSeconds,
                      Standard_Integer& theMinutes,
                      Standard_Integer& theHours,
-                     double&    theCPUtime) const
+                     double&           theCPUtime) const
 {
   const double aTimeCumul =
     myIsStopped ? myTimeCumul : myTimeCumul + GetWallClockTime() - myTimeStart;
@@ -153,7 +153,7 @@ void OSD_Timer::Show(Standard_OStream& theOStream) const
   const double aTimeCumul = ElapsedTime();
 
   Standard_Integer anHours, aMinutes;
-  double    aSeconds;
+  double           aSeconds;
   timeToHoursMinutesSeconds(aTimeCumul, anHours, aMinutes, aSeconds);
 
   std::streamsize prec = theOStream.precision(12);

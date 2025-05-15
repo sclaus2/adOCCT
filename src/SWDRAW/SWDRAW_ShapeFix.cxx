@@ -387,11 +387,12 @@ static Standard_Integer stwire(Draw_Interpretor& di, Standard_Integer argc, cons
           di << "Close (with preci=" << saw->Precision().getValue() << ")\n";
           break;
         case 3:
-          di << "End of " << i << " OK, Start of " << (i == nb ? 1 : i + 1) << " at U=" << ufol.getValue();
+          di << "End of " << i << " OK, Start of " << (i == nb ? 1 : i + 1)
+             << " at U=" << ufol.getValue();
           break;
         case 4:
-          di << "End of " << i << " at U=" << upre.getValue() << ", Start of " << (i == nb ? 1 : i + 1)
-             << " OK";
+          di << "End of " << i << " at U=" << upre.getValue() << ", Start of "
+             << (i == nb ? 1 : i + 1) << " OK";
           break;
         case 5:
           di << "Intersection, End of " << i << " at U=" << upre.getValue() << ", Start of "
@@ -401,7 +402,8 @@ static Standard_Integer stwire(Draw_Interpretor& di, Standard_Integer argc, cons
           di << "Disjoined\n";
       }
       if (stat >= 3 && stat <= 5)
-        di << "\n   - Position : " << pos.X().getValue() << "  " << pos.Y().getValue() << "  " << pos.Z().getValue() << "\n";
+        di << "\n   - Position : " << pos.X().getValue() << "  " << pos.Y().getValue() << "  "
+           << pos.Z().getValue() << "\n";
     }
     ShapeFix_WireVertex sfwv;
     sfwv.Init(sawv);

@@ -323,7 +323,8 @@ static int OCC105(Draw_Interpretor& di, Standard_Integer argc, const char** argv
       Standard_Real t   = algo.Parameter(Index);
       gp_Pnt        pt3 = curve.Value(t);
       di << "Parameter t = " << t.getValue() << "\n";
-      di << "Value Pnt = " << pt3.X().getValue() << " " << pt3.Y().getValue() << " " << pt3.Z().getValue() << "\n";
+      di << "Value Pnt = " << pt3.X().getValue() << " " << pt3.Y().getValue() << " "
+         << pt3.Z().getValue() << "\n";
     }
   }
   return 0;
@@ -1071,8 +1072,8 @@ static Standard_Integer OCC377(Draw_Interpretor& di, Standard_Integer argc, cons
       : stat1 == TopAbs_OUT ? TmpString.AssignCat("OUT")
       : stat1 == TopAbs_ON  ? TmpString.AssignCat("ON")
                             : TmpString.AssignCat("UNKNOWN");
-      di << "Wire " << i << ": point ( " << p2d.X().getValue() << ", " << p2d.Y().getValue() << " ) is "
-         << TmpString.ToCString() << "\n";
+      di << "Wire " << i << ": point ( " << p2d.X().getValue() << ", " << p2d.Y().getValue()
+         << " ) is " << TmpString.ToCString() << "\n";
 
       // 4.2. Verify whether enrtry point is on reversed wire
       newFace = TopoDS::Face(Shape.EmptyCopied());
@@ -1102,8 +1103,8 @@ static Standard_Integer OCC377(Draw_Interpretor& di, Standard_Integer argc, cons
       : stat2 == TopAbs_OUT ? TmpString.AssignCat("OUT")
       : stat2 == TopAbs_ON  ? TmpString.AssignCat("ON")
                             : TmpString.AssignCat("UNKNOWN");
-      di << "Reversed Wire " << i << ": point ( " << p2d.X().getValue() << ", " << p2d.Y().getValue() << " ) is "
-         << TmpString.ToCString() << "\n";
+      di << "Reversed Wire " << i << ": point ( " << p2d.X().getValue() << ", "
+         << p2d.Y().getValue() << " ) is " << TmpString.ToCString() << "\n";
 
       // 4.3. Compare results (they must be same)
       if (stat1 == stat2)
@@ -1705,7 +1706,8 @@ static Standard_Integer OCC921(Draw_Interpretor& di, Standard_Integer argc, cons
   if (F.IsNull())
     return 1;
   BRepTools::UVBounds(F, u1, u2, v1, v2);
-  di << "Bounds: " << u1.getValue() << "   " << u2.getValue() << "   " << v1.getValue() << "   " << v2.getValue() << "\n";
+  di << "Bounds: " << u1.getValue() << "   " << u2.getValue() << "   " << v1.getValue() << "   "
+     << v2.getValue() << "\n";
   return 0;
 }
 
@@ -2170,8 +2172,8 @@ static Standard_Integer OCC5739_UniAbs(Draw_Interpretor& di,
     for (i = 0; i < np; i++)
     {
       Standard_Real par = aUni.Parameter(i + 1);
-      gp_Pnt p   = adapCurve->Value(par);
-      char   n[20], *pname = n;
+      gp_Pnt        p   = adapCurve->Value(par);
+      char          n[20], *pname = n;
       Sprintf(n, "%s_%d", name, i + 1);
       DrawTrSurf::Set(pname, p);
       di << pname << " ";
@@ -2253,7 +2255,8 @@ static Standard_Integer OCC5698(Draw_Interpretor& di, Standard_Integer argc, con
   if (error_dist > Precision::Confusion())
   {
     // std::cout.precision(3);
-    di << "error_dist = " << error_dist.getValue() << "  ( " << (error_dist / need_length * 100).getValue() << " %)\n";
+    di << "error_dist = " << error_dist.getValue() << "  ( "
+       << (error_dist / need_length * 100).getValue() << " %)\n";
     return 0;
   }
   di << "OK\n";
@@ -2407,11 +2410,12 @@ static Standard_Integer OCC6143(Draw_Interpretor& di, Standard_Integer argc, con
       // std::cout.flush();
       di << "\n";
       const Standard_Real r   = RealLast();
-      Standard_Real           res = r * r;
+      Standard_Real       res = r * r;
 
       (void)sin(1.); // this function tests FPU flags and raises signal (tested on LINUX).
 
-      di << "Error: " << r.getValue() << "*" << r.getValue() << " = " << res.getValue() << " - no exception is raised!\n";
+      di << "Error: " << r.getValue() << "*" << r.getValue() << " = " << res.getValue()
+         << " - no exception is raised!\n";
       Succes = Standard_False;
     }
     catch (Standard_Overflow const&) // Solaris, Windows w/o SSE2
@@ -2443,11 +2447,12 @@ static Standard_Integer OCC6143(Draw_Interpretor& di, Standard_Integer argc, con
       // std::cout.flush();
       di << "\n";
       const Standard_Real r   = RealSmall();
-      Standard_Real           res = r * r;
+      Standard_Real       res = r * r;
       // res = res + 1.;
       //++++ std::cout<<"-- "<<res<<"="<<r<<"*"<<r<<"   Does not Caught... KO"<<std::endl;
       //++++ Succes = Standard_False;
-      di << "Not caught: " << r.getValue() << "*" << r.getValue() << " = " << res.getValue() << ", still OK\n";
+      di << "Not caught: " << r.getValue() << "*" << r.getValue() << " = " << res.getValue()
+         << ", still OK\n";
     }
     catch (Standard_Underflow const&) // could be on Solaris, Windows w/o SSE2
     {
@@ -2871,7 +2876,7 @@ static Standard_Integer OCC8169(Draw_Interpretor& di, Standard_Integer argc, con
   Handle(Geom_Surface) thePlane = BRep_Tool::Surface(theFace);
 
   const Standard_Real aConfusion = Precision::Confusion();
-  Standard_Real           aP1first, aP1last, aP2first, aP2last;
+  Standard_Real       aP1first, aP1last, aP2first, aP2last;
 
   Handle(Geom_Curve)   aCurve1   = BRep_Tool::Curve(theEdge1, aP1first, aP1last);
   Handle(Geom_Curve)   aCurve2   = BRep_Tool::Curve(theEdge2, aP2first, aP2last);
@@ -2890,7 +2895,8 @@ static Standard_Integer OCC8169(Draw_Interpretor& di, Standard_Integer argc, con
     for (i = 1; i <= NbPoints; i++)
     {
       gp_Pnt2d aPi = anInter.Point(i);
-      di << "Point.X(" << i << ") = " << aPi.X().getValue() << "   Point.Y(" << i << ") = " << aPi.Y().getValue() << "\n";
+      di << "Point.X(" << i << ") = " << aPi.X().getValue() << "   Point.Y(" << i
+         << ") = " << aPi.Y().getValue() << "\n";
     }
   }
 
@@ -4915,7 +4921,8 @@ Standard_Integer OCC22558(Draw_Interpretor& di, Standard_Integer argc, const cha
   gp_Ax2 symObj(loc, dir);
   toSym.Mirror(symObj);
 
-  di << "The result " << toSym.X().getValue() << " " << toSym.Y().getValue() << " " << toSym.Z().getValue() << "\n";
+  di << "The result " << toSym.X().getValue() << " " << toSym.Y().getValue() << " "
+     << toSym.Z().getValue() << "\n";
   return 0;
 }
 
@@ -4956,7 +4963,7 @@ Standard_Integer OCC22736(Draw_Interpretor& di, Standard_Integer argc, const cha
   Tcomp = M2.Multiplied(M1);
 
   const Standard_Real aTol    = Precision::Confusion();
-  Standard_Integer        aStatus = 0;
+  Standard_Integer    aStatus = 0;
 
   // After applying two times the same mirror the point is located on the same location OK
   gp_Pnt2d p1MirrorM1 = p1.Transformed(M1);

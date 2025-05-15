@@ -30,9 +30,9 @@ static void CorrectTol(const Standard_Real theU0, const Standard_Real theV0, mat
 {
   // Correct tolerance for large values of UV parameters
   const Standard_Real aTolRef  = Precision::PConfusion();
-  Standard_Real           anEpsRef = Epsilon(1.);
-  Standard_Real           epsu     = Epsilon(theU0);
-  const Standard_Real     tolog10  = 0.43429;
+  Standard_Real       anEpsRef = Epsilon(1.);
+  Standard_Real       epsu     = Epsilon(theU0);
+  const Standard_Real tolog10  = 0.43429;
   if (epsu > anEpsRef)
   {
     Standard_Integer n = RealToInt(tolog10 * Log(epsu / anEpsRef) + 1) + 1;

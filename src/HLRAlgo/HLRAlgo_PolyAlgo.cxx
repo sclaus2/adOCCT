@@ -56,18 +56,18 @@ void HLRAlgo_PolyAlgo::Clear()
 
 void HLRAlgo_PolyAlgo::Update()
 {
-  Standard_Integer        j;
-  Standard_Integer        nxMin, nyMin, nzMin, nxMax, nyMax, nzMax;
-  Standard_Real           xShellMin, yShellMin, zShellMin;
-  Standard_Real           xShellMax, yShellMax, zShellMax;
-  Standard_Real           xPolyTMin, yPolyTMin, zPolyTMin;
-  Standard_Real           xPolyTMax, yPolyTMax, zPolyTMax;
-  Standard_Real           xTrianMin, yTrianMin, zTrianMin;
-  Standard_Real           xTrianMax, yTrianMax, zTrianMax;
-  Standard_Real           xSegmnMin, ySegmnMin, zSegmnMin;
-  Standard_Real           xSegmnMax, ySegmnMax, zSegmnMax;
-  const Standard_Real Big = Precision::Infinite();
-  HLRAlgo_PolyData::Box   aBox(Big, Big, Big, -Big, -Big, -Big);
+  Standard_Integer      j;
+  Standard_Integer      nxMin, nyMin, nzMin, nxMax, nyMax, nzMax;
+  Standard_Real         xShellMin, yShellMin, zShellMin;
+  Standard_Real         xShellMax, yShellMax, zShellMax;
+  Standard_Real         xPolyTMin, yPolyTMin, zPolyTMin;
+  Standard_Real         xPolyTMax, yPolyTMax, zPolyTMax;
+  Standard_Real         xTrianMin, yTrianMin, zTrianMin;
+  Standard_Real         xTrianMax, yTrianMax, zTrianMax;
+  Standard_Real         xSegmnMin, ySegmnMin, zSegmnMin;
+  Standard_Real         xSegmnMax, ySegmnMax, zSegmnMax;
+  const Standard_Real   Big = Precision::Infinite();
+  HLRAlgo_PolyData::Box aBox(Big, Big, Big, -Big, -Big, -Big);
 
   myNbrShell = myHShell.Size();
   for (Standard_Integer aShellIter = myHShell.Lower(); aShellIter <= myHShell.Upper(); ++aShellIter)

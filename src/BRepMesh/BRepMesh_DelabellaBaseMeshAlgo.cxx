@@ -71,9 +71,9 @@ void BRepMesh_DelabellaBaseMeshAlgo::buildBaseTriangulation()
 {
   const Handle(BRepMesh_DataStructureOfDelaun)& aStructure = this->getStructure();
 
-  Bnd_B2d                    aBox;
-  const Standard_Integer     aNodesNb = aStructure->NbNodes();
-  std::vector<double> aPoints(2 * (aNodesNb + 4));
+  Bnd_B2d                aBox;
+  const Standard_Integer aNodesNb = aStructure->NbNodes();
+  std::vector<double>    aPoints(2 * (aNodesNb + 4));
   for (Standard_Integer aNodeIt = 0; aNodeIt < aNodesNb; ++aNodeIt)
   {
     const BRepMesh_Vertex& aVertex = aStructure->GetNode(aNodeIt + 1);

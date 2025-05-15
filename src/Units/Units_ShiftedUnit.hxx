@@ -48,8 +48,8 @@ public:
   //! <amove> equal to 273.15.
   Standard_EXPORT Units_ShiftedUnit(const Standard_CString        aname,
                                     const Standard_CString        asymbol,
-                                    const double           avalue,
-                                    const double           amove,
+                                    const double                  avalue,
+                                    const double                  amove,
                                     const Handle(Units_Quantity)& aquantity);
 
   //! Creates  and returns a  unit.  <aname> is  the name of

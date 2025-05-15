@@ -550,12 +550,15 @@ Storage_BaseDriver& FSD_File::GetReal(double& aValue)
   char realbuffer[100];
 
   realbuffer[0] = '\0';
-  if (!(myStream >> realbuffer)) throw Storage_StreamTypeMismatchError();
-  if (!OSD::CStringToReal(realbuffer,aValue)) throw Storage_StreamTypeMismatchError();
+  if (!(myStream >> realbuffer))
+    throw Storage_StreamTypeMismatchError();
+  if (!OSD::CStringToReal(realbuffer, aValue))
+    throw Storage_StreamTypeMismatchError();
 
   return *this;
 #else
-  if (!(myStream >> aValue)) throw Storage_StreamTypeMismatchError();
+  if (!(myStream >> aValue))
+    throw Storage_StreamTypeMismatchError();
 
   return *this;
 #endif
@@ -587,7 +590,7 @@ Storage_BaseDriver& FSD_File::GetReal(Standard_Real& aValue)
 Storage_BaseDriver& FSD_File::GetShortReal(Standard_ShortReal& aValue)
 {
 #ifdef USEOSDREAL
-  char          realbuffer[100];
+  char   realbuffer[100];
   double r = 0.0;
 
   realbuffer[0] = '\0';

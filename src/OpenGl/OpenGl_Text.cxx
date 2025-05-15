@@ -385,15 +385,15 @@ void OpenGl_Text::setupMatrix(const Handle(OpenGl_Context)& theCtx,
   {
     const gp_Pnt& aPoint = myText->Position();
     Graphic3d_TransformUtils::Translate<Standard_Real>(aModViewMat,
-                                                  aPoint.X() + theDVec.x(),
-                                                  aPoint.Y() + theDVec.y(),
-                                                  0.f);
+                                                       aPoint.X() + theDVec.x(),
+                                                       aPoint.Y() + theDVec.y(),
+                                                       0.f);
     Graphic3d_TransformUtils::Scale<Standard_Real>(aModViewMat, 1.f, -1.f, 1.f);
     Graphic3d_TransformUtils::Rotate<Standard_Real>(aModViewMat,
-                                               theTextAspect.Aspect()->TextAngle(),
-                                               0.f,
-                                               0.f,
-                                               1.f);
+                                                    theTextAspect.Aspect()->TextAngle(),
+                                                    0.f,
+                                                    0.f,
+                                                    1.f);
   }
   else
   {
@@ -445,29 +445,29 @@ void OpenGl_Text::setupMatrix(const Handle(OpenGl_Context)& theCtx,
     else
     {
       Graphic3d_TransformUtils::Translate<Standard_Real>(aModViewMat,
-                                                    anObjXYZ.x(),
-                                                    anObjXYZ.y(),
-                                                    anObjXYZ.z());
+                                                         anObjXYZ.x(),
+                                                         anObjXYZ.y(),
+                                                         anObjXYZ.z());
       Graphic3d_TransformUtils::Rotate<Standard_Real>(aModViewMat,
-                                                 theTextAspect.Aspect()->TextAngle(),
-                                                 0.0,
-                                                 0.0,
-                                                 1.0);
+                                                      theTextAspect.Aspect()->TextAngle(),
+                                                      0.0,
+                                                      0.0,
+                                                      1.0);
     }
 
     if (!theTextAspect.Aspect()->IsTextZoomable())
     {
       Graphic3d_TransformUtils::Scale<Standard_Real>(aModViewMat,
-                                                myScaleHeight,
-                                                myScaleHeight,
-                                                myScaleHeight);
+                                                     myScaleHeight,
+                                                     myScaleHeight,
+                                                     myScaleHeight);
     }
     else if (theCtx->HasRenderScale())
     {
       Graphic3d_TransformUtils::Scale<Standard_Real>(aModViewMat,
-                                                theCtx->RenderScaleInv(),
-                                                theCtx->RenderScaleInv(),
-                                                theCtx->RenderScaleInv());
+                                                     theCtx->RenderScaleInv(),
+                                                     theCtx->RenderScaleInv(),
+                                                     theCtx->RenderScaleInv());
     }
   }
 

@@ -526,7 +526,7 @@ static Standard_Integer set(Draw_Interpretor& di, Standard_Integer n, const char
   if (n < 2)
     return 1;
   Standard_Integer i   = 1;
-  double    val = 0;
+  double           val = 0;
   for (i = 1; i < n; i += 2)
   {
     val = 0;
@@ -619,9 +619,9 @@ static Standard_Integer pick(Draw_Interpretor&, Standard_Integer n, const char**
   if (!wait)
     id = Draw::Atoi(a[1]);
   dout.Select(id, X, Y, b, wait);
-  double z = dout.Zoom(id);
-  gp_Pnt        P((Standard_Real)X / z, (Standard_Real)Y / z, 0);
-  gp_Trsf       T;
+  double  z = dout.Zoom(id);
+  gp_Pnt  P((Standard_Real)X / z, (Standard_Real)Y / z, 0);
+  gp_Trsf T;
   dout.GetTrsf(id, T);
   T.Invert();
   P.Transform(T);
@@ -648,9 +648,9 @@ static Standard_Integer lastrep(Draw_Interpretor& di, Standard_Integer n, const 
   }
   else if (n == 6)
   {
-    double z = dout.Zoom(p_id);
-    gp_Pnt        P((Standard_Real)p_X / z, (Standard_Real)p_Y / z, 0);
-    gp_Trsf       T;
+    double  z = dout.Zoom(p_id);
+    gp_Pnt  P((Standard_Real)p_X / z, (Standard_Real)p_Y / z, 0);
+    gp_Trsf T;
     dout.GetTrsf(p_id, T);
     T.Invert();
     P.Transform(T);
@@ -1135,7 +1135,7 @@ double Draw::Atof(const Standard_CString theName)
   char*                    n = &aBuff.ChangeFirst();
   strcpy(n, theName);
   Draw_ParseFailed = Standard_False;
-  double x  = Parse(n);
+  double x         = Parse(n);
   while ((*n == ' ') || (*n == '\t'))
     n++;
   if (*n)

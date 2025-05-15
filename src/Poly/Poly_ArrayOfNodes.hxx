@@ -15,7 +15,7 @@
 #define _Poly_ArrayOfNodes_HeaderFile
 
 #include <NCollection_AliasedArray.hxx>
-//#include <gp_Pnt.hxx>
+// #include <gp_Pnt.hxx>
 #include <gp_Vec3f.hxx>
 #include <Standard_Macro.hxx>
 

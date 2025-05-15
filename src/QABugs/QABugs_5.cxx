@@ -71,7 +71,8 @@ static Standard_Integer OCC6001(Draw_Interpretor& di, Standard_Integer argc, con
     double                                   par     = int_pnt.W().getValue();
     gp_Pnt                                   p       = int_pnt.Pnt();
     di << "inter " << i << ": W = " << par << "\n"
-       << "\tpnt = " << p.X().getValue() << " " << p.Y().getValue() << " " << p.Z().getValue() << "\n";
+       << "\tpnt = " << p.X().getValue() << " " << p.Y().getValue() << " " << p.Z().getValue()
+       << "\n";
     char n[20], *pname = n;
     Sprintf(n, "%s_%d", name, i);
     DrawTrSurf::Set(pname, p);

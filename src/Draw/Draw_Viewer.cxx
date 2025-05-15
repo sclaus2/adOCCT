@@ -25,7 +25,7 @@
 #define precpers 0.95
 #define ButtonPress 4
 #define MotionNotify 6
-static const double       DRAWINFINITE = 1e50;
+static const double              DRAWINFINITE = 1e50;
 Standard_EXPORT Standard_Boolean Draw_Bounds  = Standard_True;
 extern Standard_Boolean          Draw_Batch;
 const Standard_Integer           MAXSEGMENT = 1000;
@@ -34,21 +34,21 @@ static int                       nbseg     = 0;
 static Draw_View*                curview   = NULL;
 static Standard_Integer          curviewId = 0;
 static char                      blank[2]  = "";
-static double             xmin, xmax, ymin, ymax;
+static double                    xmin, xmax, ymin, ymax;
 static Standard_Boolean          found = Standard_False;
 static Standard_Integer          xpick, ypick, precpick;
 static gp_Pnt                    lastPickP1;
 static gp_Pnt                    lastPickP2;
-static double             lastPickParam;
+static double                    lastPickParam;
 static Draw_Color                highlightcol;
 static Draw_Color                currentcolor;
 static Standard_Boolean          highlight = Standard_False;
 static Standard_Integer          ps_vx, ps_vy;
-static double             ps_kx, ps_ky;
+static double                    ps_kx, ps_ky;
 static Standard_Integer          ps_px, ps_py;
 static std::ostream*             ps_stream;
 static Standard_Integer          ps_width[MAXCOLOR];
-static double             ps_gray[MAXCOLOR];
+static double                    ps_gray[MAXCOLOR];
 
 enum DrawingMode
 {
@@ -242,7 +242,7 @@ void Draw_Viewer::RotateView(const Standard_Integer id, const gp_Dir2d& D, const
 void Draw_Viewer::RotateView(const Standard_Integer id,
                              const gp_Pnt&          P,
                              const gp_Dir&          D,
-                             const double    A)
+                             const double           A)
 {
   if (Draw_Batch)
     return;
@@ -667,7 +667,7 @@ void Draw_Viewer::PostScriptView(const Standard_Integer id,
 
 void Draw_Viewer::PostColor(const Standard_Integer icol,
                             const Standard_Integer width,
-                            const double    gray)
+                            const double           gray)
 {
   if (Draw_Batch)
     return;
@@ -1270,8 +1270,8 @@ void Draw_Display::Flush() const
 
 void Draw_Display::DrawString(const gp_Pnt2d&        ppt,
                               const Standard_CString S,
-                              const double    moveX,
-                              const double    moveY)
+                              const double           moveX,
+                              const double           moveY)
 {
   if (Draw_Batch)
     return;
@@ -1309,8 +1309,10 @@ void Draw_Display::DrawString(const gp_Pnt2d&        ppt,
     break;
 
     case POSTSCRIPT: {
-      Standard_Integer x = (Standard_Integer)Standard_Real((pt.X() + moveX - ps_vx) * ps_kx + ps_px);
-      Standard_Integer y = (Standard_Integer)Standard_Real((pt.Y() + moveY - ps_vy) * ps_ky + ps_py);
+      Standard_Integer x =
+        (Standard_Integer)Standard_Real((pt.X() + moveX - ps_vx) * ps_kx + ps_px);
+      Standard_Integer y =
+        (Standard_Integer)Standard_Real((pt.Y() + moveY - ps_vy) * ps_ky + ps_py);
       (*ps_stream) << "stroke\n";
       (*ps_stream) << x << " " << y << " m\n";
       (*ps_stream) << "(" << S << ") show\nnewpath\n";
@@ -1335,8 +1337,8 @@ void Draw_Display::DrawString(const gp_Pnt2d& ppt, const Standard_CString S)
 
 void Draw_Display::DrawString(const gp_Pnt&          pt,
                               const Standard_CString S,
-                              const double    moveX,
-                              const double    moveY)
+                              const double           moveX,
+                              const double           moveY)
 {
   if (Draw_Batch)
     return;
@@ -1371,8 +1373,8 @@ void Draw_Display::Project(const gp_Pnt& p, gp_Pnt2d& p2d) const
   if (curview->IsPerspective())
   {
     const double aDistance = curview->GetFocalDistance();
-    xp                            = xp * aDistance / (aDistance - zp);
-    yp                            = yp * aDistance / (aDistance - zp);
+    xp                     = xp * aDistance / (aDistance - zp);
+    yp                     = yp * aDistance / (aDistance - zp);
   }
   p2d.SetCoord(xp, yp);
 }
@@ -1398,7 +1400,7 @@ void Draw_Display::MoveTo(const gp_Pnt2d& pp)
   if (Draw_Batch)
     return;
   const double aZoom = curview->GetZoom();
-  gp_Pnt2d            pt(pp.X() * aZoom, pp.Y() * aZoom);
+  gp_Pnt2d     pt(pp.X() * aZoom, pp.Y() * aZoom);
   switch (CurrentMode)
   {
 
@@ -1469,14 +1471,10 @@ inline Standard_Integer CalculRegion(const double x,
   return (r);
 }
 
-Standard_Boolean Trim(gp_Pnt2d&     P1,
-                      gp_Pnt2d&     P2,
-                      double x0,
-                      double y0,
-                      double x1,
-                      double y1)
+Standard_Boolean Trim(gp_Pnt2d& P1, gp_Pnt2d& P2, double x0, double y0, double x1, double y1)
 {
-  double xa = P1.X().getValue(), ya = P1.Y().getValue(), xb = P2.X().getValue(), yb = P2.Y().getValue();
+  double xa = P1.X().getValue(), ya = P1.Y().getValue(), xb = P2.X().getValue(),
+         yb = P2.Y().getValue();
 
   Standard_Integer regiona = 0, regionb = 0;
   regiona = CalculRegion(xa, ya, x0, y0, x1, y1);
@@ -1499,8 +1497,8 @@ Standard_Boolean Trim(gp_Pnt2d&     P1,
     double d = sqrt(x1 * x1 + y1 * y1) * 2;
 
     double p = (xm - xa) * dx + (ym - ya) * dy;
-    xm              = xa + p * dx;
-    ym              = ya + p * dy;
+    xm       = xa + p * dx;
+    ym       = ya + p * dy;
     gp_Pnt2d Pm(xm, ym);
 
     gp_Pnt2d MFen(mfenx, mfeny);
@@ -1637,9 +1635,8 @@ void Draw_Display::DrawTo(const gp_Pnt2d& pp2)
         Standard_Boolean inside = Standard_True;
         if ((x1 > xpick + precpick) || (x2 > xpick + precpick))
         {
-          double y = (double)y1
-                            + (double)(y2 - y1) * (double)(xpick + precpick - x1)
-                                / (double)(x2 - x1);
+          double y =
+            (double)y1 + (double)(y2 - y1) * (double)(xpick + precpick - x1) / (double)(x2 - x1);
           if ((y < ypick + precpick) && (y > ypick - precpick))
           {
             found         = Standard_True;
@@ -1652,9 +1649,8 @@ void Draw_Display::DrawTo(const gp_Pnt2d& pp2)
 
         if ((x1 < xpick - precpick) || (x2 < xpick - precpick))
         {
-          double y = (double)y1
-                            + (double)(y2 - y1) * (double)(xpick - precpick - x1)
-                                / (double)(x2 - x1);
+          double y =
+            (double)y1 + (double)(y2 - y1) * (double)(xpick - precpick - x1) / (double)(x2 - x1);
           if ((y < ypick + precpick) && (y > ypick - precpick))
           {
             found         = Standard_True;
@@ -1667,9 +1663,8 @@ void Draw_Display::DrawTo(const gp_Pnt2d& pp2)
 
         if ((y1 > ypick + precpick) || (y2 > ypick + precpick))
         {
-          double x = (double)x1
-                            + (double)(x2 - x1) * (double)(ypick + precpick - y1)
-                                / (double)(y2 - y1);
+          double x =
+            (double)x1 + (double)(x2 - x1) * (double)(ypick + precpick - y1) / (double)(y2 - y1);
           if ((x < xpick + precpick) && (x > xpick - precpick))
           {
             found         = Standard_True;
@@ -1682,9 +1677,8 @@ void Draw_Display::DrawTo(const gp_Pnt2d& pp2)
 
         if ((y1 < ypick - precpick) || (y2 < ypick - precpick))
         {
-          double x = (double)x1
-                            + (double)(x2 - x1) * (double)(ypick - precpick - y1)
-                                / (double)(y2 - y1);
+          double x =
+            (double)x1 + (double)(x2 - x1) * (double)(ypick - precpick - y1) / (double)(y2 - y1);
           if ((x < xpick + precpick) && (x > xpick - precpick))
           {
             found         = Standard_True;
@@ -1763,7 +1757,7 @@ void Draw_Display::DrawTo(const gp_Pnt& pt)
   if ((CurrentMode == PICK) && found)
     return;
 
-  gp_Pnt        pt2 = pt.Transformed(curview->GetMatrix());
+  gp_Pnt pt2 = pt.Transformed(curview->GetMatrix());
   double xp2 = pt2.X().getValue();
   double yp2 = pt2.Y().getValue();
 
@@ -1776,7 +1770,7 @@ void Draw_Display::DrawTo(const gp_Pnt& pt)
     double yp1 = PtPers.Y().getValue();
     double zp1 = PtPers.Z().getValue();
     double zp2 = pt2.Z().getValue();
-    PtPers            = pt2;
+    PtPers     = pt2;
     if ((zp1 >= aDistance * precpers) && (zp2 >= aDistance * precpers))
     {
       return; // segment is not visible in perspective (behind the eye)

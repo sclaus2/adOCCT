@@ -3926,8 +3926,9 @@ inline void bndPresentation(Draw_Interpretor&                         theDI,
       gp_Pnt aMin = aBox.CornerMin();
       gp_Pnt aMax = aBox.CornerMax();
       theDI << theName << "\n"
-            << aMin.X().getValue() << " " << aMin.Y().getValue() << " " << aMin.Z().getValue() << " " << aMax.X().getValue() << " " << aMax.Y().getValue()
-            << " " << aMax.Z().getValue() << "\n";
+            << aMin.X().getValue() << " " << aMin.Y().getValue() << " " << aMin.Z().getValue()
+            << " " << aMax.X().getValue() << " " << aMax.Y().getValue() << " "
+            << aMax.Z().getValue() << "\n";
       break;
     }
   }
