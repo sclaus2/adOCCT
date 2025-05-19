@@ -1,32 +1,48 @@
 # ADOL-C
 
+# first try to find it with PkgConfig
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(ADOLC QUIET adolc)
+
+if (ADOLC_FOUND)
+  message(STATUS "ADOL-C found using pkg_check_modules in: ${ADOLC_PREFIX}")
+  set(3RDPARTY_ADOLC_DIR ${ADOLC_PREFIX} CACHE PATH "The directory containing ADOL-C" FORCE)
+  set(3RDPARTY_ADOLC_INCLUDE_DIR ${ADOLC_INCLUDE_DIRS} CACHE PATH "The directory containing headers of ADOL-C" FORCE)
+  set(3RDPARTY_ADOLC_LIBRARY_DIR ${ADOLC_LIBRARY_DIRS} CACHE PATH "The directory containing ADOL-C library" FORCE)
+endif ()
+
 # ADOL-C directory
 if (NOT DEFINED 3RDPARTY_ADOLC_DIR)
-  set (3RDPARTY_ADOLC_DIR "${CMAKE_SOURCE_DIR}/../adolc_base" CACHE PATH "The directory containing ADOL-C")
-endif()
+  set (3RDPARTY_ADOLC_DIR "" CACHE PATH "The directory containing ADOL-C")
+endif ()
 
 # ADOL-C include directory
-if (NOT DEFINED 3RDPARTY_ADOLC_INCLUDE_DIR)
-  set (3RDPARTY_ADOLC_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/../adolc_base/include" CACHE FILEPATH "The directory containing headers of ADOL-C")
-endif()
+if (NOT DEFINED 3RDPARTY_ADOLC_INCLUDE_DIR OR NOT EXISTS ${3RDPARTY_ADOLC_INCLUDE_DIR})
+  find_path(
+          3RDPARTY_ADOLC_INCLUDE_DIR
+          NAMES "adolc/adtl.h"
+          PATHS "${3RDPARTY_ADOLC_DIR}/include" NO_DEFAULT_PATH
+          DOC "The directory containing headers of ADOL-C"
+  )
+endif ()
 
-# ADOL-C library file (with absolute path)
-if (NOT DEFINED 3RDPARTY_ADOLC_LIBRARY OR NOT 3RDPARTY_ADOLC_LIBRARY_DIR)
-  find_library(3RDPARTY_ADOLC_LIBRARY NAMES adolc PATHS ${3RDPARTY_ADOLC_DIR}/lib64 ${3RDPARTY_ADOLC_DIR}/lib NO_DEFAULT_PATHS)
-  #set (3RDPARTY_ADOLC_LIBRARY "" CACHE FILEPATH "ADOL-C library" FORCE)
-endif()
+# ADOL-C shared library
+if (NOT DEFINED 3RDPARTY_ADOLC_LIBRARY OR NOT EXISTS ${3RDPARTY_ADOLC_LIBRARY})
+  find_library(
+          3RDPARTY_ADOLC_LIBRARY
+          NAMES "adolc"
+          PATHS "${3RDPARTY_ADOLC_DIR}" NO_DEFAULT_PATH
+          PATH_SUFFIXES "lib" "lib64"
+          DOC "ADOL-C library"
+  )
+endif ()
 
-# ADOL-C library directory
-if (NOT DEFINED 3RDPARTY_ADOLC_LIBRARY_DIR)
-  get_filename_component(3RDPARTY_ADOLC_LIBRARY_DIR ${3RDPARTY_ADOLC_LIBRARY} DIRECTORY CACHE)
-  #set (3RDPARTY_ADOLC_LIBRARY_DIR "${CMAKE_SOURCE_DIR}/../adolc_base/lib64" CACHE FILEPATH "The directory containing ADOL-C library")
-endif()
-
-# BOOST directory that was previously used to build ADOL-C (optional)
-if (NOT DEFINED 3RDPARTY_BOOST_DIR)
-  set (3RDPARTY_BOOST_DIR "" CACHE PATH "The directory containing Boost used for ADOL-C (optional)")
-endif()
-
+# ADOL-C shared library directory, extracted from the variable 3RDPARTY_ADOLC_LIBRARY
+if (NOT DEFINED 3RDPARTY_ADOLC_LIBRARY_DIR OR NOT EXISTS ${3RDPARTY_ADOLC_LIBRARY_DIR})
+  cmake_path(GET 3RDPARTY_ADOLC_LIBRARY PARENT_PATH 3RDPARTY_ADOLC_LIBRARY_PARENT_PATH)
+  set (3RDPARTY_ADOLC_LIBRARY_DIR ${3RDPARTY_ADOLC_LIBRARY_PARENT_PATH} CACHE PATH "The directory containing ADOL-C library" FORCE)
+endif ()
 
 # include occt macros. compiler_bitness, os_wiht_bit, compiler
 #OCCT_INCLUDE_CMAKE_FILE ("adm/cmake/occt_macros")
@@ -45,16 +61,6 @@ endif()
 #  set (3RDPARTY_ADOLC_DLL_DIR "" CACHE FILEPATH "The directory containing ADOL-C shared library")
 #endif()
 
-# search for include directory in defined 3rdparty directory
-if (NOT 3RDPARTY_ADOLC_INCLUDE_DIR OR NOT EXISTS "${3RDPARTY_ADOLC_INCLUDE_DIR}")
-  set (3RDPARTY_ADOLC_INCLUDE_DIR "3RDPARTY_ADOLC_INCLUDE_DIR-NOTFOUND" CACHE FILEPATH "The directory containing the headers of ADOL-C" FORCE)
-  find_path (3RDPARTY_ADOLC_INCLUDE_DIR adolc/adolc.h PATHS "${3RDPARTY_ADOLC_DIR}/include" NO_DEFAULT_PATH)
-endif()
-
-if (NOT 3RDPARTY_ADOLC_INCLUDE_DIR OR NOT EXISTS "${3RDPARTY_ADOLC_INCLUDE_DIR}")
-  set (3RDPARTY_ADOLC_INCLUDE_DIR "" CACHE FILEPATH "The directory containing the headers of ADOL-C" FORCE)
-endif()
-
 
 # include found paths to common variables
 if (3RDPARTY_ADOLC_INCLUDE_DIR AND EXISTS "${3RDPARTY_ADOLC_INCLUDE_DIR}")
@@ -70,6 +76,11 @@ else()
 endif()
 
 # optionally, include Boost
+# BOOST directory that was previously used to build ADOL-C (optional)
+if (NOT DEFINED 3RDPARTY_BOOST_DIR)
+  set (3RDPARTY_BOOST_DIR "" CACHE PATH "The directory containing Boost used for ADOL-C (optional)")
+endif()
+
 find_path(
   3RDPARTY_BOOST_INCLUDE_DIR 
   NAMES "boost/pool/pool_alloc.hpp" 
