@@ -6,7 +6,7 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(ADOLC QUIET adolc)
 
 if (ADOLC_FOUND)
-  message(STATUS "ADOL-C found using pkg_check_modules in: ${ADOLC_PREFIX}")
+  message(STATUS "ADOL-C found: ${ADOLC_PREFIX}")
   set(3RDPARTY_ADOLC_DIR ${ADOLC_PREFIX} CACHE PATH "The directory containing ADOL-C" FORCE)
   set(3RDPARTY_ADOLC_INCLUDE_DIR ${ADOLC_INCLUDE_DIRS} CACHE PATH "The directory containing headers of ADOL-C" FORCE)
   set(3RDPARTY_ADOLC_LIBRARY_DIR ${ADOLC_LIBRARY_DIRS} CACHE PATH "The directory containing ADOL-C library" FORCE)
