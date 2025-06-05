@@ -94,7 +94,7 @@ void math_DoubleTab::Free()
     delete[] Addr; // Standard::Free(Addr);
   }
 
-  Addr = 0;
+  Addr = nullptr;
 }
 
 void math_DoubleTab::SetLowerRow(const Standard_Integer LowerRow)
