@@ -411,8 +411,8 @@ void BRepLib_FindSurface::Init(const TopoDS_Shape&    S,
   // ======================= Step #2
   myLocation.Identity();
   Standard_Integer iPoint;
-  math_Matrix      aMat(1, 3, 1, 3, 0.);
-  math_Vector      aVec(1, 3, 0.);
+  math_Matrix      aMat(1, 3, 1, 3, Standard_Real(0.));
+  math_Vector      aVec(1, 3, Standard_Real(0.));
   // Find the barycenter and normalize weights
   Standard_Real dfMaxWeight = 0.;
   gp_XYZ        aBaryCenter(0., 0., 0.);
