@@ -87,6 +87,7 @@ find_path(
   PATHS "${3RDPARTY_BOOST_DIR}/include" NO_DEFAULT_PATH 
   DOC "Boost include directory used by ADOL-C (Optional)"
 )
+
 if(${3RDPARTY_BOOST_INCLUDE_DIR} STREQUAL "3RDPARTY_BOOST_INCLUDE_DIR-NOTFOUND")
   message(STATUS "Info: Boost include directory not found (optional). To include it, specify 3RDPARTY_BOOST_DIR.")
 else()
