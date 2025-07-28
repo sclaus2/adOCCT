@@ -6,10 +6,25 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(ADOLC QUIET adolc)
 
 if (ADOLC_FOUND)
-  message(STATUS "ADOL-C found: ${ADOLC_PREFIX}")
-  set(3RDPARTY_ADOLC_DIR ${ADOLC_PREFIX} CACHE PATH "The directory containing ADOL-C" FORCE)
-  set(3RDPARTY_ADOLC_INCLUDE_DIR ${ADOLC_INCLUDE_DIRS} CACHE PATH "The directory containing headers of ADOL-C" FORCE)
-  set(3RDPARTY_ADOLC_LIBRARY_DIR ${ADOLC_LIBRARY_DIRS} CACHE PATH "The directory containing ADOL-C library" FORCE)
+  message (STATUS "ADOL-C found: ${ADOLC_PREFIX}")
+  set (3RDPARTY_ADOLC_DIR ${ADOLC_PREFIX} CACHE PATH "The directory containing ADOL-C" FORCE)
+  set (3RDPARTY_ADOLC_INCLUDE_DIR ${ADOLC_INCLUDE_DIRS} CACHE PATH "The directory containing headers of ADOL-C" FORCE)
+  # if adol-c is configured with boost, ADOLC_LIBRARY_DIRS is a list of two elements
+  # in that case, set 3RDPARTY_ADOLC_LIBRARY_DIR and 3RDPARTY_BOOST_DIR accordingly
+  list (LENGTH ADOLC_LIBRARY_DIRS ADOLC_LIBRARY_DIRS_SIZE)
+  if (ADOLC_LIBRARY_DIRS_SIZE GREATER 1)
+    message (STATUS "ADOL-C is configured with boost, the path 3RDPARTY_BOOST_DIR is set accordingly.")
+    # get the first element from the list that corresponds to 3RDPARTY_ADOLC_LIBRARY_DIR
+    list (GET ADOLC_LIBRARY_DIRS 0 ADOLC_LIBRARY_DIRS_ADOLC)
+    set (3RDPARTY_ADOLC_LIBRARY_DIR ${ADOLC_LIBRARY_DIRS_ADOLC} CACHE PATH "The directory containing ADOL-C library" FORCE)
+    # get the second element and extract the parent path
+    list (GET ADOLC_LIBRARY_DIRS 1 ADOLC_LIBRARY_DIRS_BOOST)
+    cmake_path (GET ADOLC_LIBRARY_DIRS_BOOST PARENT_PATH ADOLC_LIBRARY_DIRS_BOOST_PARENT_PATH)
+    set (3RDPARTY_BOOST_DIR ${ADOLC_LIBRARY_DIRS_BOOST_PARENT_PATH} CACHE PATH "The directory containing Boost used for ADOL-C")
+  else ()
+    # in this case, ADOLC_LIBRARY_DIRS_SIZE is equal to 1, thus corresponding to 3RDPARTY_ADOLC_LIBRARY_DIR
+    set (3RDPARTY_ADOLC_LIBRARY_DIR ${ADOLC_LIBRARY_DIRS} CACHE PATH "The directory containing ADOL-C library" FORCE)  
+  endif ()
 endif ()
 
 # ADOL-C directory
@@ -40,7 +55,7 @@ endif ()
 
 # ADOL-C shared library directory, extracted from the variable 3RDPARTY_ADOLC_LIBRARY
 if (NOT DEFINED 3RDPARTY_ADOLC_LIBRARY_DIR OR NOT EXISTS ${3RDPARTY_ADOLC_LIBRARY_DIR})
-  cmake_path(GET 3RDPARTY_ADOLC_LIBRARY PARENT_PATH 3RDPARTY_ADOLC_LIBRARY_PARENT_PATH)
+  cmake_path (GET 3RDPARTY_ADOLC_LIBRARY PARENT_PATH 3RDPARTY_ADOLC_LIBRARY_PARENT_PATH)
   set (3RDPARTY_ADOLC_LIBRARY_DIR ${3RDPARTY_ADOLC_LIBRARY_PARENT_PATH} CACHE PATH "The directory containing ADOL-C library" FORCE)
 endif ()
 
@@ -89,9 +104,9 @@ find_path(
 )
 
 if(${3RDPARTY_BOOST_INCLUDE_DIR} STREQUAL "3RDPARTY_BOOST_INCLUDE_DIR-NOTFOUND")
-  message(STATUS "Info: Boost include directory not found (optional). To include it, specify 3RDPARTY_BOOST_DIR.")
+  message (STATUS "Info: Boost include directory not found (optional). To include it, specify 3RDPARTY_BOOST_DIR.")
 else()
-  message(STATUS "Info: Boost (for ADOL-C) found and is included.")
+  message (STATUS "Info: Boost (for ADOL-C) found and is included.")
   list (APPEND 3RDPARTY_INCLUDE_DIRS "${3RDPARTY_BOOST_INCLUDE_DIR}")
 endif()
 
