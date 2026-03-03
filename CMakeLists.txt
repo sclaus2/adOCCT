@@ -721,12 +721,23 @@ if (CAN_USE_ADOLC)
   if (USE_ADOLC)
     add_definitions (-DHAVE_ADOLC)
     OCCT_INCLUDE_CMAKE_FILE ("adm/cmake/adolc")
+    # Add option for AD testing
+    if (NOT DEFINED BUILD_AD_TESTS)
+      set(BUILD_AD_TESTS OFF CACHE BOOL "Enable AD tests")
+    endif ()
   else()
     OCCT_CHECK_AND_UNSET_GROUP ("3RDPARTY_ADOLC")
+    OCCT_CHECK_AND_UNSET("BUILD_AD_TESTS")
   endif()
 else()
   OCCT_CHECK_AND_UNSET ("USE_ADOLC")
   OCCT_CHECK_AND_UNSET_GROUP ("3RDPARTY_ADOLC")
+  OCCT_CHECK_AND_UNSET("BUILD_AD_TESTS")
+endif ()
+
+if (BUILD_AD_TESTS)
+  enable_testing()
+  OCCT_INCLUDE_CMAKE_FILE("tests-ad/occt_ad_gtest")
 endif()
 
 # Doxygen
