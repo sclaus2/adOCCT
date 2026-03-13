@@ -523,7 +523,7 @@ Standard_Boolean IGESToBRep_Reader::Transfer(const Standard_Integer       num,
                                         true,
                                         myShapeProcParams);
     XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d",
-                                        CAS.GetMaxTol().getValue(),
+                                        getPrimal(CAS.GetMaxTol()),
                                         true,
                                         myShapeProcParams);
 

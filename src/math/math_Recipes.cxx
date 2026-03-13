@@ -36,7 +36,7 @@ static inline Standard_Real PYTHAG(const Standard_Real a, const Standard_Real b)
     ct = bt / at;
     ct = at * sqrt(1.0 + ct * ct);
   }
-  else if (bt.getValue())
+  else if (getPrimal(bt))
   {
     ct = at / bt;
     ct = bt * sqrt(1.0 + ct * ct);
@@ -298,7 +298,7 @@ void LU_Solve(const math_Matrix& a, const math_IntegerVector& indx, math_Vector&
     if (ii)
       for (j = ii; j < i; j++)
         sum -= a(i, j) * b(j + nblow);
-    else if (sum.getValue())
+    else if (getPrimal(sum))
       ii = i;
     b(i + nblow) = sum;
   }
@@ -376,7 +376,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a, math_Vector& w, math_Matrix& v, m
         else
           scale -= aki;
       }
-      if (scale.getValue())
+      if (getPrimal(scale))
       {
         for (k = i; k <= m; k++)
         {
@@ -414,7 +414,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a, math_Vector& w, math_Matrix& v, m
         else
           scale -= aik;
       }
-      if (scale.getValue())
+      if (getPrimal(scale))
       {
         for (k = l; k <= n; k++)
         {
@@ -456,7 +456,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a, math_Vector& w, math_Matrix& v, m
   {
     if (i < n)
     {
-      if (g.getValue())
+      if (getPrimal(g))
       {
         for (j = l; j <= n; j++)
           v(j, i) = (a(i, j) / a(i, l)) / g;
@@ -482,7 +482,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a, math_Vector& w, math_Matrix& v, m
     if (i < n)
       for (j = l; j <= n; j++)
         a(i, j) = 0.0;
-    if (g.getValue())
+    if (getPrimal(g))
     {
       g = 1.0 / g;
       if (i != n)
@@ -595,7 +595,7 @@ Standard_Integer SVD_Decompose(math_Matrix& a, math_Vector& w, math_Matrix& v, m
         }
         z    = PYTHAG(f, h);
         w(j) = z;
-        if (z.getValue())
+        if (getPrimal(z))
         {
           z = 1.0 / z;
           c = f * z;
@@ -636,7 +636,7 @@ void SVD_Solve(const math_Matrix& u,
   for (j = 1; j <= n; j++)
   {
     s = 0.0;
-    if (w(j).getValue())
+    if (getPrimal(w(j)))
     {
       for (i = 1; i <= m; i++)
         s += u(i, j) * b(i);

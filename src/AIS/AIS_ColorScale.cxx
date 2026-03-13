@@ -73,9 +73,9 @@ static Quantity_Color colorFromValueEx(const Standard_Real    theValue,
     NCollection_Lerp<Standard_Real>::Interpolate(theHlsMin[1], theHlsMax[1], aValue);
   Standard_Real aSaturation =
     NCollection_Lerp<Standard_Real>::Interpolate(theHlsMin[2], theHlsMax[2], aValue);
-  return Quantity_Color(AIS_ColorScale::hueToValidRange(aHue).getValue(),
-                        aLightness.getValue(),
-                        aSaturation.getValue(),
+  return Quantity_Color(getPrimal(AIS_ColorScale::hueToValidRange(aHue)),
+                        getPrimal(aLightness),
+                        getPrimal(aSaturation),
                         Quantity_TOC_HLS);
 }
 
@@ -158,7 +158,7 @@ TCollection_ExtendedString AIS_ColorScale::GetLabel(const Standard_Integer theIn
                       : (0.5 * (GetIntervalValue(theIndex - 1) + GetIntervalValue(theIndex)));
 
   char aBuf[1024];
-  sprintf(aBuf, myFormat.ToCString(), aVal.getValue());
+  sprintf(aBuf, myFormat.ToCString(), getPrimal(aVal));
   return TCollection_ExtendedString(aBuf);
 }
 
@@ -294,12 +294,12 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors(Standard_Integer theNbC
   }
   if (theNbColors == 1)
   {
-    Standard_Real aHue = std::fmod(theHueFrom.getValue(), 360.);
+    Standard_Real aHue = std::fmod(getPrimal(theHueFrom), 360.);
     if (aHue < 0.)
     {
       aHue += 360.;
     }
-    Quantity_Color aColor(theLightness.getValue(), 130., aHue.getValue(), Quantity_TOC_CIELch);
+    Quantity_Color aColor(getPrimal(theLightness), 130., getPrimal(aHue), Quantity_TOC_CIELch);
     aResult.Append(aColor);
     return aResult;
   }
@@ -315,7 +315,7 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors(Standard_Integer theNbC
     {
       aHue += 360.;
     }
-    aGrid(i).SetValues(theLightness.getValue(), 130., aHue.getValue(), Quantity_TOC_CIELch);
+    aGrid(i).SetValues(getPrimal(theLightness), 130., getPrimal(aHue), Quantity_TOC_CIELch);
   }
 
   // and compute distances between each two colors in a grid
@@ -759,7 +759,7 @@ void AIS_ColorScale::drawLabels(const Handle(Graphic3d_Group)&          theGroup
 
     const Standard_Real aVal    = Standard_Real(aNbLabels) * myTextHeight / aSpc;
     double              anIPart = 0.0;
-    Standard_Real       anFPart = std::modf(aVal.getValue(), &anIPart);
+    Standard_Real       anFPart = std::modf(getPrimal(aVal), &anIPart);
     aFilter                     = (Standard_Integer)anIPart + (anFPart != 0 ? 1 : 0);
   }
   if (aFilter <= 0)

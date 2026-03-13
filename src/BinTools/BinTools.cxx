@@ -48,7 +48,7 @@ Standard_OStream& BinTools::PutReal(Standard_OStream& theOS, const Standard_Real
   double              aValueHelper = aRValue.getValue();
   theOS.write((char*)&aValueHelper, sizeof(double));
 #else
-  double aValueHelper = theValue.getValue();
+  double aValueHelper = getPrimal(theValue);
   theOS.write((char*)&aValueHelper, sizeof(double));
 #endif
   return theOS;

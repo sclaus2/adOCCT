@@ -109,8 +109,8 @@ TCollection_AsciiString StepSelect_FloatFormat::Label() const
     char mess[30];
     Sprintf(mess,
             ", in range %f %f %s",
-            therangemin.getValue(),
-            therangemax.getValue(),
+            getPrimal(therangemin),
+            getPrimal(therangemax),
             theformrange.ToCString());
     lab.AssignCat(mess);
   }

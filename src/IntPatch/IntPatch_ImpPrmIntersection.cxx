@@ -2813,7 +2813,7 @@ static Standard_Boolean IsPointOnBoundary(const Standard_Real theToler2D,
   Standard_Real aDelta = Abs(theParam - theBoundary);
   if (thePeriod != 0.0)
   {
-    aDelta = fmod(aDelta.getValue(), thePeriod.getValue());
+    aDelta = fmod(getPrimal(aDelta), getPrimal(thePeriod));
 
     // 0 <= aDelta < thePeriod
     return ((aDelta < theToler2D) || ((thePeriod - aDelta) < theToler2D));

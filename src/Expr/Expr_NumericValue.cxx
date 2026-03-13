@@ -115,6 +115,6 @@ Standard_Real Expr_NumericValue::Evaluate(const Expr_Array1OfNamedUnknown&,
 TCollection_AsciiString Expr_NumericValue::String() const
 {
   char val[100];
-  Sprintf(val, "%g", myValue.getValue());
+  Sprintf(val, "%g", getPrimal(myValue));
   return TCollection_AsciiString(val);
 }

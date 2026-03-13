@@ -113,7 +113,7 @@ BinTools_OStream& BinTools_OStream::operator<<(const Standard_Real& theValue)
   double              aValueHelper = aRValue.getValue();
   myStream->write((char*)&aValueHelper, sizeof(double));
 #else
-  double aValueHelper = theValue.getValue();
+  double aValueHelper = getPrimal(theValue);
   myStream->write((char*)&aValueHelper, sizeof(double));
 #endif
   myPosition += sizeof(double);
@@ -174,9 +174,9 @@ BinTools_OStream& BinTools_OStream::operator<<(const gp_Pnt& theValue)
   myRealBuf[1] = FSD_BinaryFile::InverseReal(theValue.Y());
   myRealBuf[2] = FSD_BinaryFile::InverseReal(theValue.Z());
 #else
-  myRealBuf[0] = theValue.X().getValue();
-  myRealBuf[1] = theValue.Y().getValue();
-  myRealBuf[2] = theValue.Z().getValue();
+  myRealBuf[0] = getPrimal(theValue.X());
+  myRealBuf[1] = getPrimal(theValue.Y());
+  myRealBuf[2] = getPrimal(theValue.Z());
 #endif
   myStream->write((char*)myRealBuf, sizeof(double) * 3);
   myPosition += sizeof(double) * 3;
@@ -194,9 +194,9 @@ BinTools_OStream& BinTools_OStream::operator<<(const gp_Dir& theValue)
   myRealBuf[1] = FSD_BinaryFile::InverseReal(theValue.Y());
   myRealBuf[2] = FSD_BinaryFile::InverseReal(theValue.Z());
 #else
-  myRealBuf[0] = theValue.X().getValue();
-  myRealBuf[1] = theValue.Y().getValue();
-  myRealBuf[2] = theValue.Z().getValue();
+  myRealBuf[0] = getPrimal(theValue.X());
+  myRealBuf[1] = getPrimal(theValue.Y());
+  myRealBuf[2] = getPrimal(theValue.Z());
 #endif
   myStream->write((char*)myRealBuf, sizeof(double) * 3);
   myPosition += sizeof(double) * 3;
@@ -213,8 +213,8 @@ BinTools_OStream& BinTools_OStream::operator<<(const gp_Pnt2d& theValue)
   myRealBuf[0] = FSD_BinaryFile::InverseReal(theValue.X());
   myRealBuf[1] = FSD_BinaryFile::InverseReal(theValue.Y());
 #else
-  myRealBuf[0] = theValue.X().getValue();
-  myRealBuf[1] = theValue.Y().getValue();
+  myRealBuf[0] = getPrimal(theValue.X());
+  myRealBuf[1] = getPrimal(theValue.Y());
 #endif
   myStream->write((char*)myRealBuf, sizeof(double) * 2);
   myPosition += sizeof(double) * 2;
@@ -231,8 +231,8 @@ BinTools_OStream& BinTools_OStream::operator<<(const gp_Dir2d& theValue)
   myRealBuf[0] = FSD_BinaryFile::InverseReal(theValue.X());
   myRealBuf[1] = FSD_BinaryFile::InverseReal(theValue.Y());
 #else
-  myRealBuf[0] = theValue.X().getValue();
-  myRealBuf[1] = theValue.Y().getValue();
+  myRealBuf[0] = getPrimal(theValue.X());
+  myRealBuf[1] = getPrimal(theValue.Y());
 #endif
   myStream->write((char*)myRealBuf, sizeof(double) * 2);
   myPosition += sizeof(double) * 2;
@@ -261,18 +261,18 @@ BinTools_OStream& BinTools_OStream::operator<<(const gp_Trsf& theValue)
   myRealBuf[10] = FSD_BinaryFile::InverseReal(aMat(3, 3));
   myRealBuf[11] = FSD_BinaryFile::InverseReal(aTr.Coord(3));
 #else
-  myRealBuf[0]  = aMat(1, 1).getValue();
-  myRealBuf[1]  = aMat(1, 2).getValue();
-  myRealBuf[2]  = aMat(1, 3).getValue();
-  myRealBuf[3]  = aTr.Coord(1).getValue();
-  myRealBuf[4]  = aMat(2, 1).getValue();
-  myRealBuf[5]  = aMat(2, 2).getValue();
-  myRealBuf[6]  = aMat(2, 3).getValue();
-  myRealBuf[7]  = aTr.Coord(2).getValue();
-  myRealBuf[8]  = aMat(3, 1).getValue();
-  myRealBuf[9]  = aMat(3, 2).getValue();
-  myRealBuf[10] = aMat(3, 3).getValue();
-  myRealBuf[11] = aTr.Coord(3).getValue();
+  myRealBuf[0]  = getPrimal(aMat(1, 1));
+  myRealBuf[1]  = getPrimal(aMat(1, 2));
+  myRealBuf[2]  = getPrimal(aMat(1, 3));
+  myRealBuf[3]  = getPrimal(aTr.Coord(1));
+  myRealBuf[4]  = getPrimal(aMat(2, 1));
+  myRealBuf[5]  = getPrimal(aMat(2, 2));
+  myRealBuf[6]  = getPrimal(aMat(2, 3));
+  myRealBuf[7]  = getPrimal(aTr.Coord(2));
+  myRealBuf[8]  = getPrimal(aMat(3, 1));
+  myRealBuf[9]  = getPrimal(aMat(3, 2));
+  myRealBuf[10] = getPrimal(aMat(3, 3));
+  myRealBuf[11] = getPrimal(aTr.Coord(3));
 #endif
   myStream->write((char*)myRealBuf, sizeof(double) * 12);
   myPosition += sizeof(double) * 12;

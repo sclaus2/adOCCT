@@ -449,7 +449,7 @@ VrmlData_ErrorStatus VrmlData_IndexedFaceSet::Write(const char* thePrefix) const
     if (OK(aStatus) && CreaseAngle() > Precision::Confusion())
     {
       char buf[64];
-      Sprintf(buf, "%.9g", CreaseAngle().getValue());
+      Sprintf(buf, "%.9g", getPrimal(CreaseAngle()));
       aStatus = aScene.WriteLine("creaseAngle", buf);
     }
 

@@ -157,13 +157,13 @@ void BinMDataXtd_PresentationDriver::Paste(const Handle(TDF_Attribute)& theSourc
 
   // Transparency
   if (anAttribute->HasOwnTransparency())
-    theTarget.PutReal(anAttribute->Transparency().getValue());
+    theTarget.PutReal(getPrimal(anAttribute->Transparency()));
   else
     theTarget.PutReal(-1.);
 
   // Width
   if (anAttribute->HasOwnWidth())
-    theTarget.PutReal(anAttribute->Width().getValue());
+    theTarget.PutReal(getPrimal(anAttribute->Width()));
   else
     theTarget.PutReal(-1.);
 

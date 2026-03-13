@@ -120,7 +120,7 @@ static Standard_Integer appro(Draw_Interpretor& di, Standard_Integer n, const ch
       Tol2d = Draw::Atof(a[1]);
     }
 
-    di << "Tolerance for 2d approx : " << Tol2d.getValue() << "\n";
+    di << "Tolerance for 2d approx : " << getPrimal(Tol2d) << "\n";
     return 0;
   }
 
@@ -300,7 +300,7 @@ static Standard_Integer extrema(Draw_Interpretor& di, Standard_Integer n, const 
     // Infinity solutions flag may be set with 0 number of
     // solutions in analytic extrema Curve/Curve.
     if (isInfinitySolutions)
-      di << "Infinite number of extremas, distance = " << Ex.LowerDistance().getValue() << "\n";
+      di << "Infinite number of extremas, distance = " << getPrimal(Ex.LowerDistance()) << "\n";
     else
       di << "No solutions!\n";
   }
@@ -309,7 +309,7 @@ static Standard_Integer extrema(Draw_Interpretor& di, Standard_Integer n, const 
   {
     gp_Pnt2d P1, P2;
     Ex.Points(i, P1, P2);
-    di << "dist " << i << ": " << Ex.Distance(i).getValue() << "  ";
+    di << "dist " << i << ": " << getPrimal(Ex.Distance(i)) << "  ";
     const TCollection_AsciiString aName = TCollection_AsciiString("ext_") + i;
     if (Ex.Distance(i) <= Precision::PConfusion())
     {
@@ -410,12 +410,12 @@ static Standard_Integer intersect(Draw_Interpretor& di, Standard_Integer n, cons
   {
     // API simplified result
     gp_Pnt2d P = Intersector.Point(i);
-    di << "Intersection point " << i << " : " << P.X().getValue() << " " << P.Y().getValue()
+    di << "Intersection point " << i << " : " << getPrimal(P.X()) << " " << getPrimal(P.Y())
        << "\n";
     // Intersection extended results from intersection tool
     const IntRes2d_IntersectionPoint& aPInt = anIntTool.Point(i);
-    di << "parameter on the fist: " << aPInt.ParamOnFirst().getValue();
-    di << " parameter on the second: " << aPInt.ParamOnSecond().getValue() << "\n";
+    di << "parameter on the fist: " << getPrimal(aPInt.ParamOnFirst());
+    di << " parameter on the second: " << getPrimal(aPInt.ParamOnSecond()) << "\n";
     if (bPrintState)
     {
       di << "Intersection type: "
@@ -467,10 +467,10 @@ static Standard_Integer intersect_ana(Draw_Interpretor& di, Standard_Integer n, 
   for (Standard_Integer i = 1; i <= Intersector.NbPoints(); i++)
   {
     gp_Pnt2d P = Intersector.Point(i).Value();
-    di << "Intersection point " << i << " : " << P.X().getValue() << " " << P.Y().getValue()
+    di << "Intersection point " << i << " : " << getPrimal(P.X()) << " " << getPrimal(P.Y())
        << "\n";
-    di << "parameter on the fist: " << Intersector.Point(i).ParamOnFirst().getValue();
-    di << " parameter on the second: " << Intersector.Point(i).ParamOnSecond().getValue() << "\n";
+    di << "parameter on the fist: " << getPrimal(Intersector.Point(i).ParamOnFirst());
+    di << " parameter on the second: " << getPrimal(Intersector.Point(i).ParamOnSecond()) << "\n";
     Handle(Draw_Marker2D) mark = new Draw_Marker2D(P, Draw_X, Draw_vert);
     dout << mark;
   }
@@ -559,12 +559,12 @@ static Standard_Integer intconcon(Draw_Interpretor& di, Standard_Integer n, cons
   for (Standard_Integer i = 1; i <= Intersector.NbPoints(); i++)
   {
     gp_Pnt2d P = Intersector.Point(i).Value();
-    di << "Intersection point " << i << " : " << P.X().getValue() << " " << P.Y().getValue()
+    di << "Intersection point " << i << " : " << getPrimal(P.X()) << " " << getPrimal(P.Y())
        << "\n";
-    di << "parameter on the fist: " << Intersector.Point(i).ParamOnFirst().getValue();
+    di << "parameter on the fist: " << getPrimal(Intersector.Point(i).ParamOnFirst());
     if (!Intersector.Point(i).SecondIsImplicit())
     {
-      di << " parameter on the second: " << Intersector.Point(i).ParamOnSecond().getValue() << "\n";
+      di << " parameter on the second: " << getPrimal(Intersector.Point(i).ParamOnSecond()) << "\n";
     }
     else
     {
@@ -674,11 +674,11 @@ static Standard_Integer deviation(Draw_Interpretor& theDI,
     theDI << "Error: Cannot compute a deviation!\n";
     return 0;
   }
-  theDI << "Computed value is: " << aDefl.getValue() << "\n";
+  theDI << "Computed value is: " << getPrimal(aDefl) << "\n";
   TCollection_AsciiString anArgString = theArgv[1];
   TCollection_AsciiString aPntString  = anArgString + "_pnt";
   DrawTrSurf::Set(aPntString.ToCString(), aPtOnCurv);
-  theDI << "From point " << aPntString << " (with parameter " << aRetCurvParam.getValue()
+  theDI << "From point " << aPntString << " (with parameter " << getPrimal(aRetCurvParam)
         << ") to ";
 
   Handle(Geom2d_Curve)    aLine      = new Geom2d_Line(aLinSegm);

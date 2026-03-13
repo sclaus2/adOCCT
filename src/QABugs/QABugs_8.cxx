@@ -152,7 +152,7 @@ static Standard_Integer OCC1651(Draw_Interpretor& di, Standard_Integer argc, con
   if (aI1.IsDone() && aI1.HasAPoint())
   {
     gp_Pnt aR1 = aI1.Pnt();
-    di << aR1.X().getValue() << " " << aR1.Y().getValue() << " " << aR1.Z().getValue() << "\n";
+    di << getPrimal(aR1.X()) << " " << getPrimal(aR1.Y()) << " " << getPrimal(aR1.Z()) << "\n";
   }
 
   return 0;

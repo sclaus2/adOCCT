@@ -131,8 +131,8 @@ static Standard_Integer solutions(Draw_Interpretor&  theDI,
       theCirTan3.Tangency1(aSolId, aParSol, aParArg, aPntSol);
       TCollection_AsciiString aTanPntIdName = aSolIdName + "_tp_1";
       DrawTrSurf::Set(aTanPntIdName.ToCString(), aPntSol);
-      theDI << "    " << aTanPntIdName.ToCString() << " (" << aParSol.getValue() << ", "
-            << aParArg.getValue() << ")\n";
+      theDI << "    " << aTanPntIdName.ToCString() << " (" << getPrimal(aParSol) << ", "
+            << getPrimal(aParArg) << ")\n";
     }
     // the second tangent point
     if (theCirTan3.IsTheSame2(aSolId))
@@ -142,8 +142,8 @@ static Standard_Integer solutions(Draw_Interpretor&  theDI,
       theCirTan3.Tangency2(aSolId, aParSol, aParArg, aPntSol);
       TCollection_AsciiString aTanPntIdName = aSolIdName + "_tp_2";
       DrawTrSurf::Set(aTanPntIdName.ToCString(), aPntSol);
-      theDI << "    " << aTanPntIdName.ToCString() << " (" << aParSol.getValue() << ", "
-            << aParArg.getValue() << ")\n";
+      theDI << "    " << aTanPntIdName.ToCString() << " (" << getPrimal(aParSol) << ", "
+            << getPrimal(aParArg) << ")\n";
     }
     // the third tangent point
     if (theCirTan3.IsTheSame3(aSolId))
@@ -153,8 +153,8 @@ static Standard_Integer solutions(Draw_Interpretor&  theDI,
       theCirTan3.Tangency3(aSolId, aParSol, aParArg, aPntSol);
       TCollection_AsciiString aTanPntIdName = aSolIdName + "_tp_3";
       DrawTrSurf::Set(aTanPntIdName.ToCString(), aPntSol);
-      theDI << "    " << aTanPntIdName.ToCString() << " (" << aParSol.getValue() << ", "
-            << aParArg.getValue() << ")";
+      theDI << "    " << aTanPntIdName.ToCString() << " (" << getPrimal(aParSol) << ", "
+            << getPrimal(aParArg) << ")";
     }
     if (aSolId != theCirTan3.NbSolutions())
       theDI << "\n";

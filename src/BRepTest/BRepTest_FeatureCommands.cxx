@@ -1209,7 +1209,7 @@ Standard_Integer offsetparameter(Draw_Interpretor& di, Standard_Integer n, const
   {
     di << " offsetparameter Tol Inter(c/p) JoinType(a/i/t) [RemoveInternalEdges(r/k)]\n";
     di << " Current Values\n";
-    di << "   --> Tolerance : " << TheTolerance.getValue() << "\n";
+    di << "   --> Tolerance : " << getPrimal(TheTolerance) << "\n";
     di << "   --> TheInter  : ";
     if (TheInter)
     {

@@ -590,13 +590,13 @@ static Standard_Integer blend1(Draw_Interpretor& di, Standard_Integer narg, cons
       l = aRakk.LastParameter();
       // std::cout<<"parameter on edge start : "<<f<<std::endl;
       // std::cout<<"parameter on edge end   : "<<l<<std::endl;
-      di << "parametre on edge start : " << f.getValue() << "\n";
-      di << "parametre on edge end   : " << l.getValue() << "\n";
+      di << "parametre on edge start : " << getPrimal(f) << "\n";
+      di << "parametre on edge end   : " << getPrimal(l) << "\n";
       for (i = 1; i <= nb; i++)
       {
         // precision
         // std::cout<<"precision "<< i << "= "<<Rakk.TolApp3d(i)<<std::endl;
-        di << "precision " << i << "= " << aRakk.TolApp3d(i).getValue() << "\n";
+        di << "precision " << i << "= " << getPrimal(aRakk.TolApp3d(i)) << "\n";
 
         // display resulting surfaces
         Sprintf(localname, "%s%d", ns0, i);

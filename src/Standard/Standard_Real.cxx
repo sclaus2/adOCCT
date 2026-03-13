@@ -288,7 +288,7 @@ Standard_Real NextAfter(const Standard_Real& x, const Standard_Real& y)
 {
   RealMap res{};
 
-  res.real = x.getValue();
+  res.real = getPrimal(x);
 
   if (x == 0.0)
   {

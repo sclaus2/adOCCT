@@ -978,9 +978,9 @@ VrmlData_ErrorStatus VrmlData_Scene::WriteXYZ(const gp_XYZ&          theXYZ,
     else
       Sprintf(buf,
               "%.12g %.12g %.12g%s",
-              theXYZ.X().getValue(),
-              theXYZ.Y().getValue(),
-              theXYZ.Z().getValue(),
+              getPrimal(theXYZ.X()),
+              getPrimal(theXYZ.Y()),
+              getPrimal(theXYZ.Z()),
               thePostfix ? thePostfix : "");
   }
   return WriteLine(buf);

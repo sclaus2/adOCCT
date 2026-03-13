@@ -296,21 +296,21 @@ Standard_Integer IntPolyh_StartPoint::CheckSameSP(const IntPolyh_StartPoint& SP)
 void IntPolyh_StartPoint::Dump() const
 {
   printf("\nPoint : x=%+8.3eg y=%+8.3eg z=%+8.3eg u1=%+8.3eg v1=%+8.3eg u2=%+8.3eg v2=%+8.3eg\n",
-         x.getValue(),
-         y.getValue(),
-         z.getValue(),
-         u1.getValue(),
-         v1.getValue(),
-         u2.getValue(),
-         v2.getValue());
+         getPrimal(x),
+         getPrimal(y),
+         getPrimal(z),
+         getPrimal(u1),
+         getPrimal(v1),
+         getPrimal(u2),
+         getPrimal(v2));
   printf("Triangle S1:%d Edge S1:%d Lambda1:%f Triangle S2:%d Edge S2:%d Lambda2:%f\n",
          t1,
          e1,
-         lambda1.getValue(),
+         getPrimal(lambda1),
          t2,
          e2,
-         lambda2.getValue());
-  printf("Angle: %f List Number: %d\n", angle.getValue(), chainlist);
+         getPrimal(lambda2));
+  printf("Angle: %f List Number: %d\n", getPrimal(angle), chainlist);
 }
 
 void IntPolyh_StartPoint::Dump(const Standard_Integer i) const
@@ -318,19 +318,19 @@ void IntPolyh_StartPoint::Dump(const Standard_Integer i) const
   printf(
     "\nPoint(%d) : x=%+8.3eg y=%+8.3eg z=%+8.3eg u1=%+8.3eg v1=%+8.3eg u2=%+8.3eg v2=%+8.3eg\n",
     i,
-    x.getValue(),
-    y.getValue(),
-    z.getValue(),
-    u1.getValue(),
-    v1.getValue(),
-    u2.getValue(),
-    v2.getValue());
+    getPrimal(x),
+    getPrimal(y),
+    getPrimal(z),
+    getPrimal(u1),
+    getPrimal(v1),
+    getPrimal(u2),
+    getPrimal(v2));
   printf("Triangle S1:%d Edge S1:%d Lambda1:%f Triangle S2:%d Edge S2:%d Lambda2:%f\n",
          t1,
          e1,
-         lambda1.getValue(),
+         getPrimal(lambda1),
          t2,
          e2,
-         lambda2.getValue());
-  printf("Angle: %f List Number: %d\n", angle.getValue(), chainlist);
+         getPrimal(lambda2));
+  printf("Angle: %f List Number: %d\n", getPrimal(angle), chainlist);
 }

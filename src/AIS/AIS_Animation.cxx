@@ -159,13 +159,13 @@ void AIS_Animation::StartTimer(const Standard_Real    theStartPts,
     myTimer = new Media_Timer();
   }
   myTimer->Stop();
-  myTimer->Seek(theStartPts.getValue());
-  myTimer->SetPlaybackSpeed(thePlaySpeed.getValue());
+  myTimer->Seek(getPrimal(theStartPts));
+  myTimer->SetPlaybackSpeed(getPrimal(thePlaySpeed));
   Start(theToUpdate);
   if (theToStopTimer)
   {
     myTimer->Stop();
-    myTimer->Seek(theStartPts.getValue());
+    myTimer->Seek(getPrimal(theStartPts));
   }
 }
 
@@ -233,7 +233,7 @@ void AIS_Animation::Stop()
   {
     const Standard_Real anElapsedTime = ElapsedTime();
     myTimer->Stop();
-    myTimer->Seek(Min(Duration(), anElapsedTime).getValue());
+    myTimer->Seek(getPrimal(Min(Duration(), anElapsedTime)));
   }
 
   for (NCollection_Sequence<Handle(AIS_Animation)>::Iterator anIter(myAnimations); anIter.More();

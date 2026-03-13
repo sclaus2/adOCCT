@@ -421,9 +421,9 @@ public:
     {
       Graphic3d_Vec4ub* aColorPtr = reinterpret_cast<Graphic3d_Vec4ub*>(
         myColData + myColStride * ((Standard_Size)theIndex - 1));
-      aColorPtr->SetValues(Standard_Byte(theR.getValue() * 255.0),
-                           Standard_Byte(theG.getValue() * 255.0),
-                           Standard_Byte(theB.getValue() * 255.0),
+      aColorPtr->SetValues(Standard_Byte(getPrimal(theR) * 255.0),
+                           Standard_Byte(getPrimal(theG) * 255.0),
+                           Standard_Byte(getPrimal(theB) * 255.0),
                            255);
     }
     myAttribs->NbElements = Max(theIndex, myAttribs->NbElements);
@@ -861,9 +861,9 @@ public: //! @name optional array of Bounds/Subgroups within primitive array (e.g
   {
     Standard_Real anRGB[3] = {0.0, 0.0, 0.0};
     BoundColor(theRank, anRGB[0], anRGB[1], anRGB[2]);
-    return Quantity_Color(anRGB[0].getValue(),
-                          anRGB[1].getValue(),
-                          anRGB[2].getValue(),
+    return Quantity_Color(getPrimal(anRGB[0]),
+                          getPrimal(anRGB[1]),
+                          getPrimal(anRGB[2]),
                           Quantity_TOC_RGB);
   }
 

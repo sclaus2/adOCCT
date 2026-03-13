@@ -962,11 +962,11 @@ static Standard_Integer DT_SplitSurface(Draw_Interpretor& di, Standard_Integer n
   Standard_Integer                     nbGlV   = GlobalV->Length();
   di << "nb GlobalU ; nb GlobalV=" << nbGlU << " " << nbGlV;
   for (Standard_Integer iu = 1; iu <= nbGlU; iu++)
-    di << " " << GlobalU->Value(iu).getValue();
+    di << " " << getPrimal(GlobalU->Value(iu));
   //  di <<"\n";
   //  di << "nb GlobalV="<<nbGlV;
   for (Standard_Integer iv = 1; iv <= nbGlV; iv++)
-    di << " " << GlobalV->Value(iv).getValue();
+    di << " " << getPrimal(GlobalV->Value(iv));
   di << "\n";
 
   di << "appel a Surfaces\n";
@@ -1151,7 +1151,7 @@ static Standard_Integer splitface(Draw_Interpretor& di, Standard_Integer argc, c
       {
         di << "";
       }
-      di << uval(j).getValue();
+      di << getPrimal(uval(j));
     }
     di << "\n";
   }
@@ -1169,7 +1169,7 @@ static Standard_Integer splitface(Draw_Interpretor& di, Standard_Integer argc, c
       {
         di << "";
       }
-      di << vval(j).getValue();
+      di << getPrimal(vval(j));
     }
     di << "\n";
   }

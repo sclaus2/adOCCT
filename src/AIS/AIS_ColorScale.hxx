@@ -141,13 +141,13 @@ public:
   //! Returns color range corresponding to minimum and maximum values, blue to red by default.
   void ColorRange(Quantity_Color& theMinColor, Quantity_Color& theMaxColor) const
   {
-    theMinColor.SetValues(hueToValidRange(myColorHlsMin[0]).getValue(),
-                          myColorHlsMin[1].getValue(),
-                          myColorHlsMin[2].getValue(),
+    theMinColor.SetValues(getPrimal(hueToValidRange(myColorHlsMin[0])),
+                          getPrimal(myColorHlsMin[1]),
+                          getPrimal(myColorHlsMin[2]),
                           Quantity_TOC_HLS);
-    theMaxColor.SetValues(hueToValidRange(myColorHlsMax[0]).getValue(),
-                          myColorHlsMax[1].getValue(),
-                          myColorHlsMax[2].getValue(),
+    theMaxColor.SetValues(getPrimal(hueToValidRange(myColorHlsMax[0])),
+                          getPrimal(myColorHlsMax[1]),
+                          getPrimal(myColorHlsMax[2]),
                           Quantity_TOC_HLS);
   }
 

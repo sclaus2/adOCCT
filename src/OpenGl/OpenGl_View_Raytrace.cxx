@@ -2206,7 +2206,7 @@ void OpenGl_View::updatePerspCameraPT(const OpenGl_Mat4&           theOrientatio
 
   myEyeSide = OpenGl_Vec3::Cross(anEyeViewMono, myEyeVert);
 
-  const double aScaleY = tan(myCamera->FOVy().getValue() / 360 * M_PI);
+  const double aScaleY = tan(getPrimal(myCamera->FOVy()) / 360 * M_PI);
   const double aScaleX = theWinSizeX * aScaleY / theWinSizeY;
 
   myEyeSize = OpenGl_Vec2(static_cast<float>(aScaleX), static_cast<float>(aScaleY));

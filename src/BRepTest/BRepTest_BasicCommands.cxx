@@ -226,7 +226,7 @@ static Standard_Integer transform(Draw_Interpretor&, Standard_Integer n, const c
         }
         catch (const Standard_DomainError&)
         {
-          TCollection_AsciiString aScale(T.ScaleFactor().getValue());
+          TCollection_AsciiString aScale(getPrimal(T.ScaleFactor()));
           Message::SendWarning() << "Operation is not done: " << aName
                                  << " is not a valid transformation - scale = " << aScale;
           return 0;
@@ -520,8 +520,8 @@ static Standard_Integer getcoords(Draw_Interpretor& di, Standard_Integer n, cons
       const TopoDS_Vertex& aVertex = TopoDS::Vertex(aShape);
       gp_Pnt               aPnt    = BRep_Tool::Pnt(aVertex);
 
-      di << a[i] << " (x,y,z) : " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " "
-         << aPnt.Z().getValue() << "\n";
+      di << a[i] << " (x,y,z) : " << getPrimal(aPnt.X()) << " " << getPrimal(aPnt.Y()) << " "
+         << getPrimal(aPnt.Z()) << "\n";
     }
   }
 
@@ -680,17 +680,17 @@ static Standard_Integer BoundBox(Draw_Interpretor& theDI,
       const gp_XYZ &aXDir = anOBB.XDirection(), &aYDir = anOBB.YDirection(),
                    &aZDir = anOBB.ZDirection();
       theDI << "Oriented bounding box\n";
-      theDI << "Center: " << aBaryCenter.X().getValue() << " " << aBaryCenter.Y().getValue() << " "
-            << aBaryCenter.Z().getValue() << "\n";
-      theDI << "X-axis: " << aXDir.X().getValue() << " " << aXDir.Y().getValue() << " "
-            << aXDir.Z().getValue() << "\n";
-      theDI << "Y-axis: " << aYDir.X().getValue() << " " << aYDir.Y().getValue() << " "
-            << aYDir.Z().getValue() << "\n";
-      theDI << "Z-axis: " << aZDir.X().getValue() << " " << aZDir.Y().getValue() << " "
-            << aZDir.Z().getValue() << "\n";
-      theDI << "Half X: " << anOBB.XHSize().getValue() << "\n"
-            << "Half Y: " << anOBB.YHSize().getValue() << "\n"
-            << "Half Z: " << anOBB.ZHSize().getValue() << "\n";
+      theDI << "Center: " << getPrimal(aBaryCenter.X()) << " " << getPrimal(aBaryCenter.Y()) << " "
+            << getPrimal(aBaryCenter.Z()) << "\n";
+      theDI << "X-axis: " << getPrimal(aXDir.X()) << " " << getPrimal(aXDir.Y()) << " "
+            << getPrimal(aXDir.Z()) << "\n";
+      theDI << "Y-axis: " << getPrimal(aYDir.X()) << " " << getPrimal(aYDir.Y()) << " "
+            << getPrimal(aYDir.Z()) << "\n";
+      theDI << "Z-axis: " << getPrimal(aZDir.X()) << " " << getPrimal(aZDir.Y()) << " "
+            << getPrimal(aZDir.Z()) << "\n";
+      theDI << "Half X: " << getPrimal(anOBB.XHSize()) << "\n"
+            << "Half Y: " << getPrimal(anOBB.YHSize()) << "\n"
+            << "Half Z: " << getPrimal(anOBB.ZHSize()) << "\n";
     }
 
     if (doDumpJson)
@@ -745,25 +745,25 @@ static Standard_Integer BoundBox(Draw_Interpretor& theDI,
       {
         if (useOldSyntax)
         {
-          theDI << aMin.X().getValue() << " " << aMin.Y().getValue() << " " << aMin.Z().getValue()
-                << " " << aMax.X().getValue() << " " << aMax.Y().getValue() << " "
-                << aMax.Z().getValue() << "\n";
+          theDI << getPrimal(aMin.X()) << " " << getPrimal(aMin.Y()) << " " << getPrimal(aMin.Z())
+                << " " << getPrimal(aMax.X()) << " " << getPrimal(aMax.Y()) << " "
+                << getPrimal(aMax.Z()) << "\n";
         }
         else
         {
           theDI << "Axes-aligned bounding box\n";
-          theDI << "X-range: " << aMin.X().getValue() << " " << aMax.X().getValue() << "\n"
-                << "Y-range: " << aMin.Y().getValue() << " " << aMax.Y().getValue() << "\n"
-                << "Z-range: " << aMin.Z().getValue() << " " << aMax.Z().getValue() << "\n";
+          theDI << "X-range: " << getPrimal(aMin.X()) << " " << getPrimal(aMax.X()) << "\n"
+                << "Y-range: " << getPrimal(aMin.Y()) << " " << getPrimal(aMax.Y()) << "\n"
+                << "Z-range: " << getPrimal(aMin.Z()) << " " << getPrimal(aMax.Z()) << "\n";
           if (anAABB.IsOpen() && anAABB.HasFinitePart())
           {
             Bnd_Box      aFinitAabb = anAABB.FinitePart();
             const gp_Pnt aFinMin    = aFinitAabb.CornerMin();
             const gp_Pnt aFinMax    = aFinitAabb.CornerMax();
             theDI << "Finite part\n";
-            theDI << "X-range: " << aFinMin.X().getValue() << " " << aFinMax.X().getValue() << "\n"
-                  << "Y-range: " << aFinMin.Y().getValue() << " " << aFinMax.Y().getValue() << "\n"
-                  << "Z-range: " << aFinMin.Z().getValue() << " " << aFinMax.Z().getValue() << "\n";
+            theDI << "X-range: " << getPrimal(aFinMin.X()) << " " << getPrimal(aFinMax.X()) << "\n"
+                  << "Y-range: " << getPrimal(aFinMin.Y()) << " " << getPrimal(aFinMax.Y()) << "\n"
+                  << "Z-range: " << getPrimal(aFinMin.Z()) << " " << getPrimal(aFinMax.Z()) << "\n";
           }
         }
       }
@@ -780,12 +780,12 @@ static Standard_Integer BoundBox(Draw_Interpretor& theDI,
       // save DRAW variables
       if (!anOutVars[0].IsEmpty())
       {
-        Draw::Set(anOutVars[0].ToCString(), aMin.X().getValue());
-        Draw::Set(anOutVars[1].ToCString(), aMin.Y().getValue());
-        Draw::Set(anOutVars[2].ToCString(), aMin.Z().getValue());
-        Draw::Set(anOutVars[3].ToCString(), aMax.X().getValue());
-        Draw::Set(anOutVars[4].ToCString(), aMax.Y().getValue());
-        Draw::Set(anOutVars[5].ToCString(), aMax.Z().getValue());
+        Draw::Set(anOutVars[0].ToCString(), getPrimal(aMin.X()));
+        Draw::Set(anOutVars[1].ToCString(), getPrimal(aMin.Y()));
+        Draw::Set(anOutVars[2].ToCString(), getPrimal(aMin.Z()));
+        Draw::Set(anOutVars[3].ToCString(), getPrimal(aMax.X()));
+        Draw::Set(anOutVars[4].ToCString(), getPrimal(aMax.Y()));
+        Draw::Set(anOutVars[5].ToCString(), getPrimal(aMax.Z()));
       }
 
       // add presentation to DRAW viewer
@@ -944,8 +944,8 @@ static Standard_Integer gbounding(Draw_Interpretor& di, Standard_Integer n, cons
       B.Get(axmin, aymin, azmin, axmax, aymax, azmax);
       DB = new Draw_Box(B, Draw_vert);
       dout << DB;
-      di << axmin.getValue() << " " << aymin.getValue() << " " << azmin.getValue() << " "
-         << axmax.getValue() << " " << aymax.getValue() << " " << azmax.getValue();
+      di << getPrimal(axmin) << " " << getPrimal(aymin) << " " << getPrimal(azmin) << " "
+         << getPrimal(axmax) << " " << getPrimal(aymax) << " " << getPrimal(azmax);
     }
     else
     {
@@ -959,8 +959,8 @@ static Standard_Integer gbounding(Draw_Interpretor& di, Standard_Integer n, cons
       Draw_Segment2D* S3 = new Draw_Segment2D(p3, p4, Draw_vert);
       Draw_Segment2D* S4 = new Draw_Segment2D(p4, p1, Draw_vert);
       dout << S1 << S2 << S3 << S4;
-      di << axmin.getValue() << " " << aymin.getValue() << " " << axmax.getValue() << " "
-         << aymax.getValue();
+      di << getPrimal(axmin) << " " << getPrimal(aymin) << " " << getPrimal(axmax) << " "
+         << getPrimal(aymax);
     }
   }
   return 0;
@@ -996,7 +996,7 @@ static Standard_Integer precision(Draw_Interpretor& di, Standard_Integer n, cons
   if (n == 0)
   {
     // std::cout << " Current Precision = " << BRepBuilderAPI::Precision() << std::endl;
-    di << " Current Precision = " << BRepBuilderAPI::Precision().getValue() << "\n";
+    di << " Current Precision = " << getPrimal(BRepBuilderAPI::Precision()) << "\n";
   }
   else
   {
@@ -1065,7 +1065,7 @@ static Standard_Integer reperageshape(Draw_Interpretor& di, Standard_Integer nar
       if (details)
       {
         // std::cout<<" w:"<<PMin<<std::endl;
-        di << " w:" << PMin.getValue() << "\n";
+        di << " w:" << getPrimal(PMin) << "\n";
       }
       if (Inter.Transition(i) == IntCurveSurface_In)
       {
@@ -1270,15 +1270,15 @@ static Standard_Integer vecdc(Draw_Interpretor& di, Standard_Integer, const char
   //		     +(PP1.Y()-P1.Y())*(PP1.Y()-P1.Y())
   //		     +(PP1.Z()-P1.Z())*(PP1.Z()-P1.Z()))<<std::endl;
 
-  di << "\nbox  b" << ++nboxvecdp << " " << Min(P1.X(), PP1.X()).getValue() << " "
-     << Min(P1.Y(), PP1.Y()).getValue() << " " << Min(PP1.Z(), P1.Z()).getValue();
-  di << "  " << Abs(PP1.X() - P1.X()).getValue() << " " << Abs(PP1.Y() - P1.Y()).getValue() << " "
-     << Abs(PP1.Z() - P1.Z()).getValue() << "\n";
+  di << "\nbox  b" << ++nboxvecdp << " " << getPrimal(Min(P1.X(), PP1.X())) << " "
+     << getPrimal(Min(P1.Y(), PP1.Y())) << " " << getPrimal(Min(PP1.Z(), P1.Z()));
+  di << "  " << getPrimal(Abs(PP1.X() - P1.X())) << " " << getPrimal(Abs(PP1.Y() - P1.Y())) << " "
+     << getPrimal(Abs(PP1.Z() - P1.Z())) << "\n";
 
   di << "\nDistance :"
-     << Sqrt((PP1.X() - P1.X()) * (PP1.X() - P1.X()) + (PP1.Y() - P1.Y()) * (PP1.Y() - P1.Y())
-             + (PP1.Z() - P1.Z()) * (PP1.Z() - P1.Z()))
-          .getValue()
+     << getPrimal(Sqrt((PP1.X() - P1.X()) * (PP1.X() - P1.X())
+                       + (PP1.Y() - P1.Y()) * (PP1.Y() - P1.Y())
+                       + (PP1.Z() - P1.Z()) * (PP1.Z() - P1.Z())))
      << "\n";
   return (0);
 }

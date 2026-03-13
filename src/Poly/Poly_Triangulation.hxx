@@ -152,7 +152,7 @@ public:
   {
     myNodes.SetValue(
       theIndex - 1,
-      gp_Vec3double(thePnt.X().getValue(), thePnt.Y().getValue(), thePnt.Z().getValue()));
+      gp_Vec3double(getPrimal(thePnt.X()), getPrimal(thePnt.Y()), getPrimal(thePnt.Z())));
   }
 
   //! Returns UV-node at the given index.
@@ -169,7 +169,7 @@ public:
   //! @param[in] thePnt   UV coordinates
   void SetUVNode(Standard_Integer theIndex, const gp_Pnt2d& thePnt)
   {
-    myUVNodes.SetValue(theIndex - 1, gp_Vec2double(thePnt.X().getValue(), thePnt.Y().getValue()));
+    myUVNodes.SetValue(theIndex - 1, gp_Vec2double(getPrimal(thePnt.X()), getPrimal(thePnt.Y())));
   }
 
   //! Returns triangle at the given index.

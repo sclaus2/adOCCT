@@ -104,7 +104,7 @@ void BinMXCAFDoc_DimTolDriver::Paste(const Handle(TDF_Attribute)& theSource,
     NCollection_Array1<double>  anArrDouble(anArr.Lower(), anArr.Upper());
     for (int i = anArr.Lower(); i <= anArr.Upper(); ++i)
     {
-      anArrDouble.SetValue(i, anArr.Value(i).getValue());
+      anArrDouble.SetValue(i, getPrimal(anArr.Value(i)));
     }
     double* aPtr = (double*)&anArrDouble(aFirstInd);
     theTarget.PutRealArray(aPtr, aLength);

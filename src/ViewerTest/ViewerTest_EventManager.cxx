@@ -207,9 +207,9 @@ bool ViewerTest_EventManager::UpdateMouseButtons(const Graphic3d_Vec2i& thePoint
     {
       Graphic3d_Vec3d anXYZ;
       myView->Convert(thePoint.x(), thePoint.y(), anXYZ.x(), anXYZ.y(), anXYZ.z());
-      Draw::Set(myPickPntArgVec[0].ToCString(), anXYZ.x().getValue());
-      Draw::Set(myPickPntArgVec[1].ToCString(), anXYZ.y().getValue());
-      Draw::Set(myPickPntArgVec[2].ToCString(), anXYZ.z().getValue());
+      Draw::Set(myPickPntArgVec[0].ToCString(), getPrimal(anXYZ.x()));
+      Draw::Set(myPickPntArgVec[1].ToCString(), getPrimal(anXYZ.y()));
+      Draw::Set(myPickPntArgVec[2].ToCString(), getPrimal(anXYZ.z()));
       myToPickPnt = false;
     }
   }
@@ -378,7 +378,7 @@ void ViewerTest_EventManager::KeyDown(Aspect_VKey   theKey,
 
   const unsigned int aModifNew = myKeys.Modifiers();
   if (aModifNew != aModifOld
-      && navigationKeyModifierSwitch(aModifOld, aModifNew, theTime.getValue()))
+      && navigationKeyModifierSwitch(aModifOld, aModifNew, getPrimal(theTime)))
   {
     // modifier key just pressed
   }
@@ -406,7 +406,7 @@ void ViewerTest_EventManager::KeyUp(Aspect_VKey theKey, Standard_Real theTime)
 
   const unsigned int aModifNew = myKeys.Modifiers();
   if (aModifNew != aModifOld
-      && navigationKeyModifierSwitch(aModifOld, aModifNew, theTime.getValue()))
+      && navigationKeyModifierSwitch(aModifOld, aModifNew, getPrimal(theTime)))
   {
     // modifier key released
   }

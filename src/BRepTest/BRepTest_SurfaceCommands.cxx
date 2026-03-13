@@ -769,10 +769,10 @@ static Standard_Integer projponf(Draw_Interpretor& di, Standard_Integer n, const
     aPProj.Transform(aLoc.Transformation());
     //
     // print the projection values
-    di << "proj dist = " << aDist.getValue() << "\n";
-    di << "uvproj = " << U.getValue() << " " << V.getValue() << "\n";
-    di << "pproj = " << aPProj.X().getValue() << " " << aPProj.Y().getValue() << " "
-       << aPProj.Z().getValue() << "\n";
+    di << "proj dist = " << getPrimal(aDist) << "\n";
+    di << "uvproj = " << getPrimal(U) << " " << getPrimal(V) << "\n";
+    di << "pproj = " << getPrimal(aPProj.X()) << " " << getPrimal(aPProj.Y()) << " "
+       << getPrimal(aPProj.Z()) << "\n";
   }
   else
   {

@@ -185,14 +185,14 @@ void MoniTool_CaseData::AddCPU(const Standard_Real    lastCPU,
                                const Standard_Real    curCPU,
                                const Standard_CString name)
 {
-  double cpu = curCPU.getValue();
+  double cpu = getPrimal(curCPU);
   if (cpu == 0.)
   {
     double           sec;
     Standard_Integer i1, i2;
     chrono().Show(sec, i1, i2, cpu);
   }
-  cpu = cpu - lastCPU.getValue();
+  cpu = cpu - getPrimal(lastCPU);
   AddData(new Geom2d_CartesianPoint(cpu, 0.), 9, name);
 }
 
@@ -213,14 +213,14 @@ Standard_Boolean MoniTool_CaseData::LargeCPU(const Standard_Real maxCPU,
                                              const Standard_Real lastCPU,
                                              const Standard_Real curCPU) const
 {
-  double cpu = curCPU.getValue();
+  double cpu = getPrimal(curCPU);
   if (cpu == 0.)
   {
     double           sec;
     Standard_Integer i1, i2;
     chrono().Show(sec, i1, i2, cpu);
   }
-  cpu = cpu - lastCPU.getValue();
+  cpu = cpu - getPrimal(lastCPU);
   return (cpu >= maxCPU);
 }
 

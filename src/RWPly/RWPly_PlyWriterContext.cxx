@@ -235,8 +235,8 @@ bool RWPly_PlyWriterContext::WriteVertex(const gp_Pnt&           thePoint,
 
   if (myIsDoublePrec)
   {
-    *myStream << (double)thePoint.X().getValue() << " " << (double)thePoint.Y().getValue() << " "
-              << (double)thePoint.Z().getValue();
+    *myStream << (double)getPrimal(thePoint.X()) << " " << (double)getPrimal(thePoint.Y()) << " "
+              << (double)getPrimal(thePoint.Z());
   }
   else
   {

@@ -254,16 +254,16 @@ static Standard_Integer BUC60792(Draw_Interpretor& di, Standard_Integer /*argc*/
       gp_Pnt2d      PntSol1, PntSol2;
       cirtanrad.Tangency1(i, ParSol1, ParArg1, PntSol1);
       printf("%f\t%f\t\t%f\t%f\n",
-             ParSol1.getValue(),
-             ParArg1.getValue(),
-             PntSol1.X().getValue(),
-             PntSol1.Y().getValue());
+             getPrimal(ParSol1),
+             getPrimal(ParArg1),
+             getPrimal(PntSol1.X()),
+             getPrimal(PntSol1.Y()));
       cirtanrad.Tangency2(i, ParSol2, ParArg2, PntSol2);
       printf("%f\t%f\t\t%f\t%f\n",
-             ParSol2.getValue(),
-             ParArg2.getValue(),
-             PntSol2.X().getValue(),
-             PntSol2.Y().getValue());
+             getPrimal(ParSol2),
+             getPrimal(ParArg2),
+             getPrimal(PntSol2.X()),
+             getPrimal(PntSol2.Y()));
     }
   }
   aContext->UpdateCurrentViewer();
@@ -1316,7 +1316,7 @@ static int AISWidth(Draw_Interpretor& di, Standard_Integer argc, const char** ar
         if (prs->HasOwnWidth())
         {
           //         std::cout << "Width = " << prs->Width() << std::endl;
-          di << prs->Width().getValue();
+          di << getPrimal(prs->Width());
         }
         else
         {

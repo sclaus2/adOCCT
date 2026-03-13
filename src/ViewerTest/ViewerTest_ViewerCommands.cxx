@@ -3527,8 +3527,8 @@ static int VColorScale(Draw_Interpretor& theDI, Standard_Integer theArgNb, const
     }
 
     theDI << "Color scale parameters for '" << theArgVec[1] << "':\n"
-          << "Min range: " << aColorScale->GetMin().getValue() << "\n"
-          << "Max range: " << aColorScale->GetMax().getValue() << "\n"
+          << "Min range: " << getPrimal(aColorScale->GetMin()) << "\n"
+          << "Max range: " << getPrimal(aColorScale->GetMax()) << "\n"
           << "Number of intervals: " << aColorScale->GetNumberOfIntervals() << "\n"
           << "Text height: " << aColorScale->GetTextHeight() << "\n"
           << "Color scale position: " << aColorScale->GetXPosition() << " "
@@ -4495,10 +4495,10 @@ inline void printZLayerInfo(Draw_Interpretor& theDI, const Graphic3d_ZLayerSetti
   {
     theDI << "  Immediate: TRUE\n";
   }
-  theDI << "  Origin: " << theLayer.Origin().X().getValue() << " "
-        << theLayer.Origin().Y().getValue() << " " << theLayer.Origin().Z().getValue() << "\n";
-  theDI << "  Culling distance: " << theLayer.CullingDistance().getValue() << "\n";
-  theDI << "  Culling size: " << theLayer.CullingSize().getValue() << "\n";
+  theDI << "  Origin: " << getPrimal(theLayer.Origin().X()) << " "
+        << getPrimal(theLayer.Origin().Y()) << " " << getPrimal(theLayer.Origin().Z()) << "\n";
+  theDI << "  Culling distance: " << getPrimal(theLayer.CullingDistance()) << "\n";
+  theDI << "  Culling size: " << getPrimal(theLayer.CullingSize()) << "\n";
   theDI << "  Depth test:   " << (theLayer.ToEnableDepthTest() ? "enabled" : "disabled") << "\n";
   theDI << "  Depth write:  " << (theLayer.ToEnableDepthWrite() ? "enabled" : "disabled") << "\n";
   theDI << "  Depth buffer clearing: " << (theLayer.ToClearDepth() ? "enabled" : "disabled")
@@ -5259,12 +5259,12 @@ static int VPriviledgedPlane(Draw_Interpretor& theDI,
     const gp_Pnt& anOrig            = aPriviledgedPlane.Location();
     const gp_Dir& aNorm             = aPriviledgedPlane.Direction();
     const gp_Dir& aXDir             = aPriviledgedPlane.XDirection();
-    theDI << "Origin: " << anOrig.X().getValue() << " " << anOrig.Y().getValue() << " "
-          << anOrig.Z().getValue() << " "
-          << "Normal: " << aNorm.X().getValue() << " " << aNorm.Y().getValue() << " "
-          << aNorm.Z().getValue() << " "
-          << "X-dir: " << aXDir.X().getValue() << " " << aXDir.Y().getValue() << " "
-          << aXDir.Z().getValue() << "\n";
+    theDI << "Origin: " << getPrimal(anOrig.X()) << " " << getPrimal(anOrig.Y()) << " "
+          << getPrimal(anOrig.Z()) << " "
+          << "Normal: " << getPrimal(aNorm.X()) << " " << getPrimal(aNorm.Y()) << " "
+          << getPrimal(aNorm.Z()) << " "
+          << "X-dir: " << getPrimal(aXDir.X()) << " " << getPrimal(aXDir.Y()) << " "
+          << getPrimal(aXDir.Z()) << "\n";
     return 0;
   }
 
@@ -5378,7 +5378,7 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
     switch (aMode)
     {
       case View:
-        theDI << "View Vv: " << aView->Convert((Standard_Integer)aCoord(1)).getValue();
+        theDI << "View Vv: " << getPrimal(aView->Convert((Standard_Integer)aCoord(1)));
         return 0;
       case Window:
         theDI << "Window Vp: " << aView->Convert(aCoord(1));
@@ -5401,13 +5401,13 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
                        aXYZ[0],
                        aXYZ[1],
                        aXYZ[2]);
-        theDI << "Model X,Y,Z: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << " "
-              << aXYZ[2].getValue() << "\n";
+        theDI << "Model X,Y,Z: " << getPrimal(aXYZ[0]) << " " << getPrimal(aXYZ[1]) << " "
+              << getPrimal(aXYZ[2]) << "\n";
         return 0;
 
       case View:
         aView->Convert((Standard_Integer)aCoord(1), (Standard_Integer)aCoord(2), aXYZ[0], aXYZ[1]);
-        theDI << "View Xv,Yv: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << "\n";
+        theDI << "View Xv,Yv: " << getPrimal(aXYZ[0]) << " " << getPrimal(aXYZ[1]) << "\n";
         return 0;
 
       case Window:
@@ -5422,8 +5422,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
                        aXYZ[1],
                        aXYZ[2]);
         aView->ConvertToGrid(aXYZ[0], aXYZ[1], aXYZ[2], aXYZ[3], aXYZ[4], aXYZ[5]);
-        theDI << "Model X,Y,Z: " << aXYZ[3].getValue() << " " << aXYZ[4].getValue() << " "
-              << aXYZ[5].getValue() << "\n";
+        theDI << "Model X,Y,Z: " << getPrimal(aXYZ[3]) << " " << getPrimal(aXYZ[4]) << " "
+              << getPrimal(aXYZ[5]) << "\n";
         return 0;
 
       case Ray:
@@ -5435,8 +5435,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
                                aXYZ[3],
                                aXYZ[4],
                                aXYZ[5]);
-        theDI << "Model DX,DY,DZ: " << aXYZ[3].getValue() << " " << aXYZ[4].getValue() << " "
-              << aXYZ[5].getValue() << "\n";
+        theDI << "Model DX,DY,DZ: " << getPrimal(aXYZ[3]) << " " << getPrimal(aXYZ[4]) << " "
+              << getPrimal(aXYZ[5]) << "\n";
         return 0;
 
       default:
@@ -5458,8 +5458,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
 
       case Grid:
         aView->ConvertToGrid(aCoord(1), aCoord(2), aCoord(3), aXYZ[0], aXYZ[1], aXYZ[2]);
-        theDI << "Model X,Y,Z: " << aXYZ[0].getValue() << " " << aXYZ[1].getValue() << " "
-              << aXYZ[2].getValue() << "\n";
+        theDI << "Model X,Y,Z: " << getPrimal(aXYZ[0]) << " " << getPrimal(aXYZ[1]) << " "
+              << getPrimal(aXYZ[2]) << "\n";
         return 0;
 
       default:
@@ -5541,8 +5541,8 @@ static int VFps(Draw_Interpretor& theDI, Standard_Integer theArgNb, const char**
   const Standard_Real aCpuAver = aCpu / Standard_Real(aFrameIter);
 
   // return statistics
-  theDI << "FPS: " << aFpsAver.getValue() << "\n"
-        << "CPU: " << (1000.0 * aCpuAver.getValue()) << " msec\n";
+  theDI << "FPS: " << getPrimal(aFpsAver) << "\n"
+        << "CPU: " << (1000.0 * getPrimal(aCpuAver)) << " msec\n";
 
   // compute additional statistics in ray-tracing mode
   const Graphic3d_RenderingParams& aParams = aView->RenderingParams();
@@ -5554,7 +5554,7 @@ static int VFps(Draw_Interpretor& theDI, Standard_Integer theArgNb, const char**
     // 1 shadow ray and 1 secondary ray pew each bounce
     const Standard_Real aMRays =
       aWinSize.x() * aWinSize.y() * aFpsAver * aParams.RaytracingDepth * 2 / 1.0e6f;
-    theDI << "MRays/sec (upper bound): " << aMRays.getValue() << "\n";
+    theDI << "MRays/sec (upper bound): " << getPrimal(aMRays) << "\n";
   }
 
   return 0;
@@ -6381,7 +6381,7 @@ static Standard_Integer VMoveTo(Draw_Interpretor& theDI,
       break;
     }
   }
-  theDI << aTopPnt.X().getValue() << " " << aTopPnt.Y().getValue() << " " << aTopPnt.Z().getValue();
+  theDI << getPrimal(aTopPnt.X()) << " " << getPrimal(aTopPnt.Y()) << " " << getPrimal(aTopPnt.Z());
   return 0;
 }
 
@@ -6557,7 +6557,7 @@ static Standard_Integer VSelectByAxis(Draw_Interpretor& theDI,
        anIter.Next(), anIndex++)
   {
     const gp_Pnt& aPnt = anIter.Value();
-    theDI << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue()
+    theDI << getPrimal(aPnt.X()) << " " << getPrimal(aPnt.Y()) << " " << getPrimal(aPnt.Z())
           << "\n";
   }
   return 0;
@@ -6590,13 +6590,13 @@ protected:
   virtual void update(const AIS_AnimationProgress& theProgress) Standard_OVERRIDE
   {
     TCollection_AsciiString aCmd = myCommand;
-    replace(aCmd, "%pts", TCollection_AsciiString(theProgress.Pts.getValue()));
-    replace(aCmd, "%localpts", TCollection_AsciiString(theProgress.LocalPts.getValue()));
-    replace(aCmd, "%ptslocal", TCollection_AsciiString(theProgress.LocalPts.getValue()));
-    replace(aCmd, "%normalized", TCollection_AsciiString(theProgress.LocalNormalized.getValue()));
+    replace(aCmd, "%pts", TCollection_AsciiString(getPrimal(theProgress.Pts)));
+    replace(aCmd, "%localpts", TCollection_AsciiString(getPrimal(theProgress.LocalPts)));
+    replace(aCmd, "%ptslocal", TCollection_AsciiString(getPrimal(theProgress.LocalPts)));
+    replace(aCmd, "%normalized", TCollection_AsciiString(getPrimal(theProgress.LocalNormalized)));
     replace(aCmd,
             "%localnormalized",
-            TCollection_AsciiString(theProgress.LocalNormalized.getValue()));
+            TCollection_AsciiString(getPrimal(theProgress.LocalNormalized)));
     myDrawInter->Eval(aCmd.ToCString());
   }
 
@@ -6860,52 +6860,52 @@ static int VViewParams(Draw_Interpretor& theDi, Standard_Integer theArgsNb, cons
             "              %12g %12g %12g %12g\n"
             "              %12g %12g %12g %12g\n"
             "              %12g %12g %12g %12g\n",
-            aViewScale.getValue(),
-            aViewAspect.getValue(),
-            aViewProj.X().getValue(),
-            aViewProj.Y().getValue(),
-            aViewProj.Z().getValue(),
-            aViewUp.X().getValue(),
-            aViewUp.Y().getValue(),
-            aViewUp.Z().getValue(),
-            aViewAt.X().getValue(),
-            aViewAt.Y().getValue(),
-            aViewAt.Z().getValue(),
-            aViewEye.X().getValue(),
-            aViewEye.Y().getValue(),
-            aViewEye.Z().getValue(),
-            anOrientMat.GetValue(0, 0).getValue(),
-            anOrientMat.GetValue(0, 1).getValue(),
-            anOrientMat.GetValue(0, 2).getValue(),
-            anOrientMat.GetValue(0, 3).getValue(),
-            anOrientMat.GetValue(1, 0).getValue(),
-            anOrientMat.GetValue(1, 1).getValue(),
-            anOrientMat.GetValue(1, 2).getValue(),
-            anOrientMat.GetValue(1, 3).getValue(),
-            anOrientMat.GetValue(2, 0).getValue(),
-            anOrientMat.GetValue(2, 1).getValue(),
-            anOrientMat.GetValue(2, 2).getValue(),
-            anOrientMat.GetValue(2, 3).getValue(),
-            anOrientMat.GetValue(3, 0).getValue(),
-            anOrientMat.GetValue(3, 1).getValue(),
-            anOrientMat.GetValue(3, 2).getValue(),
-            anOrientMat.GetValue(3, 3).getValue(),
-            aProjMat.GetValue(0, 0).getValue(),
-            aProjMat.GetValue(0, 1).getValue(),
-            aProjMat.GetValue(0, 2).getValue(),
-            aProjMat.GetValue(0, 3).getValue(),
-            aProjMat.GetValue(1, 0).getValue(),
-            aProjMat.GetValue(1, 1).getValue(),
-            aProjMat.GetValue(1, 2).getValue(),
-            aProjMat.GetValue(1, 3).getValue(),
-            aProjMat.GetValue(2, 0).getValue(),
-            aProjMat.GetValue(2, 1).getValue(),
-            aProjMat.GetValue(2, 2).getValue(),
-            aProjMat.GetValue(2, 3).getValue(),
-            aProjMat.GetValue(3, 0).getValue(),
-            aProjMat.GetValue(3, 1).getValue(),
-            aProjMat.GetValue(3, 2).getValue(),
-            aProjMat.GetValue(3, 3).getValue());
+            getPrimal(aViewScale),
+            getPrimal(aViewAspect),
+            getPrimal(aViewProj.X()),
+            getPrimal(aViewProj.Y()),
+            getPrimal(aViewProj.Z()),
+            getPrimal(aViewUp.X()),
+            getPrimal(aViewUp.Y()),
+            getPrimal(aViewUp.Z()),
+            getPrimal(aViewAt.X()),
+            getPrimal(aViewAt.Y()),
+            getPrimal(aViewAt.Z()),
+            getPrimal(aViewEye.X()),
+            getPrimal(aViewEye.Y()),
+            getPrimal(aViewEye.Z()),
+            getPrimal(anOrientMat.GetValue(0, 0)),
+            getPrimal(anOrientMat.GetValue(0, 1)),
+            getPrimal(anOrientMat.GetValue(0, 2)),
+            getPrimal(anOrientMat.GetValue(0, 3)),
+            getPrimal(anOrientMat.GetValue(1, 0)),
+            getPrimal(anOrientMat.GetValue(1, 1)),
+            getPrimal(anOrientMat.GetValue(1, 2)),
+            getPrimal(anOrientMat.GetValue(1, 3)),
+            getPrimal(anOrientMat.GetValue(2, 0)),
+            getPrimal(anOrientMat.GetValue(2, 1)),
+            getPrimal(anOrientMat.GetValue(2, 2)),
+            getPrimal(anOrientMat.GetValue(2, 3)),
+            getPrimal(anOrientMat.GetValue(3, 0)),
+            getPrimal(anOrientMat.GetValue(3, 1)),
+            getPrimal(anOrientMat.GetValue(3, 2)),
+            getPrimal(anOrientMat.GetValue(3, 3)),
+            getPrimal(aProjMat.GetValue(0, 0)),
+            getPrimal(aProjMat.GetValue(0, 1)),
+            getPrimal(aProjMat.GetValue(0, 2)),
+            getPrimal(aProjMat.GetValue(0, 3)),
+            getPrimal(aProjMat.GetValue(1, 0)),
+            getPrimal(aProjMat.GetValue(1, 1)),
+            getPrimal(aProjMat.GetValue(1, 2)),
+            getPrimal(aProjMat.GetValue(1, 3)),
+            getPrimal(aProjMat.GetValue(2, 0)),
+            getPrimal(aProjMat.GetValue(2, 1)),
+            getPrimal(aProjMat.GetValue(2, 2)),
+            getPrimal(aProjMat.GetValue(2, 3)),
+            getPrimal(aProjMat.GetValue(3, 0)),
+            getPrimal(aProjMat.GetValue(3, 1)),
+            getPrimal(aProjMat.GetValue(3, 2)),
+            getPrimal(aProjMat.GetValue(3, 3)));
     theDi << aText;
     return 0;
   }
@@ -6927,16 +6927,16 @@ static int VViewParams(Draw_Interpretor& theDi, Standard_Integer theArgsNb, cons
               "-proj %g %g %g "
               "-up %g %g %g "
               "-at %g %g %g\n",
-              aViewScale.getValue(),
-              aViewProj.X().getValue(),
-              aViewProj.Y().getValue(),
-              aViewProj.Z().getValue(),
-              aViewUp.X().getValue(),
-              aViewUp.Y().getValue(),
-              aViewUp.Z().getValue(),
-              aViewAt.X().getValue(),
-              aViewAt.Y().getValue(),
-              aViewAt.Z().getValue());
+              getPrimal(aViewScale),
+              getPrimal(aViewProj.X()),
+              getPrimal(aViewProj.Y()),
+              getPrimal(aViewProj.Z()),
+              getPrimal(aViewUp.X()),
+              getPrimal(aViewUp.Y()),
+              getPrimal(aViewUp.Z()),
+              getPrimal(aViewAt.X()),
+              getPrimal(aViewAt.Y()),
+              getPrimal(aViewAt.Z()));
       theDi << aText;
     }
     else if (anArg == "-scale" || anArg == "-size")
@@ -6962,13 +6962,13 @@ static int VViewParams(Draw_Interpretor& theDi, Standard_Integer theArgsNb, cons
       }
       if (anArg == "-scale")
       {
-        theDi << "Scale: " << aView->Scale().getValue() << "\n";
+        theDi << "Scale: " << getPrimal(aView->Scale()) << "\n";
       }
       else if (anArg == "-size")
       {
         Graphic3d_Vec2d aSizeXY;
         aView->Size(aSizeXY.x(), aSizeXY.y());
-        theDi << "Size: " << aSizeXY.x().getValue() << " " << aSizeXY.y().getValue() << "\n";
+        theDi << "Size: " << getPrimal(aSizeXY.x()) << " " << getPrimal(aSizeXY.y()) << "\n";
       }
     }
     else if (anArg == "-eye" || anArg == "-at" || anArg == "-up" || anArg == "-proj")
@@ -7005,23 +7005,23 @@ static int VViewParams(Draw_Interpretor& theDi, Standard_Integer theArgsNb, cons
 
       if (anArg == "-eye")
       {
-        theDi << "Eye:  " << aViewEye.X().getValue() << " " << aViewEye.Y().getValue() << " "
-              << aViewEye.Z().getValue() << "\n";
+        theDi << "Eye:  " << getPrimal(aViewEye.X()) << " " << getPrimal(aViewEye.Y()) << " "
+              << getPrimal(aViewEye.Z()) << "\n";
       }
       else if (anArg == "-at")
       {
-        theDi << "At:   " << aViewAt.X().getValue() << " " << aViewAt.Y().getValue() << " "
-              << aViewAt.Z().getValue() << "\n";
+        theDi << "At:   " << getPrimal(aViewAt.X()) << " " << getPrimal(aViewAt.Y()) << " "
+              << getPrimal(aViewAt.Z()) << "\n";
       }
       else if (anArg == "-up")
       {
-        theDi << "Up:   " << aViewUp.X().getValue() << " " << aViewUp.Y().getValue() << " "
-              << aViewUp.Z().getValue() << "\n";
+        theDi << "Up:   " << getPrimal(aViewUp.X()) << " " << getPrimal(aViewUp.Y()) << " "
+              << getPrimal(aViewUp.Z()) << "\n";
       }
       else if (anArg == "-proj")
       {
-        theDi << "Proj: " << aViewProj.X().getValue() << " " << aViewProj.Y().getValue() << " "
-              << aViewProj.Z().getValue() << "\n";
+        theDi << "Proj: " << getPrimal(aViewProj.X()) << " " << getPrimal(aViewProj.Y()) << " "
+              << getPrimal(aViewProj.Z()) << "\n";
       }
     }
     else if (anArg == "-center")
@@ -7143,7 +7143,7 @@ static Standard_Integer VAnimation(Draw_Interpretor& theDI,
          anAnimIter.More();
          anAnimIter.Next())
     {
-      theDI << anAnimIter.Key() << " " << anAnimIter.Value()->Duration().getValue() << " sec\n";
+      theDI << anAnimIter.Key() << " " << getPrimal(anAnimIter.Value()->Duration()) << " sec\n";
     }
     return 0;
   }
@@ -7239,7 +7239,7 @@ static Standard_Integer VAnimation(Draw_Interpretor& theDI,
          anAnimIter.More();
          anAnimIter.Next())
     {
-      theDI << anAnimIter.Value()->Name() << " " << anAnimIter.Value()->Duration().getValue()
+      theDI << anAnimIter.Value()->Name() << " " << getPrimal(anAnimIter.Value()->Duration())
             << " sec\n";
     }
     return 0;
@@ -7736,7 +7736,7 @@ static Standard_Integer VAnimation(Draw_Interpretor& theDI,
 
   if (toPrintElapsedTime)
   {
-    theDI << "Elapsed Time: " << anAnimation->ElapsedTime().getValue() << " s\n";
+    theDI << "Elapsed Time: " << getPrimal(anAnimation->ElapsedTime()) << " s\n";
   }
 
   if (!toPlay && aRecFile.IsEmpty())
@@ -7846,7 +7846,7 @@ static Standard_Integer VAnimation(Draw_Interpretor& theDI,
   aPerfTimer.Stop();
   anAnimation->Stop();
   const Standard_Real aRecFps = Standard_Real(aNbFrames) / aPerfTimer.ElapsedTime();
-  theDI << "Average FPS: " << aRecFps.getValue() << "\n"
+  theDI << "Average FPS: " << getPrimal(aRecFps) << "\n"
         << "Nb. Frames: " << double(aNbFrames);
 
   aView->Redraw();
@@ -8786,8 +8786,8 @@ static int VZRange(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const ch
 
   if (theArgsNb < 2)
   {
-    theDi << "ZNear: " << aCamera->ZNear().getValue() << "\n";
-    theDi << "ZFar: " << aCamera->ZFar().getValue() << "\n";
+    theDi << "ZNear: " << getPrimal(aCamera->ZNear()) << "\n";
+    theDi << "ZFar: " << getPrimal(aCamera->ZFar()) << "\n";
     return 0;
   }
 
@@ -8846,7 +8846,7 @@ static int VAutoZFit(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const 
   {
     theDi << "Auto z-fit mode: \n"
           << "On: " << (aCurrentView->AutoZFitMode() ? "enabled" : "disabled") << "\n"
-          << "Scale: " << aScale.getValue() << "\n";
+          << "Scale: " << getPrimal(aScale) << "\n";
     return 0;
   }
 
@@ -8896,21 +8896,21 @@ static int VCamera(Draw_Interpretor& theDI, Standard_Integer theArgsNb, const ch
   if (theArgsNb < 2)
   {
     theDI << "ProjType:   " << projTypeName(aCamera->ProjectionType()) << "\n";
-    theDI << "FOVy:       " << aCamera->FOVy().getValue() << "\n";
-    theDI << "FOVx:       " << aCamera->FOVx().getValue() << "\n";
-    theDI << "FOV2d:      " << aCamera->FOV2d().getValue() << "\n";
-    theDI << "Distance:   " << aCamera->Distance().getValue() << "\n";
-    theDI << "IOD:        " << aCamera->IOD().getValue() << "\n";
+    theDI << "FOVy:       " << getPrimal(aCamera->FOVy()) << "\n";
+    theDI << "FOVx:       " << getPrimal(aCamera->FOVx()) << "\n";
+    theDI << "FOV2d:      " << getPrimal(aCamera->FOV2d()) << "\n";
+    theDI << "Distance:   " << getPrimal(aCamera->Distance()) << "\n";
+    theDI << "IOD:        " << getPrimal(aCamera->IOD()) << "\n";
     theDI << "IODType:    "
           << (aCamera->GetIODType() == Graphic3d_Camera::IODType_Absolute ? "absolute" : "relative")
           << "\n";
-    theDI << "ZFocus:     " << aCamera->ZFocus().getValue() << "\n";
+    theDI << "ZFocus:     " << getPrimal(aCamera->ZFocus()) << "\n";
     theDI << "ZFocusType: "
           << (aCamera->ZFocusType() == Graphic3d_Camera::FocusType_Absolute ? "absolute"
                                                                             : "relative")
           << "\n";
-    theDI << "ZNear:      " << aCamera->ZNear().getValue() << "\n";
-    theDI << "ZFar:       " << aCamera->ZFar().getValue() << "\n";
+    theDI << "ZNear:      " << getPrimal(aCamera->ZNear()) << "\n";
+    theDI << "ZFar:       " << getPrimal(aCamera->ZFar()) << "\n";
     return 0;
   }
 
@@ -8959,7 +8959,7 @@ static int VCamera(Draw_Interpretor& theDI, Standard_Integer theArgsNb, const ch
         aCamera->SetDistance(Draw::Atof(anArgValue));
         continue;
       }
-      theDI << aCamera->Distance().getValue() << " ";
+      theDI << getPrimal(aCamera->Distance()) << " ";
     }
     else if (anArgCase == "-iod")
     {
@@ -8970,7 +8970,7 @@ static int VCamera(Draw_Interpretor& theDI, Standard_Integer theArgsNb, const ch
         aCamera->SetIOD(aCamera->GetIODType(), Draw::Atof(anArgValue));
         continue;
       }
-      theDI << aCamera->IOD().getValue() << " ";
+      theDI << getPrimal(aCamera->IOD()) << " ";
     }
     else if (anArgCase == "-iodtype")
     {
@@ -9013,7 +9013,7 @@ static int VCamera(Draw_Interpretor& theDI, Standard_Integer theArgsNb, const ch
         aCamera->SetZFocus(aCamera->ZFocusType(), Draw::Atof(anArgValue));
         continue;
       }
-      theDI << aCamera->ZFocus().getValue() << " ";
+      theDI << getPrimal(aCamera->ZFocus()) << " ";
     }
     else if (anArgCase == "-zfocustype")
     {
@@ -9151,15 +9151,15 @@ static int VCamera(Draw_Interpretor& theDI, Standard_Integer theArgsNb, const ch
       }
       if (anArgCase == "-fov2d")
       {
-        theDI << aCamera->FOV2d().getValue() << " ";
+        theDI << getPrimal(aCamera->FOV2d()) << " ";
       }
       else if (anArgCase == "-fovx")
       {
-        theDI << aCamera->FOVx().getValue() << " ";
+        theDI << getPrimal(aCamera->FOVx()) << " ";
       }
       else
       {
-        theDI << aCamera->FOVy().getValue() << " ";
+        theDI << getPrimal(aCamera->FOVy()) << " ";
       }
     }
     else if (anArgIter + 1 < theArgsNb && anArgCase == "-xrpose")
@@ -9553,12 +9553,12 @@ static int VDefaults(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const 
     if (aDefParams->TypeOfDeflection() == Aspect_TOD_RELATIVE)
     {
       theDi << "DeflType:           relative\n"
-            << "DeviationCoeff:     " << aDefParams->DeviationCoefficient().getValue() << "\n";
+            << "DeviationCoeff:     " << getPrimal(aDefParams->DeviationCoefficient()) << "\n";
     }
     else
     {
       theDi << "DeflType:           absolute\n"
-            << "AbsoluteDeflection: " << aDefParams->MaximalChordialDeviation().getValue() << "\n";
+            << "AbsoluteDeflection: " << getPrimal(aDefParams->MaximalChordialDeviation()) << "\n";
     }
     theDi << "AngularDeflection:  " << (180.0 * aDefParams->DeviationAngle() / M_PI).getValue()
           << "\n";
@@ -9730,8 +9730,8 @@ static int VLight(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const cha
                 << "  Headlight:  " << (aLight->Headlight() ? "TRUE" : "FALSE") << "\n"
                 << "  CastShadows:" << (aLight->ToCastShadows() ? "TRUE" : "FALSE") << "\n"
                 << "  Smoothness: " << aLight->Smoothness() << "\n"
-                << "  Position:   " << aLight->Position().X().getValue() << " "
-                << aLight->Position().Y().getValue() << " " << aLight->Position().Z().getValue()
+                << "  Position:   " << getPrimal(aLight->Position().X()) << " "
+                << getPrimal(aLight->Position().Y()) << " " << getPrimal(aLight->Position().Z())
                 << "\n"
                 << "  Atten.:     " << aLight->ConstAttenuation() << " "
                 << aLight->LinearAttenuation() << "\n"
@@ -9743,8 +9743,8 @@ static int VLight(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const cha
                 << "  Intensity:  " << aLight->Intensity() << "\n"
                 << "  Headlight:  " << (aLight->Headlight() ? "TRUE" : "FALSE") << "\n"
                 << "  CastShadows:" << (aLight->ToCastShadows() ? "TRUE" : "FALSE") << "\n"
-                << "  Position:   " << aLight->Position().X().getValue() << " "
-                << aLight->Position().Y().getValue() << " " << aLight->Position().Z().getValue()
+                << "  Position:   " << getPrimal(aLight->Position().X()) << " "
+                << getPrimal(aLight->Position().Y()) << " " << getPrimal(aLight->Position().Z())
                 << "\n"
                 << "  Direction:  " << aLight->PackedDirection().x() << " "
                 << aLight->PackedDirection().y() << " " << aLight->PackedDirection().z() << "\n"

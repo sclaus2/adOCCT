@@ -626,9 +626,9 @@ static Standard_Integer pick(Draw_Interpretor&, Standard_Integer n, const char**
   T.Invert();
   P.Transform(T);
   Draw::Set(a[1], id);
-  Draw::Set(a[2], P.X().getValue());
-  Draw::Set(a[3], P.Y().getValue());
-  Draw::Set(a[4], P.Z().getValue());
+  Draw::Set(a[2], getPrimal(P.X()));
+  Draw::Set(a[3], getPrimal(P.Y()));
+  Draw::Set(a[4], getPrimal(P.Z()));
   Draw::Set(a[5], b);
   return 0;
 }
@@ -654,9 +654,9 @@ static Standard_Integer lastrep(Draw_Interpretor& di, Standard_Integer n, const 
     dout.GetTrsf(p_id, T);
     T.Invert();
     P.Transform(T);
-    Draw::Set(a[2], P.X().getValue());
-    Draw::Set(a[3], P.Y().getValue());
-    Draw::Set(a[4], P.Z().getValue());
+    Draw::Set(a[2], getPrimal(P.X()));
+    Draw::Set(a[3], getPrimal(P.Y()));
+    Draw::Set(a[4], getPrimal(P.Z()));
   }
   else
   {

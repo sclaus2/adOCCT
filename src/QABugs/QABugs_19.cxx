@@ -303,11 +303,11 @@ Standard_Integer OCC22595(Draw_Interpretor& di, Standard_Integer /*argc*/, const
 {
   gp_Mat M0;
   di << "M0 = "
-     << " {" << M0(1, 1).getValue() << "} {" << M0(1, 2).getValue() << "} {" << M0(1, 3).getValue()
+     << " {" << getPrimal(M0(1, 1)) << "} {" << getPrimal(M0(1, 2)) << "} {" << getPrimal(M0(1, 3))
      << "}"
-     << " {" << M0(2, 1).getValue() << "} {" << M0(2, 2).getValue() << "} {" << M0(2, 3).getValue()
+     << " {" << getPrimal(M0(2, 1)) << "} {" << getPrimal(M0(2, 2)) << "} {" << getPrimal(M0(2, 3))
      << "}"
-     << " {" << M0(1, 1).getValue() << "} {" << M0(1, 2).getValue() << "} {" << M0(1, 3).getValue()
+     << " {" << getPrimal(M0(1, 1)) << "} {" << getPrimal(M0(1, 2)) << "} {" << getPrimal(M0(1, 3))
      << "}";
   return 0;
 }
@@ -331,11 +331,11 @@ static Standard_Boolean OCC23774Test(const TopoDS_Face&  grossPlateFace,
 
   if (distShapeShape.Value() > 0.01)
   {
-    di << "Wrong Dist = " << distShapeShape.Value().getValue() << "\n";
+    di << "Wrong Dist = " << getPrimal(distShapeShape.Value()) << "\n";
     return Standard_False;
   }
   else
-    di << "Dist0 = " << distShapeShape.Value().getValue() << "\n";
+    di << "Dist0 = " << getPrimal(distShapeShape.Value()) << "\n";
 
   //////////////////////////////////////////////////////////////////////////
   /// First Flip Y
@@ -363,11 +363,11 @@ static Standard_Boolean OCC23774Test(const TopoDS_Face&  grossPlateFace,
     return Standard_False;
   if (distShapeShape1.Value() > 0.01)
   {
-    di << "Dist = " << distShapeShape1.Value().getValue() << "\n";
+    di << "Dist = " << getPrimal(distShapeShape1.Value()) << "\n";
     return Standard_False;
   }
   else
-    di << "Dist1 = " << distShapeShape1.Value().getValue() << "\n";
+    di << "Dist1 = " << getPrimal(distShapeShape1.Value()) << "\n";
 
   //////////////////////////////////////////////////////////////////////////
   /// Second flip Y
@@ -392,16 +392,16 @@ static Standard_Boolean OCC23774Test(const TopoDS_Face&  grossPlateFace,
   // This last test case give error (the value is 1008.8822038689706)
   if (distShapeShape2.Value() > 0.01)
   {
-    di << "Wrong Dist2 = " << distShapeShape2.Value().getValue() << "\n";
+    di << "Wrong Dist2 = " << getPrimal(distShapeShape2.Value()) << "\n";
     Standard_Integer N = distShapeShape2.NbSolution();
     di << "Nb = " << N << "\n";
     for (Standard_Integer i = 1; i <= N; i++)
       di << "Sol(" << i << ") = "
-         << distShapeShape2.PointOnShape1(i).Distance(distShapeShape2.PointOnShape2(i)).getValue()
+         << getPrimal(distShapeShape2.PointOnShape1(i).Distance(distShapeShape2.PointOnShape2(i)))
          << "\n";
     return Standard_False;
   }
-  di << "Distance2 = " << distShapeShape2.Value().getValue() << "\n";
+  di << "Distance2 = " << getPrimal(distShapeShape2.Value()) << "\n";
 
   return Standard_True;
 }
@@ -745,34 +745,34 @@ static Standard_Integer OCC23945(Draw_Interpretor& /*di*/, Standard_Integer n, c
     {
       gp_Vec D2U, D2V, D2UV;
       GS.D2(U, V, P, DU, DV, D2U, D2V, D2UV);
-      Draw::Set(a[13], D2U.X().getValue());
-      Draw::Set(a[14], D2U.Y().getValue());
-      Draw::Set(a[15], D2U.Z().getValue());
-      Draw::Set(a[16], D2V.X().getValue());
-      Draw::Set(a[17], D2V.Y().getValue());
-      Draw::Set(a[18], D2V.Z().getValue());
-      Draw::Set(a[19], D2UV.X().getValue());
-      Draw::Set(a[20], D2UV.Y().getValue());
-      Draw::Set(a[21], D2UV.Z().getValue());
+      Draw::Set(a[13], getPrimal(D2U.X()));
+      Draw::Set(a[14], getPrimal(D2U.Y()));
+      Draw::Set(a[15], getPrimal(D2U.Z()));
+      Draw::Set(a[16], getPrimal(D2V.X()));
+      Draw::Set(a[17], getPrimal(D2V.Y()));
+      Draw::Set(a[18], getPrimal(D2V.Z()));
+      Draw::Set(a[19], getPrimal(D2UV.X()));
+      Draw::Set(a[20], getPrimal(D2UV.Y()));
+      Draw::Set(a[21], getPrimal(D2UV.Z()));
     }
     else
       GS.D1(U, V, P, DU, DV);
 
-    Draw::Set(a[7], DU.X().getValue());
-    Draw::Set(a[8], DU.Y().getValue());
-    Draw::Set(a[9], DU.Z().getValue());
-    Draw::Set(a[10], DV.X().getValue());
-    Draw::Set(a[11], DV.Y().getValue());
-    Draw::Set(a[12], DV.Z().getValue());
+    Draw::Set(a[7], getPrimal(DU.X()));
+    Draw::Set(a[8], getPrimal(DU.Y()));
+    Draw::Set(a[9], getPrimal(DU.Z()));
+    Draw::Set(a[10], getPrimal(DV.X()));
+    Draw::Set(a[11], getPrimal(DV.Y()));
+    Draw::Set(a[12], getPrimal(DV.Z()));
   }
   else
     GS.D0(U, V, P);
 
   if (n > 6)
   {
-    Draw::Set(a[4], P.X().getValue());
-    Draw::Set(a[5], P.Y().getValue());
-    Draw::Set(a[6], P.Z().getValue());
+    Draw::Set(a[4], getPrimal(P.X()));
+    Draw::Set(a[5], getPrimal(P.Y()));
+    Draw::Set(a[6], getPrimal(P.Z()));
   }
   if (DrawPoint)
   {
@@ -1413,8 +1413,8 @@ static Standard_Integer OCC24945(Draw_Interpretor& di, Standard_Integer argc, co
   Extrema_ExtPC aExtPC(aP3D, aC3D);
   // Standard_Real aParam = (aExtPC.Point(1)).Parameter();
   gp_Pnt aProj = (aExtPC.Point(1)).Value();
-  di << "Projected point: X = " << aProj.X().getValue() << "; Y = " << aProj.Y().getValue()
-     << "; Z = " << aProj.Z().getValue() << "\n";
+  di << "Projected point: X = " << getPrimal(aProj.X()) << "; Y = " << getPrimal(aProj.Y())
+     << "; Z = " << getPrimal(aProj.Z()) << "\n";
 
   // Result of deviation
   gp_Ax2      aCylAxis(gp_Pnt(0, 2103.87, 0), -gp::DY(), -gp::DX());
@@ -1422,7 +1422,7 @@ static Standard_Integer OCC24945(Draw_Interpretor& di, Standard_Integer argc, co
 
   Standard_Real aU = 0., aV = 0.;
   ElSLib::Parameters(aCylinder, aProj, aU, aV);
-  di << "Parameters on cylinder: U = " << aU.getValue() << "; V = " << aV.getValue() << "\n";
+  di << "Parameters on cylinder: U = " << getPrimal(aU) << "; V = " << getPrimal(aV) << "\n";
 
   return 0;
 }
@@ -1489,7 +1489,7 @@ static Standard_Integer OCC24137(Draw_Interpretor& theDI,
     return 1;
   }
 
-  theDI << aRoot.Root()(1).getValue() << " " << aRoot.Root()(2).getValue() << "\n";
+  theDI << getPrimal(aRoot.Root()(1)) << " " << getPrimal(aRoot.Root()(2)) << "\n";
 
   aSurf.D0(aRoot.Root()(1), aRoot.Root()(2), aRes);
   DBRep::Set("result", BRepBuilderAPI_MakeVertex(aRes));
@@ -1709,8 +1709,8 @@ static Standard_Integer OCC24370(Draw_Interpretor& di, Standard_Integer argc, co
     islastdoneInteger = 1;
   }
 
-  di << isfirstdoneInteger << " " << islastdoneInteger << " " << first.getValue() << " "
-     << last.getValue() << " \n";
+  di << isfirstdoneInteger << " " << islastdoneInteger << " " << getPrimal(first) << " "
+     << getPrimal(last) << " \n";
 
   return 0;
 }
@@ -2135,13 +2135,13 @@ static Standard_Integer OCC24889(Draw_Interpretor& theDI,
   Standard_Real aPar[2] = {aIntPnt.ParamOnFirst(), aIntPnt.ParamOnSecond()};
 
   // theDI.precision( 5 );
-  theDI << "Int point: X = " << aIntRes.X().getValue() << "; Y = " << aIntRes.Y().getValue()
+  theDI << "Int point: X = " << getPrimal(aIntRes.X()) << "; Y = " << getPrimal(aIntRes.Y())
         << "\n";
   for (int i = 0; i < 2; ++i)
   {
-    theDI << "Curve " << i << ": FirstParam = " << aTrim[i]->FirstParameter().getValue()
-          << "; LastParam = " << aTrim[i]->LastParameter().getValue()
-          << "; IntParameter = " << aPar[i].getValue() << "\n";
+    theDI << "Curve " << i << ": FirstParam = " << getPrimal(aTrim[i]->FirstParameter())
+          << "; LastParam = " << getPrimal(aTrim[i]->LastParameter())
+          << "; IntParameter = " << getPrimal(aPar[i]) << "\n";
   }
 
   return 0;
@@ -2294,7 +2294,7 @@ static Standard_Integer OCC25004(Draw_Interpretor& theDI,
   //(-pi , 12.275), (pi , 2.275), (9.42478, 2.475)
 
   Standard_Real anExtValue = aFinder.GetF();
-  theDI << "F = " << anExtValue.getValue() << "\n";
+  theDI << "F = " << getPrimal(anExtValue) << "\n";
 
   Standard_Integer aNbExt = aFinder.NbExtrema();
   theDI << "NbExtrema = " << aNbExt << "\n";
@@ -3636,7 +3636,7 @@ Standard_Integer xprojponf(Draw_Interpretor& di, Standard_Integer n, const char*
   }
   //
   aPS = aPPS.NearestPoint();
-  di << " point px " << aPS.X().getValue() << " " << aPS.Y().getValue() << " " << aPS.Z().getValue()
+  di << " point px " << getPrimal(aPS.X()) << " " << getPrimal(aPS.Y()) << " " << getPrimal(aPS.Z())
      << "\n";
   //
   return 0;
@@ -3713,13 +3713,13 @@ static Standard_Integer OCC24923(Draw_Interpretor& theDI, Standard_Integer argc,
   theDI << "Number of incorrect cases: " << aFailedNb << " (Total " << aPointsNb << ")\n";
   if (aDeviation > aMaxDeviation)
   {
-    theDI << "Failed. Number of incorrect results is too huge: " << aDeviation.getValue() * 100
-          << "% (Max " << aMaxDeviation.getValue() * 100 << "%)\n";
+    theDI << "Failed. Number of incorrect results is too huge: " << getPrimal(aDeviation) * 100
+          << "% (Max " << getPrimal(aMaxDeviation) * 100 << "%)\n";
     return 1;
   }
 
-  theDI << "Deviation of incorrect results is: " << aDeviation.getValue() * 100 << "% (Max "
-        << aMaxDeviation.getValue() * 100 << "%)\n";
+  theDI << "Deviation of incorrect results is: " << getPrimal(aDeviation) * 100 << "% (Max "
+        << getPrimal(aMaxDeviation) * 100 << "%)\n";
   theDI << "Test completed\n";
   return 0;
 }
@@ -3841,9 +3841,9 @@ static Standard_Integer OCC25574(Draw_Interpretor& theDI,
               << (anAxis == 0   ? "X"
                   : anAxis == 1 ? "Y"
                                 : "Z")
-              << " converts vector (" << v.X().getValue() << ", " << v.Y().getValue() << ", "
-              << v.Z().getValue() << ") to (" << v2.X().getValue() << ", " << v2.Y().getValue()
-              << ", " << v2.Z().getValue() << ")\n";
+              << " converts vector (" << getPrimal(v.X()) << ", " << getPrimal(v.Y()) << ", "
+              << getPrimal(v.Z()) << ") to (" << getPrimal(v2.X()) << ", " << getPrimal(v2.Y())
+              << ", " << getPrimal(v2.Z()) << ")\n";
       }
     }
   }
@@ -3939,12 +3939,12 @@ static Standard_Integer OCC25574(Draw_Interpretor& theDI,
         || Abs(gamma - computedGamma) > 1e-5)
     {
       theDI << "Error: unexpected values of Euler angles for YawPitchRoll sequence:\n";
-      theDI << "alpha: " << alpha.getValue() / M_PI * 180.0
-            << " and computed alpha: " << computedAlpha.getValue() / M_PI * 180.0 << "\n";
-      theDI << "beta: " << beta.getValue() / M_PI * 180.0
-            << " and computed beta: " << computedBeta.getValue() / M_PI * 180.0 << "\n";
-      theDI << "gamma: " << gamma.getValue() / M_PI * 180.0
-            << " and computed gamma: " << computedGamma.getValue() / M_PI * 180.0 << "\n";
+      theDI << "alpha: " << getPrimal(alpha) / M_PI * 180.0
+            << " and computed alpha: " << getPrimal(computedAlpha) / M_PI * 180.0 << "\n";
+      theDI << "beta: " << getPrimal(beta) / M_PI * 180.0
+            << " and computed beta: " << getPrimal(computedBeta) / M_PI * 180.0 << "\n";
+      theDI << "gamma: " << getPrimal(gamma) / M_PI * 180.0
+            << " and computed gamma: " << getPrimal(computedGamma) / M_PI * 180.0 << "\n";
       isTestOk = Standard_False;
     }
   }
@@ -3963,12 +3963,12 @@ static Standard_Integer OCC25574(Draw_Interpretor& theDI,
     {
       theDI
         << "Error: Euler angles computed for gp_Intrinsic_ZYX and gp_Extrinsic_XYZ do not match:\n";
-      theDI << "alpha: " << alpha.getValue() / M_PI * 180.0 << " and "
-            << alpha2.getValue() / M_PI * 180.0 << "\n";
-      theDI << "beta: " << beta.getValue() / M_PI * 180.0 << " and "
-            << beta2.getValue() / M_PI * 180.0 << "\n";
-      theDI << "gamma: " << gamma.getValue() / M_PI * 180.0 << " and "
-            << gamma2.getValue() / M_PI * 180.0 << "\n";
+      theDI << "alpha: " << getPrimal(alpha) / M_PI * 180.0 << " and "
+            << getPrimal(alpha2) / M_PI * 180.0 << "\n";
+      theDI << "beta: " << getPrimal(beta) / M_PI * 180.0 << " and "
+            << getPrimal(beta2) / M_PI * 180.0 << "\n";
+      theDI << "gamma: " << getPrimal(gamma) / M_PI * 180.0 << " and "
+            << getPrimal(gamma2) / M_PI * 180.0 << "\n";
       isTestOk = Standard_False;
     }
   }
@@ -4032,12 +4032,12 @@ static Standard_Integer OCC26448(Draw_Interpretor& theDI, Standard_Integer, cons
   TColStd_SequenceOfReal aSeq1, aSeq2;
   aSeq1.Append(11.);
   aSeq1.Prepend(aSeq2);
-  theDI << "TCollection: 11 -> " << aSeq1.First().getValue() << "\n";
+  theDI << "TCollection: 11 -> " << getPrimal(aSeq1.First()) << "\n";
 
   NCollection_Sequence<Standard_Real> nSeq1, nSeq2;
   nSeq1.Append(11.);
   nSeq1.Prepend(nSeq2);
-  theDI << "NCollection: 11 -> " << nSeq1.First().getValue() << "\n";
+  theDI << "NCollection: 11 -> " << getPrimal(nSeq1.First()) << "\n";
 
   theDI << "OK";
   return 0;
@@ -4167,8 +4167,8 @@ static Standard_Integer OCC26485(Draw_Interpretor& theDI,
       {
         char buf[256];
         sprintf(buf, "fail_%d", i + 1);
-        theDI << "Failed. Point " << buf << ": " << aPoint.X().getValue() << " "
-              << aPoint.Y().getValue() << " " << aPoint.Z().getValue() << "\n";
+        theDI << "Failed. Point " << buf << ": " << getPrimal(aPoint.X()) << " "
+              << getPrimal(aPoint.Y()) << " " << getPrimal(aPoint.Z()) << "\n";
 
         DrawTrSurf::Set(buf, aPoint);
       }
@@ -4329,8 +4329,8 @@ static Standard_Integer OCC26195(Draw_Interpretor& theDI,
   if (Precision::IsInfinite(aFarPnt.X()) || Precision::IsInfinite(aFarPnt.Y())
       || Precision::IsInfinite(aFarPnt.Z()))
   {
-    theDI << "Near: " << aNearPnt.X().getValue() << " " << aNearPnt.Y().getValue() << " "
-          << aNearPnt.Z().getValue() << "\n";
+    theDI << "Near: " << getPrimal(aNearPnt.X()) << " " << getPrimal(aNearPnt.Y()) << " "
+          << getPrimal(aNearPnt.Z()) << "\n";
     theDI << "Far: infinite point " << "\n";
     return 0;
   }
@@ -4343,10 +4343,10 @@ static Standard_Integer OCC26195(Draw_Interpretor& theDI,
 
   if (toPrint)
   {
-    theDI << "Near: " << aNearPnt.X().getValue() << " " << aNearPnt.Y().getValue() << " "
-          << aNearPnt.Z().getValue() << "\n";
-    theDI << "Far: " << aFarPnt.X().getValue() << " " << aFarPnt.Y().getValue() << " "
-          << aFarPnt.Z().getValue() << "\n";
+    theDI << "Near: " << getPrimal(aNearPnt.X()) << " " << getPrimal(aNearPnt.Y()) << " "
+          << getPrimal(aNearPnt.Z()) << "\n";
+    theDI << "Far: " << getPrimal(aFarPnt.X()) << " " << getPrimal(aFarPnt.Y()) << " "
+          << getPrimal(aFarPnt.Z()) << "\n";
   }
 
   return 0;
@@ -4526,9 +4526,9 @@ Standard_Integer OCC26525(Draw_Interpretor& di, Standard_Integer n, const char**
             "point %s_%d %lg %lg %lg  ",
             a[1],
             i,
-            aP.X().getValue(),
-            aP.Y().getValue(),
-            aP.Z().getValue());
+            getPrimal(aP.X()),
+            getPrimal(aP.Y()),
+            getPrimal(aP.Z()));
     di << buf << "\n";
   }
 
@@ -4992,14 +4992,14 @@ static Standard_Integer OCC26746(Draw_Interpretor& theDI,
 
       if (Abs(aDelta) > aToler)
       {
-        theDI << "(" << aUpar.getValue() << ", " << aVpar.getValue()
-              << "): Error in torus coefficients computation (Delta = " << aDelta.getValue()
+        theDI << "(" << getPrimal(aUpar) << ", " << getPrimal(aVpar)
+              << "): Error in torus coefficients computation (Delta = " << getPrimal(aDelta)
               << ").\n";
       }
       else
       {
-        theDI << "(" << aUpar.getValue() << ", " << aVpar.getValue()
-              << "): OK (Delta = " << aDelta.getValue() << ").\n";
+        theDI << "(" << getPrimal(aUpar) << ", " << getPrimal(aVpar)
+              << "): OK (Delta = " << getPrimal(aDelta) << ").\n";
       }
 
       aVpar = (aVind == aNbPntsMax) ? 2.0 * M_PI : aVpar + aStep;

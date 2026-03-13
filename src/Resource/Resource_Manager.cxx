@@ -482,7 +482,7 @@ void Resource_Manager::SetResource(const Standard_CString aResourceName,
 //=======================================================================
 void Resource_Manager::SetResource(const Standard_CString aResourceName, const Standard_Real aValue)
 {
-  SetResource(aResourceName, TCollection_AsciiString(aValue.getValue()).ToCString());
+  SetResource(aResourceName, TCollection_AsciiString(getPrimal(aValue)).ToCString());
 }
 
 //=======================================================================

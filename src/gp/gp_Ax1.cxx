@@ -86,14 +86,14 @@ void gp_Ax1::DumpJson(Standard_OStream& theOStream, Standard_Integer) const {
   OCCT_DUMP_VECTOR_CLASS(theOStream,
                          "Location",
                          3,
-                         loc.X().getValue(),
-                         loc.Y().getValue(),
-                         loc.Z().getValue()) OCCT_DUMP_VECTOR_CLASS(theOStream,
+                         getPrimal(loc.X()),
+                         getPrimal(loc.Y()),
+                         getPrimal(loc.Z())) OCCT_DUMP_VECTOR_CLASS(theOStream,
                                                                     "Direction",
                                                                     3,
-                                                                    vdir.X().getValue(),
-                                                                    vdir.Y().getValue(),
-                                                                    vdir.Z().getValue())}
+                                                                    getPrimal(vdir.X()),
+                                                                    getPrimal(vdir.Y()),
+                                                                    getPrimal(vdir.Z()))}
 
 Standard_Boolean gp_Ax1::InitFromJson(const Standard_SStream& theSStream,
                                       Standard_Integer&       theStreamPos)

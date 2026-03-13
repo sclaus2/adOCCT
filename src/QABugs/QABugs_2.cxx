@@ -81,7 +81,7 @@ static Standard_Integer OCC527(Draw_Interpretor& di, Standard_Integer argc, cons
 
       // Build sections from Zmin to Zmax with step aStep
       Standard_Real gmaxdist = 0.0, gzmax = Zmax;
-      for (double zcur = Zmax.getValue(); zcur > Zmin; zcur -= aStep.getValue())
+      for (double zcur = getPrimal(Zmax); zcur > Zmin; zcur -= getPrimal(aStep))
       {
         // If plane of the section does not intersect BndBox of the face do nothing
         if (zcur < Z1 || zcur > Z2)
@@ -110,21 +110,21 @@ static Standard_Integer OCC527(Draw_Interpretor& di, Standard_Integer argc, cons
               Standard_Real toler = BRep_Tool::Tolerance(aV);
               Standard_Real dist  = pl.Distance(BRep_Tool::Pnt(aV));
               if (dist > lmaxdist)
-                lmaxdist = dist.getValue();
+                lmaxdist = getPrimal(dist);
               // If section was built check distance between vertexes and plane of the one
               str[0] = 0;
               if (dist > toler)
                 Sprintf(str,
                         "Dist=%f, Toler=%f, Param=%f FAULTY\n",
-                        dist.getValue(),
-                        toler.getValue(),
-                        gzmax.getValue());
+                        getPrimal(dist),
+                        getPrimal(toler),
+                        getPrimal(gzmax));
               else
                 Sprintf(str,
                         "Dist=%f, Toler=%f, Param=%f\n",
-                        dist.getValue(),
-                        toler.getValue(),
-                        gzmax.getValue());
+                        getPrimal(dist),
+                        getPrimal(toler),
+                        getPrimal(gzmax));
               di << str;
             }
             if (lmaxdist > gmaxdist)

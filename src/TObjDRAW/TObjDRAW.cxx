@@ -398,7 +398,7 @@ static Standard_Integer getVal(Draw_Interpretor& di, Standard_Integer argc, cons
       {
         if (i > 1)
           di << " ";
-        di << rArr->Value(i).getValue();
+        di << getPrimal(rArr->Value(i));
       }
   }
 

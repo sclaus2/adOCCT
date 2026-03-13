@@ -2092,9 +2092,9 @@ q1,(q2>32768)? (32768-q2) : q2,q&0x80008000);
     static Standard_Integer nump1 = 0;
     printf("\npoint PNR%d  %g %g %g",
            ++nump1,
-           PLim.X().getValue(),
-           PLim.Y().getValue(),
-           PLim.Z().getValue());
+           getPrimal(PLim.X()),
+           getPrimal(PLim.Y()),
+           getPrimal(PLim.Z()));
   }
 
   gp_Lin        L    = myProj.Shoot(Psta.X(), Psta.Y());

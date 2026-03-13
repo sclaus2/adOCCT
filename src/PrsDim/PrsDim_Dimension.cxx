@@ -232,7 +232,7 @@ const TCollection_AsciiString& PrsDim_Dimension::GetModelUnits() const
 
 Standard_Real PrsDim_Dimension::ValueToDisplayUnits() const
 {
-  return UnitsAPI::AnyToAny(GetValue().getValue(),
+  return UnitsAPI::AnyToAny(getPrimal(GetValue()),
                             GetModelUnits().ToCString(),
                             GetDisplayUnits().ToCString());
 }
@@ -304,7 +304,7 @@ TCollection_ExtendedString PrsDim_Dimension::GetValueString(Standard_Real& theWi
     Font_FTFontParams                aFontParams;
     const Graphic3d_RenderingParams& aRendParams =
       GetContext()->CurrentViewer()->DefaultRenderingParams();
-    aFontParams.PointSize   = (unsigned int)aTextAspect->Height().getValue();
+    aFontParams.PointSize   = (unsigned int)getPrimal(aTextAspect->Height());
     aFontParams.Resolution  = aRendParams.Resolution;
     aFontParams.FontHinting = aRendParams.FontHinting;
     if (Handle(Font_FTFont) aFont =

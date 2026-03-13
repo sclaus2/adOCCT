@@ -82,7 +82,7 @@ void BinMDataStd_RealDriver::Paste(const Handle(TDF_Attribute)& theSource,
                                    BinObjMgt_SRelocationTable&) const
 {
   Handle(TDataStd_Real) anAtt = Handle(TDataStd_Real)::DownCast(theSource);
-  theTarget << anAtt->Get().getValue();
+  theTarget << getPrimal(anAtt->Get());
   // process user defined guid
   if (anAtt->ID() != TDataStd_Real::GetID())
     theTarget << anAtt->ID();

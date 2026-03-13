@@ -201,11 +201,11 @@ Handle(Transfer_Binder) IGESToBRep_Actor::Transfer(const Handle(Standard_Transie
     // outside.
     XSAlgo_ShapeProcessor::ParameterMap aParameters = GetShapeFixParameters();
     XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d",
-                                        theeps.getValue(),
+                                        getPrimal(theeps),
                                         true,
                                         aParameters);
     XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d",
-                                        CAS.GetMaxTol().getValue(),
+                                        getPrimal(CAS.GetMaxTol()),
                                         true,
                                         aParameters);
 

@@ -124,5 +124,5 @@ gp_Dir2d gp_Dir2d::Mirrored(const gp_Ax2d& A) const
 
 void gp_Dir2d::DumpJson(Standard_OStream& theOStream, Standard_Integer) const
 {
-  OCCT_DUMP_VECTOR_CLASS(theOStream, "gp_Dir2d", 2, coord.X().getValue(), coord.Y().getValue())
+  OCCT_DUMP_VECTOR_CLASS(theOStream, "gp_Dir2d", 2, getPrimal(coord.X()), getPrimal(coord.Y()))
 }

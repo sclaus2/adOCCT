@@ -424,7 +424,7 @@ void Extrema_ExtCC::PrepareParallelResult(const Standard_Real theUt11,
     const Standard_Real isLastInfinite =
       (Precision::IsInfinite(theUt21) && Precision::IsInfinite(theUt22));
 
-    if (isFirstInfinite.getValue() || isLastInfinite.getValue())
+    if (getPrimal(isFirstInfinite) || getPrimal(isLastInfinite))
     {
       // Infinite number of solution
 

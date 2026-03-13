@@ -237,20 +237,20 @@ static Standard_Integer PolygonProps(Draw_Interpretor& theDI,
   Standard_Real anArea = 0.0, aPerimeter = 0.0;
   Poly::PolygonProperties(aPoly2d->Nodes(), anArea, aPerimeter);
 
-  theDI << "Area      = " << anArea.getValue() << "\n";
-  theDI << "Perimeter = " << aPerimeter.getValue() << "\n";
+  theDI << "Area      = " << getPrimal(anArea) << "\n";
+  theDI << "Perimeter = " << getPrimal(aPerimeter) << "\n";
 
   for (Standard_Integer i = 2; i < theNArg; i++)
   {
     if (!strcmp(theArgVal[i], "-area"))
     {
-      Draw::Set(theArgVal[++i], anArea.getValue());
+      Draw::Set(theArgVal[++i], getPrimal(anArea));
       continue;
     }
 
     if (!strcmp(theArgVal[i], "-perimeter"))
     {
-      Draw::Set(theArgVal[++i], aPerimeter.getValue());
+      Draw::Set(theArgVal[++i], getPrimal(aPerimeter));
       continue;
     }
 

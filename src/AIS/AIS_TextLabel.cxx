@@ -358,7 +358,7 @@ Standard_Boolean AIS_TextLabel::calculateLabelParams(const gp_Pnt&  thePosition,
   const Graphic3d_RenderingParams& aRendParams =
     GetContext()->CurrentViewer()->DefaultRenderingParams();
   Font_FTFontParams aFontParams;
-  aFontParams.PointSize   = (unsigned int)anAsp->Height().getValue();
+  aFontParams.PointSize   = (unsigned int)getPrimal(anAsp->Height());
   aFontParams.Resolution  = aRendParams.Resolution;
   aFontParams.FontHinting = aRendParams.FontHinting;
 

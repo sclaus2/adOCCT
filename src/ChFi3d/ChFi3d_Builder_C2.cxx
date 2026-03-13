@@ -302,7 +302,7 @@ Standard_Boolean ChFi3d_Builder::PerformTwoCornerbyInter(const Standard_Integer 
   Handle(Geom2d_Curve) PGc1, PGc2;
   Handle(Geom_Curve)   Gc;
 
-  if (sameparam.getValue())
+  if (getPrimal(sameparam))
   {
     // Side common face, calculation of Pardeb.
     ChFi3d_ComputesIntPC(Fd1->Interference(IFaCo1),

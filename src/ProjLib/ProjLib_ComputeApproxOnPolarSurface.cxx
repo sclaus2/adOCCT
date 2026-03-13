@@ -906,7 +906,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::Perform(
           anUJump                  = (anUPeriod)*aMultCoeff;
         }
 
-        if (anVPeriod.getValue() && Abs(aC1End.Y() - aC2Beg.Y()) > (anVPeriod) / 2.01)
+        if (getPrimal(anVPeriod) && Abs(aC1End.Y() - aC2Beg.Y()) > (anVPeriod) / 2.01)
         {
           Standard_Real aMultCoeff = aC2Beg.Y() < aC1End.Y() ? 1.0 : -1.0;
           anVJump                  = (anVPeriod)*aMultCoeff;
@@ -1442,7 +1442,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
               }
             }
           }
-          if (!myProjIsDone && uperiod.getValue())
+          if (!myProjIsDone && getPrimal(uperiod))
           {
             Standard_Real aUinf, aUsup, Uaux;
             aUinf = Surf->FirstUParameter();
@@ -1476,7 +1476,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
                 myProjIsDone = Standard_True;
               }
           }
-          if (!myProjIsDone && vperiod.getValue())
+          if (!myProjIsDone && getPrimal(vperiod))
           {
             Standard_Real aVinf, aVsup, Vaux;
             aVinf = Surf->FirstVParameter();
@@ -1510,7 +1510,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
                 myProjIsDone = Standard_True;
               }
           }
-          if (!myProjIsDone && uperiod.getValue() && vperiod.getValue())
+          if (!myProjIsDone && getPrimal(uperiod) && getPrimal(vperiod))
           {
             Standard_Real Uaux, Vaux;
             if ((Usup - U0) > (U0 - Uinf))
@@ -1571,7 +1571,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
                   myDist = Dist2Min;
                 }
                 (ext.Point(aGoodValue)).Parameter(u, v);
-                if (uperiod.getValue())
+                if (getPrimal(uperiod))
                 {
                   if ((U0 - u) > (2 * uperiod / 3))
                   {
@@ -1582,7 +1582,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
                     usens--;
                   }
                 }
-                if (vperiod.getValue())
+                if (getPrimal(vperiod))
                 {
                   if ((V0 - v) > (vperiod / 2))
                   {
@@ -1616,7 +1616,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
       myBSpline->Value(0.5 * (myBSpline->FirstParameter() + myBSpline->LastParameter()));
     Standard_Real TestU = MidPoint.X(), TestV = MidPoint.Y();
     Standard_Real sense = 0.;
-    if (uperiod.getValue())
+    if (getPrimal(uperiod))
     {
       if (TestU < Uinf - TolU)
         sense = 1.;
@@ -1625,7 +1625,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
       while (TestU < Uinf - TolU || TestU > Usup + TolU)
         TestU += sense * uperiod;
     }
-    if (vperiod.getValue())
+    if (getPrimal(vperiod))
     {
       sense = 0.;
       if (TestV < Vinf - TolV)

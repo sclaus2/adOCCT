@@ -323,7 +323,7 @@ void V3d_CircularGrid::DefinePoints()
   MarkerAttrib->SetType(Aspect_TOM_POINT);
   MarkerAttrib->SetScale(3.);
 
-  const Standard_Integer nbpnts = Standard_Integer(2 * aDivision.getValue());
+  const Standard_Integer nbpnts = Standard_Integer(2 * getPrimal(aDivision));
   Standard_Real          r, alpha = M_PI / aDivision;
 
   // diameters

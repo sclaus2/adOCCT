@@ -308,13 +308,13 @@ void gp_Mat::DumpJson(Standard_OStream& theOStream, Standard_Integer) const
   OCCT_DUMP_VECTOR_CLASS(theOStream,
                          "gp_Mat",
                          9,
-                         myMat[0][0].getValue(),
-                         myMat[0][1].getValue(),
-                         myMat[0][2].getValue(),
-                         myMat[1][0].getValue(),
-                         myMat[1][1].getValue(),
-                         myMat[1][2].getValue(),
-                         myMat[2][0].getValue(),
-                         myMat[2][1].getValue(),
-                         myMat[2][2].getValue())
+                         getPrimal(myMat[0][0]),
+                         getPrimal(myMat[0][1]),
+                         getPrimal(myMat[0][2]),
+                         getPrimal(myMat[1][0]),
+                         getPrimal(myMat[1][1]),
+                         getPrimal(myMat[1][2]),
+                         getPrimal(myMat[2][0]),
+                         getPrimal(myMat[2][1]),
+                         getPrimal(myMat[2][2]))
 }

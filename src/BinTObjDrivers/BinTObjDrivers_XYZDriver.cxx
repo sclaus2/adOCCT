@@ -71,5 +71,5 @@ void BinTObjDrivers_XYZDriver::Paste(const Handle(TDF_Attribute)& theSource,
 {
   Handle(TObj_TXYZ) aSource = Handle(TObj_TXYZ)::DownCast(theSource);
   gp_XYZ            aXYZ    = aSource->Get();
-  theTarget << aXYZ.X().getValue() << aXYZ.Y().getValue() << aXYZ.Z().getValue();
+  theTarget << getPrimal(aXYZ.X()) << getPrimal(aXYZ.Y()) << getPrimal(aXYZ.Z());
 }

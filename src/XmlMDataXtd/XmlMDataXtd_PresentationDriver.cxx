@@ -219,14 +219,14 @@ void XmlMDataXtd_PresentationDriver::Paste(const Handle(TDF_Attribute)& theSourc
   // transparency
   if (aTPrs->HasOwnTransparency())
   {
-    TCollection_AsciiString aRNbStr(aTPrs->Transparency().getValue());
+    TCollection_AsciiString aRNbStr(getPrimal(aTPrs->Transparency()));
     theTarget.Element().setAttribute(::TransparencyString(), aRNbStr.ToCString());
   }
 
   // width
   if (aTPrs->HasOwnWidth())
   {
-    TCollection_AsciiString aRNbStr(aTPrs->Width().getValue());
+    TCollection_AsciiString aRNbStr(getPrimal(aTPrs->Width()));
     theTarget.Element().setAttribute(::WidthString(), aRNbStr.ToCString());
   }
 

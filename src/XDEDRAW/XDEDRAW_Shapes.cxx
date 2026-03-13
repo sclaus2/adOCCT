@@ -694,7 +694,7 @@ static Standard_Integer XDumpLocation(Draw_Interpretor& di,
     {
       if (j > 1)
         di << ",";
-      di << TCollection_AsciiString(aTrsf.Value(i, j).getValue()).ToCString();
+      di << TCollection_AsciiString(getPrimal(aTrsf.Value(i, j))).ToCString();
     }
     di << ")";
   }
@@ -1215,7 +1215,7 @@ static Standard_Integer XGetProperties(Draw_Interpretor& theDI,
       for (TDataStd_DataMapIteratorOfDataMapOfStringReal anIter(aRealProperties); anIter.More();
            anIter.Next())
       {
-        theDI << anIter.Key() << " : " << anIter.Value().getValue() << "\n";
+        theDI << anIter.Key() << " : " << getPrimal(anIter.Value()) << "\n";
       }
     }
     if (aNamedData->HasStrings())
@@ -1268,7 +1268,7 @@ static Standard_Integer XGetProperties(Draw_Interpretor& theDI,
              anSubIter.Next())
         {
           aMessage += " ";
-          aMessage += anSubIter.Value().getValue();
+          aMessage += getPrimal(anSubIter.Value());
         }
         theDI << aMessage << "\n";
       }

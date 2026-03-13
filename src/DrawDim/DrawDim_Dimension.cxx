@@ -79,7 +79,7 @@ void DrawDim_Dimension::DrawText(const gp_Pnt& P, Draw_Display& D) const
   {
     t += "=";
     Standard_Integer l = t.Length();
-    t += myValue.getValue();
+    t += getPrimal(myValue);
     for (Standard_Integer i = l; i <= t.Length(); i++)
     {
       if (t.Value(i) == '.')

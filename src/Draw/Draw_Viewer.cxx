@@ -1297,13 +1297,13 @@ void Draw_Display::DrawString(const gp_Pnt2d&        ppt,
       if (Draw_Bounds)
       {
         if (pt.X() + moveX > xmax)
-          xmax = pt.X().getValue();
+          xmax = getPrimal(pt.X());
         if (pt.X() + moveX < xmin)
-          xmin = pt.X().getValue();
+          xmin = getPrimal(pt.X());
         if (-pt.Y() - moveY > ymax)
-          ymax = -pt.Y().getValue();
+          ymax = -getPrimal(pt.Y());
         if (-pt.Y() - moveY < ymin)
-          ymin = -pt.Y().getValue();
+          ymin = -getPrimal(pt.Y());
       }
     }
     break;
@@ -1409,13 +1409,13 @@ void Draw_Display::MoveTo(const gp_Pnt2d& pp)
       if (Draw_Bounds)
       {
         if (pt.X() > xmax)
-          xmax = pt.X().getValue();
+          xmax = getPrimal(pt.X());
         if (pt.X() < xmin)
-          xmin = pt.X().getValue();
+          xmin = getPrimal(pt.X());
         if (pt.Y() > ymax)
-          ymax = pt.Y().getValue();
+          ymax = getPrimal(pt.Y());
         if (pt.Y() < ymin)
-          ymin = pt.Y().getValue();
+          ymin = getPrimal(pt.Y());
       }
       break;
 
@@ -1473,8 +1473,8 @@ inline Standard_Integer CalculRegion(const double x,
 
 Standard_Boolean Trim(gp_Pnt2d& P1, gp_Pnt2d& P2, double x0, double y0, double x1, double y1)
 {
-  double xa = P1.X().getValue(), ya = P1.Y().getValue(), xb = P2.X().getValue(),
-         yb = P2.Y().getValue();
+  double xa = getPrimal(P1.X()), ya = getPrimal(P1.Y()), xb = getPrimal(P2.X()),
+         yb = getPrimal(P2.Y());
 
   Standard_Integer regiona = 0, regionb = 0;
   regiona = CalculRegion(xa, ya, x0, y0, x1, y1);
@@ -1505,8 +1505,8 @@ Standard_Boolean Trim(gp_Pnt2d& P1, gp_Pnt2d& P2, double x0, double y0, double x
     if (MFen.SquareDistance(Pm) > d * d)
       return (Standard_False);
 
-    double PmDistP1 = Pm.Distance(P1).getValue();
-    double PmDistP2 = Pm.Distance(P2).getValue();
+    double PmDistP1 = getPrimal(Pm.Distance(P1));
+    double PmDistP2 = getPrimal(Pm.Distance(P2));
 
     double amab = (xm - xa) * (xb - xa) + (ym - ya) * (yb - ya);
 
@@ -1605,13 +1605,13 @@ void Draw_Display::DrawTo(const gp_Pnt2d& pp2)
       if (Draw_Bounds)
       {
         if (p2.X() > xmax)
-          xmax = p2.X().getValue();
+          xmax = getPrimal(p2.X());
         if (p2.X() < xmin)
-          xmin = p2.X().getValue();
+          xmin = getPrimal(p2.X());
         if (p2.Y() > ymax)
-          ymax = p2.Y().getValue();
+          ymax = getPrimal(p2.Y());
         if (p2.Y() < ymin)
-          ymin = p2.Y().getValue();
+          ymin = getPrimal(p2.Y());
       }
     }
     break;
@@ -1733,11 +1733,11 @@ void Draw_Display::MoveTo(const gp_Pnt& pt)
   }
   PtPers = pt;
   PtPers.Transform(curview->GetMatrix());
-  double xp = PtPers.X().getValue();
-  double yp = PtPers.Y().getValue();
+  double xp = getPrimal(PtPers.X());
+  double yp = getPrimal(PtPers.Y());
   if (curview->IsPerspective())
   {
-    double       ZPers     = PtPers.Z().getValue();
+    double       ZPers     = getPrimal(PtPers.Z());
     const double aDistance = curview->GetFocalDistance();
     if (ZPers < aDistance * precpers)
     {
@@ -1758,18 +1758,18 @@ void Draw_Display::DrawTo(const gp_Pnt& pt)
     return;
 
   gp_Pnt pt2 = pt.Transformed(curview->GetMatrix());
-  double xp2 = pt2.X().getValue();
-  double yp2 = pt2.Y().getValue();
+  double xp2 = getPrimal(pt2.X());
+  double yp2 = getPrimal(pt2.Y());
 
   if (curview->IsPerspective())
   {
     const double aZoom     = curview->GetZoom();
     const double aDistance = curview->GetFocalDistance();
 
-    double xp1 = PtPers.X().getValue();
-    double yp1 = PtPers.Y().getValue();
-    double zp1 = PtPers.Z().getValue();
-    double zp2 = pt2.Z().getValue();
+    double xp1 = getPrimal(PtPers.X());
+    double yp1 = getPrimal(PtPers.Y());
+    double zp1 = getPrimal(PtPers.Z());
+    double zp2 = getPrimal(pt2.Z());
     PtPers     = pt2;
     if ((zp1 >= aDistance * precpers) && (zp2 >= aDistance * precpers))
     {

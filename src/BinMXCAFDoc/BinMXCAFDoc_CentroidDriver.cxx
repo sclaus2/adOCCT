@@ -63,5 +63,5 @@ void BinMXCAFDoc_CentroidDriver::Paste(const Handle(TDF_Attribute)& theSource,
 {
   Handle(XCAFDoc_Centroid) anAtt = Handle(XCAFDoc_Centroid)::DownCast(theSource);
   gp_Pnt                   aPnt  = anAtt->Get();
-  theTarget << aPnt.X().getValue() << aPnt.Y().getValue() << aPnt.Z().getValue();
+  theTarget << getPrimal(aPnt.X()) << getPrimal(aPnt.Y()) << getPrimal(aPnt.Z());
 }

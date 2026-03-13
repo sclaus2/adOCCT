@@ -198,8 +198,8 @@ Standard_Boolean BRepLib_PointCloudShape::addDensityPoints(const TopoDS_Shape& t
   }
 
   std::mt19937                     aRandomGenerator(0);
-  std::uniform_real_distribution<> anUDistrib(anUMin.getValue(), anUMax.getValue());
-  std::uniform_real_distribution<> aVDistrib(aVMin.getValue(), aVMax.getValue());
+  std::uniform_real_distribution<> anUDistrib(getPrimal(anUMin), getPrimal(anUMax));
+  std::uniform_real_distribution<> aVDistrib(getPrimal(aVMin), getPrimal(aVMax));
   for (Standard_Integer nbCurPnts = 1; nbCurPnts <= aNbPnts;)
   {
     const Standard_Real aU = anUDistrib(aRandomGenerator);
@@ -229,7 +229,7 @@ Standard_Boolean BRepLib_PointCloudShape::addDensityPoints(const TopoDS_Shape& t
     }
     if (myDist > Precision::Confusion())
     {
-      std::uniform_real_distribution<> aDistanceDistrib(0.0, myDist.getValue());
+      std::uniform_real_distribution<> aDistanceDistrib(0.0, getPrimal(myDist));
       gp_XYZ aDeflPoint = aP1.XYZ() + aNorm.XYZ() * aDistanceDistrib(aRandomGenerator);
       aP1.SetXYZ(aDeflPoint);
     }

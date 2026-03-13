@@ -92,14 +92,14 @@ static Standard_Integer BUC60897(Draw_Interpretor& di,
   for (Standard_Integer i = 1; i <= aGccCirc2d.NbSolutions(); i++)
   {
     gp_Circ2d aCirc2d = aGccCirc2d.ThisSolution(i);
-    di << "circle : X " << aCirc2d.Location().X().getValue() << " Y "
-       << aCirc2d.Location().Y().getValue() << " R " << aCirc2d.Radius().getValue();
+    di << "circle : X " << getPrimal(aCirc2d.Location().X()) << " Y "
+       << getPrimal(aCirc2d.Location().Y()) << " R " << getPrimal(aCirc2d.Radius());
     Standard_Real aTmpR1, aTmpR2;
     gp_Pnt2d      aPnt2d1, aPnt2d2;
     aGccCirc2d.Tangency1(i, aTmpR1, aTmpR2, aPnt2d1);
     aGccCirc2d.Tangency2(i, aTmpR1, aTmpR2, aPnt2d2);
-    di << "\ntangency1 : X " << aPnt2d1.X().getValue() << " Y " << aPnt2d1.Y().getValue();
-    di << "\ntangency2 : X " << aPnt2d2.X().getValue() << " Y " << aPnt2d2.Y().getValue() << "\n";
+    di << "\ntangency1 : X " << getPrimal(aPnt2d1.X()) << " Y " << getPrimal(aPnt2d1.Y());
+    di << "\ntangency2 : X " << getPrimal(aPnt2d2.X()) << " Y " << getPrimal(aPnt2d2.Y()) << "\n";
 
     Sprintf(abuf, "circle_%d", i);
     Handle(Geom2d_Curve) circ_res = new Geom2d_Circle(aCirc2d);
@@ -336,7 +336,7 @@ static Standard_Integer BUC60870(Draw_Interpretor& di, Standard_Integer argc, co
     char named[100];
     Sprintf(named, "%s%s", ns0, "_val");
     char* tempd = named;
-    Draw::Set(tempd, dst.Value().getValue());
+    Draw::Set(tempd, getPrimal(dst.Value()));
     di << named << " ";
     for (i1 = 1; i1 <= dst.NbSolution(); i1++)
     {
@@ -407,10 +407,10 @@ static Standard_Integer BUC60902(Draw_Interpretor& di,
   gp_Vec                    aFirstTang, aLastTang;
   aCur->D1(aCur->FirstParameter(), aP, aFirstTang);
   aCur->D1(aCur->LastParameter(), aP, aLastTang);
-  di << " Used Tang1 = " << aFirstTang.X().getValue() << " " << aFirstTang.Y().getValue() << " "
-     << aFirstTang.Z().getValue() << "\n";
-  di << " Used Tang2 = " << aLastTang.X().getValue() << " " << aLastTang.Y().getValue() << " "
-     << aLastTang.Z().getValue() << "\n";
+  di << " Used Tang1 = " << getPrimal(aFirstTang.X()) << " " << getPrimal(aFirstTang.Y()) << " "
+     << getPrimal(aFirstTang.Z()) << "\n";
+  di << " Used Tang2 = " << getPrimal(aLastTang.X()) << " " << getPrimal(aLastTang.Y()) << " "
+     << getPrimal(aLastTang.Z()) << "\n";
   GeomAPI_Interpolate anInterpolater1(aPnts, Standard_False, Precision::Confusion());
   anInterpolater1.Load(aFirstTang, aLastTang, Standard_False);
   anInterpolater1.Perform();
@@ -423,10 +423,10 @@ static Standard_Integer BUC60902(Draw_Interpretor& di,
   gp_Vec aFirstTang1, aLastTang1;
   aCur->D1(aCur->FirstParameter(), aP, aFirstTang1);
   aCur->D1(aCur->LastParameter(), aP, aLastTang1);
-  di << " Tang1 after compute = " << aFirstTang1.X().getValue() << " " << aFirstTang1.Y().getValue()
-     << " " << aFirstTang1.Z().getValue() << "\n";
-  di << " Tang2 after compute = " << aLastTang1.X().getValue() << " " << aLastTang1.Y().getValue()
-     << " " << aLastTang1.Z().getValue() << "\n";
+  di << " Tang1 after compute = " << getPrimal(aFirstTang1.X()) << " " << getPrimal(aFirstTang1.Y())
+     << " " << getPrimal(aFirstTang1.Z()) << "\n";
+  di << " Tang2 after compute = " << getPrimal(aLastTang1.X()) << " " << getPrimal(aLastTang1.Y())
+     << " " << getPrimal(aLastTang1.Z()) << "\n";
   if (aFirstTang.IsEqual(aFirstTang1, Precision::Confusion(), Precision::Angular()))
   {
     di << "First tangent is OK\n";
@@ -981,7 +981,7 @@ static Standard_Integer OCC1919_real(Draw_Interpretor& di, Standard_Integer argc
     if (!AsciiStringReal.IsRealValue())
       return 1;
     Standard_Real aReal = AsciiStringReal.RealValue();
-    di << "aReal = " << aReal.getValue() << "\n";
+    di << "aReal = " << getPrimal(aReal) << "\n";
 
     TDataStd_Real::Set(L, aReal);
     return 0;
@@ -1191,8 +1191,8 @@ static Standard_Integer OCC16485(Draw_Interpretor& di, Standard_Integer argc, co
   // std::cout.precision(16);
   // std::cout << "Resulting dimensions: Xmin = " << xmin << " , Xmax = " << xmax << " , Tolerance =
   // " << tol << std::endl;
-  di << "Resulting dimensions: Xmin = " << xmin.getValue() << " , Xmax = " << xmax.getValue()
-     << " , Tolerance = " << tol.getValue() << "\n";
+  di << "Resulting dimensions: Xmin = " << getPrimal(xmin) << " , Xmax = " << getPrimal(xmax)
+     << " , Tolerance = " << getPrimal(tol) << "\n";
   if (Abs(xmin + tol) > 1e-10)
     di << "TEST FAILED: Xmin must be equal to -1e3!\n";
   else

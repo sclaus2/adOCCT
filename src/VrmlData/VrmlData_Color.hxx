@@ -53,9 +53,9 @@ public:
    */
   inline const Quantity_Color Color(const Standard_Integer i) const
   {
-    return Quantity_Color(Value(i).X().getValue(),
-                          Value(i).Y().getValue(),
-                          Value(i).Z().getValue(),
+    return Quantity_Color(getPrimal(Value(i).X()),
+                          getPrimal(Value(i).Y()),
+                          getPrimal(Value(i).Z()),
                           Quantity_TOC_sRGB);
   }
 

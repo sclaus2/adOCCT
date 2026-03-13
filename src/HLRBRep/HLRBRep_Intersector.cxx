@@ -340,10 +340,10 @@ void HLRBRep_Intersector::Perform(const Standard_Integer /*nA*/,
 
     if (EnBout)
     {
-      Standard_Real a1a2 = (da1.getValue() || da2.getValue()) ? pa1.Distance(pa2) : RealLast();
-      Standard_Real a1b2 = (da1.getValue() || db2.getValue()) ? pa1.Distance(pb2) : RealLast();
-      Standard_Real b1a2 = (db1.getValue() || da2.getValue()) ? pb1.Distance(pa2) : RealLast();
-      Standard_Real b1b2 = (db1.getValue() || db2.getValue()) ? pb1.Distance(pb2) : RealLast();
+      Standard_Real a1a2 = (getPrimal(da1) || getPrimal(da2)) ? pa1.Distance(pa2) : RealLast();
+      Standard_Real a1b2 = (getPrimal(da1) || getPrimal(db2)) ? pa1.Distance(pb2) : RealLast();
+      Standard_Real b1a2 = (getPrimal(db1) || getPrimal(da2)) ? pb1.Distance(pa2) : RealLast();
+      Standard_Real b1b2 = (getPrimal(db1) || getPrimal(db2)) ? pb1.Distance(pb2) : RealLast();
 
       Standard_Integer cote    = 1;
       Standard_Real    mindist = a1a2; //-- cas 1

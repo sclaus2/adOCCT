@@ -661,7 +661,7 @@ Standard_Integer bopcurves(Draw_Interpretor& di, Standard_Integer n, const char*
           aTolR = anIC.Tolerance();
         }
       }
-      di << "Tolerance Reached=" << aTolR.getValue() << "\n";
+      di << "Tolerance Reached=" << getPrimal(aTolR) << "\n";
     }
     //
     di << aNbCurves << " curve(s) found.\n";
@@ -722,8 +722,8 @@ Standard_Integer bopcurves(Draw_Interpretor& di, Standard_Integer n, const char*
       //
       if (bExtOut)
       {
-        di << "\nTolerance: " << anIC.Tolerance().getValue() << "\n";
-        di << "Tangential tolerance: " << anIC.TangentialTolerance().getValue() << "\n";
+        di << "\nTolerance: " << getPrimal(anIC.Tolerance()) << "\n";
+        di << "Tangential tolerance: " << getPrimal(anIC.TangentialTolerance()) << "\n";
         di << "\n";
       }
     }

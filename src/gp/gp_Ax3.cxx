@@ -119,28 +119,28 @@ void gp_Ax3::DumpJson(Standard_OStream& theOStream, Standard_Integer) const {
   OCCT_DUMP_VECTOR_CLASS(theOStream,
                          "Location",
                          3,
-                         Location().X().getValue(),
-                         Location().Y().getValue(),
-                         Location().Z().getValue())
+                         getPrimal(Location().X()),
+                         getPrimal(Location().Y()),
+                         getPrimal(Location().Z()))
     OCCT_DUMP_VECTOR_CLASS(theOStream,
                            "Direction",
                            3,
-                           Direction().X().getValue(),
-                           Direction().Y().getValue(),
-                           Direction().Z().getValue())
+                           getPrimal(Direction().X()),
+                           getPrimal(Direction().Y()),
+                           getPrimal(Direction().Z()))
 
       OCCT_DUMP_VECTOR_CLASS(theOStream,
                              "XDirection",
                              3,
-                             XDirection().X().getValue(),
-                             XDirection().Y().getValue(),
-                             XDirection().Z().getValue())
+                             getPrimal(XDirection().X()),
+                             getPrimal(XDirection().Y()),
+                             getPrimal(XDirection().Z()))
         OCCT_DUMP_VECTOR_CLASS(theOStream,
                                "YDirection",
                                3,
-                               YDirection().X().getValue(),
-                               YDirection().Y().getValue(),
-                               YDirection().Z().getValue())}
+                               getPrimal(YDirection().X()),
+                               getPrimal(YDirection().Y()),
+                               getPrimal(YDirection().Z()))}
 
 Standard_Boolean gp_Ax3::InitFromJson(const Standard_SStream& theSStream,
                                       Standard_Integer&       theStreamPos)

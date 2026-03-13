@@ -1119,7 +1119,7 @@ static void SetAssemblyComponentStyle(
     if (!aRenderCol.IsNull())
     {
       theStyles.DecodeColor(aRenderCol, aRCol);
-      aFullSCol = Quantity_ColorRGBA(aRCol, static_cast<float>(1.0f - aRenderTransp.getValue()));
+      aFullSCol = Quantity_ColorRGBA(aRCol, static_cast<float>(1.0f - getPrimal(aRenderTransp)));
     }
 
     if (!aSurfCol.IsNull() || !aRenderCol.IsNull())
@@ -1294,7 +1294,7 @@ static void SetStyle(const Handle(XSControl_WorkSession)&        theWS,
         {
           theStyles.DecodeColor(aRenderCol, aRCol);
           aFullSCol =
-            Quantity_ColorRGBA(aRCol, static_cast<float>(1.0f - aRenderTransp.getValue()));
+            Quantity_ColorRGBA(aRCol, static_cast<float>(1.0f - getPrimal(aRenderTransp)));
         }
         if (isFound)
         {
@@ -2069,7 +2069,7 @@ Standard_Boolean STEPCAFControl_Reader::ReadSHUOs(
         if (!RenderCol.IsNull())
         {
           Styles.DecodeColor(RenderCol, col);
-          colRGBA = Quantity_ColorRGBA(col, static_cast<float>(1.0 - RenderTransp.getValue()));
+          colRGBA = Quantity_ColorRGBA(col, static_cast<float>(1.0 - getPrimal(RenderTransp)));
         }
         CTool->SetColor(aLabelForStyle, colRGBA, XCAFDoc_ColorSurf);
       }

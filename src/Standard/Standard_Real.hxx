@@ -32,22 +32,22 @@
  * function template: getPrimal
  * It is used to extract the primal part out of the AD-type (e.g., adouble).
  */
-template<typename T>
+template <typename T>
 double getPrimal(const T& x);
 
-template<>
+template <>
 inline double getPrimal<double>(const double& x)
 {
   return x;
 }
 
-template<>
+template <>
 inline double getPrimal<Standard_Real>(const Standard_Real& x)
 {
   return x.getValue();
 }
 
-template<>
+template <>
 inline double getPrimal<adtl::adouble>(const adtl::adouble& x)
 {
   return x.getValue();

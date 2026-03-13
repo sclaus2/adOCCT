@@ -107,9 +107,9 @@ Standard_Boolean IGESSelect_Dumper::WriteOwn(IFSelect_SessionFile&             f
     {
       char flotrange[20];
       file.SendText(forminrange.ToCString());
-      Sprintf(flotrange, "%f", rangemin.getValue());
+      Sprintf(flotrange, "%f", getPrimal(rangemin));
       file.SendText(flotrange);
-      Sprintf(flotrange, "%f", rangemax.getValue());
+      Sprintf(flotrange, "%f", getPrimal(rangemax));
       file.SendText(flotrange);
     }
     return Standard_True;

@@ -315,7 +315,7 @@ static Standard_Integer OCC332bug(Draw_Interpretor& di, Standard_Integer argc, c
   // Now calculated the volume of the outside tube.
   GProp_GProps gprops;
   BRepGProp::VolumeProperties(wallSolid, gprops);
-  di << "The wallSolid's volume is: " << gprops.Mass().getValue() << "\n";
+  di << "The wallSolid's volume is: " << getPrimal(gprops.Mass()) << "\n";
 
   if (check)
   {
@@ -504,11 +504,11 @@ static Standard_Integer OCC544(Draw_Interpretor& di, Standard_Integer argc, cons
               SpineCurve->LastParameter(),
               1.0);
 
-  di << "SpineCurve->FirstParameter() is " << SpineCurve->FirstParameter().getValue() << "\n";
-  di << "SpineCurve->LastParameter() is " << SpineCurve->LastParameter().getValue() << "\n";
+  di << "SpineCurve->FirstParameter() is " << getPrimal(SpineCurve->FirstParameter()) << "\n";
+  di << "SpineCurve->LastParameter() is " << getPrimal(SpineCurve->LastParameter()) << "\n";
   di << "Law1 Value at FirstParameter() is "
-     << myLaw->Value(SpineCurve->FirstParameter()).getValue() << "\n";
-  di << "Law1 Value at LastParameter() is " << myLaw->Value(SpineCurve->LastParameter()).getValue()
+     << getPrimal(myLaw->Value(SpineCurve->FirstParameter())) << "\n";
+  di << "Law1 Value at LastParameter() is " << getPrimal(myLaw->Value(SpineCurve->LastParameter()))
      << "\n";
   di << "radius_r / radius_l is " << radius_r / radius_l << "\n";
 
@@ -724,7 +724,7 @@ static Standard_Integer OCC544(Draw_Interpretor& di, Standard_Integer argc, cons
   // Now calculated the volume of the outside tube.
   GProp_GProps gprops;
   BRepGProp::VolumeProperties(wallSolid, gprops);
-  di << "The wallSolid's volume is: " << gprops.Mass().getValue() << "\n";
+  di << "The wallSolid's volume is: " << getPrimal(gprops.Mass()) << "\n";
 
   if (check)
   {
@@ -849,7 +849,7 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
   // Calculate initial volume
   GProp_GProps volumeVProps;
   BRepGProp::VolumeProperties(cutSolid, volumeVProps);
-  di << "Info: Original volume  = " << volumeVProps.Mass().getValue() << "\n";
+  di << "Info: Original volume  = " << getPrimal(volumeVProps.Mass()) << "\n";
 
   //
   // build bounding box and calculate bounds for initial mesh
@@ -864,8 +864,8 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
   Xmax += delt;
   Ymax += delt;
   Zmax += delt;
-  di << "Info: Bounds\n  (" << Xmin.getValue() << "," << Ymin.getValue() << "," << Zmin.getValue()
-     << ")\n  (" << Xmax.getValue() << "," << Ymax.getValue() << "," << Zmax.getValue() << ")\n";
+  di << "Info: Bounds\n  (" << getPrimal(Xmin) << "," << getPrimal(Ymin) << "," << getPrimal(Zmin)
+     << ")\n  (" << getPrimal(Xmax) << "," << getPrimal(Ymax) << "," << getPrimal(Zmax) << ")\n";
 
   // grid the bounding box
   Standard_Integer NumXsubvolumes = (Standard_Integer)Standard_Real((Xmax - Xmin) / mesh_delt);
@@ -906,9 +906,9 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
         P.SetY(y);
         P.SetZ(z);
         TopoDS_Shape aSubvolume = BRepPrimAPI_MakeBox(P, StepX, StepY, StepZ).Solid();
-        di << "Info: box b_" << l << " " << P.X().getValue() << " " << P.Y().getValue() << " "
-           << P.Z().getValue() << " " << StepX.getValue() << " " << StepY.getValue() << " "
-           << StepZ.getValue() << "\n";
+        di << "Info: box b_" << l << " " << getPrimal(P.X()) << " " << getPrimal(P.Y()) << " "
+           << getPrimal(P.Z()) << " " << getPrimal(StepX) << " " << getPrimal(StepY) << " "
+           << getPrimal(StepZ) << "\n";
         if (aSubvolume.IsNull())
         {
           di << "Error: could not construct subvolume " << l << "\n";
@@ -918,7 +918,7 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
         GProp_GProps subvolumeVProps;
         BRepGProp::VolumeProperties(SubvolumeSolid(l), subvolumeVProps);
         const Standard_Real vol = subvolumeVProps.Mass();
-        di << "Info: original subvolume " << l << " volume = " << vol.getValue() << "\n";
+        di << "Info: original subvolume " << l << " volume = " << getPrimal(vol) << "\n";
         SubvolumeVol.SetValue(l, vol);
         accumulatedVolume += vol;
         l++;
@@ -928,7 +928,7 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
     }
     x += StepX;
   }
-  di << "Info: Accumulated mesh volume = " << accumulatedVolume.getValue() << "\n";
+  di << "Info: Accumulated mesh volume = " << getPrimal(accumulatedVolume) << "\n";
 
   //
   // trim mesh to cutSolid
@@ -975,9 +975,9 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
       // std::cout << (err? "ERROR" : "Info") << ": final subvolume " << l << " volume = " << vol <<
       // std::endl;
       if (err)
-        di << "ERROR: final subvolume " << l << " volume = " << vol.getValue() << "\n";
+        di << "ERROR: final subvolume " << l << " volume = " << getPrimal(vol) << "\n";
       else
-        di << "Info: final subvolume " << l << " volume = " << vol.getValue() << "\n";
+        di << "Info: final subvolume " << l << " volume = " << getPrimal(vol) << "\n";
       accumulatedVolume += vol;
       if (err)
       {
@@ -987,7 +987,7 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
       }
     }
   }
-  di << "Info: Accumulated meshed volume = " << accumulatedVolume.getValue() << "\n";
+  di << "Info: Accumulated meshed volume = " << getPrimal(accumulatedVolume) << "\n";
 
   return 0;
 }

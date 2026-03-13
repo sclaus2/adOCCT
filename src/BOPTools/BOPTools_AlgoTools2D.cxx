@@ -336,7 +336,7 @@ void BOPTools_AlgoTools2D::AdjustPCurveOnSurf(const BRepAdaptor_Surface&  aBAS,
       dv = (mincond) ? aVPeriod : -aVPeriod;
     }
     //
-    if ((VMax - VMin < aVPeriod) && dv.getValue())
+    if ((VMax - VMin < aVPeriod) && getPrimal(dv))
     {
       aVm   = v2;
       aVr   = v2 + dv;

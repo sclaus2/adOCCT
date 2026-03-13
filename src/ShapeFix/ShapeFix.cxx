@@ -429,7 +429,7 @@ static Standard_Boolean getNearestEdges(TopTools_ListOfShape&     theLEdges,
     {
       gp_Pnt p1;
       gp_Pnt p2;
-      if (isFirst.getValue())
+      if (getPrimal(isFirst))
         p1 = aCurve->Value(aFirst);
       else
         p1 = aCurve->Value(aLast);

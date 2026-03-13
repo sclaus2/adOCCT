@@ -1186,7 +1186,7 @@ void PutPCurves(const TopoDS_Edge& Efrom, const TopoDS_Edge& Eto, const TopoDS_S
 
     if (isoU)
     {
-      if (SameOri.getValue())
+      if (getPrimal(SameOri))
       {
         if (Abs(ptf.X() - p2f.X()) > Epsilon(ptf.X()))
         {
@@ -1219,7 +1219,7 @@ void PutPCurves(const TopoDS_Edge& Efrom, const TopoDS_Edge& Eto, const TopoDS_S
 
     else
     { // !isoU soit isoV
-      if (SameOri.getValue())
+      if (getPrimal(SameOri))
       {
         if (Abs(ptf.Y() - p2f.Y()) > Epsilon(ptf.Y()))
         {

@@ -1266,8 +1266,8 @@ static Standard_Integer shapeG1continuity(Draw_Interpretor& di, Standard_Integer
   {
     di << " the continuity is not G1  \n";
   }
-  di << "MaxG0Value :" << MaxG0Value.getValue() << "\n";
-  di << "MaxG1Angle:" << MaxG1Angle.getValue() << "\n";
+  di << "MaxG0Value :" << getPrimal(MaxG0Value) << "\n";
+  di << "MaxG1Angle:" << getPrimal(MaxG1Angle) << "\n";
   return 0;
 }
 
@@ -1456,7 +1456,7 @@ static Standard_Integer shapeG0continuity(Draw_Interpretor& di, Standard_Integer
   {
     di << " the continuity is not G0  \n";
   }
-  di << "MaxG0Value :" << MaxG0Value.getValue() << "\n";
+  di << "MaxG0Value :" << getPrimal(MaxG0Value) << "\n";
   return 0;
 }
 
@@ -1661,9 +1661,9 @@ static Standard_Integer shapeG2continuity(Draw_Interpretor& di, Standard_Integer
     di << " the continuity is G2 \n";
   else
     di << " the continuity is not G2  \n";
-  di << "MaxG0Value :" << MaxG0Value.getValue() << "\n";
-  di << "MaxG1Angle:" << MaxG1Angle.getValue() << "\n";
-  di << "MaxG2Curvature:" << MaxG2Curvature.getValue() << "\n";
+  di << "MaxG0Value :" << getPrimal(MaxG0Value) << "\n";
+  di << "MaxG1Angle:" << getPrimal(MaxG1Angle) << "\n";
+  di << "MaxG2Curvature:" << getPrimal(MaxG2Curvature) << "\n";
   return 0;
 }
 
@@ -1885,12 +1885,12 @@ static Standard_Integer validrange(Draw_Interpretor& di, Standard_Integer narg, 
   {
     if (narg > 3)
     {
-      Draw::Set(a[2], u1.getValue());
-      Draw::Set(a[3], u2.getValue());
+      Draw::Set(a[2], getPrimal(u1));
+      Draw::Set(a[3], getPrimal(u2));
     }
     else
     {
-      di << u1.getValue() << " " << u2.getValue();
+      di << getPrimal(u1) << " " << getPrimal(u2);
     }
   }
   else

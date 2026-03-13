@@ -596,9 +596,9 @@ VrmlData_ErrorStatus VrmlData_Group::Write(const char* thePrefix) const
         {
           Sprintf(buf,
                   "scale       %.12g %.12g %.12g",
-                  aScaleFactor.getValue(),
-                  aScaleFactor.getValue(),
-                  aScaleFactor.getValue());
+                  getPrimal(aScaleFactor),
+                  getPrimal(aScaleFactor),
+                  getPrimal(aScaleFactor));
           aStatus = aScene.WriteLine(buf);
         }
 
@@ -608,9 +608,9 @@ VrmlData_ErrorStatus VrmlData_Group::Write(const char* thePrefix) const
         {
           Sprintf(buf,
                   "translation %.12g %.12g %.12g",
-                  aTrans.X().getValue(),
-                  aTrans.Y().getValue(),
-                  aTrans.Z().getValue());
+                  getPrimal(aTrans.X()),
+                  getPrimal(aTrans.Y()),
+                  getPrimal(aTrans.Z()));
           aStatus = aScene.WriteLine(buf);
         }
 
@@ -622,10 +622,10 @@ VrmlData_ErrorStatus VrmlData_Group::Write(const char* thePrefix) const
           // output the Rotation
           Sprintf(buf,
                   "rotation    %.12g %.12g %.12g %.9g",
-                  anAxis.X().getValue(),
-                  anAxis.Y().getValue(),
-                  anAxis.Z().getValue(),
-                  anAngle.getValue());
+                  getPrimal(anAxis.X()),
+                  getPrimal(anAxis.Y()),
+                  getPrimal(anAxis.Z()),
+                  getPrimal(anAngle));
           aStatus = aScene.WriteLine(buf);
         }
       }

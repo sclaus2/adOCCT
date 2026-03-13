@@ -175,14 +175,14 @@ void TPrsStd_ConstraintTools::ComputeTextAndValue(const Handle(TDataXtd_Constrai
   val                              = VAL->Get();
   if (anIsAngle)
   {
-    outvalue = UnitsAPI::CurrentFromLS(Abs(val).getValue(), "PLANE ANGLE");
+    outvalue = UnitsAPI::CurrentFromLS(getPrimal(Abs(val)), "PLANE ANGLE");
   }
   else
   {
-    outvalue = UnitsAPI::CurrentFromLS(val.getValue(), "LENGTH");
+    outvalue = UnitsAPI::CurrentFromLS(getPrimal(val), "LENGTH");
   }
   char res[1000];
-  sprintf(res, "%g", outvalue.getValue());
+  sprintf(res, "%g", getPrimal(outvalue));
   txt = TCollection_ExtendedString(res);
 
   if (VAL->IsCaptured())

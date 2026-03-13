@@ -91,7 +91,7 @@ void Draw_ProgressIndicator::Show(const Message_ProgressScope& theScope,
 
   // unless show is forced, show updated state only if at least 1% progress has been reached since
   // the last update
-  double aPosition = GetPosition().getValue();
+  double aPosition = getPrimal(GetPosition());
   if (!force && (1. - aPosition) > Precision::Confusion()
       && Abs(aPosition - myLastPosition) < myUpdateThreshold)
     return; // return if update interval has not elapsed
@@ -114,7 +114,7 @@ void Draw_ProgressIndicator::Show(const Message_ProgressScope& theScope,
     aText << " " << aPS->Name() << ": ";
 
     // print progress info differently for finite and infinite scopes
-    double aVal = aPS->Value().getValue();
+    double aVal = getPrimal(aPS->Value());
     if (aPS->IsInfinite())
     {
       if (Precision::IsInfinite(aVal))

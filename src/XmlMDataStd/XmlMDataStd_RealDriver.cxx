@@ -85,7 +85,7 @@ void XmlMDataStd_RealDriver::Paste(const Handle(TDF_Attribute)& theSource,
 {
   Handle(TDataStd_Real) anAtt = Handle(TDataStd_Real)::DownCast(theSource);
   char                  aValueChar[32];
-  Sprintf(aValueChar, "%.17g", anAtt->Get().getValue());
+  Sprintf(aValueChar, "%.17g", getPrimal(anAtt->Get()));
   TCollection_AsciiString aValueStr(aValueChar);
   // No occurrence of '&', '<' and other irregular XML characters
   XmlObjMgt::SetStringValue(theTarget, aValueStr.ToCString(), Standard_True);

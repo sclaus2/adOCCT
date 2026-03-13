@@ -62,5 +62,5 @@ void BinMXCAFDoc_LengthUnitDriver::Paste(const Handle(TDF_Attribute)& theSource,
 {
   (void)theRelocTable;
   Handle(XCAFDoc_LengthUnit) anAtt = Handle(XCAFDoc_LengthUnit)::DownCast(theSource);
-  theTarget << anAtt->GetUnitName() << anAtt->GetUnitValue().getValue();
+  theTarget << anAtt->GetUnitName() << getPrimal(anAtt->GetUnitValue());
 }

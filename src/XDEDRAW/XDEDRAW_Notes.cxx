@@ -1274,7 +1274,7 @@ static Standard_Integer noteDump(Draw_Interpretor& di, Standard_Integer argc, co
     if (aNoteObj->HasPointText())
     {
       const gp_Pnt& aP = aNoteObj->GetPointText();
-      di << "[ " << aP.X().getValue() << " " << aP.Y().getValue() << " " << aP.Z().getValue()
+      di << "[ " << getPrimal(aP.X()) << " " << getPrimal(aP.Y()) << " " << getPrimal(aP.Z())
          << " ]\n";
     }
     else
@@ -1284,17 +1284,17 @@ static Standard_Integer noteDump(Draw_Interpretor& di, Standard_Integer argc, co
     {
       const gp_Ax2& anAx = aNoteObj->GetPlane();
       const gp_Pnt& aP   = anAx.Location();
-      di << "P : [ " << aP.X().getValue() << " " << aP.Y().getValue() << " " << aP.Z().getValue()
+      di << "P : [ " << getPrimal(aP.X()) << " " << getPrimal(aP.Y()) << " " << getPrimal(aP.Z())
          << " ]";
       const gp_Dir& aN = anAx.Direction();
-      di << "N : [ " << aN.X().getValue() << " " << aN.Y().getValue() << " " << aN.Z().getValue()
+      di << "N : [ " << getPrimal(aN.X()) << " " << getPrimal(aN.Y()) << " " << getPrimal(aN.Z())
          << " ]";
     }
     di << "attachment point : ";
     if (aNoteObj->HasPoint())
     {
       const gp_Pnt& aP = aNoteObj->GetPoint();
-      di << "[ " << aP.X().getValue() << " " << aP.Y().getValue() << " " << aP.Z().getValue()
+      di << "[ " << getPrimal(aP.X()) << " " << getPrimal(aP.Y()) << " " << getPrimal(aP.Z())
          << " ]\n";
     }
     else

@@ -131,7 +131,7 @@ void XCAFDoc_Color::Set(const Standard_Real R,
 {
   Backup();
   Quantity_Color aColor;
-  aColor.SetValues(R.getValue(), G.getValue(), B.getValue(), Quantity_TOC_RGB);
+  aColor.SetValues(getPrimal(R), getPrimal(G), getPrimal(B), Quantity_TOC_RGB);
   myColor.SetRGB(aColor);
   myColor.SetAlpha((Standard_ShortReal)alpha);
 }

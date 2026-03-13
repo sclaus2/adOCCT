@@ -52,7 +52,7 @@ static Standard_Integer distance(Draw_Interpretor& di, Standard_Integer n, const
   if (!BRepExtrema_Poly::Distance(S1, S2, P1, P2, D))
     return 1;
   // std::cout << " distance : " << D << std::endl;
-  di << " distance : " << D.getValue() << "\n";
+  di << " distance : " << getPrimal(D) << "\n";
   TopoDS_Edge E = BRepLib_MakeEdge(P1, P2);
   DBRep::Set("distance", E);
   return 0;
@@ -116,7 +116,7 @@ static Standard_Integer distmini(Draw_Interpretor& di, Standard_Integer n, const
     char named[100];
     Sprintf(named, "%s%s", ns0, "_val");
     char* tempd = named;
-    Draw::Set(tempd, dst.Value().getValue());
+    Draw::Set(tempd, getPrimal(dst.Value()));
     di << named << " ";
 
     for (Standard_Integer i1 = 1; i1 <= dst.NbSolution(); i1++)
@@ -270,13 +270,13 @@ static int ShapeProximity(Draw_Interpretor& theDI, Standard_Integer theNbArgs, c
   {
     theDI << "Number of primitives in shape 1: " << aTool.ElementSet1()->Size() << "\n";
     theDI << "Number of primitives in shape 2: " << aTool.ElementSet2()->Size() << "\n";
-    theDI << "Building data structures: " << aInitTime.getValue() << "\n";
-    theDI << "Executing proximity test: " << aWorkTime.getValue() << "\n";
+    theDI << "Building data structures: " << getPrimal(aInitTime) << "\n";
+    theDI << "Executing proximity test: " << getPrimal(aWorkTime) << "\n";
   }
 
   if (isValue)
   {
-    theDI << "Proximity value: " << aTool.Proximity().getValue() << "\n";
+    theDI << "Proximity value: " << getPrimal(aTool.Proximity()) << "\n";
 
     // proximity points
     TopoDS_Vertex aProxVtx1 = BRepLib_MakeVertex(aTool.ProximityPoint1());
@@ -448,8 +448,8 @@ static int ShapeSelfIntersection(Draw_Interpretor& theDI,
     aWorkTime = aTimer.ElapsedTime();
     aTimer.Stop();
 
-    theDI << "Building data structure (BVH):    " << aInitTime.getValue() << "\n";
-    theDI << "Executing self-intersection test: " << aWorkTime.getValue() << "\n";
+    theDI << "Building data structure (BVH):    " << getPrimal(aInitTime) << "\n";
+    theDI << "Executing self-intersection test: " << getPrimal(aWorkTime) << "\n";
   }
 
   // Extract output faces

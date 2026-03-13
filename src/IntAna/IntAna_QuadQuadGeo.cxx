@@ -216,7 +216,7 @@ void AxeOperator::Distance(Standard_Real& dist, Standard_Real& Param1, Standard_
 
   gp_Dir        N = U1.Crossed(U2);
   Standard_Real D = Det33(U1.X(), U2.X(), N.X(), U1.Y(), U2.Y(), N.Y(), U1.Z(), U2.Z(), N.Z());
-  if (D.getValue())
+  if (getPrimal(D))
   {
     dist = Det33(U1.X(), U2.X(), O1O2.X(), U1.Y(), U2.Y(), O1O2.Y(), U1.Z(), U2.Z(), O1O2.Z()) / D;
     Param1 =

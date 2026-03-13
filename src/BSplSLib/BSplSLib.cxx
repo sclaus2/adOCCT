@@ -3551,7 +3551,7 @@ void BSplSLib::Resolution(const TColgp_Array2OfPnt&      Poles,
   max_derivative[1] *= VDegree;
   max_derivative[0] *= M_SQRT2;
   max_derivative[1] *= M_SQRT2;
-  if (max_derivative[0].getValue() && max_derivative[1].getValue())
+  if (getPrimal(max_derivative[0]) && getPrimal(max_derivative[1]))
   {
     UTolerance = Tolerance3D / max_derivative[0];
     VTolerance = Tolerance3D / max_derivative[1];

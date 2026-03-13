@@ -379,7 +379,7 @@ static void TestMap(QANCollection_MapFunc& theM, Draw_Interpretor& theDI)
     // Contains, Remove
     if (!aM.Contains(aKey))
     {
-      theDI << "Error: map says that it does not contain its key " << aKey.getValue();
+      theDI << "Error: map says that it does not contain its key " << getPrimal(aKey);
     }
     else
     {

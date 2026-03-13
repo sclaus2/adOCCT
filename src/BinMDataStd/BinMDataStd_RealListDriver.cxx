@@ -94,7 +94,7 @@ void BinMDataStd_RealListDriver::Paste(const Handle(TDF_Attribute)& theSource,
     TColStd_ListIteratorOfListOfReal itr(anAtt->List());
     for (Standard_Integer i = 1; itr.More(); itr.Next(), i++)
     {
-      aSourceArray.SetValue(i, itr.Value().getValue());
+      aSourceArray.SetValue(i, getPrimal(itr.Value()));
     }
     double* aPtr = (double*)&aSourceArray(aFirstInd);
     theTarget.PutRealArray(aPtr, aLength);
