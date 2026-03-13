@@ -610,7 +610,7 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
       try
       {
         OCC_CATCH_SIGNALS
-        BRepGProp::SurfaceProperties(aShape, G, 0.001);
+        BRepGProp::SurfaceProperties(aShape, G, Standard_Real(0.001));
         // printf ("%s%9.1f (%3d%%)%s", ( wholeDoc ? "" : "  Area defect:   " ),
         //	aArea->Get() - G.Mass(),
         //	(Standard_Integer)( Abs ( G.Mass() ) > 1e-10 ? 100. * ( aArea->Get() - G.Mass() ) /
@@ -662,7 +662,7 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
         }
         else
         {
-          BRepGProp::VolumeProperties(aShape, G, 0.001, Standard_True);
+          BRepGProp::VolumeProperties(aShape, G, Standard_Real(0.001), Standard_True);
           localVolume = G.Mass();
           pcg         = G.CentreOfMass();
         }
