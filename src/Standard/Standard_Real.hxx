@@ -28,6 +28,31 @@
 
 #include <Standard_TypeDef.hxx>
 
+/*
+ * function template: getPrimal
+ * It is used to extract the primal part out of the AD-type (e.g., adouble).
+ */
+template<typename T>
+double getPrimal(const T& x);
+
+template<>
+inline double getPrimal<double>(const double& x)
+{
+  return x;
+}
+
+template<>
+inline double getPrimal<Standard_Real>(const Standard_Real& x)
+{
+  return x.getValue();
+}
+
+template<>
+inline double getPrimal<adtl::adouble>(const adtl::adouble& x)
+{
+  return x.getValue();
+}
+
 // ===============================================
 // Methods from Standard_Entity class which are redefined:
 //    - Hascode
