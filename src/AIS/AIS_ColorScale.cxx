@@ -280,7 +280,7 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors(Standard_Integer theNbC
   Aspect_SequenceOfColor aResult;
 
   // adjust range to be within (0, 360], with sign according to theHueFrom and theHueTo
-  Standard_Real       aHueRange = std::fmod((theHueTo - theHueFrom).getValue(), 360.);
+  Standard_Real       aHueRange = std::fmod(getPrimal(theHueTo - theHueFrom), 360.);
   const Standard_Real aHueEps   = Precision::Angular() * 180. / M_PI;
   if (Abs(aHueRange) <= aHueEps)
   {
@@ -310,7 +310,7 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors(Standard_Integer theNbC
   NCollection_Array1<Quantity_Color> aGrid(0, NBCOLORS - 1);
   for (Standard_Integer i = 0; i < NBCOLORS; i++)
   {
-    Standard_Real aHue = std::fmod((theHueFrom + i * aHueStep).getValue(), 360.);
+    Standard_Real aHue = std::fmod(getPrimal(theHueFrom + i * aHueStep), 360.);
     if (aHue < 0.)
     {
       aHue += 360.;

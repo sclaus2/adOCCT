@@ -2754,7 +2754,7 @@ static Standard_Integer OCC27884(Draw_Interpretor& theDI,
   }
   timer.Stop();
   Standard_Real aTimer2 = timer.UserTimeCPU();
-  theDI << "Improving time: " << ((aTimer2 - aTimer1) / aTimer2 * 100).getValue() << " %\n";
+  theDI << "Improving time: " << getPrimal((aTimer2 - aTimer1) / aTimer2 * 100) << " %\n";
 
   return 0;
 }

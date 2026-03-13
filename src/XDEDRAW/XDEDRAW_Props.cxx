@@ -619,7 +619,7 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
         Sprintf(string2,
                 "%s%9.1f (%3d%%)%s",
                 (wholeDoc ? "" : "  Area defect:   "),
-                (aArea->Get() - G.Mass()).getValue(),
+                getPrimal(aArea->Get() - G.Mass()),
                 (Standard_Integer)Standard_Real(
                   Abs(G.Mass()) > 1e-10 ? 100. * (aArea->Get() - G.Mass()) / G.Mass() : 999.),
                 (wholeDoc ? "" : "\n"));
@@ -677,7 +677,7 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
           Sprintf(string5,
                   "%s%9.1f (%3d%%)%s",
                   (wholeDoc ? "" : "  Volume defect: "),
-                  (aVolume->Get() - localVolume).getValue(),
+                  getPrimal(aVolume->Get() - localVolume),
                   (Standard_Integer)Standard_Real(
                     Abs(localVolume) > 1e-10 ? 100. * (aVolume->Get() - localVolume) / localVolume
                                              : 999.),
@@ -702,9 +702,9 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
             //     p.X() - pcg.X(), p.Y() - pcg.Y(), p.Z() - pcg.Z() );
             Sprintf(string7,
                     " %7.2f %7.2f %7.2f",
-                    (p.X() - pcg.X()).getValue(),
-                    (p.Y() - pcg.Y()).getValue(),
-                    (p.Z() - pcg.Z()).getValue());
+                    getPrimal(p.X() - pcg.X()),
+                    getPrimal(p.Y() - pcg.Y()),
+                    getPrimal(p.Z() - pcg.Z()));
           }
           else
           {
@@ -712,9 +712,9 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
             //     p.X() - pcg.X(), p.Y() - pcg.Y(), p.Z() - pcg.Z() );
             Sprintf(string7,
                     "  CG defect: dX=%.3f, dY=%.3f, dZ=%.3f\n",
-                    (p.X() - pcg.X()).getValue(),
-                    (p.Y() - pcg.Y()).getValue(),
-                    (p.Z() - pcg.Z()).getValue());
+                    getPrimal(p.X() - pcg.X()),
+                    getPrimal(p.Y() - pcg.Y()),
+                    getPrimal(p.Z() - pcg.Z()));
           }
           di << string7;
         }

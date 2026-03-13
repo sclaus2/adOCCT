@@ -1258,8 +1258,8 @@ static Standard_Integer vecdc(Draw_Interpretor& di, Standard_Integer, const char
   dout << d;
   dout.Flush();
   // std::cout<<"\nttran   "<<PP1.X()-P1.X()<<" "<<PP1.Y()-P1.Y()<<" "<<PP1.Z()-P1.Z()<<std::endl;
-  di << "\nttran   " << (PP1.X() - P1.X()).getValue() << " " << (PP1.Y() - P1.Y()).getValue() << " "
-     << (PP1.Z() - P1.Z()).getValue() << "\n";
+  di << "\nttran   " << getPrimal(PP1.X() - P1.X()) << " " << getPrimal(PP1.Y() - P1.Y()) << " "
+     << getPrimal(PP1.Z() - P1.Z()) << "\n";
 
   static Standard_Integer nboxvecdp = 0;
   // std::cout<<"\nbox  b"<<++nboxvecdp<<" "<<Min(P1.X(),PP1.X())<<" "<<Min(P1.Y(),PP1.Y())<<"

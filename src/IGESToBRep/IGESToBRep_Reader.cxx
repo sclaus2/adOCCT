@@ -519,7 +519,7 @@ Standard_Boolean IGESToBRep_Reader::Transfer(const Standard_Integer       num,
     // These parameters are calculated inside IGESToBRep_Reader::Transfer() and cannot be set from
     // outside.
     XSAlgo_ShapeProcessor::SetParameter("FixShape.Tolerance3d",
-                                        (eps * CAS.GetUnitFactor()).getValue(),
+                                        getPrimal(eps * CAS.GetUnitFactor()),
                                         true,
                                         myShapeProcParams);
     XSAlgo_ShapeProcessor::SetParameter("FixShape.MaxTolerance3d",

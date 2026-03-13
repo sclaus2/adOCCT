@@ -9560,7 +9560,7 @@ static int VDefaults(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const 
       theDi << "DeflType:           absolute\n"
             << "AbsoluteDeflection: " << getPrimal(aDefParams->MaximalChordialDeviation()) << "\n";
     }
-    theDi << "AngularDeflection:  " << (180.0 * aDefParams->DeviationAngle() / M_PI).getValue()
+    theDi << "AngularDeflection:  " << getPrimal(180.0 * aDefParams->DeviationAngle() / M_PI)
           << "\n";
     theDi << "AutoTriangulation:  " << (aDefParams->IsAutoTriangulation() ? "on" : "off") << "\n";
     return 0;

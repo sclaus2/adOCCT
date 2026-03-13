@@ -102,7 +102,7 @@ void Draw_ProgressIndicator::Show(const Message_ProgressScope& theScope,
   std::stringstream aText;
   aText.setf(std::ios::fixed, std::ios::floatfield);
   aText.precision(0);
-  aText << "Progress: " << (100. * GetPosition()).getValue() << "%";
+  aText << "Progress: " << getPrimal(100. * GetPosition()) << "%";
   NCollection_List<const Message_ProgressScope*> aScopes;
   for (const Message_ProgressScope* aPS = &theScope; aPS; aPS = aPS->Parent())
     aScopes.Prepend(aPS);

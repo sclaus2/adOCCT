@@ -573,17 +573,17 @@ VrmlData_ErrorStatus VrmlData_Group::Write(const char* thePrefix) const
         {
           Sprintf(buf,
                   "bboxCenter  %.9g %.9g %.9g",
-                  0.5 * (aBoxCorner[0].X() + aBoxCorner[1].X()).getValue(),
-                  0.5 * (aBoxCorner[0].Y() + aBoxCorner[1].Y()).getValue(),
-                  0.5 * (aBoxCorner[0].Z() + aBoxCorner[1].Z()).getValue());
+                  0.5 * getPrimal(aBoxCorner[0].X() + aBoxCorner[1].X()),
+                  0.5 * getPrimal(aBoxCorner[0].Y() + aBoxCorner[1].Y()),
+                  0.5 * getPrimal(aBoxCorner[0].Z() + aBoxCorner[1].Z()));
           aStatus = aScene.WriteLine(buf);
           if (OK(aStatus))
           {
             Sprintf(buf,
                     "bboxSize    %.9g %.9g %.9g",
-                    (aBoxCorner[1].X() - aBoxCorner[0].X()).getValue(),
-                    (aBoxCorner[1].Y() - aBoxCorner[0].Y()).getValue(),
-                    (aBoxCorner[1].Z() - aBoxCorner[0].Z()).getValue());
+                    getPrimal(aBoxCorner[1].X() - aBoxCorner[0].X()),
+                    getPrimal(aBoxCorner[1].Y() - aBoxCorner[0].Y()),
+                    getPrimal(aBoxCorner[1].Z() - aBoxCorner[0].Z()));
             aStatus = aScene.WriteLine(buf);
           }
         }

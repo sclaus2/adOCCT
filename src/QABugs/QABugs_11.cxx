@@ -2256,7 +2256,7 @@ static Standard_Integer OCC5698(Draw_Interpretor& di, Standard_Integer argc, con
   {
     // std::cout.precision(3);
     di << "error_dist = " << getPrimal(error_dist) << "  ( "
-       << (error_dist / need_length * 100).getValue() << " %)\n";
+       << getPrimal(error_dist / need_length * 100) << " %)\n";
     return 0;
   }
   di << "OK\n";

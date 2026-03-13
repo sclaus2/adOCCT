@@ -109,12 +109,12 @@ void BRepMesh_DelabellaBaseMeshAlgo::buildBaseTriangulation()
   aStructure->AddNode(
     BRepMesh_Vertex(aPoints[2 * aNodesNb + 6], aPoints[2 * aNodesNb + 7], BRepMesh_Free));
 
-  const double aDiffX = (aMax.X() - aMin.X()).getValue();
-  const double aDiffY = (aMax.Y() - aMin.Y()).getValue();
+  const double aDiffX = getPrimal(aMax.X() - aMin.X());
+  const double aDiffY = getPrimal(aMax.Y() - aMin.Y());
   for (size_t i = 0; i < aPoints.size(); i += 2)
   {
-    aPoints[i + 0] = (aPoints[i + 0] - aMin.X()).getValue() / aDiffX - 0.5;
-    aPoints[i + 1] = (aPoints[i + 1] - aMin.Y()).getValue() / aDiffY - 0.5;
+    aPoints[i + 0] = getPrimal(aPoints[i + 0] - aMin.X()) / aDiffX - 0.5;
+    aPoints[i + 1] = getPrimal(aPoints[i + 1] - aMin.Y()) / aDiffY - 0.5;
   }
 
   IDelaBella* aTriangulator = IDelaBella::Create();

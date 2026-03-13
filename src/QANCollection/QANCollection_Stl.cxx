@@ -956,7 +956,7 @@ void TestPerformanceRandomIterator(Draw_Interpretor& di)
     Standard_Real aOccTime = aTimer.ElapsedTime();
 
     di << aSize << "\t" << getPrimal(aStlTime) << "\t" << getPrimal(aOccTime) << "\t"
-       << (aOccTime / aStlTime).getValue() << "\n";
+       << getPrimal(aOccTime / aStlTime) << "\n";
 
     // check that result is the same
     if (!std::equal(aVector->begin(), aVector->end(), aCollec->begin()))
@@ -1012,7 +1012,7 @@ void TestPerformanceForwardIterator(Draw_Interpretor& di)
     Standard_Real aOccTime = aTimer.ElapsedTime();
 
     di << aSize << "\t" << getPrimal(aStlTime) << "\t" << getPrimal(aOccTime) << "\t"
-       << (aOccTime / aStlTime).getValue() << "\n";
+       << getPrimal(aOccTime / aStlTime) << "\n";
 
     // check that result is the same
     if (!std::equal(aVector->begin(), aVector->end(), aCollec->begin()))
@@ -1062,7 +1062,7 @@ void TestPerformanceBidirIterator(Draw_Interpretor& di)
     Standard_Real aOccTime = aTimer.ElapsedTime();
 
     di << aSize << "\t" << getPrimal(aStlTime) << "\t" << getPrimal(aOccTime) << "\t"
-       << (aOccTime / aStlTime).getValue() << "\n";
+       << getPrimal(aOccTime / aStlTime) << "\n";
 
     // check that result is the same
     if (!std::equal(aVector->begin(), aVector->end(), aCollec->begin()))
@@ -1136,7 +1136,7 @@ void TestPerformanceMapAccess(Draw_Interpretor& di)
     if (aResult)
     {
       di << aSize << "\t" << getPrimal(aStlTime) << "\t" << getPrimal(aOccTime) << "\t"
-         << (aStlTime > 1e-16 ? (aOccTime / aStlTime).getValue() : -1) << "\n";
+         << (aStlTime > 1e-16 ? getPrimal(aOccTime / aStlTime) : -1) << "\n";
     }
 
     delete aCollec;

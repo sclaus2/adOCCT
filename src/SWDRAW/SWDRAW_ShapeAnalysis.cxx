@@ -936,10 +936,10 @@ static Standard_Integer XSHAPE_comptoledge(Draw_Interpretor& di,
   di << "Edges tolerance computed by " << nbpnts
      << " points: \n"
         "MAX="
-     << getPrimal(max) << " AVG=" << (ave / num).getValue() << " MIN=" << getPrimal(min) << "\n";
+     << getPrimal(max) << " AVG=" << getPrimal(ave / num) << " MIN=" << getPrimal(min) << "\n";
   di << "Relation real tolerance / tolerance set in edge\n"
         "MAX="
-     << getPrimal(relmax) << " AVG=" << (relave / num).getValue() << " MIN=" << getPrimal(relmin)
+     << getPrimal(relmax) << " AVG=" << getPrimal(relave / num) << " MIN=" << getPrimal(relmin)
      << "\n";
   if (prefix && prefix[0])
   {

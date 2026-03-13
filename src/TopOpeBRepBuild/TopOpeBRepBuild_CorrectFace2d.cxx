@@ -465,13 +465,13 @@ Standard_Integer TopOpeBRepBuild_CorrectFace2d::ConnectWire(
 
     if (!nonPU && UP)
     {
-      Standard_Real dU = fmod(fabs(U).getValue(), 2 * M_PI);
+      Standard_Real dU = fmod(getPrimal(fabs(U)), 2 * M_PI);
       nonPU            = (dU > 1e-7 && (2 * M_PI - dU > 1e-7)) ? Standard_True : Standard_False;
     }
 
     if (!nonPV && VP)
     {
-      Standard_Real dV = fmod(fabs(V).getValue(), 2 * M_PI);
+      Standard_Real dV = fmod(getPrimal(fabs(V)), 2 * M_PI);
       nonPV            = (dV > 1e-7 && (2 * M_PI - dV > 1e-7)) ? Standard_True : Standard_False;
     }
 
