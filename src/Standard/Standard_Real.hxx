@@ -31,8 +31,13 @@
 /*
  * function template: getPrimal
  * It is used to extract the primal part out of the AD-type (e.g., adouble).
+ * For now, only allow template specialization for double, Standard_Adouble and adtl::adouble
  */
-template <typename T>
+template <typename T,
+          typename = typename std::enable_if<
+                         std::is_same<T, double>::value ||
+                         std::is_same<T, Standard_Adouble>::value ||
+                         std::is_same<T, adtl::adouble>::value>::type>
 double getPrimal(const T& x);
 
 template <>
