@@ -12431,7 +12431,7 @@ static int VManipulator(Draw_Interpretor& theDi, Standard_Integer theArgsNb, con
   }
   if (aGap >= 0.0f)
   {
-    aManipulator->SetGap((float)aGap);
+    aManipulator->SetGap((float)getPrimal(aGap));
   }
 
   for (NCollection_Sequence<ManipAxisModeOnOff>::Iterator aPartIter(aParts); aPartIter.More();
@@ -12450,7 +12450,7 @@ static int VManipulator(Draw_Interpretor& theDi, Standard_Integer theArgsNb, con
 
   if (aSize > 0.0)
   {
-    aManipulator->SetSize((float)aSize);
+    aManipulator->SetSize((float)getPrimal(aSize));
   }
   if (isZoomable != -1)
   {

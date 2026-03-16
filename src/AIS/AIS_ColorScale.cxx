@@ -305,7 +305,7 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors(Standard_Integer theNbC
   }
 
   // discretize the range with 1 degree step
-  const int                          NBCOLORS = 2 + (int)Abs(aHueRange / 1.);
+  const int                          NBCOLORS = 2 + (int)getPrimal(Abs(aHueRange / 1.));
   Standard_Real                      aHueStep = aHueRange / (NBCOLORS - 1);
   NCollection_Array1<Quantity_Color> aGrid(0, NBCOLORS - 1);
   for (Standard_Integer i = 0; i < NBCOLORS; i++)
@@ -346,8 +346,8 @@ Aspect_SequenceOfColor AIS_ColorScale::MakeUniformColors(Standard_Integer theNbC
     aParam = aPrev + aMetric(i);
     while (aTarget <= aParam)
     {
-      float          aCoefPrev = float(Standard_Real((aParam - aTarget) / (aParam - aPrev)));
-      float          aCoefCurr = float(Standard_Real((aTarget - aPrev) / (aParam - aPrev)));
+      float          aCoefPrev = float(getPrimal((aParam - aTarget) / (aParam - aPrev)));
+      float          aCoefCurr = float(getPrimal((aTarget - aPrev) / (aParam - aPrev)));
       Quantity_Color aColor(aGrid(i).Rgb() * aCoefCurr + aGrid(i - 1).Rgb() * aCoefPrev);
       aResult.Append(aColor);
       aTarget += aDStep;

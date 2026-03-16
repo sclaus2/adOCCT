@@ -375,11 +375,11 @@ static void PutInBoundsU(Standard_Real         umin,
   Standard_Real du   = 0.;
   if (minC < umin - eps)
   {
-    du = (int(Standard_Real((umin - minC) / period)) + 1) * period;
+    du = (int(getPrimal((umin - minC) / period)) + 1) * period;
   }
   if (minC > umax + eps)
   {
-    du = -(int(Standard_Real((minC - umax) / period)) + 1) * period;
+    du = -(int(getPrimal((minC - umax) / period)) + 1) * period;
   }
   if (du != 0)
   {
@@ -429,11 +429,11 @@ static void PutInBoundsV(Standard_Real         vmin,
   Standard_Real dv   = 0.;
   if (minC < vmin - eps)
   {
-    dv = (int(Standard_Real((vmin - minC) / period)) + 1) * period;
+    dv = (int(getPrimal((vmin - minC) / period)) + 1) * period;
   }
   if (minC > vmax + eps)
   {
-    dv = -(int(Standard_Real((minC - vmax) / period)) + 1) * period;
+    dv = -(int(getPrimal((minC - vmax) / period)) + 1) * period;
   }
   if (dv != 0)
   {

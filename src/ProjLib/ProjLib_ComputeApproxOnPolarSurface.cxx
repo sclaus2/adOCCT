@@ -236,9 +236,9 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
         gp_Cylinder Cylinder = theData.mySurf->Cylinder();
         ElSLib::Parameters(Cylinder, p, S, T);
         if (U0 < Uinf)
-          decalU = -int(Standard_Real((Uinf - U0) / (2 * M_PI))) - 1;
+          decalU = -int(getPrimal((Uinf - U0) / (2 * M_PI))) - 1;
         if (U0 > Usup)
-          decalU = int(Standard_Real((U0 - Usup) / (2 * M_PI))) + 1;
+          decalU = int(getPrimal((U0 - Usup) / (2 * M_PI))) + 1;
         S += decalU * 2 * M_PI;
         break;
       }
@@ -246,9 +246,9 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
         gp_Cone Cone = theData.mySurf->Cone();
         ElSLib::Parameters(Cone, p, S, T);
         if (U0 < Uinf)
-          decalU = -int(Standard_Real((Uinf - U0) / (2 * M_PI))) - 1;
+          decalU = -int(getPrimal((Uinf - U0) / (2 * M_PI))) - 1;
         if (U0 > Usup)
-          decalU = int(Standard_Real((U0 - Usup) / (2 * M_PI))) + 1;
+          decalU = int(getPrimal((U0 - Usup) / (2 * M_PI))) + 1;
         S += decalU * 2 * M_PI;
         break;
       }
@@ -256,14 +256,14 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
         gp_Sphere Sphere = theData.mySurf->Sphere();
         ElSLib::Parameters(Sphere, p, S, T);
         if (U0 < Uinf)
-          decalU = -int(Standard_Real((Uinf - U0) / (2 * M_PI))) - 1;
+          decalU = -int(getPrimal((Uinf - U0) / (2 * M_PI))) - 1;
         if (U0 > Usup)
-          decalU = int(Standard_Real((U0 - Usup) / (2 * M_PI))) + 1;
+          decalU = int(getPrimal((U0 - Usup) / (2 * M_PI))) + 1;
         S += decalU * 2 * M_PI;
         if (V0 < Vinf)
-          decalV = -int(Standard_Real((Vinf - V0) / (2 * M_PI))) - 1;
+          decalV = -int(getPrimal((Vinf - V0) / (2 * M_PI))) - 1;
         if (V0 > (Vsup + (Vsup - Vinf)))
-          decalV = int(Standard_Real((V0 - Vsup + (Vsup - Vinf)) / (2 * M_PI))) + 1;
+          decalV = int(getPrimal((V0 - Vsup + (Vsup - Vinf)) / (2 * M_PI))) + 1;
         T += decalV * 2 * M_PI;
         if (0.4 * M_PI < Abs(U0 - S) && Abs(U0 - S) < 1.6 * M_PI)
         {
@@ -279,13 +279,13 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
         gp_Torus Torus = theData.mySurf->Torus();
         ElSLib::Parameters(Torus, p, S, T);
         if (U0 < Uinf)
-          decalU = -int(Standard_Real((Uinf - U0) / (2 * M_PI))) - 1;
+          decalU = -int(getPrimal((Uinf - U0) / (2 * M_PI))) - 1;
         if (U0 > Usup)
-          decalU = int(Standard_Real((U0 - Usup) / (2 * M_PI))) + 1;
+          decalU = int(getPrimal((U0 - Usup) / (2 * M_PI))) + 1;
         if (V0 < Vinf)
-          decalV = -int(Standard_Real((Vinf - V0) / (2 * M_PI))) - 1;
+          decalV = -int(getPrimal((Vinf - V0) / (2 * M_PI))) - 1;
         if (V0 > Vsup)
-          decalV = int(Standard_Real((V0 - Vsup) / (2 * M_PI))) + 1;
+          decalV = int(getPrimal((V0 - Vsup) / (2 * M_PI))) + 1;
         S += decalU * 2 * M_PI;
         T += decalV * 2 * M_PI;
         break;
@@ -307,7 +307,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
       U0 = Uinf;
     else
     {
-      decalU = int(Standard_Real((Uinf - U0) / uperiod)) + 1;
+      decalU = int(getPrimal((Uinf - U0) / uperiod)) + 1;
       U0 += decalU * uperiod;
     }
   }
@@ -317,7 +317,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
       U0 = Usup;
     else
     {
-      decalU = -(int(Standard_Real((U0 - Usup) / uperiod)) + 1);
+      decalU = -(int(getPrimal((U0 - Usup) / uperiod)) + 1);
       U0 += decalU * uperiod;
     }
   }
@@ -327,7 +327,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
       V0 = Vinf;
     else
     {
-      decalV = int(Standard_Real((Vinf - V0) / vperiod)) + 1;
+      decalV = int(getPrimal((Vinf - V0) / vperiod)) + 1;
       V0 += decalV * vperiod;
     }
   }
@@ -337,7 +337,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
       V0 = Vsup;
     else
     {
-      decalV = -int(Standard_Real((V0 - Vsup) / vperiod)) - 1;
+      decalV = -int(getPrimal((V0 - Vsup) / vperiod)) - 1;
       V0 += decalV * vperiod;
     }
   }

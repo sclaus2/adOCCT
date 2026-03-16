@@ -3509,13 +3509,13 @@ void IntPatch_PrmPrmIntersection::PointDepart(Handle(IntSurf_LineOn2S)&        L
       aIPD.xIP1(i, j)   = -1;
       const gp_Pnt& P   = aIPD.xP1(i, j);
       aIPD.xP1DS2(i, j) = (char)CodeReject(x20, y20, z20, x21, y21, z21, P.X(), P.Y(), P.Z());
-      int ix            = (int)Standard_Real((P.X() - x0 + dx2) / dx);
+      int ix            = (int)getPrimal((P.X() - x0 + dx2) / dx);
       if (DansGrille(ix))
       {
-        int iy = (int)Standard_Real((P.Y() - y0 + dy2) / dy);
+        int iy = (int)getPrimal((P.Y() - y0 + dy2) / dy);
         if (DansGrille(iy))
         {
-          int iz = (int)Standard_Real((P.Z() - z0 + dz2) / dz);
+          int iz = (int)getPrimal((P.Z() - z0 + dz2) / dz);
           if (DansGrille(iz))
           {
             aIPD.xIP1(i, j) = GrilleInteger(ix, iy, iz);
@@ -3532,13 +3532,13 @@ void IntPatch_PrmPrmIntersection::PointDepart(Handle(IntSurf_LineOn2S)&        L
       aIPD.xIP2(i, j)   = -1;
       const gp_Pnt& P   = aIPD.xP2(i, j);
       aIPD.xP2DS1(i, j) = (char)CodeReject(x10, y10, z10, x11, y11, z11, P.X(), P.Y(), P.Z());
-      int ix            = (int)Standard_Real((P.X() - x0 + dx2) / dx);
+      int ix            = (int)getPrimal((P.X() - x0 + dx2) / dx);
       if (DansGrille(ix))
       {
-        int iy = (int)Standard_Real((P.Y() - y0 + dy2) / dy);
+        int iy = (int)getPrimal((P.Y() - y0 + dy2) / dy);
         if (DansGrille(iy))
         {
-          int iz = (int)Standard_Real((P.Z() - z0 + dz2) / dz);
+          int iz = (int)getPrimal((P.Z() - z0 + dz2) / dz);
           if (DansGrille(iz))
           {
             aIPD.xIP2(i, j) = GrilleInteger(ix, iy, iz);

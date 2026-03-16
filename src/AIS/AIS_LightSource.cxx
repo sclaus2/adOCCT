@@ -101,7 +101,7 @@ void AIS_LightSourceOwner::HilightWithColor(const Handle(PrsMgr_PresentationMana
 
     const Standard_Real    aRadius = aLightSource->Size() * 0.5;
     const Standard_Integer aNbPnts =
-      int(Standard_Real(aLightSource->ArcSize() * 180 / (M_PI * aRadius)));
+      int(getPrimal(aLightSource->ArcSize() * 180 / (M_PI * aRadius)));
     TColgp_Array1OfPnt aCircPoints(0, aNbPnts);
     const gp_Dir       aDirNorm(gp_Vec(gp::Origin(), aDetPnt));
     gp_Dir             aDirNormToPln(gp::DY());

@@ -42,5 +42,5 @@ Graphic3d_AspectFillArea3d::Graphic3d_AspectFillArea3d(
   myEdgeColor.SetRGB(theEdgeColor);
   myInteriorStyle = theInteriorStyle;
   myLineType      = theEdgeLineType;
-  SetEdgeWidth((float)theEdgeLineWidth);
+  SetEdgeWidth((float)getPrimal(theEdgeLineWidth));
 }

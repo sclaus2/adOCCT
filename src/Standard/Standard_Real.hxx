@@ -34,10 +34,9 @@
  * For now, only allow template specialization for double, Standard_Adouble and adtl::adouble
  */
 template <typename T,
-          typename = typename std::enable_if<
-                         std::is_same<T, double>::value ||
-                         std::is_same<T, Standard_Adouble>::value ||
-                         std::is_same<T, adtl::adouble>::value>::type>
+          typename = typename std::enable_if<std::is_same<T, double>::value
+                                             || std::is_same<T, Standard_Adouble>::value
+                                             || std::is_same<T, adtl::adouble>::value>::type>
 double getPrimal(const T& x);
 
 template <>
