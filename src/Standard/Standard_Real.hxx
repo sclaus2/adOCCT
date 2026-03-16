@@ -434,7 +434,9 @@ constexpr Standard_Integer RealToInt(const double theValue)
 // =======================================================================
 inline Standard_ShortReal RealToShortReal(const Standard_Real& theVal)
 {
-  return theVal < -FLT_MAX ? -FLT_MAX : theVal > FLT_MAX ? FLT_MAX : (Standard_ShortReal)theVal;
+  return theVal < -FLT_MAX  ? -FLT_MAX
+         : theVal > FLT_MAX ? FLT_MAX
+                            : (Standard_ShortReal)getPrimal(theVal);
 }
 
 constexpr Standard_ShortReal RealToShortReal(const double theVal)
