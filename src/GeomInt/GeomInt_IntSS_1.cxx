@@ -618,8 +618,8 @@ void GeomInt_IntSS::MakeCurve(const Standard_Integer             Index,
         for (i = 1; i <= aNbParts; i++)
         {
           myLConstruct.Part(i, fprm, lprm);
-          ifprm = (Standard_Integer)fprm;
-          ilprm = (Standard_Integer)lprm;
+          ifprm = (Standard_Integer)getPrimal(fprm);
+          ilprm = (Standard_Integer)getPrimal(lprm);
           //
           Handle(Geom2d_BSplineCurve) aH1, aH2;
 
@@ -671,8 +671,8 @@ void GeomInt_IntSS::MakeCurve(const Standard_Integer             Index,
           else
           {
             myLConstruct.Part(i, fprm, lprm);
-            ifprm = (Standard_Integer)fprm;
-            ilprm = (Standard_Integer)lprm;
+            ifprm = (Standard_Integer)getPrimal(fprm);
+            ilprm = (Standard_Integer)getPrimal(lprm);
           }
 
           Standard_Boolean    anApprox  = myApprox;

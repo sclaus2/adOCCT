@@ -110,7 +110,7 @@ static bool readReal(const XmlObjMgt_Element&   theElement,
   Standard_Real aValue = 0.0;
   if (XmlObjMgt::GetReal(theElement.getAttribute(theName), aValue))
   {
-    theValue = (Standard_ShortReal)aValue;
+    theValue = (Standard_ShortReal)getPrimal(aValue);
     return true;
   }
   return false;

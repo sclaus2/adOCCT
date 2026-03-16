@@ -280,7 +280,7 @@ void Convert_ConicToBSplineCurve::BuildCosAndSin(
   switch (Parameterisation)
   {
     case Convert_TgtThetaOver2:
-      num_spans = (Standard_Integer)IntegerPart(1.2 * delta / M_PI) + 1;
+      num_spans = (Standard_Integer)getPrimal(IntegerPart(1.2 * delta / M_PI)) + 1;
 
       tgt_theta_flag = 1;
       break;

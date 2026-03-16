@@ -143,7 +143,7 @@ static Standard_Real AdjustByPeriod(const Standard_Real Val,
     return 0.;
   if (P < 1e-100)
     return diff;
-  return (diff > 0 ? -P : P) * (Standard_Integer)Standard_Real(D / P + 0.5);
+  return (diff > 0 ? -P : P) * (Standard_Integer)getPrimal(D / P + 0.5);
 }
 
 static Standard_Boolean IsPeriodic(const Handle(Geom_Curve)& theCurve)

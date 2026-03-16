@@ -1186,8 +1186,8 @@ reapprox:;
           else
           {
             myLConstruct.Part(i, fprm, lprm);
-            ifprm = (Standard_Integer)fprm;
-            ilprm = (Standard_Integer)lprm;
+            ifprm = (Standard_Integer)getPrimal(fprm);
+            ilprm = (Standard_Integer)getPrimal(lprm);
           }
           //
           if (myApprox1)
@@ -1292,8 +1292,8 @@ reapprox:;
             else
             {
               myLConstruct.Part(i, fprm, lprm);
-              ifprm = (Standard_Integer)fprm;
-              ilprm = (Standard_Integer)lprm;
+              ifprm = (Standard_Integer)getPrimal(fprm);
+              ilprm = (Standard_Integer)getPrimal(lprm);
             }
           }
 
@@ -2961,7 +2961,7 @@ Standard_Boolean CheckPCurve(const Handle(Geom2d_Curve)&     aPC,
   if (aSurf->IsUPeriodic())
   {
     Standard_Real    aPer   = aSurf->UPeriod();
-    Standard_Integer nshift = (Standard_Integer)Standard_Real((u - umin) / aPer);
+    Standard_Integer nshift = (Standard_Integer)getPrimal((u - umin) / aPer);
     if (u < umin + aPer * nshift)
       nshift--;
     umin += aPer * nshift;
@@ -2970,7 +2970,7 @@ Standard_Boolean CheckPCurve(const Handle(Geom2d_Curve)&     aPC,
   if (aSurf->IsVPeriodic())
   {
     Standard_Real    aPer   = aSurf->VPeriod();
-    Standard_Integer nshift = (Standard_Integer)Standard_Real((v - vmin) / aPer);
+    Standard_Integer nshift = (Standard_Integer)getPrimal((v - vmin) / aPer);
     if (v < vmin + aPer * nshift)
       nshift--;
     vmin += aPer * nshift;

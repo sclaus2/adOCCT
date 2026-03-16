@@ -233,31 +233,31 @@ public:
     {
       Standard_Real aValue;
       OCCT_INIT_FIELD_VALUE_REAL(aStreamStr, aPos, aValue);
-      myMinPoint[0] = (T)aValue;
+      myMinPoint[0] = (T)getPrimal(aValue);
     }
     else if (n == 2)
     {
       Standard_Real aValue1, aValue2;
       OCCT_INIT_VECTOR_CLASS(aStreamStr, "MinPoint", aPos, n, &aValue1, &aValue2);
-      myMinPoint[0] = (T)aValue1;
-      myMinPoint[1] = (T)aValue2;
+      myMinPoint[0] = (T)getPrimal(aValue1);
+      myMinPoint[1] = (T)getPrimal(aValue2);
 
       OCCT_INIT_VECTOR_CLASS(aStreamStr, "MaxPoint", aPos, n, &aValue1, &aValue2);
-      myMaxPoint[0] = (T)aValue1;
-      myMaxPoint[1] = (T)aValue2;
+      myMaxPoint[0] = (T)getPrimal(aValue1);
+      myMaxPoint[1] = (T)getPrimal(aValue2);
     }
     else if (n == 3)
     {
       Standard_Real aValue1, aValue2, aValue3;
       OCCT_INIT_VECTOR_CLASS(aStreamStr, "MinPoint", aPos, n, &aValue1, &aValue2, &aValue3);
-      myMinPoint[0] = (T)aValue1;
-      myMinPoint[1] = (T)aValue2;
-      myMinPoint[2] = (T)aValue3;
+      myMinPoint[0] = (T)getPrimal(aValue1);
+      myMinPoint[1] = (T)getPrimal(aValue2);
+      myMinPoint[2] = (T)getPrimal(aValue3);
 
       OCCT_INIT_VECTOR_CLASS(aStreamStr, "MaxPoint", aPos, n, &aValue1, &aValue2, &aValue3);
-      myMaxPoint[0] = (T)aValue1;
-      myMaxPoint[1] = (T)aValue2;
-      myMaxPoint[2] = (T)aValue3;
+      myMaxPoint[0] = (T)getPrimal(aValue1);
+      myMaxPoint[1] = (T)getPrimal(aValue2);
+      myMaxPoint[2] = (T)getPrimal(aValue3);
     }
 
     theStreamPos = aPos;

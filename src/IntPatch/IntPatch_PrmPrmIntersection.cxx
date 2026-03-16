@@ -149,7 +149,7 @@ static void SeveralWlinesProcessing(const Handle(Adaptor3d_Surface)& theSurf1,
       for (iPo = 1; iPo <= cnbV; iPo++)
       {
         Standard_Real    Po  = theWLline->Vertex(iPo).ParameterOnLine();
-        Standard_Integer IPo = (Standard_Integer)Po;
+        Standard_Integer IPo = (Standard_Integer)getPrimal(Po);
         VPold.Append(IPo);
       }
 

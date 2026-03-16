@@ -511,7 +511,7 @@ void ChFi3d_FilBuilder::SimulKPart(const Handle(ChFiDS_SurfData)& SD) const
       Standard_Real    ang  = (u2 - u1);
       gp_Torus         To   = AS.Torus();
       Standard_Real    majr = To.MajorRadius(), minr = To.MinorRadius();
-      Standard_Integer n = (Standard_Integer)Standard_Real(36. * ang / M_PI + 1);
+      Standard_Integer n = (Standard_Integer)getPrimal(36. * ang / M_PI + 1);
       if (n < 2)
         n = 2;
       sec = new ChFiDS_SecHArray1(1, n);
@@ -531,7 +531,7 @@ void ChFi3d_FilBuilder::SimulKPart(const Handle(ChFiDS_SurfData)& SD) const
       Standard_Real    ang = (u2 - u1);
       gp_Sphere        Sp  = AS.Sphere();
       Standard_Real    rad = Sp.Radius();
-      Standard_Integer n   = (Standard_Integer)Standard_Real(36. * ang / M_PI + 1);
+      Standard_Integer n   = (Standard_Integer)getPrimal(36. * ang / M_PI + 1);
       if (n < 2)
         n = 2;
       sec = new ChFiDS_SecHArray1(1, n);

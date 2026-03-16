@@ -678,7 +678,7 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
                   "%s%9.1f (%3d%%)%s",
                   (wholeDoc ? "" : "  Volume defect: "),
                   getPrimal(aVolume->Get() - localVolume),
-                  (Standard_Integer)Standard_Real(
+                  (Standard_Integer)getPrimal(
                     Abs(localVolume) > 1e-10 ? 100. * (aVolume->Get() - localVolume) / localVolume
                                              : 999.),
                   (wholeDoc ? "" : "\n"));

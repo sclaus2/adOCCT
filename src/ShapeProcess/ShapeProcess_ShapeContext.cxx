@@ -467,9 +467,9 @@ void ShapeProcess_ShapeContext::PrintStatistics() const
   Message_Msg PMSG200("PrResult.Print.MSG200"); // Preparation ratio:
   Messenger()->Send(PMSG200, Message_Info);
   Message_Msg PMSG205("PrResult.Print.MSG205"); //  Shells: %d per cent
-  PMSG205.Arg((Standard_Integer)Standard_Real(100. * SPR));
+  PMSG205.Arg((Standard_Integer)getPrimal(100. * SPR));
   Messenger()->Send(PMSG205, Message_Info);
   Message_Msg PMSG210("PrResult.Print.MSG210"); //  Faces : %d per cent
-  PMSG210.Arg((Standard_Integer)Standard_Real(100. * FPR));
+  PMSG210.Arg((Standard_Integer)getPrimal(100. * FPR));
   Messenger()->Send(PMSG210, Message_Info);
 }

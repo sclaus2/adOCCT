@@ -144,7 +144,7 @@ static void InGoodPeriod(const Standard_Real Prec,
                          Standard_Real&      Current)
 {
   Standard_Real    Diff = Current - Prec;
-  Standard_Integer nb   = (Standard_Integer)IntegerPart(Diff / Period);
+  Standard_Integer nb   = (Standard_Integer)getPrimal(IntegerPart(Diff / Period));
   Current -= nb * Period;
   Diff = Current - Prec;
   if (Diff > Period / 2)

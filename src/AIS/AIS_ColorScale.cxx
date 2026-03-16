@@ -100,8 +100,8 @@ static Standard_Integer colorDiscreteInterval(Standard_Real    theValue,
 
   Standard_Integer anInterval =
     1
-    + (Standard_Integer)Floor(Standard_Real(theNbIntervals) * (theValue - theMin)
-                              / (theMax - theMin));
+    + (Standard_Integer)getPrimal(
+      Floor(Standard_Real(theNbIntervals) * (theValue - theMin) / (theMax - theMin)));
   // map the very upper value (theValue==theMax) to the largest color interval
   anInterval = Min(anInterval, theNbIntervals);
   return anInterval;

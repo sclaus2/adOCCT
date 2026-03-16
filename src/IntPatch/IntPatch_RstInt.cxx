@@ -593,7 +593,7 @@ void IntPatch_RstInt::PutVertexOnLine(const Handle(IntPatch_Line)&       L,
         // arc->FirstParameter())/(PLast-PFirst);
         const Standard_Real nbs = (arc->NbKnots() * arc->Degree()) * (PLast - PFirst)
                                   / (arc->LastParameter() - arc->FirstParameter());
-        NbEchant = (nbs < 2.0 ? 2 : (Standard_Integer)nbs);
+        NbEchant = (nbs < 2.0 ? 2 : (Standard_Integer)getPrimal(nbs));
         if (NbEchant < 10)
           NbEchant = 10;
         else if (NbEchant > 50)
@@ -876,7 +876,7 @@ void IntPatch_RstInt::PutVertexOnLine(const Handle(IntPatch_Line)&       L,
               }
 
               if (typL == IntPatch_Walking)
-                VerifyTgline(wlin, (Standard_Integer)paramline, edgeTol, tgline);
+                VerifyTgline(wlin, (Standard_Integer)getPrimal(paramline), edgeTol, tgline);
 
               Surf->D1(U1, V1, ptbid, d1u, d1v);
               tgrst.SetLinearForm(d2d.X(), d1u, d2d.Y(), d1v);

@@ -108,7 +108,7 @@ Standard_Integer HLRBRep_SurfaceTool::NbSamplesU(const Standard_Address S,
   {
     Standard_Real uf = FirstUParameter(S);
     Standard_Real ul = LastUParameter(S);
-    n *= (Standard_Integer)Standard_Real((u2 - u1) / (uf - ul));
+    n *= (Standard_Integer)getPrimal((u2 - u1) / (uf - ul));
     if (n > nbs)
       n = nbs;
     if (n < 5)
@@ -127,7 +127,7 @@ Standard_Integer HLRBRep_SurfaceTool::NbSamplesV(const Standard_Address S,
   {
     Standard_Real vf = FirstVParameter(S);
     Standard_Real vl = LastVParameter(S);
-    n *= (Standard_Integer)Standard_Real((v2 - v1) / (vf - vl));
+    n *= (Standard_Integer)getPrimal((v2 - v1) / (vf - vl));
     if (n > nbs)
       n = nbs;
     if (n < 5)

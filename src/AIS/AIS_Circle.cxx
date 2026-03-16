@@ -138,7 +138,7 @@ void AIS_Circle::SetColor(const Quantity_Color& aCol)
 
 void AIS_Circle::SetWidth(const Standard_Real aValue)
 {
-  myOwnWidth = (Standard_ShortReal)aValue;
+  myOwnWidth = (Standard_ShortReal)getPrimal(aValue);
 
   if (!myDrawer->HasOwnLineAspect())
   {

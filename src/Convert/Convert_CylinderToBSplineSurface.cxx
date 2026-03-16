@@ -39,7 +39,7 @@ static void ComputePoles(const Standard_Real R,
   Standard_Integer i;
 
   // Number of spans : maximum opening = 150 degrees ( = PI / 1.2 rds)
-  Standard_Integer nbUSpans = (Standard_Integer)IntegerPart(1.2 * deltaU / M_PI) + 1;
+  Standard_Integer nbUSpans = (Standard_Integer)getPrimal(IntegerPart(1.2 * deltaU / M_PI)) + 1;
   Standard_Real    AlfaU    = deltaU / (nbUSpans * 2);
 
   Standard_Real UStart = U1;
@@ -84,7 +84,7 @@ Convert_CylinderToBSplineSurface::Convert_CylinderToBSplineSurface(const gp_Cyli
   // construction of the cylinder in the reference mark xOy.
 
   // Number of spans : maximum opening = 150 degrees ( = PI / 1.2 rds)
-  Standard_Integer nbUSpans = (Standard_Integer)IntegerPart(1.2 * deltaU / M_PI) + 1;
+  Standard_Integer nbUSpans = (Standard_Integer)getPrimal(IntegerPart(1.2 * deltaU / M_PI)) + 1;
   Standard_Real    AlfaU    = deltaU / (nbUSpans * 2);
 
   nbUPoles = 2 * nbUSpans + 1;

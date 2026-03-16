@@ -1556,7 +1556,7 @@ void GeomPlate_BuildPlateSurface::ComputeSurfInit(const Message_ProgressRange& t
     for (i = 1; i <= NTLinCont; i++)
     {
       Standard_Integer NbPoint =
-        (Standard_Integer)Standard_Real(NTPoint * (myLinCont->Value(i)->Length()) / LenT);
+        (Standard_Integer)getPrimal(NTPoint * (myLinCont->Value(i)->Length()) / LenT);
       if (NbPoint < 10)
         NbPoint = 10;
 

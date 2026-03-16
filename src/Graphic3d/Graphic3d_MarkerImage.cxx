@@ -57,7 +57,7 @@ static void getMarkerBitMapParam(const Aspect_TypeOfMarker theMarkerType,
   const Standard_Real anIndex = (Standard_Real)(TEL_NO_OF_SIZES - 1)
                                 * (theScale - (Standard_Real)TEL_PM_START_SIZE)
                                 / (Standard_Real)(TEL_PM_END_SIZE - TEL_PM_START_SIZE);
-  Standard_Integer anId = (Standard_Integer)Standard_Real(anIndex + 0.5);
+  Standard_Integer anId = (Standard_Integer)getPrimal(anIndex + 0.5);
   if (anId < 0)
   {
     anId = 0;

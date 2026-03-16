@@ -249,9 +249,9 @@ void HLRBRep_Intersector::Perform(const Standard_Integer /*nA*/,
     }
 
     if (ta > tol)
-      ta = (Standard_ShortReal)tol;
+      ta = (Standard_ShortReal)getPrimal(tol);
     if (tb > tol)
-      tb = (Standard_ShortReal)tol;
+      tb = (Standard_ShortReal)getPrimal(tol);
 
     IntRes2d_Domain D1(pa1, a1, (Standard_Real)ta, pb1, b1, (Standard_Real)tb);
 
@@ -332,9 +332,9 @@ void HLRBRep_Intersector::Perform(const Standard_Integer /*nA*/,
     }
 
     if (ta > tol)
-      ta = (Standard_ShortReal)tol;
+      ta = (Standard_ShortReal)getPrimal(tol);
     if (tb > tol)
-      tb = (Standard_ShortReal)tol;
+      tb = (Standard_ShortReal)getPrimal(tol);
 
     IntRes2d_Domain D2(pa2, a2, (Standard_Real)ta, pb2, b2, (Standard_Real)tb);
 

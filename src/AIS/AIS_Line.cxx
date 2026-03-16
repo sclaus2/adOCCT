@@ -161,7 +161,7 @@ void AIS_Line::UnsetColor()
 
 void AIS_Line::SetWidth(const Standard_Real aValue)
 {
-  myOwnWidth = (Standard_ShortReal)aValue;
+  myOwnWidth = (Standard_ShortReal)getPrimal(aValue);
 
   if (!myDrawer->HasOwnLineAspect())
   {

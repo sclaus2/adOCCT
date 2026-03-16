@@ -477,8 +477,8 @@ Standard_Boolean Geom_OsculatingSurface::BuildOsculatingSurface(
   }
   else
   {
-    MinDegree = (Standard_Integer)Min(udeg, vdeg);
-    MaxDegree = (Standard_Integer)Max(udeg, vdeg);
+    MinDegree = (Standard_Integer)getPrimal(Min(udeg, vdeg));
+    MaxDegree = (Standard_Integer)getPrimal(Max(udeg, vdeg));
 
     TColgp_Array2OfPnt cachepoles(1, MaxDegree + 1, 1, MinDegree + 1);
     // end for cache
@@ -492,8 +492,8 @@ Standard_Boolean Geom_OsculatingSurface::BuildOsculatingSurface(
     Handle(TColStd_HArray1OfReal)    PolynomialVIntervals = new TColStd_HArray1OfReal(1, 2);
     Handle(TColStd_HArray1OfReal)    TrueUIntervals       = new TColStd_HArray1OfReal(1, 2);
     Handle(TColStd_HArray1OfReal)    TrueVIntervals       = new TColStd_HArray1OfReal(1, 2);
-    MaxUDegree                                            = (Standard_Integer)udeg;
-    MaxVDegree                                            = (Standard_Integer)vdeg;
+    MaxUDegree                                            = (Standard_Integer)getPrimal(udeg);
+    MaxVDegree                                            = (Standard_Integer)getPrimal(vdeg);
 
     for (Standard_Integer i = 1; i <= 2; i++)
     {
@@ -509,16 +509,16 @@ Standard_Boolean Geom_OsculatingSurface::BuildOsculatingSurface(
 #ifdef OCCT_DEBUG
       std::cout << ">>>>>>>>>>> AlongU" << std::endl;
 #endif
-      OscUNumCoeff = (Standard_Integer)udeg + 1;
-      OscVNumCoeff = (Standard_Integer)vdeg;
+      OscUNumCoeff = (Standard_Integer)getPrimal(udeg) + 1;
+      OscVNumCoeff = (Standard_Integer)getPrimal(vdeg);
     }
     if (IsAlongV())
     {
 #ifdef OCCT_DEBUG
       std::cout << ">>>>>>>>>>> AlongV" << std::endl;
 #endif
-      OscUNumCoeff = (Standard_Integer)udeg;
-      OscVNumCoeff = (Standard_Integer)vdeg + 1;
+      OscUNumCoeff = (Standard_Integer)getPrimal(udeg);
+      OscVNumCoeff = (Standard_Integer)getPrimal(vdeg) + 1;
     }
     NumCoeffPerSurface->ChangeValue(1, 1) = OscUNumCoeff;
     NumCoeffPerSurface->ChangeValue(1, 2) = OscVNumCoeff;

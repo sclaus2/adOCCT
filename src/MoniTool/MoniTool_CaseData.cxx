@@ -459,7 +459,7 @@ Standard_Boolean MoniTool_CaseData::Integer(const Standard_Integer nd, Standard_
   if (thekind(nd) != 11)
     return Standard_False;
   Standard_Real rval = p->X();
-  val                = (Standard_Integer)rval;
+  val                = (Standard_Integer)getPrimal(rval);
   return Standard_True;
 }
 

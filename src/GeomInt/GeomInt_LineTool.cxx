@@ -875,8 +875,8 @@ Standard_Boolean GeomInt_LineTool::DecompositionOfWLine(
   {
     Standard_Real fprm = 0., lprm = 0.;
     theLConstructor.Part(j, fprm, lprm);
-    Standard_Integer ifprm = (Standard_Integer)fprm;
-    Standard_Integer ilprm = (Standard_Integer)lprm;
+    Standard_Integer ifprm = (Standard_Integer)getPrimal(fprm);
+    Standard_Integer ilprm = (Standard_Integer)getPrimal(lprm);
     //
     Handle(IntSurf_LineOn2S) aLineOn2S = new IntSurf_LineOn2S();
     //
@@ -1064,8 +1064,8 @@ Standard_Boolean GeomInt_LineTool::DecompositionOfWLine(
   for (j = 1; j <= aNbParts; j++)
   {
     theLConstructor.Part(j, fprm, lprm);
-    ifprm = (Standard_Integer)fprm;
-    ilprm = (Standard_Integer)lprm;
+    ifprm = (Standard_Integer)getPrimal(fprm);
+    ilprm = (Standard_Integer)getPrimal(lprm);
     //
     if ((ilprm - ifprm) == 1)
     {

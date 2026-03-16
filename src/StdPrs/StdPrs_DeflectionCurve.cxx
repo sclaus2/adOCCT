@@ -232,7 +232,7 @@ static Standard_Boolean MatchCurve(const Standard_Real    X,
       {
         const Standard_Real    DU = Sqrt(8.0 * TheDeflection / Radius);
         const Standard_Real    Er = Abs(U2 - U1) / DU;
-        const Standard_Integer N  = Max(2, (Standard_Integer)IntegerPart(Er));
+        const Standard_Integer N  = Max(2, (Standard_Integer)getPrimal(IntegerPart(Er)));
         if (N > 0)
         {
           gp_Pnt p1, p2;

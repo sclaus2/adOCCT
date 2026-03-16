@@ -369,7 +369,7 @@ void GCPnts_TangentialDeflection::PerformCircular(const TheCurve& theC)
 
   const Standard_Real aDiff = myLastU - myFirstu;
   // Round up number of points to satisfy curvatureDeflection more precisely
-  Standard_Integer NbPoints = (Standard_Integer)Min(Ceiling(aDiff / Du), 1.0e+6);
+  Standard_Integer NbPoints = (Standard_Integer)getPrimal(Min(Ceiling(aDiff / Du), 1.0e+6));
   NbPoints                  = Max(NbPoints, myMinNbPnts - 1);
   Du                        = aDiff / NbPoints;
 

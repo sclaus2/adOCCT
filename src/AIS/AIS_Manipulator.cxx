@@ -368,7 +368,7 @@ void AIS_Manipulator::adjustSize(const Bnd_Box& theBox)
   Standard_Real aYSize = aYmax - aYmin;
   Standard_Real aZSize = aZmax - aZmin;
 
-  SetSize((Standard_ShortReal)Standard_Real(Max(aXSize, Max(aYSize, aZSize)) * 0.5));
+  SetSize((Standard_ShortReal)getPrimal(Max(aXSize, Max(aYSize, aZSize)) * 0.5));
 }
 
 //=================================================================================================

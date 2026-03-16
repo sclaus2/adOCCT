@@ -401,7 +401,7 @@ void GCPnts_UniformAbscissa::initialize(const TheCurve&     theC,
     return;
   }
 
-  const Standard_Integer aSize = (Standard_Integer)aSizeR;
+  const Standard_Integer aSize = (Standard_Integer)getPrimal(aSizeR);
   if (!myParams.IsNull())
   {
     if (myParams->Length() < aSize)

@@ -539,27 +539,27 @@ void Bnd_BoundSortBox::SortBoxes()
     {
       taBox(labox).Get(xmin, ymin, zmin, xmax, ymax, zmax);
       if (xmin > Xmin)
-        firstcaseX = (Standard_Integer)Standard_Real((xmin - Xmin) * deltaX) - 1;
+        firstcaseX = (Standard_Integer)getPrimal((xmin - Xmin) * deltaX) - 1;
       else
         firstcaseX = 1;
       if (ymin > Ymin)
-        firstcaseY = (Standard_Integer)Standard_Real((ymin - Ymin) * deltaY) - 1;
+        firstcaseY = (Standard_Integer)getPrimal((ymin - Ymin) * deltaY) - 1;
       else
         firstcaseY = 1;
       if (zmin > Zmin)
-        firstcaseZ = (Standard_Integer)Standard_Real((zmin - Zmin) * deltaZ) - 1;
+        firstcaseZ = (Standard_Integer)getPrimal((zmin - Zmin) * deltaZ) - 1;
       else
         firstcaseZ = 1;
       if (xmax < _Xmax)
-        lastcaseX = (Standard_Integer)Standard_Real((xmax - Xmin) * deltaX) + 1;
+        lastcaseX = (Standard_Integer)getPrimal((xmax - Xmin) * deltaX) + 1;
       else
         lastcaseX = discrX;
       if (ymax < _Ymax)
-        lastcaseY = (Standard_Integer)Standard_Real((ymax - Ymin) * deltaY) + 1;
+        lastcaseY = (Standard_Integer)getPrimal((ymax - Ymin) * deltaY) + 1;
       else
         lastcaseY = discrY;
       if (zmax < _Zmax)
-        lastcaseZ = (Standard_Integer)Standard_Real((zmax - Zmin) * deltaZ) + 1;
+        lastcaseZ = (Standard_Integer)getPrimal((zmax - Zmin) * deltaZ) + 1;
       else
         lastcaseZ = discrZ;
       if (firstcaseX < 1)
@@ -714,27 +714,27 @@ void Bnd_BoundSortBox::Add(const Bnd_Box& theBox, const Standard_Integer boxInde
     _Ymax = Map->Ymax;
     _Zmax = Map->Zmax;
     if (xmin > Xmin)
-      firstGapX = (Standard_Integer)Standard_Real((xmin - Xmin) * deltaX) - 1;
+      firstGapX = (Standard_Integer)getPrimal((xmin - Xmin) * deltaX) - 1;
     else
       firstGapX = 1;
     if (ymin > Ymin)
-      firstGapY = (Standard_Integer)Standard_Real((ymin - Ymin) * deltaY) - 1;
+      firstGapY = (Standard_Integer)getPrimal((ymin - Ymin) * deltaY) - 1;
     else
       firstGapY = 1;
     if (zmin > Zmin)
-      firstGapZ = (Standard_Integer)Standard_Real((zmin - Zmin) * deltaZ) - 1;
+      firstGapZ = (Standard_Integer)getPrimal((zmin - Zmin) * deltaZ) - 1;
     else
       firstGapZ = 1;
     if (xmax < _Xmax)
-      lastGapX = (Standard_Integer)Standard_Real((xmax - Xmin) * deltaX) + 1;
+      lastGapX = (Standard_Integer)getPrimal((xmax - Xmin) * deltaX) + 1;
     else
       lastGapX = discrX;
     if (ymax < _Ymax)
-      lastGapY = (Standard_Integer)Standard_Real((ymax - Ymin) * deltaY) + 1;
+      lastGapY = (Standard_Integer)getPrimal((ymax - Ymin) * deltaY) + 1;
     else
       lastGapY = discrY;
     if (zmax < _Zmax)
-      lastGapZ = (Standard_Integer)Standard_Real((zmax - Zmin) * deltaZ) + 1;
+      lastGapZ = (Standard_Integer)getPrimal((zmax - Zmin) * deltaZ) + 1;
     else
       lastGapZ = discrZ;
     if (firstGapX < 1)
@@ -895,27 +895,27 @@ const TColStd_ListOfInteger& Bnd_BoundSortBox::Compare(const Bnd_Box& theBox)
   theBox.Get(xmin, ymin, zmin, xmax, ymax, zmax);
   Standard_Integer i0, i1, j0, j1, k0, k1;
   if (xmin > Xmin)
-    i0 = (Standard_Integer)Standard_Real((xmin - Xmin) * deltaX) - 1;
+    i0 = (Standard_Integer)getPrimal((xmin - Xmin) * deltaX) - 1;
   else
     i0 = 1;
   if (ymin > Ymin)
-    j0 = (Standard_Integer)Standard_Real((ymin - Ymin) * deltaY) - 1;
+    j0 = (Standard_Integer)getPrimal((ymin - Ymin) * deltaY) - 1;
   else
     j0 = 1;
   if (zmin > Zmin)
-    k0 = (Standard_Integer)Standard_Real((zmin - Zmin) * deltaZ) - 1;
+    k0 = (Standard_Integer)getPrimal((zmin - Zmin) * deltaZ) - 1;
   else
     k0 = 1;
   if (xmax < _Xmax)
-    i1 = (Standard_Integer)Standard_Real((xmax - Xmin) * deltaX) + 1;
+    i1 = (Standard_Integer)getPrimal((xmax - Xmin) * deltaX) + 1;
   else
     i1 = discrX;
   if (ymax < _Ymax)
-    j1 = (Standard_Integer)Standard_Real((ymax - Ymin) * deltaY) + 1;
+    j1 = (Standard_Integer)getPrimal((ymax - Ymin) * deltaY) + 1;
   else
     j1 = discrY;
   if (zmax < _Zmax)
-    k1 = (Standard_Integer)Standard_Real((zmax - Zmin) * deltaZ) + 1;
+    k1 = (Standard_Integer)getPrimal(Standard_Real((zmax - Zmin) * deltaZ)) + 1;
   else
     k1 = discrZ;
   if (i0 < 1)

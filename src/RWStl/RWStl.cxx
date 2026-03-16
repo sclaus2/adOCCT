@@ -55,7 +55,7 @@ inline static void convertDouble(const Standard_Real theValue, Standard_Characte
     Standard_Character c[4];
   } anUnion;
 
-  anUnion.i = (Standard_ShortReal)theValue;
+  anUnion.i = (Standard_ShortReal)getPrimal(theValue);
 
   theResult[0] = anUnion.c[0];
   theResult[1] = anUnion.c[1];

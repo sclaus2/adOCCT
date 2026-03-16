@@ -573,7 +573,7 @@ Handle(Geom_BSplineSurface) GeomConvert::SurfaceToBSplineSurface(const Handle(Ge
       else
       {
         // Nombre de spans : ouverture maximale = 150 degres ( = PI / 1.2 rds)
-        nbUSpans = (Standard_Integer)IntegerPart(1.2 * (ULast - UFirst) / M_PI) + 1;
+        nbUSpans = (Standard_Integer)getPrimal(IntegerPart(1.2 * (ULast - UFirst) / M_PI)) + 1;
         AlfaU    = (ULast - UFirst) / (nbUSpans * 2);
         NbUPoles = 2 * nbUSpans + 1;
         NbUKnots = nbUSpans + 1;

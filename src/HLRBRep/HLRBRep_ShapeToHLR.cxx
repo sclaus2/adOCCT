@@ -125,7 +125,7 @@ Handle(HLRBRep_Data) HLRBRep_ShapeToHLR::Load(const Handle(HLRTopoBRep_OutLiner)
       o1 = Standard_False;
       c1 = Standard_False;
       pf = RealFirst();
-      tf = (Standard_ShortReal)Epsilon(pf);
+      tf = (Standard_ShortReal)getPrimal(Epsilon(pf));
     }
     else
     {
@@ -141,7 +141,7 @@ Handle(HLRBRep_Data) HLRBRep_ShapeToHLR::Load(const Handle(HLRTopoBRep_OutLiner)
       o2 = Standard_False;
       c2 = Standard_False;
       pl = RealLast();
-      tl = (Standard_ShortReal)Epsilon(pl);
+      tl = (Standard_ShortReal)getPrimal(Epsilon(pl));
     }
     else
     {

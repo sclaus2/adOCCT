@@ -6600,7 +6600,7 @@ static IntPatch_ImpImpIntersection::IntStatus CyCyNoGeometric(
     {
       Standard_Real anAngle = 1.0e0 - aDeflection;
       anAngle               = 2.0e0 * ACos(anAngle);
-      aNbP                  = (Standard_Integer)Standard_Real(2. * M_PI / anAngle) + 1;
+      aNbP                  = (Standard_Integer)getPrimal(2. * M_PI / anAngle) + 1;
     }
     anOptdu = 2. * M_PI_2 / (Standard_Real)(aNbP - 1);
     break;

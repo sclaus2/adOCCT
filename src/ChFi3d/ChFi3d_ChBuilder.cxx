@@ -681,7 +681,7 @@ void ChFi3d_ChBuilder::SimulKPart(const Handle(ChFiDS_SurfData)& SD) const
       Standard_Real    ang = (u2 - u1);
       gp_Cone          Co  = AS.Cone();
       Standard_Real    rad = Co.RefRadius(), sang = Co.SemiAngle();
-      Standard_Integer n = (Standard_Integer)Standard_Real(36. * ang / M_PI + 1);
+      Standard_Integer n = (Standard_Integer)getPrimal(36. * ang / M_PI + 1);
       if (n < 2)
         n = 2;
       sec = new ChFiDS_SecHArray1(1, n);

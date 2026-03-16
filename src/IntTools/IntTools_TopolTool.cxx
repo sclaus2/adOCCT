@@ -154,7 +154,7 @@ void IntTools_TopolTool::ComputeSamplePoints()
       {
         nbsu = Standard_Integer(Standard_Real((usup - uinf) / aMaxAngle));
       }
-      nbsv = (Standard_Integer)Standard_Real(vsup - vinf);
+      nbsv = (Standard_Integer)getPrimal(vsup - vinf);
       nbsv /= 10;
 
       if (nbsu < 2)
@@ -191,7 +191,7 @@ void IntTools_TopolTool::ComputeSamplePoints()
       {
         nbsu = Standard_Integer(Standard_Real((usup - uinf) / aMaxAngle));
       }
-      nbsv = (Standard_Integer)Standard_Real(vsup - vinf);
+      nbsv = (Standard_Integer)getPrimal(vsup - vinf);
       nbsv /= 10;
 
       //     if(nbsu < 2) nbsu = 2;
@@ -323,7 +323,7 @@ void IntTools_TopolTool::ComputeSamplePoints()
     break;
     case GeomAbs_SurfaceOfExtrusion: {
       nbsu = 15;
-      nbsv = (Standard_Integer)Standard_Real(vsup - vinf);
+      nbsv = (Standard_Integer)getPrimal(vsup - vinf);
       nbsv /= 10;
       if (nbsv < 15)
         nbsv = 15;

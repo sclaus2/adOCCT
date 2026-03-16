@@ -868,13 +868,13 @@ static Standard_Integer OCC817(Draw_Interpretor& di, Standard_Integer argc, cons
      << ")\n  (" << getPrimal(Xmax) << "," << getPrimal(Ymax) << "," << getPrimal(Zmax) << ")\n";
 
   // grid the bounding box
-  Standard_Integer NumXsubvolumes = (Standard_Integer)Standard_Real((Xmax - Xmin) / mesh_delt);
+  Standard_Integer NumXsubvolumes = (Standard_Integer)getPrimal((Xmax - Xmin) / mesh_delt);
   if (NumXsubvolumes <= 0)
     NumXsubvolumes = 1;
-  Standard_Integer NumYsubvolumes = (Standard_Integer)Standard_Real((Ymax - Ymin) / mesh_delt);
+  Standard_Integer NumYsubvolumes = (Standard_Integer)getPrimal((Ymax - Ymin) / mesh_delt);
   if (NumYsubvolumes <= 0)
     NumYsubvolumes = 1;
-  Standard_Integer NumZsubvolumes = (Standard_Integer)Standard_Real((Zmax - Zmin) / mesh_delt);
+  Standard_Integer NumZsubvolumes = (Standard_Integer)getPrimal((Zmax - Zmin) / mesh_delt);
   if (NumZsubvolumes <= 0)
     NumZsubvolumes = 1;
   const Standard_Real    StepX         = (Xmax - Xmin) / NumXsubvolumes;

@@ -284,7 +284,7 @@ void Graphic3d_Group::Text(const Standard_CString  theText,
                            const Graphic3d_VerticalTextAlignment   theVta,
                            const Standard_Boolean                  theToEvalMinMax)
 {
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)theHeight);
+  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)getPrimal(theHeight));
   aText->SetText(theText);
   aText->SetPosition(gp_Pnt(thePoint.X(), thePoint.Y(), thePoint.Z()));
   aText->SetHorizontalAlignment(theHta);
@@ -299,7 +299,7 @@ void Graphic3d_Group::Text(const Standard_CString  theText,
                            const Standard_Real     theHeight,
                            const Standard_Boolean  theToEvalMinMax)
 {
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)theHeight);
+  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)getPrimal(theHeight));
   aText->SetText(theText);
   aText->SetPosition(gp_Pnt(thePoint.X(), thePoint.Y(), thePoint.Z()));
   AddText(aText, theToEvalMinMax);
@@ -316,7 +316,7 @@ void Graphic3d_Group::Text(const TCollection_ExtendedString& theText,
                            const Graphic3d_VerticalTextAlignment   theVta,
                            const Standard_Boolean                  theToEvalMinMax)
 {
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)theHeight);
+  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)getPrimal(theHeight));
   aText->SetText(theText.ToExtString());
   aText->SetPosition(gp_Pnt(thePoint.X(), thePoint.Y(), thePoint.Z()));
   aText->SetHorizontalAlignment(theHta);
@@ -336,7 +336,7 @@ void Graphic3d_Group::Text(const TCollection_ExtendedString& theText,
                            const Standard_Boolean                  theToEvalMinMax,
                            const Standard_Boolean                  theHasOwnAnchor)
 {
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)theHeight);
+  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)getPrimal(theHeight));
   aText->SetText(theText.ToExtString());
   aText->SetOrientation(theOrientation);
   aText->SetOwnAnchorPoint(theHasOwnAnchor);
@@ -357,7 +357,7 @@ void Graphic3d_Group::Text(const Standard_CString theText,
                            const Standard_Boolean                  theToEvalMinMax,
                            const Standard_Boolean                  theHasOwnAnchor)
 {
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)theHeight);
+  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)getPrimal(theHeight));
   aText->SetText(theText);
   aText->SetOrientation(theOrientation);
   aText->SetOwnAnchorPoint(theHasOwnAnchor);
@@ -373,7 +373,7 @@ void Graphic3d_Group::Text(const TCollection_ExtendedString& theText,
                            const Standard_Real               theHeight,
                            const Standard_Boolean            theToEvalMinMax)
 {
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)theHeight);
+  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)getPrimal(theHeight));
   aText->SetText(theText.ToExtString());
   aText->SetPosition(gp_Pnt(thePoint.X(), thePoint.Y(), thePoint.Z()));
   AddText(aText, theToEvalMinMax);

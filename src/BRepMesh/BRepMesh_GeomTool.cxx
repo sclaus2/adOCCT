@@ -99,11 +99,12 @@ void AdjustCellsCounts(const Handle(Adaptor3d_Surface)& theFace,
   Standard_Real aSqNbVert = theNbVertices;
   if (aType == GeomAbs_Plane)
   {
-    theCellsCountU = theCellsCountV = (Standard_Integer)Ceiling(Pow(2, Log10(aSqNbVert)));
+    theCellsCountU = theCellsCountV =
+      (Standard_Integer)getPrimal(Ceiling(Pow(2, Log10(aSqNbVert))));
   }
   else if (aType == GeomAbs_Cylinder || aType == GeomAbs_Cone)
   {
-    theCellsCountV = (Standard_Integer)Ceiling(Pow(2, Log10(aSqNbVert)));
+    theCellsCountV = (Standard_Integer)getPrimal(Ceiling(Pow(2, Log10(aSqNbVert))));
   }
   else if (aType == GeomAbs_SurfaceOfExtrusion || aType == GeomAbs_SurfaceOfRevolution)
   {
@@ -113,25 +114,25 @@ void AdjustCellsCounts(const Handle(Adaptor3d_Surface)& theFace,
     {
       // planar, cylindrical, conical cases
       if (aType == GeomAbs_SurfaceOfExtrusion)
-        theCellsCountU = (Standard_Integer)Ceiling(Pow(2, Log10(aSqNbVert)));
+        theCellsCountU = (Standard_Integer)getPrimal(Ceiling(Pow(2, Log10(aSqNbVert))));
       else
-        theCellsCountV = (Standard_Integer)Ceiling(Pow(2, Log10(aSqNbVert)));
+        theCellsCountV = (Standard_Integer)getPrimal(Ceiling(Pow(2, Log10(aSqNbVert))));
     }
     if (aType == GeomAbs_SurfaceOfExtrusion)
     {
       // V is always a line
-      theCellsCountV = (Standard_Integer)Ceiling(Pow(2, Log10(aSqNbVert)));
+      theCellsCountV = (Standard_Integer)getPrimal(Ceiling(Pow(2, Log10(aSqNbVert))));
     }
   }
   else if (aType == GeomAbs_BezierSurface || aType == GeomAbs_BSplineSurface)
   {
     if (theFace->UDegree() < 2)
     {
-      theCellsCountU = (Standard_Integer)Ceiling(Pow(2, Log10(aSqNbVert)));
+      theCellsCountU = (Standard_Integer)getPrimal(Ceiling(Pow(2, Log10(aSqNbVert))));
     }
     if (theFace->VDegree() < 2)
     {
-      theCellsCountV = (Standard_Integer)Ceiling(Pow(2, Log10(aSqNbVert)));
+      theCellsCountV = (Standard_Integer)getPrimal(Ceiling(Pow(2, Log10(aSqNbVert))));
     }
   }
 
@@ -452,15 +453,15 @@ std::pair<Standard_Integer, Standard_Integer> BRepMesh_GeomTool::CellsCount(
     aCellsCountU = (Standard_Integer)Ceiling(Pow(
       2,
       Log10((aRangeU.second - aRangeU.first) / aDelta.first / (aRangeV.second - aRangeV.first))));
-    aCellsCountV =
-      (Standard_Integer)Ceiling(Pow(2, Log10((aRangeV.second - aRangeV.first) / anErrFactorV)));
+    aCellsCountV = (Standard_Integer)getPrimal(
+      Ceiling(Pow(2, Log10((aRangeV.second - aRangeV.first) / anErrFactorV))));
   }
   else
   {
-    aCellsCountU = (Standard_Integer)Ceiling(
-      Pow(2, Log10((aRangeU.second - aRangeU.first) / aDelta.first / anErrFactorU)));
-    aCellsCountV = (Standard_Integer)Ceiling(
-      Pow(2, Log10((aRangeV.second - aRangeV.first) / aDelta.second / anErrFactorV)));
+    aCellsCountU = (Standard_Integer)getPrimal(
+      Ceiling(Pow(2, Log10((aRangeU.second - aRangeU.first) / aDelta.first / anErrFactorU))));
+    aCellsCountV = (Standard_Integer)getPrimal(
+      Ceiling(Pow(2, Log10((aRangeV.second - aRangeV.first) / aDelta.second / anErrFactorV))));
   }
 
   AdjustCellsCounts(theSurface, theVerticesNb, aCellsCountU, aCellsCountV);

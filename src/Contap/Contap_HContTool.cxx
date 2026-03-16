@@ -245,7 +245,7 @@ Standard_Integer Contap_HContTool::NbSamplesOnArc(const Handle(Adaptor2d_Curve2d
     default:
       nbsOnC = 10;
   }
-  return (Standard_Integer)(nbsOnC);
+  return (Standard_Integer)getPrimal(nbsOnC);
 }
 
 void Contap_HContTool::Bounds(const Handle(Adaptor2d_Curve2d)& A,

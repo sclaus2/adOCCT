@@ -1405,9 +1405,9 @@ void IntPatch_LineConstructor::Perform(const IntPatch_SequenceOfLine&     slinre
       if (firstp != lastp && !IsSegmentSmall(WLine, i, i + 1 /*,TolArc*/))
       {
         Standard_Integer pmid;
-        pmid                        = (Standard_Integer)Standard_Real((firstp + lastp) / 2);
-        Standard_Integer int_lastp  = (Standard_Integer)lastp;
-        Standard_Integer int_firstp = (Standard_Integer)firstp;
+        pmid                        = (Standard_Integer)getPrimal((firstp + lastp) / 2);
+        Standard_Integer int_lastp  = (Standard_Integer)getPrimal(lastp);
+        Standard_Integer int_firstp = (Standard_Integer)getPrimal(firstp);
         if (pmid == int_lastp)
           pmid = int_firstp;
         const IntSurf_PntOn2S& Pmid = WLine->Point(pmid);
@@ -1502,11 +1502,11 @@ void IntPatch_LineConstructor::Perform(const IntPatch_SequenceOfLine&     slinre
         {
           Standard_Boolean       LignetropPetite = Standard_False;
           Standard_Real          u1a, v1a, u2a, v2a;
-          const IntSurf_PntOn2S& Pmid1 = WLine->Point((Standard_Integer)firstp);
+          const IntSurf_PntOn2S& Pmid1 = WLine->Point((Standard_Integer)getPrimal(firstp));
           Pmid1.Parameters(u1a, v1a, u2a, v2a);
           Recadre(mySurf1, mySurf2, u1a, v1a, u2a, v2a);
 
-          const IntSurf_PntOn2S& Pmid2 = WLine->Point((Standard_Integer)lastp);
+          const IntSurf_PntOn2S& Pmid2 = WLine->Point((Standard_Integer)getPrimal(lastp));
           Standard_Real          u1b, v1b, u2b, v2b;
           Pmid2.Parameters(u1b, v1b, u2b, v2b);
           Recadre(mySurf1, mySurf2, u1b, v1b, u2b, v2b);

@@ -37,7 +37,7 @@ Standard_Integer HLRBRep_CurveTool::NbSamples(const Standard_Address C)
   }
   if (nbs > 50)
     nbs = 50;
-  return ((Standard_Integer)nbs);
+  return ((Standard_Integer)getPrimal(nbs));
 }
 
 //=================================================================================================
@@ -65,5 +65,5 @@ Standard_Integer HLRBRep_CurveTool::NbSamples(const Standard_Address C,
   }
   if (nbs > 50)
     nbs = 50;
-  return ((Standard_Integer)nbs);
+  return ((Standard_Integer)getPrimal(nbs));
 }

@@ -1003,7 +1003,7 @@ Standard_Boolean gp_Trsf::InitFromJson(const Standard_SStream& theSStream,
 
   Standard_Real ashape;
   OCCT_INIT_FIELD_VALUE_INTEGER(aStreamStr, aPos, ashape);
-  shape = (gp_TrsfForm)((Standard_Integer)ashape);
+  shape = (gp_TrsfForm)((Standard_Integer)getPrimal(ashape));
 
   OCCT_INIT_FIELD_VALUE_REAL(aStreamStr, aPos, scale);
 

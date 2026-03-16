@@ -12873,7 +12873,7 @@ static int VSelectionProperties(Draw_Interpretor& theDi,
 
       const Standard_Real         aTransp = Draw::Atof(theArgVec[++anArgIter]);
       const Handle(Prs3d_Drawer)& aStyle  = aCtx->HighlightStyle(aType);
-      aStyle->SetTransparency((Standard_ShortReal)aTransp);
+      aStyle->SetTransparency((Standard_ShortReal)getPrimal(aTransp));
       toRedraw = Standard_True;
     }
     else if ((anArg == "-mat" || anArg == "-material") && anArgIter + 1 < theArgsNb)

@@ -198,7 +198,7 @@ void DsgPrs_MidPointPresentation::Add(const Handle(Prs3d_Presentation)& aPresent
   Standard_Real       alpha = pl - pf;
   if (alpha < 0)
     alpha += 2. * M_PI;
-  const Standard_Integer nb    = (Standard_Integer)Standard_Real(50.0 * alpha / M_PI);
+  const Standard_Integer nb    = (Standard_Integer)getPrimal(50.0 * alpha / M_PI);
   Standard_Integer       nbp   = Max(4, nb);
   Standard_Real          dteta = alpha / (nbp - 1);
 
@@ -280,7 +280,7 @@ void DsgPrs_MidPointPresentation::Add(const Handle(Prs3d_Presentation)& aPresent
   Standard_Real       alpha = pl - pf;
   if (alpha < 0)
     alpha += 2 * M_PI;
-  const Standard_Integer nb    = (Standard_Integer)Standard_Real(50.0 * alpha / M_PI);
+  const Standard_Integer nb    = (Standard_Integer)getPrimal(50.0 * alpha / M_PI);
   Standard_Integer       nbp   = Max(4, nb);
   Standard_Real          dteta = alpha / (nbp - 1);
 

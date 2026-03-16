@@ -1738,7 +1738,7 @@ static Standard_Boolean IsNeedSkipWL(const Handle(IntPatch_WLine)& theWL,
     aLastp  = theWL->Vertex(i + 1).ParameterOnLine();
 
     Standard_Real          aU1, aV1, aU2, aV2;
-    const Standard_Integer pmid  = (Standard_Integer)Standard_Real((aFirstp + aLastp) / 2);
+    const Standard_Integer pmid  = (Standard_Integer)getPrimal((aFirstp + aLastp) / 2);
     const IntSurf_PntOn2S& aPmid = theWL->Point(pmid);
     aPmid.Parameters(aU1, aV1, aU2, aV2);
 
