@@ -19,7 +19,7 @@
 
 #ifndef F2CTYPE_DEFINED
 typedef int              integer;
-typedef Standard_Adouble doublereal;
+typedef adtl::adouble    doublereal;
   #define F2CTYPE_DEFINED
 #endif
 

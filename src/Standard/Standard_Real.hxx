@@ -35,7 +35,6 @@
  */
 template <typename T,
           typename = typename std::enable_if<std::is_same<T, double>::value
-                                             || std::is_same<T, Standard_Adouble>::value
                                              || std::is_same<T, adtl::adouble>::value>::type>
 double getPrimal(const T& x);
 
@@ -43,12 +42,6 @@ template <>
 inline double getPrimal<double>(const double& x)
 {
   return x;
-}
-
-template <>
-inline double getPrimal<Standard_Real>(const Standard_Real& x)
-{
-  return x.getValue();
 }
 
 template <>
@@ -410,8 +403,9 @@ inline Standard_Integer RealToInt(const Standard_Real& theValue)
   // "Floating point multiple trap" (OCC17861)
   return theValue < static_cast<double>(INT_MIN)
            ? static_cast<Standard_Integer>(INT_MIN)
-           : (theValue > static_cast<double>(INT_MAX) ? static_cast<Standard_Integer>(INT_MAX)
-                                                      : static_cast<Standard_Integer>(theValue));
+           : (theValue > static_cast<double>(INT_MAX)
+                ? static_cast<Standard_Integer>(INT_MAX)
+                : static_cast<Standard_Integer>(getPrimal(theValue)));
 }
 
 constexpr Standard_Integer RealToInt(const double theValue)
