@@ -180,7 +180,7 @@ void Draw_Display::Draw(const gp_Circ&         C,
   gp_Circ Cloc(C);
   if (!ModifyWithZoom)
   {
-    Standard_Integer ISize = (Standard_Integer)Standard_Real(Cloc.Radius() / Zoom());
+    Standard_Integer ISize = (Standard_Integer)getPrimal(Cloc.Radius() / Zoom());
     Cloc.SetRadius(ISize);
   }
 

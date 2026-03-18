@@ -620,7 +620,7 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
                 "%s%9.1f (%3d%%)%s",
                 (wholeDoc ? "" : "  Area defect:   "),
                 getPrimal(aArea->Get() - G.Mass()),
-                (Standard_Integer)Standard_Real(
+                (Standard_Integer)getPrimal(
                   Abs(G.Mass()) > 1e-10 ? 100. * (aArea->Get() - G.Mass()) / G.Mass() : 999.),
                 (wholeDoc ? "" : "\n"));
         di << string2;

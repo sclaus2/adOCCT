@@ -189,10 +189,10 @@ void AIS_Line::UnsetWidth()
   }
   else
   {
-    Standard_ShortReal WW =
-      myDrawer->HasLink()
-        ? (Standard_ShortReal)AIS_GraphicTool::GetLineWidth(myDrawer->Link(), AIS_TOA_Line)
-        : 1.0f;
+    Standard_ShortReal WW = myDrawer->HasLink()
+                              ? (Standard_ShortReal)getPrimal(
+                                  AIS_GraphicTool::GetLineWidth(myDrawer->Link(), AIS_TOA_Line))
+                              : 1.0f;
     myDrawer->LineAspect()->SetWidth(WW);
     myOwnWidth = WW;
     SynchronizeAspects();

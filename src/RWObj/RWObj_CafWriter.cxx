@@ -34,13 +34,15 @@ namespace
 //! Trivial cast.
 inline Graphic3d_Vec3 objXyzToVec(const gp_XYZ& thePnt)
 {
-  return Graphic3d_Vec3((float)thePnt.X(), (float)thePnt.Y(), (float)thePnt.Z());
+  return Graphic3d_Vec3((float)getPrimal(thePnt.X()),
+                        (float)getPrimal(thePnt.Y()),
+                        (float)getPrimal(thePnt.Z()));
 }
 
 //! Trivial cast.
 inline Graphic3d_Vec2 objXyToVec(const gp_XY& thePnt)
 {
-  return Graphic3d_Vec2((float)thePnt.X(), (float)thePnt.Y());
+  return Graphic3d_Vec2((float)getPrimal(thePnt.X()), (float)getPrimal(thePnt.Y()));
 }
 
 //! Read name attribute.

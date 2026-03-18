@@ -73,9 +73,9 @@ static void bindLight(const Graphic3d_CLight& theLight,
     case Graphic3d_TypeOfLightSource_Positional: {
       // to create a realistic effect, set the GL_SPECULAR parameter to the same value as the
       // GL_DIFFUSE
-      const OpenGl_Vec4 aPosition(static_cast<float>(theLight.Position().X()),
-                                  static_cast<float>(theLight.Position().Y()),
-                                  static_cast<float>(theLight.Position().Z()),
+      const OpenGl_Vec4 aPosition(static_cast<float>(getPrimal(theLight.Position().X())),
+                                  static_cast<float>(getPrimal(theLight.Position().Y())),
+                                  static_cast<float>(getPrimal(theLight.Position().Z())),
                                   1.0f);
       theCtx->core11ffp->glLightfv(theLightGlId, GL_AMBIENT, THE_DEFAULT_AMBIENT);
       theCtx->core11ffp->glLightfv(theLightGlId, GL_DIFFUSE, aLightColor.GetData());
@@ -94,9 +94,9 @@ static void bindLight(const Graphic3d_CLight& theLight,
       break;
     }
     case Graphic3d_TypeOfLightSource_Spot: {
-      const OpenGl_Vec4 aPosition(static_cast<float>(theLight.Position().X()),
-                                  static_cast<float>(theLight.Position().Y()),
-                                  static_cast<float>(theLight.Position().Z()),
+      const OpenGl_Vec4 aPosition(static_cast<float>(getPrimal(theLight.Position().X())),
+                                  static_cast<float>(getPrimal(theLight.Position().Y())),
+                                  static_cast<float>(getPrimal(theLight.Position().Z())),
                                   1.0f);
       theCtx->core11ffp->glLightfv(theLightGlId, GL_AMBIENT, THE_DEFAULT_AMBIENT);
       theCtx->core11ffp->glLightfv(theLightGlId, GL_DIFFUSE, aLightColor.GetData());
@@ -527,20 +527,20 @@ void OpenGl_ShaderManager::pushLightSourceState(
       case Graphic3d_TypeOfLightSource_Positional: {
         if (aLight.IsHeadlight())
         {
-          aLightParams.Position.x()         = static_cast<float>(aLight.Position().X());
-          aLightParams.Position.y()         = static_cast<float>(aLight.Position().Y());
-          aLightParams.Position.z()         = static_cast<float>(aLight.Position().Z());
+          aLightParams.Position.x()         = static_cast<float>(getPrimal(aLight.Position().X()));
+          aLightParams.Position.y()         = static_cast<float>(getPrimal(aLight.Position().Y()));
+          aLightParams.Position.z()         = static_cast<float>(getPrimal(aLight.Position().Z()));
           const Graphic3d_Mat4& anOrientInv = myWorldViewState.WorldViewMatrixInverse();
           aLightParams.Position = anOrientInv * Graphic3d_Vec4(aLightParams.Position.xyz(), 1.0f);
         }
         else
         {
           aLightParams.Position.x() =
-            static_cast<float>(Standard_Real(aLight.Position().X() - myLocalOrigin.X()));
+            static_cast<float>(getPrimal(aLight.Position().X() - myLocalOrigin.X()));
           aLightParams.Position.y() =
-            static_cast<float>(Standard_Real(aLight.Position().Y() - myLocalOrigin.Y()));
+            static_cast<float>(getPrimal(aLight.Position().Y() - myLocalOrigin.Y()));
           aLightParams.Position.z() =
-            static_cast<float>(Standard_Real(aLight.Position().Z() - myLocalOrigin.Z()));
+            static_cast<float>(getPrimal(aLight.Position().Z() - myLocalOrigin.Z()));
           aLightParams.Position.w() = 0.0f;
         }
         aLightParams.Direction.w() = aLight.Range();

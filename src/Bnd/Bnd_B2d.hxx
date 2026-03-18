@@ -135,6 +135,7 @@ private:
 };
 
 #define RealType Standard_Real
+#define Bnd_Use_AD 1
 #define RealType_hxx <Standard_Real.hxx>
 #define Bnd_B2x Bnd_B2d
 #define Bnd_B2x_hxx <Bnd_B2d.hxx>
@@ -142,6 +143,7 @@ private:
 #include <Bnd_B2x.lxx>
 
 #undef RealType
+#undef Bnd_Use_AD
 #undef RealType_hxx
 #undef Bnd_B2x
 #undef Bnd_B2x_hxx

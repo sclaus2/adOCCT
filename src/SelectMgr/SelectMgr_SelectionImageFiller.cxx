@@ -157,7 +157,7 @@ public:
     }
 
     const SelectMgr_SortCriterion& aSortCriterion    = myMainSel->PickedData(thePicked);
-    myUnnormImage.ChangeValue<float>(theRow, theCol) = float(aSortCriterion.Depth);
+    myUnnormImage.ChangeValue<float>(theRow, theCol) = float(getPrimal(aSortCriterion.Depth));
     myDepthMin                                       = Min(myDepthMin, aSortCriterion.Depth);
     myDepthMax                                       = Max(myDepthMax, aSortCriterion.Depth);
   }
@@ -169,8 +169,8 @@ public:
     float aDelta = 1.0f;
     if (myDepthMin <= myDepthMax)
     {
-      aFrom  = float(myDepthMin);
-      aDelta = float(myDepthMax) - float(myDepthMin);
+      aFrom  = float(getPrimal(myDepthMin));
+      aDelta = float(getPrimal(myDepthMax)) - float(getPrimal(myDepthMin));
       if (aDelta <= ShortRealEpsilon())
       {
         aDelta = 1.0f;
@@ -228,7 +228,7 @@ public:
     }
 
     const SelectMgr_SortCriterion& aSortCriterion = myMainSel->PickedData(thePicked);
-    const float                    aDepth         = float(aSortCriterion.Depth);
+    const float                    aDepth         = float(getPrimal(aSortCriterion.Depth));
     myImage->SetPixelColor(theCol,
                            theRow,
                            Quantity_ColorRGBA(Graphic3d_Vec4(aDepth, aDepth, aDepth, 1.0f)));

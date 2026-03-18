@@ -133,10 +133,12 @@ static void SeveralWlinesProcessing(const Handle(Adaptor3d_Surface)& theSurf1,
     {
       const Handle(IntPatch_Line)& aSLine = theSLin.Value(WLDMin);
       const Handle(IntPatch_WLine) aWLine = Handle(IntPatch_WLine)::DownCast(aSLine);
-      Standard_Integer tiVpar = (Standard_Integer)aWLine->Vertex(VDMin).ParameterOnLine();
-      Standard_Integer ciVpar = (Standard_Integer)theWLline->Vertex(ciV).ParameterOnLine();
-      Standard_Real    u11 = 0., u12 = 0., v11 = 0., v12 = 0.;
-      Standard_Real    u21 = 0., u22 = 0., v21 = 0., v22 = 0.;
+      Standard_Integer             tiVpar =
+        (Standard_Integer)getPrimal(aWLine->Vertex(VDMin).ParameterOnLine());
+      Standard_Integer ciVpar =
+        (Standard_Integer)getPrimal(theWLline->Vertex(ciV).ParameterOnLine());
+      Standard_Real u11 = 0., u12 = 0., v11 = 0., v12 = 0.;
+      Standard_Real u21 = 0., u22 = 0., v21 = 0., v22 = 0.;
       theWLline->Point(ciVpar).Parameters(u11, v11, u12, v12);
       aWLine->Point(tiVpar).Parameters(u21, v21, u22, v22);
 

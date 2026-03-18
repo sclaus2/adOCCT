@@ -620,8 +620,10 @@ static void AddLine(const Handle(IntPatch_Line)& L,
       Handle(IntPatch_WLine)          WLine(Handle(IntPatch_WLine)::DownCast(L));
       const Handle(IntSurf_LineOn2S)& Lori     = WLine->Curve();
       Handle(IntSurf_LineOn2S)        LineOn2S = new IntSurf_LineOn2S();
-      Standard_Integer ParamMinOnLine = (Standard_Integer)WLine->Vertex(i).ParameterOnLine();
-      Standard_Integer ParamMaxOnLine = (Standard_Integer)WLine->Vertex(j).ParameterOnLine();
+      Standard_Integer                ParamMinOnLine =
+        (Standard_Integer)getPrimal(WLine->Vertex(i).ParameterOnLine());
+      Standard_Integer ParamMaxOnLine =
+        (Standard_Integer)getPrimal(WLine->Vertex(j).ParameterOnLine());
       for (Standard_Integer k = ParamMinOnLine; k <= ParamMaxOnLine; k++)
       {
         LineOn2S->Add(Lori->Value(k));
@@ -853,8 +855,8 @@ static Standard_Boolean IsSegmentSmall(const Handle(IntPatch_WLine)& WLine,
 {
   const IntPatch_Point& vtxF = WLine->Vertex(ivFirst);
   const IntPatch_Point& vtxL = WLine->Vertex(ivLast);
-  Standard_Integer      ipF  = (Standard_Integer)vtxF.ParameterOnLine();
-  Standard_Integer      ipL  = (Standard_Integer)vtxL.ParameterOnLine();
+  Standard_Integer      ipF  = (Standard_Integer)getPrimal(vtxF.ParameterOnLine());
+  Standard_Integer      ipL  = (Standard_Integer)getPrimal(vtxL.ParameterOnLine());
   if (ipF >= ipL)
     return Standard_True;
 
@@ -1029,8 +1031,9 @@ static void TestWLineToRLine(const IntPatch_SequenceOfLine&     slinref,
   Standard_Integer nbvtx = WLine->NbVertex();
   if (nbvtx < 2)
     return;
-  Standard_Integer ParamMinOnLine = (Standard_Integer)WLine->Vertex(1).ParameterOnLine();
-  Standard_Integer ParamMaxOnLine = (Standard_Integer)WLine->Vertex(nbvtx).ParameterOnLine();
+  Standard_Integer ParamMinOnLine = (Standard_Integer)getPrimal(WLine->Vertex(1).ParameterOnLine());
+  Standard_Integer ParamMaxOnLine =
+    (Standard_Integer)getPrimal(WLine->Vertex(nbvtx).ParameterOnLine());
   if (ParamMinOnLine >= ParamMaxOnLine)
     return;
   Standard_Integer midInd = (ParamMaxOnLine + ParamMinOnLine) / 2;
@@ -1039,7 +1042,7 @@ static void TestWLineToRLine(const IntPatch_SequenceOfLine&     slinref,
   Standard_Integer          iv;
   for (iv = 1; iv <= nbvtx; iv++)
   {
-    Standard_Integer plin = (Standard_Integer)WLine->Vertex(iv).ParameterOnLine();
+    Standard_Integer plin = (Standard_Integer)getPrimal(WLine->Vertex(iv).ParameterOnLine());
     if (plin == ParamMinOnLine)
       indicesV1.Append(iv);
     else if (plin == ParamMaxOnLine)
@@ -1094,7 +1097,7 @@ static void TestWLineToRLine(const IntPatch_SequenceOfLine&     slinref,
       {
         if (!(WLine->Vertex(iv).*pIsOnDomS)())
         {
-          Standard_Integer ip = (Standard_Integer)WLine->Vertex(iv).ParameterOnLine();
+          Standard_Integer ip = (Standard_Integer)getPrimal(WLine->Vertex(iv).ParameterOnLine());
           (WLine->Point(ip).*piParOnS)(utst, vtst);
           Standard_Real distmin = RealLast();
           for (aDomain->Init(); aDomain->More(); aDomain->Next())

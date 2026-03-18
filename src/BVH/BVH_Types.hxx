@@ -308,6 +308,15 @@ static inline Standard_Integer IntFloor(const T theValue)
 
   return aRes - static_cast<Standard_Integer>(aRes > theValue);
 }
+
+// AD: specialize IntFloor<adtl::adouble>
+template <>
+inline Standard_Integer IntFloor<adtl::adouble>(const adtl::adouble theValue)
+{
+  const Standard_Integer aRes = static_cast<Standard_Integer>(getPrimal(theValue));
+
+  return aRes - static_cast<Standard_Integer>(aRes > theValue);
+}
 } // namespace BVH
 
 #endif // _BVH_Types_Header

@@ -218,11 +218,11 @@ Standard_Boolean IntersectionWithAnArc(gp_Pnt&                          PSurf,
       {
         Standard_Real xx = PaPr.X();
         xx *= 0.5;
-        if (D1a.X())
+        if (getPrimal(D1a.X()))
         {
           da = -xx / D1a.X();
         }
-        if (d2d.X())
+        if (getPrimal(d2d.X()))
         {
           dr = -xx / d2d.X();
         }
@@ -231,11 +231,11 @@ Standard_Boolean IntersectionWithAnArc(gp_Pnt&                          PSurf,
       {
         Standard_Real yy = PaPr.Y();
         yy *= 0.5;
-        if (D1a.Y())
+        if (getPrimal(D1a.Y()))
         {
           da = -yy / D1a.Y();
         }
-        if (d2d.Y())
+        if (getPrimal(d2d.Y()))
         {
           dr = -yy / d2d.Y();
         }

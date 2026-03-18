@@ -4923,7 +4923,7 @@ static Standard_Integer OCC33048(Draw_Interpretor&, Standard_Integer, const char
     isOK = false;
   }
 
-  if (isOK)
+  if (getPrimal(isOK))
     std::cout << "OK: Kronrod points and weights are calculated successfully." << std::endl;
   else
     std::cout << "Error: Problem occurred during calculation of Kronrod points and weights."

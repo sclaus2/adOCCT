@@ -749,7 +749,7 @@ void AIS_ViewCube::Compute(const Handle(PrsMgr_PresentationManager)&,
       const gp_Ax2        aPosition(aPos, aDir, anUp.Crossed(aDir));
 
       Handle(Graphic3d_Text) aText =
-        new Graphic3d_Text((Standard_ShortReal)myDrawer->TextAspect()->Height());
+        new Graphic3d_Text((Standard_ShortReal)getPrimal(myDrawer->TextAspect()->Height()));
       aText->SetText(aLabel);
       aText->SetOrientation(aPosition);
       aText->SetOwnAnchorPoint(false);

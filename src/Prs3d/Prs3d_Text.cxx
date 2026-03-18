@@ -32,7 +32,8 @@ Handle(Graphic3d_Text) Prs3d_Text::Draw(const Handle(Graphic3d_Group)&    theGro
 {
   theGroup->SetPrimitivesAspect(theAspect->Aspect());
 
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)theAspect->Height());
+  Handle(Graphic3d_Text) aText =
+    new Graphic3d_Text((Standard_ShortReal)getPrimal(theAspect->Height()));
   aText->SetText(theText.ToExtString());
   aText->SetPosition(theAttachmentPoint);
   aText->SetHorizontalAlignment(theAspect->HorizontalJustification());
@@ -51,7 +52,8 @@ Handle(Graphic3d_Text) Prs3d_Text::Draw(const Handle(Graphic3d_Group)&    theGro
 {
   theGroup->SetPrimitivesAspect(theAspect->Aspect());
 
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)theAspect->Height());
+  Handle(Graphic3d_Text) aText =
+    new Graphic3d_Text((Standard_ShortReal)getPrimal(theAspect->Height()));
   aText->SetText(theText.ToExtString());
   aText->SetOrientation(theOrientation);
   aText->SetOwnAnchorPoint(theHasOwnAnchor);

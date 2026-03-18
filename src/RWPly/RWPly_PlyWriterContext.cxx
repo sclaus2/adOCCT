@@ -240,7 +240,8 @@ bool RWPly_PlyWriterContext::WriteVertex(const gp_Pnt&           thePoint,
   }
   else
   {
-    *myStream << (float)thePoint.X() << " " << (float)thePoint.Y() << " " << (float)thePoint.Z();
+    *myStream << (float)getPrimal(thePoint.X()) << " " << (float)getPrimal(thePoint.Y()) << " "
+              << (float)getPrimal(thePoint.Z());
   }
   if (myHasNormals)
   {

@@ -213,9 +213,9 @@ public:
     return AddVertex(RealToShortReal(theX),
                      RealToShortReal(theY),
                      RealToShortReal(theZ),
-                     Standard_ShortReal(theNX),
-                     Standard_ShortReal(theNY),
-                     Standard_ShortReal(theNZ));
+                     Standard_ShortReal(getPrimal(theNX)),
+                     Standard_ShortReal(getPrimal(theNY)),
+                     Standard_ShortReal(getPrimal(theNZ)));
   }
 
   //! Adds a vertice and vertex normal in the vertex array.
@@ -283,8 +283,8 @@ public:
     return AddVertex(RealToShortReal(theX),
                      RealToShortReal(theY),
                      RealToShortReal(theZ),
-                     Standard_ShortReal(theTX),
-                     Standard_ShortReal(theTY));
+                     Standard_ShortReal(getPrimal(theTX)),
+                     Standard_ShortReal(getPrimal(theTY)));
   }
 
   //! Adds a vertice and vertex texture coordinates in the vertex array.
@@ -336,11 +336,11 @@ public:
     return AddVertex(RealToShortReal(theX),
                      RealToShortReal(theY),
                      RealToShortReal(theZ),
-                     Standard_ShortReal(theNX),
-                     Standard_ShortReal(theNY),
-                     Standard_ShortReal(theNZ),
-                     Standard_ShortReal(theTX),
-                     Standard_ShortReal(theTY));
+                     Standard_ShortReal(getPrimal(theNX)),
+                     Standard_ShortReal(getPrimal(theNY)),
+                     Standard_ShortReal(getPrimal(theNZ)),
+                     Standard_ShortReal(getPrimal(theTX)),
+                     Standard_ShortReal(getPrimal(theTY)));
   }
 
   //! Adds a vertice,vertex normal and texture in the vertex array.
@@ -369,9 +369,9 @@ public:
   void SetVertice(const Standard_Integer theIndex, const gp_Pnt& theVertex)
   {
     SetVertice(theIndex,
-               Standard_ShortReal(theVertex.X()),
-               Standard_ShortReal(theVertex.Y()),
-               Standard_ShortReal(theVertex.Z()));
+               Standard_ShortReal(getPrimal(theVertex.X())),
+               Standard_ShortReal(getPrimal(theVertex.Y())),
+               Standard_ShortReal(getPrimal(theVertex.Z())));
   }
 
   //! Change the vertice in the array.
@@ -486,9 +486,9 @@ public:
     {
       Graphic3d_Vec3& aVec = *reinterpret_cast<Graphic3d_Vec3*>(
         myNormData + myNormStride * ((Standard_Size)theIndex - 1));
-      aVec.x() = Standard_ShortReal(theNX);
-      aVec.y() = Standard_ShortReal(theNY);
-      aVec.z() = Standard_ShortReal(theNZ);
+      aVec.x() = Standard_ShortReal(getPrimal(theNX));
+      aVec.y() = Standard_ShortReal(getPrimal(theNY));
+      aVec.z() = Standard_ShortReal(getPrimal(theNZ));
     }
     myAttribs->NbElements = Max(theIndex, myAttribs->NbElements);
   }
@@ -515,8 +515,8 @@ public:
     {
       Graphic3d_Vec2& aVec =
         *reinterpret_cast<Graphic3d_Vec2*>(myTexData + myTexStride * ((Standard_Size)theIndex - 1));
-      aVec.x() = Standard_ShortReal(theTX);
-      aVec.y() = Standard_ShortReal(theTY);
+      aVec.x() = Standard_ShortReal(getPrimal(theTX));
+      aVec.y() = Standard_ShortReal(getPrimal(theTY));
     }
     myAttribs->NbElements = Max(theIndex, myAttribs->NbElements);
   }
@@ -922,9 +922,9 @@ public: //! @name optional array of Bounds/Subgroups within primitive array (e.g
                                    || theIndex > myBounds->NbMaxBounds,
                                  "BAD BOUND index");
     Graphic3d_Vec4& aVec = myBounds->Colors[theIndex - 1];
-    aVec.r()             = Standard_ShortReal(theR);
-    aVec.g()             = Standard_ShortReal(theG);
-    aVec.b()             = Standard_ShortReal(theB);
+    aVec.r()             = Standard_ShortReal(getPrimal(theR));
+    aVec.g()             = Standard_ShortReal(getPrimal(theG));
+    aVec.b()             = Standard_ShortReal(getPrimal(theB));
     aVec.a()             = 1.0f;
     myBounds->NbBounds   = Max(theIndex, myBounds->NbBounds);
   }

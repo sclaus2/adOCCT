@@ -208,8 +208,10 @@ static Standard_Integer WritePly(Draw_Interpretor& theDI,
         myFaceColor.Find(theFace, aColor);
         RWPly_PlyWriterContext::WriteVertex(
           thePoint,
-          Graphic3d_Vec3((float)theNorm.X(), (float)theNorm.Y(), (float)theNorm.Z()),
-          Graphic3d_Vec2((float)theUV.X(), (float)theUV.Y()),
+          Graphic3d_Vec3((float)getPrimal(theNorm.X()),
+                         (float)getPrimal(theNorm.Y()),
+                         (float)getPrimal(theNorm.Z())),
+          Graphic3d_Vec2((float)getPrimal(theUV.X()), (float)getPrimal(theUV.Y())),
           aColor);
       }
 

@@ -132,7 +132,7 @@ Handle(HLRBRep_Data) HLRBRep_ShapeToHLR::Load(const Handle(HLRTopoBRep_OutLiner)
       i1 = VerticesToEdges.FindIndex(VF);
       o1 = TopDS.IsOutV(VF);
       c1 = TopDS.IsIntV(VF);
-      tf = (Standard_ShortReal)BRep_Tool::Tolerance(VF);
+      tf = (Standard_ShortReal)getPrimal(BRep_Tool::Tolerance(VF));
     }
 
     if (VL.IsNull())
@@ -148,7 +148,7 @@ Handle(HLRBRep_Data) HLRBRep_ShapeToHLR::Load(const Handle(HLRTopoBRep_OutLiner)
       i2 = VerticesToEdges.FindIndex(VL);
       o2 = TopDS.IsOutV(VL);
       c2 = TopDS.IsIntV(VL);
-      tl = (Standard_ShortReal)BRep_Tool::Tolerance(VL);
+      tl = (Standard_ShortReal)getPrimal(BRep_Tool::Tolerance(VL));
     }
 
     ed->Set(reg1, regn, Edg, i1, i2, o1, o2, c1, c2, pf, tf, pl, tl);

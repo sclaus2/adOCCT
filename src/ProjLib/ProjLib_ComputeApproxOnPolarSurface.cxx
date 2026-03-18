@@ -1772,7 +1772,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::ProjectUsingIni
 
             if (extrloc.IsDone())
             {
-              Dist2Min = (Standard_Integer)extrloc.SquareDistance();
+              Dist2Min = (Standard_Integer)getPrimal(extrloc.SquareDistance());
               if (Dist2Min < DistTol3d2)
               {
                 (extrloc.Point()).Parameter(u, v);
@@ -1821,7 +1821,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::ProjectUsingIni
 
             if (extrloc.IsDone())
             {
-              Dist2Min = (Standard_Integer)extrloc.SquareDistance();
+              Dist2Min = (Standard_Integer)getPrimal(extrloc.SquareDistance());
               if (Dist2Min < DistTol3d2)
               {
                 (extrloc.Point()).Parameter(u, v);
@@ -1894,7 +1894,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::ProjectUsingIni
 
             if (extrloc.IsDone())
             {
-              Dist2Min = (Standard_Integer)extrloc.SquareDistance();
+              Dist2Min = (Standard_Integer)getPrimal(extrloc.SquareDistance());
               if (Dist2Min < DistTol3d2)
               {
                 (extrloc.Point()).Parameter(u, v);
@@ -1943,7 +1943,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::ProjectUsingIni
 
             if (extrloc.IsDone())
             {
-              Dist2Min = (Standard_Integer)extrloc.SquareDistance();
+              Dist2Min = (Standard_Integer)getPrimal(extrloc.SquareDistance());
               if (Dist2Min < DistTol3d2)
               {
                 (extrloc.Point()).Parameter(u, v);

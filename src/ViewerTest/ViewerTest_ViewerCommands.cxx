@@ -622,10 +622,10 @@ TCollection_AsciiString ViewerTest::ViewerInit(const ViewerTest_VinitParams& the
   {
     Standard_Integer        aTop = 0, aLeft = 0, aRight = 0, aBottom = 0;
     TCollection_AsciiString anOverlappedViewId("");
-    while (IsWindowOverlapped((int)aPxTopLeft.x(),
-                              (int)aPxTopLeft.y(),
-                              (int)aPxTopLeft.x() + (int)aPxSize.x(),
-                              (int)aPxTopLeft.y() + (int)aPxSize.y(),
+    while (IsWindowOverlapped((int)getPrimal(aPxTopLeft.x()),
+                              (int)getPrimal(aPxTopLeft.y()),
+                              (int)getPrimal(aPxTopLeft.x()) + (int)getPrimal(aPxSize.x()),
+                              (int)getPrimal(aPxTopLeft.y()) + (int)getPrimal(aPxSize.y()),
                               anOverlappedViewId))
     {
       ViewerTest_myViews.Find1(anOverlappedViewId)
@@ -633,9 +633,9 @@ TCollection_AsciiString ViewerTest::ViewerInit(const ViewerTest_VinitParams& the
         ->Position(aLeft, aTop, aRight, aBottom);
 
       if (IsWindowOverlapped(aRight + 20,
-                             (int)aPxTopLeft.y(),
-                             aRight + 20 + (int)aPxSize.x(),
-                             (int)aPxTopLeft.y() + (int)aPxSize.y(),
+                             (int)getPrimal(aPxTopLeft.y()),
+                             aRight + 20 + (int)getPrimal(aPxSize.x()),
+                             (int)getPrimal(aPxTopLeft.y()) + (int)getPrimal(aPxSize.y()),
                              anOverlappedViewId)
           && aRight + 2 * aPxSize.x() + 40 > aScreenSize.x())
       {
@@ -724,10 +724,10 @@ TCollection_AsciiString ViewerTest::ViewerInit(const ViewerTest_VinitParams& the
 #elif defined(HAVE_XLIB)
     VT_GetWindow() = new Xw_Window(aGraphicDriver->GetDisplayConnection(),
                                    aTitle.ToCString(),
-                                   (int)aPxTopLeft.x(),
-                                   (int)aPxTopLeft.y(),
-                                   (int)aPxSize.x(),
-                                   (int)aPxSize.y());
+                                   (int)getPrimal(aPxTopLeft.x()),
+                                   (int)getPrimal(aPxTopLeft.y()),
+                                   (int)getPrimal(aPxSize.x()),
+                                   (int)getPrimal(aPxSize.y()));
 #elif defined(__APPLE__)
     VT_GetWindow() = new Cocoa_Window(aTitle.ToCString(),
                                       (int)aPxTopLeft.x(),
@@ -5191,7 +5191,7 @@ static int VGrid(Draw_Interpretor& /*theDI*/, Standard_Integer theArgNb, const c
     if (hasStep)
     {
       aRadiusStep     = aNewStepXY[0];
-      aDivisionNumber = (int)aNewStepXY[1];
+      aDivisionNumber = (int)getPrimal(aNewStepXY[1]);
       if (aDivisionNumber < 1)
       {
         Message::SendFail() << "Syntax error: invalid division number '" << aNewStepXY[1] << "'";
@@ -5378,7 +5378,7 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
     switch (aMode)
     {
       case View:
-        theDI << "View Vv: " << getPrimal(aView->Convert((Standard_Integer)aCoord(1)));
+        theDI << "View Vv: " << getPrimal(aView->Convert((Standard_Integer)getPrimal(aCoord(1))));
         return 0;
       case Window:
         theDI << "Window Vp: " << aView->Convert(aCoord(1));
@@ -5396,8 +5396,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
     switch (aMode)
     {
       case Model:
-        aView->Convert((Standard_Integer)aCoord(1),
-                       (Standard_Integer)aCoord(2),
+        aView->Convert((Standard_Integer)getPrimal(aCoord(1)),
+                       (Standard_Integer)getPrimal(aCoord(2)),
                        aXYZ[0],
                        aXYZ[1],
                        aXYZ[2]);
@@ -5406,7 +5406,10 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
         return 0;
 
       case View:
-        aView->Convert((Standard_Integer)aCoord(1), (Standard_Integer)aCoord(2), aXYZ[0], aXYZ[1]);
+        aView->Convert((Standard_Integer)getPrimal(aCoord(1)),
+                       (Standard_Integer)getPrimal(aCoord(2)),
+                       aXYZ[0],
+                       aXYZ[1]);
         theDI << "View Xv,Yv: " << getPrimal(aXYZ[0]) << " " << getPrimal(aXYZ[1]) << "\n";
         return 0;
 
@@ -5416,8 +5419,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
         return 0;
 
       case Grid:
-        aView->Convert((Standard_Integer)aCoord(1),
-                       (Standard_Integer)aCoord(2),
+        aView->Convert((Standard_Integer)getPrimal(aCoord(1)),
+                       (Standard_Integer)getPrimal(aCoord(2)),
                        aXYZ[0],
                        aXYZ[1],
                        aXYZ[2]);
@@ -5427,8 +5430,8 @@ static int VConvert(Draw_Interpretor& theDI, Standard_Integer theArgNb, const ch
         return 0;
 
       case Ray:
-        aView->ConvertWithProj((Standard_Integer)aCoord(1),
-                               (Standard_Integer)aCoord(2),
+        aView->ConvertWithProj((Standard_Integer)getPrimal(aCoord(1)),
+                               (Standard_Integer)getPrimal(aCoord(2)),
                                aXYZ[0],
                                aXYZ[1],
                                aXYZ[2],
@@ -7789,7 +7792,7 @@ static Standard_Integer VAnimation(Draw_Interpretor& theDI,
   int64_t               aNbFrames = 0;
   Message_ProgressScope aPS(Message_ProgressIndicator::Start(aProgress),
                             "Video recording, sec",
-                            Max(1, Standard_Integer(Standard_Real(aPlayDuration / aPlaySpeed))));
+                            Max(1, Standard_Integer(getPrimal(aPlayDuration / aPlaySpeed))));
   Standard_Integer      aSecondsProgress = 0;
   for (; aPts <= anUpperPts && aPS.More();)
   {
@@ -7836,7 +7839,7 @@ static Standard_Integer VAnimation(Draw_Interpretor& theDI,
       aView->Redraw();
     }
 
-    while (aSecondsProgress < Standard_Integer(Standard_Real(aRecPts / aPlaySpeed)))
+    while (aSecondsProgress < Standard_Integer(getPrimal(aRecPts / aPlaySpeed)))
     {
       aPS.Next();
       ++aSecondsProgress;
@@ -10339,7 +10342,7 @@ static int VLight(Draw_Interpretor& theDi, Standard_Integer theArgsNb, const cha
       if (!aLightPrs2->TransformPersistence().IsNull()
           && aLightPrs2->TransformPersistence()->IsTrihedronOr2d())
       {
-        const Standard_Integer aPrsSize = (Standard_Integer)aLightPrs2->Size();
+        const Standard_Integer aPrsSize = (Standard_Integer)getPrimal(aLightPrs2->Size());
         aLightPrs2->TransformPersistence()->SetOffset2d(
           Graphic3d_Vec2i(aTopStack + aPrsSize, aPrsSize));
         aTopStack += aPrsSize + aPrsSize / 2;
@@ -11089,7 +11092,7 @@ static Standard_Integer VRenderParams(Draw_Interpretor& theDI,
       }
       else
       {
-        aParams.RenderResolutionScale = Standard_ShortReal(aScale);
+        aParams.RenderResolutionScale = Standard_ShortReal(getPrimal(aScale));
       }
     }
     else if (aFlag == "-raydepth" || aFlag == "-ray_depth")
@@ -11271,7 +11274,7 @@ static Standard_Integer VRenderParams(Draw_Interpretor& theDI,
       }
       else
       {
-        aParams.RadianceClampingValue = static_cast<Standard_ShortReal>(aMaxRadiance);
+        aParams.RadianceClampingValue = static_cast<Standard_ShortReal>(getPrimal(aMaxRadiance));
       }
     }
     else if (aFlag == "-iss")

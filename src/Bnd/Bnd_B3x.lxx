@@ -36,12 +36,21 @@ inline Bnd_B3x::Bnd_B3x()
  */
 inline Bnd_B3x::Bnd_B3x(const gp_XYZ& theCenter, const gp_XYZ& theHSize)
 {
-  myCenter[0] = RealType(theCenter.X());
-  myCenter[1] = RealType(theCenter.Y());
-  myCenter[2] = RealType(theCenter.Z());
-  myHSize[0]  = RealType(theHSize.X());
-  myHSize[1]  = RealType(theHSize.Y());
-  myHSize[2]  = RealType(theHSize.Z());
+#if defined(Bnd_Use_AD)
+  myCenter[0] = theCenter.X();
+  myCenter[1] = theCenter.Y();
+  myCenter[2] = theCenter.Z();
+  myHSize[0]  = theHSize.X();
+  myHSize[1]  = theHSize.Y();
+  myHSize[2]  = theHSize.Z();
+#else
+  myCenter[0] = RealType(getPrimal(theCenter.X()));
+  myCenter[1] = RealType(getPrimal(theCenter.Y()));
+  myCenter[2] = RealType(getPrimal(theCenter.Z()));
+  myHSize[0]  = RealType(getPrimal(theHSize.X()));
+  myHSize[1]  = RealType(getPrimal(theHSize.Y()));
+  myHSize[2]  = RealType(getPrimal(theHSize.Z()));
+#endif
 }
 
 /**
@@ -114,9 +123,15 @@ inline Standard_Real Bnd_B3x::SquareExtent() const
  */
 inline void Bnd_B3x::SetCenter(const gp_XYZ& theCenter)
 {
-  myCenter[0] = RealType(theCenter.X());
-  myCenter[1] = RealType(theCenter.Y());
-  myCenter[2] = RealType(theCenter.Z());
+#if defined(Bnd_Use_AD)
+  myCenter[0] = theCenter.X();
+  myCenter[1] = theCenter.Y();
+  myCenter[2] = theCenter.Z();
+#else
+  myCenter[0] = RealType(getPrimal(theCenter.X()));
+  myCenter[1] = RealType(getPrimal(theCenter.Y()));
+  myCenter[2] = RealType(getPrimal(theCenter.Z()));
+#endif
 }
 
 /**
@@ -124,9 +139,15 @@ inline void Bnd_B3x::SetCenter(const gp_XYZ& theCenter)
  */
 inline void Bnd_B3x::SetHSize(const gp_XYZ& theHSize)
 {
-  myHSize[0] = RealType(theHSize.X());
-  myHSize[1] = RealType(theHSize.Y());
-  myHSize[2] = RealType(theHSize.Z());
+#if defined(Bnd_Use_AD)
+  myHSize[0] = theHSize.X();
+  myHSize[1] = theHSize.Y();
+  myHSize[2] = theHSize.Z();
+#else
+  myHSize[0] = RealType(getPrimal(theHSize.X()));
+  myHSize[1] = RealType(getPrimal(theHSize.Y()));
+  myHSize[2] = RealType(getPrimal(theHSize.Z()));
+#endif
 }
 
 /**
@@ -137,9 +158,15 @@ inline void Bnd_B3x::SetHSize(const gp_XYZ& theHSize)
 inline void Bnd_B3x::Enlarge(const Standard_Real aDiff)
 {
   const Standard_Real aD = Abs(aDiff);
-  myHSize[0] += RealType(aD);
-  myHSize[1] += RealType(aD);
-  myHSize[2] += RealType(aD);
+#if defined(Bnd_Use_AD)
+  myHSize[0] += aD;
+  myHSize[1] += aD;
+  myHSize[2] += aD;
+#else
+  myHSize[0] += RealType(getPrimal(aD));
+  myHSize[1] += RealType(getPrimal(aD));
+  myHSize[2] += RealType(getPrimal(aD));
+#endif
 }
 
 /**
@@ -147,9 +174,14 @@ inline void Bnd_B3x::Enlarge(const Standard_Real aDiff)
  */
 inline Standard_Boolean Bnd_B3x::IsOut(const gp_XYZ& thePnt) const
 {
-  return (Abs(RealType(thePnt.X()) - myCenter[0]) > myHSize[0]
-          || Abs(RealType(thePnt.Y()) - myCenter[1]) > myHSize[1]
-          || Abs(RealType(thePnt.Z()) - myCenter[2]) > myHSize[2]);
+#if defined(Bnd_Use_AD)
+  return (Abs(thePnt.X() - myCenter[0]) > myHSize[0] || Abs(thePnt.Y() - myCenter[1]) > myHSize[1]
+          || Abs(thePnt.Z() - myCenter[2]) > myHSize[2]);
+#else
+  return (Abs(RealType(getPrimal(thePnt.X())) - myCenter[0]) > myHSize[0]
+          || Abs(RealType(getPrimal(thePnt.Y())) - myCenter[1]) > myHSize[1]
+          || Abs(RealType(getPrimal(thePnt.Z())) - myCenter[2]) > myHSize[2]);
+#endif
 }
 
 /**

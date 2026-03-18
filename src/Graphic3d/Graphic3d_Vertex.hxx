@@ -20,6 +20,7 @@
 #include <Standard_DefineAlloc.hxx>
 #include <Standard_Macro.hxx>
 #include <Standard_ShortReal.hxx>
+#include <Standard_Real.hxx>
 #include <Standard_OStream.hxx>
 
 //! This class represents a graphical 3D point.
@@ -58,9 +59,9 @@ public:
   //! Modifies the coordinates.
   void SetCoord(const Standard_Real theX, const Standard_Real theY, const Standard_Real theZ)
   {
-    xyz[0] = Standard_ShortReal(theX);
-    xyz[1] = Standard_ShortReal(theY);
-    xyz[2] = Standard_ShortReal(theZ);
+    xyz[0] = Standard_ShortReal(getPrimal(theX));
+    xyz[1] = Standard_ShortReal(getPrimal(theY));
+    xyz[2] = Standard_ShortReal(getPrimal(theZ));
   }
 
   //! Returns the coordinates.

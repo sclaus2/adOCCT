@@ -443,16 +443,16 @@ std::pair<Standard_Integer, Standard_Integer> BRepMesh_GeomTool::CellsCount(
   Standard_Integer aCellsCountU, aCellsCountV;
   if (aType == GeomAbs_Torus)
   {
-    aCellsCountU =
-      (Standard_Integer)Ceiling(Pow(2, Log10((aRangeU.second - aRangeU.first) / aDelta.first)));
-    aCellsCountV =
-      (Standard_Integer)Ceiling(Pow(2, Log10((aRangeV.second - aRangeV.first) / aDelta.second)));
+    aCellsCountU = (Standard_Integer)getPrimal(
+      Ceiling(Pow(2, Log10((aRangeU.second - aRangeU.first) / aDelta.first))));
+    aCellsCountV = (Standard_Integer)getPrimal(
+      Ceiling(Pow(2, Log10((aRangeV.second - aRangeV.first) / aDelta.second))));
   }
   else if (aType == GeomAbs_Cylinder)
   {
-    aCellsCountU = (Standard_Integer)Ceiling(Pow(
+    aCellsCountU = (Standard_Integer)getPrimal(Ceiling(Pow(
       2,
-      Log10((aRangeU.second - aRangeU.first) / aDelta.first / (aRangeV.second - aRangeV.first))));
+      Log10((aRangeU.second - aRangeU.first) / aDelta.first / (aRangeV.second - aRangeV.first)))));
     aCellsCountV = (Standard_Integer)getPrimal(
       Ceiling(Pow(2, Log10((aRangeV.second - aRangeV.first) / anErrFactorV))));
   }

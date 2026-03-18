@@ -418,9 +418,9 @@ HLRAlgo_BiPoint::PointsT& HLRAlgo_PolyAlgo::Hide(HLRAlgo_EdgeStatus& theStatus,
   HLRAlgo_BiPoint::PointsT&  aPoints   = aBP.Points();
   HLRAlgo_BiPoint::IndicesT& anIndices = aBP.Indices();
   theStatus                            = HLRAlgo_EdgeStatus(0.0,
-                                 (Standard_ShortReal)myTriangle.TolParam,
+                                 (Standard_ShortReal)getPrimal(myTriangle.TolParam),
                                  1.0,
-                                 (Standard_ShortReal)myTriangle.TolParam);
+                                 (Standard_ShortReal)getPrimal(myTriangle.TolParam));
   theIndex                             = anIndices.ShapeIndex;
   theReg1                              = aBP.Rg1Line();
   theRegn                              = aBP.RgNLine();

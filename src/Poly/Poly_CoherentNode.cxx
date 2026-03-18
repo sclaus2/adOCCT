@@ -36,9 +36,9 @@ void Poly_CoherentNode::Clear(const Handle(NCollection_BaseAllocator)& theAlloc)
 
 void Poly_CoherentNode::SetNormal(const gp_XYZ& theVector)
 {
-  myNormal[0] = static_cast<Standard_ShortReal>(theVector.X());
-  myNormal[1] = static_cast<Standard_ShortReal>(theVector.Y());
-  myNormal[2] = static_cast<Standard_ShortReal>(theVector.Z());
+  myNormal[0] = static_cast<Standard_ShortReal>(getPrimal(theVector.X()));
+  myNormal[1] = static_cast<Standard_ShortReal>(getPrimal(theVector.Y()));
+  myNormal[2] = static_cast<Standard_ShortReal>(getPrimal(theVector.Z()));
 }
 
 //=================================================================================================

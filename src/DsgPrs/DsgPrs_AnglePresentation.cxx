@@ -301,7 +301,7 @@ void DsgPrs_AnglePresentation::Add(const Handle(Prs3d_Presentation)& aPresentati
   }
 
   const Standard_Real    alpha = Abs(ufin - udeb);
-  const Standard_Integer nbp   = Max(4, Standard_Integer(Standard_Real(50. * alpha / M_PI)));
+  const Standard_Integer nbp   = Max(4, Standard_Integer(getPrimal(50. * alpha / M_PI)));
   const Standard_Real    dteta = alpha / (nbp - 1);
 
   Handle(Graphic3d_ArrayOfPolylines) aPrims = new Graphic3d_ArrayOfPolylines(nbp + 4, 3);
@@ -408,7 +408,7 @@ void DsgPrs_AnglePresentation::Add(const Handle(Prs3d_Presentation)& aPresentati
   if (theval > Precision::Angular() && Abs(M_PI - theval) > Precision::Angular())
   {
     const Standard_Real    Alpha      = Abs(LastParAngleCirc - FirstParAngleCirc);
-    const Standard_Integer NodeNumber = Max(4, Standard_Integer(Standard_Real(50. * Alpha / M_PI)));
+    const Standard_Integer NodeNumber = Max(4, Standard_Integer(getPrimal(50. * Alpha / M_PI)));
     const Standard_Real    delta      = Alpha / (Standard_Real)(NodeNumber - 1);
 
     aPrims = new Graphic3d_ArrayOfPolylines(NodeNumber + 4, 3);
@@ -460,10 +460,9 @@ void DsgPrs_AnglePresentation::Add(const Handle(Prs3d_Presentation)& aPresentati
     else
     {
       // Creating the arc from AttachmentPoint2 to its projection
-      const Standard_Real    Alpha = Abs(LastParAttachCirc - FirstParAttachCirc);
-      const Standard_Integer NodeNumber =
-        Max(4, Standard_Integer(Standard_Real(50. * Alpha / M_PI)));
-      const Standard_Real delta = Alpha / (Standard_Real)(NodeNumber - 1);
+      const Standard_Real    Alpha      = Abs(LastParAttachCirc - FirstParAttachCirc);
+      const Standard_Integer NodeNumber = Max(4, Standard_Integer(getPrimal(50. * Alpha / M_PI)));
+      const Standard_Real    delta      = Alpha / (Standard_Real)(NodeNumber - 1);
 
       aPrims = new Graphic3d_ArrayOfPolylines(NodeNumber);
       for (Standard_Integer i = 0; i < NodeNumber; i++, FirstParAttachCirc += delta)
@@ -553,7 +552,7 @@ void DsgPrs_AnglePresentation::Add(const Handle(Prs3d_Presentation)& aPresentati
   }
 
   const Standard_Real    alpha = Abs(ufin - udeb);
-  const Standard_Integer nbp   = Max(4, Standard_Integer(Standard_Real(50. * alpha / M_PI)));
+  const Standard_Integer nbp   = Max(4, Standard_Integer(getPrimal(50. * alpha / M_PI)));
   const Standard_Real    dteta = alpha / (nbp - 1);
 
   Handle(Graphic3d_ArrayOfPolylines) aPrims = new Graphic3d_ArrayOfPolylines(nbp + 4, 3);
@@ -679,7 +678,7 @@ void DsgPrs_AnglePresentation::Add(const Handle(Prs3d_Presentation)& aPresentati
   }
 
   const Standard_Real    alpha = Abs(ufin - udeb);
-  const Standard_Integer nbp   = Max(4, Standard_Integer(Standard_Real(50. * alpha / M_PI)));
+  const Standard_Integer nbp   = Max(4, Standard_Integer(getPrimal(50. * alpha / M_PI)));
   const Standard_Real    dteta = alpha / (nbp - 1);
 
   Handle(Graphic3d_ArrayOfPolylines) aPrims = new Graphic3d_ArrayOfPolylines(nbp + 4, 3);
@@ -802,7 +801,7 @@ void DsgPrs_AnglePresentation::Add(const Handle(Prs3d_Presentation)& aPresentati
   }
 
   const Standard_Real    alpha = Abs(ufin - udeb);
-  const Standard_Integer nbp   = Max(4, Standard_Integer(Standard_Real(50. * alpha / M_PI)));
+  const Standard_Integer nbp   = Max(4, Standard_Integer(getPrimal(50. * alpha / M_PI)));
   const Standard_Real    dteta = alpha / (nbp - 1);
 
   Handle(Graphic3d_ArrayOfPolylines) aPrims = new Graphic3d_ArrayOfPolylines(nbp + 4, 3);
@@ -874,7 +873,7 @@ void DsgPrs_AnglePresentation::Add(const Handle(Prs3d_Presentation)& aPresentati
   gp_Ax2  ax(CenterPoint, theAxe.Direction(), dir1);
   gp_Circ cer(ax, CenterPoint.Distance(AttachmentPoint1));
 
-  const Standard_Integer nbp   = Max(4, Standard_Integer(Standard_Real(50. * theval / M_PI)));
+  const Standard_Integer nbp   = Max(4, Standard_Integer(getPrimal(50. * theval / M_PI)));
   const Standard_Real    dteta = theval / (nbp - 1);
 
   Handle(Graphic3d_ArrayOfPolylines) aPrims = new Graphic3d_ArrayOfPolylines(nbp);

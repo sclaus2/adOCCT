@@ -638,7 +638,7 @@ Standard_Boolean Geom2dGcc_Circ2d3Tan::IsDone() const
 
 Standard_Integer Geom2dGcc_Circ2d3Tan::NbSolutions() const
 {
-  return (Standard_Integer)NbrSol;
+  return (Standard_Integer)getPrimal(NbrSol);
 }
 
 gp_Circ2d Geom2dGcc_Circ2d3Tan::ThisSolution(const Standard_Integer Index) const

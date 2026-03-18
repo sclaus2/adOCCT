@@ -491,7 +491,7 @@ void AIS_Shape::UnsetColor()
     if (IsTransparent())
     {
       Standard_Real aTransp = myDrawer->ShadingAspect()->Transparency(myCurrentFacingModel);
-      mat.SetTransparency(Standard_ShortReal(aTransp));
+      mat.SetTransparency(Standard_ShortReal(getPrimal(aTransp)));
     }
     myDrawer->ShadingAspect()->SetMaterial(mat, myCurrentFacingModel);
     myDrawer->ShadingAspect()->Aspect()->SetInteriorColor(anInteriorColors[0]);

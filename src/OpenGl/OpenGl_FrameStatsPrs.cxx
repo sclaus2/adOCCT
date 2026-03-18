@@ -321,10 +321,10 @@ void OpenGl_FrameStatsPrs::updateChart(const Handle(OpenGl_Workspace)& theWorksp
     const OpenGl_Vec3Vec4ub aLines[4] = {
       {Graphic3d_Vec3((float)anOffset.x(), (float)anOffset.y(), 0.0f), aWhite},
       {Graphic3d_Vec3(float(anOffset.x() + aCharSize.x()), (float)anOffset.y(), 0.0f), aWhite},
-      {Graphic3d_Vec3((float)anOffset.x(), float(Standard_Real(anOffset.y() - aBinSize.y())), 0.0f),
+      {Graphic3d_Vec3((float)anOffset.x(), float(getPrimal(anOffset.y() - aBinSize.y())), 0.0f),
        aWhite},
-      {Graphic3d_Vec3(float(Standard_Real(anOffset.x() + aCharSize.x())),
-                      float(Standard_Real(anOffset.y() - aBinSize.y())),
+      {Graphic3d_Vec3(float(anOffset.x() + aCharSize.x()),
+                      float(getPrimal(anOffset.y() - aBinSize.y())),
                       +0.0f),
        aWhite},
     };
@@ -356,11 +356,11 @@ void OpenGl_FrameStatsPrs::updateChart(const Handle(OpenGl_Workspace)& theWorksp
 
     myChartLabels[1].Text()->SetText(aLabels[isTopDown ? 1 : 1].ToCString());
     myChartLabels[1].Text()->SetPosition(
-      gp_Pnt(aLabX, float(Standard_Real(anOffset.y() - aBinSize.y() / 2)), 0.0f));
+      gp_Pnt(aLabX, float(getPrimal(anOffset.y() - aBinSize.y() / 2)), 0.0f));
 
     myChartLabels[2].Text()->SetText(aLabels[isTopDown ? 2 : 0].ToCString());
     myChartLabels[2].Text()->SetPosition(
-      gp_Pnt(aLabX, float(Standard_Real(anOffset.y() - aBinSize.y())), 0.0f));
+      gp_Pnt(aLabX, float(getPrimal(anOffset.y() - aBinSize.y())), 0.0f));
 
     for (int i = 0; i < 3; i++)
     {

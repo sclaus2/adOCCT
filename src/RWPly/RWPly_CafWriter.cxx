@@ -251,13 +251,15 @@ bool RWPly_CafWriter::writeNodes(RWPly_PlyWriterContext&    theWriter,
     if (theFace.HasNormals())
     {
       gp_Dir aNorm = theFace.NormalTransformed(aNodeIter);
-      aNormVec.SetValues((float)aNorm.X(), (float)aNorm.Y(), (float)aNorm.Z());
+      aNormVec.SetValues((float)getPrimal(aNorm.X()),
+                         (float)getPrimal(aNorm.Y()),
+                         (float)getPrimal(aNorm.Z()));
       myCSTrsf.TransformNormal(aNormVec);
     }
     if (theFace.HasTexCoords())
     {
       const gp_Pnt2d aUV = theFace.NodeTexCoord(aNodeIter);
-      aTexVec.SetValues((float)aUV.X(), (float)aUV.Y());
+      aTexVec.SetValues((float)getPrimal(aUV.X()), (float)getPrimal(aUV.Y()));
     }
 
     if (!theWriter.WriteVertex(aNode, aNormVec, aTexVec, aColorVec))

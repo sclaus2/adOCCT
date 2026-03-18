@@ -2178,31 +2178,31 @@ void OpenGl_View::updatePerspCameraPT(const OpenGl_Mat4&           theOrientatio
 
   // get camera stereo params
   float anIOD = myCamera->GetIODType() == Graphic3d_Camera::IODType_Relative
-                  ? static_cast<float>(Standard_Real(myCamera->IOD() * myCamera->Distance()))
-                  : static_cast<float>(myCamera->IOD());
+                  ? static_cast<float>(getPrimal(myCamera->IOD() * myCamera->Distance()))
+                  : static_cast<float>(getPrimal(myCamera->IOD()));
 
   float aZFocus = myCamera->ZFocusType() == Graphic3d_Camera::FocusType_Relative
-                    ? static_cast<float>(Standard_Real(myCamera->ZFocus() * myCamera->Distance()))
-                    : static_cast<float>(myCamera->ZFocus());
+                    ? static_cast<float>(getPrimal(myCamera->ZFocus() * myCamera->Distance()))
+                    : static_cast<float>(getPrimal(myCamera->ZFocus()));
 
   // get camera view vectors
   const gp_Pnt anOrig = myCamera->Eye();
 
-  myEyeOrig = OpenGl_Vec3(static_cast<float>(anOrig.X()),
-                          static_cast<float>(anOrig.Y()),
-                          static_cast<float>(anOrig.Z()));
+  myEyeOrig = OpenGl_Vec3(static_cast<float>(getPrimal(anOrig.X())),
+                          static_cast<float>(getPrimal(anOrig.Y())),
+                          static_cast<float>(getPrimal(anOrig.Z())));
 
   const gp_Dir aView = myCamera->Direction();
 
-  OpenGl_Vec3 anEyeViewMono = OpenGl_Vec3(static_cast<float>(aView.X()),
-                                          static_cast<float>(aView.Y()),
-                                          static_cast<float>(aView.Z()));
+  OpenGl_Vec3 anEyeViewMono = OpenGl_Vec3(static_cast<float>(getPrimal(aView.X())),
+                                          static_cast<float>(getPrimal(aView.Y())),
+                                          static_cast<float>(getPrimal(aView.Z())));
 
   const gp_Dir anUp = myCamera->Up();
 
-  myEyeVert = OpenGl_Vec3(static_cast<float>(anUp.X()),
-                          static_cast<float>(anUp.Y()),
-                          static_cast<float>(anUp.Z()));
+  myEyeVert = OpenGl_Vec3(static_cast<float>(getPrimal(anUp.X())),
+                          static_cast<float>(getPrimal(anUp.Y())),
+                          static_cast<float>(getPrimal(anUp.Z())));
 
   myEyeSide = OpenGl_Vec3::Cross(anEyeViewMono, myEyeVert);
 
@@ -2672,9 +2672,9 @@ Standard_Boolean OpenGl_View::updateRaytraceLightSources(const OpenGl_Mat4& theI
 
     if (aLight.Type() != Graphic3d_TypeOfLightSource_Directional)
     {
-      aPosition = BVH_Vec4f(static_cast<float>(aLight.Position().X()),
-                            static_cast<float>(aLight.Position().Y()),
-                            static_cast<float>(aLight.Position().Z()),
+      aPosition = BVH_Vec4f(static_cast<float>(getPrimal(aLight.Position().X())),
+                            static_cast<float>(getPrimal(aLight.Position().Y())),
+                            static_cast<float>(getPrimal(aLight.Position().Z())),
                             1.0f);
 
       // store smoothing radius in W-component

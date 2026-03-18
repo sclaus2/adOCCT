@@ -95,8 +95,8 @@ void Aspect_RectangularGrid::Compute(const Standard_Real X,
 {
   Standard_Real    D1      = b1 * X - a1 * Y - c1;
   Standard_Real    D2      = b2 * X - a2 * Y - c2;
-  Standard_Integer n1      = Standard_Integer(Standard_Real(Abs(D1) / myXStep + 0.5));
-  Standard_Integer n2      = Standard_Integer(Standard_Real(Abs(D2) / myYStep + 0.5));
+  Standard_Integer n1      = Standard_Integer(getPrimal(Abs(D1) / myXStep + 0.5));
+  Standard_Integer n2      = Standard_Integer(getPrimal(Abs(D2) / myYStep + 0.5));
   Standard_Real    offset1 = c1 + Standard_Real(n1) * Sign(myXStep, D1);
   Standard_Real    offset2 = c2 + Standard_Real(n2) * Sign(myYStep, D2);
   Standard_Real    Delta   = a1 * b2 - b1 * a2;

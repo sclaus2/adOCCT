@@ -949,9 +949,9 @@ void HLRAlgo_PolyData::hideByOneTriangle(const HLRAlgo_BiPoint::PointsT& thePoin
     status.HideAll();
   else
     status.Hide(psta,
-                (Standard_ShortReal)theTriangle.TolParam,
+                (Standard_ShortReal)getPrimal(theTriangle.TolParam),
                 pend,
-                (Standard_ShortReal)theTriangle.TolParam,
+                (Standard_ShortReal)getPrimal(theTriangle.TolParam),
                 Standard_False,
                 Standard_False);
 }

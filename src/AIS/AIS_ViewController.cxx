@@ -429,7 +429,8 @@ void AIS_ViewController::flushGestures(const Handle(AIS_InteractiveContext)&,
         myGL.OrbitRotation.ToRotate     = true;
         myGL.OrbitRotation.PointTo      = myGL.OrbitRotation.PointStart + aRotDelta * aRotAccel;
         myGL.Dragging.ToMove            = true;
-        myGL.Dragging.PointTo.SetValues((int)aTouch.To.x(), (int)aTouch.To.y());
+        myGL.Dragging.PointTo.SetValues((int)getPrimal(aTouch.To.x()),
+                                        (int)getPrimal(aTouch.To.y()));
       }
       else
       {
@@ -437,7 +438,8 @@ void AIS_ViewController::flushGestures(const Handle(AIS_InteractiveContext)&,
         myGL.ViewRotation.ToRotate      = true;
         myGL.ViewRotation.PointTo       = myGL.ViewRotation.PointStart + aRotDelta * aRotAccel;
         myGL.Dragging.ToMove            = true;
-        myGL.Dragging.PointTo.SetValues((int)aTouch.To.x(), (int)aTouch.To.y());
+        myGL.Dragging.PointTo.SetValues((int)getPrimal(aTouch.To.x()),
+                                        (int)getPrimal(aTouch.To.y()));
       }
 
       aTouch.From = aTouch.To;
@@ -1121,7 +1123,7 @@ void AIS_ViewController::AddTouchPoint(Standard_Size          theId,
     if (myToAllowDragging)
     {
       myUI.Dragging.ToStart = true;
-      myUI.Dragging.PointStart.SetValues((int)thePnt.x(), (int)thePnt.y());
+      myUI.Dragging.PointStart.SetValues((int)getPrimal(thePnt.x()), (int)getPrimal(thePnt.y()));
     }
   }
   else if (myTouchPoints.Extent() == 2)
@@ -1476,9 +1478,9 @@ void AIS_ViewController::handleZRotate(const Handle(V3d_View)& theView)
   Graphic3d_Vec2i aViewPort;
   theView->Window()->Size(aViewPort.x(), aViewPort.y());
   Graphic3d_Vec2d aRotPnt(0.99 * aViewPort.x(), 0.5 * aViewPort.y());
-  theView->StartRotation(int(aRotPnt.x()), int(aRotPnt.y()), 0.4);
+  theView->StartRotation(int(getPrimal(aRotPnt.x())), int(getPrimal(aRotPnt.y())), 0.4);
   aRotPnt.y() += myGL.ZRotate.Angle * aViewPort.y();
-  theView->Rotation(int(aRotPnt.x()), int(aRotPnt.y()));
+  theView->Rotation(int(getPrimal(aRotPnt.x())), int(getPrimal(aRotPnt.y())));
   theView->Invalidate();
   theView->View()->SynchronizeXRPosedToBaseCamera();
 }
@@ -1897,8 +1899,8 @@ gp_Pnt AIS_ViewController::GravityPoint(const Handle(AIS_InteractiveContext)& th
   {
     case AIS_RotationMode_PickLast:
     case AIS_RotationMode_PickCenter: {
-      Graphic3d_Vec2i aCursor((int)myGL.OrbitRotation.PointStart.x(),
-                              (int)myGL.OrbitRotation.PointStart.y());
+      Graphic3d_Vec2i aCursor((int)getPrimal(myGL.OrbitRotation.PointStart.x()),
+                              (int)getPrimal(myGL.OrbitRotation.PointStart.y()));
       if (myRotationMode == AIS_RotationMode_PickCenter)
       {
         Graphic3d_Vec2i aViewPort;
@@ -3323,7 +3325,8 @@ void AIS_ViewController::handleXRPresentations(const Handle(AIS_InteractiveConte
       aRole = Aspect_XRTrackedDeviceRole_RightHand;
     }
 
-    if (!aPosePrs.IsNull() && aPosePrs->UnitFactor() != (float)theView->View()->UnitFactor())
+    if (!aPosePrs.IsNull()
+        && aPosePrs->UnitFactor() != (float)getPrimal(theView->View()->UnitFactor()))
     {
       theCtx->Remove(aPosePrs, false);
       aPosePrs.Nullify();
@@ -3345,7 +3348,7 @@ void AIS_ViewController::handleXRPresentations(const Handle(AIS_InteractiveConte
       {
         aPosePrs = new AIS_XRTrackedDevice();
       }
-      aPosePrs->SetUnitFactor((float)theView->View()->UnitFactor());
+      aPosePrs->SetUnitFactor((float)getPrimal(theView->View()->UnitFactor()));
       aPosePrs->SetMutable(true);
       aPosePrs->SetInfiniteState(true);
     }

@@ -668,10 +668,10 @@ void PrsMgr_PresentableObject::SetTransparency(const Standard_Real theValue)
 {
   myDrawer->SetupOwnShadingAspect();
   myDrawer->ShadingAspect()->Aspect()->ChangeFrontMaterial().SetTransparency(
-    Standard_ShortReal(theValue));
+    Standard_ShortReal(getPrimal(theValue)));
   myDrawer->ShadingAspect()->Aspect()->ChangeBackMaterial().SetTransparency(
-    Standard_ShortReal(theValue));
-  myDrawer->SetTransparency(Standard_ShortReal(theValue));
+    Standard_ShortReal(getPrimal(theValue)));
+  myDrawer->SetTransparency(Standard_ShortReal(getPrimal(theValue)));
 }
 
 //=================================================================================================

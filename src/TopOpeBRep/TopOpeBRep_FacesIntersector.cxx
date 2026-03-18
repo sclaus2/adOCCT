@@ -960,9 +960,9 @@ static Handle(IntPatch_RLine) BuildRLine(const IntPatch_SequenceOfLine&     theS
           }
 
           Standard_Integer ParamMinOnLine =
-            (Standard_Integer)atmpWLine->Vertex(1).ParameterOnLine();
+            (Standard_Integer)getPrimal(atmpWLine->Vertex(1).ParameterOnLine());
           Standard_Integer ParamMaxOnLine =
-            (Standard_Integer)atmpWLine->Vertex(atmpWLine->NbVertex()).ParameterOnLine();
+            (Standard_Integer)getPrimal(atmpWLine->Vertex(atmpWLine->NbVertex()).ParameterOnLine());
 
           for (Standard_Integer k = ParamMinOnLine; k <= ParamMaxOnLine; k++)
           {

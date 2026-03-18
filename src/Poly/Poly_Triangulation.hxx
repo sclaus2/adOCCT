@@ -219,7 +219,10 @@ public:
   //! @param[in] theNormal normalized 3D vector defining a surface normal
   void SetNormal(const Standard_Integer theIndex, const gp_Dir& theNormal)
   {
-    SetNormal(theIndex, gp_Vec3f(float(theNormal.X()), float(theNormal.Y()), float(theNormal.Z())));
+    SetNormal(theIndex,
+              gp_Vec3f(float(getPrimal(theNormal.X())),
+                       float(getPrimal(theNormal.Y())),
+                       float(getPrimal(theNormal.Z()))));
   }
 
   //! Returns mesh purpose bits.

@@ -90,12 +90,28 @@ public:
   //! whose elements are static_cast'ed corresponding elements of theOtherVec3 vector)
   //! @tparam OtherElement_t the element type of the other 3-component vector theOtherVec3
   //! @param theOtherVec3 the 3-component vector that needs to be converted
-  template <typename OtherElement_t>
+  // AD: allow cast from AD-type to floating point type
+  template <typename OtherElement_t,
+            typename std::enable_if<std::is_floating_point<Element_t>::value
+                                      && std::is_same<OtherElement_t, adtl::adouble>::value,
+                                    int>::type = 0>
   explicit NCollection_Vec3(const NCollection_Vec3<OtherElement_t>& theOtherVec3)
   {
-    v[0] = static_cast<Element_t>(theOtherVec3[0]);
-    v[1] = static_cast<Element_t>(theOtherVec3[1]);
-    v[2] = static_cast<Element_t>(theOtherVec3[2]);
+    v[0] = static_cast<Element_t>(getPrimal(theOtherVec3[0]));
+    v[1] = static_cast<Element_t>(getPrimal(theOtherVec3[1]));
+    v[2] = static_cast<Element_t>(getPrimal(theOtherVec3[2]));
+  }
+
+  // AD: other cases
+  template <typename OtherElement_t,
+            typename std::enable_if<!(std::is_floating_point<Element_t>::value
+                                      && std::is_same<OtherElement_t, adtl::adouble>::value),
+                                    int>::type = 0>
+  explicit NCollection_Vec3(const NCollection_Vec3<OtherElement_t>& theOtherVec3)
+  {
+    v[0] = theOtherVec3[0];
+    v[1] = theOtherVec3[1];
+    v[2] = theOtherVec3[2];
   }
 
   //! Assign new values to the vector.

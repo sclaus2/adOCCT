@@ -1256,7 +1256,7 @@ void IntPatch_WLine::Dump(const Standard_Integer theMode) const
       {
         Vertex(i).Dump();
         Standard_Real    polr = Vertex(i).ParameterOnLine();
-        Standard_Integer pol  = static_cast<Standard_Integer>(polr);
+        Standard_Integer pol  = static_cast<Standard_Integer>(getPrimal(polr));
 
         if (pol >= 1 && pol <= aNbVertex)
         {

@@ -399,7 +399,7 @@ Standard_Boolean CheckEdgeParameter(const Handle(TopOpeBRepDS_HDataStructure)& m
         Handle(TopOpeBRepDS_EdgeVertexInterference)::DownCast(I1);
       if (!EVI.IsNull())
       {
-        Standard_Integer Param = (Standard_Integer)EVI->Parameter();
+        Standard_Integer Param = (Standard_Integer)getPrimal(EVI->Parameter());
         if (Param > 1.e50)
         {
           IsOK = Standard_False;
@@ -422,7 +422,8 @@ Standard_Boolean CheckEdgeParameter(const Handle(TopOpeBRepDS_HDataStructure)& m
         Handle(TopOpeBRepDS_CurvePointInterference)::DownCast(I1));
       if (!CPI.IsNull())
       {
-        Standard_Integer Param = (Standard_Integer)TopOpeBRepDS_InterferenceTool::Parameter(CPI);
+        Standard_Integer Param =
+          (Standard_Integer)getPrimal(TopOpeBRepDS_InterferenceTool::Parameter(CPI));
         if (Param > 1.e50)
         {
           IsOK = Standard_False;

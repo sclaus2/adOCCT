@@ -92,8 +92,8 @@ Standard_Integer Bnd_Range::IsIntersected(const Standard_Real theVal,
   //         Floor(aDF/aPeriod) == Floor(aDL/aPeriod) == 2.
 
   const Standard_Real    aVal1 = aDF / aPeriod, aVal2 = aDL / aPeriod;
-  const Standard_Integer aPar1 = static_cast<Standard_Integer>(Floor(aVal1));
-  const Standard_Integer aPar2 = static_cast<Standard_Integer>(Floor(aVal2));
+  const Standard_Integer aPar1 = static_cast<Standard_Integer>(getPrimal(Floor(aVal1)));
+  const Standard_Integer aPar2 = static_cast<Standard_Integer>(getPrimal(Floor(aVal2)));
   if (aPar1 != aPar2)
   { // Interval (myFirst, myLast] intersects seam-edge
     if (IsEqual(aVal2, static_cast<Standard_Real>(aPar2)))

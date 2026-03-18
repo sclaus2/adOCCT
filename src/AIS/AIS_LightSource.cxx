@@ -851,7 +851,7 @@ void AIS_LightSource::ComputeSelection(const Handle(SelectMgr_Selection)& theSel
     aSensPosition->SetSensitivityFactor(12);
     if (!myTransformPersistence.IsNull() && myTransformPersistence->IsTrihedronOr2d())
     {
-      aSensPosition->SetSensitivityFactor(Max(12, Standard_Integer(Standard_Real(mySize * 0.5))));
+      aSensPosition->SetSensitivityFactor(Max(12, Standard_Integer(getPrimal(mySize * 0.5))));
     }
     theSel->Add(aSensPosition);
   }

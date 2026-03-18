@@ -650,7 +650,7 @@ extern "C" void ExprIntrp_ConstantDefinition()
 extern "C" void ExprIntrp_Sumator()
 {
   Handle(Expr_NumericValue) number   = Handle(Expr_NumericValue)::DownCast(ExprIntrp_Recept.Pop());
-  Standard_Integer          nb       = (Standard_Integer)number->GetValue();
+  Standard_Integer          nb       = (Standard_Integer)getPrimal(number->GetValue());
   Handle(Expr_GeneralExpression) inc = ExprIntrp_Recept.Pop();
   Handle(Expr_GeneralExpression) first = ExprIntrp_Recept.Pop();
   Handle(Expr_NamedUnknown)      var = Handle(Expr_NamedUnknown)::DownCast(ExprIntrp_Recept.Pop());
@@ -681,7 +681,7 @@ extern "C" void ExprIntrp_Sumator()
 extern "C" void ExprIntrp_Productor()
 {
   Handle(Expr_NumericValue) number   = Handle(Expr_NumericValue)::DownCast(ExprIntrp_Recept.Pop());
-  Standard_Integer          nb       = (Standard_Integer)number->GetValue();
+  Standard_Integer          nb       = (Standard_Integer)getPrimal(number->GetValue());
   Handle(Expr_GeneralExpression) inc = ExprIntrp_Recept.Pop();
   Handle(Expr_GeneralExpression) first = ExprIntrp_Recept.Pop();
   Handle(Expr_NamedUnknown)      var = Handle(Expr_NamedUnknown)::DownCast(ExprIntrp_Recept.Pop());

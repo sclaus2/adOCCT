@@ -14,6 +14,8 @@
 #ifndef _Aspect_FrustumLRBT_HeaderFile
 #define _Aspect_FrustumLRBT_HeaderFile
 
+#include <Standard_Real.hxx>
+
 //! Structure defining frustum boundaries.
 template <typename Elem_t>
 struct Aspect_FrustumLRBT
@@ -33,12 +35,29 @@ struct Aspect_FrustumLRBT
   }
 
   //! Copy/cast constructor.
-  template <typename Other_t>
+  // AD: enable cast from AD-type to floating point types
+  template <typename Other_t,
+            typename std::enable_if<std::is_floating_point<Elem_t>::value
+                                      && std::is_same<Other_t, adtl::adouble>::value,
+                                    int>::type = 0>
   explicit Aspect_FrustumLRBT(const Aspect_FrustumLRBT<Other_t>& theOther)
-      : Left(static_cast<Elem_t>(theOther.Left)),
-        Right(static_cast<Elem_t>(theOther.Right)),
-        Bottom(static_cast<Elem_t>(theOther.Bottom)),
-        Top(static_cast<Elem_t>(theOther.Top))
+      : Left(static_cast<Elem_t>(getPrimal(theOther.Left))),
+        Right(static_cast<Elem_t>(getPrimal(theOther.Right))),
+        Bottom(static_cast<Elem_t>(getPrimal(theOther.Bottom))),
+        Top(static_cast<Elem_t>(getPrimal(theOther.Top)))
+  {
+  }
+
+  // AD: other cases
+  template <typename Other_t,
+            typename std::enable_if<!(std::is_floating_point<Elem_t>::value
+                                      && std::is_same<Other_t, adtl::adouble>::value),
+                                    int>::type = 0>
+  explicit Aspect_FrustumLRBT(const Aspect_FrustumLRBT<Other_t>& theOther)
+      : Left(theOther.Left),
+        Right(theOther.Right),
+        Bottom(theOther.Bottom),
+        Top(theOther.Top)
   {
   }
 

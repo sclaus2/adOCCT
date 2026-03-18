@@ -633,7 +633,7 @@ void AIS_ColorScale::drawColorBar(const Handle(Prs3d_Presentation)& thePrs,
                                                  false, true);                   // per-vertex colors
                                                                      // clang-format on
     Quantity_Color         aColor1(aColors.Value(1)), aColor2;
-    Standard_Integer       aSizeY        = Standard_Integer(Standard_Real(aStepY / 2));
+    Standard_Integer       aSizeY        = Standard_Integer(getPrimal(aStepY / 2));
     const Standard_Integer anYBottom     = theBarBottom + aSizeY;
     Standard_Integer       anYBottomIter = anYBottom;
     addColoredQuad(aTriangles, anXLeft, theBarBottom, theColorBreadth, aSizeY, aColor1, aColor1);
@@ -641,8 +641,7 @@ void AIS_ColorScale::drawColorBar(const Handle(Prs3d_Presentation)& thePrs,
     {
       aColor1 = aColors.Value(aColorIter + 1);
       aColor2 = aColors.Value(aColorIter + 2);
-      aSizeY =
-        anYBottom + Standard_Integer(Standard_Real((aColorIter + 1) * aStepY)) - anYBottomIter;
+      aSizeY  = anYBottom + Standard_Integer(getPrimal((aColorIter + 1) * aStepY)) - anYBottomIter;
       addColoredQuad(aTriangles, anXLeft, anYBottomIter, theColorBreadth, aSizeY, aColor1, aColor2);
       anYBottomIter += aSizeY;
     }
@@ -709,7 +708,7 @@ void AIS_ColorScale::drawColorBar(const Handle(Prs3d_Presentation)& thePrs,
     {
       const Quantity_Color&  aColor = aColors.Value(aColorIter + 1);
       const Standard_Integer aSizeY =
-        theBarBottom + Standard_Integer(Standard_Real((aColorIter + 1) * aStepY)) - anYBottomIter;
+        theBarBottom + Standard_Integer(getPrimal((aColorIter + 1) * aStepY)) - anYBottomIter;
       addColoredQuad(aTriangles, anXLeft, anYBottomIter, theColorBreadth, aSizeY, aColor, aColor);
       anYBottomIter += aSizeY;
     }
@@ -790,7 +789,7 @@ void AIS_ColorScale::drawLabels(const Handle(Graphic3d_Group)&          theGroup
   Standard_Integer       aLast1 = i1;
   Standard_Integer       aLast2 = i2;
   const Standard_Integer anYBottom =
-    myIsLabelAtBorder ? theBarBottom : theBarBottom + Standard_Integer(Standard_Real(aStepY / 2));
+    myIsLabelAtBorder ? theBarBottom : theBarBottom + Standard_Integer(getPrimal(aStepY / 2));
   while (i2 - i1 >= aFilter || (i2 == 0 && i1 == 0))
   {
     Standard_Integer aPos1 = i1;
@@ -800,7 +799,7 @@ void AIS_ColorScale::drawLabels(const Handle(Graphic3d_Group)&          theGroup
       drawText(theGroup,
                theLabels.Value(i1 + 1),
                anXLeft,
-               anYBottom + Standard_Integer(Standard_Real(i1 * aStepY + anAscent)),
+               anYBottom + Standard_Integer(getPrimal(i1 * aStepY + anAscent)),
                Graphic3d_VTA_CENTER);
       aLast1 = i1;
     }
@@ -809,7 +808,7 @@ void AIS_ColorScale::drawLabels(const Handle(Graphic3d_Group)&          theGroup
       drawText(theGroup,
                theLabels.Value(i2 + 1),
                anXLeft,
-               anYBottom + Standard_Integer(Standard_Real(i2 * aStepY + anAscent)),
+               anYBottom + Standard_Integer(getPrimal(i2 * aStepY + anAscent)),
                Graphic3d_VTA_CENTER);
       aLast2 = i2;
     }
@@ -833,7 +832,7 @@ void AIS_ColorScale::drawLabels(const Handle(Graphic3d_Group)&          theGroup
     drawText(theGroup,
              theLabels.Value(i0 + 1),
              anXLeft,
-             anYBottom + Standard_Integer(Standard_Real(i0 * aStepY + anAscent)),
+             anYBottom + Standard_Integer(getPrimal(i0 * aStepY + anAscent)),
              Graphic3d_VTA_CENTER);
   }
 }
@@ -871,7 +870,8 @@ void AIS_ColorScale::drawText(const Handle(Graphic3d_Group)&        theGroup,
 {
   const Handle(Prs3d_TextAspect)& anAspect = myDrawer->TextAspect();
 
-  Handle(Graphic3d_Text) aText = new Graphic3d_Text((Standard_ShortReal)anAspect->Height());
+  Handle(Graphic3d_Text) aText =
+    new Graphic3d_Text((Standard_ShortReal)getPrimal(anAspect->Height()));
   aText->SetText(theText.ToExtString());
   aText->SetOrientation(gp_Ax2(gp_Pnt(theX, theY, 0.0), gp::DZ()));
   aText->SetOwnAnchorPoint(Standard_False);

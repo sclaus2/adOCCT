@@ -183,8 +183,9 @@ math_FunctionAllRoots::math_FunctionAllRoots(math_FunctionWithDerivative& F,
     { // Recherche des solutions entre S.GetParameter(1)
       // et le debut du 1er intervalle nul
 
-      Nbrpt = (Standard_Integer)IntegerPart(
-        Abs((pdeb.Value(1) - S.GetParameter(1)) / (S.GetParameter(Nbp) - S.GetParameter(1))) * Nbp);
+      Nbrpt = (Standard_Integer)getPrimal(IntegerPart(
+        Abs((pdeb.Value(1) - S.GetParameter(1)) / (S.GetParameter(Nbp) - S.GetParameter(1)))
+        * Nbp));
       math_FunctionRoots
         Res(F, S.GetParameter(1), pdeb.Value(1), Max(Nbrpt, NbpMin), EpsX, EpsF, 0.0);
       Standard_NumericError_Raise_if((!Res.IsDone()) || (Res.IsAllNull()), " ");
@@ -197,8 +198,9 @@ math_FunctionAllRoots::math_FunctionAllRoots(math_FunctionWithDerivative& F,
     }
     for (Standard_Integer k = 2; k <= pdeb.Length(); k++)
     {
-      Nbrpt = (Standard_Integer)IntegerPart(
-        Abs((pdeb.Value(k) - pfin.Value(k - 1)) / (S.GetParameter(Nbp) - S.GetParameter(1))) * Nbp);
+      Nbrpt = (Standard_Integer)getPrimal(IntegerPart(
+        Abs((pdeb.Value(k) - pfin.Value(k - 1)) / (S.GetParameter(Nbp) - S.GetParameter(1)))
+        * Nbp));
       math_FunctionRoots
         Res(F, pfin.Value(k - 1), pdeb.Value(k), Max(Nbrpt, NbpMin), EpsX, EpsF, 0.0);
       Standard_NumericError_Raise_if((!Res.IsDone()) || (Res.IsAllNull()), " ");
@@ -213,9 +215,10 @@ math_FunctionAllRoots::math_FunctionAllRoots(math_FunctionWithDerivative& F,
     { // Recherche des solutions entre la fin du
       // dernier intervalle nul et Value(Nbp).
 
-      Nbrpt = (Standard_Integer)IntegerPart(Abs((S.GetParameter(Nbp) - pfin.Value(pdeb.Length()))
-                                                / (S.GetParameter(Nbp) - S.GetParameter(1)))
-                                            * Nbp);
+      Nbrpt = (Standard_Integer)getPrimal(
+        IntegerPart(Abs((S.GetParameter(Nbp) - pfin.Value(pdeb.Length()))
+                        / (S.GetParameter(Nbp) - S.GetParameter(1)))
+                    * Nbp));
       math_FunctionRoots
         Res(F, pfin.Value(pdeb.Length()), S.GetParameter(Nbp), Max(Nbrpt, NbpMin), EpsX, EpsF, 0.0);
       Standard_NumericError_Raise_if((!Res.IsDone()) || (Res.IsAllNull()), " ");

@@ -324,7 +324,8 @@ public:
   void Transforms(gp_XYZ& theCoord) const;
 
   //! Convert transformation to 4x4 matrix.
-  template <class T>
+  // AD: allow cast from AD-type to floating point type
+  template <typename T, typename std::enable_if<std::is_floating_point<T>::value, int>::type = 0>
   void GetMat4(NCollection_Mat4<T>& theMat) const
   {
     if (shape == gp_Identity)
@@ -333,18 +334,46 @@ public:
       return;
     }
 
-    theMat.SetValue(0, 0, static_cast<T>(Value(1, 1)));
-    theMat.SetValue(0, 1, static_cast<T>(Value(1, 2)));
-    theMat.SetValue(0, 2, static_cast<T>(Value(1, 3)));
-    theMat.SetValue(0, 3, static_cast<T>(Value(1, 4)));
-    theMat.SetValue(1, 0, static_cast<T>(Value(2, 1)));
-    theMat.SetValue(1, 1, static_cast<T>(Value(2, 2)));
-    theMat.SetValue(1, 2, static_cast<T>(Value(2, 3)));
-    theMat.SetValue(1, 3, static_cast<T>(Value(2, 4)));
-    theMat.SetValue(2, 0, static_cast<T>(Value(3, 1)));
-    theMat.SetValue(2, 1, static_cast<T>(Value(3, 2)));
-    theMat.SetValue(2, 2, static_cast<T>(Value(3, 3)));
-    theMat.SetValue(2, 3, static_cast<T>(Value(3, 4)));
+    theMat.SetValue(0, 0, static_cast<T>(getPrimal(Value(1, 1))));
+    theMat.SetValue(0, 1, static_cast<T>(getPrimal(Value(1, 2))));
+    theMat.SetValue(0, 2, static_cast<T>(getPrimal(Value(1, 3))));
+    theMat.SetValue(0, 3, static_cast<T>(getPrimal(Value(1, 4))));
+    theMat.SetValue(1, 0, static_cast<T>(getPrimal(Value(2, 1))));
+    theMat.SetValue(1, 1, static_cast<T>(getPrimal(Value(2, 2))));
+    theMat.SetValue(1, 2, static_cast<T>(getPrimal(Value(2, 3))));
+    theMat.SetValue(1, 3, static_cast<T>(getPrimal(Value(2, 4))));
+    theMat.SetValue(2, 0, static_cast<T>(getPrimal(Value(3, 1))));
+    theMat.SetValue(2, 1, static_cast<T>(getPrimal(Value(3, 2))));
+    theMat.SetValue(2, 2, static_cast<T>(getPrimal(Value(3, 3))));
+    theMat.SetValue(2, 3, static_cast<T>(getPrimal(Value(3, 4))));
+    theMat.SetValue(3, 0, static_cast<T>(0));
+    theMat.SetValue(3, 1, static_cast<T>(0));
+    theMat.SetValue(3, 2, static_cast<T>(0));
+    theMat.SetValue(3, 3, static_cast<T>(1));
+  }
+
+  // AD: other cases
+  template <typename T, typename std::enable_if<!std::is_floating_point<T>::value, int>::type = 0>
+  void GetMat4(NCollection_Mat4<T>& theMat) const
+  {
+    if (shape == gp_Identity)
+    {
+      theMat.InitIdentity();
+      return;
+    }
+
+    theMat.SetValue(0, 0, Value(1, 1));
+    theMat.SetValue(0, 1, Value(1, 2));
+    theMat.SetValue(0, 2, Value(1, 3));
+    theMat.SetValue(0, 3, Value(1, 4));
+    theMat.SetValue(1, 0, Value(2, 1));
+    theMat.SetValue(1, 1, Value(2, 2));
+    theMat.SetValue(1, 2, Value(2, 3));
+    theMat.SetValue(1, 3, Value(2, 4));
+    theMat.SetValue(2, 0, Value(3, 1));
+    theMat.SetValue(2, 1, Value(3, 2));
+    theMat.SetValue(2, 2, Value(3, 3));
+    theMat.SetValue(2, 3, Value(3, 4));
     theMat.SetValue(3, 0, static_cast<T>(0));
     theMat.SetValue(3, 1, static_cast<T>(0));
     theMat.SetValue(3, 2, static_cast<T>(0));
