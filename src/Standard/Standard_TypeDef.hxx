@@ -58,7 +58,7 @@
 
 #include <Standard_Macro.hxx>
 
-#include <Standard_Adouble.hxx>
+#include <adolc/adtl.h>
 
 typedef int           Standard_Integer;
 typedef unsigned int  Standard_UInteger;

@@ -26,7 +26,7 @@ typedef adtl::adouble    doublereal;
 typedef unsigned long    uinteger;
 typedef char*            address;
 typedef short int        shortint;
-typedef Standard_Adouble real;
+typedef adtl::adouble    real;
 
 typedef struct
 {

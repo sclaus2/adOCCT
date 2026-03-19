@@ -17,6 +17,7 @@
 
 #include <Standard_TypeDef.hxx>
 #include <AdvApp2Var_Data_f2c.hxx>
+#include <Standard_Real.hxx>
 
 class AdvApp2Var_SysBase
 {

@@ -31,7 +31,7 @@
 /*
  * function template: getPrimal
  * It is used to extract the primal part out of the AD-type (e.g., adouble).
- * For now, only allow template specialization for double, Standard_Adouble and adtl::adouble
+ * For now, only allow template specialization for double and adtl::adouble
  */
 template <typename T,
           typename = typename std::enable_if<std::is_same<T, double>::value
@@ -49,6 +49,32 @@ inline double getPrimal<adtl::adouble>(const adtl::adouble& x)
 {
   return x.getValue();
 }
+
+namespace std
+{
+// std::hash for adtl::adouble
+template <>
+struct hash<adtl::adouble>
+{
+  size_t operator()(const adtl::adouble& a) const noexcept { return hash<double>()(a.getValue()); }
+};
+
+// std::numeric_limits for adtl::adouble
+template <>
+struct numeric_limits<adtl::adouble>
+{
+  static adtl::adouble min() { return adtl::adouble(std::numeric_limits<double>::min()); };
+
+  static adtl::adouble max() { return adtl::adouble(std::numeric_limits<double>::max()); };
+
+  static adtl::adouble epsilon()
+  {
+    return adtl::adouble(std::numeric_limits<double>::epsilon());
+  };
+
+  static constexpr bool is_specialized{true};
+};
+} // namespace std
 
 // ===============================================
 // Methods from Standard_Entity class which are redefined:
