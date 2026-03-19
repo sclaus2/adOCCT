@@ -67,10 +67,7 @@ struct numeric_limits<adtl::adouble>
 
   static adtl::adouble max() { return adtl::adouble(std::numeric_limits<double>::max()); };
 
-  static adtl::adouble epsilon()
-  {
-    return adtl::adouble(std::numeric_limits<double>::epsilon());
-  };
+  static adtl::adouble epsilon() { return adtl::adouble(std::numeric_limits<double>::epsilon()); };
 
   static constexpr bool is_specialized{true};
 };
