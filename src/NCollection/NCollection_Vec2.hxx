@@ -79,8 +79,8 @@ public:
                                     int>::type = 0>
   explicit NCollection_Vec2(const NCollection_Vec2<OtherElement_t>& theOtherVec2)
   {
-    v[0] = theOtherVec2[0];
-    v[1] = theOtherVec2[1];
+    v[0] = static_cast<Element_t>(theOtherVec2[0]);
+    v[1] = static_cast<Element_t>(theOtherVec2[1]);
   }
 
   //! Assign new values to the vector.

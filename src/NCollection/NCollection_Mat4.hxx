@@ -643,7 +643,7 @@ public:
   {
     for (int anIdx = 0; anIdx < 16; ++anIdx)
     {
-      myMat[anIdx] = theFrom.myMat[anIdx];
+      myMat[anIdx] = static_cast<Element_t>(theFrom.myMat[anIdx]);
     }
   }
 
