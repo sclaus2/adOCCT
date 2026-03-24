@@ -309,9 +309,9 @@ static inline Standard_Integer IntFloor(const T theValue)
   return aRes - static_cast<Standard_Integer>(aRes > theValue);
 }
 
-// AD: specialize IntFloor<adtl::adouble>
+// AD: specialize IntFloor<Standard_Real>
 template <>
-inline Standard_Integer IntFloor<adtl::adouble>(const adtl::adouble theValue)
+inline Standard_Integer IntFloor<Standard_Real>(const Standard_Real theValue)
 {
   const Standard_Integer aRes = static_cast<Standard_Integer>(getPrimal(theValue));
 

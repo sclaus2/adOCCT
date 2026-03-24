@@ -63,7 +63,7 @@ public:
   template <typename OtherElement_t,
             typename std::enable_if<(std::is_floating_point<Element_t>::value
                                      || std::is_integral<Element_t>::value)
-                                      && std::is_same<OtherElement_t, adtl::adouble>::value,
+                                      && std::is_same<OtherElement_t, Standard_Real>::value,
                                     int>::type = 0>
   explicit NCollection_Vec2(const NCollection_Vec2<OtherElement_t>& theOtherVec2)
   {
@@ -75,7 +75,7 @@ public:
   template <typename OtherElement_t,
             typename std::enable_if<!((std::is_floating_point<Element_t>::value
                                        || std::is_integral<Element_t>::value)
-                                      && std::is_same<OtherElement_t, adtl::adouble>::value),
+                                      && std::is_same<OtherElement_t, Standard_Real>::value),
                                     int>::type = 0>
   explicit NCollection_Vec2(const NCollection_Vec2<OtherElement_t>& theOtherVec2)
   {

@@ -58,18 +58,18 @@
 
 #include <Standard_Macro.hxx>
 
-#include <adolc/adtl.h>
+#include <Standard_Adouble.hxx>
 
-typedef int           Standard_Integer;
-typedef unsigned int  Standard_UInteger;
-typedef adtl::adouble Standard_Real;
-typedef bool          Standard_Boolean;
-typedef float         Standard_ShortReal;
-typedef char          Standard_Character;
-typedef unsigned char Standard_Byte;
-typedef void*         Standard_Address;
-typedef size_t        Standard_Size;
-typedef std::time_t   Standard_Time;
+typedef int              Standard_Integer;
+typedef unsigned int     Standard_UInteger;
+typedef Standard_Adouble Standard_Real;
+typedef bool             Standard_Boolean;
+typedef float            Standard_ShortReal;
+typedef char             Standard_Character;
+typedef unsigned char    Standard_Byte;
+typedef void*            Standard_Address;
+typedef size_t           Standard_Size;
+typedef std::time_t      Standard_Time;
 
 // Unicode primitives, char16_t, char32_t
 typedef char          Standard_Utf8Char;  //!< signed   UTF-8 char

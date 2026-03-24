@@ -38,7 +38,7 @@ struct Aspect_FrustumLRBT
   // AD: enable cast from AD-type to floating point types
   template <typename Other_t,
             typename std::enable_if<std::is_floating_point<Elem_t>::value
-                                      && std::is_same<Other_t, adtl::adouble>::value,
+                                      && std::is_same<Other_t, Standard_Real>::value,
                                     int>::type = 0>
   explicit Aspect_FrustumLRBT(const Aspect_FrustumLRBT<Other_t>& theOther)
       : Left(static_cast<Elem_t>(getPrimal(theOther.Left))),
@@ -51,7 +51,7 @@ struct Aspect_FrustumLRBT
   // AD: other cases
   template <typename Other_t,
             typename std::enable_if<!(std::is_floating_point<Elem_t>::value
-                                      && std::is_same<Other_t, adtl::adouble>::value),
+                                      && std::is_same<Other_t, Standard_Real>::value),
                                     int>::type = 0>
   explicit Aspect_FrustumLRBT(const Aspect_FrustumLRBT<Other_t>& theOther)
       : Left(theOther.Left),

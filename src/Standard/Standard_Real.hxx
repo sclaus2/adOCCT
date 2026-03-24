@@ -35,6 +35,7 @@
  */
 template <typename T,
           typename = typename std::enable_if<std::is_same<T, double>::value
+                                             || std::is_same<T, Standard_Adouble>::value
                                              || std::is_same<T, adtl::adouble>::value>::type>
 double getPrimal(const T& x);
 
@@ -45,33 +46,16 @@ inline double getPrimal<double>(const double& x)
 }
 
 template <>
-inline double getPrimal<adtl::adouble>(const adtl::adouble& x)
+inline double getPrimal<Standard_Real>(const Standard_Real& x)
 {
   return x.getValue();
 }
 
-namespace std
-{
-// std::hash for adtl::adouble
 template <>
-struct hash<adtl::adouble>
+inline double getPrimal<adtl::adouble>(const adtl::adouble& x)
 {
-  size_t operator()(const adtl::adouble& a) const noexcept { return hash<double>()(a.getValue()); }
-};
-
-// std::numeric_limits for adtl::adouble
-template <>
-struct numeric_limits<adtl::adouble>
-{
-  static adtl::adouble min() { return adtl::adouble(std::numeric_limits<double>::min()); };
-
-  static adtl::adouble max() { return adtl::adouble(std::numeric_limits<double>::max()); };
-
-  static adtl::adouble epsilon() { return adtl::adouble(std::numeric_limits<double>::epsilon()); };
-
-  static constexpr bool is_specialized{true};
-};
-} // namespace std
+  return x.getValue();
+}
 
 // ===============================================
 // Methods from Standard_Entity class which are redefined:

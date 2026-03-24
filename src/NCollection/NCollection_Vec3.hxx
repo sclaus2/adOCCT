@@ -93,7 +93,7 @@ public:
   // AD: allow cast from AD-type to floating point type
   template <typename OtherElement_t,
             typename std::enable_if<std::is_floating_point<Element_t>::value
-                                      && std::is_same<OtherElement_t, adtl::adouble>::value,
+                                      && std::is_same<OtherElement_t, Standard_Real>::value,
                                     int>::type = 0>
   explicit NCollection_Vec3(const NCollection_Vec3<OtherElement_t>& theOtherVec3)
   {
@@ -105,7 +105,7 @@ public:
   // AD: other cases
   template <typename OtherElement_t,
             typename std::enable_if<!(std::is_floating_point<Element_t>::value
-                                      && std::is_same<OtherElement_t, adtl::adouble>::value),
+                                      && std::is_same<OtherElement_t, Standard_Real>::value),
                                     int>::type = 0>
   explicit NCollection_Vec3(const NCollection_Vec3<OtherElement_t>& theOtherVec3)
   {

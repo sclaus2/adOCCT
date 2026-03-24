@@ -624,7 +624,7 @@ public:
   // AD: allow cast from AD-type to floating point type
   template <typename Other_t,
             typename std::enable_if<std::is_floating_point<Element_t>::value
-                                      && std::is_same<Other_t, adtl::adouble>::value,
+                                      && std::is_same<Other_t, Standard_Real>::value,
                                     int>::type = 0>
   void ConvertFrom(const NCollection_Mat4<Other_t>& theFrom)
   {
@@ -637,7 +637,7 @@ public:
   // AD: other cases
   template <typename Other_t,
             typename std::enable_if<!(std::is_floating_point<Element_t>::value
-                                      && std::is_same<Other_t, adtl::adouble>::value),
+                                      && std::is_same<Other_t, Standard_Real>::value),
                                     int>::type = 0>
   void ConvertFrom(const NCollection_Mat4<Other_t>& theFrom)
   {
