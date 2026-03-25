@@ -869,18 +869,18 @@ static Standard_Integer trianglesinfo(Draw_Interpretor& theDI,
   theDI << "                    " << aNbTriangles << " triangles.\n";
   theDI << "                    " << aNbNodes << " nodes.\n";
   theDI << "                    " << aNbRepresentations << " polygons on triangulation.\n";
-  theDI << "Maximal deflection " << aMaxDeflection.getValue() << "\n";
+  theDI << "Maximal deflection " << getPrimal(aMaxDeflection) << "\n";
   if (aMeshingDefl > 0.0)
   {
-    theDI << "Meshing deflection " << aMeshingDefl.getValue() << "\n";
+    theDI << "Meshing deflection " << getPrimal(aMeshingDefl) << "\n";
   }
   if (aMeshingAngDefl > 0.0)
   {
-    theDI << "Meshing angular deflection " << (aMeshingAngDefl.getValue() * 180.0 / M_PI) << "\n";
+    theDI << "Meshing angular deflection " << (getPrimal(aMeshingAngDefl) * 180.0 / M_PI) << "\n";
   }
   if (aMeshingMinSize > 0.0)
   {
-    theDI << "Meshing min size " << aMeshingMinSize.getValue() << "\n";
+    theDI << "Meshing min size " << getPrimal(aMeshingMinSize) << "\n";
   }
 
   if (aNbLODs.Size() > 0)
@@ -1198,16 +1198,16 @@ static Standard_Integer veriftriangles(Draw_Interpretor& di, Standard_Integer n,
 
             if (defle > defstock)
             {
-              di << "face " << nbface << " deflection = " << defle.getValue() << " pour "
-                 << defstock.getValue() << " stockee.\n";
+              di << "face " << nbface << " deflection = " << getPrimal(defle) << " pour "
+                 << getPrimal(defstock) << " stockee.\n";
             }
           }
         }
       }
       if (!quiet)
       {
-        di << "face " << nbface << ", deflemin = " << deflemin.getValue()
-           << ", deflemax = " << deflemax.getValue() << "\n";
+        di << "face " << nbface << ", deflemin = " << getPrimal(deflemin)
+           << ", deflemax = " << getPrimal(deflemax) << "\n";
       }
     }
   }
@@ -1377,7 +1377,7 @@ static Standard_Integer wavefront(Draw_Interpretor&, Standard_Integer nbarg, con
         x          = Pnt.X();
         y          = Pnt.Y();
         z          = Pnt.Z();
-        fprintf(outfile, "%s      %f  %f  %f\n", "v", x.getValue(), y.getValue(), z.getValue());
+        fprintf(outfile, "%s      %f  %f  %f\n", "v", getPrimal(x), getPrimal(y), getPrimal(z));
       }
 
       fprintf(outfile, "\n%s    %d\n\n", "# number of vertex", nbNodes);
@@ -1406,9 +1406,9 @@ static Standard_Integer wavefront(Draw_Interpretor&, Standard_Integer nbarg, con
           fprintf(outfile,
                   "%s      %f  %f  %f\n",
                   "vn",
-                  Nor.X().getValue(),
-                  Nor.Y().getValue(),
-                  Nor.Z().getValue());
+                  getPrimal(Nor.X()),
+                  getPrimal(Nor.Y()),
+                  getPrimal(Nor.Z()));
         }
 
         fprintf(outfile, "\n%s    %d\n\n", "# number of vertex normals", nbNodes);

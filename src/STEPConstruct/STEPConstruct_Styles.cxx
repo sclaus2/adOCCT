@@ -893,15 +893,15 @@ Standard_Boolean STEPConstruct_Styles::DecodeColor(const Handle(StepVisual_Colou
         norm = rgb->Green();
       if (norm < rgb->Blue())
         norm = rgb->Blue();
-      Col.SetValues((rgb->Red() / norm).getValue(),
-                    (rgb->Green() / norm).getValue(),
-                    (rgb->Blue() / norm).getValue(),
+      Col.SetValues(getPrimal(rgb->Red() / norm),
+                    getPrimal(rgb->Green() / norm),
+                    getPrimal(rgb->Blue() / norm),
                     Quantity_TOC_sRGB);
     }
     else
-      Col.SetValues(rgb->Red().getValue(),
-                    rgb->Green().getValue(),
-                    rgb->Blue().getValue(),
+      Col.SetValues(getPrimal(rgb->Red()),
+                    getPrimal(rgb->Green()),
+                    getPrimal(rgb->Blue()),
                     Quantity_TOC_sRGB);
     return Standard_True;
   }

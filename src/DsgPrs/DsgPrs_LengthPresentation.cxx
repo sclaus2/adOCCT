@@ -358,7 +358,7 @@ void DsgPrs_LengthPresentation::Add(const Handle(Prs3d_Presentation)& aPresentat
   Alpha = Abs(deltaU);
   if (Alpha > Precision::Angular() && Alpha < Precision::Infinite())
   {
-    NodeNumber = Max(4, Standard_Integer(Standard_Real(50. * Alpha / M_PI)));
+    NodeNumber = Max(4, Standard_Integer(getPrimal(50. * Alpha / M_PI)));
     delta      = deltaU / (Standard_Real)(NodeNumber - 1);
     aPrims     = new Graphic3d_ArrayOfPolylines(NodeNumber);
     for (Standard_Integer i = 1; i <= NodeNumber; i++, FirstU += delta)
@@ -368,7 +368,7 @@ void DsgPrs_LengthPresentation::Add(const Handle(Prs3d_Presentation)& aPresentat
   Alpha = Abs(deltaV);
   if (Alpha > Precision::Angular() && Alpha < Precision::Infinite())
   {
-    NodeNumber = Max(4, Standard_Integer(Standard_Real(50. * Alpha / M_PI)));
+    NodeNumber = Max(4, Standard_Integer(getPrimal(50. * Alpha / M_PI)));
     delta      = deltaV / (Standard_Real)(NodeNumber - 1);
     aPrims     = new Graphic3d_ArrayOfPolylines(NodeNumber);
     for (Standard_Integer i = 1; i <= NodeNumber; i++, FirstV += delta)

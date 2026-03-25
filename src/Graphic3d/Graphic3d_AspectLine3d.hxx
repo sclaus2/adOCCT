@@ -52,7 +52,7 @@ public:
 
   //! Modifies the line thickness.
   //! Warning: Raises Standard_OutOfRange if the width is a negative value.
-  void SetWidth(const Standard_Real theWidth) { SetWidth((float)theWidth); }
+  void SetWidth(const Standard_Real theWidth) { SetWidth((float)getPrimal(theWidth)); }
 
   //! Modifies the line thickness.
   //! Warning: Raises Standard_OutOfRange if the width is a negative value.

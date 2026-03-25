@@ -209,7 +209,7 @@ static void GetLinePoint2d(const Handle(IntPatch_Line)& L,
   Standard_Integer       Nbptlin = (typL == IntPatch_Walking ? wlin->NbPnts() : rlin->NbPnts());
 
   Standard_Real    par   = IntegerPart(param);
-  Standard_Integer Irang = Standard_Integer(par);
+  Standard_Integer Irang = Standard_Integer(getPrimal(par));
   if (Irang == Nbptlin)
   {
     Irang--;
@@ -593,7 +593,7 @@ void IntPatch_RstInt::PutVertexOnLine(const Handle(IntPatch_Line)&       L,
         // arc->FirstParameter())/(PLast-PFirst);
         const Standard_Real nbs = (arc->NbKnots() * arc->Degree()) * (PLast - PFirst)
                                   / (arc->LastParameter() - arc->FirstParameter());
-        NbEchant = (nbs < 2.0 ? 2 : (Standard_Integer)nbs);
+        NbEchant = (nbs < 2.0 ? 2 : (Standard_Integer)getPrimal(nbs));
         if (NbEchant < 10)
           NbEchant = 10;
         else if (NbEchant > 50)
@@ -672,7 +672,7 @@ void IntPatch_RstInt::PutVertexOnLine(const Handle(IntPatch_Line)&       L,
           GetLinePoint2d(L, aW1 + 1, !OnFirst, U, V);
 
           Standard_Real    par   = IntegerPart(aW2);
-          Standard_Integer Irang = Standard_Integer(par) + 1;
+          Standard_Integer Irang = Standard_Integer(getPrimal(par)) + 1;
           if (Irang == Brise.NbPoints())
           {
             Irang--;
@@ -736,7 +736,7 @@ void IntPatch_RstInt::PutVertexOnLine(const Handle(IntPatch_Line)&       L,
 
             if (!duplicate)
             {
-              Standard_Integer ParamApproxOnLine = Standard_Integer(aW1) + 1;
+              Standard_Integer ParamApproxOnLine = Standard_Integer(getPrimal(aW1)) + 1;
 
               arc->D1(paramarc, p2d, d2d);
               U1 = p2d.X();
@@ -876,7 +876,7 @@ void IntPatch_RstInt::PutVertexOnLine(const Handle(IntPatch_Line)&       L,
               }
 
               if (typL == IntPatch_Walking)
-                VerifyTgline(wlin, (Standard_Integer)paramline, edgeTol, tgline);
+                VerifyTgline(wlin, (Standard_Integer)getPrimal(paramline), edgeTol, tgline);
 
               Surf->D1(U1, V1, ptbid, d1u, d1v);
               tgrst.SetLinearForm(d2d.X(), d1u, d2d.Y(), d1v);

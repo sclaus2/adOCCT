@@ -134,8 +134,8 @@ void Compute(const Standard_Real theP1,
 #define addPoint7                                                                                  \
   theB.Add(PointType(theO.Coord() + aRam * PI4 * theXd.Coord() - aRbm * PI4 * theYd.Coord()))
 
-  Standard_Integer aDeb = (Standard_Integer)Standard_Real(aTeta1 / (M_PI / 4.));
-  Standard_Integer aFin = (Standard_Integer)Standard_Real(aTeta2 / (M_PI / 4.));
+  Standard_Integer aDeb = (Standard_Integer)getPrimal(aTeta1 / (M_PI / 4.));
+  Standard_Integer aFin = (Standard_Integer)getPrimal(aTeta2 / (M_PI / 4.));
   aDeb++;
 
   if (aDeb > aFin)
@@ -1570,13 +1570,13 @@ void BndLib::Add(const gp_Torus&     S,
   Standard_Integer Fi2;
   if (VMax < VMin)
   {
-    Fi1 = (Standard_Integer)Standard_Real(VMax / (M_PI / 4.));
-    Fi2 = (Standard_Integer)Standard_Real(VMin / (M_PI / 4.));
+    Fi1 = (Standard_Integer)getPrimal(VMax / (M_PI / 4.));
+    Fi2 = (Standard_Integer)getPrimal(VMin / (M_PI / 4.));
   }
   else
   {
-    Fi1 = (Standard_Integer)Standard_Real(VMin / (M_PI / 4.));
-    Fi2 = (Standard_Integer)Standard_Real(VMax / (M_PI / 4.));
+    Fi1 = (Standard_Integer)getPrimal(VMin / (M_PI / 4.));
+    Fi2 = (Standard_Integer)getPrimal(VMax / (M_PI / 4.));
   }
   Fi2++;
 

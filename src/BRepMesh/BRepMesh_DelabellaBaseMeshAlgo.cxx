@@ -79,8 +79,8 @@ void BRepMesh_DelabellaBaseMeshAlgo::buildBaseTriangulation()
     const BRepMesh_Vertex& aVertex = aStructure->GetNode(aNodeIt + 1);
 
     const size_t aBaseIdx = 2 * static_cast<size_t>(aNodeIt);
-    aPoints[aBaseIdx + 0] = aVertex.Coord().X().getValue();
-    aPoints[aBaseIdx + 1] = aVertex.Coord().Y().getValue();
+    aPoints[aBaseIdx + 0] = getPrimal(aVertex.Coord().X());
+    aPoints[aBaseIdx + 1] = getPrimal(aVertex.Coord().Y());
 
     aBox.Add(gp_Pnt2d(aVertex.Coord()));
   }
@@ -89,32 +89,32 @@ void BRepMesh_DelabellaBaseMeshAlgo::buildBaseTriangulation()
   const gp_XY aMin = aBox.CornerMin();
   const gp_XY aMax = aBox.CornerMax();
 
-  aPoints[2 * aNodesNb + 0] = aMin.X().getValue();
-  aPoints[2 * aNodesNb + 1] = aMin.Y().getValue();
+  aPoints[2 * aNodesNb + 0] = getPrimal(aMin.X());
+  aPoints[2 * aNodesNb + 1] = getPrimal(aMin.Y());
   aStructure->AddNode(
     BRepMesh_Vertex(aPoints[2 * aNodesNb + 0], aPoints[2 * aNodesNb + 1], BRepMesh_Free));
 
-  aPoints[2 * aNodesNb + 2] = aMax.X().getValue();
-  aPoints[2 * aNodesNb + 3] = aMin.Y().getValue();
+  aPoints[2 * aNodesNb + 2] = getPrimal(aMax.X());
+  aPoints[2 * aNodesNb + 3] = getPrimal(aMin.Y());
   aStructure->AddNode(
     BRepMesh_Vertex(aPoints[2 * aNodesNb + 2], aPoints[2 * aNodesNb + 3], BRepMesh_Free));
 
-  aPoints[2 * aNodesNb + 4] = aMax.X().getValue();
-  aPoints[2 * aNodesNb + 5] = aMax.Y().getValue();
+  aPoints[2 * aNodesNb + 4] = getPrimal(aMax.X());
+  aPoints[2 * aNodesNb + 5] = getPrimal(aMax.Y());
   aStructure->AddNode(
     BRepMesh_Vertex(aPoints[2 * aNodesNb + 4], aPoints[2 * aNodesNb + 5], BRepMesh_Free));
 
-  aPoints[2 * aNodesNb + 6] = aMin.X().getValue();
-  aPoints[2 * aNodesNb + 7] = aMax.Y().getValue();
+  aPoints[2 * aNodesNb + 6] = getPrimal(aMin.X());
+  aPoints[2 * aNodesNb + 7] = getPrimal(aMax.Y());
   aStructure->AddNode(
     BRepMesh_Vertex(aPoints[2 * aNodesNb + 6], aPoints[2 * aNodesNb + 7], BRepMesh_Free));
 
-  const double aDiffX = (aMax.X() - aMin.X()).getValue();
-  const double aDiffY = (aMax.Y() - aMin.Y()).getValue();
+  const double aDiffX = getPrimal(aMax.X() - aMin.X());
+  const double aDiffY = getPrimal(aMax.Y() - aMin.Y());
   for (size_t i = 0; i < aPoints.size(); i += 2)
   {
-    aPoints[i + 0] = (aPoints[i + 0] - aMin.X()).getValue() / aDiffX - 0.5;
-    aPoints[i + 1] = (aPoints[i + 1] - aMin.Y()).getValue() / aDiffY - 0.5;
+    aPoints[i + 0] = getPrimal(aPoints[i + 0] - aMin.X()) / aDiffX - 0.5;
+    aPoints[i + 1] = getPrimal(aPoints[i + 1] - aMin.Y()) / aDiffY - 0.5;
   }
 
   IDelaBella* aTriangulator = IDelaBella::Create();

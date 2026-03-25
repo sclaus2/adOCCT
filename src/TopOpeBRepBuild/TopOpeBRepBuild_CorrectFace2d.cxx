@@ -465,13 +465,13 @@ Standard_Integer TopOpeBRepBuild_CorrectFace2d::ConnectWire(
 
     if (!nonPU && UP)
     {
-      Standard_Real dU = fmod(fabs(U).getValue(), 2 * M_PI);
+      Standard_Real dU = fmod(getPrimal(fabs(U)), 2 * M_PI);
       nonPU            = (dU > 1e-7 && (2 * M_PI - dU > 1e-7)) ? Standard_True : Standard_False;
     }
 
     if (!nonPV && VP)
     {
-      Standard_Real dV = fmod(fabs(V).getValue(), 2 * M_PI);
+      Standard_Real dV = fmod(getPrimal(fabs(V)), 2 * M_PI);
       nonPV            = (dV > 1e-7 && (2 * M_PI - dV > 1e-7)) ? Standard_True : Standard_False;
     }
 
@@ -944,7 +944,7 @@ void TopOpeBRepBuild_CorrectFace2d::MoveWires2d(TopoDS_Wire& anOuterWire)
   B2dOuterWire.Get(OuterU1, OuterV1, OuterU2, OuterV2);
 
   a = .5 * (OuterU1 + OuterU2);
-  b = Standard_Integer(Standard_Real(-a / TwoPI));
+  b = Standard_Integer(getPrimal(-a / TwoPI));
   k = (a < 0.) ? 1 : 0;
   x = (b + k) * TwoPI;
   //
@@ -971,7 +971,7 @@ void TopOpeBRepBuild_CorrectFace2d::MoveWires2d(TopoDS_Wire& anOuterWire)
       {
         // printf(" Need to Move\n" );
         a = u1 - OuterU1;
-        b = Standard_Integer(Standard_Real(-a / TwoPI));
+        b = Standard_Integer(getPrimal(-a / TwoPI));
         k = (a < 0.) ? 1 : 0;
         x = (b + k) * TwoPI;
         aTrV.SetCoord(x, 0.);

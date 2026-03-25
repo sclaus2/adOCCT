@@ -296,8 +296,8 @@ static void LineConstructor(Contap_TheSequenceOfLine&          slin,
     //-- std::cout<<" WLine -> "<<nbvtx<<" vtx"<<std::endl;
     for (Standard_Integer i = 1; i < nbvtx; i++)
     {
-      Standard_Integer firstp = (Standard_Integer)L.Vertex(i).ParameterOnLine();
-      Standard_Integer lastp  = (Standard_Integer)L.Vertex(i + 1).ParameterOnLine();
+      Standard_Integer firstp = (Standard_Integer)getPrimal(L.Vertex(i).ParameterOnLine());
+      Standard_Integer lastp  = (Standard_Integer)getPrimal(L.Vertex(i + 1).ParameterOnLine());
       if (firstp != lastp)
       {
         Standard_Integer       pmid = (firstp + lastp) / 2; //-- entiers
@@ -1915,7 +1915,7 @@ void Contap_Contour::Perform(const Handle(Adaptor3d_TopolTool)& Domain)
 
                     tgtrst = d2d.X() * d1u;
                     tgtrst.Add(d2d.Y() * d1v);
-                    Standard_Integer Paraml = (Standard_Integer)ptvt.ParameterOnLine();
+                    Standard_Integer Paraml = (Standard_Integer)getPrimal(ptvt.ParameterOnLine());
 
                     if (Paraml == theli.NbPnts())
                     {

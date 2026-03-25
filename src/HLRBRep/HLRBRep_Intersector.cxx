@@ -249,9 +249,9 @@ void HLRBRep_Intersector::Perform(const Standard_Integer /*nA*/,
     }
 
     if (ta > tol)
-      ta = (Standard_ShortReal)tol;
+      ta = (Standard_ShortReal)getPrimal(tol);
     if (tb > tol)
-      tb = (Standard_ShortReal)tol;
+      tb = (Standard_ShortReal)getPrimal(tol);
 
     IntRes2d_Domain D1(pa1, a1, (Standard_Real)ta, pb1, b1, (Standard_Real)tb);
 
@@ -332,18 +332,18 @@ void HLRBRep_Intersector::Perform(const Standard_Integer /*nA*/,
     }
 
     if (ta > tol)
-      ta = (Standard_ShortReal)tol;
+      ta = (Standard_ShortReal)getPrimal(tol);
     if (tb > tol)
-      tb = (Standard_ShortReal)tol;
+      tb = (Standard_ShortReal)getPrimal(tol);
 
     IntRes2d_Domain D2(pa2, a2, (Standard_Real)ta, pb2, b2, (Standard_Real)tb);
 
     if (EnBout)
     {
-      Standard_Real a1a2 = (da1.getValue() || da2.getValue()) ? pa1.Distance(pa2) : RealLast();
-      Standard_Real a1b2 = (da1.getValue() || db2.getValue()) ? pa1.Distance(pb2) : RealLast();
-      Standard_Real b1a2 = (db1.getValue() || da2.getValue()) ? pb1.Distance(pa2) : RealLast();
-      Standard_Real b1b2 = (db1.getValue() || db2.getValue()) ? pb1.Distance(pb2) : RealLast();
+      Standard_Real a1a2 = (getPrimal(da1) || getPrimal(da2)) ? pa1.Distance(pa2) : RealLast();
+      Standard_Real a1b2 = (getPrimal(da1) || getPrimal(db2)) ? pa1.Distance(pb2) : RealLast();
+      Standard_Real b1a2 = (getPrimal(db1) || getPrimal(da2)) ? pb1.Distance(pa2) : RealLast();
+      Standard_Real b1b2 = (getPrimal(db1) || getPrimal(db2)) ? pb1.Distance(pb2) : RealLast();
 
       Standard_Integer cote    = 1;
       Standard_Real    mindist = a1a2; //-- cas 1

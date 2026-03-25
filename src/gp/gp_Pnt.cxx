@@ -99,9 +99,9 @@ void gp_Pnt::DumpJson(Standard_OStream& theOStream,
                       Standard_Integer) const {OCCT_DUMP_VECTOR_CLASS(theOStream,
                                                                       "gp_Pnt",
                                                                       3,
-                                                                      coord.X().getValue(),
-                                                                      coord.Y().getValue(),
-                                                                      coord.Z().getValue())}
+                                                                      getPrimal(coord.X()),
+                                                                      getPrimal(coord.Y()),
+                                                                      getPrimal(coord.Z()))}
 
 Standard_Boolean gp_Pnt::InitFromJson(const Standard_SStream& theSStream,
                                       Standard_Integer&       theStreamPos)

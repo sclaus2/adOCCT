@@ -2748,7 +2748,8 @@ AIS_StatusOfPick AIS_InteractiveContext::SelectDetected(const AIS_SelectionSchem
     gp_Pnt2d        aMouseRealPos = MainSelector()->GetManager().GetMousePosition();
     if (!Precision::IsInfinite(aMouseRealPos.X()) && !Precision::IsInfinite(aMouseRealPos.Y()))
     {
-      aMousePos.SetValues((Standard_Integer)aMouseRealPos.X(), (Standard_Integer)aMouseRealPos.Y());
+      aMousePos.SetValues((Standard_Integer)getPrimal(aMouseRealPos.X()),
+                          (Standard_Integer)getPrimal(aMouseRealPos.Y()));
     }
     if (myLastPicked->HandleMouseClick(aMousePos,
                                        Aspect_VKeyMouse_LeftButton,

@@ -716,7 +716,7 @@ void XmlMDataStd_NamedDataDriver::Paste(const Handle(TDF_Attribute)& theSource,
     for (i = 1; itr.More(); itr.Next(), i++)
     {
       const TCollection_ExtendedString aValueStr =
-        itr.Key() + ' ' + TCollection_ExtendedString(itr.Value().getValue()); // key - value;
+        itr.Key() + ' ' + TCollection_ExtendedString(getPrimal(itr.Value())); // key - value;
       XmlObjMgt_Element aCurTarget = aDoc.createElement(::ExtString());
       XmlObjMgt::SetExtendedString(aCurTarget, aValueStr);
       anElement.appendChild(aCurTarget);
@@ -809,7 +809,7 @@ void XmlMDataStd_NamedDataDriver::Paste(const Handle(TDF_Attribute)& theSource,
       for (;;)
       {
         char aValueChar[32];
-        Sprintf(aValueChar, "%.15g", anArr1.Value(j).getValue());
+        Sprintf(aValueChar, "%.15g", getPrimal(anArr1.Value(j)));
         TCollection_AsciiString aValueStr3(aValueChar);
         aValueStr2 += aValueStr3;
         if (j >= anArr1.Upper())

@@ -760,13 +760,13 @@ protected:
   {
     myClipChainArray.SetValue(thePlaneId, theChainFwd);
     OpenGl_Vec4& aPlaneEq = myClipPlaneArray.ChangeValue(thePlaneId);
-    aPlaneEq.x()          = float(theEq.x());
-    aPlaneEq.y()          = float(theEq.y());
-    aPlaneEq.z()          = float(theEq.z());
-    aPlaneEq.w()          = float(theEq.w());
+    aPlaneEq.x()          = float(getPrimal(theEq.x()));
+    aPlaneEq.y()          = float(getPrimal(theEq.y()));
+    aPlaneEq.z()          = float(getPrimal(theEq.z()));
+    aPlaneEq.w()          = float(getPrimal(theEq.w()));
     if (myHasLocalOrigin)
     {
-      aPlaneEq.w() = float(LocalClippingPlaneW(thePlane));
+      aPlaneEq.w() = float(getPrimal(LocalClippingPlaneW(thePlane)));
     }
     ++thePlaneId;
   }

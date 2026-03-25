@@ -61,14 +61,14 @@ void AIS_TextLabel::SetColor(const Quantity_Color& theColor)
 void AIS_TextLabel::SetTransparency(const Standard_Real theValue)
 {
   Quantity_ColorRGBA aTextColor(myDrawer->TextAspect()->Aspect()->Color());
-  aTextColor.SetAlpha(Standard_ShortReal(Standard_Real(1.0 - theValue)));
+  aTextColor.SetAlpha(Standard_ShortReal(getPrimal(1.0 - theValue)));
 
   Quantity_ColorRGBA aSubColor(myDrawer->TextAspect()->Aspect()->ColorSubTitle());
   aSubColor.SetAlpha(aTextColor.Alpha());
 
   myDrawer->TextAspect()->Aspect()->SetColor(aTextColor);
   myDrawer->TextAspect()->Aspect()->SetColorSubTitle(aSubColor);
-  myDrawer->SetTransparency(Standard_ShortReal(theValue));
+  myDrawer->SetTransparency(Standard_ShortReal(getPrimal(theValue)));
   SynchronizeAspects();
 }
 
@@ -289,8 +289,14 @@ void AIS_TextLabel::Compute(const Handle(PrsMgr_PresentationManager)&,
         gp_Pnt aMaxPnt = gp_Pnt(aDx, aDy, 0.0).Transformed(aLabelPlane);
 
         Graphic3d_BndBox4f& aBox = thePrs->CurrentGroup()->ChangeBoundingBox();
-        aBox.Add(Graphic3d_Vec4((float)aMinPnt.X(), (float)aMinPnt.Y(), (float)aMinPnt.Z(), 1.0));
-        aBox.Add(Graphic3d_Vec4((float)aMaxPnt.X(), (float)aMaxPnt.Y(), (float)aMaxPnt.Z(), 1.0));
+        aBox.Add(Graphic3d_Vec4((float)getPrimal(aMinPnt.X()),
+                                (float)getPrimal(aMinPnt.Y()),
+                                (float)getPrimal(aMinPnt.Z()),
+                                1.0));
+        aBox.Add(Graphic3d_Vec4((float)getPrimal(aMaxPnt.X()),
+                                (float)getPrimal(aMaxPnt.Y()),
+                                (float)getPrimal(aMaxPnt.Z()),
+                                1.0));
       }
 
       break;
@@ -358,7 +364,7 @@ Standard_Boolean AIS_TextLabel::calculateLabelParams(const gp_Pnt&  thePosition,
   const Graphic3d_RenderingParams& aRendParams =
     GetContext()->CurrentViewer()->DefaultRenderingParams();
   Font_FTFontParams aFontParams;
-  aFontParams.PointSize   = (unsigned int)anAsp->Height().getValue();
+  aFontParams.PointSize   = (unsigned int)getPrimal(anAsp->Height());
   aFontParams.Resolution  = aRendParams.Resolution;
   aFontParams.FontHinting = aRendParams.FontHinting;
 

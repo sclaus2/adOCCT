@@ -58,7 +58,9 @@ namespace
 //! Write three float values.
 static void writeVec3(std::ostream& theStream, const gp_XYZ& theVec3)
 {
-  Graphic3d_Vec3 aVec3(float(theVec3.X()), float(theVec3.Y()), float(theVec3.Z()));
+  Graphic3d_Vec3 aVec3(float(getPrimal(theVec3.X())),
+                       float(getPrimal(theVec3.Y())),
+                       float(getPrimal(theVec3.Z())));
   theStream.write((const char*)aVec3.GetData(), sizeof(aVec3));
 }
 
@@ -71,7 +73,7 @@ static void writeVec3(std::ostream& theStream, const Graphic3d_Vec3& theVec3)
 //! Write two float values.
 static void writeVec2(std::ostream& theStream, const gp_XY& theVec2)
 {
-  Graphic3d_Vec2 aVec2(float(theVec2.X()), float(theVec2.Y()));
+  Graphic3d_Vec2 aVec2(float(getPrimal(theVec2.X())), float(getPrimal(theVec2.Y())));
   theStream.write((const char*)aVec2.GetData(), sizeof(aVec2));
 }
 
@@ -337,8 +339,9 @@ void RWGltf_CafWriter::saveNodes(RWGltf_GltfFace&                               
     theGltfFace.NodePos.BndBox.Add(Graphic3d_Vec3d(aNode.X(), aNode.Y(), aNode.Z()));
     if (theMesh.get() != nullptr && hasTriangulation(theGltfFace))
     {
-      theMesh->NodesVec.push_back(
-        Graphic3d_Vec3(float(aNode.X()), float(aNode.Y()), float(aNode.Z())));
+      theMesh->NodesVec.push_back(Graphic3d_Vec3(float(getPrimal(aNode.X())),
+                                                 float(getPrimal(aNode.Y())),
+                                                 float(getPrimal(aNode.Z()))));
     }
     else
     {
@@ -382,7 +385,9 @@ void RWGltf_CafWriter::saveNormals(RWGltf_GltfFace&                             
   for (Standard_Integer aNodeIter = theFaceIter.NodeLower(); aNodeIter <= aNodeUpper; ++aNodeIter)
   {
     const gp_Dir   aNormal = theFaceIter.NormalTransformed(aNodeIter);
-    Graphic3d_Vec3 aVecNormal((float)aNormal.X(), (float)aNormal.Y(), (float)aNormal.Z());
+    Graphic3d_Vec3 aVecNormal((float)getPrimal(aNormal.X()),
+                              (float)getPrimal(aNormal.Y()),
+                              (float)getPrimal(aNormal.Z()));
     myCSTrsf.TransformNormal(aVecNormal);
     if (theMesh.get() != nullptr)
     {
@@ -449,7 +454,8 @@ void RWGltf_CafWriter::saveTextCoords(RWGltf_GltfFace&                          
     aTexCoord.SetY(1.0 - aTexCoord.Y());
     if (theMesh.get() != nullptr)
     {
-      theMesh->TexCoordsVec.push_back(Graphic3d_Vec2((float)aTexCoord.X(), (float)aTexCoord.Y()));
+      theMesh->TexCoordsVec.push_back(
+        Graphic3d_Vec2((float)getPrimal(aTexCoord.X()), (float)getPrimal(aTexCoord.Y())));
     }
     else
     {

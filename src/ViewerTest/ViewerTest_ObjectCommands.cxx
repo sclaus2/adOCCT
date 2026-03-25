@@ -3028,11 +3028,11 @@ static int VDrawSphere(Draw_Interpretor& /*di*/, Standard_Integer argc, const ch
 
   if (toPrintInfo)
     std::cout << "Compute Triangulation...\n";
-  Handle(AIS_Triangulation) aShape = new AIS_Triangulation(CalculationOfSphere(aCenterX.getValue(),
-                                                                               aCenterY.getValue(),
-                                                                               aCenterZ.getValue(),
+  Handle(AIS_Triangulation) aShape = new AIS_Triangulation(CalculationOfSphere(getPrimal(aCenterX),
+                                                                               getPrimal(aCenterY),
+                                                                               getPrimal(aCenterZ),
                                                                                aResolution,
-                                                                               aRadius.getValue()));
+                                                                               getPrimal(aRadius)));
   const Standard_Integer    aNumberPoints    = aShape->GetTriangulation()->NbNodes();
   const Standard_Integer    aNumberTriangles = aShape->GetTriangulation()->NbTriangles();
 
@@ -4116,7 +4116,7 @@ static Standard_Integer VSetLocation(Draw_Interpretor& theDI,
         }
 
         char aText[1024];
-        Sprintf(aText, "%g ", anObj->LocalTransformation().ScaleFactor().getValue());
+        Sprintf(aText, "%g ", getPrimal(anObj->LocalTransformation().ScaleFactor()));
         theDI << aText;
         continue;
       }
@@ -4225,10 +4225,10 @@ static Standard_Integer VSetLocation(Draw_Interpretor& theDI,
       const gp_Quaternion aQuat = anObj->LocalTransformation().GetRotation();
       Sprintf(aText,
               "%g %g %g %g ",
-              aQuat.X().getValue(),
-              aQuat.Y().getValue(),
-              aQuat.Z().getValue(),
-              aQuat.W().getValue());
+              getPrimal(aQuat.X()),
+              getPrimal(aQuat.Y()),
+              getPrimal(aQuat.Z()),
+              getPrimal(aQuat.W()));
       theDI << aText;
     }
     else if (anArg == "-setlocation" || anArg == "-location")
@@ -4252,7 +4252,7 @@ static Standard_Integer VSetLocation(Draw_Interpretor& theDI,
 
       char         aText[1024];
       const gp_XYZ aLoc = anObj->LocalTransformation().TranslationPart();
-      Sprintf(aText, "%g %g %g ", aLoc.X().getValue(), aLoc.Y().getValue(), aLoc.Z().getValue());
+      Sprintf(aText, "%g %g %g ", getPrimal(aLoc.X()), getPrimal(aLoc.Y()), getPrimal(aLoc.Z()));
       theDI << aText;
     }
     else if (aCmdName == "vsetlocation")
@@ -4298,14 +4298,14 @@ static Standard_Integer VSetLocation(Draw_Interpretor& theDI,
           "Location: %g %g %g\n"
           "Rotation: %g %g %g %g\n"
           "Scale:    %g\n",
-          aLoc.X().getValue(),
-          aLoc.Y().getValue(),
-          aLoc.Z().getValue(),
-          aRot.X().getValue(),
-          aRot.Y().getValue(),
-          aRot.Z().getValue(),
-          aRot.W().getValue(),
-          aTrsf.ScaleFactor().getValue());
+          getPrimal(aLoc.X()),
+          getPrimal(aLoc.Y()),
+          getPrimal(aLoc.Z()),
+          getPrimal(aRot.X()),
+          getPrimal(aRot.Y()),
+          getPrimal(aRot.Z()),
+          getPrimal(aRot.W()),
+          getPrimal(aTrsf.ScaleFactor()));
   theDI << aText;
   return 0;
 }
@@ -6456,7 +6456,7 @@ static Standard_Integer VPointCloud(Draw_Interpretor& theDI,
     std::mt19937                     aRandomGenerator(0);
     std::uniform_real_distribution<> anAlphaDistrib(0.0, 2.0 * M_PI);
     std::uniform_real_distribution<> aBetaDistrib(0.0, 2.0 * M_PI);
-    std::uniform_real_distribution<> aRadiusDistrib(0.0, aDistRadius.getValue());
+    std::uniform_real_distribution<> aRadiusDistrib(0.0, getPrimal(aDistRadius));
     for (Standard_Integer aPntIt = 0; aPntIt < aDistNbPoints; ++aPntIt)
     {
       Standard_Real anAlpha   = anAlphaDistrib(aRandomGenerator);

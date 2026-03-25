@@ -32,7 +32,7 @@ Standard_ShortReal Graphic3d_PBRMaterial::RoughnessFromSpecular(const Quantity_C
     // low specular intensity should produce a rough material even if shininess is high
     aRoughnessFactor *= (1.0 - aSpecIntens);
   }
-  return (Standard_ShortReal)aRoughnessFactor;
+  return (Standard_ShortReal)getPrimal(aRoughnessFactor);
 }
 
 //=================================================================================================

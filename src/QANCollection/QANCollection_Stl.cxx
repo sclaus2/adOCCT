@@ -955,8 +955,8 @@ void TestPerformanceRandomIterator(Draw_Interpretor& di)
 
     Standard_Real aOccTime = aTimer.ElapsedTime();
 
-    di << aSize << "\t" << aStlTime.getValue() << "\t" << aOccTime.getValue() << "\t"
-       << (aOccTime / aStlTime).getValue() << "\n";
+    di << aSize << "\t" << getPrimal(aStlTime) << "\t" << getPrimal(aOccTime) << "\t"
+       << getPrimal(aOccTime / aStlTime) << "\n";
 
     // check that result is the same
     if (!std::equal(aVector->begin(), aVector->end(), aCollec->begin()))
@@ -1011,8 +1011,8 @@ void TestPerformanceForwardIterator(Draw_Interpretor& di)
 
     Standard_Real aOccTime = aTimer.ElapsedTime();
 
-    di << aSize << "\t" << aStlTime.getValue() << "\t" << aOccTime.getValue() << "\t"
-       << (aOccTime / aStlTime).getValue() << "\n";
+    di << aSize << "\t" << getPrimal(aStlTime) << "\t" << getPrimal(aOccTime) << "\t"
+       << getPrimal(aOccTime / aStlTime) << "\n";
 
     // check that result is the same
     if (!std::equal(aVector->begin(), aVector->end(), aCollec->begin()))
@@ -1061,8 +1061,8 @@ void TestPerformanceBidirIterator(Draw_Interpretor& di)
 
     Standard_Real aOccTime = aTimer.ElapsedTime();
 
-    di << aSize << "\t" << aStlTime.getValue() << "\t" << aOccTime.getValue() << "\t"
-       << (aOccTime / aStlTime).getValue() << "\n";
+    di << aSize << "\t" << getPrimal(aStlTime) << "\t" << getPrimal(aOccTime) << "\t"
+       << getPrimal(aOccTime / aStlTime) << "\n";
 
     // check that result is the same
     if (!std::equal(aVector->begin(), aVector->end(), aCollec->begin()))
@@ -1135,8 +1135,8 @@ void TestPerformanceMapAccess(Draw_Interpretor& di)
 
     if (aResult)
     {
-      di << aSize << "\t" << aStlTime.getValue() << "\t" << aOccTime.getValue() << "\t"
-         << (aStlTime > 1e-16 ? (aOccTime / aStlTime).getValue() : -1) << "\n";
+      di << aSize << "\t" << getPrimal(aStlTime) << "\t" << getPrimal(aOccTime) << "\t"
+         << (aStlTime > 1e-16 ? getPrimal(aOccTime / aStlTime) : -1) << "\n";
     }
 
     delete aCollec;
@@ -1266,10 +1266,10 @@ static Standard_Integer QANTestNCollectionIndexedMap(Draw_Interpretor& di,
 
   const Standard_Real aTime4 = aTimer.ElapsedTime();
 
-  di << "Search time 1: " << aTime1.getValue() << "\n"
-     << "Swapping time: " << aTime2.getValue() << "\n"
-     << "Search time 2: " << aTime3.getValue() << "\n"
-     << "Remove   time: " << aTime4.getValue() << "\n";
+  di << "Search time 1: " << getPrimal(aTime1) << "\n"
+     << "Swapping time: " << getPrimal(aTime2) << "\n"
+     << "Search time 2: " << getPrimal(aTime3) << "\n"
+     << "Remove   time: " << getPrimal(aTime4) << "\n";
 
   return 0;
 }
@@ -1359,10 +1359,10 @@ static Standard_Integer QANTestNCollectionIndexedDataMap(Draw_Interpretor& di,
 
   const Standard_Real aTime4 = aTimer.ElapsedTime();
 
-  di << "Search time 1: " << aTime1.getValue() << "\n"
-     << "Swapping time: " << aTime2.getValue() << "\n"
-     << "Search time 2: " << aTime3.getValue() << "\n"
-     << "Remove   time: " << aTime4.getValue() << "\n";
+  di << "Search time 1: " << getPrimal(aTime1) << "\n"
+     << "Swapping time: " << getPrimal(aTime2) << "\n"
+     << "Search time 2: " << getPrimal(aTime3) << "\n"
+     << "Remove   time: " << getPrimal(aTime4) << "\n";
 
   return 0;
 }

@@ -1291,28 +1291,26 @@ void Draw_Display::DrawString(const gp_Pnt2d&        ppt,
   {
 
     case DRAW: {
-      int X = (int)Standard_Real(pt.X() + moveX + curview->GetDx());
-      int Y = (int)Standard_Real(-pt.Y() + moveY - curview->GetDy());
+      int X = (int)getPrimal(pt.X() + moveX + curview->GetDx());
+      int Y = (int)getPrimal(-pt.Y() + moveY - curview->GetDy());
       curview->DrawString(X, Y, (char*)S);
       if (Draw_Bounds)
       {
         if (pt.X() + moveX > xmax)
-          xmax = pt.X().getValue();
+          xmax = getPrimal(pt.X());
         if (pt.X() + moveX < xmin)
-          xmin = pt.X().getValue();
+          xmin = getPrimal(pt.X());
         if (-pt.Y() - moveY > ymax)
-          ymax = -pt.Y().getValue();
+          ymax = -getPrimal(pt.Y());
         if (-pt.Y() - moveY < ymin)
-          ymin = -pt.Y().getValue();
+          ymin = -getPrimal(pt.Y());
       }
     }
     break;
 
     case POSTSCRIPT: {
-      Standard_Integer x =
-        (Standard_Integer)Standard_Real((pt.X() + moveX - ps_vx) * ps_kx + ps_px);
-      Standard_Integer y =
-        (Standard_Integer)Standard_Real((pt.Y() + moveY - ps_vy) * ps_ky + ps_py);
+      Standard_Integer x = (Standard_Integer)getPrimal((pt.X() + moveX - ps_vx) * ps_kx + ps_px);
+      Standard_Integer y = (Standard_Integer)getPrimal((pt.Y() + moveY - ps_vy) * ps_ky + ps_py);
       (*ps_stream) << "stroke\n";
       (*ps_stream) << x << " " << y << " m\n";
       (*ps_stream) << "(" << S << ") show\nnewpath\n";
@@ -1409,13 +1407,13 @@ void Draw_Display::MoveTo(const gp_Pnt2d& pp)
       if (Draw_Bounds)
       {
         if (pt.X() > xmax)
-          xmax = pt.X().getValue();
+          xmax = getPrimal(pt.X());
         if (pt.X() < xmin)
-          xmin = pt.X().getValue();
+          xmin = getPrimal(pt.X());
         if (pt.Y() > ymax)
-          ymax = pt.Y().getValue();
+          ymax = getPrimal(pt.Y());
         if (pt.Y() < ymin)
-          ymin = pt.Y().getValue();
+          ymin = getPrimal(pt.Y());
       }
       break;
 
@@ -1424,8 +1422,8 @@ void Draw_Display::MoveTo(const gp_Pnt2d& pp)
       break;
 
     case POSTSCRIPT: {
-      Standard_Integer x = (Standard_Integer)Standard_Real((pt.X() - ps_vx) * ps_kx + ps_px);
-      Standard_Integer y = (Standard_Integer)Standard_Real((pt.Y() - ps_vy) * ps_ky + ps_py);
+      Standard_Integer x = (Standard_Integer)getPrimal((pt.X() - ps_vx) * ps_kx + ps_px);
+      Standard_Integer y = (Standard_Integer)getPrimal((pt.Y() - ps_vy) * ps_ky + ps_py);
       (*ps_stream) << "stroke\nnewpath\n" << x << " " << y << " m\n";
     }
     break;
@@ -1473,8 +1471,8 @@ inline Standard_Integer CalculRegion(const double x,
 
 Standard_Boolean Trim(gp_Pnt2d& P1, gp_Pnt2d& P2, double x0, double y0, double x1, double y1)
 {
-  double xa = P1.X().getValue(), ya = P1.Y().getValue(), xb = P2.X().getValue(),
-         yb = P2.Y().getValue();
+  double xa = getPrimal(P1.X()), ya = getPrimal(P1.Y()), xb = getPrimal(P2.X()),
+         yb = getPrimal(P2.Y());
 
   Standard_Integer regiona = 0, regionb = 0;
   regiona = CalculRegion(xa, ya, x0, y0, x1, y1);
@@ -1505,8 +1503,8 @@ Standard_Boolean Trim(gp_Pnt2d& P1, gp_Pnt2d& P2, double x0, double y0, double x
     if (MFen.SquareDistance(Pm) > d * d)
       return (Standard_False);
 
-    double PmDistP1 = Pm.Distance(P1).getValue();
-    double PmDistP2 = Pm.Distance(P2).getValue();
+    double PmDistP1 = getPrimal(Pm.Distance(P1));
+    double PmDistP2 = getPrimal(Pm.Distance(P2));
 
     double amab = (xm - xa) * (xb - xa) + (ym - ya) * (yb - ya);
 
@@ -1585,10 +1583,10 @@ void Draw_Display::DrawTo(const gp_Pnt2d& pp2)
 
       if (Trim(PI1, PI2, x0, y0, x1, y1))
       {
-        segm[nbseg].Init(static_cast<Standard_Integer>(Standard_Real(PI1.X() + curview->GetDx())),
-                         static_cast<Standard_Integer>(Standard_Real(-PI1.Y() - curview->GetDy())),
-                         static_cast<Standard_Integer>(Standard_Real(PI2.X() + curview->GetDx())),
-                         static_cast<Standard_Integer>(Standard_Real(-PI2.Y() - curview->GetDy())));
+        segm[nbseg].Init(static_cast<Standard_Integer>(getPrimal(PI1.X() + curview->GetDx())),
+                         static_cast<Standard_Integer>(getPrimal(-PI1.Y() - curview->GetDy())),
+                         static_cast<Standard_Integer>(getPrimal(PI2.X() + curview->GetDx())),
+                         static_cast<Standard_Integer>(getPrimal(-PI2.Y() - curview->GetDy())));
         ++nbseg;
       }
 #else
@@ -1605,13 +1603,13 @@ void Draw_Display::DrawTo(const gp_Pnt2d& pp2)
       if (Draw_Bounds)
       {
         if (p2.X() > xmax)
-          xmax = p2.X().getValue();
+          xmax = getPrimal(p2.X());
         if (p2.X() < xmin)
-          xmin = p2.X().getValue();
+          xmin = getPrimal(p2.X());
         if (p2.Y() > ymax)
-          ymax = p2.Y().getValue();
+          ymax = getPrimal(p2.Y());
         if (p2.Y() < ymin)
-          ymin = p2.Y().getValue();
+          ymin = getPrimal(p2.Y());
       }
     }
     break;
@@ -1619,10 +1617,10 @@ void Draw_Display::DrawTo(const gp_Pnt2d& pp2)
     case PICK:
       if (!found)
       {
-        Standard_Integer x1 = (int)p1.X();
-        Standard_Integer y1 = (int)p1.Y();
-        Standard_Integer x2 = (int)p2.X();
-        Standard_Integer y2 = (int)p2.Y();
+        Standard_Integer x1 = (int)getPrimal(p1.X());
+        Standard_Integer y1 = (int)getPrimal(p1.Y());
+        Standard_Integer x2 = (int)getPrimal(p2.X());
+        Standard_Integer y2 = (int)getPrimal(p2.Y());
         if ((x1 >= xpick + precpick) && (x2 >= xpick + precpick))
           break;
         if ((x1 <= xpick - precpick) && (x2 <= xpick - precpick))
@@ -1710,8 +1708,8 @@ void Draw_Display::DrawTo(const gp_Pnt2d& pp2)
       break;
 
     case POSTSCRIPT: {
-      Standard_Integer x = (Standard_Integer)Standard_Real((p2.X() - ps_vx) * ps_kx + ps_px);
-      Standard_Integer y = (Standard_Integer)Standard_Real((p2.Y() - ps_vy) * ps_ky + ps_py);
+      Standard_Integer x = (Standard_Integer)getPrimal((p2.X() - ps_vx) * ps_kx + ps_px);
+      Standard_Integer y = (Standard_Integer)getPrimal((p2.Y() - ps_vy) * ps_ky + ps_py);
       (*ps_stream) << x << " " << y << " l\n";
     }
     break;
@@ -1733,11 +1731,11 @@ void Draw_Display::MoveTo(const gp_Pnt& pt)
   }
   PtPers = pt;
   PtPers.Transform(curview->GetMatrix());
-  double xp = PtPers.X().getValue();
-  double yp = PtPers.Y().getValue();
+  double xp = getPrimal(PtPers.X());
+  double yp = getPrimal(PtPers.Y());
   if (curview->IsPerspective())
   {
-    double       ZPers     = PtPers.Z().getValue();
+    double       ZPers     = getPrimal(PtPers.Z());
     const double aDistance = curview->GetFocalDistance();
     if (ZPers < aDistance * precpers)
     {
@@ -1758,18 +1756,18 @@ void Draw_Display::DrawTo(const gp_Pnt& pt)
     return;
 
   gp_Pnt pt2 = pt.Transformed(curview->GetMatrix());
-  double xp2 = pt2.X().getValue();
-  double yp2 = pt2.Y().getValue();
+  double xp2 = getPrimal(pt2.X());
+  double yp2 = getPrimal(pt2.Y());
 
   if (curview->IsPerspective())
   {
     const double aZoom     = curview->GetZoom();
     const double aDistance = curview->GetFocalDistance();
 
-    double xp1 = PtPers.X().getValue();
-    double yp1 = PtPers.Y().getValue();
-    double zp1 = PtPers.Z().getValue();
-    double zp2 = pt2.Z().getValue();
+    double xp1 = getPrimal(PtPers.X());
+    double yp1 = getPrimal(PtPers.Y());
+    double zp1 = getPrimal(PtPers.Z());
+    double zp2 = getPrimal(pt2.Z());
     PtPers     = pt2;
     if ((zp1 >= aDistance * precpers) && (zp2 >= aDistance * precpers))
     {

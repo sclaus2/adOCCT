@@ -46,5 +46,5 @@ Standard_Integer IntPatch_HCurve2dTool::NbSamples(const Handle(Adaptor2d_Curve2d
   }
   if (nbs > 50.0)
     return 50;
-  return ((Standard_Integer)nbs);
+  return ((Standard_Integer)getPrimal(nbs));
 }

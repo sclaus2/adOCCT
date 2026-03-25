@@ -1646,13 +1646,13 @@ static Standard_Integer profile2d(Draw_Interpretor& di, Standard_Integer n, cons
   }
   const char* aName;
   aName = "CurX";
-  Draw::Set(aName, x.getValue());
+  Draw::Set(aName, getPrimal(x));
   aName = "CurY";
-  Draw::Set(aName, y.getValue());
+  Draw::Set(aName, getPrimal(y));
   aName = "CurDX";
-  Draw::Set(aName, dx.getValue());
+  Draw::Set(aName, getPrimal(dx));
   aName = "CurDY";
-  Draw::Set(aName, dy.getValue());
+  Draw::Set(aName, getPrimal(dy));
 
   return 0;
 

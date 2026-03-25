@@ -1369,7 +1369,7 @@ Standard_Integer SplitRangeOnSegments(const Standard_Real        aT1,
   if (aDt < theResolution)
   {
     aSeg        = aDiff / theResolution;
-    aNbSegments = Standard_Integer(aSeg) + 1;
+    aNbSegments = Standard_Integer(getPrimal(aSeg)) + 1;
     aDt         = aDiff / aNbSegments;
   }
   //

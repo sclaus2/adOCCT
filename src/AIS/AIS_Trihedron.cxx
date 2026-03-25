@@ -797,7 +797,8 @@ void AIS_Trihedron::updatePrimitives(const Handle(Prs3d_DatumAspect)& theAspect,
           theAspect->ArrowAspect()->Angle(),
           theAspect->AxisLength(aPart)
             * theAspect->Attribute(Prs3d_DatumAttribute_ShadingConeLengthPercent),
-          (Standard_Integer)theAspect->Attribute(Prs3d_DatumAttribute_ShadingNumberOfFacettes));
+          (Standard_Integer)getPrimal(
+            theAspect->Attribute(Prs3d_DatumAttribute_ShadingNumberOfFacettes)));
       }
     }
   }
@@ -810,8 +811,8 @@ void AIS_Trihedron::updatePrimitives(const Handle(Prs3d_DatumAspect)& theAspect,
       const Standard_Real aSphereRadius =
         theAspect->AxisLength(Prs3d_DatumParts_XAxis)
         * theAspect->Attribute(Prs3d_DatumAttribute_ShadingOriginRadiusPercent);
-      const Standard_Integer aNbOfFacettes =
-        (Standard_Integer)theAspect->Attribute(Prs3d_DatumAttribute_ShadingNumberOfFacettes);
+      const Standard_Integer aNbOfFacettes = (Standard_Integer)getPrimal(
+        theAspect->Attribute(Prs3d_DatumAttribute_ShadingNumberOfFacettes));
       gp_Trsf aSphereTransform;
       aSphereTransform.SetTranslationPart(gp_Vec(gp::Origin(), theOrigin));
       myPrimitives[Prs3d_DatumParts_Origin] =
@@ -819,8 +820,8 @@ void AIS_Trihedron::updatePrimitives(const Handle(Prs3d_DatumAspect)& theAspect,
     }
     // axes
     {
-      const Standard_Integer aNbOfFacettes =
-        (Standard_Integer)theAspect->Attribute(Prs3d_DatumAttribute_ShadingNumberOfFacettes);
+      const Standard_Integer aNbOfFacettes = (Standard_Integer)getPrimal(
+        theAspect->Attribute(Prs3d_DatumAttribute_ShadingNumberOfFacettes));
       const Standard_Real aTubeRadiusPercent =
         theAspect->Attribute(Prs3d_DatumAttribute_ShadingTubeRadiusPercent);
       const Standard_Real aConeLengthPercent =

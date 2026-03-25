@@ -54,7 +54,7 @@ Standard_Integer IntCurveSurface_TheHCurveTool::NbSamples(const Handle(Adaptor3d
   }
   if (nbs > 50)
     nbs = 50;
-  return ((Standard_Integer)nbs);
+  return ((Standard_Integer)getPrimal(nbs));
 }
 
 void IntCurveSurface_TheHCurveTool::SamplePars(const Handle(Adaptor3d_Curve)& C,
@@ -79,7 +79,7 @@ void IntCurveSurface_TheHCurveTool::SamplePars(const Handle(Adaptor3d_Curve)& C,
   {
     if (nbs > 50)
       nbs = 50;
-    Standard_Integer nnbs = (Standard_Integer)nbs;
+    Standard_Integer nnbs = (Standard_Integer)getPrimal(nbs);
 
     Pars             = new TColStd_HArray1OfReal(1, nnbs);
     Standard_Real du = (U1 - U0) / (nnbs - 1);

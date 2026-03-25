@@ -38,7 +38,7 @@ void HLRBRep_EdgeData::Set(const Standard_Boolean   Rg1L,
   RgNLine(RgNL);
   Used(Standard_False);
   ChangeGeometry().Curve(EG);
-  myTolerance = (Standard_ShortReal)(BRep_Tool::Tolerance(EG));
+  myTolerance = (Standard_ShortReal)getPrimal(BRep_Tool::Tolerance(EG));
   VSta(V1);
   VEnd(V2);
   OutLVSta(Out1);
@@ -47,7 +47,7 @@ void HLRBRep_EdgeData::Set(const Standard_Boolean   Rg1L,
   CutAtEnd(Cut2);
   Status().Initialize(
     Start,
-    (Standard_ShortReal)(ChangeGeometry().Curve().Resolution((Standard_Real)TolStart)),
+    (Standard_ShortReal)getPrimal(ChangeGeometry().Curve().Resolution((Standard_Real)TolStart)),
     End,
-    (Standard_ShortReal)(ChangeGeometry().Curve().Resolution((Standard_Real)TolEnd)));
+    (Standard_ShortReal)getPrimal(ChangeGeometry().Curve().Resolution((Standard_Real)TolEnd)));
 }

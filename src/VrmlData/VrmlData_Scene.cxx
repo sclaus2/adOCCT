@@ -971,16 +971,16 @@ VrmlData_ErrorStatus VrmlData_Scene::WriteXYZ(const gp_XYZ&          theXYZ,
     if (isApplyScale && myLinearScale > Precision::Confusion())
       Sprintf(buf,
               "%.12g %.12g %.12g%s",
-              (theXYZ.X() / myLinearScale).getValue(),
-              (theXYZ.Y() / myLinearScale).getValue(),
-              (theXYZ.Z() / myLinearScale).getValue(),
+              getPrimal(theXYZ.X() / myLinearScale),
+              getPrimal(theXYZ.Y() / myLinearScale),
+              getPrimal(theXYZ.Z() / myLinearScale),
               thePostfix ? thePostfix : "");
     else
       Sprintf(buf,
               "%.12g %.12g %.12g%s",
-              theXYZ.X().getValue(),
-              theXYZ.Y().getValue(),
-              theXYZ.Z().getValue(),
+              getPrimal(theXYZ.X()),
+              getPrimal(theXYZ.Y()),
+              getPrimal(theXYZ.Z()),
               thePostfix ? thePostfix : "");
   }
   return WriteLine(buf);

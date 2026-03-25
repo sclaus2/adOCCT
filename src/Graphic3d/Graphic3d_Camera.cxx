@@ -894,11 +894,11 @@ void Graphic3d_Camera::stereoProjection(NCollection_Mat4<Elem_t>& theProjL,
     theHeadToEyeL.InitIdentity();
     theHeadToEyeL.SetColumn(
       3,
-      NCollection_Vec3<Elem_t>(Elem_t(Standard_Real(0.5 * aIOD)), Elem_t(0.0), Elem_t(0.0)));
+      NCollection_Vec3<Elem_t>(Elem_t(getPrimal(0.5 * aIOD)), Elem_t(0.0), Elem_t(0.0)));
     theHeadToEyeR.InitIdentity();
     theHeadToEyeR.SetColumn(
       3,
-      NCollection_Vec3<Elem_t>(Elem_t(Standard_Real(-0.5 * aIOD)), Elem_t(0.0), Elem_t(0.0)));
+      NCollection_Vec3<Elem_t>(Elem_t(getPrimal(-0.5 * aIOD)), Elem_t(0.0), Elem_t(0.0)));
   }
 }
 
@@ -952,10 +952,10 @@ void Graphic3d_Camera::computeProjection(NCollection_Mat4<Elem_t>& theProjM,
   theProjR.InitIdentity();
 
   // sets top of frustum based on FOVy and near clipping plane
-  Elem_t aScale   = static_cast<Elem_t>(myScale);
-  Elem_t aZNear   = static_cast<Elem_t>(myZNear);
-  Elem_t aZFar    = static_cast<Elem_t>(myZFar);
-  Elem_t anAspect = static_cast<Elem_t>(myAspect);
+  Elem_t aScale   = static_cast<Elem_t>(getPrimal(myScale));
+  Elem_t aZNear   = static_cast<Elem_t>(getPrimal(myZNear));
+  Elem_t aZFar    = static_cast<Elem_t>(getPrimal(myZFar));
+  Elem_t anAspect = static_cast<Elem_t>(getPrimal(myAspect));
   Elem_t aDXHalf = 0.0, aDYHalf = 0.0;
   if (IsOrthographic())
   {
@@ -963,7 +963,7 @@ void Graphic3d_Camera::computeProjection(NCollection_Mat4<Elem_t>& theProjM,
   }
   else
   {
-    aDXHalf = aDYHalf = aZNear * Elem_t(myFOVyTan);
+    aDXHalf = aDYHalf = aZNear * Elem_t(getPrimal(myFOVyTan));
   }
 
   if (anAspect > 1.0)
@@ -982,13 +982,12 @@ void Graphic3d_Camera::computeProjection(NCollection_Mat4<Elem_t>& theProjM,
   anLRBT.Bottom = -aDYHalf;
   anLRBT.Top    = aDYHalf;
 
-  Elem_t aIOD = myIODType == IODType_Relative
-                  ? static_cast<Elem_t>(Standard_Real(myIOD * Distance()))
-                  : static_cast<Elem_t>(myIOD);
+  Elem_t aIOD = myIODType == IODType_Relative ? static_cast<Elem_t>(getPrimal(myIOD * Distance()))
+                                              : static_cast<Elem_t>(getPrimal(myIOD));
 
   Elem_t aFocus = myZFocusType == FocusType_Relative
-                    ? static_cast<Elem_t>(Standard_Real(myZFocus * Distance()))
-                    : static_cast<Elem_t>(myZFocus);
+                    ? static_cast<Elem_t>(getPrimal(myZFocus * Distance()))
+                    : static_cast<Elem_t>(getPrimal(myZFocus));
 
   if (myTile.IsValid())
   {
@@ -1095,21 +1094,21 @@ Graphic3d_Camera::TransformMatrices<Elem_t>& Graphic3d_Camera::UpdateOrientation
 
   theMatrices.InitOrientation();
 
-  NCollection_Vec3<Elem_t> anEye(static_cast<Elem_t>(myEye.X()),
-                                 static_cast<Elem_t>(myEye.Y()),
-                                 static_cast<Elem_t>(myEye.Z()));
+  NCollection_Vec3<Elem_t> anEye(static_cast<Elem_t>(getPrimal(myEye.X())),
+                                 static_cast<Elem_t>(getPrimal(myEye.Y())),
+                                 static_cast<Elem_t>(getPrimal(myEye.Z())));
 
-  NCollection_Vec3<Elem_t> aViewDir(static_cast<Elem_t>(myDirection.X()),
-                                    static_cast<Elem_t>(myDirection.Y()),
-                                    static_cast<Elem_t>(myDirection.Z()));
+  NCollection_Vec3<Elem_t> aViewDir(static_cast<Elem_t>(getPrimal(myDirection.X())),
+                                    static_cast<Elem_t>(getPrimal(myDirection.Y())),
+                                    static_cast<Elem_t>(getPrimal(myDirection.Z())));
 
-  NCollection_Vec3<Elem_t> anUp(static_cast<Elem_t>(myUp.X()),
-                                static_cast<Elem_t>(myUp.Y()),
-                                static_cast<Elem_t>(myUp.Z()));
+  NCollection_Vec3<Elem_t> anUp(static_cast<Elem_t>(getPrimal(myUp.X())),
+                                static_cast<Elem_t>(getPrimal(myUp.Y())),
+                                static_cast<Elem_t>(getPrimal(myUp.Z())));
 
-  NCollection_Vec3<Elem_t> anAxialScale(static_cast<Elem_t>(myAxialScale.X()),
-                                        static_cast<Elem_t>(myAxialScale.Y()),
-                                        static_cast<Elem_t>(myAxialScale.Z()));
+  NCollection_Vec3<Elem_t> anAxialScale(static_cast<Elem_t>(getPrimal(myAxialScale.X())),
+                                        static_cast<Elem_t>(getPrimal(myAxialScale.Y())),
+                                        static_cast<Elem_t>(getPrimal(myAxialScale.Z())));
 
   LookOrientation(anEye, aViewDir, anUp, anAxialScale, theMatrices.Orientation);
 

@@ -40,8 +40,8 @@ static void ComputePoles(const Standard_Real R,
   Standard_Integer i, j;
 
   // Number of spans : maximum opening = 150 degrees ( = PI / 1.2 rds)
-  Standard_Integer nbUSpans = (Standard_Integer)IntegerPart(1.2 * deltaU / M_PI) + 1;
-  Standard_Integer nbVSpans = (Standard_Integer)IntegerPart(1.2 * deltaV / M_PI) + 1;
+  Standard_Integer nbUSpans = (Standard_Integer)getPrimal(IntegerPart(1.2 * deltaU / M_PI)) + 1;
+  Standard_Integer nbVSpans = (Standard_Integer)getPrimal(IntegerPart(1.2 * deltaV / M_PI)) + 1;
   Standard_Real    AlfaU    = deltaU / (nbUSpans * 2);
   Standard_Real    AlfaV    = deltaV / (nbVSpans * 2);
 
@@ -110,8 +110,8 @@ Convert_SphereToBSplineSurface::Convert_SphereToBSplineSurface(const gp_Sphere& 
   // construction of the sphere in the reference mark xOy.
 
   // Number of spans : maximum opening = 150 degrees ( = PI / 1.2 rds)
-  Standard_Integer nbUSpans = (Standard_Integer)IntegerPart(1.2 * deltaU / M_PI) + 1;
-  Standard_Integer nbVSpans = (Standard_Integer)IntegerPart(1.2 * deltaV / M_PI) + 1;
+  Standard_Integer nbUSpans = (Standard_Integer)getPrimal(IntegerPart(1.2 * deltaU / M_PI)) + 1;
+  Standard_Integer nbVSpans = (Standard_Integer)getPrimal(IntegerPart(1.2 * deltaV / M_PI)) + 1;
   Standard_Real    AlfaU    = deltaU / (nbUSpans * 2);
   Standard_Real    AlfaV    = deltaV / (nbVSpans * 2);
 
@@ -202,7 +202,7 @@ Convert_SphereToBSplineSurface::Convert_SphereToBSplineSurface(const gp_Sphere& 
     nbUKnots = 4;
 
     deltaV                    = Param2 - Param1;
-    Standard_Integer nbVSpans = (Standard_Integer)IntegerPart(1.2 * deltaV / M_PI) + 1;
+    Standard_Integer nbVSpans = (Standard_Integer)getPrimal(IntegerPart(1.2 * deltaV / M_PI)) + 1;
     Standard_Real    AlfaV    = deltaV / (nbVSpans * 2);
     nbVPoles                  = 2 * nbVSpans + 1;
     nbVKnots                  = nbVSpans + 1;
@@ -231,7 +231,7 @@ Convert_SphereToBSplineSurface::Convert_SphereToBSplineSurface(const gp_Sphere& 
     nbVKnots = 3;
 
     deltaU                    = Param2 - Param1;
-    Standard_Integer nbUSpans = (Standard_Integer)IntegerPart(1.2 * deltaU / M_PI) + 1;
+    Standard_Integer nbUSpans = (Standard_Integer)getPrimal(IntegerPart(1.2 * deltaU / M_PI)) + 1;
     Standard_Real    AlfaU    = deltaU / (nbUSpans * 2);
     nbUPoles                  = 2 * nbUSpans + 1;
     nbUKnots                  = nbUSpans + 1;

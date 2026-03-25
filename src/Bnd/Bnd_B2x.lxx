@@ -36,10 +36,17 @@ inline Bnd_B2x::Bnd_B2x()
  */
 inline Bnd_B2x::Bnd_B2x(const gp_XY& theCenter, const gp_XY& theHSize)
 {
-  myCenter[0] = RealType(theCenter.X());
-  myCenter[1] = RealType(theCenter.Y());
-  myHSize[0]  = RealType(theHSize.X());
-  myHSize[1]  = RealType(theHSize.Y());
+#if defined(Bnd_Use_AD)
+  myCenter[0] = theCenter.X();
+  myCenter[1] = theCenter.Y();
+  myHSize[0]  = theHSize.X();
+  myHSize[1]  = theHSize.Y();
+#else
+  myCenter[0] = RealType(getPrimal(theCenter.X()));
+  myCenter[1] = RealType(getPrimal(theCenter.Y()));
+  myHSize[0]  = RealType(getPrimal(theHSize.X()));
+  myHSize[1]  = RealType(getPrimal(theHSize.Y()));
+#endif
 }
 
 /**
@@ -110,8 +117,13 @@ inline Standard_Real Bnd_B2x::SquareExtent() const
  */
 inline void Bnd_B2x::SetCenter(const gp_XY& theCenter)
 {
-  myCenter[0] = RealType(theCenter.X());
-  myCenter[1] = RealType(theCenter.Y());
+#if defined(Bnd_Use_AD)
+  myCenter[0] = theCenter.X();
+  myCenter[1] = theCenter.Y();
+#else
+  myCenter[0] = RealType(getPrimal(theCenter.X()));
+  myCenter[1] = RealType(getPrimal(theCenter.Y()));
+#endif
 }
 
 /**
@@ -119,8 +131,13 @@ inline void Bnd_B2x::SetCenter(const gp_XY& theCenter)
  */
 inline void Bnd_B2x::SetHSize(const gp_XY& theHSize)
 {
-  myHSize[0] = RealType(theHSize.X());
-  myHSize[1] = RealType(theHSize.Y());
+#if defined(Bnd_Use_AD)
+  myHSize[0] = theHSize.X();
+  myHSize[1] = theHSize.Y();
+#else
+  myHSize[0] = RealType(getPrimal(theHSize.X()));
+  myHSize[1] = RealType(getPrimal(theHSize.Y()));
+#endif
 }
 
 /**
@@ -130,7 +147,11 @@ inline void Bnd_B2x::SetHSize(const gp_XY& theHSize)
  */
 inline void Bnd_B2x::Enlarge(const Standard_Real aDiff)
 {
-  const RealType aD = RealType(Abs(aDiff));
+#if defined(Bnd_Use_AD)
+  const RealType aD = Abs(aDiff);
+#else
+  const RealType aD = RealType(getPrimal(Abs(aDiff)));
+#endif
   myHSize[0] += aD;
   myHSize[1] += aD;
 }
@@ -140,8 +161,12 @@ inline void Bnd_B2x::Enlarge(const Standard_Real aDiff)
  */
 inline Standard_Boolean Bnd_B2x::IsOut(const gp_XY& thePnt) const
 {
-  return (Abs(RealType(thePnt.X()) - myCenter[0]) > myHSize[0]
-          || Abs(RealType(thePnt.Y()) - myCenter[1]) > myHSize[1]);
+#if defined(Bnd_Use_AD)
+  return (Abs(thePnt.X() - myCenter[0]) > myHSize[0] || Abs(thePnt.Y() - myCenter[1]) > myHSize[1]);
+#else
+  return (Abs(RealType(getPrimal(thePnt.X())) - myCenter[0]) > myHSize[0]
+          || Abs(RealType(getPrimal(thePnt.Y())) - myCenter[1]) > myHSize[1]);
+#endif
 }
 
 /**

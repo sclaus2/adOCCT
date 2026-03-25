@@ -46,14 +46,16 @@ void OpenGl_Structure::renderBoundingBox(const Handle(OpenGl_Workspace)& theWork
   {
     const Graphic3d_Vec3d aCenter = myBndBox.Center() + aMoveVec;
     const Graphic3d_Vec3d aSize   = myBndBox.Size();
-    aCtx->ActiveProgram()->SetUniform(
-      aCtx,
-      "occBBoxCenter",
-      Graphic3d_Vec3((float)aCenter.x(), (float)aCenter.y(), (float)aCenter.z()));
-    aCtx->ActiveProgram()->SetUniform(
-      aCtx,
-      "occBBoxSize",
-      Graphic3d_Vec3((float)aSize.x(), (float)aSize.y(), (float)aSize.z()));
+    aCtx->ActiveProgram()->SetUniform(aCtx,
+                                      "occBBoxCenter",
+                                      Graphic3d_Vec3((float)getPrimal(aCenter.x()),
+                                                     (float)getPrimal(aCenter.y()),
+                                                     (float)getPrimal(aCenter.z())));
+    aCtx->ActiveProgram()->SetUniform(aCtx,
+                                      "occBBoxSize",
+                                      Graphic3d_Vec3((float)getPrimal(aSize.x()),
+                                                     (float)getPrimal(aSize.y()),
+                                                     (float)getPrimal(aSize.z())));
     aCtx->SetColor4fv(theWorkspace->InteriorColor());
 
     const Handle(OpenGl_VertexBuffer)& aBoundBoxVertBuffer =
@@ -66,8 +68,12 @@ void OpenGl_Structure::renderBoundingBox(const Handle(OpenGl_Workspace)& theWork
   {
     const Graphic3d_Vec3d aMind = myBndBox.CornerMin() + aMoveVec;
     const Graphic3d_Vec3d aMaxd = myBndBox.CornerMax() + aMoveVec;
-    const Graphic3d_Vec3  aMin((float)aMind.x(), (float)aMind.y(), (float)aMind.z());
-    const Graphic3d_Vec3  aMax((float)aMaxd.x(), (float)aMaxd.y(), (float)aMaxd.z());
+    const Graphic3d_Vec3  aMin((float)getPrimal(aMind.x()),
+                              (float)getPrimal(aMind.y()),
+                              (float)getPrimal(aMind.z()));
+    const Graphic3d_Vec3  aMax((float)getPrimal(aMaxd.x()),
+                              (float)getPrimal(aMaxd.y()),
+                              (float)getPrimal(aMaxd.z()));
     const OpenGl_Vec3     aVerts[16] = {OpenGl_Vec3(aMin.x(), aMin.y(), aMin.z()),
                                         OpenGl_Vec3(aMin.x(), aMin.y(), aMax.z()),
                                         OpenGl_Vec3(aMin.x(), aMax.y(), aMax.z()),
@@ -674,9 +680,9 @@ void OpenGl_Structure::applyPersistence(const Handle(OpenGl_Context)&          t
     OpenGl_Mat4&   aModelWorld   = theCtx->ModelWorldState.ChangeCurrent();
     gp_Pnt         aStartPnt     = theTrsfPers->AnchorPoint();
     Graphic3d_Vec4 anAnchorPoint = aModelWorld
-                                   * Graphic3d_Vec4((Standard_ShortReal)aStartPnt.X(),
-                                                    (Standard_ShortReal)aStartPnt.Y(),
-                                                    (Standard_ShortReal)aStartPnt.Z(),
+                                   * Graphic3d_Vec4((Standard_ShortReal)getPrimal(aStartPnt.X()),
+                                                    (Standard_ShortReal)getPrimal(aStartPnt.Y()),
+                                                    (Standard_ShortReal)getPrimal(aStartPnt.Z()),
                                                     1.0f);
     // clang-format off
     aModelWorld.SetColumn (3, Graphic3d_Vec4 (Graphic3d_Vec3 (0.0), 1.0)); // reset translation part

@@ -72,9 +72,9 @@ static void showProjSolution(Draw_Interpretor&      di,
       di << " Point on curve ";
   }
   if (isSurface)
-    di << " Parameters: " << U.getValue() << " " << V.getValue() << "\n";
+    di << " Parameters: " << getPrimal(U) << " " << getPrimal(V) << "\n";
   else
-    di << " parameter " << i << " = " << U.getValue() << "\n";
+    di << " parameter " << i << " = " << getPrimal(U) << "\n";
 }
 
 //=================================================================================================
@@ -626,7 +626,7 @@ static Standard_Integer extrema(Draw_Interpretor& di, Standard_Integer n, const 
     // Infinity solutions flag may be set with 0 number of
     // solutions in analytic extrema Curve/Curve.
     if (isInfinitySolutions)
-      di << "Infinite number of extremas, distance = " << aMinDist.getValue() << "\n";
+      di << "Infinite number of extremas, distance = " << getPrimal(aMinDist) << "\n";
     else
       di << "No solutions!\n";
   }
@@ -636,8 +636,8 @@ static Standard_Integer extrema(Draw_Interpretor& di, Standard_Integer n, const 
 
     if (aP1.Distance(aP2) < 1.e-16)
     {
-      di << "Extrema " << aJ << " is point : " << aP1.X().getValue() << " " << aP1.Y().getValue()
-         << " " << aP1.Z().getValue() << "\n";
+      di << "Extrema " << aJ << " is point : " << getPrimal(aP1.X()) << " " << getPrimal(aP1.Y())
+         << " " << getPrimal(aP1.Z()) << "\n";
       continue;
     }
 
@@ -669,7 +669,7 @@ static Standard_Integer extrema(Draw_Interpretor& di, Standard_Integer n, const 
       {
         Standard_Real aP = aPrms[aJ](aK);
         Sprintf(aName, "%s%d%s%d", "prm_", aJ + 1, "_", aK + 1);
-        Draw::Set(aName2, aP.getValue());
+        Draw::Set(aName2, getPrimal(aP));
         di << aName << " ";
       }
     }
@@ -718,8 +718,8 @@ static Standard_Integer totalextcc(Draw_Interpretor& di, Standard_Integer n, con
   {
     if (P1.Distance(P2) < 1.e-16)
     {
-      di << "Extrema is point : " << P1.X().getValue() << " " << P1.Y().getValue() << " "
-         << P1.Z().getValue() << "\n";
+      di << "Extrema is point : " << getPrimal(P1.X()) << " " << getPrimal(P1.Y()) << " "
+         << getPrimal(P1.Z()) << "\n";
     }
     else
     {
@@ -735,14 +735,14 @@ static Standard_Integer totalextcc(Draw_Interpretor& di, Standard_Integer n, con
     Standard_Real u1, u2;
     Ex.TotalLowerDistanceParameters(u1, u2);
 
-    di << "Parameters on curves : " << u1.getValue() << " " << u2.getValue() << "\n";
+    di << "Parameters on curves : " << getPrimal(u1) << " " << getPrimal(u2) << "\n";
   }
   else
   {
     di << "Curves are infinite and parallel\n";
   }
 
-  di << "Minimal distance : " << Ex.TotalLowerDistance().getValue() << "\n";
+  di << "Minimal distance : " << getPrimal(Ex.TotalLowerDistance()) << "\n";
 
   return 0;
 }

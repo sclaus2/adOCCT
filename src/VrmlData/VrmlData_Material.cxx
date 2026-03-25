@@ -232,21 +232,21 @@ VrmlData_ErrorStatus VrmlData_Material::Read(VrmlData_InBuffer& theBuffer)
     myAmbientIntensity = anIntensity[0];
     myShininess        = anIntensity[1];
     myTransparency     = anIntensity[2];
-    myAmbientColor.SetValues(aColor[0].X().getValue(),
-                             aColor[0].Y().getValue(),
-                             aColor[0].Z().getValue(),
+    myAmbientColor.SetValues(getPrimal(aColor[0].X()),
+                             getPrimal(aColor[0].Y()),
+                             getPrimal(aColor[0].Z()),
                              Quantity_TOC_sRGB);
-    myDiffuseColor.SetValues(aColor[1].X().getValue(),
-                             aColor[1].Y().getValue(),
-                             aColor[1].Z().getValue(),
+    myDiffuseColor.SetValues(getPrimal(aColor[1].X()),
+                             getPrimal(aColor[1].Y()),
+                             getPrimal(aColor[1].Z()),
                              Quantity_TOC_sRGB);
-    myEmissiveColor.SetValues(aColor[2].X().getValue(),
-                              aColor[2].Y().getValue(),
-                              aColor[2].Z().getValue(),
+    myEmissiveColor.SetValues(getPrimal(aColor[2].X()),
+                              getPrimal(aColor[2].Y()),
+                              getPrimal(aColor[2].Z()),
                               Quantity_TOC_sRGB);
-    mySpecularColor.SetValues(aColor[3].X().getValue(),
-                              aColor[3].Y().getValue(),
-                              aColor[3].Z().getValue(),
+    mySpecularColor.SetValues(getPrimal(aColor[3].X()),
+                              getPrimal(aColor[3].Y()),
+                              getPrimal(aColor[3].Z()),
                               Quantity_TOC_sRGB);
   }
   return aStatus;
@@ -269,7 +269,7 @@ VrmlData_ErrorStatus VrmlData_Material::Write(const char* thePrefix) const
 
     if (OK(aStatus) && fabs(myAmbientIntensity - 0.2) > aConf)
     {
-      Sprintf(buf, "%.6g", myAmbientIntensity.getValue());
+      Sprintf(buf, "%.6g", getPrimal(myAmbientIntensity));
       aStatus = aScene.WriteLine("ambientIntensity ", buf);
     }
     if (OK(aStatus))
@@ -294,7 +294,7 @@ VrmlData_ErrorStatus VrmlData_Material::Write(const char* thePrefix) const
     }
     if (OK(aStatus) && fabs(myShininess - 0.2) > aConf)
     {
-      Sprintf(buf, "%.6g", myShininess.getValue());
+      Sprintf(buf, "%.6g", getPrimal(myShininess));
       aStatus = aScene.WriteLine("shininess        ", buf);
     }
     if (OK(aStatus))
@@ -308,7 +308,7 @@ VrmlData_ErrorStatus VrmlData_Material::Write(const char* thePrefix) const
     }
     if (OK(aStatus) && myTransparency > aConf)
     {
-      Sprintf(buf, "%.6g", myTransparency.getValue());
+      Sprintf(buf, "%.6g", getPrimal(myTransparency));
       aStatus = aScene.WriteLine("transparency     ", buf);
     }
 

@@ -675,7 +675,7 @@ static Standard_Integer QABVH_PairDistance(Draw_Interpretor& theDI,
   if (!aDistTool.IsDone())
     std::cout << "Not Done" << std::endl;
   else
-    theDI << "Distance " << Sqrt(aSqDist).getValue() << "\n";
+    theDI << "Distance " << getPrimal(Sqrt(aSqDist)) << "\n";
 
   return 0;
 }

@@ -116,14 +116,14 @@ void XmlTObjDrivers_XYZDriver::Paste(const Handle(TDF_Attribute)& Source,
   TCollection_AsciiString aCoord;
 
   // coordinate X
-  aCoord = TCollection_AsciiString(aXYZ.X().getValue());
+  aCoord = TCollection_AsciiString(getPrimal(aXYZ.X()));
   Target.Element().setAttribute(::CoordX(), aCoord.ToCString());
 
   // coordinate Y
-  aCoord = TCollection_AsciiString(aXYZ.Y().getValue());
+  aCoord = TCollection_AsciiString(getPrimal(aXYZ.Y()));
   Target.Element().setAttribute(::CoordY(), aCoord.ToCString());
 
   // coordinate Z
-  aCoord = TCollection_AsciiString(aXYZ.Z().getValue());
+  aCoord = TCollection_AsciiString(getPrimal(aXYZ.Z()));
   Target.Element().setAttribute(::CoordZ(), aCoord.ToCString());
 }

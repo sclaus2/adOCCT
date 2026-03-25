@@ -135,7 +135,7 @@ static Standard_Integer OCC24303(Draw_Interpretor& di, Standard_Integer n, const
 
   // This distance is different in OC 6.5.4 and OC 6.6.0
   Standard_Real dist = theorical_tangent.Location().Distance(calculated_tangent.Location());
-  di << "Distance = " << dist.getValue() << "\n";
+  di << "Distance = " << getPrimal(dist) << "\n";
 
   return 0;
 }

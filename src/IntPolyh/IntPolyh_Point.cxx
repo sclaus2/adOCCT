@@ -78,7 +78,7 @@ IntPolyh_Point IntPolyh_Point::Divide(const Standard_Real RR) const
   }
   else
   {
-    printf("Division par zero RR=%f\n", RR.getValue());
+    printf("Division par zero RR=%f\n", getPrimal(RR));
   }
   return res;
 }
@@ -136,11 +136,11 @@ void IntPolyh_Point::Cross(const IntPolyh_Point& a, const IntPolyh_Point& b)
 void IntPolyh_Point::Dump() const
 {
   printf("\nPoint : x=%+8.3eg y=%+8.3eg z=%+8.3eg u=%+8.3eg v=%+8.3eg\n",
-         myX.getValue(),
-         myY.getValue(),
-         myZ.getValue(),
-         myU.getValue(),
-         myV.getValue());
+         getPrimal(myX),
+         getPrimal(myY),
+         getPrimal(myZ),
+         getPrimal(myU),
+         getPrimal(myV));
 }
 
 //=================================================================================================
@@ -149,10 +149,10 @@ void IntPolyh_Point::Dump(const Standard_Integer i) const
 {
   printf("\nPoint(%3d) : x=%+8.3eg y=%+8.3eg z=%+8.3eg u=%+8.3eg v=%+8.3eg poc=%3d\n",
          i,
-         myX.getValue(),
-         myY.getValue(),
-         myZ.getValue(),
-         myU.getValue(),
-         myV.getValue(),
+         getPrimal(myX),
+         getPrimal(myY),
+         getPrimal(myZ),
+         getPrimal(myU),
+         getPrimal(myV),
          myPOC);
 }

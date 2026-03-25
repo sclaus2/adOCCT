@@ -165,9 +165,9 @@ static Standard_Real CalculVolume(const TopoDS_Shape& So,
   localCentroid = localCentroid * (1. / myVolume);
 
   di << "Centroid:\n";
-  di << "X=\t" << localCentroid.X().getValue() << "\n";
-  di << "Y=\t" << localCentroid.Y().getValue() << "\n";
-  di << "Z=\t" << localCentroid.Z().getValue() << "\n";
+  di << "X=\t" << getPrimal(localCentroid.X()) << "\n";
+  di << "Y=\t" << getPrimal(localCentroid.Y()) << "\n";
+  di << "Z=\t" << getPrimal(localCentroid.Z()) << "\n";
   return (myVolume);
 }
 
@@ -243,9 +243,9 @@ static Standard_Integer SetProps(Draw_Interpretor& di, Standard_Integer argc, co
       aLabel.AddAttribute(aArea);
     aArea->Set(Ares);
 
-    di << argv[2] << ": Volume = " << Vres.getValue() << ", Area = " << Ares.getValue()
-       << ", Centroid is (" << aPoint.X().getValue() << ", " << aPoint.Y().getValue() << ", "
-       << aPoint.Z().getValue() << ")";
+    di << argv[2] << ": Volume = " << getPrimal(Vres) << ", Area = " << getPrimal(Ares)
+       << ", Centroid is (" << getPrimal(aPoint.X()) << ", " << getPrimal(aPoint.Y()) << ", "
+       << getPrimal(aPoint.Z()) << ")";
   }
   return 0;
 }
@@ -289,7 +289,7 @@ static Standard_Integer SetVolume(Draw_Interpretor& di, Standard_Integer argc, c
     aVolume->Set(res);
   }
 
-  di << res.getValue();
+  di << getPrimal(res);
   return 0;
 }
 
@@ -331,7 +331,7 @@ static Standard_Integer SetArea(Draw_Interpretor& di, Standard_Integer argc, con
       aLabel.AddAttribute(aArea);
     aArea->Set(res);
   }
-  di << res.getValue();
+  di << getPrimal(res);
   return 0;
 }
 
@@ -414,7 +414,7 @@ static Standard_Integer GetVolume(Draw_Interpretor& di, Standard_Integer argc, c
     // another case
     Standard_Real aVol;
     if (XCAFDoc_Volume::Get(aLabel, aVol))
-      di << aVol.getValue();
+      di << getPrimal(aVol);
   }
   return 0;
 }
@@ -454,7 +454,7 @@ static Standard_Integer GetArea(Draw_Interpretor& di, Standard_Integer argc, con
     // another case
     Standard_Real anA;
     if (XCAFDoc_Area::Get(aLabel, anA))
-      di << anA.getValue();
+      di << getPrimal(anA);
   }
   return 0;
 }
@@ -498,7 +498,7 @@ static Standard_Integer GetCentroid(Draw_Interpretor& di, Standard_Integer argc,
       //       di << aPoint.X()<<" "<<aPoint.Y()<<" "<<aPoint.Z();
       // another case
       if (XCAFDoc_Centroid::Get(aLabel, aPoint))
-        di << aPoint.X().getValue() << " " << aPoint.Y().getValue() << " " << aPoint.Z().getValue();
+        di << getPrimal(aPoint.X()) << " " << getPrimal(aPoint.Y()) << " " << getPrimal(aPoint.Z());
     }
   }
   return 0;
@@ -610,7 +610,7 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
       try
       {
         OCC_CATCH_SIGNALS
-        BRepGProp::SurfaceProperties(aShape, G, 0.001);
+        BRepGProp::SurfaceProperties(aShape, G, Standard_Real(0.001));
         // printf ("%s%9.1f (%3d%%)%s", ( wholeDoc ? "" : "  Area defect:   " ),
         //	aArea->Get() - G.Mass(),
         //	(Standard_Integer)( Abs ( G.Mass() ) > 1e-10 ? 100. * ( aArea->Get() - G.Mass() ) /
@@ -619,8 +619,8 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
         Sprintf(string2,
                 "%s%9.1f (%3d%%)%s",
                 (wholeDoc ? "" : "  Area defect:   "),
-                (aArea->Get() - G.Mass()).getValue(),
-                (Standard_Integer)Standard_Real(
+                getPrimal(aArea->Get() - G.Mass()),
+                (Standard_Integer)getPrimal(
                   Abs(G.Mass()) > 1e-10 ? 100. * (aArea->Get() - G.Mass()) / G.Mass() : 999.),
                 (wholeDoc ? "" : "\n"));
         di << string2;
@@ -662,7 +662,7 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
         }
         else
         {
-          BRepGProp::VolumeProperties(aShape, G, 0.001, Standard_True);
+          BRepGProp::VolumeProperties(aShape, G, Standard_Real(0.001), Standard_True);
           localVolume = G.Mass();
           pcg         = G.CentreOfMass();
         }
@@ -677,8 +677,8 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
           Sprintf(string5,
                   "%s%9.1f (%3d%%)%s",
                   (wholeDoc ? "" : "  Volume defect: "),
-                  (aVolume->Get() - localVolume).getValue(),
-                  (Standard_Integer)Standard_Real(
+                  getPrimal(aVolume->Get() - localVolume),
+                  (Standard_Integer)getPrimal(
                     Abs(localVolume) > 1e-10 ? 100. * (aVolume->Get() - localVolume) / localVolume
                                              : 999.),
                   (wholeDoc ? "" : "\n"));
@@ -702,9 +702,9 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
             //     p.X() - pcg.X(), p.Y() - pcg.Y(), p.Z() - pcg.Z() );
             Sprintf(string7,
                     " %7.2f %7.2f %7.2f",
-                    (p.X() - pcg.X()).getValue(),
-                    (p.Y() - pcg.Y()).getValue(),
-                    (p.Z() - pcg.Z()).getValue());
+                    getPrimal(p.X() - pcg.X()),
+                    getPrimal(p.Y() - pcg.Y()),
+                    getPrimal(p.Z() - pcg.Z()));
           }
           else
           {
@@ -712,9 +712,9 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
             //     p.X() - pcg.X(), p.Y() - pcg.Y(), p.Z() - pcg.Z() );
             Sprintf(string7,
                     "  CG defect: dX=%.3f, dY=%.3f, dZ=%.3f\n",
-                    (p.X() - pcg.X()).getValue(),
-                    (p.Y() - pcg.Y()).getValue(),
-                    (p.Z() - pcg.Z()).getValue());
+                    getPrimal(p.X() - pcg.X()),
+                    getPrimal(p.Y() - pcg.Y()),
+                    getPrimal(p.Z() - pcg.Z()));
           }
           di << string7;
         }
@@ -956,9 +956,9 @@ static Standard_Integer ShapeMassProps(Draw_Interpretor& di,
     if (aMassVal > 0)
     {
       di << "Shape from label : " << str.ToCString() << "\n";
-      di << "Mass = " << aMassVal.getValue() << "\n";
-      di << "CenterOfGravity X = " << aCenterGravity.X().getValue()
-         << ",Y = " << aCenterGravity.Y().getValue() << ",Z = " << aCenterGravity.Z().getValue()
+      di << "Mass = " << getPrimal(aMassVal) << "\n";
+      di << "CenterOfGravity X = " << getPrimal(aCenterGravity.X())
+         << ",Y = " << getPrimal(aCenterGravity.Y()) << ",Z = " << getPrimal(aCenterGravity.Z())
          << "\n";
       di << "\n";
     }
@@ -1078,15 +1078,15 @@ static Standard_Integer GetValidationProps(Draw_Interpretor& di,
       {
         if (aProp[j] > 0)
         {
-          di << (j == Vol ? "; Volume - " : "; Area - ") << aProp[j].getValue();
+          di << (j == Vol ? "; Volume - " : "; Area - ") << getPrimal(aProp[j]);
           nbProps[j]++;
         }
       }
 
       if (!Precision::IsInfinite(aP.X()))
       {
-        di << "; Centroid -  " << aP.X().getValue() << " " << aP.Y().getValue() << " "
-           << aP.Z().getValue();
+        di << "; Centroid -  " << getPrimal(aP.X()) << " " << getPrimal(aP.Y()) << " "
+           << getPrimal(aP.Z());
         nbProps[Centroid]++;
       }
       di << "\n";

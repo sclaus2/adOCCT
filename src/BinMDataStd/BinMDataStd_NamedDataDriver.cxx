@@ -232,7 +232,7 @@ void BinMDataStd_NamedDataDriver::Paste(const Handle(TDF_Attribute)& theSource,
     TDataStd_DataMapIteratorOfDataMapOfStringReal itr(S->GetRealsContainer());
     for (; itr.More(); itr.Next())
     {
-      theTarget << itr.Key() << itr.Value().getValue();
+      theTarget << itr.Key() << getPrimal(itr.Value());
     }
   }
   else
@@ -298,7 +298,7 @@ void BinMDataStd_NamedDataDriver::Paste(const Handle(TDF_Attribute)& theSource,
       NCollection_Array1<double>  anArr1Double(anArr1.Lower(), anArr1.Upper());
       for (int i = anArr1.Lower(); i <= anArr1.Upper(); ++i)
       {
-        anArr1Double.SetValue(i, anArr1.Value(i).getValue());
+        anArr1Double.SetValue(i, getPrimal(anArr1.Value(i)));
       }
       theTarget << anArr1.Lower() << anArr1.Upper(); // value Arr1 dimensions
       double* aPtr = (double*)&anArr1(anArr1Double.Lower());

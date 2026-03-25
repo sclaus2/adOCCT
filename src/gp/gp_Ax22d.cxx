@@ -60,8 +60,8 @@ gp_Ax22d gp_Ax22d::Mirrored(const gp_Ax2d& A1) const
 
 void gp_Ax22d::DumpJson(Standard_OStream& theOStream, Standard_Integer) const
 {
-  OCCT_DUMP_VECTOR_CLASS(theOStream, "Location", 2, point.X().getValue(), point.Y().getValue())
+  OCCT_DUMP_VECTOR_CLASS(theOStream, "Location", 2, getPrimal(point.X()), getPrimal(point.Y()))
 
-  OCCT_DUMP_VECTOR_CLASS(theOStream, "XAxis", 2, vxdir.X().getValue(), vxdir.Y().getValue())
-  OCCT_DUMP_VECTOR_CLASS(theOStream, "YAxis", 2, vydir.X().getValue(), vydir.Y().getValue())
+  OCCT_DUMP_VECTOR_CLASS(theOStream, "XAxis", 2, getPrimal(vxdir.X()), getPrimal(vxdir.Y()))
+  OCCT_DUMP_VECTOR_CLASS(theOStream, "YAxis", 2, getPrimal(vydir.X()), getPrimal(vydir.Y()))
 }

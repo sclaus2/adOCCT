@@ -266,13 +266,11 @@ void V3d_Trihedron::SetPosition(const Aspect_TypeOfTriedronPosition thePosition)
   Graphic3d_Vec2i anOffset(0, 0);
   if ((thePosition & (Aspect_TOTP_LEFT | Aspect_TOTP_RIGHT)) != 0)
   {
-    anOffset.x() =
-      static_cast<Standard_Integer>(Standard_Real(myScale * THE_INTERNAL_SCALE_FACTOR));
+    anOffset.x() = static_cast<Standard_Integer>(getPrimal(myScale * THE_INTERNAL_SCALE_FACTOR));
   }
   if ((thePosition & (Aspect_TOTP_TOP | Aspect_TOTP_BOTTOM)) != 0)
   {
-    anOffset.y() =
-      static_cast<Standard_Integer>(Standard_Real(myScale * THE_INTERNAL_SCALE_FACTOR));
+    anOffset.y() = static_cast<Standard_Integer>(getPrimal(myScale * THE_INTERNAL_SCALE_FACTOR));
   }
 
   myTransformPers->SetCorner2d(thePosition);

@@ -255,15 +255,15 @@ void Graphic3d_CView::SubviewResized(const Handle(Aspect_NeutralWindow)& theWind
   Graphic3d_Vec2i       aViewSize(Graphic3d_Vec2d(aWinSize) * mySubviewSize);
   if (mySubviewSize.x() > 1.0)
   {
-    aViewSize.x() = (int)mySubviewSize.x();
+    aViewSize.x() = (int)getPrimal(mySubviewSize.x());
   }
   if (mySubviewSize.y() > 1.0)
   {
-    aViewSize.y() = (int)mySubviewSize.y();
+    aViewSize.y() = (int)getPrimal(mySubviewSize.y());
   }
 
-  Graphic3d_Vec2i anOffset(getSubViewOffset(mySubviewOffset.x().getValue(), aWinSize.x()),
-                           getSubViewOffset(mySubviewOffset.y().getValue(), aWinSize.y()));
+  Graphic3d_Vec2i anOffset(getSubViewOffset(getPrimal(mySubviewOffset.x()), aWinSize.x()),
+                           getSubViewOffset(getPrimal(mySubviewOffset.y()), aWinSize.y()));
   mySubviewTopLeft = (aWinSize - aViewSize) / 2; // Aspect_TOTP_CENTER
   if ((mySubviewCorner & Aspect_TOTP_LEFT) != 0)
   {
@@ -1442,7 +1442,7 @@ void Graphic3d_CView::DiagnosticInformation(TColStd_IndexedDataMapOfStringString
     TCollection_AsciiString aDisplay =
       TCollection_AsciiString() + myXRSession->RecommendedViewport().x() + "x"
       + myXRSession->RecommendedViewport().y() + "@" + (int)Round(myXRSession->DisplayFrequency())
-      + " [FOVy: " + (int)Round(myXRSession->FieldOfView()) + "]";
+      + " [FOVy: " + (int)getPrimal(Round(myXRSession->FieldOfView())) + "]";
 
     theDict.ChangeFromIndex(theDict.Add("VRvendor", aVendor))   = aVendor;
     theDict.ChangeFromIndex(theDict.Add("VRdevice", aDevice))   = aDevice;

@@ -183,7 +183,11 @@ static Standard_Integer QADNaming_CenterOfShape(Draw_Interpretor& di,
     if (all != 0)
     {
       char s[100];
-      Sprintf(s, "%f %f %f", (float)x / all, (float)y / all, (float)z / all);
+      Sprintf(s,
+              "%f %f %f",
+              (float)getPrimal(x) / all,
+              (float)getPrimal(y) / all,
+              (float)getPrimal(z) / all);
       di << s;
       return 0;
     }

@@ -98,12 +98,12 @@ static Standard_Integer surface_radius(Draw_Interpretor& di, Standard_Integer n,
       radius = myProperties.MinCurvature();
 
       if (report_curvature)
-        Draw::Set(a[4], radius.getValue());
+        Draw::Set(a[4], getPrimal(radius));
 
       if (Abs(radius) > tolerance)
       {
         radius = 1.0e0 / radius;
-        di << "Min Radius of Curvature : " << radius.getValue() << "\n";
+        di << "Min Radius of Curvature : " << getPrimal(radius) << "\n";
       }
       else
       {
@@ -112,11 +112,11 @@ static Standard_Integer surface_radius(Draw_Interpretor& di, Standard_Integer n,
 
       radius = myProperties.MaxCurvature();
       if (report_curvature)
-        Draw::Set(a[5], radius.getValue());
+        Draw::Set(a[5], getPrimal(radius));
       if (Abs(radius) > tolerance)
       {
         radius = 1.0e0 / radius;
-        di << "Max Radius of Curvature : " << radius.getValue() << "\n";
+        di << "Max Radius of Curvature : " << getPrimal(radius) << "\n";
       }
       else
         di << "Min Radius of Curvature :  infinite\n";
@@ -634,7 +634,7 @@ static Standard_Integer tocanon(Draw_Interpretor& di, Standard_Integer n, const 
       {
         DrawTrSurf::Set(a[1], anAnaSurf);
         Standard_Real aGap = aSurfToAna.Gap();
-        di << "Gap = " << aGap.getValue() << "\n";
+        di << "Gap = " << getPrimal(aGap) << "\n";
       }
       else
         di << "Conversion failed" << "\n";
@@ -655,7 +655,7 @@ static Standard_Integer tocanon(Draw_Interpretor& di, Standard_Integer n, const 
       anAnaCurv = new Geom_TrimmedCurve(anAnaCurv, ntf, ntl);
       DrawTrSurf::Set(a[1], anAnaCurv);
       Standard_Real aGap = aCurvToAna.Gap();
-      di << "Gap = " << aGap.getValue() << "\n";
+      di << "Gap = " << getPrimal(aGap) << "\n";
     }
     else
       di << "Conversion failed" << "\n";
@@ -1061,34 +1061,34 @@ static Standard_Integer value(Draw_Interpretor&, Standard_Integer n, const char*
     {
       gp_Vec D2U, D2V, D2UV;
       GS->D2(U, V, P, DU, DV, D2U, D2V, D2UV);
-      Draw::Set(a[13], D2U.X().getValue());
-      Draw::Set(a[14], D2U.Y().getValue());
-      Draw::Set(a[15], D2U.Z().getValue());
-      Draw::Set(a[16], D2V.X().getValue());
-      Draw::Set(a[17], D2V.Y().getValue());
-      Draw::Set(a[18], D2V.Z().getValue());
-      Draw::Set(a[19], D2UV.X().getValue());
-      Draw::Set(a[20], D2UV.Y().getValue());
-      Draw::Set(a[21], D2UV.Z().getValue());
+      Draw::Set(a[13], getPrimal(D2U.X()));
+      Draw::Set(a[14], getPrimal(D2U.Y()));
+      Draw::Set(a[15], getPrimal(D2U.Z()));
+      Draw::Set(a[16], getPrimal(D2V.X()));
+      Draw::Set(a[17], getPrimal(D2V.Y()));
+      Draw::Set(a[18], getPrimal(D2V.Z()));
+      Draw::Set(a[19], getPrimal(D2UV.X()));
+      Draw::Set(a[20], getPrimal(D2UV.Y()));
+      Draw::Set(a[21], getPrimal(D2UV.Z()));
     }
     else
       GS->D1(U, V, P, DU, DV);
 
-    Draw::Set(a[7], DU.X().getValue());
-    Draw::Set(a[8], DU.Y().getValue());
-    Draw::Set(a[9], DU.Z().getValue());
-    Draw::Set(a[10], DV.X().getValue());
-    Draw::Set(a[11], DV.Y().getValue());
-    Draw::Set(a[12], DV.Z().getValue());
+    Draw::Set(a[7], getPrimal(DU.X()));
+    Draw::Set(a[8], getPrimal(DU.Y()));
+    Draw::Set(a[9], getPrimal(DU.Z()));
+    Draw::Set(a[10], getPrimal(DV.X()));
+    Draw::Set(a[11], getPrimal(DV.Y()));
+    Draw::Set(a[12], getPrimal(DV.Z()));
   }
   else
     GS->D0(U, V, P);
 
   if (n > 6)
   {
-    Draw::Set(a[4], P.X().getValue());
-    Draw::Set(a[5], P.Y().getValue());
-    Draw::Set(a[6], P.Z().getValue());
+    Draw::Set(a[4], getPrimal(P.X()));
+    Draw::Set(a[5], getPrimal(P.Y()));
+    Draw::Set(a[6], getPrimal(P.Z()));
   }
   if (DrawPoint)
   {
@@ -1118,9 +1118,9 @@ static Standard_Integer derivative(Draw_Interpretor&,
 
   gp_Vec aDeriv = aSurf->DN(aU, aV, aNu, aNv);
 
-  Draw::Set(theArgv[6], aDeriv.X().getValue());
-  Draw::Set(theArgv[7], aDeriv.Y().getValue());
-  Draw::Set(theArgv[8], aDeriv.Z().getValue());
+  Draw::Set(theArgv[6], getPrimal(aDeriv.X()));
+  Draw::Set(theArgv[7], getPrimal(aDeriv.Y()));
+  Draw::Set(theArgv[8], getPrimal(aDeriv.Z()));
 
   return 0;
 }
@@ -1718,8 +1718,8 @@ static Standard_Integer parameters(Draw_Interpretor& di, Standard_Integer n, con
     Standard_Real    Tol = Draw::Atof(a[5]), U = 0., V = 0.;
     Standard_Boolean res = GeomLib_Tool::Parameters(S, P, Tol, U, V);
 
-    Draw::Set(a[6], U.getValue());
-    Draw::Set(a[7], V.getValue());
+    Draw::Set(a[6], getPrimal(U));
+    Draw::Set(a[7], getPrimal(V));
 
     if (!res)
     {
@@ -1740,7 +1740,7 @@ static Standard_Integer parameters(Draw_Interpretor& di, Standard_Integer n, con
     Standard_Real    Tol = Draw::Atof(a[5]), U = 0.;
     Standard_Boolean res = GeomLib_Tool::Parameter(C, P, Tol, U);
 
-    Draw::Set(a[6], U.getValue());
+    Draw::Set(a[6], getPrimal(U));
 
     if (!res)
     {
@@ -1761,7 +1761,7 @@ static Standard_Integer parameters(Draw_Interpretor& di, Standard_Integer n, con
     Standard_Real    Tol = Draw::Atof(a[4]), U = 0.;
     Standard_Boolean res = GeomLib_Tool::Parameter(C, P, Tol, U);
 
-    Draw::Set(a[5], U.getValue());
+    Draw::Set(a[5], getPrimal(U));
 
     if (!res)
     {
@@ -1803,8 +1803,8 @@ Standard_Integer bounds(Draw_Interpretor&, Standard_Integer n, const char** a)
       U1 = C3d->FirstParameter();
       U2 = C3d->LastParameter();
     }
-    Draw::Set(a[2], U1.getValue());
-    Draw::Set(a[3], U2.getValue());
+    Draw::Set(a[2], getPrimal(U1));
+    Draw::Set(a[3], getPrimal(U2));
   }
   else if (n == 6)
   { // compute on a Surface
@@ -1813,10 +1813,10 @@ Standard_Integer bounds(Draw_Interpretor&, Standard_Integer n, const char** a)
       return 1;
     S->Bounds(U1, U2, V1, V2);
 
-    Draw::Set(a[2], U1.getValue());
-    Draw::Set(a[3], U2.getValue());
-    Draw::Set(a[4], V1.getValue());
-    Draw::Set(a[5], V2.getValue());
+    Draw::Set(a[2], getPrimal(U1));
+    Draw::Set(a[3], getPrimal(U2));
+    Draw::Set(a[4], getPrimal(V1));
+    Draw::Set(a[5], getPrimal(V2));
   }
 
   return 0;

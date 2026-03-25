@@ -226,9 +226,9 @@ static Standard_Integer OCC367(Draw_Interpretor& di, Standard_Integer argc, cons
     {
       Standard_Real t   = algo.Parameter(Index);
       gp_Pnt        pt3 = curve.Value(t);
-      di << "Parameter t = " << t.getValue() << "\n";
-      di << "Value Pnt = " << pt3.X().getValue() << " " << pt3.Y().getValue() << " "
-         << pt3.Z().getValue() << "\n";
+      di << "Parameter t = " << getPrimal(t) << "\n";
+      di << "Value Pnt = " << getPrimal(pt3.X()) << " " << getPrimal(pt3.Y()) << " "
+         << getPrimal(pt3.Z()) << "\n";
       if (EdgeIndex == 1 && Index == maxIndex)
       {
         FirstEdgeX = pt3.X();
@@ -244,10 +244,10 @@ static Standard_Integer OCC367(Draw_Interpretor& di, Standard_Integer argc, cons
       }
     }
   }
-  di << "\n\nFirstEdge = " << FirstEdgeX.getValue() << " " << FirstEdgeY.getValue() << " "
-     << FirstEdgeZ.getValue() << "\n";
-  di << "deltaX = " << deltaX.getValue() << " deltaY = " << deltaY.getValue()
-     << " deltaZ = " << deltaZ.getValue() << "\n";
+  di << "\n\nFirstEdge = " << getPrimal(FirstEdgeX) << " " << getPrimal(FirstEdgeY) << " "
+     << getPrimal(FirstEdgeZ) << "\n";
+  di << "deltaX = " << getPrimal(deltaX) << " deltaY = " << getPrimal(deltaY)
+     << " deltaZ = " << getPrimal(deltaZ) << "\n";
   if (aStatus)
   {
     di << argv[0] << " : OK\n";

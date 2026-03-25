@@ -75,8 +75,8 @@ void Draw_Box::DrawOn(Draw_Display& theDIS) const
 
   theDIS.SetColor(myColor);
 
-  const double aHx = myOBB.XHSize().getValue(), aHy = myOBB.YHSize().getValue(),
-               aHz = myOBB.ZHSize().getValue();
+  const double aHx = getPrimal(myOBB.XHSize()), aHy = getPrimal(myOBB.YHSize()),
+               aHz = getPrimal(myOBB.ZHSize());
 
   gp_Pnt aP;
   ToWCS(-aHx, -aHy, -aHz, aP);

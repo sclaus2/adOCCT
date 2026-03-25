@@ -286,7 +286,7 @@ Standard_Boolean ShapeConstruct_ProjectCurveOnSurface::Perform(Handle(Geom_Curve
           (aLastParam - aFirstParam) / (bspl->Knot(anIdx) - bspl->Knot(anIdx - 1));
         if (aLenRatio < aLenThres)
         {
-          aNbIntPnts = Standard_Integer(Standard_Real(aLenRatio / aLenThres * aNbIntPnts));
+          aNbIntPnts = Standard_Integer(getPrimal(aLenRatio / aLenThres * aNbIntPnts));
           if (aNbIntPnts < 2)
             aNbIntPnts = 2;
         }

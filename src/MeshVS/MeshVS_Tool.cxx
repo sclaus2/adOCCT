@@ -240,7 +240,7 @@ Standard_Boolean MeshVS_Tool::GetNormal(const TColStd_Array1OfReal& Nodes, gp_Ve
   if (first == 0)
   {
     first = 1;
-    count = Standard_Integer(Nodes.Value(0));
+    count = Standard_Integer(getPrimal(Nodes.Value(0)));
   }
 
   if (count < 3)
@@ -305,7 +305,7 @@ Standard_Boolean MeshVS_Tool::GetAverageNormal(const TColStd_Array1OfReal& Nodes
   if (first == 0)
   {
     first = 1;
-    count = Standard_Integer(Nodes.Value(0));
+    count = Standard_Integer(getPrimal(Nodes.Value(0)));
   }
 
   if (count < 3)

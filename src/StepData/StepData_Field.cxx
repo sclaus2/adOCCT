@@ -731,7 +731,7 @@ Standard_Integer StepData_Field::Length(const Standard_Integer index) const
   if ((thekind & KindArity) == KindList2)
   {
     if (index == 2)
-      return Standard_Integer(thereal);
+      return Standard_Integer(getPrimal(thereal));
     else
       return theint;
   }

@@ -325,8 +325,8 @@ Standard_Boolean AIS_RubberBand::fillTriangles()
       for (Standard_Integer anIt = 0; anIt < 3; ++anIt)
       {
         myTriangles->SetVertice(aVertexIndex++,
-                                (Standard_ShortReal)aPts[anIt].X(),
-                                (Standard_ShortReal)aPts[anIt].Y(),
+                                (Standard_ShortReal)getPrimal(aPts[anIt].X()),
+                                (Standard_ShortReal)getPrimal(aPts[anIt].Y()),
                                 0.0f);
       }
     }

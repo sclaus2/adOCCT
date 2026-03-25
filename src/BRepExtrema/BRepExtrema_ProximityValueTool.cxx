@@ -248,7 +248,7 @@ Standard_Boolean BRepExtrema_ProximityValueTool::getEdgeAdditionalVertices(
   }
 
   Standard_Real    aLen            = GCPnts_AbscissaPoint::Length(aBAC);
-  Standard_Integer aNbSamplePoints = (Standard_Integer)Standard_Real(aLen / theStep) + 1;
+  Standard_Integer aNbSamplePoints = (Standard_Integer)getPrimal(aLen / theStep) + 1;
 
   GCPnts_QuasiUniformAbscissa aGCPnts(aBAC, Max(3, aNbSamplePoints));
 

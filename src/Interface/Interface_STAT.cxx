@@ -268,13 +268,13 @@ Standard_Integer Interface_STAT::Percent(const Standard_Boolean phase)
                           TheStat.numitem * TheStat.stw;  // etape courante
                                                           //  proportion pour cette phase
   Standard_Real    prophase = enphase / (TheStat.nbitp * TheStat.otph);
-  Standard_Integer res      = Standard_Integer(Standard_Real(prophase * 100.));
+  Standard_Integer res      = Standard_Integer(getPrimal(prophase * 100.));
   if (phase)
     return res;
 
   //  voila pour cette phase
   //  comptage dans les phases
   Standard_Real encours = (TheStat.oldph + TheStat.phw * prophase) / TheStat.otal;
-  res                   = Standard_Integer(Standard_Real(encours * 100.));
+  res                   = Standard_Integer(getPrimal(encours * 100.));
   return res;
 }

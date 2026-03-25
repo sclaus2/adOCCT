@@ -2109,9 +2109,9 @@ static Standard_Integer OCC27235(Draw_Interpretor& theDI, Standard_Integer n, co
   GProp_GProps aG;
   BRepGProp::LinearProperties(aPresentations, aG);
   gp_Pnt aPnt = aG.CentreOfMass();
-  theDI << "Centre of mass: " << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " "
-        << aPnt.Z().getValue() << "\n";
-  theDI << "Mass: " << aG.Mass().getValue() << "\n";
+  theDI << "Centre of mass: " << getPrimal(aPnt.X()) << " " << getPrimal(aPnt.Y()) << " "
+        << getPrimal(aPnt.Z()) << "\n";
+  theDI << "Mass: " << getPrimal(aG.Mass()) << "\n";
 
   return 0;
 }
@@ -2212,7 +2212,7 @@ static Standard_Integer OCC27466(Draw_Interpretor& theDI,
     DrawTrSurf::Set((TCollection_AsciiString(theArgVal[2]) + "_res").ToCString(), aResPnt);
     DrawTrSurf::Set((TCollection_AsciiString(theArgVal[3]) + "_res").ToCString(), aResUV);
     theDI << theArgVal[2] << "_res and " << theArgVal[3]
-          << "_res are created, dist=" << Sqrt(aSqDist).getValue();
+          << "_res are created, dist=" << getPrimal(Sqrt(aSqDist));
   }
   return 0;
 }
@@ -2260,15 +2260,15 @@ static void OCC26747_CheckParabola(Draw_Interpretor&      theDI,
 
   gp_Pnt2d aVert(aPrb.Value()->Parab2d().Location());
 
-  theDI << "Focal Length: " << aPrb.Value()->Parab2d().Focal().getValue() << "\n";
-  theDI << "Vertex (" << aVert.X().getValue() << ", " << aVert.Y().getValue() << ")\n";
-  theDI << "Parameter = " << aPrb.Value()->Parab2d().Parameter().getValue() << "\n";
+  theDI << "Focal Length: " << getPrimal(aPrb.Value()->Parab2d().Focal()) << "\n";
+  theDI << "Vertex (" << getPrimal(aVert.X()) << ", " << getPrimal(aVert.Y()) << ")\n";
+  theDI << "Parameter = " << getPrimal(aPrb.Value()->Parab2d().Parameter()) << "\n";
 
   Standard_Real aF[6] = {RealLast(), RealLast(), RealLast(), RealLast(), RealLast(), RealLast()};
   aPrb.Value()->Parab2d().Coefficients(aF[0], aF[1], aF[2], aF[3], aF[4], aF[5]);
-  theDI << "A = " << aF[0].getValue() << ", B = " << aF[1].getValue()
-        << ", C = " << aF[2].getValue() << ", D = " << aF[3].getValue()
-        << ", E = " << aF[4].getValue() << ", F = " << aF[5].getValue() << "\n";
+  theDI << "A = " << getPrimal(aF[0]) << ", B = " << getPrimal(aF[1])
+        << ", C = " << getPrimal(aF[2]) << ", D = " << getPrimal(aF[3])
+        << ", E = " << getPrimal(aF[4]) << ", F = " << getPrimal(aF[5]) << "\n";
 
   if (Abs(aPrb.Value()->Parab2d().Focal() - Parab2d_Bug26747::FocalLength) > aCompareTol)
     theDI << "Error in focal length computation!\n";
@@ -2754,7 +2754,7 @@ static Standard_Integer OCC27884(Draw_Interpretor& theDI,
   }
   timer.Stop();
   Standard_Real aTimer2 = timer.UserTimeCPU();
-  theDI << "Improving time: " << ((aTimer2 - aTimer1) / aTimer2 * 100).getValue() << " %\n";
+  theDI << "Improving time: " << getPrimal((aTimer2 - aTimer1) / aTimer2 * 100) << " %\n";
 
   return 0;
 }
@@ -3500,9 +3500,9 @@ static Standard_Integer OCC29430(Draw_Interpretor& theDI,
   DBRep::Set(theArgVal[1], circle);
 
   BRepAdaptor_CompCurve curve(circle);
-  theDI << "Curve.FirstParameter() = " << curve.FirstParameter().getValue() << "\n";
-  theDI << "Curve.LastParameter() = " << curve.LastParameter().getValue() << "\n";
-  theDI << "Curve.Period() = " << (curve.IsPeriodic() ? curve.Period().getValue() : 0.0) << "\n";
+  theDI << "Curve.FirstParameter() = " << getPrimal(curve.FirstParameter()) << "\n";
+  theDI << "Curve.LastParameter() = " << getPrimal(curve.LastParameter()) << "\n";
+  theDI << "Curve.Period() = " << (curve.IsPeriodic() ? getPrimal(curve.Period()) : 0.0) << "\n";
   const gp_Pnt aStartPt = curve.Value(curve.FirstParameter());
   const gp_Pnt anEndPt  = curve.Value(curve.LastParameter());
 
@@ -3590,7 +3590,7 @@ static Standard_Integer OCC29807(Draw_Interpretor& theDI,
 
   const Standard_Real aCurvatureRadius =
     IntPatch_PointLine::CurvatureRadiusOfIntersLine(anAS1, anAS2, aPOn2S);
-  theDI << "Radius of curvature is " << aCurvatureRadius.getValue() << "\n";
+  theDI << "Radius of curvature is " << getPrimal(aCurvatureRadius) << "\n";
   return 0;
 }
 
@@ -3789,7 +3789,7 @@ static Standard_Integer OCC29745(Draw_Interpretor& theDI,
   theDI << "NbIntervals: " << aNbInts << "; ";
   for (i = anInters.Lower(); i <= anInters.Upper(); ++i)
   {
-    theDI << anInters(i).getValue() << " ";
+    theDI << getPrimal(anInters(i)) << " ";
   }
   return 0;
 }
@@ -4139,7 +4139,7 @@ static Standard_Integer OCC30435(Draw_Interpretor& di, Standard_Integer, const c
     new Geom_BSplineCurve(NewPoles, NewKnots, NewMults, Conv.Degree());
 
   DrawTrSurf::Set(a[1], TheCurve);
-  di << a[1] << ": tolreached = " << tolreached.getValue() << "\n";
+  di << a[1] << ": tolreached = " << getPrimal(tolreached) << "\n";
 
   return 0;
 }
@@ -4273,14 +4273,14 @@ static Standard_Integer OCC30869(Draw_Interpretor& theDI,
   if (aVLast.SquareMagnitude() > gp::Resolution())
     aVLast.Normalize();
 
-  theDI << aFirst.getValue() << ": point " << aPFirst.X().getValue() << " "
-        << aPFirst.Y().getValue() << " " << aPFirst.Z().getValue() << ", tangent "
-        << aVFirst.X().getValue() << " " << aVFirst.Y().getValue() << " " << aVFirst.Z().getValue()
+  theDI << getPrimal(aFirst) << ": point " << getPrimal(aPFirst.X()) << " "
+        << getPrimal(aPFirst.Y()) << " " << getPrimal(aPFirst.Z()) << ", tangent "
+        << getPrimal(aVFirst.X()) << " " << getPrimal(aVFirst.Y()) << " " << getPrimal(aVFirst.Z())
         << "\n";
 
-  theDI << aLast.getValue() << ": point " << aPLast.X().getValue() << " " << aPLast.Y().getValue()
-        << " " << aPLast.Z().getValue() << ", tangent " << aVLast.X().getValue() << " "
-        << aVLast.Y().getValue() << " " << aVLast.Z().getValue() << "\n";
+  theDI << getPrimal(aLast) << ": point " << getPrimal(aPLast.X()) << " " << getPrimal(aPLast.Y())
+        << " " << getPrimal(aPLast.Z()) << ", tangent " << getPrimal(aVLast.X()) << " "
+        << getPrimal(aVLast.Y()) << " " << getPrimal(aVLast.Z()) << "\n";
 
   return 0;
 }
@@ -4329,7 +4329,7 @@ static Standard_Integer OCC30880(Draw_Interpretor& theDI,
   if (anExtCF.IsParallel())
   {
     theDI << "Infinite number of solutions, distance - "
-          << Sqrt(anExtCF.SquareDistance(1)).getValue() << "\n";
+          << getPrimal(Sqrt(anExtCF.SquareDistance(1))) << "\n";
     return 0;
   }
 
@@ -4352,7 +4352,7 @@ static Standard_Integer OCC30880(Draw_Interpretor& theDI,
     return 0;
   }
 
-  theDI << "Minimal distance - " << Sqrt(aDistMin).getValue() << "\n";
+  theDI << "Minimal distance - " << getPrimal(Sqrt(aDistMin)) << "\n";
   return 0;
 }
 
@@ -4371,7 +4371,7 @@ static Standard_Integer OCC30704(Draw_Interpretor& di, Standard_Integer, const c
 
   // Print the center point of the bounding box.
   const gp_XYZ& center = aVoidBox.Center();
-  di << center.X().getValue() << " " << center.Y().getValue() << " " << center.Z().getValue();
+  di << getPrimal(center.X()) << " " << getPrimal(center.Y()) << " " << getPrimal(center.Z());
   return 0;
 }
 
@@ -4386,7 +4386,7 @@ static Standard_Integer OCC30704_1(Draw_Interpretor& di, Standard_Integer, const
 
   // Print the center point of the bounding box.
   const gp_XYZ& center = aVoidBox.Center();
-  di << center.X().getValue() << " " << center.Y().getValue() << " " << center.Z().getValue();
+  di << getPrimal(center.X()) << " " << getPrimal(center.Y()) << " " << getPrimal(center.Z());
   return 0;
 }
 
@@ -4427,7 +4427,7 @@ static Standard_Integer OCC30990(Draw_Interpretor& theDI,
   theDI << "U knots: ";
   for (int i = 1; i <= aSurf->NbUKnots(); i++)
   {
-    theDI << aSurf->UKnot(i).getValue();
+    theDI << getPrimal(aSurf->UKnot(i));
     if (i < aSurf->NbUKnots())
       theDI << ",";
   }
@@ -4463,7 +4463,7 @@ static Standard_Integer OCC30990(Draw_Interpretor& theDI,
   theDI << "V knots: ";
   for (int j = 1; j <= aSurf->NbVKnots(); j++)
   {
-    theDI << aSurf->VKnot(j).getValue();
+    theDI << getPrimal(aSurf->VKnot(j));
     if (j < aSurf->NbVKnots())
       theDI << ",";
   }
@@ -4923,7 +4923,7 @@ static Standard_Integer OCC33048(Draw_Interpretor&, Standard_Integer, const char
     isOK = false;
   }
 
-  if (isOK)
+  if (getPrimal(isOK))
     std::cout << "OK: Kronrod points and weights are calculated successfully." << std::endl;
   else
     std::cout << "Error: Problem occurred during calculation of Kronrod points and weights."
@@ -5126,7 +5126,7 @@ static Standard_Integer QACheckBends(Draw_Interpretor& theDI,
   Standard_Real U1 = aCurve->FirstParameter(), U2 = aCurve->LastParameter();
   if (Precision::IsInfinite(U1) || Precision::IsInfinite(U2))
   {
-    theDI << "Infinite interval  : " << U1.getValue() << "  " << U2.getValue() << "\n";
+    theDI << "Infinite interval  : " << getPrimal(U1) << "  " << getPrimal(U2) << "\n";
     return 0;
   }
 
@@ -5145,7 +5145,7 @@ static Standard_Integer QACheckBends(Draw_Interpretor& theDI,
     if (aCos < aCosMaxAngle)
     {
       theDI << "Error: The curve " << theArgVal[1] << " is possible to have a bend at parameter "
-            << p.getValue() << ". Please check carefully \n";
+            << getPrimal(p) << ". Please check carefully \n";
     }
 
     aD1 = aD2;
@@ -5258,12 +5258,12 @@ static Standard_Integer OCC26441(Draw_Interpretor& theDi,
 
   if (aMaxE > anEps)
   {
-    theDi << " Maximal difference for edges : " << aMaxE.getValue() << "\n";
+    theDi << " Maximal difference for edges : " << getPrimal(aMaxE) << "\n";
     DBRep::Set("BadEdges", aBadEdges);
   }
   if (aMaxV > anEps)
   {
-    theDi << " Maximal difference for vertices : " << aMaxV.getValue() << "\n";
+    theDi << " Maximal difference for vertices : " << getPrimal(aMaxV) << "\n";
     DBRep::Set("BadVerts", aBadVerts);
   }
 

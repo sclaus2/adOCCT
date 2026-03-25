@@ -467,7 +467,10 @@ public:
   Standard_ShortReal EdgeWidth() const { return myLineWidth; }
 
   //! Modifies the edge thickness (same as SetLineWidth())
-  void SetEdgeWidth(Standard_Real theWidth) { SetLineWidth((Standard_ShortReal)theWidth); }
+  void SetEdgeWidth(Standard_Real theWidth)
+  {
+    SetLineWidth((Standard_ShortReal)getPrimal(theWidth));
+  }
 
   //! Returns TRUE if drawing element edges should discard first edge in triangle; FALSE by default.
   //! Graphics hardware works mostly with triangles, so that wireframe presentation will draw

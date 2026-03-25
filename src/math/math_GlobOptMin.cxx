@@ -93,8 +93,8 @@ math_GlobOptMin::math_GlobOptMin(math_MultipleVarFunction* theFunc,
   mySameTol = theSameTol;
 
   const Standard_Integer aMaxSquareSearchSol = 200;
-  Standard_Integer       aSolNb              = Standard_Integer(Pow(3.0, Standard_Real(myN)));
-  myMinCellFilterSol                         = Max(2 * aSolNb, aMaxSquareSearchSol);
+  Standard_Integer       aSolNb = Standard_Integer(getPrimal(Pow(3.0, Standard_Real(myN))));
+  myMinCellFilterSol            = Max(2 * aSolNb, aMaxSquareSearchSol);
   initCellSize();
   ComputeInitSol();
 

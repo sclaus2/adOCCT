@@ -96,24 +96,24 @@ static Standard_Integer tolerance(Draw_Interpretor& di, Standard_Integer argc, c
   {
     sat.InitTolerance();
     sat.AddTolerance(Shape);
-    di << "Tolerance MAX=" << sat.GlobalTolerance(1).getValue()
-       << " AVG=" << sat.GlobalTolerance(0).getValue()
-       << " MIN=" << sat.GlobalTolerance(-1).getValue() << "\n";
+    di << "Tolerance MAX=" << getPrimal(sat.GlobalTolerance(1))
+       << " AVG=" << getPrimal(sat.GlobalTolerance(0))
+       << " MIN=" << getPrimal(sat.GlobalTolerance(-1)) << "\n";
     sat.InitTolerance();
     sat.AddTolerance(Shape, TopAbs_FACE);
-    di << "FACE    : MAX=" << sat.GlobalTolerance(1).getValue()
-       << " AVG=" << sat.GlobalTolerance(0).getValue()
-       << " MIN=" << sat.GlobalTolerance(-1).getValue() << "\n";
+    di << "FACE    : MAX=" << getPrimal(sat.GlobalTolerance(1))
+       << " AVG=" << getPrimal(sat.GlobalTolerance(0))
+       << " MIN=" << getPrimal(sat.GlobalTolerance(-1)) << "\n";
     sat.InitTolerance();
     sat.AddTolerance(Shape, TopAbs_EDGE);
-    di << "EDGE    : MAX=" << sat.GlobalTolerance(1).getValue()
-       << " AVG=" << sat.GlobalTolerance(0).getValue()
-       << " MIN=" << sat.GlobalTolerance(-1).getValue() << "\n";
+    di << "EDGE    : MAX=" << getPrimal(sat.GlobalTolerance(1))
+       << " AVG=" << getPrimal(sat.GlobalTolerance(0))
+       << " MIN=" << getPrimal(sat.GlobalTolerance(-1)) << "\n";
     sat.InitTolerance();
     sat.AddTolerance(Shape, TopAbs_VERTEX);
-    di << "VERTEX  : MAX=" << sat.GlobalTolerance(1).getValue()
-       << " AVG=" << sat.GlobalTolerance(0).getValue()
-       << " MIN=" << sat.GlobalTolerance(-1).getValue() << "\n";
+    di << "VERTEX  : MAX=" << getPrimal(sat.GlobalTolerance(1))
+       << " AVG=" << getPrimal(sat.GlobalTolerance(0))
+       << " MIN=" << getPrimal(sat.GlobalTolerance(-1)) << "\n";
   }
   else
   {
@@ -172,11 +172,11 @@ static Standard_Integer tolerance(Draw_Interpretor& di, Standard_Integer argc, c
         di << "Analysing all sub-shapes gives ";
     }
     if (tol1 == 0)
-      di << nb << " Shapes below tol=" << tol2.getValue();
+      di << nb << " Shapes below tol=" << getPrimal(tol2);
     else if (tol2 == 0)
-      di << nb << " Shapes over tol=" << tol1.getValue();
+      di << nb << " Shapes over tol=" << getPrimal(tol1);
     else
-      di << nb << " Shapes between tol1=" << tol1.getValue() << " and tol2=" << tol2.getValue();
+      di << nb << " Shapes between tol1=" << getPrimal(tol1) << " and tol2=" << getPrimal(tol2);
     if (nb == 1)
       di << " , named tol_1";
     if (nb > 1)
@@ -222,7 +222,7 @@ static Standard_Integer projface(Draw_Interpretor& di, Standard_Integer argc, co
   {
     Z = Draw::Atof(argv[4]);
     gp_Pnt P3D(X, Y, Z);
-    di << " Point 3D X = " << X.getValue() << "  Y = " << Y.getValue() << "  Z = " << Z.getValue()
+    di << " Point 3D X = " << getPrimal(X) << "  Y = " << getPrimal(Y) << "  Z = " << getPrimal(Z)
        << "\n";
     Standard_Real uf, ul, vf, vl;
     thesurf->Bounds(uf, ul, vf, vl);
@@ -252,8 +252,8 @@ static Standard_Integer projface(Draw_Interpretor& di, Standard_Integer argc, co
 
       anIndSol++;
       Standard_Real aDist = proj.Distance(sol);
-      di << "n0 " << anIndSol << " Distance " << aDist.getValue();
-      di << "  U = " << U.getValue() << "  V = " << V.getValue() << "\n";
+      di << "n0 " << anIndSol << " Distance " << getPrimal(aDist);
+      di << "  U = " << getPrimal(U) << "  V = " << getPrimal(V) << "\n";
 
       if (aDist < aMinDist)
       {
@@ -263,33 +263,33 @@ static Standard_Integer projface(Draw_Interpretor& di, Standard_Integer argc, co
 
       //  reprojection
       P3D = thesurf->Value(U, V);
-      di << "  => reproj  X = " << P3D.X().getValue() << "  Y = " << P3D.Y().getValue()
-         << "  Z = " << P3D.Z().getValue() << "\n";
+      di << "  => reproj  X = " << getPrimal(P3D.X()) << "  Y = " << getPrimal(P3D.Y())
+         << "  Z = " << getPrimal(P3D.Z()) << "\n";
     }
     di << " Found " << anIndSol << " Points\n";
 
     if (anIndMin != 0) // there is at least one suitable solution
     {
-      di << "** Minimal distance to face = " << aMinDist.getValue() << "\n";
+      di << "** Minimal distance to face = " << getPrimal(aMinDist) << "\n";
       proj.Parameters(anIndMin, U, V);
-      di << "**  Solution of minimal distance:  U = " << U.getValue() << "  V = " << V.getValue()
+      di << "**  Solution of minimal distance:  U = " << getPrimal(U) << "  V = " << getPrimal(V)
          << "\n";
       P3D = thesurf->Value(U, V);
-      di << "  => reproj  X = " << P3D.X().getValue() << "  Y = " << P3D.Y().getValue()
-         << "  Z = " << P3D.Z().getValue() << "\n";
+      di << "  => reproj  X = " << getPrimal(P3D.X()) << "  Y = " << getPrimal(P3D.Y())
+         << "  Z = " << getPrimal(P3D.Z()) << "\n";
     }
   }
   else // Check 2D point
   {
-    di << " Point UV  U = " << U.getValue() << "  V = " << V.getValue() << "\n";
+    di << " Point UV  U = " << getPrimal(U) << "  V = " << getPrimal(V) << "\n";
     TopAbs_State aStatus = aClassifier.Perform(gp_Pnt2d(U, V));
     if (aStatus == TopAbs_OUT)
       di << "does not belong to the face" << "\n";
     else
     {
       gp_Pnt P3D = thesurf->Value(U, V);
-      di << " => proj  X = " << P3D.X().getValue() << "  Y = " << P3D.Y().getValue()
-         << "  Z = " << P3D.Z().getValue() << "\n";
+      di << " => proj  X = " << getPrimal(P3D.X()) << "  Y = " << getPrimal(P3D.Y())
+         << "  Z = " << getPrimal(P3D.Z()) << "\n";
     }
   }
   return 0;
@@ -315,7 +315,7 @@ static Standard_Integer projcurve(Draw_Interpretor& di, Standard_Integer argc, c
     {
       TopoDS_Edge E = TopoDS::Edge(Shape);
       C             = BRep_Tool::Curve(E, cf, cl);
-      di << "Edge " << arg1 << " Params from " << cf.getValue() << " to " << cl.getValue() << "\n";
+      di << "Edge " << arg1 << " Params from " << getPrimal(cf) << " to " << getPrimal(cl) << "\n";
     }
     else
     {
@@ -340,7 +340,7 @@ static Standard_Integer projcurve(Draw_Interpretor& di, Standard_Integer argc, c
       cl = Draw::Atof(argv[3]);
       i0 = 2;
     }
-    di << "Curve 3D " << arg1 << " Params from " << cf.getValue() << " to " << cl.getValue()
+    di << "Curve 3D " << arg1 << " Params from " << getPrimal(cf) << " to " << getPrimal(cl)
        << "\n";
   }
 
@@ -348,8 +348,8 @@ static Standard_Integer projcurve(Draw_Interpretor& di, Standard_Integer argc, c
   X = Draw::Atof(argv[2 + i0]);
   Y = Draw::Atof(argv[3 + i0]);
   Z = Draw::Atof(argv[4 + i0]);
-  di << "Precision (BRepBuilderAPI) : " << BRepBuilderAPI::Precision().getValue()
-     << "  Projection : " << X.getValue() << "  " << Y.getValue() << "  " << Z.getValue() << "\n";
+  di << "Precision (BRepBuilderAPI) : " << getPrimal(BRepBuilderAPI::Precision())
+     << "  Projection : " << getPrimal(X) << "  " << getPrimal(Y) << "  " << getPrimal(Z) << "\n";
 
   gp_Pnt        P3D(X, Y, Z);
   gp_Pnt        res;
@@ -357,8 +357,8 @@ static Standard_Integer projcurve(Draw_Interpretor& di, Standard_Integer argc, c
 
   dist = ShapeAnalysis_Curve().Project(C, P3D, BRepBuilderAPI::Precision(), res, param, cf, cl);
   res.Coord(X, Y, Z);
-  di << "Result : " << X.getValue() << "  " << Y.getValue() << "  " << Z.getValue()
-     << "\nParam = " << param.getValue() << "  Gap = " << dist.getValue() << "\n";
+  di << "Result : " << getPrimal(X) << "  " << getPrimal(Y) << "  " << getPrimal(Z)
+     << "\nParam = " << getPrimal(param) << "  Gap = " << getPrimal(dist) << "\n";
   return 0;
 }
 
@@ -418,9 +418,9 @@ static Standard_Integer projpcurve(Draw_Interpretor& di, Standard_Integer argc, 
   }
 
   di << "Point:" << "\n"
-     << aPnt.X().getValue() << " " << aPnt.Y().getValue() << " " << aPnt.Z().getValue() << "\n";
-  di << "Param: " << aParam.getValue() << "\n";
-  di << "Dist: " << aDist.getValue() << "\n";
+     << getPrimal(aPnt.X()) << " " << getPrimal(aPnt.Y()) << " " << getPrimal(aPnt.Z()) << "\n";
+  di << "Param: " << getPrimal(aParam) << "\n";
+  di << "Dist: " << getPrimal(aDist) << "\n";
   return 0;
 }
 
@@ -450,7 +450,7 @@ static Standard_Integer anaface(Draw_Interpretor& di, Standard_Integer argc, con
     surface = BRep_Tool::Surface(Face); // pas locface
                                         //    TopLoc_Location locface;
     di << "Face, surface type = " << surface->DynamicType()->Name()
-       << " Tol=" << BRep_Tool::Tolerance(Face).getValue();
+       << " Tol=" << getPrimal(BRep_Tool::Tolerance(Face));
     if (Face.Orientation() == TopAbs_REVERSED)
     {
       di << " (REV)";
@@ -503,7 +503,7 @@ static Standard_Integer anaface(Draw_Interpretor& di, Standard_Integer argc, con
         di << " (FWD";
       else
         di << " (REV";
-      di << " , Tol= " << BRep_Tool::Tolerance(Edge).getValue() << " )\n";
+      di << " , Tol= " << getPrimal(BRep_Tool::Tolerance(Edge)) << " )\n";
       Standard_Real        f3d, l3d, f2d, l2d;
       Handle(Geom_Curve)   curve3d = BRep_Tool::Curve(Edge, f3d, l3d);
       Handle(Geom2d_Curve) curve2d;
@@ -591,24 +591,24 @@ static Standard_Integer anaface(Draw_Interpretor& di, Standard_Integer argc, con
         maxuv  = Max(maxuv, duv);
         dvtx   = fin.Distance(fxyz);
         maxvtx = Max(maxvtx, dvtx);
-        di << "   Fin(" << nbe - 1 << ")-Debut(" << nbe << "): DISTANCE=" << dvtx.getValue();
+        di << "   Fin(" << nbe - 1 << ")-Debut(" << nbe << "): DISTANCE=" << getPrimal(dvtx);
         if (ia2d)
-          di << " DeltaUV=" << duv.getValue();
-        di << " Tol(Fin)=" << BRep_Tool::Tolerance(lv).getValue() << "\n";
+          di << " DeltaUV=" << getPrimal(duv);
+        di << " Tol(Fin)=" << getPrimal(BRep_Tool::Tolerance(lv)) << "\n";
       }
       fin   = lxyz;
       finuv = luv;
 
-      di << "-- Deb : VTX=" << fp.X().getValue() << " , " << fp.Y().getValue() << " , "
-         << fp.Z().getValue() << "\n         XYZ=" << fxyz.X().getValue() << " , "
-         << fxyz.Y().getValue() << " , " << fxyz.Z().getValue()
-         << "\n         UV=" << fuv.X().getValue() << " , " << fuv.Y().getValue()
-         << "  -- D.UV/3D=" << df3d.getValue() << "\n";
-      di << "-- Fin : VTX=" << lp.X().getValue() << " , " << lp.Y().getValue() << " , "
-         << lp.Z().getValue() << "\n         XYZ=" << lxyz.X().getValue() << " , "
-         << lxyz.Y().getValue() << " , " << lxyz.Z().getValue()
-         << "\n         UV=" << luv.X().getValue() << " , " << luv.Y().getValue()
-         << "  -- D.UV/3D=" << dl3d.getValue() << "\n";
+      di << "-- Deb : VTX=" << getPrimal(fp.X()) << " , " << getPrimal(fp.Y()) << " , "
+         << getPrimal(fp.Z()) << "\n         XYZ=" << getPrimal(fxyz.X()) << " , "
+         << getPrimal(fxyz.Y()) << " , " << getPrimal(fxyz.Z())
+         << "\n         UV=" << getPrimal(fuv.X()) << " , " << getPrimal(fuv.Y())
+         << "  -- D.UV/3D=" << getPrimal(df3d) << "\n";
+      di << "-- Fin : VTX=" << getPrimal(lp.X()) << " , " << getPrimal(lp.Y()) << " , "
+         << getPrimal(lp.Z()) << "\n         XYZ=" << getPrimal(lxyz.X()) << " , "
+         << getPrimal(lxyz.Y()) << " , " << getPrimal(lxyz.Z())
+         << "\n         UV=" << getPrimal(luv.X()) << " , " << getPrimal(luv.Y())
+         << "  -- D.UV/3D=" << getPrimal(dl3d) << "\n";
     }
     dvtx   = fin.Distance(debut);
     maxvtx = Max(maxvtx, dvtx);
@@ -617,21 +617,21 @@ static Standard_Integer anaface(Draw_Interpretor& di, Standard_Integer argc, con
       duv   = finuv.Distance(debuv);
       maxuv = Max(maxuv, duv);
     }
-    di << "   Fin(" << nbe << ")-Debut(1): DISTANCE=" << dvtx.getValue();
+    di << "   Fin(" << nbe << ")-Debut(1): DISTANCE=" << getPrimal(dvtx);
     if (iaw2d)
-      di << " DeltaUV=" << duv.getValue();
-    di << " Tol(Fin)=" << BRep_Tool::Tolerance(lv).getValue() << "\n";
+      di << " DeltaUV=" << getPrimal(duv);
+    di << " Tol(Fin)=" << getPrimal(BRep_Tool::Tolerance(lv)) << "\n";
 
-    di << "   Wire " << nbw << " Max :  Dist.Vertex=" << maxvtx.getValue();
+    di << "   Wire " << nbw << " Max :  Dist.Vertex=" << getPrimal(maxvtx);
     if (iaw2d)
-      di << "  Ecart UV/3D=" << maxp3d.getValue() << "  DeltaUV=" << maxuv.getValue();
+      di << "  Ecart UV/3D=" << getPrimal(maxp3d) << "  DeltaUV=" << getPrimal(maxuv);
     di << "\n";
     //  Min Max
     if (iaw2d)
     {
-      di << "TotCross=" << totcross.getValue();
-      di << "  UMin-Max:" << umin.getValue() << " , " << umax.getValue()
-         << "  VMin-Max:" << vmin.getValue() << " , " << vmax.getValue() << "\n";
+      di << "TotCross=" << getPrimal(totcross);
+      di << "  UMin-Max:" << getPrimal(umin) << " , " << getPrimal(umax)
+         << "  VMin-Max:" << getPrimal(vmin) << " , " << getPrimal(vmax) << "\n";
       Standard_Real difu = umax - umin, difv = vmax - vmin;
       GProp_GProps  G;
       BRepGProp::SurfaceProperties(Face, G);
@@ -936,10 +936,10 @@ static Standard_Integer XSHAPE_comptoledge(Draw_Interpretor& di,
   di << "Edges tolerance computed by " << nbpnts
      << " points: \n"
         "MAX="
-     << max.getValue() << " AVG=" << (ave / num).getValue() << " MIN=" << min.getValue() << "\n";
+     << getPrimal(max) << " AVG=" << getPrimal(ave / num) << " MIN=" << getPrimal(min) << "\n";
   di << "Relation real tolerance / tolerance set in edge\n"
         "MAX="
-     << relmax.getValue() << " AVG=" << (relave / num).getValue() << " MIN=" << relmin.getValue()
+     << getPrimal(relmax) << " AVG=" << getPrimal(relave / num) << " MIN=" << getPrimal(relmin)
      << "\n";
   if (prefix && prefix[0])
   {
@@ -1041,10 +1041,10 @@ static void PrintProps(Standard_Integer                           i,
   Sprintf(str,
           " %d\t%12.5f\t%12.5f\t%12.5f\t%12.5f\t%d",
           i,
-          area.getValue(),
-          perimeter.getValue(),
-          ratio.getValue(),
-          width.getValue(),
+          getPrimal(area),
+          getPrimal(perimeter),
+          getPrimal(ratio),
+          getPrimal(width),
           notch);
   di << str << "\n";
 }
@@ -1173,7 +1173,7 @@ static Standard_Integer getareacontour(Draw_Interpretor& di, Standard_Integer n,
   }
   // Handle(ShapeExtend_WireData) asewd = new ShapeExtend_WireData(TopoDS::Wire(shape));
   Standard_Real anArea = ShapeAnalysis::ContourArea(TopoDS::Wire(shape));
-  di << "Area = " << anArea.getValue() << "\n";
+  di << "Area = " << getPrimal(anArea) << "\n";
   return 0;
 }
 
@@ -1416,7 +1416,7 @@ static Standard_Integer getanasurf(Draw_Interpretor& di, Standard_Integer n, con
   if (!aRes.IsNull())
   {
     DrawTrSurf::Set(a[1], aRes);
-    di << "Gap = " << aCanonRec.GetGap().getValue() << "\n";
+    di << "Gap = " << getPrimal(aCanonRec.GetGap()) << "\n";
   }
   else
   {
@@ -1491,7 +1491,7 @@ Standard_Integer getanacurve(Draw_Interpretor& di, Standard_Integer n, const cha
   if (!aRes.IsNull())
   {
     DrawTrSurf::Set(a[1], aRes);
-    di << "Gap = " << aCanonRec.GetGap().getValue() << "\n";
+    di << "Gap = " << getPrimal(aCanonRec.GetGap()) << "\n";
   }
   else
   {

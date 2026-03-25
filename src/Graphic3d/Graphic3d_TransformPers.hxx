@@ -153,9 +153,9 @@ public:
     }
 
     myMode                 = theMode;
-    myParams.Params3d.PntX = thePnt.X().getValue();
-    myParams.Params3d.PntY = thePnt.Y().getValue();
-    myParams.Params3d.PntZ = thePnt.Z().getValue();
+    myParams.Params3d.PntX = getPrimal(thePnt.X());
+    myParams.Params3d.PntY = getPrimal(thePnt.Y());
+    myParams.Params3d.PntZ = getPrimal(thePnt.Z());
   }
 
   //! Set 2d/trihedron transformation persistence with a corner and 2D offset.
@@ -198,9 +198,9 @@ public:
         "Graphic3d_TransformPers::SetAnchorPoint(), wrong persistence mode.");
     }
 
-    myParams.Params3d.PntX = thePnt.X().getValue();
-    myParams.Params3d.PntY = thePnt.Y().getValue();
-    myParams.Params3d.PntZ = thePnt.Z().getValue();
+    myParams.Params3d.PntX = getPrimal(thePnt.X());
+    myParams.Params3d.PntY = getPrimal(thePnt.Y());
+    myParams.Params3d.PntZ = getPrimal(thePnt.Z());
   }
 
   //! Return the corner for 2d/trihedron transformation persistence.

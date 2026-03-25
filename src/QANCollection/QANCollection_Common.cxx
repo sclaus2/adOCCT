@@ -21,14 +21,14 @@
 void PrintItem(const gp_Pnt& thePnt)
 {
   printf("   (%5.1f %5.1f %5.1f)\n",
-         thePnt.X().getValue(),
-         thePnt.Y().getValue(),
-         thePnt.Z().getValue());
+         getPrimal(thePnt.X()),
+         getPrimal(thePnt.Y()),
+         getPrimal(thePnt.Z()));
 }
 
 void PrintItem(const Standard_Real theDbl)
 {
-  printf("   (%5.1f)\n", theDbl.getValue());
+  printf("   (%5.1f)\n", getPrimal(theDbl));
 }
 
 void Random(Standard_Real& theValue)

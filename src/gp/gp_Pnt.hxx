@@ -228,9 +228,9 @@ struct hash<gp_Pnt>
 
     Standard_Real X, Y, Z;
     thePnt.Coord(X, Y, Z);
-    U.R[0] = X.getValue();
-    U.R[1] = Y.getValue();
-    U.R[2] = Z.getValue();
+    U.R[0] = getPrimal(X);
+    U.R[1] = getPrimal(Y);
+    U.R[2] = getPrimal(Z);
 
     return std::hash<double>{}(U.I[0] / 23 + U.I[1] / 19 + U.I[2] / 17 + U.I[3] / 13 + U.I[4] / 11
                                + U.I[5] / 7);

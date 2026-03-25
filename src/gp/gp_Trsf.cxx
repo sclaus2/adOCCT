@@ -944,20 +944,20 @@ void gp_Trsf::DumpJson(Standard_OStream& theOStream, Standard_Integer) const {
   OCCT_DUMP_VECTOR_CLASS(theOStream,
                          "Location",
                          3,
-                         loc.X().getValue(),
-                         loc.Y().getValue(),
-                         loc.Z().getValue()) OCCT_DUMP_VECTOR_CLASS(theOStream,
+                         getPrimal(loc.X()),
+                         getPrimal(loc.Y()),
+                         getPrimal(loc.Z())) OCCT_DUMP_VECTOR_CLASS(theOStream,
                                                                     "Matrix",
                                                                     9,
-                                                                    matrix.Value(1, 1).getValue(),
-                                                                    matrix.Value(1, 2).getValue(),
-                                                                    matrix.Value(1, 3).getValue(),
-                                                                    matrix.Value(2, 1).getValue(),
-                                                                    matrix.Value(2, 2).getValue(),
-                                                                    matrix.Value(2, 3).getValue(),
-                                                                    matrix.Value(3, 1).getValue(),
-                                                                    matrix.Value(3, 2).getValue(),
-                                                                    matrix.Value(3, 3).getValue())
+                                                                    getPrimal(matrix.Value(1, 1)),
+                                                                    getPrimal(matrix.Value(1, 2)),
+                                                                    getPrimal(matrix.Value(1, 3)),
+                                                                    getPrimal(matrix.Value(2, 1)),
+                                                                    getPrimal(matrix.Value(2, 2)),
+                                                                    getPrimal(matrix.Value(2, 3)),
+                                                                    getPrimal(matrix.Value(3, 1)),
+                                                                    getPrimal(matrix.Value(3, 2)),
+                                                                    getPrimal(matrix.Value(3, 3)))
     OCCT_DUMP_FIELD_VALUE_NUMERICAL(theOStream, shape)
       OCCT_DUMP_FIELD_VALUE_NUMERICAL(theOStream, scale)}
 
@@ -1003,7 +1003,7 @@ Standard_Boolean gp_Trsf::InitFromJson(const Standard_SStream& theSStream,
 
   Standard_Real ashape;
   OCCT_INIT_FIELD_VALUE_INTEGER(aStreamStr, aPos, ashape);
-  shape = (gp_TrsfForm)((Standard_Integer)ashape);
+  shape = (gp_TrsfForm)((Standard_Integer)getPrimal(ashape));
 
   OCCT_INIT_FIELD_VALUE_REAL(aStreamStr, aPos, scale);
 

@@ -289,18 +289,18 @@ Standard_Boolean IGESSelect_EditHeader::Load(const Handle(IFSelect_EditForm)& fo
   form->LoadValue(12, new TCollection_HAsciiString(GS.MaxDigitsDouble()));
 
   form->LoadValue(13, GS.ReceiveName());
-  form->LoadValue(14, new TCollection_HAsciiString(GS.Scale().getValue()));
+  form->LoadValue(14, new TCollection_HAsciiString(getPrimal(GS.Scale())));
 
   form->LoadValue(15, new TCollection_HAsciiString(GS.UnitFlag()));
   form->LoadValue(16, GS.UnitName());
-  form->LoadValue(17, new TCollection_HAsciiString(GS.UnitValue().getValue()));
+  form->LoadValue(17, new TCollection_HAsciiString(getPrimal(GS.UnitValue())));
   form->LoadValue(18, new TCollection_HAsciiString(GS.LineWeightGrad()));
-  form->LoadValue(19, new TCollection_HAsciiString(GS.MaxLineWeight().getValue()));
+  form->LoadValue(19, new TCollection_HAsciiString(getPrimal(GS.MaxLineWeight())));
 
   form->LoadValue(20, GS.Date());
-  form->LoadValue(21, new TCollection_HAsciiString(GS.Resolution().getValue()));
+  form->LoadValue(21, new TCollection_HAsciiString(getPrimal(GS.Resolution())));
   if (GS.HasMaxCoord())
-    form->LoadValue(22, new TCollection_HAsciiString(GS.MaxCoord().getValue()));
+    form->LoadValue(22, new TCollection_HAsciiString(getPrimal(GS.MaxCoord())));
 
   form->LoadValue(23, GS.AuthorName());
   form->LoadValue(24, GS.CompanyName());
@@ -335,7 +335,7 @@ Standard_Boolean IGESSelect_EditHeader::Update(const Handle(IFSelect_EditForm)& 
     form->Touch(16, new TCollection_HAsciiString(unitname));
     form->Touch(
       17,
-      new TCollection_HAsciiString(IGESData_BasicEditor::UnitFlagValue(unitflag).getValue()));
+      new TCollection_HAsciiString(getPrimal(IGESData_BasicEditor::UnitFlagValue(unitflag))));
   }
   if (num == 16)
   {
@@ -348,7 +348,7 @@ Standard_Boolean IGESSelect_EditHeader::Update(const Handle(IFSelect_EditForm)& 
     form->Touch(15, new TCollection_HAsciiString(unitflag));
     form->Touch(
       17,
-      new TCollection_HAsciiString(IGESData_BasicEditor::UnitFlagValue(unitflag).getValue()));
+      new TCollection_HAsciiString(getPrimal(IGESData_BasicEditor::UnitFlagValue(unitflag))));
   }
 
   if (num == 25)

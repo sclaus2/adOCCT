@@ -141,11 +141,11 @@ Standard_Integer BaseExponent(const Standard_Real X)
 
   if (X > 1.0)
   {
-    return (Standard_Integer)Standard_Real(log(X) * Un_Sur_Log_RADIX);
+    return (Standard_Integer)getPrimal(log(X) * Un_Sur_Log_RADIX);
   }
   else if (X < -1.0)
   {
-    return (Standard_Integer)Standard_Real(-log(-X) * Un_Sur_Log_RADIX);
+    return (Standard_Integer)getPrimal(-log(-X) * Un_Sur_Log_RADIX);
   }
   else
   {

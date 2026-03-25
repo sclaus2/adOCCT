@@ -448,7 +448,7 @@ static Standard_Integer GetPatchIndex(const Standard_Real                  Param
   i--;
 
   Standard_Real    ish    = shift / period;
-  Standard_Integer ishift = (Standard_Integer)Standard_Real(ish < 0 ? ish - 0.5 : ish + 0.5);
+  Standard_Integer ishift = (Standard_Integer)getPrimal(ish < 0 ? ish - 0.5 : ish + 0.5);
   return i - ishift * (NP - 1);
 }
 
@@ -1404,7 +1404,7 @@ Standard_Boolean ShapeFix_ComposeShell::SplitByLine(ShapeFix_WireSegment&      w
         }
         Standard_Real dUmax = umax + shift - x;
         shiftNext.SetX(dUmax > 0 ? -myUPeriod : myUPeriod);
-        nbIter = (Standard_Integer)Standard_Real(1 + Abs(dUmax) / myUPeriod);
+        nbIter = (Standard_Integer)getPrimal(1 + Abs(dUmax) / myUPeriod);
         shift  = ShapeAnalysis::AdjustByPeriod(posf.X(), x, myUPeriod);
         posf.SetX(posf.X() + shift);
         shift = ShapeAnalysis::AdjustByPeriod(posl.X(), x, myUPeriod);
@@ -1424,7 +1424,7 @@ Standard_Boolean ShapeFix_ComposeShell::SplitByLine(ShapeFix_WireSegment&      w
         }
         Standard_Real dVmax = vmax + shift - y;
         shiftNext.SetY(dVmax > 0 ? -myVPeriod : myVPeriod);
-        nbIter = (Standard_Integer)Standard_Real(1 + Abs(dVmax) / myVPeriod);
+        nbIter = (Standard_Integer)getPrimal(1 + Abs(dVmax) / myVPeriod);
         shift  = ShapeAnalysis::AdjustByPeriod(posf.Y(), y, myVPeriod);
         posf.SetY(posf.Y() + shift);
         shift = ShapeAnalysis::AdjustByPeriod(posl.Y(), y, myVPeriod);

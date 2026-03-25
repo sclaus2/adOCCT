@@ -177,7 +177,7 @@ IntCurvesFace_Intersector::IntCurvesFace_Intersector(const TopoDS_Face&     Face
       if (Max(dU, dV) > Min(dU, dV) * aTresh)
       {
         aMinSamples = 10;
-        nbsu        = (Standard_Integer)Standard_Real(Sqrt(dU / dV) * aMaxSamples);
+        nbsu        = (Standard_Integer)getPrimal(Sqrt(dU / dV) * aMaxSamples);
         if (nbsu < aMinSamples)
           nbsu = aMinSamples;
         nbsv = aMaxSamples2 / nbsu;

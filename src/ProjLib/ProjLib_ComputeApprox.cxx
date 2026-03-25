@@ -1388,7 +1388,7 @@ void ProjLib_ComputeApprox::Perform(const Handle(Adaptor3d_Curve)&   C,
         v        = M_PI - v;
       }
       Standard_Real newV = ElCLib::InPeriod(v, F.myV1, F.myV2);
-      number             = (Standard_Integer)(Floor((newV - v) / (F.myV2 - F.myV1)));
+      number             = (Standard_Integer)getPrimal(Floor((newV - v) / (F.myV2 - F.myV1)));
       dv -= number * (F.myV2 - F.myV1);
     }
     if (F.UCouture || (F.VCouture && SType == GeomAbs_Sphere))
@@ -1397,7 +1397,7 @@ void ProjLib_ComputeApprox::Perform(const Handle(Adaptor3d_Curve)&   C,
       gp_Pnt2d P2d = F.Value(Umid);
       du           = u - P2d.X();
       du           = (du < 0) ? (du - Precision::PConfusion()) : (du + Precision::PConfusion());
-      modf((du / M_PI).getValue(), &aNbPer);
+      modf(getPrimal(du / M_PI), &aNbPer);
       number = (Standard_Integer)aNbPer;
       du     = number * M_PI;
     }

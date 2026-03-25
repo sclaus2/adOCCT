@@ -157,7 +157,7 @@ static void DrawCurve(Adaptor3d_Curve&                    aCurve,
       if (!Precision::IsInfinite(Radius))
       {
         Standard_Real    DU = Sqrt(8.0 * TheDeflection / Radius);
-        Standard_Integer N  = Standard_Integer(Standard_Real(Abs(U2 - U1) / DU));
+        Standard_Integer N  = Standard_Integer(getPrimal(Abs(U2 - U1) / DU));
 
         if (N > 0)
         {

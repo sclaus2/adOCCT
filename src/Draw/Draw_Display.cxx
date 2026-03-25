@@ -164,7 +164,7 @@ void Draw_Display::Draw(const gp_Circ&         C,
     A2 += 2 * M_PI;
 
   Standard_Real    angle = DEFLECTION / (C.Radius() * Zoom());
-  Standard_Integer n     = (Standard_Integer)Standard_Real((A2 - A1) / angle);
+  Standard_Integer n     = (Standard_Integer)getPrimal((A2 - A1) / angle);
   if (n > MAXPNT)
   {
     angle = (A2 - A1) / MAXPNT;
@@ -180,7 +180,7 @@ void Draw_Display::Draw(const gp_Circ&         C,
   gp_Circ Cloc(C);
   if (!ModifyWithZoom)
   {
-    Standard_Integer ISize = (Standard_Integer)Standard_Real(Cloc.Radius() / Zoom());
+    Standard_Integer ISize = (Standard_Integer)getPrimal(Cloc.Radius() / Zoom());
     Cloc.SetRadius(ISize);
   }
 
@@ -217,7 +217,7 @@ void Draw_Display::Draw(const gp_Circ2d&       C,
     A2 += 2 * M_PI;
 
   Standard_Real    angle = DEFLECTION / (C.Radius() * Zoom());
-  Standard_Integer n     = (Standard_Integer)Standard_Real((A2 - A1) / angle);
+  Standard_Integer n     = (Standard_Integer)getPrimal((A2 - A1) / angle);
   if (n > MAXPNT)
   {
     angle = (A2 - A1) / MAXPNT;

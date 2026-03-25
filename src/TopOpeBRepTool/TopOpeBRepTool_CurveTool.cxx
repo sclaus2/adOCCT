@@ -197,7 +197,7 @@ static Standard_Boolean CheckPCurve(const Handle(Geom2d_Curve)& aPC, const TopoD
   if (aSurf->IsUPeriodic())
   {
     Standard_Real    aPer   = aSurf->UPeriod();
-    Standard_Integer nshift = (Standard_Integer)Standard_Real((u - umin) / aPer);
+    Standard_Integer nshift = (Standard_Integer)getPrimal((u - umin) / aPer);
     if (u < umin + aPer * nshift)
       nshift--;
     umin += aPer * nshift;
@@ -206,7 +206,7 @@ static Standard_Boolean CheckPCurve(const Handle(Geom2d_Curve)& aPC, const TopoD
   if (aSurf->IsVPeriodic())
   {
     Standard_Real    aPer   = aSurf->VPeriod();
-    Standard_Integer nshift = (Standard_Integer)Standard_Real((v - vmin) / aPer);
+    Standard_Integer nshift = (Standard_Integer)getPrimal((v - vmin) / aPer);
     if (v < vmin + aPer * nshift)
       nshift--;
     vmin += aPer * nshift;
@@ -340,8 +340,8 @@ Standard_Boolean TopOpeBRepTool_CurveTool::MakeCurves(const Standard_Real       
   //*/
   //---------------------------------------------
 
-  Standard_Integer iparmin = (Standard_Integer)parmin;
-  Standard_Integer iparmax = (Standard_Integer)parmax;
+  Standard_Integer iparmin = (Standard_Integer)getPrimal(parmin);
+  Standard_Integer iparmax = (Standard_Integer)getPrimal(parmax);
 
   Handle(Geom_BSplineCurve)   HC3D(Handle(Geom_BSplineCurve)::DownCast(C3D));
   Handle(Geom2d_BSplineCurve) HPC1(Handle(Geom2d_BSplineCurve)::DownCast(PC1));

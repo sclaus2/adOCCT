@@ -26,5 +26,5 @@ void IntPolyh_Couple::Dump(const Standard_Integer i) const
          myIndex1,
          myIndex2,
          myAnalyzed,
-         myAngle.getValue());
+         getPrimal(myAngle));
 }

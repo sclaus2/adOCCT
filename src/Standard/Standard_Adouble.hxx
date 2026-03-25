@@ -3,11 +3,15 @@
 
 #include <adolc/adtl.h>
 
+/*
+ * A child class of adouble implemented only for the purposes of overloading the behavior of
+ * ostream and istream operators. That is, only primal values should be considered, such that
+ * OCCT input/output system is not corrupted with AD values.
+ */
+
 class Standard_Adouble : public adtl::adouble
 {
 public:
-  // inline Standard_Adouble() : adouble() {}
-  // using adouble::adouble;
   Standard_Adouble() = default;
 
   inline Standard_Adouble(const double v)
@@ -37,15 +41,19 @@ public:
 
   ~Standard_Adouble() = default;
 
-  inline explicit operator bool() const { return static_cast<bool>(this->getValue()); }
+  friend ostream& operator<<(ostream& out, const Standard_Adouble& a)
+  {
+    out << a.getValue();
+    return out;
+  }
 
-  inline explicit operator int() const { return static_cast<int>(this->getValue()); }
-
-  inline explicit operator float() const { return static_cast<float>(this->getValue()); }
-
-  friend ostream& operator<<(ostream& out, const Standard_Adouble& a);
-
-  friend istream& operator>>(istream& in, Standard_Adouble& a);
+  friend istream& operator>>(istream& in, Standard_Adouble& a)
+  {
+    double temp;
+    in >> temp;
+    a.setValue(temp);
+    return in;
+  }
 };
 
 namespace std

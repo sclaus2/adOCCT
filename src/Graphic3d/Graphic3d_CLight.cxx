@@ -171,14 +171,16 @@ void Graphic3d_CLight::SetDirection(const gp_Dir& theDir)
   Standard_ProgramError_Raise_if(myType != Graphic3d_TypeOfLightSource_Spot
                                    && myType != Graphic3d_TypeOfLightSource_Directional,
                                  "Graphic3d_CLight::SetDirection(), incorrect light type");
-  updateRevisionIf(
-    Abs(myDirection.x() - static_cast<Standard_ShortReal>(theDir.X())) > ShortRealEpsilon()
-    || Abs(myDirection.y() - static_cast<Standard_ShortReal>(theDir.Y())) > ShortRealEpsilon()
-    || Abs(myDirection.z() - static_cast<Standard_ShortReal>(theDir.Z())) > ShortRealEpsilon());
+  updateRevisionIf(Abs(myDirection.x() - static_cast<Standard_ShortReal>(getPrimal(theDir.X())))
+                     > ShortRealEpsilon()
+                   || Abs(myDirection.y() - static_cast<Standard_ShortReal>(getPrimal(theDir.Y())))
+                        > ShortRealEpsilon()
+                   || Abs(myDirection.z() - static_cast<Standard_ShortReal>(getPrimal(theDir.Z())))
+                        > ShortRealEpsilon());
 
-  myDirection.x() = static_cast<Standard_ShortReal>(theDir.X());
-  myDirection.y() = static_cast<Standard_ShortReal>(theDir.Y());
-  myDirection.z() = static_cast<Standard_ShortReal>(theDir.Z());
+  myDirection.x() = static_cast<Standard_ShortReal>(getPrimal(theDir.X()));
+  myDirection.y() = static_cast<Standard_ShortReal>(getPrimal(theDir.Y()));
+  myDirection.z() = static_cast<Standard_ShortReal>(getPrimal(theDir.Z()));
 }
 
 //=================================================================================================

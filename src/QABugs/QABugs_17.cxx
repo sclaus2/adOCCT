@@ -536,16 +536,16 @@ static Standard_Integer OCC566(Draw_Interpretor& di, Standard_Integer n, const c
   BRepBndLib::AddClose(S, B);
   Standard_Real axmin, aymin, azmin, axmax, aymax, azmax;
   B.Get(axmin, aymin, azmin, axmax, aymax, azmax);
-  di << axmin.getValue() << " " << aymin.getValue() << " " << azmin.getValue() << " "
-     << axmax.getValue() << " " << aymax.getValue() << " " << azmax.getValue();
+  di << getPrimal(axmin) << " " << getPrimal(aymin) << " " << getPrimal(azmin) << " "
+     << getPrimal(axmax) << " " << getPrimal(aymax) << " " << getPrimal(azmax);
   if (n >= 8)
   {
-    Draw::Set(a[2], axmin.getValue());
-    Draw::Set(a[3], aymin.getValue());
-    Draw::Set(a[4], azmin.getValue());
-    Draw::Set(a[5], axmax.getValue());
-    Draw::Set(a[6], aymax.getValue());
-    Draw::Set(a[7], azmax.getValue());
+    Draw::Set(a[2], getPrimal(axmin));
+    Draw::Set(a[3], getPrimal(aymin));
+    Draw::Set(a[4], getPrimal(azmin));
+    Draw::Set(a[5], getPrimal(axmax));
+    Draw::Set(a[6], getPrimal(aymax));
+    Draw::Set(a[7], getPrimal(azmax));
   }
   return 0;
 }
@@ -1017,8 +1017,8 @@ static Standard_Integer OCC884(Draw_Interpretor& di, Standard_Integer argc, cons
   for (i = 1; i <= num; ++i)
   {
     gp_Pnt pt = points3d(i);
-    di << "Info: Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", "
-       << pt.Z().getValue() << ")\n";
+    di << "Info: Intersecting pt : (" << getPrimal(pt.X()) << ", " << getPrimal(pt.Y()) << ", "
+       << getPrimal(pt.Z()) << ")\n";
     Sprintf(str, "p_%d", i);
     DrawTrSurf::Set(aName, pt);
   }
@@ -1031,8 +1031,8 @@ static Standard_Integer OCC884(Draw_Interpretor& di, Standard_Integer argc, cons
     sfw->SetPrecision(Draw::Atof(argv[3]) /*0.1*/);
   if (argc > 4)
     sfw->SetMaxTolerance(Draw::Atof(argv[4]));
-  di << "Info: Precision is set to " << sfw->Precision().getValue() << "\n";
-  di << "Info: MaxTolerance is set to " << sfw->MaxTolerance().getValue() << "\n";
+  di << "Info: Precision is set to " << getPrimal(sfw->Precision()) << "\n";
+  di << "Info: MaxTolerance is set to " << getPrimal(sfw->MaxTolerance()) << "\n";
 
   sfw->ModifyTopologyMode()          = 1;
   sfw->ModifyGeometryMode()          = 1;
@@ -1297,8 +1297,8 @@ static Standard_Integer OCC1642(Draw_Interpretor& di, Standard_Integer argc, con
     for (int i = 1; i <= num; ++i)
     {
       gp_Pnt pt = points3d(i);
-      di << "\n Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", "
-         << pt.Z().getValue() << ")";
+      di << "\n Intersecting pt : (" << getPrimal(pt.X()) << ", " << getPrimal(pt.Y()) << ", "
+         << getPrimal(pt.Z()) << ")";
     }
   }
 
@@ -1422,8 +1422,8 @@ static Standard_Integer OCC1642(Draw_Interpretor& di, Standard_Integer argc, con
     for (int i = 1; i <= num; ++i)
     {
       gp_Pnt pt = points3d(i);
-      di << "\n Intersecting pt : (" << pt.X().getValue() << ", " << pt.Y().getValue() << ", "
-         << pt.Z().getValue() << ")";
+      di << "\n Intersecting pt : (" << getPrimal(pt.X()) << ", " << getPrimal(pt.Y()) << ", "
+         << getPrimal(pt.Z()) << ")";
     }
   }
 

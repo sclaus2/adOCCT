@@ -200,7 +200,7 @@ void DrawTrSurf_BSplineCurve::DrawOn(Draw_Display&          dis,
     else
     {
       U        = U1;
-      NbPoints = (Standard_Integer)Abs(Discret * (U1 - Ustart) / (Ustart - Uend));
+      NbPoints = (Standard_Integer)getPrimal(Abs(Discret * (U1 - Ustart) / (Ustart - Uend)));
       NbPoints = Max(NbPoints, 30);
       Du       = (Ustart - U1) / NbPoints;
       dis.MoveTo(C->Value(U));
@@ -222,7 +222,7 @@ void DrawTrSurf_BSplineCurve::DrawOn(Draw_Display&          dis,
     {
       Uk2      = Uend;
       U        = Uend;
-      NbPoints = (Standard_Integer)Abs(Discret * (U2 - Uend) / (Ustart - Uend));
+      NbPoints = (Standard_Integer)getPrimal(Abs(Discret * (U2 - Uend) / (Ustart - Uend)));
       NbPoints = Max(NbPoints, 30);
       Du       = (U2 - Uend) / NbPoints;
       dis.MoveTo(C->Value(U));
@@ -252,7 +252,7 @@ void DrawTrSurf_BSplineCurve::DrawOn(Draw_Display&          dis,
         Ub = C->Knot(k + 1);
       }
       U        = Ua;
-      NbPoints = (Standard_Integer)Abs(Discret * (Ua - Ub) / (Ustart - Uend));
+      NbPoints = (Standard_Integer)getPrimal(Abs(Discret * (Ua - Ub) / (Ustart - Uend)));
       NbPoints = Max(NbPoints, 30);
       Du       = (Ub - Ua) / NbPoints;
       dis.MoveTo(C->Value(U));

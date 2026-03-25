@@ -20,5 +20,5 @@
 
 void BOPDS_Pave::Dump() const
 {
-  printf(" { %-d %-7.3lf}", myIndex, myParameter.getValue());
+  printf(" { %-d %-7.3lf}", myIndex, getPrimal(myParameter));
 }

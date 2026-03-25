@@ -427,12 +427,12 @@ Standard_Boolean BVH_DistanceField<T, N>::Build(BVH_Geometry<T, N>& theGeometry)
 
   const T aMaxBoxSide = Max(Max(aGlobalBoxSize.x(), aGlobalBoxSize.y()), aGlobalBoxSize.z());
 
-  myDimensionX =
-    static_cast<Standard_Integer>(Standard_Real(myMaximumSize * aGlobalBoxSize.x() / aMaxBoxSide));
-  myDimensionY =
-    static_cast<Standard_Integer>(Standard_Real(myMaximumSize * aGlobalBoxSize.y() / aMaxBoxSide));
-  myDimensionZ =
-    static_cast<Standard_Integer>(Standard_Real(myMaximumSize * aGlobalBoxSize.z() / aMaxBoxSide));
+  myDimensionX = static_cast<Standard_Integer>(
+    getPrimal(Standard_Real(myMaximumSize * aGlobalBoxSize.x() / aMaxBoxSide)));
+  myDimensionY = static_cast<Standard_Integer>(
+    getPrimal(Standard_Real(myMaximumSize * aGlobalBoxSize.y() / aMaxBoxSide)));
+  myDimensionZ = static_cast<Standard_Integer>(
+    getPrimal(Standard_Real(myMaximumSize * aGlobalBoxSize.z() / aMaxBoxSide)));
 
   myDimensionX = Min(myMaximumSize, Max(myDimensionX, 16));
   myDimensionY = Min(myMaximumSize, Max(myDimensionY, 16));

@@ -347,7 +347,9 @@ protected:
     {
       if (myIsSinglePrecision)
       {
-        myVec3Vec->Append(Graphic3d_Vec3((float)thePnt.X(), (float)thePnt.Y(), (float)thePnt.Z()));
+        myVec3Vec->Append(Graphic3d_Vec3((float)getPrimal(thePnt.X()),
+                                         (float)getPrimal(thePnt.Y()),
+                                         (float)getPrimal(thePnt.Z())));
       }
       else
       {

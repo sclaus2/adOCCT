@@ -456,20 +456,20 @@ void IntPatch_RLine::Dump(const Standard_Integer theMode) const
         Point(i).Parameters(u1, v1, u2, v2);
         printf("%4d  [%+10.20f %+10.20f %+10.20f]  [%+10.20f %+10.20f]  [%+10.20f %+10.20f]\n",
                i,
-               Point(i).Value().X().getValue(),
-               Point(i).Value().Y().getValue(),
-               Point(i).Value().Z().getValue(),
-               u1.getValue(),
-               v1.getValue(),
-               u2.getValue(),
-               v2.getValue());
+               getPrimal(Point(i).Value().X()),
+               getPrimal(Point(i).Value().Y()),
+               getPrimal(Point(i).Value().Z()),
+               getPrimal(u1),
+               getPrimal(v1),
+               getPrimal(u2),
+               getPrimal(v2));
       }
 
       for (Standard_Integer i = 1; i <= aNbVertex; i++)
       {
         Vertex(i).Dump();
         Standard_Real    polr = Vertex(i).ParameterOnLine();
-        Standard_Integer pol  = static_cast<Standard_Integer>(polr);
+        Standard_Integer pol  = static_cast<Standard_Integer>(getPrimal(polr));
 
         if (pol >= 1 && pol <= aNbVertex)
         {
@@ -487,9 +487,9 @@ void IntPatch_RLine::Dump(const Standard_Integer theMode) const
         Point(i).Parameters(u1, v1, u2, v2);
         printf("point p%d %+10.20f %+10.20f %+10.20f\n",
                i,
-               Point(i).Value().X().getValue(),
-               Point(i).Value().Y().getValue(),
-               Point(i).Value().Z().getValue());
+               getPrimal(Point(i).Value().X()),
+               getPrimal(Point(i).Value().Y()),
+               getPrimal(Point(i).Value().Z()));
       }
 
       break;
@@ -498,7 +498,7 @@ void IntPatch_RLine::Dump(const Standard_Integer theMode) const
       {
         Standard_Real u1, v1, u2, v2;
         Point(i).Parameters(u1, v1, u2, v2);
-        printf("point p%d %+10.20f %+10.20f\n", i, u1.getValue(), v1.getValue());
+        printf("point p%d %+10.20f %+10.20f\n", i, getPrimal(u1), getPrimal(v1));
       }
 
       break;
@@ -507,7 +507,7 @@ void IntPatch_RLine::Dump(const Standard_Integer theMode) const
       {
         Standard_Real u1, v1, u2, v2;
         Point(i).Parameters(u1, v1, u2, v2);
-        printf("point p%d %+10.20f %+10.20f\n", i, u2.getValue(), v2.getValue());
+        printf("point p%d %+10.20f %+10.20f\n", i, getPrimal(u2), getPrimal(v2));
       }
 
       break;

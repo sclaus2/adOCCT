@@ -54,11 +54,11 @@ TCollection_AsciiString Message::FillTime(const Standard_Integer hour,
 {
   char t[30];
   if (hour > 0)
-    Sprintf(t, "%02dh:%02dm:%.2fs", hour, minute, second.getValue());
+    Sprintf(t, "%02dh:%02dm:%.2fs", hour, minute, getPrimal(second));
   else if (minute > 0)
-    Sprintf(t, "%02dm:%.2fs", minute, second.getValue());
+    Sprintf(t, "%02dm:%.2fs", minute, getPrimal(second));
   else
-    Sprintf(t, "%.2fs", second.getValue());
+    Sprintf(t, "%.2fs", getPrimal(second));
   return TCollection_AsciiString(t);
 }
 

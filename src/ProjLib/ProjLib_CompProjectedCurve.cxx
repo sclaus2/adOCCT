@@ -423,8 +423,8 @@ static Standard_Boolean ExactBound(gp_Pnt&                          Sol,
     gp_Pnt P;
     P = Seq.Last();
     Seq.Remove(Seq.Length());
-    ProjLib_PrjResolve aPrjPS(*Curve, *Surface, Standard_Integer(P.Z()));
-    if (Standard_Integer(P.Z()) == 2)
+    ProjLib_PrjResolve aPrjPS(*Curve, *Surface, Standard_Integer(getPrimal(P.Z())));
+    if (Standard_Integer(getPrimal(P.Z())) == 2)
     {
       aPrjPS.Perform(t,
                      P.X(),

@@ -163,9 +163,9 @@ void gp_Dir::DumpJson(Standard_OStream& theOStream,
                       Standard_Integer) const {OCCT_DUMP_VECTOR_CLASS(theOStream,
                                                                       "gp_Dir",
                                                                       3,
-                                                                      coord.X().getValue(),
-                                                                      coord.Y().getValue(),
-                                                                      coord.Z().getValue())}
+                                                                      getPrimal(coord.X()),
+                                                                      getPrimal(coord.Y()),
+                                                                      getPrimal(coord.Z()))}
 
 Standard_Boolean gp_Dir::InitFromJson(const Standard_SStream& theSStream,
                                       Standard_Integer&       theStreamPos)

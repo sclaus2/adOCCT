@@ -1,8 +1,7 @@
 Standard.cxx
 Standard.hxx
-Standard_AbortiveTransaction.hxx
 Standard_Adouble.hxx
-Standard_Adouble.cxx
+Standard_AbortiveTransaction.hxx
 Standard_ArrayStreamBuffer.hxx
 Standard_ArrayStreamBuffer.cxx
 Standard_Assert.hxx

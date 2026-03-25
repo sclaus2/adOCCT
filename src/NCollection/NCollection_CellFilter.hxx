@@ -269,9 +269,9 @@ protected:
         // INT_MAX it is decreased correspondingly for the value of INT_MAX. If the value
         // of index is less than INT_MIN it is increased correspondingly for the absolute
         // value of INT_MIN.
-        index[i] = Cell_IndexType((aVal > INT_MAX - 1)   ? fmod(aVal.getValue(), (double)INT_MAX)
-                                  : (aVal < INT_MIN + 1) ? fmod(aVal.getValue(), (double)INT_MIN)
-                                                         : aVal.getValue());
+        index[i] = Cell_IndexType((aVal > INT_MAX - 1)   ? fmod(getPrimal(aVal), (double)INT_MAX)
+                                  : (aVal < INT_MIN + 1) ? fmod(getPrimal(aVal), (double)INT_MIN)
+                                                         : getPrimal(aVal));
       }
     }
 

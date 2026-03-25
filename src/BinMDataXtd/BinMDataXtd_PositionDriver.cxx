@@ -82,7 +82,7 @@ void BinMDataXtd_PositionDriver::Paste(const Handle(TDF_Attribute)& theSource,
 {
   Handle(TDataXtd_Position) anAtt = Handle(TDataXtd_Position)::DownCast(theSource);
 
-  theTarget << anAtt->GetPosition().X().getValue();
-  theTarget << anAtt->GetPosition().Y().getValue();
-  theTarget << anAtt->GetPosition().Z().getValue();
+  theTarget << getPrimal(anAtt->GetPosition().X());
+  theTarget << getPrimal(anAtt->GetPosition().Y());
+  theTarget << getPrimal(anAtt->GetPosition().Z());
 }

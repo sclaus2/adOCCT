@@ -621,7 +621,24 @@ public:
   }
 
   //! Take values from NCollection_Mat4 with a different element type with type conversion.
-  template <typename Other_t>
+  // AD: allow cast from AD-type to floating point type
+  template <typename Other_t,
+            typename std::enable_if<std::is_floating_point<Element_t>::value
+                                      && std::is_same<Other_t, Standard_Real>::value,
+                                    int>::type = 0>
+  void ConvertFrom(const NCollection_Mat4<Other_t>& theFrom)
+  {
+    for (int anIdx = 0; anIdx < 16; ++anIdx)
+    {
+      myMat[anIdx] = static_cast<Element_t>(getPrimal(theFrom.myMat[anIdx]));
+    }
+  }
+
+  // AD: other cases
+  template <typename Other_t,
+            typename std::enable_if<!(std::is_floating_point<Element_t>::value
+                                      && std::is_same<Other_t, Standard_Real>::value),
+                                    int>::type = 0>
   void ConvertFrom(const NCollection_Mat4<Other_t>& theFrom)
   {
     for (int anIdx = 0; anIdx < 16; ++anIdx)

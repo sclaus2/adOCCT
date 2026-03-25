@@ -81,7 +81,7 @@ static void FillPointsHash(const Handle(IntPatch_WLine)&         theWLine,
   for (v = 1; v <= theWLine->NbVertex(); v++)
   {
     IntPatch_Point   aVertex      = theWLine->Vertex(v);
-    Standard_Integer avertexindex = (Standard_Integer)aVertex.ParameterOnLine();
+    Standard_Integer avertexindex = (Standard_Integer)getPrimal(aVertex.ParameterOnLine());
     thePointsHash.SetValue(avertexindex, -1);
   }
 }
@@ -1439,7 +1439,7 @@ Handle(IntPatch_WLine) IntPatch_WLineTool::ComputePurgedWLine(
           for (v = 1; v <= aTmpWLine->NbVertex(); v++)
           {
             IntPatch_Point   aVertex      = aTmpWLine->Vertex(v);
-            Standard_Integer avertexindex = (Standard_Integer)aVertex.ParameterOnLine();
+            Standard_Integer avertexindex = (Standard_Integer)getPrimal(aVertex.ParameterOnLine());
 
             if (avertexindex >= k)
             {
@@ -1738,7 +1738,7 @@ static Standard_Boolean IsNeedSkipWL(const Handle(IntPatch_WLine)& theWL,
     aLastp  = theWL->Vertex(i + 1).ParameterOnLine();
 
     Standard_Real          aU1, aV1, aU2, aV2;
-    const Standard_Integer pmid  = (Standard_Integer)Standard_Real((aFirstp + aLastp) / 2);
+    const Standard_Integer pmid  = (Standard_Integer)getPrimal((aFirstp + aLastp) / 2);
     const IntSurf_PntOn2S& aPmid = theWL->Point(pmid);
     aPmid.Parameters(aU1, aV1, aU2, aV2);
 

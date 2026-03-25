@@ -96,7 +96,9 @@ public:
   //! Set surface normal at picked point.
   void SetSurfaceNormal(const gp_Vec& theNormal)
   {
-    myNormal.SetValues((float)theNormal.X(), (float)theNormal.Y(), (float)theNormal.Z());
+    myNormal.SetValues((float)getPrimal(theNormal.X()),
+                       (float)getPrimal(theNormal.Y()),
+                       (float)getPrimal(theNormal.Z()));
   }
 
 private:

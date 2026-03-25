@@ -214,7 +214,7 @@ GccAna_Circ2d2TanOn::GccAna_Circ2d2TanOn(const GccEnt_QualifiedCirc& Qualified1,
             else if (Qualified1.IsUnqualified())
             {
               Standard_Real popradius = Center.Distance(Point2);
-              if (Abs(popradius - dist1).getValue())
+              if (getPrimal(Abs(popradius - dist1)))
               {
                 ok        = Standard_True;
                 Radius(1) = popradius;

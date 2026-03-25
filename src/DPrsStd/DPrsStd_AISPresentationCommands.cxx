@@ -332,8 +332,8 @@ static Standard_Integer DPrsStd_AISTransparency(Draw_Interpretor& di,
       {
         if (prs->HasOwnTransparency())
         {
-          di << "Transparency = " << prs->Transparency().getValue() << "\n";
-          di << prs->Transparency().getValue();
+          di << "Transparency = " << getPrimal(prs->Transparency()) << "\n";
+          di << getPrimal(prs->Transparency());
         }
         else
         {

@@ -286,7 +286,7 @@ static Standard_Integer evaluateMaxSegment(const Standard_Integer          aMaxS
   {
     aNbC2dKnots = aCurv2d->NbKnots();
   }
-  Standard_Integer aReturn = (Standard_Integer)Standard_Real(30 + Max(aNbSKnots, aNbC2dKnots));
+  Standard_Integer aReturn = (Standard_Integer)getPrimal(30 + Max(aNbSKnots, aNbC2dKnots));
   return aReturn;
 }
 

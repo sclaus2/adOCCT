@@ -57,7 +57,7 @@ static void getMarkerBitMapParam(const Aspect_TypeOfMarker theMarkerType,
   const Standard_Real anIndex = (Standard_Real)(TEL_NO_OF_SIZES - 1)
                                 * (theScale - (Standard_Real)TEL_PM_START_SIZE)
                                 / (Standard_Real)(TEL_PM_END_SIZE - TEL_PM_START_SIZE);
-  Standard_Integer anId = (Standard_Integer)Standard_Real(anIndex + 0.5);
+  Standard_Integer anId = (Standard_Integer)getPrimal(anIndex + 0.5);
   if (anId < 0)
   {
     anId = 0;
@@ -495,22 +495,22 @@ Handle(Graphic3d_MarkerImage) Graphic3d_MarkerImage::StandardMarker(
       const Standard_ShortReal aDelta = 0.1f;
       while (aScale >= 1.0f)
       {
-        Quantity_Color::RgbHls(aColor.r().getValue(),
-                               aColor.g().getValue(),
-                               aColor.b().getValue(),
+        Quantity_Color::RgbHls(getPrimal(aColor.r()),
+                               getPrimal(aColor.g()),
+                               getPrimal(aColor.b()),
                                aHLS[0],
                                aHLS[1],
                                aHLS[2]);
         aHLS[2] *= 0.95; // 5% saturation change
-        Quantity_Color::HlsRgb(aHLS[0].getValue(),
-                               aHLS[1].getValue(),
-                               aHLS[2].getValue(),
+        Quantity_Color::HlsRgb(getPrimal(aHLS[0]),
+                               getPrimal(aHLS[1]),
+                               getPrimal(aHLS[2]),
                                aColor.r(),
                                aColor.g(),
                                aColor.b());
-        aColor32.r() = Standard_Byte(255.0 * aColor.r().getValue());
-        aColor32.g() = Standard_Byte(255.0 * aColor.g().getValue());
-        aColor32.b() = Standard_Byte(255.0 * aColor.b().getValue());
+        aColor32.r() = Standard_Byte(255.0 * getPrimal(aColor.r()));
+        aColor32.g() = Standard_Byte(255.0 * getPrimal(aColor.g()));
+        aColor32.b() = Standard_Byte(255.0 * getPrimal(aColor.b()));
 
         const Handle(Graphic3d_MarkerImage) aMarker = getTextureImage(Aspect_TOM_O, aScale);
         const Handle(Image_PixMap)&         aCircle = aMarker->GetImage();

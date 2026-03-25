@@ -287,13 +287,13 @@ void Intf_Tool::Hypr2dBox(const gp_Hypr2d& theHypr2d, const Bnd_Box2d& domain, B
           if (beginOnCurve[nbSeg - 1] < -10.)
             ipmin = -10;
           else
-            ipmin = (Standard_Integer)(beginOnCurve[nbSeg - 1]);
+            ipmin = (Standard_Integer)getPrimal(beginOnCurve[nbSeg - 1]);
 
           Standard_Integer ipmax;
           if (endOnCurve[nbSeg - 1] > 10.)
             ipmax = 10;
           else
-            ipmax = (Standard_Integer)(endOnCurve[nbSeg - 1]);
+            ipmax = (Standard_Integer)getPrimal(endOnCurve[nbSeg - 1]);
 
           // Standard_Integer ipmin=Max((Standard_Integer)(beginOnCurve[nbSeg-1]),
           //		     -10);
@@ -528,13 +528,13 @@ void Intf_Tool::Parab2dBox(const gp_Parab2d& theParab2d,
           if (beginOnCurve[nbSeg - 1] < -10.)
             ipmin = -10;
           else
-            ipmin = (Standard_Integer)(beginOnCurve[nbSeg - 1]);
+            ipmin = (Standard_Integer)getPrimal(beginOnCurve[nbSeg - 1]);
 
           Standard_Integer ipmax;
           if (endOnCurve[nbSeg - 1] > 10.)
             ipmax = 10;
           else
-            ipmax = (Standard_Integer)(endOnCurve[nbSeg - 1]);
+            ipmax = (Standard_Integer)getPrimal(endOnCurve[nbSeg - 1]);
 
           // Standard_Integer ipmin=Max((Standard_Integer)(beginOnCurve[nbSeg-1]),
           //		     -10);
@@ -1444,13 +1444,13 @@ void Intf_Tool::ParabBox(const gp_Parab& theParab, const Bnd_Box& domain, Bnd_Bo
           if (beginOnCurve[nbSeg - 1] < -10.)
             ipmin = -10;
           else
-            ipmin = (Standard_Integer)(beginOnCurve[nbSeg - 1]);
+            ipmin = (Standard_Integer)getPrimal(beginOnCurve[nbSeg - 1]);
 
           Standard_Integer ipmax;
           if (endOnCurve[nbSeg - 1] > 10.)
             ipmax = 10;
           else
-            ipmax = (Standard_Integer)(endOnCurve[nbSeg - 1]);
+            ipmax = (Standard_Integer)getPrimal(endOnCurve[nbSeg - 1]);
 
           ipmin = ipmin * 10 + 1;
           ipmax = ipmax * 10 - 1;

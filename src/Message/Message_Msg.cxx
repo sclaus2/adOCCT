@@ -208,7 +208,7 @@ Message_Msg& Message_Msg::Arg(const Standard_Real theValue)
 
   // print string according to format
   char sStringBuffer[64];
-  Sprintf(sStringBuffer, aFormat.ToCString(), theValue.getValue());
+  Sprintf(sStringBuffer, aFormat.ToCString(), getPrimal(theValue));
   TCollection_ExtendedString aStr(sStringBuffer);
 
   // replace the format placeholder by the actual string

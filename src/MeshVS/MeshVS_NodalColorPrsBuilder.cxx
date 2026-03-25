@@ -589,9 +589,9 @@ void MeshVS_NodalColorPrsBuilder::AddVolumePrs(
 
             if (theIsShaded)
             {
-              aNColor.SetValues(theColorRatio.getValue() * aNColor.Red(),
-                                theColorRatio.getValue() * aNColor.Green(),
-                                theColorRatio.getValue() * aNColor.Blue(),
+              aNColor.SetValues(getPrimal(theColorRatio) * aNColor.Red(),
+                                getPrimal(theColorRatio) * aNColor.Green(),
+                                getPrimal(theColorRatio) * aNColor.Blue(),
                                 Quantity_TOC_RGB);
 
               theArray->AddVertex(aPnt, aNorm, aNColor);

@@ -39,7 +39,7 @@ Standard_Boolean GeomInt::AdjustPeriodic(const Standard_Real thePar,
     double        aNbPer;
     //
     dp = (bMin) ? (theParMax - thePar) : (theParMin - thePar);
-    modf((dp / thePeriod).getValue(), &aNbPer);
+    modf(getPrimal(dp / thePeriod), &aNbPer);
     //
     theOffset = aNbPer * thePeriod;
     theNewPar += theOffset;

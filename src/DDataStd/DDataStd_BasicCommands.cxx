@@ -299,10 +299,10 @@ static Standard_Integer DDataStd_GetReal(Draw_Interpretor& di,
     if (!DDF::Find(DF, arg[2], aGuid, A))
       return 1;
     if (nb == 4 && isdrawname)
-      Draw::Set(arg[3], A->Get().getValue());
+      Draw::Set(arg[3], getPrimal(A->Get()));
     else
-      Draw::Set(arg[2], A->Get().getValue());
-    di << A->Get().getValue();
+      Draw::Set(arg[2], getPrimal(A->Get()));
+    di << getPrimal(A->Get());
     return 0;
   }
   di << "DDataStd_GetReal : Error\n";
@@ -923,7 +923,7 @@ static Standard_Integer DDataStd_GetRealArray(Draw_Interpretor& di,
 #ifdef DEB_DDataStd
       std::cout << A->Value(i) << std::endl;
 #endif
-      di << A->Value(i).getValue();
+      di << getPrimal(A->Value(i));
       if (i < A->Upper())
         di << " ";
     }
@@ -967,7 +967,7 @@ static Standard_Integer DDataStd_GetRealArrayValue(Draw_Interpretor& di,
   }
   else
   {
-    di << A->Value(index).getValue() << "\n";
+    di << getPrimal(A->Value(index)) << "\n";
   }
 
   return 0;
@@ -3026,7 +3026,7 @@ static Standard_Integer DDataStd_GetRealList(Draw_Interpretor& di,
       TColStd_ListIteratorOfListOfReal itr(rList);
       for (; itr.More(); itr.Next())
       {
-        di << itr.Value().getValue() << " ";
+        di << getPrimal(itr.Value()) << " ";
       }
       di << "\n";
     }
@@ -3824,7 +3824,7 @@ static Standard_Integer DDataStd_GetNDReals(Draw_Interpretor& di,
     {
       const TCollection_ExtendedString& aKey(itr.Key());
       Standard_Real                     aValue = itr.Value();
-      di << "Key = " << aKey << " Value = " << aValue.getValue() << "\n";
+      di << "Key = " << aKey << " Value = " << getPrimal(aValue) << "\n";
     }
     return 0;
   }
@@ -3869,7 +3869,7 @@ static Standard_Integer DDataStd_GetNDReal(Draw_Interpretor& di,
     {
       std::cout << "Key = " << arg[3] << " Value = " << anAtt->GetReal(aKey) << std::endl;
       if (nb == 5)
-        Draw::Set(arg[4], anAtt->GetReal(aKey).getValue());
+        Draw::Set(arg[4], getPrimal(anAtt->GetReal(aKey)));
       return 0;
     }
   }
@@ -4755,7 +4755,7 @@ static Standard_Integer DDataStd_DumpMesh(Draw_Interpretor& di,
       return 1;
     }
 
-    di << "Deflection            " << PT->Deflection().getValue() << "\n";
+    di << "Deflection            " << getPrimal(PT->Deflection()) << "\n";
     di << "Number of nodes       " << PT->NbNodes() << "\n";
     di << "Number of triangles   " << PT->NbTriangles() << "\n";
     if (PT->HasUVNodes())

@@ -55,7 +55,7 @@ inline static void convertDouble(const Standard_Real theValue, Standard_Characte
     Standard_Character c[4];
   } anUnion;
 
-  anUnion.i = (Standard_ShortReal)theValue;
+  anUnion.i = (Standard_ShortReal)getPrimal(theValue);
 
   theResult[0] = anUnion.c[0];
   theResult[1] = anUnion.c[1];
@@ -339,18 +339,18 @@ Standard_Boolean RWStl::writeASCII(const Handle(Poly_Triangulation)& theMesh,
             "     vertex % 12e % 12e % 12e\n"
             "   endloop\n"
             " endfacet\n",
-            aVNorm.X().getValue(),
-            aVNorm.Y().getValue(),
-            aVNorm.Z().getValue(),
-            aP1.X().getValue(),
-            aP1.Y().getValue(),
-            aP1.Z().getValue(),
-            aP2.X().getValue(),
-            aP2.Y().getValue(),
-            aP2.Z().getValue(),
-            aP3.X().getValue(),
-            aP3.Y().getValue(),
-            aP3.Z().getValue());
+            getPrimal(aVNorm.X()),
+            getPrimal(aVNorm.Y()),
+            getPrimal(aVNorm.Z()),
+            getPrimal(aP1.X()),
+            getPrimal(aP1.Y()),
+            getPrimal(aP1.Z()),
+            getPrimal(aP2.X()),
+            getPrimal(aP2.Y()),
+            getPrimal(aP2.Z()),
+            getPrimal(aP3.X()),
+            getPrimal(aP3.Y()),
+            getPrimal(aP3.Z()));
 
     if (fprintf(theFile, "%s", aBuffer) < 0)
     {

@@ -36,9 +36,9 @@ void Poly_CoherentNode::Clear(const Handle(NCollection_BaseAllocator)& theAlloc)
 
 void Poly_CoherentNode::SetNormal(const gp_XYZ& theVector)
 {
-  myNormal[0] = static_cast<Standard_ShortReal>(theVector.X());
-  myNormal[1] = static_cast<Standard_ShortReal>(theVector.Y());
-  myNormal[2] = static_cast<Standard_ShortReal>(theVector.Z());
+  myNormal[0] = static_cast<Standard_ShortReal>(getPrimal(theVector.X()));
+  myNormal[1] = static_cast<Standard_ShortReal>(getPrimal(theVector.Y()));
+  myNormal[2] = static_cast<Standard_ShortReal>(getPrimal(theVector.Z()));
 }
 
 //=================================================================================================
@@ -88,7 +88,7 @@ Standard_Boolean Poly_CoherentNode::RemoveTriangle(
 void Poly_CoherentNode::Dump(Standard_OStream& theStream) const
 {
   char buf[256];
-  Sprintf(buf, "  X =%9.4f; Y =%9.4f; Z =%9.4f", X().getValue(), Y().getValue(), Z().getValue());
+  Sprintf(buf, "  X =%9.4f; Y =%9.4f; Z =%9.4f", getPrimal(X()), getPrimal(Y()), getPrimal(Z()));
   theStream << buf << std::endl;
   Poly_CoherentTriPtr::Iterator anIter(*myTriangles);
   for (; anIter.More(); anIter.Next())

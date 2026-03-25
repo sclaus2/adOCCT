@@ -23,6 +23,7 @@
 #include <gp_Ax3.hxx>
 
 #define RealType Standard_Real
+#define Bnd_Use_AD 1
 #define RealType_hxx <Standard_Real.hxx>
 #define Bnd_B3x Bnd_B3d
 #define Bnd_B3x_hxx <Bnd_B3d.hxx>

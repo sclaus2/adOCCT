@@ -138,15 +138,15 @@ bool Aspect_WindowInputListener::update3dMouseTranslation(const WNT_HIDSpaceMous
   myKeys.KeyFromAxis(Aspect_VKey_NavSlideLeft,
                      Aspect_VKey_NavSlideRight,
                      aTimeStamp,
-                     aTrans.x().getValue());
+                     getPrimal(aTrans.x()));
   myKeys.KeyFromAxis(Aspect_VKey_NavForward,
                      Aspect_VKey_NavBackward,
                      aTimeStamp,
-                     aTrans.y().getValue());
+                     getPrimal(aTrans.y()));
   myKeys.KeyFromAxis(Aspect_VKey_NavSlideUp,
                      Aspect_VKey_NavSlideDown,
                      aTimeStamp,
-                     aTrans.z().getValue());
+                     getPrimal(aTrans.z()));
   return true;
 }
 
@@ -168,7 +168,7 @@ bool Aspect_WindowInputListener::update3dMouseRotation(const WNT_HIDSpaceMouse& 
     KeyFromAxis(Aspect_VKey_NavLookUp,
                 Aspect_VKey_NavLookDown,
                 aTimeStamp,
-                !my3dMouseToReverse.x() ? aRot3.x().getValue() : -aRot3.x().getValue());
+                !my3dMouseToReverse.x() ? getPrimal(aRot3.x()) : getPrimal(-aRot3.x()));
     toUpdate = true;
   }
   if (!my3dMouseNoRotate.y())
@@ -176,7 +176,7 @@ bool Aspect_WindowInputListener::update3dMouseRotation(const WNT_HIDSpaceMouse& 
     KeyFromAxis(Aspect_VKey_NavRollCW,
                 Aspect_VKey_NavRollCCW,
                 aTimeStamp,
-                !my3dMouseToReverse.y() ? aRot3.y().getValue() : -aRot3.y().getValue());
+                !my3dMouseToReverse.y() ? getPrimal(aRot3.y()) : getPrimal(-aRot3.y()));
     toUpdate = true;
   }
   if (!my3dMouseNoRotate.z())
@@ -184,7 +184,7 @@ bool Aspect_WindowInputListener::update3dMouseRotation(const WNT_HIDSpaceMouse& 
     KeyFromAxis(Aspect_VKey_NavLookLeft,
                 Aspect_VKey_NavLookRight,
                 aTimeStamp,
-                !my3dMouseToReverse.z() ? aRot3.z().getValue() : -aRot3.z().getValue());
+                !my3dMouseToReverse.z() ? getPrimal(aRot3.z()) : getPrimal(-aRot3.z()));
     toUpdate = true;
   }
   return toUpdate;

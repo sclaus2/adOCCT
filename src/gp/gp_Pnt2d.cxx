@@ -80,5 +80,5 @@ gp_Pnt2d gp_Pnt2d::Mirrored(const gp_Ax2d& A) const
 
 void gp_Pnt2d::DumpJson(Standard_OStream& theOStream, Standard_Integer) const
 {
-  OCCT_DUMP_VECTOR_CLASS(theOStream, "gp_Pnt2d", 2, coord.X().getValue(), coord.Y().getValue())
+  OCCT_DUMP_VECTOR_CLASS(theOStream, "gp_Pnt2d", 2, getPrimal(coord.X()), getPrimal(coord.Y()))
 }

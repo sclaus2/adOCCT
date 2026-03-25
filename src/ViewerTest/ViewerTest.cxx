@@ -3926,9 +3926,9 @@ inline void bndPresentation(Draw_Interpretor&                         theDI,
       gp_Pnt aMin = aBox.CornerMin();
       gp_Pnt aMax = aBox.CornerMax();
       theDI << theName << "\n"
-            << aMin.X().getValue() << " " << aMin.Y().getValue() << " " << aMin.Z().getValue()
-            << " " << aMax.X().getValue() << " " << aMax.Y().getValue() << " "
-            << aMax.Z().getValue() << "\n";
+            << getPrimal(aMin.X()) << " " << getPrimal(aMin.Y()) << " " << getPrimal(aMin.Z())
+            << " " << getPrimal(aMax.X()) << " " << getPrimal(aMax.Y()) << " "
+            << getPrimal(aMax.Z()) << "\n";
       break;
     }
   }
@@ -5551,11 +5551,11 @@ static Standard_Integer VState(Draw_Interpretor& theDI,
       {
         Sprintf(anInfoStr,
                 " Depth: %g Distance: %g Point: %g %g %g Normal: %g %g %g",
-                aPickData.Depth.getValue(),
-                aPickData.MinDist.getValue(),
-                aPickData.Point.X().getValue(),
-                aPickData.Point.Y().getValue(),
-                aPickData.Point.Z().getValue(),
+                getPrimal(aPickData.Depth),
+                getPrimal(aPickData.MinDist),
+                getPrimal(aPickData.Point.X()),
+                getPrimal(aPickData.Point.Y()),
+                getPrimal(aPickData.Point.Z()),
                 aPickData.Normal.x(),
                 aPickData.Normal.y(),
                 aPickData.Normal.z());
@@ -5564,11 +5564,11 @@ static Standard_Integer VState(Draw_Interpretor& theDI,
       {
         Sprintf(anInfoStr,
                 " Depth: %g Distance: %g Point: %g %g %g",
-                aPickData.Depth.getValue(),
-                aPickData.MinDist.getValue(),
-                aPickData.Point.X().getValue(),
-                aPickData.Point.Y().getValue(),
-                aPickData.Point.Z().getValue());
+                getPrimal(aPickData.Depth),
+                getPrimal(aPickData.MinDist),
+                getPrimal(aPickData.Point.X()),
+                getPrimal(aPickData.Point.Y()),
+                getPrimal(aPickData.Point.Z()));
       }
       theDI << "  " << aName << anInfoStr << " (" << anEntity->DynamicType()->Name() << ")"
             << "\n";

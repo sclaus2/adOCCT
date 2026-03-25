@@ -140,12 +140,12 @@ void HLRAlgo_PolyAlgo::Update()
         zSegmnMin = aPoints.PntP2.Z();
         zSegmnMax = aPoints.PntP1.Z();
       }
-      nxMin             = (Standard_Integer)Standard_Real((DecaX + xSegmnMin) * SurDX);
-      nyMin             = (Standard_Integer)Standard_Real((DecaY + ySegmnMin) * SurDY);
-      nzMin             = (Standard_Integer)Standard_Real((DecaZ + zSegmnMin) * SurDZ);
-      nxMax             = (Standard_Integer)Standard_Real((DecaX + xSegmnMax) * SurDX);
-      nyMax             = (Standard_Integer)Standard_Real((DecaY + ySegmnMax) * SurDY);
-      nzMax             = (Standard_Integer)Standard_Real((DecaZ + zSegmnMax) * SurDZ);
+      nxMin             = (Standard_Integer)getPrimal((DecaX + xSegmnMin) * SurDX);
+      nyMin             = (Standard_Integer)getPrimal((DecaY + ySegmnMin) * SurDY);
+      nzMin             = (Standard_Integer)getPrimal((DecaZ + zSegmnMin) * SurDZ);
+      nxMax             = (Standard_Integer)getPrimal((DecaX + xSegmnMax) * SurDX);
+      nyMax             = (Standard_Integer)getPrimal((DecaY + ySegmnMax) * SurDY);
+      nzMax             = (Standard_Integer)getPrimal((DecaZ + zSegmnMax) * SurDZ);
       theIndices.MinSeg = nyMin + (nxMin << 11);
       theIndices.MinSeg <<= 10;
       theIndices.MinSeg += nzMin;
@@ -235,12 +235,12 @@ void HLRAlgo_PolyAlgo::Update()
               zTrianMin = Z3;
             else if (zTrianMax < Z3)
               zTrianMax = Z3;
-            nxMin = (Standard_Integer)Standard_Real((DecaX + xTrianMin) * SurDX);
-            nyMin = (Standard_Integer)Standard_Real((DecaY + yTrianMin) * SurDY);
-            nzMin = (Standard_Integer)Standard_Real((DecaZ + zTrianMin) * SurDZ);
-            nxMax = (Standard_Integer)Standard_Real((DecaX + xTrianMax) * SurDX);
-            nyMax = (Standard_Integer)Standard_Real((DecaY + yTrianMax) * SurDY);
-            nzMax = (Standard_Integer)Standard_Real((DecaZ + zTrianMax) * SurDZ);
+            nxMin = (Standard_Integer)getPrimal((DecaX + xTrianMin) * SurDX);
+            nyMin = (Standard_Integer)getPrimal((DecaY + yTrianMin) * SurDY);
+            nzMin = (Standard_Integer)getPrimal((DecaZ + zTrianMin) * SurDZ);
+            nxMax = (Standard_Integer)getPrimal((DecaX + xTrianMax) * SurDX);
+            nyMax = (Standard_Integer)getPrimal((DecaY + yTrianMax) * SurDY);
+            nzMax = (Standard_Integer)getPrimal((DecaZ + zTrianMax) * SurDZ);
             Standard_Integer MinTrian, MaxTrian;
             MinTrian = nyMin + (nxMin << 11);
             MinTrian <<= 10;
@@ -313,12 +313,12 @@ void HLRAlgo_PolyAlgo::Update()
               zPolyTMax = zTrianMax;
           }
         }
-        nxMin            = (Standard_Integer)Standard_Real((DecaX + xPolyTMin) * SurDX);
-        nyMin            = (Standard_Integer)Standard_Real((DecaY + yPolyTMin) * SurDY);
-        nzMin            = (Standard_Integer)Standard_Real((DecaZ + zPolyTMin) * SurDZ);
-        nxMax            = (Standard_Integer)Standard_Real((DecaX + xPolyTMax) * SurDX);
-        nyMax            = (Standard_Integer)Standard_Real((DecaY + yPolyTMax) * SurDY);
-        nzMax            = (Standard_Integer)Standard_Real((DecaZ + zPolyTMax) * SurDZ);
+        nxMin            = (Standard_Integer)getPrimal((DecaX + xPolyTMin) * SurDX);
+        nyMin            = (Standard_Integer)getPrimal((DecaY + yPolyTMin) * SurDY);
+        nzMin            = (Standard_Integer)getPrimal((DecaZ + zPolyTMin) * SurDZ);
+        nxMax            = (Standard_Integer)getPrimal((DecaX + xPolyTMax) * SurDX);
+        nyMax            = (Standard_Integer)getPrimal((DecaY + yPolyTMax) * SurDY);
+        nzMax            = (Standard_Integer)getPrimal((DecaZ + zPolyTMax) * SurDZ);
         PolyTIndices.Min = nyMin + (nxMin << 11);
         PolyTIndices.Min <<= 10;
         PolyTIndices.Min += nzMin - 0x00000200;
@@ -341,12 +341,12 @@ void HLRAlgo_PolyAlgo::Update()
     }
     if (nbFaHi > 0)
     {
-      nxMin             = (Standard_Integer)Standard_Real((DecaX + xShellMin) * SurDX);
-      nyMin             = (Standard_Integer)Standard_Real((DecaY + yShellMin) * SurDY);
-      nzMin             = (Standard_Integer)Standard_Real((DecaZ + zShellMin) * SurDZ);
-      nxMax             = (Standard_Integer)Standard_Real((DecaX + xShellMax) * SurDX);
-      nyMax             = (Standard_Integer)Standard_Real((DecaY + yShellMax) * SurDY);
-      nzMax             = (Standard_Integer)Standard_Real((DecaZ + zShellMax) * SurDZ);
+      nxMin             = (Standard_Integer)getPrimal((DecaX + xShellMin) * SurDX);
+      nyMin             = (Standard_Integer)getPrimal((DecaY + yShellMin) * SurDY);
+      nzMin             = (Standard_Integer)getPrimal((DecaZ + zShellMin) * SurDZ);
+      nxMax             = (Standard_Integer)getPrimal((DecaX + xShellMax) * SurDX);
+      nyMax             = (Standard_Integer)getPrimal((DecaY + yShellMax) * SurDY);
+      nzMax             = (Standard_Integer)getPrimal((DecaZ + zShellMax) * SurDZ);
       aShellIndices.Min = nyMin + (nxMin << 11);
       aShellIndices.Min <<= 10;
       aShellIndices.Min += nzMin - 0x00000200;
@@ -418,9 +418,9 @@ HLRAlgo_BiPoint::PointsT& HLRAlgo_PolyAlgo::Hide(HLRAlgo_EdgeStatus& theStatus,
   HLRAlgo_BiPoint::PointsT&  aPoints   = aBP.Points();
   HLRAlgo_BiPoint::IndicesT& anIndices = aBP.Indices();
   theStatus                            = HLRAlgo_EdgeStatus(0.0,
-                                 (Standard_ShortReal)myTriangle.TolParam,
+                                 (Standard_ShortReal)getPrimal(myTriangle.TolParam),
                                  1.0,
-                                 (Standard_ShortReal)myTriangle.TolParam);
+                                 (Standard_ShortReal)getPrimal(myTriangle.TolParam));
   theIndex                             = anIndices.ShapeIndex;
   theReg1                              = aBP.Rg1Line();
   theRegn                              = aBP.RgNLine();

@@ -49,7 +49,7 @@ void AIS_Triangulation::SetTransparency(const Standard_Real theValue)
 
   // override transparency
   myDrawer->ShadingAspect()->SetTransparency(theValue, myCurrentFacingModel);
-  myDrawer->SetTransparency((Standard_ShortReal)theValue);
+  myDrawer->SetTransparency((Standard_ShortReal)getPrimal(theValue));
 
   updatePresentation();
 }
@@ -240,8 +240,8 @@ Graphic3d_Vec4ub AIS_Triangulation::attenuateColor(const Standard_Integer theCol
           255.0 - myDrawer->ShadingAspect()->Aspect()->FrontMaterial().Transparency() * 255.0)
       : 255;
 
-  return Graphic3d_Vec4ub((Standard_Byte)(theComposition.getValue() * anRgbx[0]),
-                          (Standard_Byte)(theComposition.getValue() * anRgbx[1]),
-                          (Standard_Byte)(theComposition.getValue() * anRgbx[2]),
+  return Graphic3d_Vec4ub((Standard_Byte)(getPrimal(theComposition) * anRgbx[0]),
+                          (Standard_Byte)(getPrimal(theComposition) * anRgbx[1]),
+                          (Standard_Byte)(getPrimal(theComposition) * anRgbx[2]),
                           anAlpha);
 }

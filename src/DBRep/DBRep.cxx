@@ -172,7 +172,7 @@ static Standard_Integer hlr(Draw_Interpretor& di, Standard_Integer n, const char
       if (aParams.WithHLR)
       {
         di << "Angle of discretization : ";
-        di << aParams.HLRAngle.getValue() * 180 / M_PI << " degrees\n";
+        di << getPrimal(aParams.HLRAngle) * 180 / M_PI << " degrees\n";
       }
     }
     else
@@ -224,7 +224,7 @@ static Standard_Integer hlr(Draw_Interpretor& di, Standard_Integer n, const char
     else if (!strcasecmp(a[1], "ang"))
     {
       di << "Angle of discretization : ";
-      di << aParams.HLRAngle.getValue() * 180 / M_PI << " degrees\n";
+      di << getPrimal(aParams.HLRAngle) * 180 / M_PI << " degrees\n";
     }
     else
       return 1;
@@ -249,7 +249,7 @@ static Standard_Integer hlr(Draw_Interpretor& di, Standard_Integer n, const char
       }
     }
     di << "Angle of discretization : ";
-    di << aParams.HLRAngle.getValue() * 180 / M_PI << " degrees\n";
+    di << getPrimal(aParams.HLRAngle) * 180 / M_PI << " degrees\n";
   }
 
   for (Standard_Integer i = nFirst; i < n; i++)
@@ -1407,9 +1407,9 @@ static Standard_Integer normals(Draw_Interpretor& theDI,
           aV.Reverse();
 
         // Print values of the vector avoiding printing "-0" values
-        theDI << "(" << (aV.X() == 0 ? 0 : aV.X().getValue()) << ", "
-              << (aV.Y() == 0 ? 0 : aV.Y().getValue()) << ", "
-              << (aV.Z() == 0 ? 0 : aV.Z().getValue()) << ")\n";
+        theDI << "(" << (aV.X() == 0 ? 0 : getPrimal(aV.X())) << ", "
+              << (aV.Y() == 0 ? 0 : getPrimal(aV.Y())) << ", "
+              << (aV.Z() == 0 ? 0 : getPrimal(aV.Z())) << ")\n";
       }
     }
   }

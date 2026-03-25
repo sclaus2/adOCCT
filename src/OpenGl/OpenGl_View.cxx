@@ -457,12 +457,12 @@ static void SetMinMaxValuesCallback(Graphic3d_CView* theView)
     gp_Pnt aMin = aBox.CornerMin();
     gp_Pnt aMax = aBox.CornerMax();
 
-    Graphic3d_Vec3 aMinVec((Standard_ShortReal)aMin.X(),
-                           (Standard_ShortReal)aMin.Y(),
-                           (Standard_ShortReal)aMin.Z());
-    Graphic3d_Vec3 aMaxVec((Standard_ShortReal)aMax.X(),
-                           (Standard_ShortReal)aMax.Y(),
-                           (Standard_ShortReal)aMax.Z());
+    Graphic3d_Vec3 aMinVec((Standard_ShortReal)getPrimal(aMin.X()),
+                           (Standard_ShortReal)getPrimal(aMin.Y()),
+                           (Standard_ShortReal)getPrimal(aMin.Z()));
+    Graphic3d_Vec3 aMaxVec((Standard_ShortReal)getPrimal(aMax.X()),
+                           (Standard_ShortReal)getPrimal(aMax.Y()),
+                           (Standard_ShortReal)getPrimal(aMax.Z()));
     aView->GraduatedTrihedronMinMaxValues(aMinVec, aMaxVec);
   }
 }
@@ -3416,9 +3416,9 @@ void OpenGl_View::updateSkydomeBg(const Handle(OpenGl_Context)& theCtx)
   // Setup uniforms
   aProg->SetUniform(theCtx,
                     "uSunDir",
-                    OpenGl_Vec3((float)mySkydomeAspect.SunDirection().X(),
-                                (float)mySkydomeAspect.SunDirection().Y(),
-                                (float)mySkydomeAspect.SunDirection().Z()));
+                    OpenGl_Vec3((float)getPrimal(mySkydomeAspect.SunDirection().X()),
+                                (float)getPrimal(mySkydomeAspect.SunDirection().Y()),
+                                (float)getPrimal(mySkydomeAspect.SunDirection().Z())));
   aProg->SetUniform(theCtx, "uCloudy", mySkydomeAspect.Cloudiness());
   aProg->SetUniform(theCtx, "uTime", mySkydomeAspect.TimeParameter());
   aProg->SetUniform(theCtx, "uFog", mySkydomeAspect.Fogginess());

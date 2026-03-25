@@ -68,10 +68,10 @@ static Standard_Integer OCC6001(Draw_Interpretor& di, Standard_Integer argc, con
   for (int i = 1; i <= nb; i++)
   {
     const IntCurveSurface_IntersectionPoint& int_pnt = inter.Point(i);
-    double                                   par     = int_pnt.W().getValue();
+    double                                   par     = getPrimal(int_pnt.W());
     gp_Pnt                                   p       = int_pnt.Pnt();
     di << "inter " << i << ": W = " << par << "\n"
-       << "\tpnt = " << p.X().getValue() << " " << p.Y().getValue() << " " << p.Z().getValue()
+       << "\tpnt = " << getPrimal(p.X()) << " " << getPrimal(p.Y()) << " " << getPrimal(p.Z())
        << "\n";
     char n[20], *pname = n;
     Sprintf(n, "%s_%d", name, i);
@@ -100,7 +100,7 @@ static Standard_Integer OCC5696(Draw_Interpretor& di, Standard_Integer argc, con
   {
     OCC_CATCH_SIGNALS
     curve.Edge(par, edge_found, par_edge); // exception is here
-    di << "par_edge = " << par_edge.getValue() << "\n";
+    di << "par_edge = " << getPrimal(par_edge) << "\n";
   }
 
   catch (Standard_Failure const&)

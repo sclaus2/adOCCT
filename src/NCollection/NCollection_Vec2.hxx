@@ -59,7 +59,24 @@ public:
   //! whose elements are static_cast'ed corresponding elements of theOtherVec2 vector)
   //! @tparam OtherElement_t the element type of the other 2-component vector theOtherVec2
   //! @param theOtherVec2 the 2-component vector that needs to be converted
-  template <typename OtherElement_t>
+  // AD: allow cast from AD-type to floating point or integral type
+  template <typename OtherElement_t,
+            typename std::enable_if<(std::is_floating_point<Element_t>::value
+                                     || std::is_integral<Element_t>::value)
+                                      && std::is_same<OtherElement_t, Standard_Real>::value,
+                                    int>::type = 0>
+  explicit NCollection_Vec2(const NCollection_Vec2<OtherElement_t>& theOtherVec2)
+  {
+    v[0] = static_cast<Element_t>(getPrimal(theOtherVec2[0]));
+    v[1] = static_cast<Element_t>(getPrimal(theOtherVec2[1]));
+  }
+
+  // AD: other cases
+  template <typename OtherElement_t,
+            typename std::enable_if<!((std::is_floating_point<Element_t>::value
+                                       || std::is_integral<Element_t>::value)
+                                      && std::is_same<OtherElement_t, Standard_Real>::value),
+                                    int>::type = 0>
   explicit NCollection_Vec2(const NCollection_Vec2<OtherElement_t>& theOtherVec2)
   {
     v[0] = static_cast<Element_t>(theOtherVec2[0]);

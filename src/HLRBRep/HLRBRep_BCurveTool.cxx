@@ -45,7 +45,7 @@ Standard_Integer HLRBRep_BCurveTool::NbSamples(const BRepAdaptor_Curve& C,
   }
   if (nbs > 50)
     nbs = 50;
-  return ((Standard_Integer)nbs);
+  return ((Standard_Integer)getPrimal(nbs));
 }
 
 //=================================================================================================

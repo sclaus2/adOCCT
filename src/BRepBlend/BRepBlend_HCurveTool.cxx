@@ -46,5 +46,5 @@ Standard_Integer BRepBlend_HCurveTool::NbSamples(const Handle(Adaptor3d_Curve)& 
   }
   if (nbs > 50)
     nbs = 50;
-  return ((Standard_Integer)nbs);
+  return ((Standard_Integer)getPrimal(nbs));
 }

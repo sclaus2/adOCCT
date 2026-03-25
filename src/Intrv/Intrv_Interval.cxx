@@ -46,8 +46,8 @@ Intrv_Interval::Intrv_Interval(const Standard_Real Start, const Standard_Real En
     : myStart(Start),
       myEnd(End)
 {
-  myTolStart = (Standard_ShortReal)Epsilon(myStart);
-  myTolEnd   = (Standard_ShortReal)Epsilon(myEnd);
+  myTolStart = (Standard_ShortReal)getPrimal(Epsilon(myStart));
+  myTolEnd   = (Standard_ShortReal)getPrimal(Epsilon(myEnd));
 }
 
 //=================================================================================================
@@ -61,8 +61,8 @@ Intrv_Interval::Intrv_Interval(const Standard_Real      Start,
       myTolStart(TolStart),
       myTolEnd(TolEnd)
 {
-  Standard_ShortReal epsStart = (Standard_ShortReal)Epsilon(myStart);
-  Standard_ShortReal epsEnd   = (Standard_ShortReal)Epsilon(myEnd);
+  Standard_ShortReal epsStart = (Standard_ShortReal)getPrimal(Epsilon(myStart));
+  Standard_ShortReal epsEnd   = (Standard_ShortReal)getPrimal(Epsilon(myEnd));
   if (myTolStart < epsStart)
     myTolStart = epsStart;
   if (myTolEnd < epsEnd)

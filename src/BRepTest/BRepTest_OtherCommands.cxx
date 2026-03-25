@@ -341,8 +341,8 @@ Standard_Integer brepintcs(Draw_Interpretor& di, Standard_Integer n, const char*
       aB.MakeVertex(aV, curp, 0);
       aB.Add(aComp, aV);
       nbpi++;
-      di << "Point " << nbpi << " : " << curp.X().getValue() << " " << curp.Y().getValue() << " "
-         << curp.Z().getValue() << "\n";
+      di << "Point " << nbpi << " : " << getPrimal(curp.X()) << " " << getPrimal(curp.Y()) << " "
+         << getPrimal(curp.Z()) << "\n";
       char  name[64];
       char* temp = name; // pour portage WNT
       Sprintf(temp, "%s_%d", "brics", nbpi);
@@ -365,8 +365,8 @@ Standard_Integer brepintcs(Draw_Interpretor& di, Standard_Integer n, const char*
           TopoDS_Vertex aV;
           aB.MakeVertex(aV, curp, 0);
           aB.Add(aComp, aV);
-          di << "Point " << nbpi << " : " << curp.X().getValue() << " " << curp.Y().getValue()
-             << " " << curp.Z().getValue() << "\n";
+          di << "Point " << nbpi << " : " << getPrimal(curp.X()) << " " << getPrimal(curp.Y())
+             << " " << getPrimal(curp.Z()) << "\n";
           char  name[64];
           char* temp = name; // pour portage WNT
           Sprintf(temp, "%s_%d", "brics", nbpi);
@@ -476,10 +476,10 @@ Standard_Integer xbounds(Draw_Interpretor& di, Standard_Integer n, const char** 
   BRepTools::UVBounds(aF, aUMin, aUMax, aVMin, aVMax);
   //
   TCollection_AsciiString aStr;
-  TCollection_AsciiString sUMin(aUMin.getValue());
-  TCollection_AsciiString sUMax(aUMax.getValue());
-  TCollection_AsciiString sVMin(aVMin.getValue());
-  TCollection_AsciiString sVMax(aVMax.getValue());
+  TCollection_AsciiString sUMin(getPrimal(aUMin));
+  TCollection_AsciiString sUMax(getPrimal(aUMax));
+  TCollection_AsciiString sVMin(getPrimal(aVMin));
+  TCollection_AsciiString sVMax(getPrimal(aVMax));
   //
   aStr = aStr + sUMin + "\n";
   aStr = aStr + sUMax + "\n";

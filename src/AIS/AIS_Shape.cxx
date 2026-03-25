@@ -491,7 +491,7 @@ void AIS_Shape::UnsetColor()
     if (IsTransparent())
     {
       Standard_Real aTransp = myDrawer->ShadingAspect()->Transparency(myCurrentFacingModel);
-      mat.SetTransparency(Standard_ShortReal(aTransp));
+      mat.SetTransparency(Standard_ShortReal(getPrimal(aTransp)));
     }
     myDrawer->ShadingAspect()->SetMaterial(mat, myCurrentFacingModel);
     myDrawer->ShadingAspect()->Aspect()->SetInteriorColor(anInteriorColors[0]);
@@ -533,7 +533,7 @@ bool AIS_Shape::setWidth(const Handle(Prs3d_Drawer)& theDrawer,
 
 void AIS_Shape::SetWidth(const Standard_Real theLineWidth)
 {
-  myOwnWidth = (Standard_ShortReal)theLineWidth;
+  myOwnWidth = (Standard_ShortReal)getPrimal(theLineWidth);
 
   if (!setWidth(myDrawer, theLineWidth) || !myDrawer->HasLink())
   {
@@ -687,7 +687,7 @@ void AIS_Shape::SetTransparency(const Standard_Real theValue)
 {
   const bool toRecompute = !myDrawer->HasOwnShadingAspect();
   setTransparency(myDrawer, theValue);
-  myDrawer->SetTransparency((Standard_ShortReal)theValue);
+  myDrawer->SetTransparency((Standard_ShortReal)getPrimal(theValue));
 
   if (!toRecompute || !myDrawer->HasLink())
   {

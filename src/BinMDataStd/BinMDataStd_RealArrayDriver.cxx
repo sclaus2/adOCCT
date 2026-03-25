@@ -97,7 +97,7 @@ void BinMDataStd_RealArrayDriver::Paste(const Handle(TDF_Attribute)& theSource,
   NCollection_Array1<double>  aSourceArrayDouble(aSourceArray.Lower(), aSourceArray.Upper());
   for (int i = aSourceArray.Lower(); i <= aSourceArray.Upper(); ++i)
   {
-    aSourceArrayDouble.SetValue(i, aSourceArray.Value(i).getValue());
+    aSourceArrayDouble.SetValue(i, getPrimal(aSourceArray.Value(i)));
   }
   const Standard_Integer aFirstInd = aSourceArray.Lower();
   const Standard_Integer aLastInd  = aSourceArray.Upper();

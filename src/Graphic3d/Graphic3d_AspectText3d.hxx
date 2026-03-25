@@ -106,7 +106,10 @@ public:
   Standard_ShortReal GetTextAngle() const { return myTextAngle; }
 
   //! Turns usage of text rotated
-  void SetTextAngle(const Standard_Real theAngle) { myTextAngle = (Standard_ShortReal)theAngle; }
+  void SetTextAngle(const Standard_Real theAngle)
+  {
+    myTextAngle = (Standard_ShortReal)getPrimal(theAngle);
+  }
 
   //! Returns text FontAspect
   Font_FontAspect GetTextFontAspect() const { return myTextFontAspect; }

@@ -222,7 +222,7 @@ public:
 
   Storage_BaseDriver& operator<<(const double aValue) { return PutReal(aValue); }
 
-  Storage_BaseDriver& operator<<(const Standard_Real aValue) { return PutReal(aValue.getValue()); }
+  Storage_BaseDriver& operator<<(const Standard_Real aValue) { return PutReal(getPrimal(aValue)); }
 
   Standard_EXPORT virtual Storage_BaseDriver& PutShortReal(const Standard_ShortReal aValue) = 0;
 

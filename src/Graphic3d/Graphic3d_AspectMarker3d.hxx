@@ -57,7 +57,7 @@ public:
   void SetScale(const Standard_ShortReal theScale) { SetMarkerScale(theScale); }
 
   //! Assign scale factor.
-  void SetScale(const Standard_Real theScale) { SetScale((float)theScale); }
+  void SetScale(const Standard_Real theScale) { SetScale((float)getPrimal(theScale)); }
 
   //! Return marker type.
   Aspect_TypeOfMarker Type() const { return myMarkerType; }

@@ -1182,7 +1182,7 @@ Standard_Integer xdistef(Draw_Interpretor& di, Standard_Integer n, const char** 
     return 1;
   }
   //
-  di << "Max Distance = " << aMaxDist.getValue() << "; Parameter on curve = " << aMaxPar.getValue()
+  di << "Max Distance = " << getPrimal(aMaxDist) << "; Parameter on curve = " << getPrimal(aMaxPar)
      << "\n";
   //
   return 0;
@@ -1282,8 +1282,8 @@ Standard_Integer checkcurveonsurf(Draw_Interpretor& di, Standard_Integer n, cons
               "edge %s on face %s (max dist: %3.16f, parameter on curve: %3.16f)\n",
               anEName,
               aFName,
-              aDMax.getValue(),
-              aT.getValue());
+              getPrimal(aDMax),
+              getPrimal(aT));
       di << buf;
       //
       DBRep::Set(anEName, aE);
@@ -1314,7 +1314,7 @@ Standard_Integer checkcurveonsurf(Draw_Interpretor& di, Standard_Integer n, cons
       //
       aTolE = aDMETol.Find(aE);
       aTolE *= 1.001;
-      sprintf(buf, "settolerance %s_%d %3.16f;\n", a[1], anECounter, aTolE.getValue());
+      sprintf(buf, "settolerance %s_%d %3.16f;\n", a[1], anECounter, getPrimal(aTolE));
       di << buf;
     }
   }
@@ -1356,7 +1356,7 @@ void MakeShapeForFullOutput(const TCollection_AsciiString& aBaseName,
   //
   if (bCurveOnSurf)
   {
-    di << " (MaxDist = " << aMaxDist.getValue() << ", MaxPar = " << aMaxParameter.getValue() << ")";
+    di << " (MaxDist = " << getPrimal(aMaxDist) << ", MaxPar = " << getPrimal(aMaxParameter) << ")";
   }
   //
   di << "\n";

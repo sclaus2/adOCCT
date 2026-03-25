@@ -322,9 +322,9 @@ static int OCC105(Draw_Interpretor& di, Standard_Integer argc, const char** argv
     {
       Standard_Real t   = algo.Parameter(Index);
       gp_Pnt        pt3 = curve.Value(t);
-      di << "Parameter t = " << t.getValue() << "\n";
-      di << "Value Pnt = " << pt3.X().getValue() << " " << pt3.Y().getValue() << " "
-         << pt3.Z().getValue() << "\n";
+      di << "Parameter t = " << getPrimal(t) << "\n";
+      di << "Value Pnt = " << getPrimal(pt3.X()) << " " << getPrimal(pt3.Y()) << " "
+         << getPrimal(pt3.Z()) << "\n";
     }
   }
   return 0;
@@ -466,7 +466,7 @@ Standard_Integer OCC157(Draw_Interpretor& di, Standard_Integer n, const char** a
     }
   }
   else
-    di << "OCC157: ERROR; Planar surface is not found with toler = " << toler.getValue() << "\n";
+    di << "OCC157: ERROR; Planar surface is not found with toler = " << getPrimal(toler) << "\n";
   return 0;
 }
 
@@ -657,7 +657,7 @@ static Standard_Integer OCC305(Draw_Interpretor& di, Standard_Integer argc, cons
 
     GProp_GProps lprop;
     BRepGProp::LinearProperties(ed, lprop);
-    printf("\n length = %f", lprop.Mass().getValue());
+    printf("\n length = %f", getPrimal(lprop.Mass()));
   }
   DBRep::Set("Wire", wire);
   // Handle(AIS_Shape) res = new AIS_Shape( wire );
@@ -1072,7 +1072,7 @@ static Standard_Integer OCC377(Draw_Interpretor& di, Standard_Integer argc, cons
       : stat1 == TopAbs_OUT ? TmpString.AssignCat("OUT")
       : stat1 == TopAbs_ON  ? TmpString.AssignCat("ON")
                             : TmpString.AssignCat("UNKNOWN");
-      di << "Wire " << i << ": point ( " << p2d.X().getValue() << ", " << p2d.Y().getValue()
+      di << "Wire " << i << ": point ( " << getPrimal(p2d.X()) << ", " << getPrimal(p2d.Y())
          << " ) is " << TmpString.ToCString() << "\n";
 
       // 4.2. Verify whether enrtry point is on reversed wire
@@ -1103,8 +1103,8 @@ static Standard_Integer OCC377(Draw_Interpretor& di, Standard_Integer argc, cons
       : stat2 == TopAbs_OUT ? TmpString.AssignCat("OUT")
       : stat2 == TopAbs_ON  ? TmpString.AssignCat("ON")
                             : TmpString.AssignCat("UNKNOWN");
-      di << "Reversed Wire " << i << ": point ( " << p2d.X().getValue() << ", "
-         << p2d.Y().getValue() << " ) is " << TmpString.ToCString() << "\n";
+      di << "Reversed Wire " << i << ": point ( " << getPrimal(p2d.X()) << ", "
+         << getPrimal(p2d.Y()) << " ) is " << TmpString.ToCString() << "\n";
 
       // 4.3. Compare results (they must be same)
       if (stat1 == stat2)
@@ -1706,8 +1706,8 @@ static Standard_Integer OCC921(Draw_Interpretor& di, Standard_Integer argc, cons
   if (F.IsNull())
     return 1;
   BRepTools::UVBounds(F, u1, u2, v1, v2);
-  di << "Bounds: " << u1.getValue() << "   " << u2.getValue() << "   " << v1.getValue() << "   "
-     << v2.getValue() << "\n";
+  di << "Bounds: " << getPrimal(u1) << "   " << getPrimal(u2) << "   " << getPrimal(v1) << "   "
+     << getPrimal(v2) << "\n";
   return 0;
 }
 
@@ -1793,7 +1793,7 @@ static Standard_Integer OCC1029_AISTransparency(Draw_Interpretor& di,
       }
       else
       {
-        di << "Transparency = " << prs->Transparency().getValue() << "\n";
+        di << "Transparency = " << getPrimal(prs->Transparency()) << "\n";
       }
       return 0;
     }
@@ -1875,7 +1875,7 @@ static Standard_Integer OCC1032_AISWidth(Draw_Interpretor& di,
       }
       else
       {
-        di << "Width = " << prs->Width().getValue() << "\n";
+        di << "Width = " << getPrimal(prs->Width()) << "\n";
       }
       return 0;
     }
@@ -2255,8 +2255,8 @@ static Standard_Integer OCC5698(Draw_Interpretor& di, Standard_Integer argc, con
   if (error_dist > Precision::Confusion())
   {
     // std::cout.precision(3);
-    di << "error_dist = " << error_dist.getValue() << "  ( "
-       << (error_dist / need_length * 100).getValue() << " %)\n";
+    di << "error_dist = " << getPrimal(error_dist) << "  ( "
+       << getPrimal(error_dist / need_length * 100) << " %)\n";
     return 0;
   }
   di << "OK\n";
@@ -2337,7 +2337,7 @@ static Standard_Integer OCC6143(Draw_Interpretor& di, Standard_Integer argc, con
       di << "\n";
       Standard_Real res, a = 4.0, b = 0.0;
       res = a / b;
-      di << "Error: 4.0 / 0.0 = " << res.getValue() << " - no exception is raised!\n";
+      di << "Error: 4.0 / 0.0 = " << getPrimal(res) << " - no exception is raised!\n";
       Succes = Standard_False;
     }
     catch (Standard_DivideByZero const&) // Solaris, Windows w/o SSE2
@@ -2414,7 +2414,7 @@ static Standard_Integer OCC6143(Draw_Interpretor& di, Standard_Integer argc, con
 
       (void)sin(1.); // this function tests FPU flags and raises signal (tested on LINUX).
 
-      di << "Error: " << r.getValue() << "*" << r.getValue() << " = " << res.getValue()
+      di << "Error: " << getPrimal(r) << "*" << getPrimal(r) << " = " << getPrimal(res)
          << " - no exception is raised!\n";
       Succes = Standard_False;
     }
@@ -2451,7 +2451,7 @@ static Standard_Integer OCC6143(Draw_Interpretor& di, Standard_Integer argc, con
       // res = res + 1.;
       //++++ std::cout<<"-- "<<res<<"="<<r<<"*"<<r<<"   Does not Caught... KO"<<std::endl;
       //++++ Succes = Standard_False;
-      di << "Not caught: " << r.getValue() << "*" << r.getValue() << " = " << res.getValue()
+      di << "Not caught: " << getPrimal(r) << "*" << getPrimal(r) << " = " << getPrimal(res)
          << ", still OK\n";
     }
     catch (Standard_Underflow const&) // could be on Solaris, Windows w/o SSE2
@@ -2484,7 +2484,7 @@ static Standard_Integer OCC6143(Draw_Interpretor& di, Standard_Integer argc, con
       di << "\n";
       Standard_Real res, r = -1;
       res = sqrt(r);
-      di << "Error: swrt(-1) = " << res.getValue() << " - no exception is raised!\n";
+      di << "Error: swrt(-1) = " << getPrimal(res) << " - no exception is raised!\n";
       Succes = Standard_False;
     }
     catch (Standard_NumericError const&)
@@ -2895,8 +2895,8 @@ static Standard_Integer OCC8169(Draw_Interpretor& di, Standard_Integer argc, con
     for (i = 1; i <= NbPoints; i++)
     {
       gp_Pnt2d aPi = anInter.Point(i);
-      di << "Point.X(" << i << ") = " << aPi.X().getValue() << "   Point.Y(" << i
-         << ") = " << aPi.Y().getValue() << "\n";
+      di << "Point.X(" << i << ") = " << getPrimal(aPi.X()) << "   Point.Y(" << i
+         << ") = " << getPrimal(aPi.Y()) << "\n";
     }
   }
 
@@ -2913,12 +2913,12 @@ static Standard_Integer OCC8169(Draw_Interpretor& di, Standard_Integer argc, con
 
     Standard_Real aDist = aP1.Distance(aP2);
 
-    di << "aP1.X() = " << aP1.X().getValue() << "   aP1.Y() = " << aP1.Y().getValue() << "\n";
-    di << "aP2.X() = " << aP2.X().getValue() << "   aP2.Y() = " << aP2.Y().getValue() << "\n";
+    di << "aP1.X() = " << getPrimal(aP1.X()) << "   aP1.Y() = " << getPrimal(aP1.Y()) << "\n";
+    di << "aP2.X() = " << getPrimal(aP2.X()) << "   aP2.Y() = " << getPrimal(aP2.Y()) << "\n";
 
-    di << "Distance = " << aDist.getValue() << "\n";
+    di << "Distance = " << getPrimal(aDist) << "\n";
 
-    di << "Confusion = " << aConfusion.getValue() << "\n";
+    di << "Confusion = " << getPrimal(aConfusion) << "\n";
 
     if (aDist > aConfusion)
     {
@@ -3325,12 +3325,12 @@ static Standard_Integer OCC13963(Draw_Interpretor& di, Standard_Integer argc, co
   char sbf[512];
   Sprintf(sbf,
           "( %8.3f %8.3f %8.3f ) => ( %8.3f %8.3f %8.3f )\n",
-          aOrigin.X().getValue(),
-          aOrigin.Y().getValue(),
-          aOrigin.Z().getValue(),
-          aResult.X().getValue(),
-          aResult.Y().getValue(),
-          aResult.Z().getValue());
+          getPrimal(aOrigin.X()),
+          getPrimal(aOrigin.Y()),
+          getPrimal(aOrigin.Z()),
+          getPrimal(aResult.X()),
+          getPrimal(aResult.Y()),
+          getPrimal(aResult.Z()));
   di << sbf;
   return 0;
 }
@@ -3356,7 +3356,7 @@ Standard_Integer OCC14376(Draw_Interpretor& di, Standard_Integer argc, const cha
   {
     aDeflection = Draw::Atof(argv[2]);
   }
-  di << "deflection=" << aDeflection.getValue() << "\n";
+  di << "deflection=" << getPrimal(aDeflection) << "\n";
 
   BRepMesh_IncrementalMesh   aIMesh(aShape, aDeflection, Standard_False, M_PI / 9.);
   TopLoc_Location            aLocation;
@@ -3386,7 +3386,7 @@ static Standard_Integer OCC15489(Draw_Interpretor& di, Standard_Integer argc, co
   {
     gp_Lin2d aLin2d(Draw::Atof(argv[1]), Draw::Atof(argv[2]), Draw::Atof(argv[3]));
     gp_Pnt2d anOrigin = aLin2d.Location();
-    di << "X_0 = " << anOrigin.X().getValue() << "   Y_0 = " << anOrigin.Y().getValue() << "\n";
+    di << "X_0 = " << getPrimal(anOrigin.X()) << "   Y_0 = " << getPrimal(anOrigin.Y()) << "\n";
   }
   catch (Standard_ConstructionError const&)
   {
@@ -4827,7 +4827,7 @@ Standard_Integer OCC17424(Draw_Interpretor& di, Standard_Integer argc, const cha
   {
     di << argv[0] << " status = 0 \n";
     Standard_Real w = intersector.WParameter(1);
-    di << "w = " << w.getValue() << "\n";
+    di << "w = " << getPrimal(w) << "\n";
   }
   else
   {
@@ -4921,8 +4921,8 @@ Standard_Integer OCC22558(Draw_Interpretor& di, Standard_Integer argc, const cha
   gp_Ax2 symObj(loc, dir);
   toSym.Mirror(symObj);
 
-  di << "The result " << toSym.X().getValue() << " " << toSym.Y().getValue() << " "
-     << toSym.Z().getValue() << "\n";
+  di << "The result " << getPrimal(toSym.X()) << " " << getPrimal(toSym.Y()) << " "
+     << getPrimal(toSym.Z()) << "\n";
   return 0;
 }
 

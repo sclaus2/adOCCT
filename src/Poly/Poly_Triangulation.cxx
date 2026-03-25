@@ -73,9 +73,9 @@ Poly_Triangulation::Poly_Triangulation(const TColgp_Array1OfPnt&    theNodes,
     //    array1.SetValue(i, gp_Vec3double(theNodes.Value(i).X().getValue(),
     //                                                      theNodes.Value(i).Y().getValue(),
     //                                                      theNodes.Value(i).Z().getValue()));
-    array1.ChangeValue(i).SetValues(theNodes.Value(i).X().getValue(),
-                                    theNodes.Value(i).Y().getValue(),
-                                    theNodes.Value(i).Z().getValue());
+    array1.ChangeValue(i).SetValues(getPrimal(theNodes.Value(i).X()),
+                                    getPrimal(theNodes.Value(i).Y()),
+                                    getPrimal(theNodes.Value(i).Z()));
   }
   const Poly_ArrayOfNodes aNodeWrapper(array1.First(), array1.Length());
   myNodes     = aNodeWrapper;
@@ -101,9 +101,9 @@ Poly_Triangulation::Poly_Triangulation(const TColgp_Array1OfPnt&    theNodes,
     //    array1.SetValue(i, gp_Vec3d(theNodes.Value(i).X().getValue(),
     //                                theNodes.Value(i).Y().getValue(),
     //                                theNodes.Value(i).Z().getValue()));
-    array1.ChangeValue(i).SetValues(theNodes.Value(i).X().getValue(),
-                                    theNodes.Value(i).Y().getValue(),
-                                    theNodes.Value(i).Z().getValue());
+    array1.ChangeValue(i).SetValues(getPrimal(theNodes.Value(i).X()),
+                                    getPrimal(theNodes.Value(i).Y()),
+                                    getPrimal(theNodes.Value(i).Z()));
   }
   const Poly_ArrayOfNodes aNodeWrapper(array1.First(), array1.Length());
   myNodes     = aNodeWrapper;
@@ -112,8 +112,8 @@ Poly_Triangulation::Poly_Triangulation(const TColgp_Array1OfPnt&    theNodes,
   NCollection_Array1<gp_Vec2double> array2(theUVNodes.Lower(), theUVNodes.Upper());
   for (Standard_Integer i = theUVNodes.Lower(); i <= theUVNodes.Upper(); ++i)
   {
-    array2.ChangeValue(i).SetValues(theUVNodes.Value(i).X().getValue(),
-                                    theUVNodes.Value(i).Y().getValue());
+    array2.ChangeValue(i).SetValues(getPrimal(theUVNodes.Value(i).X()),
+                                    getPrimal(theUVNodes.Value(i).Y()));
   }
   const Poly_ArrayOfUVNodes aUVNodeWrapper(array2.First(), array2.Length());
   myUVNodes = aUVNodeWrapper;
@@ -485,8 +485,9 @@ void Poly_Triangulation::ComputeNormals()
     const gp_XYZ   aVec01   = aNode1.XYZ() - aNode0.XYZ();
     const gp_XYZ   aVec02   = aNode2.XYZ() - aNode0.XYZ();
     const gp_XYZ   aTriNorm = aVec01 ^ aVec02;
-    const gp_Vec3f aNorm3f =
-      gp_Vec3f(float(aTriNorm.X()), float(aTriNorm.Y()), float(aTriNorm.Z()));
+    const gp_Vec3f aNorm3f  = gp_Vec3f(float(getPrimal(aTriNorm.X())),
+                                      float(getPrimal(aTriNorm.Y())),
+                                      float(getPrimal(aTriNorm.Z())));
     for (Standard_Integer aNodeIter = 0; aNodeIter < 3; ++aNodeIter)
     {
       myNormals.ChangeValue(anElem[aNodeIter] - 1) += aNorm3f;

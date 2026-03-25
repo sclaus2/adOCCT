@@ -515,7 +515,7 @@ void V3d_View::SetBackgroundColor(const Quantity_TypeOfColor theType,
   Standard_Real aV2 = Max(Min(theV2, 1.0), 0.0);
   Standard_Real aV3 = Max(Min(theV3, 1.0), 0.0);
 
-  SetBackgroundColor(Quantity_Color(aV1.getValue(), aV2.getValue(), aV3.getValue(), theType));
+  SetBackgroundColor(Quantity_Color(getPrimal(aV1), getPrimal(aV2), getPrimal(aV3), theType));
 }
 
 //=================================================================================================

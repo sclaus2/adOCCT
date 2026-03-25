@@ -2782,8 +2782,9 @@ static Standard_Boolean SplitOnSegments(Handle(IntPatch_WLine)&  WLine,
     Standard_Integer iv = 0;
     for (iv = 1; iv < nbv; iv++)
     {
-      Standard_Integer firstPar = (Standard_Integer)WLine->Vertex(iv).ParameterOnLine();
-      Standard_Integer lastPar  = (Standard_Integer)WLine->Vertex(iv + 1).ParameterOnLine();
+      Standard_Integer firstPar = (Standard_Integer)getPrimal(WLine->Vertex(iv).ParameterOnLine());
+      Standard_Integer lastPar =
+        (Standard_Integer)getPrimal(WLine->Vertex(iv + 1).ParameterOnLine());
       if ((lastPar - firstPar) <= 1)
         continue;
       else
@@ -2813,7 +2814,7 @@ static Standard_Boolean IsPointOnBoundary(const Standard_Real theToler2D,
   Standard_Real aDelta = Abs(theParam - theBoundary);
   if (thePeriod != 0.0)
   {
-    aDelta = fmod(aDelta.getValue(), thePeriod.getValue());
+    aDelta = fmod(getPrimal(aDelta), getPrimal(thePeriod));
 
     // 0 <= aDelta < thePeriod
     return ((aDelta < theToler2D) || ((thePeriod - aDelta) < theToler2D));

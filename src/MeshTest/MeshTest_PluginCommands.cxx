@@ -341,7 +341,7 @@ static Standard_Integer triarea(Draw_Interpretor& di, int n, const char** a)
     BRepGProp::SurfaceProperties(shape, props, anEps);
   Standard_Real aGeomArea = props.Mass();
 
-  di << aTriArea.getValue() << " " << aGeomArea.getValue() << "\n";
+  di << getPrimal(aTriArea) << " " << getPrimal(aGeomArea) << "\n";
   return 0;
 }
 
@@ -426,7 +426,7 @@ static Standard_Integer tricheck(Draw_Interpretor& di, int n, const char** a)
       Standard_Integer iF1, n1, iF2, n2;
       Standard_Real    aVal;
       aCheck.GetCrossFaceError(i, iF1, n1, iF2, n2, aVal);
-      di << "{" << iF1 << " " << n1 << " " << iF2 << " " << n2 << " " << aVal.getValue() << "} ";
+      di << "{" << iF1 << " " << n1 << " " << iF2 << " " << n2 << " " << getPrimal(aVal) << "} ";
     }
     di << "\n";
   }

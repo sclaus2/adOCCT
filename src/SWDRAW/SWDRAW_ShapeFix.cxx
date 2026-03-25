@@ -152,13 +152,13 @@ static Standard_Integer settolerance(Draw_Interpretor& di, Standard_Integer argc
   }
 
   if (argc == premarg + 1 || tmin == tmax)
-    di << "Setting Tolerance to " << tmin.getValue() << "\n";
+    di << "Setting Tolerance to " << getPrimal(tmin) << "\n";
   else if (tmax < tmin)
-    di << "Minimum Tolerance to " << tmin.getValue() << "\n";
+    di << "Minimum Tolerance to " << getPrimal(tmin) << "\n";
   else if (tmin <= 0)
-    di << "Maximum Tolerance to " << tmax.getValue() << "\n";
+    di << "Maximum Tolerance to " << getPrimal(tmax) << "\n";
   else
-    di << "Tolerance Limited between " << tmin.getValue() << " and " << tmax.getValue() << "\n";
+    di << "Tolerance Limited between " << getPrimal(tmin) << " and " << getPrimal(tmax) << "\n";
   ShapeFix_ShapeTolerance sat;
   sat.LimitTolerance(Shape, tmin, tmax, styp);
   return 0; // Done
@@ -264,7 +264,7 @@ static Standard_Integer stwire(Draw_Interpretor& di, Standard_Integer argc, cons
   {
     TopoDS_Edge      E      = TopoDS::Edge(exp.Current());
     Standard_Integer orient = saw->CheckShapeConnect(E);
-    di << "Orientation : " << orient << " LowerDist : " << saw->MinDistance3d().getValue() << "\n";
+    di << "Orientation : " << orient << " LowerDist : " << getPrimal(saw->MinDistance3d()) << "\n";
     if (ox)
       sbwd->AddOriented(E, orient);
     else
@@ -316,7 +316,7 @@ static Standard_Integer stwire(Draw_Interpretor& di, Standard_Integer argc, cons
         di << " REV";
       else
         di << " FWD";
-      di << " ordered to " << iord << " Gap=" << WO.Gap(i).getValue() << "\n";
+      di << " ordered to " << iord << " Gap=" << getPrimal(WO.Gap(i)) << "\n";
     }
     di << "Reorder not yet done\n";
     sfw->FixReorder(WO);
@@ -384,26 +384,26 @@ static Standard_Integer stwire(Draw_Interpretor& di, Standard_Integer argc, cons
           di << "Same Coords with recorded precisions (but not Same Vertex)\n";
           break;
         case 2:
-          di << "Close (with preci=" << saw->Precision().getValue() << ")\n";
+          di << "Close (with preci=" << getPrimal(saw->Precision()) << ")\n";
           break;
         case 3:
           di << "End of " << i << " OK, Start of " << (i == nb ? 1 : i + 1)
-             << " at U=" << ufol.getValue();
+             << " at U=" << getPrimal(ufol);
           break;
         case 4:
-          di << "End of " << i << " at U=" << upre.getValue() << ", Start of "
+          di << "End of " << i << " at U=" << getPrimal(upre) << ", Start of "
              << (i == nb ? 1 : i + 1) << " OK";
           break;
         case 5:
-          di << "Intersection, End of " << i << " at U=" << upre.getValue() << ", Start of "
-             << (i == nb ? 1 : i + 1) << " at U=" << ufol.getValue();
+          di << "Intersection, End of " << i << " at U=" << getPrimal(upre) << ", Start of "
+             << (i == nb ? 1 : i + 1) << " at U=" << getPrimal(ufol);
           break;
         default:
           di << "Disjoined\n";
       }
       if (stat >= 3 && stat <= 5)
-        di << "\n   - Position : " << pos.X().getValue() << "  " << pos.Y().getValue() << "  "
-           << pos.Z().getValue() << "\n";
+        di << "\n   - Position : " << getPrimal(pos.X()) << "  " << getPrimal(pos.Y()) << "  "
+           << getPrimal(pos.Z()) << "\n";
     }
     ShapeFix_WireVertex sfwv;
     sfwv.Init(sawv);
@@ -903,8 +903,8 @@ static Standard_Integer checkoverlapedges(Draw_Interpretor& di, Standard_Integer
     else
     {
       di << "Edges are overlapped\n";
-      di << "with tolerance = " << aTol.getValue() << "\n";
-      di << "on segment length = " << aDistDomain.getValue() << "\n";
+      di << "with tolerance = " << getPrimal(aTol) << "\n";
+      di << "on segment length = " << getPrimal(aDistDomain) << "\n";
     }
   }
   else
@@ -1003,7 +1003,7 @@ static Standard_Integer connectedges(Draw_Interpretor& di, Standard_Integer n, c
         TopoDS_Vertex aV1, aV2;
         TopExp::Vertices(TopoDS::Edge(aExp1.Current()), aV1, aV2);
         gp_Pnt aP = BRep_Tool::Pnt(aV1);
-        di << aP.X().getValue() << " " << aP.Y().getValue() << " " << aP.Z().getValue() << "\n";
+        di << getPrimal(aP.X()) << " " << getPrimal(aP.Y()) << " " << getPrimal(aP.Z()) << "\n";
       }
     }
 

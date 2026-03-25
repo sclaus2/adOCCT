@@ -43,7 +43,7 @@ Standard_Boolean gp_XYZ::IsEqual(const gp_XYZ& Other, const Standard_Real Tolera
 //=================================================================================================
 
 void gp_XYZ::DumpJson(Standard_OStream& theOStream, Standard_Integer) const {
-  OCCT_DUMP_VECTOR_CLASS(theOStream, "gp_XYZ", 3, x.getValue(), y.getValue(), z.getValue())}
+  OCCT_DUMP_VECTOR_CLASS(theOStream, "gp_XYZ", 3, getPrimal(x), getPrimal(y), getPrimal(z))}
 
 //=================================================================================================
 

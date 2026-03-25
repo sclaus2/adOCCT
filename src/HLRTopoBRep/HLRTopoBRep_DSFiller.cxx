@@ -228,8 +228,8 @@ void HLRTopoBRep_DSFiller::InsertFace(const Standard_Integer /*FI*/,
 
               case Contap_Walking: {
                 // copy the points
-                Standard_Integer ipF = Standard_Integer(parF);
-                Standard_Integer ipL = Standard_Integer(parL);
+                Standard_Integer ipF = Standard_Integer(getPrimal(parF));
+                Standard_Integer ipL = Standard_Integer(getPrimal(parL));
 
                 if (ipL - ipF < 1)
                 {

@@ -152,7 +152,7 @@ public:
   {
     myNodes.SetValue(
       theIndex - 1,
-      gp_Vec3double(thePnt.X().getValue(), thePnt.Y().getValue(), thePnt.Z().getValue()));
+      gp_Vec3double(getPrimal(thePnt.X()), getPrimal(thePnt.Y()), getPrimal(thePnt.Z())));
   }
 
   //! Returns UV-node at the given index.
@@ -169,7 +169,7 @@ public:
   //! @param[in] thePnt   UV coordinates
   void SetUVNode(Standard_Integer theIndex, const gp_Pnt2d& thePnt)
   {
-    myUVNodes.SetValue(theIndex - 1, gp_Vec2double(thePnt.X().getValue(), thePnt.Y().getValue()));
+    myUVNodes.SetValue(theIndex - 1, gp_Vec2double(getPrimal(thePnt.X()), getPrimal(thePnt.Y())));
   }
 
   //! Returns triangle at the given index.
@@ -219,7 +219,10 @@ public:
   //! @param[in] theNormal normalized 3D vector defining a surface normal
   void SetNormal(const Standard_Integer theIndex, const gp_Dir& theNormal)
   {
-    SetNormal(theIndex, gp_Vec3f(float(theNormal.X()), float(theNormal.Y()), float(theNormal.Z())));
+    SetNormal(theIndex,
+              gp_Vec3f(float(getPrimal(theNormal.X())),
+                       float(getPrimal(theNormal.Y())),
+                       float(getPrimal(theNormal.Z()))));
   }
 
   //! Returns mesh purpose bits.

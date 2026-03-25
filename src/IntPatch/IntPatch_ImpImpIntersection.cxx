@@ -218,11 +218,11 @@ Standard_Boolean IntersectionWithAnArc(gp_Pnt&                          PSurf,
       {
         Standard_Real xx = PaPr.X();
         xx *= 0.5;
-        if (D1a.X())
+        if (getPrimal(D1a.X()))
         {
           da = -xx / D1a.X();
         }
-        if (d2d.X())
+        if (getPrimal(d2d.X()))
         {
           dr = -xx / d2d.X();
         }
@@ -231,11 +231,11 @@ Standard_Boolean IntersectionWithAnArc(gp_Pnt&                          PSurf,
       {
         Standard_Real yy = PaPr.Y();
         yy *= 0.5;
-        if (D1a.Y())
+        if (getPrimal(D1a.Y()))
         {
           da = -yy / D1a.Y();
         }
-        if (d2d.Y())
+        if (getPrimal(d2d.Y()))
         {
           dr = -yy / d2d.Y();
         }
@@ -6403,7 +6403,7 @@ static void CriticalPointsComputing(const ComputationMethods::stCoeffsValue& the
       continue;
     }
 
-    theU1crit[i] = fmod(theU1crit[i].getValue(), thePeriod.getValue());
+    theU1crit[i] = fmod(getPrimal(theU1crit[i]), getPrimal(thePeriod));
     if (theU1crit[i] < 0.0)
       theU1crit[i] += thePeriod;
   }
@@ -6600,7 +6600,7 @@ static IntPatch_ImpImpIntersection::IntStatus CyCyNoGeometric(
     {
       Standard_Real anAngle = 1.0e0 - aDeflection;
       anAngle               = 2.0e0 * ACos(anAngle);
-      aNbP                  = (Standard_Integer)Standard_Real(2. * M_PI / anAngle) + 1;
+      aNbP                  = (Standard_Integer)getPrimal(2. * M_PI / anAngle) + 1;
     }
     anOptdu = 2. * M_PI_2 / (Standard_Real)(aNbP - 1);
     break;
@@ -7592,7 +7592,7 @@ static IntPatch_ImpImpIntersection::IntStatus CyCyNoGeometric(
         if (!ComputationMethods::CylCylComputeParameters(anUmid, i, anEquationCoeffs, anU2t))
           continue;
 
-        Standard_Real aDU2 = fmod(Abs(anU2t - aCurU2).getValue(), aPeriod.getValue());
+        Standard_Real aDU2 = fmod(getPrimal(Abs(anU2t - aCurU2)), getPrimal(aPeriod));
         aDU2               = Min(aDU2, Abs(aDU2 - aPeriod));
         if (aDU2 < aDelta)
         {

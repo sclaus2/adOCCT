@@ -161,7 +161,7 @@ void GeomInt_LineConstructor::Perform(const Handle(IntPatch_Line)& L)
       {
         if (lastp != firstp + 1)
         {
-          const Standard_Integer pmid = (Standard_Integer)Standard_Real((firstp + lastp) / 2);
+          const Standard_Integer pmid = (Standard_Integer)getPrimal((firstp + lastp) / 2);
           const IntSurf_PntOn2S& Pmid = WLine->Point(pmid);
           Pmid.Parameters(u1, v1, u2, v2);
           AdjustPeriodic(myHS1, myHS2, u1, v1, u2, v2);
@@ -198,8 +198,8 @@ void GeomInt_LineConstructor::Perform(const Handle(IntPatch_Line)& L)
             // applied in this case.
 
             Standard_Real          aU21, aV21, aU22, aV22;
-            const IntSurf_PntOn2S& aPfirst = WLine->Point((Standard_Integer)(firstp));
-            const IntSurf_PntOn2S& aPlast  = WLine->Point((Standard_Integer)(lastp));
+            const IntSurf_PntOn2S& aPfirst = WLine->Point((Standard_Integer)getPrimal(firstp));
+            const IntSurf_PntOn2S& aPlast  = WLine->Point((Standard_Integer)getPrimal(lastp));
             aPfirst.Parameters(u1, v1, u2, v2);
             AdjustPeriodic(myHS1, myHS2, u1, v1, u2, v2);
             aPlast.Parameters(aU21, aV21, aU22, aV22);
@@ -223,7 +223,7 @@ void GeomInt_LineConstructor::Perform(const Handle(IntPatch_Line)& L)
           }
           else
           {
-            const IntSurf_PntOn2S& Pfirst = WLine->Point((Standard_Integer)(firstp));
+            const IntSurf_PntOn2S& Pfirst = WLine->Point((Standard_Integer)getPrimal(firstp));
             Pfirst.Parameters(u1, v1, u2, v2);
             AdjustPeriodic(myHS1, myHS2, u1, v1, u2, v2);
             TopAbs_State in1 = myDom1->Classify(gp_Pnt2d(u1, v1), Tol);
@@ -232,7 +232,7 @@ void GeomInt_LineConstructor::Perform(const Handle(IntPatch_Line)& L)
               TopAbs_State in2 = myDom2->Classify(gp_Pnt2d(u2, v2), Tol);
               if (in2 != TopAbs_OUT)
               {
-                const IntSurf_PntOn2S& Plast = WLine->Point((Standard_Integer)(lastp));
+                const IntSurf_PntOn2S& Plast = WLine->Point((Standard_Integer)getPrimal(lastp));
                 Plast.Parameters(u1, v1, u2, v2);
                 AdjustPeriodic(myHS1, myHS2, u1, v1, u2, v2);
                 in1 = myDom1->Classify(gp_Pnt2d(u1, v1), Tol);
@@ -296,7 +296,7 @@ void GeomInt_LineConstructor::Perform(const Handle(IntPatch_Line)& L)
         for (i = 1; i <= aNb; ++i)
         {
           lastp   = seqp(i);
-          anIndex = (Standard_Integer)lastp;
+          anIndex = (Standard_Integer)getPrimal(lastp);
           if (!aMap.Contains(anIndex))
           {
             aMap.Add(anIndex);

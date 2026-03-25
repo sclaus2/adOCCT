@@ -533,12 +533,12 @@ void DsgPrs_SymmetricPresentation::Add(const Handle(Prs3d_Presentation)& aPresen
     if (alpha > M_PI)
     {
       alpha  = (2. * M_PI) - alpha;
-      nbp    = (Standard_Integer)IntegerPart(alpha / (alpha * .02));
+      nbp    = (Standard_Integer)getPrimal(IntegerPart(alpha / (alpha * .02)));
       Dalpha = alpha / (nbp - 1);
     }
     else
     {
-      nbp    = (Standard_Integer)IntegerPart(alpha / (alpha * .02));
+      nbp    = (Standard_Integer)getPrimal(IntegerPart(alpha / (alpha * .02)));
       Dalpha = -alpha / (nbp - 1);
     }
   }
@@ -547,12 +547,12 @@ void DsgPrs_SymmetricPresentation::Add(const Handle(Prs3d_Presentation)& aPresen
     if (alpha > M_PI)
     {
       alpha  = (2. * M_PI) - alpha;
-      nbp    = (Standard_Integer)IntegerPart(alpha / (alpha * .02));
+      nbp    = (Standard_Integer)getPrimal(IntegerPart(alpha / (alpha * .02)));
       Dalpha = -alpha / (nbp - 1);
     }
     else
     {
-      nbp    = (Standard_Integer)IntegerPart(alpha / (alpha * .02));
+      nbp    = (Standard_Integer)getPrimal(IntegerPart(alpha / (alpha * .02)));
       Dalpha = alpha / (nbp - 1);
     }
   }
@@ -582,12 +582,12 @@ void DsgPrs_SymmetricPresentation::Add(const Handle(Prs3d_Presentation)& aPresen
     if (alpha > M_PI)
     {
       alpha  = (2 * M_PI) - alpha;
-      nbp    = (Standard_Integer)IntegerPart(alpha / (alpha * .02));
+      nbp    = (Standard_Integer)getPrimal(IntegerPart(alpha / (alpha * .02)));
       Dalpha = alpha / (nbp - 1);
     }
     else
     {
-      nbp    = (Standard_Integer)IntegerPart(alpha / (alpha * .02));
+      nbp    = (Standard_Integer)getPrimal(IntegerPart(alpha / (alpha * .02)));
       Dalpha = -alpha / (nbp - 1);
     }
   }
@@ -596,12 +596,12 @@ void DsgPrs_SymmetricPresentation::Add(const Handle(Prs3d_Presentation)& aPresen
     if (alpha > M_PI)
     {
       alpha  = (2 * M_PI) - alpha;
-      nbp    = (Standard_Integer)IntegerPart(alpha / (alpha * .02));
+      nbp    = (Standard_Integer)getPrimal(IntegerPart(alpha / (alpha * .02)));
       Dalpha = -alpha / (nbp - 1);
     }
     else
     {
-      nbp    = (Standard_Integer)IntegerPart(alpha / (alpha * .02));
+      nbp    = (Standard_Integer)getPrimal(IntegerPart(alpha / (alpha * .02)));
       Dalpha = alpha / (nbp - 1);
     }
   }

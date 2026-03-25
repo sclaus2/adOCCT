@@ -235,9 +235,9 @@ Standard_Boolean Quantity_ColorRGBA::InitFromJson(const Standard_SStream& theSSt
                          &aBlue,
                          &anAlpha)
 
-  SetValues((Standard_ShortReal)aRed,
-            (Standard_ShortReal)aGreen,
-            (Standard_ShortReal)aBlue,
-            (Standard_ShortReal)anAlpha);
+  SetValues((Standard_ShortReal)getPrimal(aRed),
+            (Standard_ShortReal)getPrimal(aGreen),
+            (Standard_ShortReal)getPrimal(aBlue),
+            (Standard_ShortReal)getPrimal(anAlpha));
   return Standard_True;
 }

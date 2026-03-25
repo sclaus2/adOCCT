@@ -489,9 +489,9 @@ static Standard_Integer DDataStd_GetPosition(Draw_Interpretor& di,
       return -1;
     }
 
-    Draw::Set(arg[3], TCollection_AsciiString(aPos.X().getValue()).ToCString());
-    Draw::Set(arg[4], TCollection_AsciiString(aPos.Y().getValue()).ToCString());
-    Draw::Set(arg[5], TCollection_AsciiString(aPos.Z().getValue()).ToCString());
+    Draw::Set(arg[3], TCollection_AsciiString(getPrimal(aPos.X())).ToCString());
+    Draw::Set(arg[4], TCollection_AsciiString(getPrimal(aPos.Y())).ToCString());
+    Draw::Set(arg[5], TCollection_AsciiString(getPrimal(aPos.Z())).ToCString());
     return 0;
   }
   di << "Usage: GetPosition (DF, entry, X(out), Y(out), Z(out))\n";

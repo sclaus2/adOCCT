@@ -313,7 +313,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo(const Handle(TDF_Attribute)& theA
   else if (theAtt->IsKind(STANDARD_TYPE(TDataStd_Real)))
   {
     Handle(TDataStd_Real) val = Handle(TDataStd_Real)::DownCast(theAtt);
-    anInfo                    = TCollection_AsciiString(val->Get().getValue());
+    anInfo                    = TCollection_AsciiString(getPrimal(val->Get()));
   }
   else if (theAtt->IsKind(STANDARD_TYPE(TDataStd_Name)))
   {
@@ -333,7 +333,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo(const Handle(TDF_Attribute)& theA
   else if (theAtt->IsKind(STANDARD_TYPE(XCAFDoc_LengthUnit)))
   {
     Handle(XCAFDoc_LengthUnit) aVal = Handle(XCAFDoc_LengthUnit)::DownCast(theAtt);
-    anInfo                          = TCollection_AsciiString(aVal->GetUnitValue().getValue());
+    anInfo                          = TCollection_AsciiString(getPrimal(aVal->GetUnitValue()));
     anInfo += " ";
     anInfo += aVal->GetUnitName();
   }
@@ -354,7 +354,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo(const Handle(TDF_Attribute)& theA
     {
       if (j > val->Lower())
         anInfo += TCollection_AsciiString(", ");
-      anInfo += TCollection_AsciiString(val->Value(j).getValue());
+      anInfo += TCollection_AsciiString(getPrimal(val->Value(j)));
     }
   }
   else if (theAtt->IsKind(STANDARD_TYPE(TDataStd_ByteArray)))
@@ -387,23 +387,23 @@ TCollection_AsciiString XCAFDoc::AttributeInfo(const Handle(TDF_Attribute)& theA
   else if (theAtt->IsKind(STANDARD_TYPE(XCAFDoc_Volume)))
   {
     Handle(XCAFDoc_Volume) val = Handle(XCAFDoc_Volume)::DownCast(theAtt);
-    anInfo += TCollection_AsciiString(val->Get().getValue());
+    anInfo += TCollection_AsciiString(getPrimal(val->Get()));
   }
   else if (theAtt->IsKind(STANDARD_TYPE(XCAFDoc_Area)))
   {
     Handle(XCAFDoc_Area) val = Handle(XCAFDoc_Area)::DownCast(theAtt);
-    anInfo                   = TCollection_AsciiString(val->Get().getValue());
+    anInfo                   = TCollection_AsciiString(getPrimal(val->Get()));
   }
   else if (theAtt->IsKind(STANDARD_TYPE(XCAFDoc_Centroid)))
   {
     Handle(XCAFDoc_Centroid) val        = Handle(XCAFDoc_Centroid)::DownCast(theAtt);
     gp_Pnt                   myCentroid = val->Get();
     anInfo                              = "(";
-    anInfo += TCollection_AsciiString(myCentroid.X().getValue());
+    anInfo += TCollection_AsciiString(getPrimal(myCentroid.X()));
     anInfo += TCollection_AsciiString(" , ");
-    anInfo += TCollection_AsciiString(TCollection_AsciiString(myCentroid.Y().getValue()));
+    anInfo += TCollection_AsciiString(TCollection_AsciiString(getPrimal(myCentroid.Y())));
     anInfo += TCollection_AsciiString(" , ");
-    anInfo += TCollection_AsciiString(myCentroid.Z().getValue());
+    anInfo += TCollection_AsciiString(getPrimal(myCentroid.Z()));
     anInfo += TCollection_AsciiString(")");
   }
   else if (theAtt->IsKind(STANDARD_TYPE(TDataStd_UAttribute)))
@@ -435,9 +435,9 @@ TCollection_AsciiString XCAFDoc::AttributeInfo(const Handle(TDF_Attribute)& theA
     if (kind < 20)
     { // dimension
       anInfo = "Diameter (ValueRange[";
-      anInfo += TCollection_AsciiString(HAR->Value(1).getValue());
+      anInfo += TCollection_AsciiString(getPrimal(HAR->Value(1)));
       anInfo += TCollection_AsciiString(",");
-      anInfo += TCollection_AsciiString(HAR->Value(2).getValue());
+      anInfo += TCollection_AsciiString(getPrimal(HAR->Value(2)));
       anInfo += TCollection_AsciiString("])");
     }
     else
@@ -511,7 +511,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo(const Handle(TDF_Attribute)& theA
       if (anInfo.Length() > 0)
       {
         anInfo += " (Value=";
-        anInfo += TCollection_AsciiString(HAR->Value(1).getValue());
+        anInfo += TCollection_AsciiString(getPrimal(HAR->Value(1)));
         anInfo += ")";
       }
     }
@@ -527,7 +527,7 @@ TCollection_AsciiString XCAFDoc::AttributeInfo(const Handle(TDF_Attribute)& theA
     {
       anInfo = val->GetName()->ToCString();
       anInfo += "(density=";
-      anInfo += TCollection_AsciiString(dens.getValue());
+      anInfo += TCollection_AsciiString(getPrimal(dens));
       anInfo += dimdens;
       anInfo += ")";
     }

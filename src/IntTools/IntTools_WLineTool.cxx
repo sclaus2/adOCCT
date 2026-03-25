@@ -1065,8 +1065,8 @@ Standard_Boolean IntTools_WLineTool::DecompositionOfWLine(
     else
     {
       theLConstructor.Part(j, fprm, lprm);
-      ifprm = (Standard_Integer)fprm;
-      ilprm = (Standard_Integer)lprm;
+      ifprm = (Standard_Integer)getPrimal(fprm);
+      ilprm = (Standard_Integer)getPrimal(lprm);
     }
 
     Handle(IntSurf_LineOn2S) aLineOn2S = new IntSurf_LineOn2S();

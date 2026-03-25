@@ -38,7 +38,7 @@ Standard_Integer Geom2dInt_Geom2dCurveTool::NbSamples(const Adaptor2d_Curve2d& C
       nbs = C.NbKnots();
       nbs *= C.Degree();
       Standard_Real anb = t1 / t * nbs;
-      nbs               = (Standard_Integer)anb;
+      nbs               = (Standard_Integer)getPrimal(anb);
 
       Standard_Integer aMinPntNb = Max(C.Degree() + 1, 4);
       if (nbs < aMinPntNb)

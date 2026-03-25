@@ -236,9 +236,9 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
         gp_Cylinder Cylinder = theData.mySurf->Cylinder();
         ElSLib::Parameters(Cylinder, p, S, T);
         if (U0 < Uinf)
-          decalU = -int(Standard_Real((Uinf - U0) / (2 * M_PI))) - 1;
+          decalU = -int(getPrimal((Uinf - U0) / (2 * M_PI))) - 1;
         if (U0 > Usup)
-          decalU = int(Standard_Real((U0 - Usup) / (2 * M_PI))) + 1;
+          decalU = int(getPrimal((U0 - Usup) / (2 * M_PI))) + 1;
         S += decalU * 2 * M_PI;
         break;
       }
@@ -246,9 +246,9 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
         gp_Cone Cone = theData.mySurf->Cone();
         ElSLib::Parameters(Cone, p, S, T);
         if (U0 < Uinf)
-          decalU = -int(Standard_Real((Uinf - U0) / (2 * M_PI))) - 1;
+          decalU = -int(getPrimal((Uinf - U0) / (2 * M_PI))) - 1;
         if (U0 > Usup)
-          decalU = int(Standard_Real((U0 - Usup) / (2 * M_PI))) + 1;
+          decalU = int(getPrimal((U0 - Usup) / (2 * M_PI))) + 1;
         S += decalU * 2 * M_PI;
         break;
       }
@@ -256,14 +256,14 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
         gp_Sphere Sphere = theData.mySurf->Sphere();
         ElSLib::Parameters(Sphere, p, S, T);
         if (U0 < Uinf)
-          decalU = -int(Standard_Real((Uinf - U0) / (2 * M_PI))) - 1;
+          decalU = -int(getPrimal((Uinf - U0) / (2 * M_PI))) - 1;
         if (U0 > Usup)
-          decalU = int(Standard_Real((U0 - Usup) / (2 * M_PI))) + 1;
+          decalU = int(getPrimal((U0 - Usup) / (2 * M_PI))) + 1;
         S += decalU * 2 * M_PI;
         if (V0 < Vinf)
-          decalV = -int(Standard_Real((Vinf - V0) / (2 * M_PI))) - 1;
+          decalV = -int(getPrimal((Vinf - V0) / (2 * M_PI))) - 1;
         if (V0 > (Vsup + (Vsup - Vinf)))
-          decalV = int(Standard_Real((V0 - Vsup + (Vsup - Vinf)) / (2 * M_PI))) + 1;
+          decalV = int(getPrimal((V0 - Vsup + (Vsup - Vinf)) / (2 * M_PI))) + 1;
         T += decalV * 2 * M_PI;
         if (0.4 * M_PI < Abs(U0 - S) && Abs(U0 - S) < 1.6 * M_PI)
         {
@@ -279,13 +279,13 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
         gp_Torus Torus = theData.mySurf->Torus();
         ElSLib::Parameters(Torus, p, S, T);
         if (U0 < Uinf)
-          decalU = -int(Standard_Real((Uinf - U0) / (2 * M_PI))) - 1;
+          decalU = -int(getPrimal((Uinf - U0) / (2 * M_PI))) - 1;
         if (U0 > Usup)
-          decalU = int(Standard_Real((U0 - Usup) / (2 * M_PI))) + 1;
+          decalU = int(getPrimal((U0 - Usup) / (2 * M_PI))) + 1;
         if (V0 < Vinf)
-          decalV = -int(Standard_Real((Vinf - V0) / (2 * M_PI))) - 1;
+          decalV = -int(getPrimal((Vinf - V0) / (2 * M_PI))) - 1;
         if (V0 > Vsup)
-          decalV = int(Standard_Real((V0 - Vsup) / (2 * M_PI))) + 1;
+          decalV = int(getPrimal((V0 - Vsup) / (2 * M_PI))) + 1;
         S += decalU * 2 * M_PI;
         T += decalV * 2 * M_PI;
         break;
@@ -307,7 +307,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
       U0 = Uinf;
     else
     {
-      decalU = int(Standard_Real((Uinf - U0) / uperiod)) + 1;
+      decalU = int(getPrimal((Uinf - U0) / uperiod)) + 1;
       U0 += decalU * uperiod;
     }
   }
@@ -317,7 +317,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
       U0 = Usup;
     else
     {
-      decalU = -(int(Standard_Real((U0 - Usup) / uperiod)) + 1);
+      decalU = -(int(getPrimal((U0 - Usup) / uperiod)) + 1);
       U0 += decalU * uperiod;
     }
   }
@@ -327,7 +327,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
       V0 = Vinf;
     else
     {
-      decalV = int(Standard_Real((Vinf - V0) / vperiod)) + 1;
+      decalV = int(getPrimal((Vinf - V0) / vperiod)) + 1;
       V0 += decalV * vperiod;
     }
   }
@@ -337,7 +337,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
       V0 = Vsup;
     else
     {
-      decalV = -int(Standard_Real((V0 - Vsup) / vperiod)) - 1;
+      decalV = -int(getPrimal((V0 - Vsup) / vperiod)) - 1;
       V0 += decalV * vperiod;
     }
   }
@@ -906,7 +906,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::Perform(
           anUJump                  = (anUPeriod)*aMultCoeff;
         }
 
-        if (anVPeriod.getValue() && Abs(aC1End.Y() - aC2Beg.Y()) > (anVPeriod) / 2.01)
+        if (getPrimal(anVPeriod) && Abs(aC1End.Y() - aC2Beg.Y()) > (anVPeriod) / 2.01)
         {
           Standard_Real aMultCoeff = aC2Beg.Y() < aC1End.Y() ? 1.0 : -1.0;
           anVJump                  = (anVPeriod)*aMultCoeff;
@@ -1442,7 +1442,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
               }
             }
           }
-          if (!myProjIsDone && uperiod.getValue())
+          if (!myProjIsDone && getPrimal(uperiod))
           {
             Standard_Real aUinf, aUsup, Uaux;
             aUinf = Surf->FirstUParameter();
@@ -1476,7 +1476,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
                 myProjIsDone = Standard_True;
               }
           }
-          if (!myProjIsDone && vperiod.getValue())
+          if (!myProjIsDone && getPrimal(vperiod))
           {
             Standard_Real aVinf, aVsup, Vaux;
             aVinf = Surf->FirstVParameter();
@@ -1510,7 +1510,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
                 myProjIsDone = Standard_True;
               }
           }
-          if (!myProjIsDone && uperiod.getValue() && vperiod.getValue())
+          if (!myProjIsDone && getPrimal(uperiod) && getPrimal(vperiod))
           {
             Standard_Real Uaux, Vaux;
             if ((Usup - U0) > (U0 - Uinf))
@@ -1571,7 +1571,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
                   myDist = Dist2Min;
                 }
                 (ext.Point(aGoodValue)).Parameter(u, v);
-                if (uperiod.getValue())
+                if (getPrimal(uperiod))
                 {
                   if ((U0 - u) > (2 * uperiod / 3))
                   {
@@ -1582,7 +1582,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
                     usens--;
                   }
                 }
-                if (vperiod.getValue())
+                if (getPrimal(vperiod))
                 {
                   if ((V0 - v) > (vperiod / 2))
                   {
@@ -1616,7 +1616,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
       myBSpline->Value(0.5 * (myBSpline->FirstParameter() + myBSpline->LastParameter()));
     Standard_Real TestU = MidPoint.X(), TestV = MidPoint.Y();
     Standard_Real sense = 0.;
-    if (uperiod.getValue())
+    if (getPrimal(uperiod))
     {
       if (TestU < Uinf - TolU)
         sense = 1.;
@@ -1625,7 +1625,7 @@ Handle(Adaptor2d_Curve2d) ProjLib_ComputeApproxOnPolarSurface::BuildInitialCurve
       while (TestU < Uinf - TolU || TestU > Usup + TolU)
         TestU += sense * uperiod;
     }
-    if (vperiod.getValue())
+    if (getPrimal(vperiod))
     {
       sense = 0.;
       if (TestV < Vinf - TolV)
@@ -1772,7 +1772,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::ProjectUsingIni
 
             if (extrloc.IsDone())
             {
-              Dist2Min = (Standard_Integer)extrloc.SquareDistance();
+              Dist2Min = (Standard_Integer)getPrimal(extrloc.SquareDistance());
               if (Dist2Min < DistTol3d2)
               {
                 (extrloc.Point()).Parameter(u, v);
@@ -1821,7 +1821,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::ProjectUsingIni
 
             if (extrloc.IsDone())
             {
-              Dist2Min = (Standard_Integer)extrloc.SquareDistance();
+              Dist2Min = (Standard_Integer)getPrimal(extrloc.SquareDistance());
               if (Dist2Min < DistTol3d2)
               {
                 (extrloc.Point()).Parameter(u, v);
@@ -1894,7 +1894,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::ProjectUsingIni
 
             if (extrloc.IsDone())
             {
-              Dist2Min = (Standard_Integer)extrloc.SquareDistance();
+              Dist2Min = (Standard_Integer)getPrimal(extrloc.SquareDistance());
               if (Dist2Min < DistTol3d2)
               {
                 (extrloc.Point()).Parameter(u, v);
@@ -1943,7 +1943,7 @@ Handle(Geom2d_BSplineCurve) ProjLib_ComputeApproxOnPolarSurface::ProjectUsingIni
 
             if (extrloc.IsDone())
             {
-              Dist2Min = (Standard_Integer)extrloc.SquareDistance();
+              Dist2Min = (Standard_Integer)getPrimal(extrloc.SquareDistance());
               if (Dist2Min < DistTol3d2)
               {
                 (extrloc.Point()).Parameter(u, v);
