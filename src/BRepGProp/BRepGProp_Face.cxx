@@ -210,12 +210,12 @@ static double AS = -0.15, AL = -0.50, B = 1.0, C = 0.75, D = 0.25;
 
 static inline Standard_Real SCoeff(const Standard_Real Eps)
 {
-  return Eps < 0.1 ? AS * (B + Log10(Eps)) + C : C;
+  return Eps < 0.1 ? Standard_Real(AS * (B + Log10(Eps)) + C) : Standard_Real(C);
 }
 
 static inline Standard_Real LCoeff(const Standard_Real Eps)
 {
-  return Eps < 0.1 ? AL * (B + Log10(Eps)) + D : D;
+  return Eps < 0.1 ? Standard_Real(AL * (B + Log10(Eps)) + D) : Standard_Real(D);
 }
 
 //=================================================================================================

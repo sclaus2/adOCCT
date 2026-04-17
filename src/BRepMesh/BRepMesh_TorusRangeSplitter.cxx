@@ -210,5 +210,5 @@ Standard_Real BRepMesh_TorusRangeSplitter::FUN_CalcAverageDUV(TColStd_Array1OfRe
       }
     }
   }
-  return (n ? (result / (Standard_Real)n) : -1.);
+  return (n ? Standard_Real(result / (Standard_Real)n) : Standard_Real(-1.));
 }

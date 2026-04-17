@@ -125,7 +125,8 @@ public: // high-level API
   //! Return width / height.
   Standard_Real Ratio() const
   {
-    return (SizeY() > 0) ? (Standard_Real(SizeX()) / Standard_Real(SizeY())) : 1.0;
+    return (SizeY() > 0) ? Standard_Real(Standard_Real(SizeX()) / Standard_Real(SizeY()))
+                         : Standard_Real(1.0);
   }
 
   //! Return true if data is NULL.

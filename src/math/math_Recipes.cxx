@@ -45,7 +45,7 @@ static inline Standard_Real PYTHAG(const Standard_Real a, const Standard_Real b)
 }
 } // namespace
 
-#define SIGN(a, b) ((b) >= 0.0 ? fabs(a) : -fabs(a))
+#define SIGN(a, b) ((b) >= 0.0 ? Standard_Real(fabs(a)) : Standard_Real(-fabs(a)))
 
 #define ROTATE(a, i, j, k, l)                                                                      \
   g       = a(i, j);                                                                               \

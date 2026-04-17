@@ -1239,7 +1239,8 @@ void BSplCLib::Bohm(const Standard_Real    U,
         {
           jDmi--;
           *pole -= *tbis;
-          *pole = (knot[jDmi] == knot[j]) ? 0.0 : *pole / (knot[jDmi] - knot[j]);
+          *pole = (knot[jDmi] == knot[j]) ? Standard_Real(0.0)
+                                          : Standard_Real(*pole / (knot[jDmi] - knot[j]));
           pole--;
           tbis--;
         }
@@ -1289,7 +1290,8 @@ void BSplCLib::Bohm(const Standard_Real    U,
         for (j = Degm1; j >= i; j--)
         {
           jDmi--;
-          coef = (knot[jDmi] == knot[j]) ? 0.0 : 1. / (knot[jDmi] - knot[j]);
+          coef = (knot[jDmi] == knot[j]) ? Standard_Real(0.0)
+                                         : Standard_Real(1. / (knot[jDmi] - knot[j]));
           *pole -= *tbis;
           *pole *= coef;
           pole++;
@@ -1350,7 +1352,8 @@ void BSplCLib::Bohm(const Standard_Real    U,
         for (j = Degm1; j >= i; j--)
         {
           jDmi--;
-          coef = (knot[jDmi] == knot[j]) ? 0.0 : 1. / (knot[jDmi] - knot[j]);
+          coef = (knot[jDmi] == knot[j]) ? Standard_Real(0.0)
+                                         : Standard_Real(1. / (knot[jDmi] - knot[j]));
           *pole -= *tbis;
           *pole *= coef;
           pole++;
@@ -1420,7 +1423,8 @@ void BSplCLib::Bohm(const Standard_Real    U,
         for (j = Degm1; j >= i; j--)
         {
           jDmi--;
-          coef = (knot[jDmi] == knot[j]) ? 0.0 : 1. / (knot[jDmi] - knot[j]);
+          coef = (knot[jDmi] == knot[j]) ? Standard_Real(0.0)
+                                         : Standard_Real(1. / (knot[jDmi] - knot[j]));
           *pole -= *tbis;
           *pole *= coef;
           pole++;
@@ -1501,7 +1505,8 @@ void BSplCLib::Bohm(const Standard_Real    U,
         for (j = Degm1; j >= i; j--)
         {
           jDmi--;
-          coef = (knot[jDmi] == knot[j]) ? 0.0 : 1. / (knot[jDmi] - knot[j]);
+          coef = (knot[jDmi] == knot[j]) ? Standard_Real(0.0)
+                                         : Standard_Real(1. / (knot[jDmi] - knot[j]));
 
           for (k = 0; k < Dimension; k++)
           {

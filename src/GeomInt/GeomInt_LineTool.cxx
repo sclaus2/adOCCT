@@ -694,8 +694,8 @@ Standard_Boolean GeomInt_LineTool::DecompositionOfWLine(
 
             Standard_Real adist = (bIsFirstBoundary) ? fabs(anAdjustPar - alowerboundary)
                                                      : fabs(anAdjustPar - aupperboundary);
-            Standard_Real anotherPar =
-              (bIsFirstBoundary) ? (aupperboundary - adist) : (alowerboundary + adist);
+            Standard_Real anotherPar = (bIsFirstBoundary) ? Standard_Real(aupperboundary - adist)
+                                                          : Standard_Real(alowerboundary + adist);
             anotherPar += anoffset;
             Standard_Integer aneighbourpointindex =
               (j == 0) ? aListOfIndex.First() : aListOfIndex.Last();

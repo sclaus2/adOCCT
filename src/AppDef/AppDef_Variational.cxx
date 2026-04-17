@@ -2259,7 +2259,8 @@ void AppDef_Variational::InitCriterionEstimations(const Standard_Real Length,
 
   E2 = VScnd1.Norm2() * Delta;
 
-  E3 = (Delta > Eps1) ? VScnd2.Subtracted(VScnd1).Norm2() / (4. * Delta) : 0.;
+  E3 = (Delta > Eps1) ? Standard_Real(VScnd2.Subtracted(VScnd1).Norm2() / (4. * Delta))
+                      : Standard_Real(0.);
   // ========== Treatment of internal points =================
 
   Standard_Integer CurrPoint = 2;
@@ -2280,7 +2281,8 @@ void AppDef_Variational::InitCriterionEstimations(const Standard_Real Length,
         EstSecnd(ipnt + 1, VTang1, VTang2, Length, VScnd2);
 
       E2 += VScnd1.Norm2() * Delta;
-      E3 += (Delta > Eps1) ? VScnd2.Subtracted(VScnd3).Norm2() / (4. * Delta) : 0.;
+      E3 += (Delta > Eps1) ? Standard_Real(VScnd2.Subtracted(VScnd3).Norm2() / (4. * Delta))
+                           : Standard_Real(0.);
     }
     else if (CurrPoint == 2)
     {
@@ -2293,7 +2295,8 @@ void AppDef_Variational::InitCriterionEstimations(const Standard_Real Length,
         EstSecnd(ipnt + 1, VTang2, VTang3, Length, VScnd3);
 
       E2 += VScnd2.Norm2() * Delta;
-      E3 += (Delta > Eps1) ? VScnd3.Subtracted(VScnd1).Norm2() / (4. * Delta) : 0.;
+      E3 += (Delta > Eps1) ? Standard_Real(VScnd3.Subtracted(VScnd1).Norm2() / (4. * Delta))
+                           : Standard_Real(0.);
     }
     else
     {
@@ -2306,7 +2309,8 @@ void AppDef_Variational::InitCriterionEstimations(const Standard_Real Length,
         EstSecnd(ipnt + 1, VTang3, VTang1, Length, VScnd1);
 
       E2 += VScnd3.Norm2() * Delta;
-      E3 += (Delta > Eps1) ? VScnd1.Subtracted(VScnd2).Norm2() / (4. * Delta) : 0.;
+      E3 += (Delta > Eps1) ? Standard_Real(VScnd1.Subtracted(VScnd2).Norm2() / (4. * Delta))
+                           : Standard_Real(0.);
     }
 
     CurrPoint++;

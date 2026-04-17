@@ -112,8 +112,9 @@ static Handle(IntPatch_WLine) MakeNewWLine(const Handle(IntPatch_WLine)&        
       const Standard_Real aSqDistPrev = aPPrev.SquareDistance(aPOld);
       const Standard_Real aSqDist     = aPPrev.SquareDistance(aP);
 
-      const Standard_Real aRatio =
-        (aSqDistPrev < gp::Resolution()) ? 0.0 : 9.0 * aSqDist / aSqDistPrev;
+      const Standard_Real aRatio = (aSqDistPrev < gp::Resolution())
+                                     ? Standard_Real(0.0)
+                                     : Standard_Real(9.0 * aSqDist / aSqDistPrev);
 
       if (theIsOuter || (aRatio < gp::Resolution()) || ((1.0 < aRatio) && (aRatio < 81.0))
           || (i - anIndexPrev <= 1) || (i - anIdxOld <= 1))

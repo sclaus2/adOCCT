@@ -722,7 +722,8 @@ void GCPnts_TangentialDeflection::PerformCurve(const TheCurve& theC)
       V2 = (MiddlePoint.XYZ() - aPrevPoint.XYZ());
       L1 = V1.Modulus();
 
-      FCoef = (L1 > myMinLen) ? V1.CrossMagnitude(V2) / (L1 * myCurvatureDeflection) : 0.0;
+      FCoef = (L1 > myMinLen) ? Standard_Real(V1.CrossMagnitude(V2) / (L1 * myCurvatureDeflection))
+                              : Standard_Real(0.0);
 
       V1 = (CurrentPoint.XYZ() - MiddlePoint.XYZ()); // Critere d'angle
       L1 = V1.Modulus();

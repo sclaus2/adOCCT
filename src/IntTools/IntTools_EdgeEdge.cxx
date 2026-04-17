@@ -1557,7 +1557,7 @@ Standard_Real Resolution(const Handle(Geom_Curve)& theCurve,
       break;
     case GeomAbs_Circle: {
       Standard_Real aDt = theResCoeff * theR3D;
-      aRes              = (aDt <= 1.) ? 2 * ASin(aDt) : 2 * M_PI;
+      aRes              = (aDt <= 1.) ? Standard_Real(2 * ASin(aDt)) : Standard_Real(2 * M_PI);
       break;
     }
     case GeomAbs_BezierCurve:
@@ -1578,7 +1578,7 @@ Standard_Real Resolution(const Handle(Geom_Curve)& theCurve,
       else if (aBCType == GeomAbs_Circle)
       {
         Standard_Real aDt = theResCoeff * theR3D;
-        aRes              = (aDt <= 1.) ? 2 * ASin(aDt) : 2 * M_PI;
+        aRes              = (aDt <= 1.) ? Standard_Real(2 * ASin(aDt)) : Standard_Real(2 * M_PI);
         break;
       }
     }

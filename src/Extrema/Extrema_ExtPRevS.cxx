@@ -196,11 +196,13 @@ static Standard_Boolean IsExtremum(const Standard_Real      U,
   if (IsMin)
     return (Dist2 < P.SquareDistance(S->Value(U + 1, V))
             && Dist2 < P.SquareDistance(S->Value(U - 1, V))
-            && Dist2 < P.SquareDistance(S->Value(U, IsVSup ? V - 1 : V + 1)));
+            && Dist2 < P.SquareDistance(
+                 S->Value(U, IsVSup ? Standard_Real(V - 1) : Standard_Real(V + 1))));
   else
     return (Dist2 > P.SquareDistance(S->Value(U + 1, V))
             && Dist2 > P.SquareDistance(S->Value(U - 1, V))
-            && Dist2 > P.SquareDistance(S->Value(U, IsVSup ? V - 1 : V + 1)));
+            && Dist2 > P.SquareDistance(
+                 S->Value(U, IsVSup ? Standard_Real(V - 1) : Standard_Real(V + 1))));
 }
 
 //=================================================================================================

@@ -484,8 +484,8 @@ void IntAna_Curve::FindParameter(const gp_Pnt& theP, TColStd_ListOfReal& thePara
   Standard_Real          aParams[aMaxPar] = {DomainInf,
                                              DomainSup,
                                              aTheta,
-                                    (TwoCurves) ? DomainSup + DomainSup - aTheta : RealLast(),
-                                    (TwoCurves) ? DomainSup + DomainSup - DomainInf : RealLast()};
+    (TwoCurves) ? Standard_Real(DomainSup + DomainSup - aTheta) : Standard_Real(RealLast()),
+    (TwoCurves) ? Standard_Real(DomainSup + DomainSup - DomainInf) : Standard_Real(RealLast())};
 
   std::sort(aParams, aParams + aMaxPar - 1);
 

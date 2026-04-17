@@ -1118,7 +1118,7 @@ static Standard_Real ComputeTol(const Handle(Adaptor3d_Curve)&   c3d,
   }
 
   // d2 = 1.5*sqrt(d2);
-  d2 = (!ana) ? 1.5 * d2 : 1.5 * sqrt(D2);
+  d2 = (!ana) ? Standard_Real(1.5 * d2) : Standard_Real(1.5 * sqrt(D2));
   d2 = Max(d2, 1.e-7);
   return d2;
 }

@@ -1642,12 +1642,14 @@ void PrsDim_Dimension::FitTextAlignmentForLinear(
     case Prs3d_DAO_Fit: {
       // Add margin to ensure a small tail between text and arrow
       Standard_Real anArrowMargin =
-        aDimensionAspect->IsText3d() ? aDimensionAspect->TextAspect()->Height() * THE_3D_TEXT_MARGIN
-                                     : 0.0;
+        aDimensionAspect->IsText3d()
+          ? Standard_Real(aDimensionAspect->TextAspect()->Height() * THE_3D_TEXT_MARGIN)
+          : Standard_Real(0.0);
 
       Standard_Real aDimensionWidth = aLineBegPoint.Distance(aLineEndPoint);
-      Standard_Real anArrowsWidth =
-        theIsOneSide ? anArrowLength + anArrowMargin : (anArrowLength + anArrowMargin) * 2.0;
+      Standard_Real anArrowsWidth = theIsOneSide
+                                        ? Standard_Real(anArrowLength + anArrowMargin)
+                                        : Standard_Real((anArrowLength + anArrowMargin) * 2.0);
 
       theIsArrowsExternal = aDimensionWidth < aLabelWidth + anArrowsWidth;
       break;

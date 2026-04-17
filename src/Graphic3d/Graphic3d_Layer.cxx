@@ -422,29 +422,29 @@ Standard_Real Graphic3d_Layer::considerZoomPersistenceObjects(
       Standard_Real aShiftX = 0.0;
       if (aConvertedMinX < -1.0)
       {
-        aShiftX =
-          ((aConvertedMaxX < -1.0) ? (-(1.0 + aConvertedMaxX) + (aConvertedMaxX - aConvertedMinX))
-                                   : -(1.0 + aConvertedMinX));
+        aShiftX = ((aConvertedMaxX < -1.0)
+                     ? Standard_Real(-(1.0 + aConvertedMaxX) + (aConvertedMaxX - aConvertedMinX))
+                     : Standard_Real(-(1.0 + aConvertedMinX)));
       }
       else if (aConvertedMaxX > 1.0)
       {
-        aShiftX =
-          ((aConvertedMinX > 1.0) ? ((aConvertedMinX - 1.0) + (aConvertedMaxX - aConvertedMinX))
-                                  : (aConvertedMaxX - 1.0));
+        aShiftX = ((aConvertedMinX > 1.0)
+                     ? Standard_Real((aConvertedMinX - 1.0) + (aConvertedMaxX - aConvertedMinX))
+                     : Standard_Real(aConvertedMaxX - 1.0));
       }
 
       Standard_Real aShiftY = 0.0;
       if (aConvertedMinY < -1.0)
       {
-        aShiftY =
-          ((aConvertedMaxY < -1.0) ? (-(1.0 + aConvertedMaxY) + (aConvertedMaxY - aConvertedMinY))
-                                   : -(1.0 + aConvertedMinY));
+        aShiftY = ((aConvertedMaxY < -1.0)
+                     ? Standard_Real(-(1.0 + aConvertedMaxY) + (aConvertedMaxY - aConvertedMinY))
+                     : Standard_Real(-(1.0 + aConvertedMinY)));
       }
       else if (aConvertedMaxY > 1.0)
       {
-        aShiftY =
-          ((aConvertedMinY > 1.0) ? ((aConvertedMinY - 1.0) + (aConvertedMaxY - aConvertedMinY))
-                                  : (aConvertedMaxY - 1.0));
+        aShiftY = ((aConvertedMinY > 1.0)
+                     ? Standard_Real((aConvertedMinY - 1.0) + (aConvertedMaxY - aConvertedMinY))
+                     : Standard_Real(aConvertedMaxY - 1.0));
       }
 
       const Standard_Real aDifX = Abs(aConvertedTPPoint.X()) - aShiftX;

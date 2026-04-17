@@ -1111,8 +1111,10 @@ static void TransformPCurves(const TopoDS_Face&   theRefFace,
         // check: may be it is the same pcurve
         Standard_Real aUmin, aUmax, aVmin, aVmax;
         RefSurf->Bounds(aUmin, aUmax, aVmin, aVmax);
-        Standard_Real aUperiod      = (RefSurf->IsUClosed()) ? (aUmax - aUmin) : 0.;
-        Standard_Real aVperiod      = (RefSurf->IsVClosed()) ? (aVmax - aVmin) : 0.;
+        Standard_Real aUperiod =
+          (RefSurf->IsUClosed()) ? Standard_Real(aUmax - aUmin) : Standard_Real(0.);
+        Standard_Real aVperiod =
+          (RefSurf->IsVClosed()) ? Standard_Real(aVmax - aVmin) : Standard_Real(0.);
         gp_Pnt2d      aP2dOnPCurve1 = PCurveOnRef->Value(fpar);
         gp_Pnt2d      aP2dOnPCurve2 = NewPCurves[0]->Value(fpar);
         if ((aUperiod != 0. && Abs(aP2dOnPCurve1.X() - aP2dOnPCurve2.X()) > aUperiod / 2)

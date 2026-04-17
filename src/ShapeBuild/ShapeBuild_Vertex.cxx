@@ -61,7 +61,8 @@ TopoDS_Vertex ShapeBuild_Vertex::CombineVertex(const gp_Pnt&       pnt1,
   else
   {
     tol             = 0.5 * (dist + tol1 + tol2);
-    Standard_Real s = (dist > 0.) ? (tol2 - tol1) / dist : 0.; // szv#4:S4163:12Mar99 anti-exception
+    Standard_Real s = (dist > 0.) ? Standard_Real((tol2 - tol1) / dist)
+                                  : Standard_Real(0.); // szv#4:S4163:12Mar99 anti-exception
     pos             = 0.5 * ((1 - s) * pnt1.XYZ() + (1 + s) * pnt2.XYZ());
   }
 

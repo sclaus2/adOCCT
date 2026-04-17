@@ -1904,7 +1904,8 @@ void V3d_View::Project(const Standard_Real theX,
   // NDC [-1, 1] --> PROJ [ -size / 2, +size / 2 ]
   theXp = aPoint.X() * aXSize * 0.5;
   theYp = aPoint.Y() * aYSize * 0.5;
-  theZp = Camera()->IsZeroToOneDepth() ? aPoint.Z() * aZSize : aPoint.Z() * aZSize * 0.5;
+  theZp = Camera()->IsZeroToOneDepth() ? Standard_Real(aPoint.Z() * aZSize)
+                                       : Standard_Real(aPoint.Z() * aZSize * 0.5);
 }
 
 //=================================================================================================

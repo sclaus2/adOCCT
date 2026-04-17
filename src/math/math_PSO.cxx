@@ -241,8 +241,8 @@ void math_PSO::performPSOWithGivenParticles(math_PSOParticlesPool& theParticles,
               || aParticle->Position[aDimIdx] == aMaxUV(aDimIdx + 1))
           {
             aParticle->Velocity[aDimIdx] = aParticle->Position[aDimIdx] == aMinUV(aDimIdx + 1)
-                                             ? mySteps(aDimIdx + 1) * aKsi
-                                             : -mySteps(aDimIdx + 1) * aKsi;
+                                             ? Standard_Real(mySteps(aDimIdx + 1) * aKsi)
+                                             : Standard_Real(-mySteps(aDimIdx + 1) * aKsi);
           }
           else
           {

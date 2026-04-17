@@ -621,7 +621,8 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
                 (wholeDoc ? "" : "  Area defect:   "),
                 getPrimal(aArea->Get() - G.Mass()),
                 (Standard_Integer)getPrimal(
-                  Abs(G.Mass()) > 1e-10 ? 100. * (aArea->Get() - G.Mass()) / G.Mass() : 999.),
+                  Abs(G.Mass()) > 1e-10 ? Standard_Real(100. * (aArea->Get() - G.Mass()) / G.Mass())
+                                        : Standard_Real(999.)),
                 (wholeDoc ? "" : "\n"));
         di << string2;
       }
@@ -679,8 +680,9 @@ static Standard_Integer CheckProps(Draw_Interpretor& di, Standard_Integer argc, 
                   (wholeDoc ? "" : "  Volume defect: "),
                   getPrimal(aVolume->Get() - localVolume),
                   (Standard_Integer)getPrimal(
-                    Abs(localVolume) > 1e-10 ? 100. * (aVolume->Get() - localVolume) / localVolume
-                                             : 999.),
+                    Abs(localVolume) > 1e-10
+                      ? Standard_Real(100. * (aVolume->Get() - localVolume) / localVolume)
+                      : Standard_Real(999.)),
                   (wholeDoc ? "" : "\n"));
           di << string5;
         }

@@ -188,7 +188,8 @@ static Standard_Boolean FUN_getnearpar(const TopoDS_Edge&     e,
   if (onl && (sta == AFTER))
     return Standard_False;
   // nearpar = (sta == BEFORE) ? ((1-factor)*par - factor*f) : ((1-factor)*par - factor*l);
-  nearpar = (sta == BEFORE) ? (par - factor * (l - f)) : (par + factor * (l - f));
+  nearpar =
+    (sta == BEFORE) ? Standard_Real(par - factor * (l - f)) : Standard_Real(par + factor * (l - f));
   return Standard_True;
 }
 

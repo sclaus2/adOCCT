@@ -374,7 +374,7 @@ Standard_Real Interface_MSG::Intervalled(const Standard_Real    val,
     else
       rst = (upper ? 10. : 8.);
   }
-  return ((val < 0.) ? -(bl * rst) : (bl * rst));
+  return ((val < 0.) ? Standard_Real(-(bl * rst)) : Standard_Real(bl * rst));
 }
 
 //  ###########    DATES    ############

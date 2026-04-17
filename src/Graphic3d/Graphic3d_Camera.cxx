@@ -1609,7 +1609,8 @@ bool Graphic3d_Camera::ZFitAll(const Standard_Real theScaleFactor,
     Standard_Real aZRange =
       isFiniteMinMax ? aModelMaxDist - aModelMinDist : aGraphMaxDist - aGraphMinDist;
     Standard_Real aZMin     = isFiniteMinMax ? aModelMinDist : aGraphMinDist;
-    Standard_Real aZ        = aZMin < 0 ? aZRange / 2.0 : aZRange / 2.0 + aZMin;
+    Standard_Real aZ =
+      aZMin < 0 ? Standard_Real(aZRange / 2.0) : Standard_Real(aZRange / 2.0 + aZMin);
     Standard_Real aZNearMin = aZ * 5.97E-4;
     if (aZNear < aZNearMin)
     {

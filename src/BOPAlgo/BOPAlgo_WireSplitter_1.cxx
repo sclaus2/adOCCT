@@ -984,7 +984,8 @@ void RefineAngles(const TopoDS_Vertex&            aV,
     }
     else if (iCntInt == 2)
     {
-      aA = (aA <= aA1) ? (aA1 + Precision::Angular()) : (aA2 - Precision::Angular());
+      aA = (aA <= aA1) ? Standard_Real(aA1 + Precision::Angular())
+                       : Standard_Real(aA2 - Precision::Angular());
       aDMSR.Bind(aE, aA);
     }
   }

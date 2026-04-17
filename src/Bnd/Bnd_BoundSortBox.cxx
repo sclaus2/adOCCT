@@ -460,9 +460,9 @@ void Bnd_BoundSortBox::Initialize(const Bnd_Box&                  CompleteBox,
   if (CompleteBox.IsVoid())
     return;
   CompleteBox.Get(Xmin, Ymin, Zmin, Xmax, Ymax, Zmax);
-  deltaX = (Xmax - Xmin == 0. ? 0. : discrX / (Xmax - Xmin));
-  deltaY = (Ymax - Ymin == 0. ? 0. : discrY / (Ymax - Ymin));
-  deltaZ = (Zmax - Zmin == 0. ? 0. : discrZ / (Zmax - Zmin));
+  deltaX = (Xmax - Xmin == 0. ? Standard_Real(0.) : Standard_Real(discrX / (Xmax - Xmin)));
+  deltaY = (Ymax - Ymin == 0. ? Standard_Real(0.) : Standard_Real(discrY / (Ymax - Ymin)));
+  deltaZ = (Zmax - Zmin == 0. ? Standard_Real(0.) : Standard_Real(discrZ / (Zmax - Zmin)));
   SortBoxes();
 }
 
@@ -488,9 +488,9 @@ void Bnd_BoundSortBox::Initialize(const Handle(Bnd_HArray1OfBox)& SetOfBox)
   if (myBox.IsVoid())
     return;
   myBox.Get(Xmin, Ymin, Zmin, Xmax, Ymax, Zmax);
-  deltaX = (Xmax - Xmin == 0. ? 0. : discrX / (Xmax - Xmin));
-  deltaY = (Ymax - Ymin == 0. ? 0. : discrY / (Ymax - Ymin));
-  deltaZ = (Zmax - Zmin == 0. ? 0. : discrZ / (Zmax - Zmin));
+  deltaX = (Xmax - Xmin == 0. ? Standard_Real(0.) : Standard_Real(discrX / (Xmax - Xmin)));
+  deltaY = (Ymax - Ymin == 0. ? Standard_Real(0.) : Standard_Real(discrY / (Ymax - Ymin)));
+  deltaZ = (Zmax - Zmin == 0. ? Standard_Real(0.) : Standard_Real(discrZ / (Zmax - Zmin)));
   SortBoxes();
 }
 
@@ -667,9 +667,9 @@ void Bnd_BoundSortBox::Initialize(const Bnd_Box& CompleteBox, const Standard_Int
     return;
   CompleteBox.Get(Xmin, Ymin, Zmin, Xmax, Ymax, Zmax);
   myBox.Get(Xmin, Ymin, Zmin, Xmax, Ymax, Zmax);
-  deltaX = (Xmax - Xmin == 0. ? 0. : discrX / (Xmax - Xmin));
-  deltaY = (Ymax - Ymin == 0. ? 0. : discrY / (Ymax - Ymin));
-  deltaZ = (Zmax - Zmin == 0. ? 0. : discrZ / (Zmax - Zmin));
+  deltaX = (Xmax - Xmin == 0. ? Standard_Real(0.) : Standard_Real(discrX / (Xmax - Xmin)));
+  deltaY = (Ymax - Ymin == 0. ? Standard_Real(0.) : Standard_Real(discrY / (Ymax - Ymin)));
+  deltaZ = (Zmax - Zmin == 0. ? Standard_Real(0.) : Standard_Real(discrZ / (Zmax - Zmin)));
   if (TabBits)
   {
     BSB_T3Bits* _Map = (BSB_T3Bits*)TabBits;

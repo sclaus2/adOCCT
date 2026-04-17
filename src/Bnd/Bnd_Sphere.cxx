@@ -39,14 +39,15 @@ void Bnd_Sphere::SquareDistances(const gp_XYZ&  theXYZ,
                                  Standard_Real& theMax) const
 {
   theMax = (theXYZ - myCenter).SquareModulus();
-  theMin = (theMax - myRadius < 0 ? 0.0 : theMax - myRadius * myRadius);
+  theMin =
+    (theMax - myRadius < 0 ? Standard_Real(0.0) : Standard_Real(theMax - myRadius * myRadius));
   theMax += myRadius * myRadius;
 }
 
 void Bnd_Sphere::Distances(const gp_XYZ& theXYZ, Standard_Real& theMin, Standard_Real& theMax) const
 {
   theMax = (theXYZ - myCenter).Modulus();
-  theMin = (theMax - myRadius < 0 ? 0.0 : theMax - myRadius);
+  theMin = (theMax - myRadius < 0 ? Standard_Real(0.0) : Standard_Real(theMax - myRadius));
   theMax += myRadius;
 }
 

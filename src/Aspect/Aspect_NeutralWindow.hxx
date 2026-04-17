@@ -69,7 +69,9 @@ public:
   //! Returns window ratio equal to the physical width/height dimensions.
   virtual Standard_Real Ratio() const Standard_OVERRIDE
   {
-    return (myWidth != 0 && myHeight != 0) ? Standard_Real(myWidth) / Standard_Real(myHeight) : 1.0;
+    return (myWidth != 0 && myHeight != 0)
+             ? Standard_Real(Standard_Real(myWidth) / Standard_Real(myHeight))
+             : Standard_Real(1.0);
   }
 
   //! Return the window position.

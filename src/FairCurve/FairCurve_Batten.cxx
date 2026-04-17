@@ -501,12 +501,12 @@ Standard_Real FairCurve_Batten::SlidingOfReference(const Standard_Real Dist,
     return Dist;
 
   if (NewConstraintOrder1 == 0)
-    a1 = Abs(Abs(NewAngle2) < M_PI ? Angle2 / 2 : M_PI / 2);
+    a1 = Abs(Abs(NewAngle2) < M_PI ? Standard_Real(Angle2 / 2) : Standard_Real(M_PI / 2));
   else
     a1 = Abs(Angle1);
 
   if (NewConstraintOrder2 == 0)
-    a2 = Abs(Abs(NewAngle1) < M_PI ? Angle1 / 2 : M_PI / 2);
+    a2 = Abs(Abs(NewAngle1) < M_PI ? Standard_Real(Angle1 / 2) : Standard_Real(M_PI / 2));
   else
     a2 = Abs(Angle2);
 

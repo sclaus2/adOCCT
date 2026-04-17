@@ -1396,7 +1396,8 @@ void ProjLib_ComputeApprox::Perform(const Handle(Adaptor3d_Curve)&   C,
       double   aNbPer;
       gp_Pnt2d P2d = F.Value(Umid);
       du           = u - P2d.X();
-      du           = (du < 0) ? (du - Precision::PConfusion()) : (du + Precision::PConfusion());
+      du           = (du < 0) ? Standard_Real(du - Precision::PConfusion())
+                              : Standard_Real(du + Precision::PConfusion());
       modf(getPrimal(du / M_PI), &aNbPer);
       number = (Standard_Integer)aNbPer;
       du     = number * M_PI;

@@ -75,10 +75,12 @@ static Standard_Boolean shiftPoint(const Standard_Real                theUStart,
 
   // compute vector to shift from start point to center of the surface;
   // if surface is periodic or singular in some direction, take shift in that direction zero
-  Standard_Real aDirU =
-    (isUPeriodic || (isUSingular && !isVSingular) ? 0. : 0.5 * (aUMin + aUMax) - theUStart);
-  Standard_Real aDirV =
-    (isVPeriodic || (isVSingular && !isUSingular) ? 0. : 0.5 * (aVMin + aVMax) - theVStart);
+  Standard_Real aDirU = (isUPeriodic || (isUSingular && !isVSingular)
+                           ? Standard_Real(0.)
+                           : Standard_Real(0.5 * (aUMin + aUMax) - theUStart));
+  Standard_Real aDirV = (isVPeriodic || (isVSingular && !isUSingular)
+                           ? Standard_Real(0.)
+                           : Standard_Real(0.5 * (aVMin + aVMax) - theVStart));
   Standard_Real aDist = Sqrt(aDirU * aDirU + aDirV * aDirV);
 
   // shift current point from its current position towards center, by value of twice

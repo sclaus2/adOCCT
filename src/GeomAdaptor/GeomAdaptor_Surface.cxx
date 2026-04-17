@@ -1077,7 +1077,7 @@ Standard_Real GeomAdaptor_Surface::UResolution(const Standard_Real R3d) const
       C                                  = S->VIso(myVFirst);
       const Standard_Real Rayon2         = Handle(Geom_Circle)::DownCast(C)->Radius();
       const Standard_Real R              = (Rayon1 > Rayon2) ? Rayon1 : Rayon2;
-      return (R > Precision::Confusion() ? (R3d / R) : 0.);
+      return (R > Precision::Confusion() ? Standard_Real(R3d / R) : Standard_Real(0.));
     }
     case GeomAbs_Plane: {
       return R3d;

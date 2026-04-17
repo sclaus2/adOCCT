@@ -80,7 +80,7 @@ void SelectMgr_RectangularFrustum::segmentSegmentDistance(
   {
     aTn = aTd;
   }
-  aTc = (Abs(aTd) < gp::Resolution() ? 0.0 : aTn / aTd);
+  aTc = (Abs(aTd) < gp::Resolution() ? Standard_Real(0.0) : Standard_Real(aTn / aTd));
 
   const gp_Pnt aClosestPnt = myNearPickedPnt.XYZ() + aV * aTc;
   thePickResult.SetDepth(myNearPickedPnt.Distance(aClosestPnt) * myScale);

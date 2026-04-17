@@ -2330,7 +2330,7 @@ static void ToSmooth(const Handle(IntSurf_LineOn2S)& Line,
   if (doU)
   {
     Standard_Real dU = Min((DDU / 10.), 5.e-8);
-    Standard_Real U  = (U2 > U3) ? (U2 + dU) : (U2 - dU);
+    Standard_Real U  = (U2 > U3) ? Standard_Real(U2 + dU) : Standard_Real(U2 - dU);
     if (IsReversed)
       Line->SetUV(Index1, Standard_False, U, V1);
     else

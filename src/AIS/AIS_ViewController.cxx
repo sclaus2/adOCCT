@@ -977,7 +977,9 @@ bool AIS_ViewController::UpdateMousePosition(const Graphic3d_Vec2i& thePoint,
       }
 
       const Standard_Real aRotTol =
-        theIsEmulated ? Standard_Real(myTouchToleranceScale) * myTouchRotationThresholdPx : 0.0;
+        theIsEmulated
+          ? Standard_Real(Standard_Real(myTouchToleranceScale) * myTouchRotationThresholdPx)
+          : Standard_Real(0.0);
       const Graphic3d_Vec2d aDeltaF(aDelta);
       if (Standard_Real(Abs(aDeltaF.x()) + Abs(aDeltaF.y())) > aRotTol)
       {
@@ -1012,7 +1014,8 @@ bool AIS_ViewController::UpdateMousePosition(const Graphic3d_Vec2i& thePoint,
         break;
       }
       const Standard_Real aZoomTol =
-        theIsEmulated ? Standard_Real(myTouchToleranceScale) * myTouchZoomThresholdPx : 0.0;
+        theIsEmulated ? Standard_Real(Standard_Real(myTouchToleranceScale) * myTouchZoomThresholdPx)
+                      : Standard_Real(0.0);
       const Standard_Real aScrollDelta =
         myMouseActiveGesture == AIS_MouseGesture_Zoom ? aDelta.x() : aDelta.y();
       if (Standard_Real(Abs(aScrollDelta)) > aZoomTol)
@@ -1035,7 +1038,8 @@ bool AIS_ViewController::UpdateMousePosition(const Graphic3d_Vec2i& thePoint,
         break;
       }
       const Standard_Real aPanTol =
-        theIsEmulated ? Standard_Real(myTouchToleranceScale) * myTouchPanThresholdPx : 0.0;
+        theIsEmulated ? Standard_Real(Standard_Real(myTouchToleranceScale) * myTouchPanThresholdPx)
+                      : Standard_Real(0.0);
       const Graphic3d_Vec2d aDeltaF(aDelta);
       if (Standard_Real(Abs(aDeltaF.x()) + Abs(aDeltaF.y())) > aPanTol)
       {
@@ -2109,8 +2113,8 @@ AIS_WalkDelta AIS_ViewController::handleNavigationKeys(const Handle(AIS_Interact
 
   const Standard_Real             aWalkSpeed = myNavigationMode != AIS_NavigationMode_Orbit
                                        && myNavigationMode != AIS_NavigationMode_FirstPersonFlight
-                                                 ? theView->View()->UnitFactor() * WalkSpeedAbsolute()
-                                                 : aWalkSpeedCoef * aBndDiam;
+      ? Standard_Real(theView->View()->UnitFactor() * WalkSpeedAbsolute())
+      : Standard_Real(aWalkSpeedCoef * aBndDiam);
   const Handle(Graphic3d_Camera)& aCam =
     theView->View()->IsActiveXR() ? theView->View()->BaseXRCamera() : theView->Camera();
 

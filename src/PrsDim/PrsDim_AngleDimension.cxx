@@ -1421,8 +1421,9 @@ void PrsDim_AngleDimension::FitTextAlignment(
 
       // Add margin to ensure a small tail between text and arrow
       Standard_Real anArrowMargin =
-        aDimensionAspect->IsText3d() ? aDimensionAspect->TextAspect()->Height() * THE_3D_TEXT_MARGIN
-                                     : 0.0;
+        aDimensionAspect->IsText3d()
+          ? Standard_Real(aDimensionAspect->TextAspect()->Height() * THE_3D_TEXT_MARGIN)
+          : Standard_Real(0.0);
 
       Standard_Real anArrowsWidth = (anArrowLength + anArrowMargin) * 2.0;
 

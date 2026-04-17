@@ -480,11 +480,17 @@ public:
 
   //! Return offset to the view corner in NDC space within dimension X for 2d on-screen elements,
   //! which is normally 0.5. Can be clamped when FOVx exceeds FOV2d.
-  Standard_Real NDC2dOffsetX() const { return myFOV2d >= myFOVx ? 0.5 : 0.5 * myFOV2d / myFOVx; }
+  Standard_Real NDC2dOffsetX() const
+  {
+    return myFOV2d >= myFOVx ? Standard_Real(0.5) : Standard_Real(0.5 * myFOV2d / myFOVx);
+  }
 
   //! Return offset to the view corner in NDC space within dimension X for 2d on-screen elements,
   //! which is normally 0.5. Can be clamped when FOVy exceeds FOV2d.
-  Standard_Real NDC2dOffsetY() const { return myFOV2d >= myFOVy ? 0.5 : 0.5 * myFOV2d / myFOVy; }
+  Standard_Real NDC2dOffsetY() const
+  {
+    return myFOV2d >= myFOVy ? Standard_Real(0.5) : Standard_Real(0.5 * myFOV2d / myFOVy);
+  }
 
   //! Calculate WCS frustum planes for the camera projection volume.
   //! Frustum is a convex volume determined by six planes directing

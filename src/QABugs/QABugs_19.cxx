@@ -5002,11 +5002,11 @@ static Standard_Integer OCC26746(Draw_Interpretor& theDI,
               << "): OK (Delta = " << getPrimal(aDelta) << ").\n";
       }
 
-      aVpar = (aVind == aNbPntsMax) ? 2.0 * M_PI : aVpar + aStep;
+      aVpar = (aVind == aNbPntsMax) ? Standard_Real(2.0 * M_PI) : Standard_Real(aVpar + aStep);
     }
 
     aVpar = 0.0;
-    aUpar = (aUind == aNbPntsMax) ? 2.0 * M_PI : aUpar + aStep;
+    aUpar = (aUind == aNbPntsMax) ? Standard_Real(2.0 * M_PI) : Standard_Real(aUpar + aStep);
   }
 
   return 0;

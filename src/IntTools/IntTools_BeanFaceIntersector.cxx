@@ -1192,7 +1192,8 @@ void IntTools_BeanFaceIntersector::ComputeRangeFromStartPoint(
   Standard_Real tenOfMinDelta = aMinDelta * 10.;
   Standard_Real aDelta        = myCurveResolution;
 
-  Standard_Real aCurPar = (ToIncreaseParameter) ? (theParameter + aDelta) : (theParameter - aDelta);
+  Standard_Real  aCurPar       = (ToIncreaseParameter) ? Standard_Real(theParameter + aDelta)
+                                                       : Standard_Real(theParameter - aDelta);
   Standard_Real aPrevPar       = theParameter;
   IntTools_Range aCurrentRange = myRangeManager.Range(aValidIndex);
 
@@ -1255,7 +1256,8 @@ void IntTools_BeanFaceIntersector::ComputeRangeFromStartPoint(
     aDelta = (pointfound) ? (aDelta * 2.) : (aDelta * 0.5);
     aDelta = (aDelta < aDeltaRestrictor) ? aDelta : aDeltaRestrictor;
 
-    aCurPar = (ToIncreaseParameter) ? (aPrevPar + aDelta) : (aPrevPar - aDelta);
+    aCurPar =
+      (ToIncreaseParameter) ? Standard_Real(aPrevPar + aDelta) : Standard_Real(aPrevPar - aDelta);
 
     // prevent infinite loop when (aPrevPar +/- aDelta) == aPrevPar == 0.
     //

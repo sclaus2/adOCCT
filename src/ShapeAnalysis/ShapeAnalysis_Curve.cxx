@@ -70,7 +70,9 @@ static void ProjectOnSegments(const Adaptor3d_Curve& AC,
   //  Quel est le plus proche. Et quel est le nouvel intervalle
   //  (il ne peut pas deborder l ancien)
   Standard_Real u, dist2,
-    delta = (nbseg == 0) ? 0 : (uMax - uMin) / nbseg; // szv#4:S4163:12Mar99 anti-exception
+    delta                      = (nbseg == 0)
+                                   ? Standard_Real(0)
+                                   : Standard_Real((uMax - uMin) / nbseg); // szv#4:S4163:12Mar99 anti-exception
   Standard_Real    distmin2    = distmin * distmin;
   Standard_Boolean aHasChanged = Standard_False;
   for (Standard_Integer i = 0; i <= nbseg; i++)

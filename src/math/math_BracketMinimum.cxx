@@ -25,7 +25,7 @@
   #undef MAX
 #endif
 #define MAX(a, b) ((a) > (b) ? (a) : (b))
-#define SIGN(a, b) ((b) > 0.0 ? fabs(a) : -fabs(a))
+#define SIGN(a, b) ((b) > 0.0 ? Standard_Real(fabs(a)) : Standard_Real(-fabs(a)))
 #define SHFT(a, b, c, d)                                                                           \
   (a) = (b);                                                                                       \
   (b) = (c);                                                                                       \
@@ -100,7 +100,9 @@ void math_BracketMinimum::Perform(math_Function& F)
   {
     r    = (Bx - Ax) * (FBx - FCx);
     q    = (Bx - Cx) * (FBx - FAx);
-    u    = Bx - ((Bx - Cx) * q - (Bx - Ax) * r) / (2.0 * SIGN(MAX(fabs(q - r), TINY), q - r));
+    u    = Bx
+        - ((Bx - Cx) * q - (Bx - Ax) * r)
+            / (2.0 * SIGN(MAX(Standard_Real(fabs(q - r)), Standard_Real(TINY)), q - r));
     ulim = Bx + GLIMIT * (Cx - Bx);
     if (myIsLimited)
       ulim = Limited(ulim);

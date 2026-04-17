@@ -33,7 +33,8 @@ struct OpenGl_Vec3Vec4ub
 //! Auxiliary function formatting rendering time in " 10 ms (100 FPS)" format.
 static TCollection_AsciiString formatTimeMs(Standard_Real theSeconds)
 {
-  const Standard_Real aFpsVal = theSeconds != 0.0 ? 1.0 / theSeconds : 0.0;
+  const Standard_Real aFpsVal =
+    theSeconds != 0.0 ? Standard_Real(1.0 / theSeconds) : Standard_Real(0.0);
   char                aFps[50];
   Sprintf(aFps, "%.1f", getPrimal(aFpsVal));
   return TCollection_AsciiString() + Standard_Integer(getPrimal(theSeconds) * 1000.0) + " ms ("
@@ -262,10 +263,11 @@ void OpenGl_FrameStatsPrs::updateChart(const Handle(OpenGl_Workspace)& theWorksp
       const Standard_Real aBinX1     = anOffset.x() + Standard_Real(aFrameIter) * aBinSize.x();
       const Standard_Real aBinX2     = aBinX1 + aBinSize.x();
       const Standard_Real aCurrSizeY = Min(aTimeElapsed / aMaxDuration, 1.2) * aBinSize.y();
-      const Standard_Real aBinY1 =
-        isTopDown ? (anOffset.y() - aCurrY) : (anOffset.y() - aBinSize.y() + aCurrY);
-      const Standard_Real aBinY2 =
-        isTopDown ? (anOffset.y() - aCurrSizeY) : (anOffset.y() - aBinSize.y() + aCurrSizeY);
+      const Standard_Real aBinY1 = isTopDown ? Standard_Real(anOffset.y() - aCurrY)
+                                                 : Standard_Real(anOffset.y() - aBinSize.y() + aCurrY);
+      const Standard_Real aBinY2 = isTopDown
+                                         ? Standard_Real(anOffset.y() - aCurrSizeY)
+                                         : Standard_Real(anOffset.y() - aBinSize.y() + aCurrSizeY);
       myChartArray->SetVertice(aVertLast + 0, gp_Pnt(aBinX1, aBinY2, 0.0));
       myChartArray->SetVertice(aVertLast + 1, gp_Pnt(aBinX1, aBinY1, 0.0));
       myChartArray->SetVertice(aVertLast + 2, gp_Pnt(aBinX2, aBinY1, 0.0));

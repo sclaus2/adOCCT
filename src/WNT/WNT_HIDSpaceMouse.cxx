@@ -268,8 +268,8 @@ Graphic3d_Vec3d WNT_HIDSpaceMouse::fromRawVec3(bool&                theIsIdle,
 
   for (int aCompIter = 0; aCompIter < 3; ++aCompIter)
   {
-    aVec[aCompIter] = aRaw16[aCompIter] > 0 ? aVec[aCompIter] * aVec[aCompIter]
-                                            : -aVec[aCompIter] * aVec[aCompIter];
+    aVec[aCompIter] = aRaw16[aCompIter] > 0 ? Standard_Real(aVec[aCompIter] * aVec[aCompIter])
+                                            : Standard_Real(-aVec[aCompIter] * aVec[aCompIter]);
   }
   return aVec / (double(myValueRange) * double(myValueRange));
 }

@@ -1005,7 +1005,8 @@ Standard_Boolean StdSelect_BRepSelectionTool::GetSensitiveForCylinder(
         (aRad1 != 0.0) ? aRad1 / Abs(Tan(aCone.SemiAngle()))
                        : aCone.Location().Distance(
                            aGeomPln->Location().Transformed(aLocSurf[aConIndex == 0 ? 1 : 0]));
-      const Standard_Real aRad2 = (aRad1 != 0.0) ? 0.0 : Tan(aCone.SemiAngle()) * aHeight;
+      const Standard_Real aRad2 =
+        (aRad1 != 0.0) ? Standard_Real(0.0) : Standard_Real(Tan(aCone.SemiAngle()) * aHeight);
       gp_Trsf             aTrsf;
       aTrsf.SetTransformation(aCone.Position(), gp::XOY());
       Handle(Select3D_SensitiveCylinder) aSensSCyl =
@@ -1076,12 +1077,11 @@ Standard_Boolean StdSelect_BRepSelectionTool::GetSensitiveForCylinder(
             .Distance(aGeomPlanes[1]->Location().Transformed(*aGeomPlanesLoc[1]));
         gp_Trsf aTrsf;
         aTrsf.SetTransformation(aCone.Position(), gp::XOY());
-        const Standard_Real aTriangleHeight = (aCone.SemiAngle() > 0.0)
-                                                ? aRad1 / Tan(aCone.SemiAngle())
-                                                : aRad1 / Tan(Abs(aCone.SemiAngle())) - aHeight;
+        const Standard_Real aTriangleHeight = (aCone.SemiAngle() > 0.0) ? Standard_Real(aRad1 / Tan(aCone.SemiAngle()))
+                                    : Standard_Real(aRad1 / Tan(Abs(aCone.SemiAngle())) - aHeight);
         const Standard_Real aRad2           = (aCone.SemiAngle() > 0.0)
-                                                ? aRad1 * (aTriangleHeight + aHeight) / aTriangleHeight
-                                                : aRad1 * aTriangleHeight / (aTriangleHeight + aHeight);
+            ? Standard_Real(aRad1 * (aTriangleHeight + aHeight) / aTriangleHeight)
+            : Standard_Real(aRad1 * aTriangleHeight / (aTriangleHeight + aHeight));
 
         Handle(Select3D_SensitiveCylinder) aSensSCyl =
           new Select3D_SensitiveCylinder(theOwner, aRad1, aRad2, aHeight, aTrsf);

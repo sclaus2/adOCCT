@@ -172,7 +172,7 @@ void DrawTrSurf_Curve::DrawOn(Draw_Display& dis) const
             curv->D0(t, P1);
             dis.MoveTo(P1);
             LRad  = 1. / Curvature;
-            ratio = ((LRad > radiusmax) ? radiusmax / LRad : 1);
+            ratio = ((LRad > radiusmax) ? Standard_Real(radiusmax / LRad) : Standard_Real(1));
             ratio *= radiusratio;
             LProp.CentreOfCurvature(P2);
             gp_Vec V(P1, P2);

@@ -2564,8 +2564,8 @@ void IntPatch_ImpImpIntersection::Perform(const Handle(Adaptor3d_Surface)&   S1,
       VMin                                   = aSCyl->FirstVParameter();
       VMax                                   = aSCyl->LastVParameter();
       H = (Precision::IsNegativeInfinite(VMin) || Precision::IsPositiveInfinite(VMax))
-            ? 0
-            : (VMax - VMin);
+            ? Standard_Real(0)
+            : Standard_Real(VMax - VMin);
       //
       if (!IntPCy(quad1, quad2, Tolang, TolTang, bReverse, empt, slin, H))
       {
@@ -6378,17 +6378,17 @@ static void CriticalPointsComputing(const ComputationMethods::stCoeffsValue& the
   // In accorance with pure mathematic, theU1crit[6] and [8]
   // must be -Precision::Infinite() instead of used +Precision::Infinite()
   theU1crit[6] = Abs((aSl - theCoeffs.mC) / theCoeffs.mB) < 1.0
-                   ? -acos((aSl - theCoeffs.mC) / theCoeffs.mB) + theCoeffs.mFI1
-                   : Precision::Infinite();
+                   ? Standard_Real(-acos((aSl - theCoeffs.mC) / theCoeffs.mB) + theCoeffs.mFI1)
+                   : Standard_Real(Precision::Infinite());
   theU1crit[7] = Abs((aSf - theCoeffs.mC) / theCoeffs.mB) < 1.0
-                   ? -acos((aSf - theCoeffs.mC) / theCoeffs.mB) + theCoeffs.mFI1
-                   : Precision::Infinite();
+                   ? Standard_Real(-acos((aSf - theCoeffs.mC) / theCoeffs.mB) + theCoeffs.mFI1)
+                   : Standard_Real(Precision::Infinite());
   theU1crit[8] = Abs((aSf - theCoeffs.mC) / theCoeffs.mB) < 1.0
-                   ? acos((aSf - theCoeffs.mC) / theCoeffs.mB) + theCoeffs.mFI1
-                   : Precision::Infinite();
+                   ? Standard_Real(acos((aSf - theCoeffs.mC) / theCoeffs.mB) + theCoeffs.mFI1)
+                   : Standard_Real(Precision::Infinite());
   theU1crit[9] = Abs((aSl - theCoeffs.mC) / theCoeffs.mB) < 1.0
-                   ? acos((aSl - theCoeffs.mC) / theCoeffs.mB) + theCoeffs.mFI1
-                   : Precision::Infinite();
+                   ? Standard_Real(acos((aSl - theCoeffs.mC) / theCoeffs.mB) + theCoeffs.mFI1)
+                   : Standard_Real(Precision::Infinite());
 
   theU1crit[10] = theCoeffs.mFI1;
   theU1crit[11] = M_PI + theCoeffs.mFI1;
@@ -6631,8 +6631,8 @@ static IntPatch_ImpImpIntersection::IntStatus CyCyNoGeometric(
   const Standard_Integer aNbPoints = Min(Max(aNbMinPoints, aNbPts), aNbMaxPoints);
   const Standard_Real    aStepMin  = Max(aTol2D, Precision::PConfusion()),
                       aStepMax     = (aUSurf1l - aUSurf1f > M_PI / 100.0)
-                                       ? (aUSurf1l - aUSurf1f) / IntToReal(aNbPoints)
-                                       : aUSurf1l - aUSurf1f;
+                                       ? Standard_Real((aUSurf1l - aUSurf1f) / IntToReal(aNbPoints))
+                                       : Standard_Real(aUSurf1l - aUSurf1f);
 
   // The main idea of the algorithm is to change U1-parameter
   //(U-parameter of theCyl1) from aU1f to aU1l with some step

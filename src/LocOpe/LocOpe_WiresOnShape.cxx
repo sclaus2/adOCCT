@@ -474,7 +474,8 @@ Standard_Boolean Project(const TopoDS_Vertex& V,
                          Standard_Real&       param)
 {
   Standard_Real aTolV = BRep_Tool::Tolerance(V);
-  Standard_Real dmin  = (theEdge.IsNull() ? RealLast() : aTolV * aTolV);
+  Standard_Real dmin =
+    (theEdge.IsNull() ? Standard_Real(RealLast()) : Standard_Real(aTolV * aTolV));
 
   Standard_Boolean valret = Standard_False;
 

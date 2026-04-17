@@ -1280,7 +1280,7 @@ Standard_Real PrsDim::DistanceFromApex(const gp_Elips&     elips,
     if (parApex == 0.0) // pos Apex
       dist = (par < M_PI) ? par : Standard_Real(2 * M_PI - par);
     else // neg Apex
-      dist = (par < M_PI) ? (M_PI - par) : (par - M_PI);
+      dist = (par < M_PI) ? Standard_Real(M_PI - par) : Standard_Real(par - M_PI);
   }
   else
   {                          // Minor case

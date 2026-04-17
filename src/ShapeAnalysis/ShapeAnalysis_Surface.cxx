@@ -1402,8 +1402,8 @@ gp_Pnt2d ShapeAnalysis_Surface::ValueOfUV(const gp_Pnt& P3D, const Standard_Real
       std::cout << std::endl;
 #endif
       (void)anException;
-      S = (Precision::IsInfinite(uf)) ? 0 : (uf + ul) / 2.;
-      T = (Precision::IsInfinite(vf)) ? 0 : (vf + vl) / 2.;
+      S = (Precision::IsInfinite(uf)) ? Standard_Real(0) : Standard_Real((uf + ul) / 2.);
+      T = (Precision::IsInfinite(vf)) ? Standard_Real(0) : Standard_Real((vf + vl) / 2.);
     }
   } //: c9
     // szv#4:S4163:12Mar99 waste raise

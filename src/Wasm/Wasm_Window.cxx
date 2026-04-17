@@ -101,8 +101,8 @@ Standard_Real Wasm_Window::Ratio() const
   }
 
   return (aCanvasSize.x() != 0 && aCanvasSize.y() != 0)
-           ? Standard_Real(aCanvasSize.x()) / Standard_Real(aCanvasSize.y())
-           : 1.0;
+           ? Standard_Real(Standard_Real(aCanvasSize.x()) / Standard_Real(aCanvasSize.y()))
+           : Standard_Real(1.0);
 }
 
 //=================================================================================================

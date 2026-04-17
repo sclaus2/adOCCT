@@ -234,7 +234,7 @@ static Standard_Boolean FUN_MkTonE(const gp_Vec& faxis,
       outin = (dot < 0);
   } //! isONi
 
-  Standard_Real Cang = (ang > M_PI) ? ang - M_PI : ang + M_PI;
+  Standard_Real Cang = (ang > M_PI) ? Standard_Real(ang - M_PI) : Standard_Real(ang + M_PI);
   par1               = outin ? ang : Cang;
   par2               = outin ? Cang : ang;
   return Standard_True;

@@ -520,7 +520,7 @@ void BndLib::Add(const gp_Circ&      C,
   {
     txmin = M_PI / 2.;
   }
-  txmax = txmin <= M_PI ? txmin + M_PI : txmin - M_PI;
+  txmax = txmin <= M_PI ? Standard_Real(txmin + M_PI) : Standard_Real(txmin - M_PI);
   xmin  = R * Cos(txmin) * Xd.X() + R * Sin(txmin) * Yd.X() + O.X();
   xmax  = R * Cos(txmax) * Xd.X() + R * Sin(txmax) * Yd.X() + O.X();
   if (xmin > xmax)
@@ -543,7 +543,7 @@ void BndLib::Add(const gp_Circ&      C,
   {
     tymin = M_PI / 2.;
   }
-  tymax = tymin <= M_PI ? tymin + M_PI : tymin - M_PI;
+  tymax = tymin <= M_PI ? Standard_Real(tymin + M_PI) : Standard_Real(tymin - M_PI);
   ymin  = R * Cos(tymin) * Xd.Y() + R * Sin(tymin) * Yd.Y() + O.Y();
   ymax  = R * Cos(tymax) * Xd.Y() + R * Sin(tymax) * Yd.Y() + O.Y();
   if (ymin > ymax)
@@ -566,7 +566,7 @@ void BndLib::Add(const gp_Circ&      C,
   {
     tzmin = M_PI / 2.;
   }
-  tzmax = tzmin <= M_PI ? tzmin + M_PI : tzmin - M_PI;
+  tzmax = tzmin <= M_PI ? Standard_Real(tzmin + M_PI) : Standard_Real(tzmin - M_PI);
   zmin  = R * Cos(tzmin) * Xd.Z() + R * Sin(tzmin) * Yd.Z() + O.Z();
   zmax  = R * Cos(tzmax) * Xd.Z() + R * Sin(tzmax) * Yd.Z() + O.Z();
   if (zmin > zmax)
@@ -713,7 +713,7 @@ void BndLib::Add(const gp_Elips&     C,
   {
     txmin = M_PI / 2.;
   }
-  txmax = txmin <= M_PI ? txmin + M_PI : txmin - M_PI;
+  txmax = txmin <= M_PI ? Standard_Real(txmin + M_PI) : Standard_Real(txmin - M_PI);
   xmin  = MajR * Cos(txmin) * Xd.X() + MinR * Sin(txmin) * Yd.X() + O.X();
   xmax  = MajR * Cos(txmax) * Xd.X() + MinR * Sin(txmax) * Yd.X() + O.X();
   if (xmin > xmax)
@@ -736,7 +736,7 @@ void BndLib::Add(const gp_Elips&     C,
   {
     tymin = M_PI / 2.;
   }
-  tymax = tymin <= M_PI ? tymin + M_PI : tymin - M_PI;
+  tymax = tymin <= M_PI ? Standard_Real(tymin + M_PI) : Standard_Real(tymin - M_PI);
   ymin  = MajR * Cos(tymin) * Xd.Y() + MinR * Sin(tymin) * Yd.Y() + O.Y();
   ymax  = MajR * Cos(tymax) * Xd.Y() + MinR * Sin(tymax) * Yd.Y() + O.Y();
   if (ymin > ymax)
@@ -759,7 +759,7 @@ void BndLib::Add(const gp_Elips&     C,
   {
     tzmin = M_PI / 2.;
   }
-  tzmax = tzmin <= M_PI ? tzmin + M_PI : tzmin - M_PI;
+  tzmax = tzmin <= M_PI ? Standard_Real(tzmin + M_PI) : Standard_Real(tzmin - M_PI);
   zmin  = MajR * Cos(tzmin) * Xd.Z() + MinR * Sin(tzmin) * Yd.Z() + O.Z();
   zmax  = MajR * Cos(tzmax) * Xd.Z() + MinR * Sin(tzmax) * Yd.Z() + O.Z();
   if (zmin > zmax)

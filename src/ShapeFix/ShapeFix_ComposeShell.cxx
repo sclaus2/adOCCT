@@ -448,7 +448,8 @@ static Standard_Integer GetPatchIndex(const Standard_Real                  Param
   i--;
 
   Standard_Real    ish    = shift / period;
-  Standard_Integer ishift = (Standard_Integer)getPrimal(ish < 0 ? ish - 0.5 : ish + 0.5);
+  Standard_Integer ishift =
+    (Standard_Integer)getPrimal(ish < 0 ? Standard_Real(ish - 0.5) : Standard_Real(ish + 0.5));
   return i - ishift * (NP - 1);
 }
 

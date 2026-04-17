@@ -250,7 +250,8 @@ Standard_Boolean AIS_Animation::Update(const Standard_Real thePts)
   AIS_AnimationProgress aPosition;
   aPosition.Pts             = thePts;
   aPosition.LocalPts        = thePts - myPtsStart;
-  aPosition.LocalNormalized = HasOwnDuration() ? (aPosition.LocalPts / myOwnDuration) : 0.0;
+  aPosition.LocalNormalized =
+    HasOwnDuration() ? Standard_Real(aPosition.LocalPts / myOwnDuration) : Standard_Real(0.0);
   aPosition.LocalNormalized = Max(0.0, aPosition.LocalNormalized);
   aPosition.LocalNormalized = Min(1.0, aPosition.LocalNormalized);
   updateWithChildren(aPosition);
@@ -272,8 +273,9 @@ void AIS_Animation::updateWithChildren(const AIS_AnimationProgress& thePosition)
     const Handle(AIS_Animation)& anAnim    = anIter.Value();
     AIS_AnimationProgress        aPosition = thePosition;
     aPosition.LocalPts                     = aPosition.LocalPts - anAnim->StartPts();
-    aPosition.LocalNormalized =
-      anAnim->HasOwnDuration() ? (aPosition.LocalPts / anAnim->OwnDuration()) : 0.0;
+    aPosition.LocalNormalized              = anAnim->HasOwnDuration()
+                                               ? Standard_Real(aPosition.LocalPts / anAnim->OwnDuration())
+                                               : Standard_Real(0.0);
     aPosition.LocalNormalized = Max(0.0, aPosition.LocalNormalized);
     aPosition.LocalNormalized = Min(1.0, aPosition.LocalNormalized);
     anAnim->updateWithChildren(aPosition);

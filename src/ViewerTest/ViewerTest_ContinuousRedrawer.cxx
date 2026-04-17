@@ -113,7 +113,8 @@ void ViewerTest_ContinuousRedrawer::doThreadLoop()
   OSD_Timer                        aTimer;
   aTimer.Start();
   Standard_Real       aTimeOld   = 0.0;
-  const Standard_Real aTargetDur = myTargetFps > 0.0 ? 1.0 / myTargetFps : -1.0;
+  const Standard_Real aTargetDur =
+    myTargetFps > 0.0 ? Standard_Real(1.0 / myTargetFps) : Standard_Real(-1.0);
   for (;;)
   {
     bool toPause = false;
