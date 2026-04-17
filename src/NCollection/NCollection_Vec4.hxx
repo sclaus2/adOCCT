@@ -76,7 +76,24 @@ public:
   //! whose elements are static_cast'ed corresponding elements of theOtherVec4 vector)
   //! @tparam OtherElement_t the element type of the other 4-component vector theOtherVec4
   //! @param theOtherVec4 the 4-component vector that needs to be converted
-  template <typename OtherElement_t>
+  // AD: allow cast from AD-type to floating point type
+  template <typename OtherElement_t,
+            typename std::enable_if<std::is_floating_point<Element_t>::value
+                                      && std::is_same<OtherElement_t, Standard_Real>::value,
+                                    int>::type = 0>
+  explicit NCollection_Vec4(const NCollection_Vec4<OtherElement_t>& theOtherVec4)
+  {
+    v[0] = static_cast<Element_t>(getPrimal(theOtherVec4[0]));
+    v[1] = static_cast<Element_t>(getPrimal(theOtherVec4[1]));
+    v[2] = static_cast<Element_t>(getPrimal(theOtherVec4[2]));
+    v[3] = static_cast<Element_t>(getPrimal(theOtherVec4[3]));
+  }
+
+  // AD: other cases
+  template <typename OtherElement_t,
+            typename std::enable_if<!(std::is_floating_point<Element_t>::value
+                                      && std::is_same<OtherElement_t, Standard_Real>::value),
+                                    int>::type = 0>
   explicit NCollection_Vec4(const NCollection_Vec4<OtherElement_t>& theOtherVec4)
   {
     v[0] = static_cast<Element_t>(theOtherVec4[0]);
