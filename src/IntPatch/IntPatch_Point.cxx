@@ -193,13 +193,13 @@ void IntPatch_Point::Dump() const
          (double)getPrimal(v2),
          (double)getPrimal(para));
   if (onS1)
-    printf("*OnS1*  par=%+10.20f arc1=%10p", (double)prm1, (void*)arcS1.operator->());
+    printf("*OnS1*  par=%+10.20f arc1=%10p", (double)getPrimal(prm1), (void*)arcS1.operator->());
   if (vtxonS1)
     printf(" *Vtx1*  vtx1=%10p", (void*)vS1.operator->());
   if (onS1 || vtxonS1)
     printf("\n");
   if (onS2)
-    printf("*OnS2*  par=%+10.20f arc2=%10p", (double)prm2, (void*)arcS2.operator->());
+    printf("*OnS2*  par=%+10.20f arc2=%10p", (double)getPrimal(prm2), (void*)arcS2.operator->());
   if (vtxonS2)
     printf(" *Vtx2*  vtx2=%10p", (void*)vS2.operator->());
 
