@@ -1,20 +1,16 @@
 # adOCCT: Algorithmic Differentiation of the Open CASCADE Technology modeling kernel
 
-[Open CASCADE Technology (OCCT)](https://github.com/Open-Cascade-SAS/OCCT) is a software development platform providing
-services for 3D surface and solid modeling, CAD data exchange, and visualization. Most of OCCT functionality is
-available in the form of C++ libraries. OCCT is ideal for developing software dealing with 3D modeling (CAD),
-manufacturing/measuring (CAM), or numerical simulation (CAE).
-
-Here, Algorithmic Differentiation (AD) is applied to OCCT in order to enable the computation of the
-so-called geometric sensitivities (e.g., derivatives of surface nodes with respect to its design parameters
-such as control points).
+Algorithmic Differentiation (AD) is applied
+to [Open CASCADE Technology (OCCT)](https://github.com/Open-Cascade-SAS/OCCT)
+in order to enable the computation of the so-called geometric sensitivities (e.g., derivatives of
+surface nodes with respect to its design parameters such as control points).
 The differentiated OCCT variant, named *adOCCT*, is developed by integrating the AD tool
 [ADOL-C](https://github.com/coin-or/adol-c) (*Automatic Differentiation by Overloading in C++*)
 into its source-code.
 
 ## License
 
-adOCCT is a fork of OCCT, and it is a free software; you can redistribute it and/or modify it under the terms of the GNU
+adOCCT is free software; you can redistribute it and/or modify it under the terms of the GNU
 Lesser General Public License version 2.1 as published by the Free Software Foundation, with a special exception defined
 in the file `OCCT_LGPL_EXCEPTION.txt`. Consult the file `LICENSE_LGPL_21.txt` included in the adOCCT distribution for
 the complete text of the license.
@@ -42,7 +38,6 @@ make && make install
 ```
 
 where `ADOLC_PREFIX` is the destination where header and library files are going to be installed.
-Alternatively, one can use a package manager like [Spack](https://github.com/spack/spack) to install ADOL-C.
 
 Next, one can proceed with building adOCCT as follows:
 
