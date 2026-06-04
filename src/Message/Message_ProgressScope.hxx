@@ -539,7 +539,8 @@ inline Message_ProgressRange Message_ProgressScope::Next(Standard_Real theStep)
   if (myIsActive && theStep > 0.)
   {
     Standard_Real aCurr  = localToGlobal(myValue);
-    Standard_Real aNext  = localToGlobal(myValue += theStep);
+    myValue += theStep;
+    Standard_Real aNext  = localToGlobal(myValue);
     Standard_Real aDelta = aNext - aCurr;
     if (aDelta > 0.)
     {

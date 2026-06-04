@@ -435,7 +435,7 @@ void DBRep_IsoBuilder::FillGaps(const TopoDS_Face& theFace, DataMapOfEdgePCurve&
     Standard_Real bStop      = Standard_False;
 
     // Iterate on all other edges
-    while (!bStop)
+    while (!getPrimal(bStop))
     {
       // Iteration to the next edge
       aPrevEdge = aCurrEdge;

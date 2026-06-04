@@ -1130,7 +1130,7 @@ static Standard_Integer meshdeform(Draw_Interpretor& theDI,
     aMesh->GetDataSource()->GetGeom(anIter.Key(), Standard_False, aCoords, aNbNodes, aEntType);
 
     gp_Vec aNorm = gp_Vec(aCoords.Value(1), aCoords.Value(2), aCoords.Value(3));
-    if (!aNorm.Magnitude())
+    if (!getPrimal(aNorm.Magnitude()))
       aNorm = gp_Vec(0, 0, 1);
     aDefDS->SetVector(anIter.Key(), aNorm.Normalized());
   }

@@ -1560,9 +1560,15 @@ Standard_Boolean ShapeConstruct_ProjectCurveOnSurface::ApproxPCurve(const Standa
             {
               Standard_Real CurX = pnt2d(j).X();
               while (CurX < PrevX - dU)
-                pnt2d(j).SetX(CurX += Up);
+              {
+                CurX += Up;
+                pnt2d(j).SetX(CurX);
+              }
               while (CurX > PrevX + dU)
-                pnt2d(j).SetX(CurX -= Up);
+              {
+                CurX -= Up;
+                pnt2d(j).SetX(CurX);
+              }
             }
           }
           else if (OnBound)
@@ -1572,9 +1578,15 @@ Standard_Boolean ShapeConstruct_ProjectCurveOnSurface::ApproxPCurve(const Standa
             {
               Standard_Real CurX = pnt2d(j).X();
               while (CurX < PrevX - dU)
-                pnt2d(j).SetX(CurX += Up);
+              {
+                CurX += Up;
+                pnt2d(j).SetX(CurX);
+              }
               while (CurX > PrevX + dU)
-                pnt2d(j).SetX(CurX -= Up);
+              {
+                CurX -= Up;
+                pnt2d(j).SetX(CurX);
+              }
             }
           }
           myStatus |= ShapeExtend::EncodeStatus(ShapeExtend_DONE4);
@@ -1616,9 +1628,15 @@ Standard_Boolean ShapeConstruct_ProjectCurveOnSurface::ApproxPCurve(const Standa
             {
               Standard_Real CurY = pnt2d(j).Y();
               while (CurY < PrevY - dV)
-                pnt2d(j).SetY(CurY += Vp);
+              {
+                CurY += Vp;
+                pnt2d(j).SetY(CurY);
+              }
               while (CurY > PrevY + dV)
-                pnt2d(j).SetY(CurY -= Vp);
+              {
+                CurY -= Vp;
+                pnt2d(j).SetY(CurY);
+              }
             }
           }
           else if (OnBound)
@@ -1628,9 +1646,15 @@ Standard_Boolean ShapeConstruct_ProjectCurveOnSurface::ApproxPCurve(const Standa
             {
               Standard_Real CurY = pnt2d(j).Y();
               while (CurY < PrevY - dV)
-                pnt2d(j).SetY(CurY += Vp);
+              {
+                CurY += Vp;
+                pnt2d(j).SetY(CurY);
+              }
               while (CurY > PrevY + dV)
-                pnt2d(j).SetY(CurY -= Vp);
+              {
+                CurY -= Vp;
+                pnt2d(j).SetY(CurY);
+              }
             }
           }
           myStatus |= ShapeExtend::EncodeStatus(ShapeExtend_DONE4);
