@@ -39,7 +39,7 @@ make && make install
 
 where `ADOLC_PREFIX` is the destination where header and library files are going to be installed.
 
-Next, one can proceed with building adOCCT as follows:
+Next, one can proceed with configuring and building adOCCT as follows:
 
 1. Checkout `ad/master` branch (should be done by default).
 2. Configure adOCCT using CMake by setting the following variable: `USE_ADOLC=ON`.
@@ -48,16 +48,18 @@ Next, one can proceed with building adOCCT as follows:
    to common search paths, one has to manually set a variable `3RDPARTY_ADOLC_DIR` to the path where
    ADOL-C installation resides (i.e., `ADOLC_PREFIX` described previously).
    From that, the variables for the ADOL-C include and library directory are automatically derived.
-3. To activate the reverse mode of AD, set `ADOLC_REVERSE_MODE=ON`. This will build adOCCT using the
+3. To activate the reverse mode of AD, set the variable `ADOLC_REVERSE_MODE=ON`. This will build adOCCT using the
    *trace-based* headers of ADOL-C, otherwise the *traceless* header of ADOL-C is employed which allows only
    the forward mode of AD.
 4. Optionally, if ADOL-C has been built with Boost, one can provide the used Boost installation directory
    using the variable `3RDPARTY_BOOST_DIR`. This option makes the *traceless* feature of ADOL-C more performant
    as Boost is used to handle the memory management of *adouble* objects.
 5. Optionally, one can build AD-tests by setting `BUILD_AD_TESTS=ON`.
-6. Optionally, add `-Wno-ignored-qualifiers -Wno-deprecated-copy` to `CMAKE_CXX_FLAGS` in order to
-   suppress warnings related to the ADOL-C *traceless* option.
-7. Once the configuring is done, proceed with `make && make install`.
+6. Once the configuring is done, proceed with `make && make install`.
+
+Note: `-Wextra` has been removed from `CMAKE_CXX_FLAGS` in the file [
+`adm/cmake/occt_defs_flags.cmake`](adm/cmake/occt_defs_flags.cmake)
+to discard warnings regarding ADOL-C.
 
 ## Version
 
