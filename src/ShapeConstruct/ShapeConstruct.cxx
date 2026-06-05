@@ -249,7 +249,11 @@ Handle(Geom_BSplineSurface) ShapeConstruct::ConvertSurfaceToBSpline(
   {
     try
     {
-      OCC_CATCH_SIGNALS
+      /*
+       * AD version: remove OCC_CATCH_SIGNALS as it does not work correctly when segmentation fault
+       * exceptions are raised within AdvApp2Var package (that package does not work with ADOL-C)
+       */
+      // OCC_CATCH_SIGNALS
       GeomAbs_Shape aCont = (GeomAbs_Shape)cnt;
       GeomConvert_ApproxSurface
         anApprox(aSurface, Tol3d / 2, aCont, aCont, MaxDegree, MaxDegree, MaxSegments, 0);
