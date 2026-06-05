@@ -54,9 +54,84 @@ Handle(Geom_BSplineCurve) bspline_curve(const std::vector<Standard_Real>& design
 }
 
 // The fixture – gives us GetParam() returning an int
-class Test_Geom_BSplineCurve_ByParameterId : public ::testing::TestWithParam<int> {};
+class TestGeomBSplineCurveByParameterId : public ::testing::TestWithParam<int>
+{
+};
 
-TEST_P(Test_Geom_BSplineCurve_ByParameterId, sensitivity_wrt_pole_coordinate_xyz)
+#ifdef ADOLC_REVERSE_MODE
+
+  #include <adolc/adouble.h>
+  #include <adolc/drivers/drivers.h>
+  #include <adolc/taping.h>
+  #include <adolc/adalloc.h>
+
+TEST_P(TestGeomBSplineCurveByParameterId, ReverseSensitivityWrtPoleCoordinateXYZ)
+{
+  // independent variable index (x, y or z)
+  int independent_idx = GetParam();
+
+  const int number_of_independents = 1;
+  const int number_of_dependents   = 3;
+
+  ASSERT_TRUE(independent_idx >= 0 && independent_idx <= 2);
+
+  std::vector<Standard_Real> design_parameters = {0.0, 1.0, 2.0};
+
+  double temp_output;
+  // tracing part
+  trace_on(1);
+  // activate independent variable
+  design_parameters[independent_idx] <<= design_parameters[independent_idx].getValue();
+
+  Handle(Geom_BSplineCurve) ad_curve = bspline_curve(design_parameters);
+
+  gp_Pnt pnt_primal;
+
+  ad_curve->D0(Standard_Real(0.5), pnt_primal);
+
+  // set dependent variable
+  pnt_primal.X() >>= temp_output;
+  pnt_primal.Y() >>= temp_output;
+  pnt_primal.Z() >>= temp_output;
+  // stop tracing
+  trace_off();
+
+  // evaluate trace
+  // init arrays for adol-c driver
+  double* x  = myalloc1(number_of_independents);
+  x[0]       = design_parameters[independent_idx].getValue();
+  double** J = myalloc2(number_of_dependents, number_of_independents);
+
+  jacobian(1, number_of_dependents, number_of_independents, x, J);
+
+  // finite differences
+  double fd_step = 1e-6;
+
+  double design_parameter_original_value = design_parameters[independent_idx].getValue();
+
+  design_parameters[independent_idx] += fd_step;
+
+  Handle(Geom_BSplineCurve) perturbed_curve = bspline_curve(design_parameters);
+
+  gp_Pnt pnt_perturbed;
+
+  perturbed_curve->D0(Standard_Real(0.5), pnt_perturbed);
+
+  double fd_sensitivity_x = (pnt_perturbed.X().getValue() - pnt_primal.X().getValue()) / fd_step;
+  double fd_sensitivity_y = (pnt_perturbed.Y().getValue() - pnt_primal.Y().getValue()) / fd_step;
+  double fd_sensitivity_z = (pnt_perturbed.Z().getValue() - pnt_primal.Z().getValue()) / fd_step;
+
+  design_parameters[independent_idx] = design_parameter_original_value;
+
+  EXPECT_NEAR(J[0][0], fd_sensitivity_x, 1e-5);
+  EXPECT_NEAR(J[1][0], fd_sensitivity_y, 1e-5);
+  EXPECT_NEAR(J[2][0], fd_sensitivity_z, 1e-5);
+
+  myfree1(x);
+  myfree2(J);
+}
+#else
+TEST_P(TestGeomBSplineCurveByParameterId, SensitivityWrtPoleCoordinateXYZ)
 {
   // independent variable index (x, y or z)
   int independent_idx = GetParam();
@@ -114,8 +189,8 @@ TEST_P(Test_Geom_BSplineCurve_ByParameterId, sensitivity_wrt_pole_coordinate_xyz
   EXPECT_NEAR(pnt_primal.Y().getADValue(0), fd_sensitivity_y, 1e-5);
   EXPECT_NEAR(pnt_primal.Z().getADValue(0), fd_sensitivity_z, 1e-5);
 }
+#endif
 
-INSTANTIATE_TEST_SUITE_P(
-    Test_Geom_BSplineCurve_ByParameterRange,                     // prefix for names
-    Test_Geom_BSplineCurve_ByParameterId,                        // fixture class
+INSTANTIATE_TEST_SUITE_P(TestGeomBSplineCurveByParameterRange, // prefix for names
+                         TestGeomBSplineCurveByParameterId,    // fixture class
     ::testing::Values(0, 1, 2)); // ids to test

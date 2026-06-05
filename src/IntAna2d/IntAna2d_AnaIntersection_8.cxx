@@ -74,7 +74,7 @@ void IntAna2d_AnaIntersection::Perform(const gp_Hypr2d& H, const IntAna2d_Conic&
 
   MyDirectPolynomialRoots Sol(px4, px3, px2, px1, px0);
 
-  if (!Sol.IsDone())
+  if (!getPrimal(Sol.IsDone()))
   {
     //-- std::cout<<" Done = False ds IntAna2d_AnaIntersection_8.cxx "<<std::endl;
     done = Standard_False;

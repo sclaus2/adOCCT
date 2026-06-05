@@ -303,7 +303,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
   // U0 and V0 are the points within the initialized period.
   if (U0 < Uinf)
   {
-    if (!uperiod)
+    if (!getPrimal(uperiod))
       U0 = Uinf;
     else
     {
@@ -313,7 +313,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
   }
   if (U0 > Usup)
   {
-    if (!uperiod)
+    if (!getPrimal(uperiod))
       U0 = Usup;
     else
     {
@@ -323,7 +323,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
   }
   if (V0 < Vinf)
   {
-    if (!vperiod)
+    if (!getPrimal(vperiod))
       V0 = Vinf;
     else
     {
@@ -333,7 +333,7 @@ static gp_Pnt2d Function_Value(const Standard_Real theU, const aFuncStruct& theD
   }
   if (V0 > Vsup)
   {
-    if (!vperiod)
+    if (!getPrimal(vperiod))
       V0 = Vsup;
     else
     {

@@ -1156,7 +1156,7 @@ Standard_Boolean ShapeAnalysis_Curve::GetSamplePoints(const Handle(Geom_Curve)& 
                                                       TColgp_SequenceOfPnt&     seq)
 {
   Standard_Real adelta = curve->LastParameter() - curve->FirstParameter();
-  if (!adelta)
+  if (!getPrimal(adelta))
     return Standard_False;
 
   Standard_Integer aK  = (Standard_Integer)getPrimal(Ceiling((last - first) / adelta));

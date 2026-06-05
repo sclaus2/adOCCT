@@ -1097,7 +1097,7 @@ Standard_Boolean TopOpeBRepTool_CORRISO::TrslUV(const Standard_Boolean          
   {
     Standard_Real uper;
     Refclosed(1, uper);
-    if (!uper)
+    if (!getPrimal(uper))
       return Standard_False;
     tt2d = gp_Vec2d(uper, 0.);
   }
@@ -1105,7 +1105,7 @@ Standard_Boolean TopOpeBRepTool_CORRISO::TrslUV(const Standard_Boolean          
   {
     Standard_Real vper;
     Refclosed(2, vper);
-    if (!vper)
+    if (!getPrimal(vper))
       return Standard_False;
     tt2d = gp_Vec2d(0., vper);
   }

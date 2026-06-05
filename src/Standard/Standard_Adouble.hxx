@@ -1,19 +1,60 @@
 #ifndef _Standard_Adouble_HeaderFile
 #define _Standard_Adouble_HeaderFile
 
-#include <adolc/adtl.h>
+#ifdef ADOLC_REVERSE_MODE
+  // trace-based option
+  #include <adolc/adouble.h>
+#else
+  // traceless option
+  #include <adolc/adtl.h>
+#endif
 
 /*
  * A child class of adouble implemented only for the purposes of overloading the behavior of
- * ostream and istream operators. That is, only primal values should be considered, such that
- * OCCT input/output system is not corrupted with AD values.
+ * ostream and istream operators. That is, only primal values should be considered in
+ * these operators, such that OCCT input/output system is not corrupted with AD values.
  */
 
+#ifdef ADOLC_REVERSE_MODE
+class Standard_Adouble : public adouble
+#else
 class Standard_Adouble : public adtl::adouble
+#endif
 {
 public:
   Standard_Adouble() = default;
 
+#ifdef ADOLC_REVERSE_MODE
+  inline Standard_Adouble(const double v)
+      : adouble(v)
+  {
+  }
+
+  inline Standard_Adouble(const adouble& a)
+      : adouble(a)
+  {
+  }
+
+  inline Standard_Adouble(const adouble&& a)
+      : adouble(a)
+  {
+  }
+
+  inline Standard_Adouble(const adub& a)
+      : adouble(a)
+  {
+  }
+
+  inline Standard_Adouble(const adub&& a)
+      : adouble(a)
+  {
+  }
+
+  inline Standard_Adouble(const Standard_Adouble& a)
+      : adouble(static_cast<const adouble&>(a))
+  {
+  }
+#else
   inline Standard_Adouble(const double v)
       : adtl::adouble(v)
   {
@@ -38,6 +79,7 @@ public:
       : adtl::adouble(static_cast<const adtl::adouble&>(a))
   {
   }
+#endif
 
   ~Standard_Adouble() = default;
 
@@ -68,12 +110,21 @@ struct hash<Standard_Adouble>
   }
 };
 
-// std::hash for adtl::adouble
+#ifdef ADOLC_REVERSE_MODE
+// std::hash for trace-based adouble
+template <>
+struct hash<adouble>
+{
+  size_t operator()(const adouble& a) const noexcept { return hash<double>()(a.getValue()); }
+};
+#else
+// std::hash for traceless adouble
 template <>
 struct hash<adtl::adouble>
 {
   size_t operator()(const adtl::adouble& a) const noexcept { return hash<double>()(a.getValue()); }
 };
+#endif
 
 // std::numeric_limits
 template <>

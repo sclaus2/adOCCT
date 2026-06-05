@@ -52,7 +52,7 @@ void IntAna2d_AnaIntersection::Perform(const gp_Parab2d& P, const IntAna2d_Conic
 
   MyDirectPolynomialRoots Sol(px4, px3, px2, px1, px0);
 
-  if (!Sol.IsDone())
+  if (!getPrimal(Sol.IsDone()))
   {
     done = Standard_False;
   }

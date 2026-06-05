@@ -239,7 +239,10 @@ static Standard_Boolean FindMostSharedShell(
       if (aSharedAreaPtr == NULL)
         aSharedAreas.Bind(anOuterShell, anArea);
       else
-        anArea = (*aSharedAreaPtr) += anArea;
+      {
+        *aSharedAreaPtr += anArea;
+        anArea = *aSharedAreaPtr;
+      }
 
       // if this outer shell currently has maximum shared area,
       // remember it and the current solid's shell

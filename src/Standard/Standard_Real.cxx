@@ -37,7 +37,11 @@ Standard_Real ACos(const Standard_Real& Value)
   {
     return M_PI; // acos(-1.)
   }
+#ifdef ADOLC_REVERSE_MODE
+  return acos(Value);
+#else
   return adtl::acos(Value);
+#endif
 }
 
 double ACos(const double Value)
@@ -64,6 +68,17 @@ double ACos(const double Value)
 
 inline Standard_Real apx_for_ACosApprox(const Standard_Real& x)
 {
+#ifdef ADOLC_REVERSE_MODE
+  return (-0.000007239283986332
+          + x
+              * (2.000291665285952400
+                 + x
+                     * (0.163910606547823220
+                        + x
+                            * (0.047654245891495528
+                               - x * (0.005516443930088506 + 0.015098965761299077 * x)))))
+         / sqrt(2 * x);
+#else
   return (-0.000007239283986332
           + x
               * (2.000291665285952400
@@ -73,6 +88,7 @@ inline Standard_Real apx_for_ACosApprox(const Standard_Real& x)
                             * (0.047654245891495528
                                - x * (0.005516443930088506 + 0.015098965761299077 * x)))))
          / adtl::sqrt(2 * x);
+#endif
 }
 
 inline double apx_for_ACosApprox(const double x)
@@ -155,7 +171,11 @@ Standard_Real ASin(const Standard_Real& Value)
   {
     return -M_PI_2; // asin(-1.)
   }
+#ifdef ADOLC_REVERSE_MODE
+  return asin(Value);
+#else
   return adtl::asin(Value);
+#endif
 }
 
 double ASin(const double Value)
@@ -184,7 +204,11 @@ Standard_Real ATan2(const Standard_Real& Value, const Standard_Real& Other)
   {
     throw Standard_NullValue();
   }
+#ifdef ADOLC_REVERSE_MODE
+  return atan2(Value, Other);
+#else
   return adtl::atan2(Value, Other);
+#endif
 }
 
 double ATan2(const double Value, const double Other)
@@ -425,7 +449,11 @@ Standard_Real ATanh(const Standard_Real& Value)
 #if defined(__QNX__)
   return std::atanh(Value);
 #else
+  #ifdef ADOLC_REVERSE_MODE
+  return atanh(Value);
+  #else
   return adtl::atanh(Value);
+  #endif
 #endif
 }
 
@@ -460,7 +488,11 @@ Standard_Real ACosh(const Standard_Real& Value)
 #if defined(__QNX__)
   return std::acosh(Value);
 #else
+  #ifdef ADOLC_REVERSE_MODE
+  return acosh(Value);
+  #else
   return adtl::acosh(Value);
+  #endif
 #endif
 }
 
@@ -492,7 +524,11 @@ Standard_Real Cosh(const Standard_Real& Value)
 #endif
     throw Standard_NumericError("Result of Cosh exceeds the maximum value Standard_Real");
   }
+#ifdef ADOLC_REVERSE_MODE
+  return cosh(Value);
+#else
   return adtl::cosh(Value);
+#endif
 }
 
 double Cosh(const double Value)
@@ -519,7 +555,11 @@ Standard_Real Sinh(const Standard_Real& Value)
 #endif
     throw Standard_NumericError("Result of Sinh exceeds the maximum value Standard_Real");
   }
+#ifdef ADOLC_REVERSE_MODE
+  return sinh(Value);
+#else
   return adtl::sinh(Value);
+#endif
 }
 
 double Sinh(const double Value)
@@ -546,7 +586,11 @@ Standard_Real Log(const Standard_Real& Value)
 #endif
     throw Standard_NumericError("Illegal argument in Log");
   }
+#ifdef ADOLC_REVERSE_MODE
+  return log(Value);
+#else
   return adtl::log(Value);
+#endif
 }
 
 double Log(const double Value)
@@ -573,7 +617,11 @@ Standard_Real Sqrt(const Standard_Real& Value)
 #endif
     throw Standard_NumericError("Illegal argument in Sqrt");
   }
+#ifdef ADOLC_REVERSE_MODE
+  return sqrt(Value);
+#else
   return adtl::sqrt(Value);
+#endif
 }
 
 double Sqrt(const double Value)
