@@ -57,3 +57,4 @@ win64
 /build*
 /install*
 /tools/build*
+/cmake-build-debug
