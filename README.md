@@ -67,9 +67,14 @@ The current version of adOCCT can be found in the file [`adm/cmake/version.cmake
 
 ## Cite as
 
-Banović, M., Mykhaskiv, O., Auriemma, S., Walther, A., Legrand, H., & Müller, J. D. (2018). Algorithmic differentiation
+- Banović, M., Mykhaskiv, O., Auriemma, S., Walther, A., Legrand, H., and Müller, J. D. (2018). Algorithmic
+  differentiation
 of the Open CASCADE Technology CAD kernel and its coupling with an adjoint CFD solver. Optimization Methods and
 Software, 33(4–6), 813–828. https://doi.org/10.1080/10556788.2018.1431235
+- Hafemann, T., Banović, M. , Büchner, A. , Ehrmanntraut, S., Höing, C., Gottfried, S., and Stück, A. (2024).
+  A CAD-enabled MDAO Framework Approach for Gradient-based Aerodynamic Shape Optimization.
+  In: 9th European Congress on Computational Methods in Applied Sciences and Engineering (ECCOMAS 2024).
+  https://doi.org/10.23967/eccomas.2024.199
 
 ## Note
 
