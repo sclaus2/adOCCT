@@ -70,3 +70,13 @@ The current version of adOCCT can be found in the file [`adm/cmake/version.cmake
 Banović, M., Mykhaskiv, O., Auriemma, S., Walther, A., Legrand, H., & Müller, J. D. (2018). Algorithmic differentiation
 of the Open CASCADE Technology CAD kernel and its coupling with an adjoint CFD solver. Optimization Methods and
 Software, 33(4–6), 813–828. https://doi.org/10.1080/10556788.2018.1431235
+
+## Note
+
+The software is provided as is. We sincerely welcome your feedback on issues, bugs and
+possible improvements. Please use the issue tracker of the project for the corresponding
+communication or make a fork. Our priority and timeline for working on the issues depend
+on the project and its follow-ups. This may lead to issue and tickets, which are not pursued.
+In case you need an urgent fix, please contact us directly for discussing possible forms of
+collaboration (direct contribution, projects, contracting, ...):
+[Institute of Software Methods for Product Virtualization](https://www.dlr.de/sp)
