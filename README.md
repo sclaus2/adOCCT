@@ -18,7 +18,7 @@ the complete text of the license.
 **Note:** adOCCT is provided on an "AS IS" basis, WITHOUT WARRANTY OF ANY KIND. The entire risk related to any use of
 the adOCCT code and materials is on you. See the license text for a formal disclaimer.
 
-## Build from sources
+## Requirements and steps to build from sources
 
 adOCCT is currently being tested only on Linux distributions.
 To use it, adOCCT has to be built from sources to ensure compatibility with your platform (OS, compiler).
@@ -28,18 +28,26 @@ official [Building OCCT](https://dev.opencascade.org/doc/occt-7.9.0/overview/htm
 page for instructions.
 Additional steps and requirements are described in the following.
 
-The first step is to build and install ADOL-C release 2.7.2.
-When configuring it, one has to activate the flag `--enable-atrig-erf`.
-For example, ADOL-C installation process can be executed as follows:
+### ADOL-C
+
+For the purpose of OCCT differentiation, the ADOL-C library *v2.7.2* is used under the terms of Eclipse Public License
+1.0.
+To download ADOL-C, please refer to its [official page](https://github.com/coin-or/adol-c).
+Its version considered here is referenced by the tag *releases/2.7.2*.
+
+When configuring ADOL-C, one has to activate the flag `--enable-atrig-erf`.
+For example, its installation process can be executed as follows:
 
 ```
 ./configure --prefix=ADOLC_PREFIX --enable-atrig-erf
 make && make install
 ```
 
-where `ADOLC_PREFIX` is the destination where header and library files are going to be installed.
+where `ADOLC_PREFIX` is the desired destination where header- and library-files are going to be installed.
 
-Next, one can proceed with configuring and building adOCCT as follows:
+### adOCCT
+
+The steps to configure and build adOCCT are described as follows:
 
 1. Checkout `ad/master` branch (should be done by default).
 2. Configure adOCCT using CMake by setting the following variable: `USE_ADOLC=ON`.
@@ -47,7 +55,7 @@ Next, one can proceed with configuring and building adOCCT as follows:
    If it fails to find it, which can be the case with a local ADOL-C installation that is not added
    to common search paths, one has to manually set a variable `3RDPARTY_ADOLC_DIR` to the path where
    ADOL-C installation resides (i.e., `ADOLC_PREFIX` described previously).
-   From that, the variables for the ADOL-C include and library directory are automatically derived.
+   From that, variables for the ADOL-C include and library directories are automatically derived.
 3. To activate the reverse mode of AD, set the variable `ADOLC_REVERSE_MODE=ON`. This will build adOCCT using the
    *trace-based* headers of ADOL-C, otherwise the *traceless* header of ADOL-C is employed which allows only
    the forward mode of AD.
