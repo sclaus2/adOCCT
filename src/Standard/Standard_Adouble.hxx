@@ -22,9 +22,14 @@
 #endif
 
 /*
- * A child class of adouble implemented only for the purposes of overloading the behavior of
- * ostream and istream operators. That is, only primal values should be considered in
- * these operators, such that OCCT input/output system is not corrupted with AD values.
+ * ostream and istream operators (<< and >>) of the ADOL-C adouble class (both traceless and
+ * trace-based option) are not suitable for the input/output system of OCCT. For instance,
+ * writing an adouble object to a STEP file would export both its primal and derivative values.
+ * As a result, the STEP file would be corrupted. There is no need that files like STEP contain
+ * this additional information.
+ * Thus, instead of modifying the ADOL-C sources, a new class is implemented here that inherits
+ * from adouble but defines a different behavior for the ostream and istream operators, where
+ * only the primal values are considered.
  */
 
 #ifdef ADOLC_REVERSE_MODE
